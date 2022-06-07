@@ -1,0 +1,24 @@
+{
+  "breakpoint": {
+    "sm": {
+      "value": "640px",
+      "comment": "Used for larger mobile screens."
+    },
+    "md": {
+      "value": "768px",
+      "comment": "Used for tablet screens."
+    },
+    "lg": {
+      "value": "1024px",
+      "comment": "Used for larger table screens."
+    },
+    "xl": {
+      "value": "1280px",
+      "comment": "Used for standard desktop screens."
+    },
+    "2xl": {
+      "value": "1536px",
+      "comment": "Used for larger desktop screens."
+    }
+  }
+}

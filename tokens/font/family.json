@@ -1,0 +1,14 @@
+{
+  "font": {
+    "family": {
+      "default": {
+        "value": "\"Maison Neue\", Roboto, Helvetica, Arial, sans-serif"
+      },
+      "monospace": {
+        "value": "\"Maison Neue Mono\", Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+      }
+    }
+  }
+}
+
+

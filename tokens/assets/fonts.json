@@ -1,0 +1,23 @@
+{
+  "asset": {
+    "font": {
+      "maisonneue": {
+        "regular": {
+          "value": "assets/fonts/MaisonNeue/Demi/MaisonNeue-Demi.ttf"
+        },
+        "regular-italic": {
+          "value": "assets/fonts/MaisonNeue/DemiItalic/MaisonNeue-DemiItalic.ttf"
+        },
+        "bold": {
+          "value": "assets/fonts/MaisonNeue/Bold/MaisonNeue-Bold.ttf"
+        },
+        "bold-italic": {
+          "value": "assets/fonts/MaisonNeue/BoldItalic/MaisonNeue-BoldItalic.ttf"
+        },
+        "mono": {
+          "value": "assets/fonts/MaisonNeue/Mono/MaisonNeue-Mono.ttf"
+        }
+      }
+    }
+  }
+}

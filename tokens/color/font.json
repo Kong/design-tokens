@@ -1,0 +1,9 @@
+{
+  "color": {
+    "font": {
+      "base": {
+        "value": "{color.base.black.70}"
+      }
+    }
+  }
+}
