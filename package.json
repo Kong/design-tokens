@@ -12,7 +12,6 @@
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build"
   },
-  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/Kong/style-dictionary.git"

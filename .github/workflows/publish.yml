@@ -11,42 +11,37 @@ jobs:
     uses: Kong/style-dictionary/.github/workflows/test.yml@main
 
   publish:
-      name: Build and Publish Style Dictionary
-      needs:
-        - run-tests
-      runs-on: ubuntu-latest
-      env:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
-          with:
-            token: ${{ secrets.KONGPONENTS_BOT_PAT }}
+    name: Build and Publish Style Dictionary
+    needs:
+      - run-tests
+    runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.KONGPONENTS_BOT_PAT }}
 
-        - name: setup git
-          run: |
-            git config --global user.name 'kongponents-bot'
-            git config --global user.email '95302551+kongponents-bot@users.noreply.github.com'
+      - name: Create .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 
-        - name: Create .npmrc
-          run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
 
-        - name: Use Node.js
-          uses: actions/setup-node@v3
-          with:
-            node-version-file: '.nvmrc'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-        - name: Install dependencies
-          run: yarn install --frozen-lockfile
+      - name: Lint
+        run: yarn lint
 
-        - name: Lint
-          run: yarn lint
+      - name: Build
+        run: yarn build
 
-        - name: Build
-          run: yarn build
-
-        - name: Semantic Release
-          uses: cycjimmy/semantic-release-action@v2
-          env:
-            # Since branch protections are on (pushing commits) you need to use a bot PAT
-            GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        env:
+          # Since branch protections are on (pushing commits) you need to use a bot PAT
+          GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
