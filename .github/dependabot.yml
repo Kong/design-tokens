@@ -24,4 +24,4 @@ updates:
     directory: /
     schedule:
       interval: daily
-    target-branch: 'beta'
+    target-branch: 'main'
