@@ -2,7 +2,7 @@
 
 Kong's **Style Dictionary** based on <https://github.com/amzn/style-dictionary>
 
-> **Note**: Repository and documentation is a work in progress. Active work is on the `beta` branch
+> **Note**: Repository and documentation is a work in progress.
 
 ---
 
