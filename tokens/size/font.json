@@ -1,17 +1,33 @@
 {
   "size": {
     "font": {
+      "xs" : {
+        "value": "8px",
+        "comment": "The extra-small size of the font."
+      },
       "sm" : {
-        "value": "0.75",
+        "value": "12px",
         "comment": "The small size of the font."
       },
       "md": {
-        "value": "1",
+        "value": "16px",
         "comment": "The medium size of the font."
       },
       "lg" : {
-        "value": "2",
+        "value": "20px",
         "comment": "The large size of the font."
+      },
+      "xl" : {
+        "value": "24px",
+        "comment": "The extra-large size of the font."
+      },
+      "2xl" : {
+        "value": "28px",
+        "comment": "The 2x large size of the font."
+      },
+      "3xl" : {
+        "value": "32px",
+        "comment": "The 3x large size of the font."
       },
       "base"  : {
         "value": "{size.font.md.value}",

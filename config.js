@@ -44,7 +44,7 @@ let platforms = {}
 
 // CSS variables
 platforms.css = {
-  prefix: 'kong-ui',
+  prefix: 'kui',
   transformGroup: 'css',
   buildPath: 'build/css/',
   transforms: [

@@ -1,21 +1,23 @@
 {
   "asset": {
     "font": {
-      "maisonneue": {
+      "inter": {
         "regular": {
-          "value": "assets/fonts/MaisonNeue/Demi/MaisonNeue-Demi.ttf"
+          "value": "assets/fonts/Inter/Inter-Regular.ttf"
         },
-        "regular-italic": {
-          "value": "assets/fonts/MaisonNeue/DemiItalic/MaisonNeue-DemiItalic.ttf"
+        "medium": {
+          "value": "assets/fonts/Inter/Inter-Medium.ttf"
+        },
+        "semibold": {
+          "value": "assets/fonts/Inter/Inter-SemiBold.ttf"
         },
         "bold": {
-          "value": "assets/fonts/MaisonNeue/Bold/MaisonNeue-Bold.ttf"
-        },
-        "bold-italic": {
-          "value": "assets/fonts/MaisonNeue/BoldItalic/MaisonNeue-BoldItalic.ttf"
-        },
+          "value": "assets/fonts/Inter/Inter-Bold.ttf"
+        }
+      },
+      "firamono": {
         "mono": {
-          "value": "assets/fonts/MaisonNeue/Mono/MaisonNeue-Mono.ttf"
+          "value": "assets/fonts/FiraMono/FiraMono-Regular.ttf"
         }
       }
     }

@@ -2,10 +2,10 @@
   "font": {
     "family": {
       "default": {
-        "value": "\"Maison Neue\", Roboto, Helvetica, Arial, sans-serif"
+        "value": "\"Inter\", Roboto, Helvetica, Arial, sans-serif"
       },
       "monospace": {
-        "value": "\"Maison Neue Mono\", Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
+        "value": "\"Fira Mono\", Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
       }
     }
   }

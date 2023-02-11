@@ -2,15 +2,15 @@
   "breakpoint": {
     "sm": {
       "value": "640px",
-      "comment": "Used for larger mobile screens."
+      "comment": "Used for larger mobile screens. Anything under this value is considered mobile."
     },
     "md": {
       "value": "768px",
-      "comment": "Used for tablet screens."
+      "comment": "Used for tablet screens. Anything under this size is considered mobile layout. Anything this size and above is considered desktop layout."
     },
     "lg": {
       "value": "1024px",
-      "comment": "Used for larger table screens."
+      "comment": "Used for larger tablet screens."
     },
     "xl": {
       "value": "1280px",
