@@ -46,7 +46,7 @@ let platforms = {}
 platforms.css = {
   prefix: 'kui',
   transformGroup: 'css',
-  buildPath: 'build/css/',
+  buildPath: 'dist/css/',
   transforms: [
     'attribute/cti',
     'name/cti/kebab',
@@ -70,7 +70,7 @@ platforms.css = {
 platforms.scss = {
   prefix: 'kui',
   transformGroup: 'scss',
-  buildPath: 'build/scss/',
+  buildPath: 'dist/scss/',
   transforms: [
     'attribute/cti',
     'name/cti/kebab',
@@ -106,7 +106,7 @@ platforms[ 'assets/embed/scss' ] = {
     'name/cti/kebab',
     'asset/base64',
   ],
-  buildPath: 'build/scss/',
+  buildPath: 'dist/scss/',
   files: [
     {
       destination: '_fonts.scss',
