@@ -1,0 +1,82 @@
+{
+  "method": {
+    "color": {
+      "background": {
+        "connect": {
+          "comment": "purple.10",
+          "value": "{color.alias.purple.10}"
+        },
+        "delete": {
+          "comment": "red.10",
+          "value": "{color.alias.red.10}"
+        },
+        "get": {
+          "comment": "blue.10",
+          "value": "{color.alias.blue.10}"
+        },
+        "head": {
+          "comment": "gray.60",
+          "value": "{color.alias.gray.60}"
+        },
+        "options": {
+          "comment": "gray.10",
+          "value": "{color.alias.gray.10}"
+        },
+        "patch": {
+          "comment": "aqua.10",
+          "value": "{color.alias.aqua.10}"
+        },
+        "post": {
+          "comment": "green.10",
+          "value": "{color.alias.green.10}"
+        },
+        "put": {
+          "comment": "yellow.10",
+          "value": "{color.alias.yellow.10}"
+        },
+        "trace": {
+          "comment": "pink.10",
+          "value": "{color.alias.pink.10}"
+        }
+      },
+      "text": {
+        "connect": {
+          "comment": "purple.60",
+          "value": "{color.alias.purple.60}"
+        },
+        "delete": {
+          "comment": "red.60",
+          "value": "{color.alias.red.60}"
+        },
+        "get": {
+          "comment": "blue.60",
+          "value": "{color.alias.blue.60}"
+        },
+        "head": {
+          "comment": "gray.10",
+          "value": "{color.alias.gray.10}"
+        },
+        "options": {
+          "comment": "gray.60",
+          "value": "{color.alias.gray.60}"
+        },
+        "patch": {
+          "comment": "aqua.60",
+          "value": "{color.alias.aqua.60}"
+        },
+        "post": {
+          "comment": "green.60",
+          "value": "{color.alias.green.60}"
+        },
+        "put": {
+          "comment": "yellow.60",
+          "value": "{color.alias.yellow.60}"
+        },
+        "trace": {
+          "comment": "pink.60",
+          "value": "{color.alias.pink.60}"
+        }
+      }
+    }
+  }
+}

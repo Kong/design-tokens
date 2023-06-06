@@ -1,0 +1,25 @@
+{
+  "border": {
+    "radius": {
+      "0": {
+        "value": "0px"
+      },
+      "10": {
+        "value": "2px"
+      },
+      "20": {
+        "value": "4px"
+      },
+      "30": {
+        "value": "6px"
+      },
+      "40": {
+        "value": "8px"
+      },
+      "circle": {
+        "comment": "Used to create a circle. Value of 50%",
+        "value": "50%"
+      }
+    }
+  }
+}

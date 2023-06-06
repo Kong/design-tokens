@@ -1,0 +1,102 @@
+{
+  "name": "@kong/design-system",
+  "version": "0.0.1",
+  "description": "Kong UI Design Tokens and style dictionary",
+  "scripts": {
+    "build": "yarn clean && style-dictionary build",
+    "lint": "eslint '**/*.{js,ts,json}'",
+    "lint:fix": "eslint '**/*.{js,ts,json}' --fix",
+    "clean": "rimraf dist",
+    "semantic-release": "semantic-release",
+    "prepublishOnly": "npm run build",
+    "commit": "cz"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    "./tokens/*": "./dist/tokens/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kong/design-tokens.git"
+  },
+  "author": "Kong Inc.",
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/Kong/design-tokens#readme",
+  "bugs": {
+    "url": "https://github.com/Kong/design-tokens/issues"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.0",
+    "@evilmartians/lefthook": "^1.2.8",
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
+    "@typescript-eslint/parser": "^5.51.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.34.0",
+    "eslint-plugin-jsonc": "^2.8.0",
+    "rimraf": "^5.0.1",
+    "semantic-release": "^20.1.0",
+    "style-dictionary": "^3.8.0"
+  },
+  "release": {
+    "branches": [
+      "+([0-9])?(.{+([0-9]),x}).x",
+      "main",
+      "next",
+      "next-major",
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
+      "@semantic-release/github"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira",
+      "skipScope": false,
+      "jiraOptional": true,
+      "jiraLocation": "post-description",
+      "jiraPrepend": "[",
+      "jiraAppend": "]"
+    }
+  },
+  "volta": {
+    "node": "18.16.0",
+    "yarn": "1.22.17"
+  }
+}

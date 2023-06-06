@@ -1,0 +1,72 @@
+{
+  "space": {
+    "0": {
+      "comment": "0px",
+      "value": "0px"
+    },
+    "10": {
+      "comment": "2px",
+      "value": "2px"
+    },
+    "20": {
+      "comment": "4px",
+      "value": "4px"
+    },
+    "30": {
+      "comment": "6px",
+      "value": "6px"
+    },
+    "40": {
+      "comment": "8px",
+      "value": "8px"
+    },
+    "50": {
+      "comment": "12px",
+      "value": "12px"
+    },
+    "60": {
+      "comment": "16px",
+      "value": "16px"
+    },
+    "70": {
+      "comment": "2px",
+      "value": "2px"
+    },
+    "80": {
+      "comment": "24px",
+      "value": "24px"
+    },
+    "90": {
+      "comment": "32px",
+      "value": "32px"
+    },
+    "100": {
+      "comment": "40px",
+      "value": "40px"
+    },
+    "110": {
+      "comment": "48px",
+      "value": "48px"
+    },
+    "120": {
+      "comment": "56px",
+      "value": "56px"
+    },
+    "130": {
+      "comment": "64px",
+      "value": "64px"
+    },
+    "140": {
+      "comment": "80px",
+      "value": "80px"
+    },
+    "150": {
+      "comment": "96px",
+      "value": "96px"
+    },
+    "auto": {
+      "comment": "auto",
+      "value": "auto"
+    }
+  }
+}

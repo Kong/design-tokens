@@ -1,0 +1,25 @@
+{
+  "asset": {
+    "font": {
+      "inter": {
+        "bold": {
+          "value": "assets/fonts/Inter/Inter-Bold.ttf"
+        },
+        "medium": {
+          "value": "assets/fonts/Inter/Inter-Medium.ttf"
+        },
+        "regular": {
+          "value": "assets/fonts/Inter/Inter-Regular.ttf"
+        },
+        "semibold": {
+          "value": "assets/fonts/Inter/Inter-SemiBold.ttf"
+        }
+      },
+      "jetbrains_mono": {
+        "regular": {
+          "value": "assets/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf"
+        }
+      }
+    }
+  }
+}

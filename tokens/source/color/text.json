@@ -1,0 +1,64 @@
+{
+  "color": {
+    "text": {
+      "_": {
+        "comment": "blue.100",
+        "value": "{color.alias.blue.100}"
+      },
+      "danger": {
+        "_": {
+          "comment": "red.60",
+          "value": "{color.alias.red.60}"
+        }
+      },
+      "decorative": {
+        "comment": "aqua.50",
+        "value": "{color.alias.aqua.50}"
+      },
+      "disabled": {
+        "comment": "gray.50",
+        "value": "{color.alias.gray.50}"
+      },
+      "inverse": {
+        "comment": "white",
+        "value": "{color.alias.white}"
+      },
+      "neutral": {
+        "_": {
+          "comment": "gray.100",
+          "value": "{color.alias.gray.60}"
+        },
+        "strong": {
+          "comment": "gray.70",
+          "value": "{color.alias.gray.70}"
+        }
+      },
+      "primary": {
+        "_": {
+          "comment": "blue.60",
+          "value": "{color.alias.blue.60}"
+        },
+        "strong": {
+          "comment": "blue.70",
+          "value": "{color.alias.blue.70}"
+        },
+        "stronger": {
+          "comment": "blue.80",
+          "value": "{color.alias.blue.80}"
+        }
+      },
+      "success": {
+        "_": {
+          "comment": "green.60",
+          "value": "{color.alias.green.60}"
+        }
+      },
+      "warning": {
+        "_": {
+          "comment": "yellow.60",
+          "value": "{color.alias.yellow.60}"
+        }
+      }
+    }
+  }
+}

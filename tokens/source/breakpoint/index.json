@@ -1,0 +1,24 @@
+{
+  "breakpoint": {
+    "desktop": {
+      "comment": "Used for larger desktop screens.",
+      "value": "1536px"
+    },
+    "laptop": {
+      "comment": "Used for standard desktop screens.",
+      "value": "1280px"
+    },
+    "mobile": {
+      "comment": "Used for larger mobile screens. Anything under this value is considered mobile.",
+      "value": "640px"
+    },
+    "phablet": {
+      "comment": "Used for tablet screens.",
+      "value": "768px"
+    },
+    "tablet": {
+      "comment": "Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout.",
+      "value": "1024px"
+    }
+  }
+}

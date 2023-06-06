@@ -1,0 +1,14 @@
+{
+  "font": {
+    "family": {
+      "code": {
+        "comment": "The standard monospace font family.",
+        "value": "'JetBrains Mono', Consolas, monospace"
+      },
+      "text": {
+        "comment": "The standard text font family.",
+        "value": "'Inter', Roboto, Helvetica, sans-serif"
+      }
+    }
+  }
+}
