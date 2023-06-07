@@ -37,5 +37,6 @@ export default defineConfig({
       // Allow serving files from one level up from the package root - IMPORTANT - to support the sandbox
       strict: false,
     },
+    open: true,
   },
 })

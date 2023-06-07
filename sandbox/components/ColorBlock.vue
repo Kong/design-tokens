@@ -2,10 +2,10 @@
   <div class="color-block-container">
     <div
       class="swatch"
-      :style="blockStyles"
+      :style="swatchStyles"
     />
     <div class="description">
-      <span>{{ token }}</span>
+      <span>{{ sanitizedToken }}</span>
     </div>
   </div>
 </template>
@@ -21,8 +21,9 @@ const props = defineProps({
   },
 })
 
-const blockStyles = computed((): Record<string, string> => ({
-  backgroundColor: `var(--${props.token}, '#000')`,
+const sanitizedToken = computed((): string => props.token.replace(/^--/, ''))
+const swatchStyles = computed((): Record<string, string> => ({
+  backgroundColor: `var(--${sanitizedToken.value.replace(/^--/, '')}, '#000')`,
 }))
 </script>
 
@@ -31,7 +32,6 @@ const blockStyles = computed((): Record<string, string> => ({
   display: flex;
   align-items: center;
   margin: 8px;
-  padding: 24px 0;
 
   .swatch {
     width: 40px;
