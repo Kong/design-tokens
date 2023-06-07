@@ -10,7 +10,7 @@
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
     "commit": "cz",
-    "sandbox": "vite sandbox -c ./sandbox/vite.config.ts"
+    "sandbox": "yarn build && vite sandbox -c ./sandbox/vite.config.ts"
   },
   "publishConfig": {
     "access": "restricted"
