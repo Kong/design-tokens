@@ -4,12 +4,13 @@
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
     "build": "yarn clean && style-dictionary build",
-    "lint": "eslint '**/*.{js,ts,json}'",
-    "lint:fix": "eslint '**/*.{js,ts,json}' --fix",
+    "lint": "eslint '**/*.{js,ts,vue,json}'",
+    "lint:fix": "eslint '**/*.{js,ts,vue,json}' --fix",
     "clean": "rimraf dist",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
-    "commit": "cz"
+    "commit": "cz",
+    "sandbox": "vite sandbox -c ./sandbox/vite.config.ts"
   },
   "publishConfig": {
     "access": "restricted"
@@ -17,7 +18,7 @@
   "files": [
     "dist"
   ],
-  "types": "dist/tokens/typescript/index.d.ts",
+  "types": "dist/tokens/js/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     "./tokens/*": "./dist/tokens/*"
@@ -41,13 +42,24 @@
     "@semantic-release/git": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",
+    "@vitejs/plugin-vue": "^4.2.3",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.34.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsonc": "^2.8.0",
+    "eslint-plugin-n": "^16.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.14.1",
     "rimraf": "^5.0.1",
+    "sass": "^1.62.1",
     "semantic-release": "^20.1.0",
-    "style-dictionary": "^3.8.0"
+    "style-dictionary": "^3.8.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.3.9",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.2"
   },
   "release": {
     "branches": [

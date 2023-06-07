@@ -1,0 +1,136 @@
+/**
+ * Do not edit directly
+ * Generated on Wed, 07 Jun 2023 15:55:43 GMT
+ * Source: https://github.com/Kong/design-system
+ */
+
+:root {
+  --kui-color-background: #ffffff; /* white */
+  --kui-color-background-danger: #d60027; /* red.60 */
+  --kui-color-background-danger-strong: #ad000e; /* red.70 */
+  --kui-color-background-danger-stronger: #850000; /* red.80 */
+  --kui-color-background-danger-strongest: #5c0000; /* red.90 */
+  --kui-color-background-danger-weak: #ff3954; /* red.40 */
+  --kui-color-background-danger-weaker: #ffabab; /* red.20 */
+  --kui-color-background-danger-weakest: #ffe5e5; /* red.10 */
+  --kui-color-background-disabled: #e0e4ea; /* gray.20 */
+  --kui-color-background-inverse: #000933; /* blue.100 */
+  --kui-color-background-neutral: #6c7489; /* gray.60 */
+  --kui-color-background-neutral-strong: #52596e; /* gray.70 */
+  --kui-color-background-neutral-stronger: #3a3f51; /* gray.80 */
+  --kui-color-background-neutral-strongest: #232633; /* gray.90 */
+  --kui-color-background-neutral-weak: #afb7c5; /* gray.40 */
+  --kui-color-background-neutral-weaker: #e0e4ea; /* gray.20 */
+  --kui-color-background-neutral-weakest: #f9fafb; /* gray.10 */
+  --kui-color-background-primary: #0044f4; /* blue.60 */
+  --kui-color-background-primary-strong: #0030cc; /* blue.70 */
+  --kui-color-background-primary-stronger: #002099; /* blue.80 */
+  --kui-color-background-primary-strongest: #001466; /* blue.90 */
+  --kui-color-background-primary-weak: #5f9aff; /* blue.40 */
+  --kui-color-background-primary-weaker: #bee2ff; /* blue.20 */
+  --kui-color-background-primary-weakest: #eefaff; /* blue.10 */
+  --kui-color-background-success-weakest: #ecfffb; /* green.10 */
+  --kui-color-background-transparent: rgba(0, 0, 0, 0); /* transparent */
+  --kui-color-background-warning-weakest: #fffce0; /* yellow.10 */
+  --kui-color-border: #e0e4ea; /* gray.20 */
+  --kui-color-border-danger: #d60027; /* red.60 */
+  --kui-color-border-danger-strong: #ad000e; /* red.70 */
+  --kui-color-border-danger-stronger: #850000; /* red.80 */
+  --kui-color-border-danger-strongest: #5c0000; /* red.90 */
+  --kui-color-border-danger-weak: #ff3954; /* red.40 */
+  --kui-color-border-danger-weaker: #ffabab; /* red.20 */
+  --kui-color-border-danger-weakest: #ffe5e5; /* red.10 */
+  --kui-color-border-decorative: #6f28ff; /* purple.60 */
+  --kui-color-border-disabled: #e0e4ea; /* gray.20 */
+  --kui-color-border-primary: #0044f4; /* blue.60 */
+  --kui-color-border-primary-strong: #0030cc; /* blue.70 */
+  --kui-color-border-primary-stronger: #002099; /* blue.80 */
+  --kui-color-border-primary-strongest: #001466; /* blue.90 */
+  --kui-color-border-primary-weak: #5f9aff; /* blue.40 */
+  --kui-color-border-primary-weaker: #bee2ff; /* blue.20 */
+  --kui-color-border-primary-weakest: #eefaff; /* blue.10 */
+  --kui-color-border-transparent: rgba(0, 0, 0, 0); /* transparent */
+  --kui-color-text: #000933; /* blue.100 */
+  --kui-color-text-danger: #d60027; /* red.60 */
+  --kui-color-text-decorative: #00abd2; /* aqua.50 */
+  --kui-color-text-disabled: #828a9e; /* gray.50 */
+  --kui-color-text-inverse: #ffffff; /* white */
+  --kui-color-text-neutral: #6c7489; /* gray.100 */
+  --kui-color-text-neutral-strong: #52596e; /* gray.70 */
+  --kui-color-text-primary: #0044f4; /* blue.60 */
+  --kui-color-text-primary-strong: #0030cc; /* blue.70 */
+  --kui-color-text-primary-stronger: #002099; /* blue.80 */
+  --kui-color-text-success: #007d60; /* green.60 */
+  --kui-color-text-warning: #995c00; /* yellow.60 */
+  --kui-asset-font-inter-bold: "assets/fonts/Inter/Inter-Bold.ttf";
+  --kui-asset-font-inter-medium: "assets/fonts/Inter/Inter-Medium.ttf";
+  --kui-asset-font-inter-regular: "assets/fonts/Inter/Inter-Regular.ttf";
+  --kui-asset-font-inter-semibold: "assets/fonts/Inter/Inter-SemiBold.ttf";
+  --kui-asset-font-jetbrains-mono-regular: "assets/fonts/JetBrainsMono/JetBrainsMono-Regular.ttf";
+  --kui-border-radius-0: 0px;
+  --kui-border-radius-10: 2px;
+  --kui-border-radius-20: 4px;
+  --kui-border-radius-30: 6px;
+  --kui-border-radius-40: 8px;
+  --kui-border-radius-circle: 50%; /* Used to create a circle. Value of 50% */
+  --kui-border-width-0: 0px;
+  --kui-border-width-10: 1px;
+  --kui-border-width-20: 2px;
+  --kui-border-width-30: 4px;
+  --kui-breakpoint-desktop: 1536px; /* Used for larger desktop screens. */
+  --kui-breakpoint-laptop: 1280px; /* Used for standard desktop screens. */
+  --kui-breakpoint-mobile: 640px; /* Used for larger mobile screens. Anything under this value is considered mobile. */
+  --kui-breakpoint-phablet: 768px; /* Used for tablet screens. */
+  --kui-breakpoint-tablet: 1024px; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. */
+  --kui-method-color-background-connect: #f1f0ff; /* purple.10 */
+  --kui-method-color-background-delete: #ffe5e5; /* red.10 */
+  --kui-method-color-background-get: #eefaff; /* blue.10 */
+  --kui-method-color-background-head: #6c7489; /* gray.60 */
+  --kui-method-color-background-options: #f9fafb; /* gray.10 */
+  --kui-method-color-background-patch: #ecfcff; /* aqua.10 */
+  --kui-method-color-background-post: #ecfffb; /* green.10 */
+  --kui-method-color-background-put: #fffce0; /* yellow.10 */
+  --kui-method-color-background-trace: #fff0f7; /* pink.10 */
+  --kui-method-color-text-connect: #6f28ff; /* purple.60 */
+  --kui-method-color-text-delete: #d60027; /* red.60 */
+  --kui-method-color-text-get: #0044f4; /* blue.60 */
+  --kui-method-color-text-head: #f9fafb; /* gray.10 */
+  --kui-method-color-text-options: #6c7489; /* gray.60 */
+  --kui-method-color-text-patch: #00819d; /* aqua.60 */
+  --kui-method-color-text-post: #007d60; /* green.60 */
+  --kui-method-color-text-put: #995c00; /* yellow.60 */
+  --kui-method-color-text-trace: #d60067; /* pink.60 */
+  --kui-font-family-code: 'JetBrains Mono', Consolas, monospace; /* The standard monospace font family. */
+  --kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif; /* The standard text font family. */
+  --kui-font-size-10: 10px;
+  --kui-font-size-20: 12px;
+  --kui-font-size-30: 14px;
+  --kui-font-size-40: 16px;
+  --kui-font-size-50: 18px;
+  --kui-font-size-60: 20px;
+  --kui-font-size-70: 24px;
+  --kui-font-size-80: 32px;
+  --kui-font-size-90: 40px;
+  --kui-font-size-100: 48px;
+  --kui-font-weight-bold: 700; /* 700 */
+  --kui-font-weight-medium: 500; /* 500 */
+  --kui-font-weight-regular: 400; /* 400: The normal font weight. */
+  --kui-font-weight-semibold: 600; /* 600 */
+  --kui-space-0: 0px; /* 0px */
+  --kui-space-10: 2px; /* 2px */
+  --kui-space-20: 4px; /* 4px */
+  --kui-space-30: 6px; /* 6px */
+  --kui-space-40: 8px; /* 8px */
+  --kui-space-50: 12px; /* 12px */
+  --kui-space-60: 16px; /* 16px */
+  --kui-space-70: 2px; /* 2px */
+  --kui-space-80: 24px; /* 24px */
+  --kui-space-90: 32px; /* 32px */
+  --kui-space-100: 40px; /* 40px */
+  --kui-space-110: 48px; /* 48px */
+  --kui-space-120: 56px; /* 56px */
+  --kui-space-130: 64px; /* 64px */
+  --kui-space-140: 80px; /* 80px */
+  --kui-space-150: 96px; /* 96px */
+  --kui-space-auto: auto; /* auto */
+}
