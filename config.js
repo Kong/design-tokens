@@ -124,10 +124,35 @@ platforms.typescript = {
     'color/css',
   ],
   files: [
-    // SCSS variables
+    // TypeScript constants
     {
-      destination: 'tokens.d.ts',
+      destination: 'index.d.ts',
       format: 'typescript/es6-declarations',
+      options: {
+        fileHeader: customFileHeader,
+        outputStringLiterals: true,
+      },
+      // Exclude alias tokens
+      filter: (token) => token.isSource === true,
+    },
+  ],
+}
+
+// JavaScript
+platforms.javascript = {
+  prefix: KONG_TOKEN_PREFIX,
+  transformGroup: 'js',
+  buildPath: `${TOKEN_DIRECTORY}/javascript/`,
+  transforms: [
+    'attribute/cti',
+    'name/cti/constant',
+    'color/css',
+  ],
+  files: [
+    // JavaScript constants
+    {
+      destination: 'index.js',
+      format: 'javascript/es6',
       options: {
         fileHeader: customFileHeader,
         outputStringLiterals: true,
