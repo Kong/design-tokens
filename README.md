@@ -9,7 +9,8 @@ Kong's Design System and **Style Dictionary**, created with [Style Dictionary](h
 A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - iOS, Android, CSS, JS, HTML, sketch files, style documentation, or anything you can think of.
 
 - [Design Token Requirements](#design-token-requirements)
-- [Development](#development)
+- [Usage](#usage)
+- [Local Development](#local-development)
   - [ESLint](#eslint)
   - [Sandbox](#sandbox)
   - [Build for production](#build-for-production)
@@ -25,6 +26,7 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 - Token keys **must** be defined in normal alphabetical order
 - Tokens defined in the `/tokens/source/` directory **WILL** be exported in the build files.
 - Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
+- Token aliases (e.g. color aliases) **must not** be exposed/exported from the production build
 - Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens. Example:
 
     <details>
@@ -63,7 +65,11 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 
     </details>
 
-## Development
+## Usage
+
+TODO.
+
+## Local Development
 
 To get started, install dependencies
 
