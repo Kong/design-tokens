@@ -42,6 +42,8 @@ yarn.lock
 # Native Builds
 build/
 dist/
+sandbox/dist/
+sandbox/dist-copy/
 
 # Android Specific Files
 .gradle/
