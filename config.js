@@ -39,21 +39,21 @@ const customFileHeader = (defaultMessage) => {
  * }
  * ```
  */
-const {fileHeader, formattedVariables} = StyleDictionary.formatHelpers
+const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
   name: 'cssVariablesMixin',
-  formatter: function({dictionary, file, options}) {
-    const {outputReferences} = options
+  formatter: function({ dictionary, file, options }) {
+    const { outputReferences } = options
 
-    return fileHeader({file}) +
+    return fileHeader({ file }) +
       '@mixin kong-css-variables {\n' +
-      formattedVariables({format: 'css', dictionary, outputReferences}) +
+      formattedVariables({ format: 'css', dictionary, outputReferences }) +
       '\n}\n'
   },
 })
 
 // Create an empty platforms object
-let platforms = {}
+const platforms = {}
 
 // CSS variables
 platforms.css = {
@@ -113,36 +113,11 @@ platforms.scss = {
   ],
 }
 
-// TypeScript
-platforms.typescript = {
-  prefix: KONG_TOKEN_PREFIX,
-  transformGroup: 'ts',
-  buildPath: `${TOKEN_DIRECTORY}/typescript/`,
-  transforms: [
-    'attribute/cti',
-    'name/cti/constant',
-    'color/css',
-  ],
-  files: [
-    // TypeScript constants
-    {
-      destination: 'index.d.ts',
-      format: 'typescript/es6-declarations',
-      options: {
-        fileHeader: customFileHeader,
-        outputStringLiterals: true,
-      },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
-    },
-  ],
-}
-
 // JavaScript
 platforms.javascript = {
   prefix: KONG_TOKEN_PREFIX,
   transformGroup: 'js',
-  buildPath: `${TOKEN_DIRECTORY}/javascript/`,
+  buildPath: `${TOKEN_DIRECTORY}/js/`,
   transforms: [
     'attribute/cti',
     'name/cti/constant',
@@ -153,6 +128,16 @@ platforms.javascript = {
     {
       destination: 'index.js',
       format: 'javascript/es6',
+      options: {
+        fileHeader: customFileHeader,
+      },
+      // Exclude alias tokens
+      filter: (token) => token.isSource === true,
+    },
+    // TypeScript types
+    {
+      destination: 'index.d.ts',
+      format: 'typescript/es6-declarations',
       options: {
         fileHeader: customFileHeader,
         outputStringLiterals: true,

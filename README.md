@@ -9,8 +9,10 @@ Kong's Design System and **Style Dictionary**, created with [Style Dictionary](h
 A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - iOS, Android, CSS, JS, HTML, sketch files, style documentation, or anything you can think of.
 
 - [Design Token Requirements](#design-token-requirements)
-- [Development](#development)
+- [Usage](#usage)
+- [Local Development](#local-development)
   - [ESLint](#eslint)
+  - [Sandbox](#sandbox)
   - [Build for production](#build-for-production)
   - [Committing Changes](#committing-changes)
 
@@ -24,6 +26,7 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 - Token keys **must** be defined in normal alphabetical order
 - Tokens defined in the `/tokens/source/` directory **WILL** be exported in the build files.
 - Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
+- Token aliases (e.g. color aliases) **must not** be exposed/exported from the production build
 - Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens. Example:
 
     <details>
@@ -62,7 +65,11 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 
     </details>
 
-## Development
+## Usage
+
+TODO.
+
+## Local Development
 
 To get started, install dependencies
 
@@ -82,7 +89,23 @@ yarn run lint
 yarn run lint:fix
 ```
 
+### Sandbox
+
+This repository includes a Vue sandbox (see the `/sandbox` directory) to allow you to experiment with consuming tokens.
+
+To start the sandbox:
+
+```sh
+yarn run sandbox
+```
+
+This command will simultaneously start the Vite dev server and initialize a watcher on the `/tokens` directory. If any files in the `/tokens` directory are modified, the sandbox will automatically run the build command to update the tokens and then restart the Vite dev server (simulating hot module reload).
+
+Updating any files within the sandbox itself will also trigger hot module reload as expected.
+
 ### Build for production
+
+Utilize the `style-dictionary` CLI to build the token assets for production based on the configuration in `/config.js`.
 
 ```sh
 yarn build
