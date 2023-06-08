@@ -11,10 +11,11 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 - [Usage](#usage)
 - [Tokens](#tokens)
   - [Token Requirements](#token-requirements)
-- [Local Development](#local-development)
+- [Updating Tokens \& Local Development](#updating-tokens--local-development)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
+  - [Token Update Workflow](#token-update-workflow)
   - [Committing Changes](#committing-changes)
   - [Package Publishing](#package-publishing)
 
@@ -80,7 +81,7 @@ Directory | Description
 
     </details>
 
-## Local Development
+## Updating Tokens & Local Development
 
 To get started, install the package dependencies
 
@@ -95,7 +96,7 @@ This repository includes a Vue sandbox (see the `/sandbox` directory) to allow y
 To start the sandbox:
 
 ```sh
-yarn run sandbox
+yarn sandbox
 ```
 
 This command will simultaneously start the Vite dev server and initialize a watcher on the `/tokens` directory. If any files in the `/tokens` directory are modified, the sandbox will automatically run the build command to update the tokens and then restart the Vite dev server (simulating hot module reload).
@@ -108,10 +109,10 @@ Lint package files, and optionally auto-fix detected issues.
 
 ```sh
 # Lint only
-yarn run lint
+yarn lint
 
 # Lint and fix
-yarn run lint:fix
+yarn lint:fix
 ```
 
 ### Build for production
@@ -133,6 +134,16 @@ For example, if I want to add a new `icons` folder, I'd update the `exports` ent
   "./icons/*": "./dist/icons/*" // New directory
 }
 ```
+
+### Token Update Workflow
+
+1. Pull down the latest code by running `git pull origin main`
+2. Checkout a new branch for your changes with `git checkout -b {type}/{jira-ticket}-{description}` - as an example, `feat/khcp-1234-add-color-tokens`
+3. Add/edit the tokens in the `/tokens` directory as needed, ensuring to adhere to the [Token Requirements](#token-requirements)
+4. Before committing your changes, locally run `yarn lint` to ensure you do not have any linting errors. If you have errors, you can try running `yarn lint:fix` to resolve
+5. Commit your changes, adhering to [Conventional Commits](#committing-changes). To make this easier, you're encouraged to run `yarn commit` to help build your commit message
+6. Push your branch up to the remote with `git push origin {branch-name}`
+7. Open a pull request and request review
 
 ### Committing Changes
 
