@@ -38,7 +38,7 @@ export default defineConfig({
     ],
   },
   // Serve files from the `../dist` directory at the localHost root
-  publicDir: path.resolve(__dirname, '../dist'),
+  publicDir: path.resolve(__dirname, '../'),
   server: {
     fs: {
       // Allow serving files from one level up from the package root - IMPORTANT - to support the sandbox
