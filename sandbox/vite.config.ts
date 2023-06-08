@@ -1,11 +1,18 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
+import viteRestart from 'vite-plugin-restart'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    viteRestart({
+      restart: [
+        // Restart the Vite sandbox when any of the `/dist/*` files are changed
+        '../dist/**/*',
+      ],
+    }),
   ],
   resolve: {
     alias: {

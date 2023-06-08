@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
-    "build": "yarn clean && style-dictionary build",
+    "build": "yarn build:clean && style-dictionary build",
+    "build:clean": "style-dictionary clean",
     "lint": "eslint '**/*.{js,ts,vue,json}'",
     "lint:fix": "eslint '**/*.{js,ts,vue,json}' --fix",
-    "clean": "style-dictionary clean",
+    "sandbox": "run-p sandbox:open sandbox:watch",
+    "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
+    "sandbox:watch": "onchange -k \"tokens/**/*.json\" -- yarn build",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
-    "commit": "cz",
-    "sandbox": "yarn build && vite sandbox -c ./sandbox/vite.config.ts"
+    "commit": "cz"
   },
   "publishConfig": {
     "access": "restricted"
@@ -52,11 +54,14 @@
     "eslint-plugin-n": "^16.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.14.1",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
     "sass": "^1.62.1",
     "semantic-release": "^20.1.0",
     "style-dictionary": "^3.8.0",
     "typescript": "^4.9.5",
     "vite": "^4.3.9",
+    "vite-plugin-restart": "^0.3.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"
   },

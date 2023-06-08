@@ -11,6 +11,7 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 - [Design Token Requirements](#design-token-requirements)
 - [Development](#development)
   - [ESLint](#eslint)
+  - [Sandbox](#sandbox)
   - [Build for production](#build-for-production)
   - [Committing Changes](#committing-changes)
 
@@ -82,7 +83,23 @@ yarn run lint
 yarn run lint:fix
 ```
 
+### Sandbox
+
+This repository includes a Vue sandbox (see the `/sandbox` directory) to allow you to experiment with consuming tokens.
+
+To start the sandbox:
+
+```sh
+yarn run sandbox
+```
+
+This command will simultaneously start the Vite dev server and initialize a watcher on the `/tokens` directory. If any files in the `/tokens` directory are modified, the sandbox will automatically run the build command to update the tokens and then restart the Vite dev server (simulating hot module reload).
+
+Updating any files within the sandbox itself will also trigger hot module reload as expected.
+
 ### Build for production
+
+Utilize the `style-dictionary` CLI to build the token assets for production based on the configuration in `/config.js`.
 
 ```sh
 yarn build
