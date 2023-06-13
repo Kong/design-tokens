@@ -41,7 +41,12 @@ const icons = computed((): { key: string, source: string }[] => {
 })
 </script>
 
+<style lang="scss">
+@import "../../dist/tokens/css/icons.css";
+</style>
+
 <style lang="scss" scoped>
+// Import SCSS icon variables
 @import "../../dist/tokens/scss/icons";
 
 $icon-size: 36px;
