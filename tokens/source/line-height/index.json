@@ -1,0 +1,44 @@
+{
+  "line_height": {
+    "10": {
+      "comment": "12px",
+      "value": "12px"
+    },
+    "20": {
+      "comment": "16px",
+      "value": "16px"
+    },
+    "30": {
+      "comment": "20px",
+      "value": "20px"
+    },
+    "40": {
+      "comment": "24px",
+      "value": "24px"
+    },
+    "50": {
+      "comment": "28px",
+      "value": "28px"
+    },
+    "60": {
+      "comment": "32px",
+      "value": "32px"
+    },
+    "70": {
+      "comment": "36px",
+      "value": "36px"
+    },
+    "80": {
+      "comment": "40px",
+      "value": "40px"
+    },
+    "90": {
+      "comment": "48px",
+      "value": "48px"
+    },
+    "100": {
+      "comment": "56px",
+      "value": "56px"
+    }
+  }
+}
