@@ -30,7 +30,7 @@
     "url": "https://github.com/Kong/design-tokens.git"
   },
   "author": "Kong Inc.",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/Kong/design-tokens#readme",
   "bugs": {
     "url": "https://github.com/Kong/design-tokens/issues"

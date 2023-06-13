@@ -39,8 +39,8 @@ jobs:
       - name: Build
         run: yarn build
 
-      # - name: Semantic Release
-      #   uses: cycjimmy/semantic-release-action@v3
-      #   env:
-      #     # Since branch protections are on (pushing commits) you need to use a bot PAT
-      #     GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        env:
+          # Since branch protections are on (pushing commits) you need to use a bot PAT
+          GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
