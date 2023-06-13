@@ -32,6 +32,14 @@
           "comment": "gray.70",
           "value": "{color.alias.gray.70}"
         },
+        "stronger": {
+          "comment": "gray.80",
+          "value": "{color.alias.gray.80}"
+        },
+        "strongest": {
+          "comment": "gray.90",
+          "value": "{color.alias.gray.90}"
+        },
         "weak": {
           "comment": "gray.40",
           "value": "{color.alias.gray.40}"
