@@ -8,10 +8,11 @@ export default defineConfig({
   plugins: [
     vue(),
     viteRestart({
-      restart: [
-        // Restart the Vite sandbox when any of the `/dist/*` files are changed
+      reload: [
+        // Reload the Vite sandbox when any of the `/dist/*` files are changed
         '../dist/**/*',
       ],
+      delay: 200,
     }),
   ],
   resolve: {
