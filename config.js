@@ -37,18 +37,30 @@ const customFileHeader = (defaultMessage) => {
  * Example:
  * ```css
  * .custom-container {
- *   @include kong-css-variables;
+ *   @include kui-css-variables;
  * }
  * ```
  */
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
-  name: 'cssVariablesMixin',
+  name: 'css/variables/custom/sass_mixin',
   formatter: function({ dictionary, file, options }) {
     const { outputReferences } = options
 
     return fileHeader({ file }) +
-      '@mixin kong-css-variables {\n' +
+      '/**\n' +
+      ' * @kui-css-variables\n' +
+      ' * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to\n' +
+      ' * scope the CSS variables inside of a custom selector. Example usage in https://github.com/Kong/kong-auth-elements \n' +
+      ' *\n' +
+      ' * Example:\n' +
+      ' * ```css\n' +
+      ' * .custom-container {\n' +
+      ' *   @include kui-css-variables;\n' +
+      ' * }\n' +
+      ' * ```\n' +
+      '*/\n' +
+      '@mixin kui-css-variables {\n' +
       formattedVariables({ format: 'css', dictionary, outputReferences }) +
       '\n}\n'
   },
@@ -89,6 +101,7 @@ platforms.css = {
  * SCSS Variables
  */
 platforms.scss = {
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'scss',
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
   options: {
@@ -110,7 +123,7 @@ platforms.scss = {
     // SCSS CSS variables mixin
     {
       destination: '_mixins.scss',
-      format: 'cssVariablesMixin',
+      format: 'css/variables/custom/sass_mixin',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
