@@ -55,7 +55,9 @@ StyleDictionary.registerFormat({
 // Create an empty platforms object
 const platforms = {}
 
-// CSS variables
+/**
+ * CSS Variables
+ */
 platforms.css = {
   prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'css',
@@ -79,7 +81,9 @@ platforms.css = {
   ],
 }
 
-// SCSS variables
+/**
+ * SCSS Variables
+ */
 platforms.scss = {
   prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'scss',
@@ -113,7 +117,11 @@ platforms.scss = {
   ],
 }
 
-// JavaScript
+/**
+ * JavaScript Variables
+ *
+ * Important: Every exported file in this platform key **must** have a corresponding TypeScript declaration export.
+ */
 platforms.javascript = {
   prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'js',
@@ -148,7 +156,11 @@ platforms.javascript = {
   ],
 }
 
-// JavaScript Assets
+/**
+ * JavaScript Assets
+ *
+ * Important: Every exported file in this platform key **must** have a corresponding TypeScript declaration export.
+ */
 platforms['assets/embed/javascript'] = {
   prefix: KONG_TOKEN_PREFIX, // required
   transforms: [
@@ -190,48 +202,9 @@ platforms['assets/embed/javascript'] = {
   ],
 }
 
-// SCSS Assets
-platforms['assets/embed/scss'] = {
-  prefix: KONG_TOKEN_PREFIX, // required
-  transforms: [
-    'attribute/cti',
-    'name/cti/kebab',
-    'asset/base64',
-  ],
-  buildPath: `${TOKEN_DIRECTORY}/scss/`,
-  files: [
-    // Fonts
-    {
-      destination: '_fonts.scss',
-      format: 'scss/variables',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      filter: {
-        attributes: {
-          category: 'asset',
-          type: 'font',
-        },
-      },
-    },
-    // Icons
-    {
-      destination: '_icons.scss',
-      format: 'scss/variables',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      filter: {
-        attributes: {
-          category: 'asset',
-          type: 'icon',
-        },
-      },
-    },
-  ],
-}
-
-// CSS Assets
+/**
+ * CSS Assets
+ */
 platforms['assets/embed/css'] = {
   prefix: KONG_TOKEN_PREFIX, // required
   transforms: [
@@ -259,6 +232,49 @@ platforms['assets/embed/css'] = {
     {
       destination: 'icons.css',
       format: 'css/variables',
+      options: {
+        fileHeader: customFileHeader,
+      },
+      filter: {
+        attributes: {
+          category: 'asset',
+          type: 'icon',
+        },
+      },
+    },
+  ],
+}
+
+/**
+ * SCSS Assets
+ */
+platforms['assets/embed/scss'] = {
+  prefix: KONG_TOKEN_PREFIX, // required
+  transforms: [
+    'attribute/cti',
+    'name/cti/kebab',
+    'asset/base64',
+  ],
+  buildPath: `${TOKEN_DIRECTORY}/scss/`,
+  files: [
+    // Fonts
+    {
+      destination: '_fonts.scss',
+      format: 'scss/variables',
+      options: {
+        fileHeader: customFileHeader,
+      },
+      filter: {
+        attributes: {
+          category: 'asset',
+          type: 'font',
+        },
+      },
+    },
+    // Icons
+    {
+      destination: '_icons.scss',
+      format: 'scss/variables',
       options: {
         fileHeader: customFileHeader,
       },
