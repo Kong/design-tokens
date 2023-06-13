@@ -1,0 +1,15 @@
+{
+  "asset": {
+    "icon": {
+      "add": {
+        "value": "assets/icons/add.svg"
+      },
+      "cog": {
+        "value": "assets/icons/cog.svg"
+      },
+      "mesh": {
+        "value": "assets/icons/mesh.svg"
+      }
+    }
+  }
+}

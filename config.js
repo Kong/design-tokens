@@ -57,7 +57,7 @@ const platforms = {}
 
 // CSS variables
 platforms.css = {
-  prefix: KONG_TOKEN_PREFIX,
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'css',
   buildPath: `${TOKEN_DIRECTORY}/css/`,
   transforms: [
@@ -73,15 +73,15 @@ platforms.css = {
         fileHeader: customFileHeader,
         selector: ':root', // You can override the default selector; may be necessary for consumers (e.g. Kongponents)
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
   ],
 }
 
 // SCSS variables
 platforms.scss = {
-  prefix: KONG_TOKEN_PREFIX,
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'scss',
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
   transforms: [
@@ -97,8 +97,8 @@ platforms.scss = {
       options: {
         fileHeader: customFileHeader,
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // SCSS CSS variables mixin
     {
@@ -107,15 +107,15 @@ platforms.scss = {
       options: {
         fileHeader: customFileHeader,
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
   ],
 }
 
 // JavaScript
 platforms.javascript = {
-  prefix: KONG_TOKEN_PREFIX,
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'js',
   buildPath: `${TOKEN_DIRECTORY}/js/`,
   transforms: [
@@ -131,10 +131,10 @@ platforms.javascript = {
       options: {
         fileHeader: customFileHeader,
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
-    // TypeScript types
+    // Constants TypeScript types
     {
       destination: 'index.d.ts',
       format: 'typescript/es6-declarations',
@@ -142,14 +142,57 @@ platforms.javascript = {
         fileHeader: customFileHeader,
         outputStringLiterals: true,
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
   ],
 }
 
-// Font families
+// JavaScript Assets
+platforms['assets/embed/javascript'] = {
+  prefix: KONG_TOKEN_PREFIX, // required
+  transforms: [
+    'attribute/cti',
+    'name/cti/constant',
+    'asset/base64',
+  ],
+  buildPath: `${TOKEN_DIRECTORY}/js/`,
+  files: [
+    // Icons
+    {
+      destination: 'icons/index.js',
+      format: 'javascript/es6',
+      options: {
+        fileHeader: customFileHeader,
+      },
+      filter: {
+        attributes: {
+          category: 'asset',
+          type: 'icon',
+        },
+      },
+    },
+    // Icons TypeScript types
+    {
+      destination: 'icons/index.d.ts',
+      format: 'typescript/es6-declarations',
+      options: {
+        fileHeader: customFileHeader,
+        outputStringLiterals: true,
+      },
+      filter: {
+        attributes: {
+          category: 'asset',
+          type: 'icon',
+        },
+      },
+    },
+  ],
+}
+
+// SCSS Assets
 platforms['assets/embed/scss'] = {
+  prefix: KONG_TOKEN_PREFIX, // required
   transforms: [
     'attribute/cti',
     'name/cti/kebab',
@@ -157,6 +200,7 @@ platforms['assets/embed/scss'] = {
   ],
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
   files: [
+    // Fonts
     {
       destination: '_fonts.scss',
       format: 'scss/variables',
@@ -170,10 +214,26 @@ platforms['assets/embed/scss'] = {
         },
       },
     },
+    // Icons
+    {
+      destination: '_icons.scss',
+      format: 'scss/variables',
+      options: {
+        fileHeader: customFileHeader,
+      },
+      filter: {
+        attributes: {
+          category: 'asset',
+          type: 'icon',
+        },
+      },
+    },
   ],
 }
 
+// CSS Assets
 platforms['assets/embed/css'] = {
+  prefix: KONG_TOKEN_PREFIX, // required
   transforms: [
     'attribute/cti',
     'name/cti/kebab',
@@ -181,6 +241,7 @@ platforms['assets/embed/css'] = {
   ],
   buildPath: `${TOKEN_DIRECTORY}/css/`,
   files: [
+    // Fonts
     {
       destination: 'fonts.css',
       format: 'css/variables',
@@ -191,6 +252,20 @@ platforms['assets/embed/css'] = {
         attributes: {
           category: 'asset',
           type: 'font',
+        },
+      },
+    },
+    // Icons
+    {
+      destination: 'icons.css',
+      format: 'css/variables',
+      options: {
+        fileHeader: customFileHeader,
+      },
+      filter: {
+        attributes: {
+          category: 'asset',
+          type: 'icon',
         },
       },
     },

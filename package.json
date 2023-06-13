@@ -4,7 +4,7 @@
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
     "build": "yarn build:clean && style-dictionary build",
-    "build:clean": "style-dictionary clean",
+    "build:clean": "rimraf ./dist",
     "lint": "eslint '**/*.{js,ts,vue,json}'",
     "lint:fix": "eslint '**/*.{js,ts,vue,json}' --fix",
     "sandbox": "run-p sandbox:open watch:tokens",
@@ -56,6 +56,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.14.1",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.1",
     "sass": "^1.62.1",
     "semantic-release": "^20.1.0",
     "style-dictionary": "^3.8.0",
