@@ -43,7 +43,7 @@ const customFileHeader = (defaultMessage) => {
  */
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
-  name: 'css/variables/custom/sass_mixin',
+  name: 'css/variables/custom/sass/mixin',
   formatter: function({ dictionary, file, options }) {
     const { outputReferences } = options
 
@@ -123,7 +123,7 @@ platforms.scss = {
     // SCSS CSS variables mixin
     {
       destination: '_mixins.scss',
-      format: 'css/variables/custom/sass_mixin',
+      format: 'css/variables/custom/sass/mixin',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
