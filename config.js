@@ -24,15 +24,15 @@ const config = {
 const customFileHeader = (defaultMessage) => {
   return [
     ...defaultMessage,
-    'Author: Kong, Inc.',
-    'License: Apache-2.0',
+    '',
     'GitHub: https://github.com/Kong/design-system',
+    'License: Apache-2.0',
   ]
 }
 
 /**
  * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to
- * scope the CSS variables inside of a custom selector. Example usage in https://github.com/Kong/kong-auth-elements
+ * scope the CSS variables inside of a custom selector. Specifically added for https://github.com/Kong/kong-auth-elements
  *
  * Example:
  * ```css
@@ -49,9 +49,9 @@ StyleDictionary.registerFormat({
 
     return fileHeader({ file }) +
       '/**\n' +
-      ' * @kui-css-variables\n' +
-      ' * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to\n' +
-      ' * scope the CSS variables inside of a custom selector. Example usage in https://github.com/Kong/kong-auth-elements \n' +
+      ' * {mixin} @kui-css-variables\n' +
+      ' * Scope the @kong/design-system CSS variables inside of a custom selector.\n' +
+      ' * Specifically added for https://github.com/Kong/kong-auth-elements\n' +
       ' *\n' +
       ' * Example:\n' +
       ' * ```css\n' +
