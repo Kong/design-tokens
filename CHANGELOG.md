@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Kong/design-system/compare/v1.0.0...v1.0.1) (2023-06-14)
+
+
+### Bug Fixes
+
+* update config ([#23](https://github.com/Kong/design-system/issues/23)) ([d1dad34](https://github.com/Kong/design-system/commit/d1dad34577da53290e3fefb0a4a76ae0be37cf29))
+
 # 1.0.0 (2023-06-13)
 
 
