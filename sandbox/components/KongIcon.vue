@@ -16,7 +16,7 @@
         :class="props.icon.key"
       />
     </div>
-    <div class="kong-icon-container">
+    <div class="kong-icon-container is-blue">
       <div>SVG via Sass variable and mask-image</div>
       <div
         alt="scss-svg-icon"
@@ -55,6 +55,10 @@ $icon-size: 36px;
   &:first-of-type {
     border-top: 1px solid $kui-color-background-neutral;
   }
+
+  &.is-blue {
+    color: $kui-color-border-primary-weak;
+  }
 }
 
 .kong-icon {
@@ -79,7 +83,7 @@ $icon-size: 36px;
   }
 
   &.is-sass-mask {
-    background: var(--kui-color-background-primary-strong, $kui-color-background-primary-strong);
+    background: currentColor;
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-size: $icon-size;
