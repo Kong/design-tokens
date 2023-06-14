@@ -1,4 +1,5 @@
 <template>
+  <h2>Colors</h2>
   <ColorBlock token="kui-color-background-primary" />
   <ColorBlock token="kui-color-background-warning-weakest" />
   <ColorBlock token="kui-color-background-danger" />

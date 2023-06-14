@@ -12,7 +12,6 @@ export default defineConfig({
         // Reload the Vite sandbox when any of the `/dist/*` files are changed
         '../dist/**/*',
       ],
-      delay: 200,
     }),
   ],
   resolve: {

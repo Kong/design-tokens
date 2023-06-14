@@ -24,7 +24,9 @@ const config = {
 const customFileHeader = (defaultMessage) => {
   return [
     ...defaultMessage,
-    'Source: https://github.com/Kong/design-system',
+    'Author: Kong, Inc.',
+    'License: Apache-2.0',
+    'GitHub: https://github.com/Kong/design-system',
   ]
 }
 
@@ -35,18 +37,30 @@ const customFileHeader = (defaultMessage) => {
  * Example:
  * ```css
  * .custom-container {
- *   @include kong-css-variables;
+ *   @include kui-css-variables;
  * }
  * ```
  */
 const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
-  name: 'cssVariablesMixin',
+  name: 'css/variables/custom/sass/mixin',
   formatter: function({ dictionary, file, options }) {
     const { outputReferences } = options
 
     return fileHeader({ file }) +
-      '@mixin kong-css-variables {\n' +
+      '/**\n' +
+      ' * @kui-css-variables\n' +
+      ' * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to\n' +
+      ' * scope the CSS variables inside of a custom selector. Example usage in https://github.com/Kong/kong-auth-elements \n' +
+      ' *\n' +
+      ' * Example:\n' +
+      ' * ```css\n' +
+      ' * .custom-container {\n' +
+      ' *   @include kui-css-variables;\n' +
+      ' * }\n' +
+      ' * ```\n' +
+      '*/\n' +
+      '@mixin kui-css-variables {\n' +
       formattedVariables({ format: 'css', dictionary, outputReferences }) +
       '\n}\n'
   },
@@ -55,11 +69,16 @@ StyleDictionary.registerFormat({
 // Create an empty platforms object
 const platforms = {}
 
-// CSS variables
+/**
+ * CSS Variables
+ */
 platforms.css = {
-  prefix: KONG_TOKEN_PREFIX,
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'css',
   buildPath: `${TOKEN_DIRECTORY}/css/`,
+  options: {
+    fileHeader: customFileHeader,
+  },
   transforms: [
     'attribute/cti',
     'name/cti/kebab',
@@ -70,20 +89,24 @@ platforms.css = {
       destination: 'variables.css',
       format: 'css/variables',
       options: {
-        fileHeader: customFileHeader,
         selector: ':root', // You can override the default selector; may be necessary for consumers (e.g. Kongponents)
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
   ],
 }
 
-// SCSS variables
+/**
+ * SCSS Variables
+ */
 platforms.scss = {
-  prefix: KONG_TOKEN_PREFIX,
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'scss',
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
+  options: {
+    fileHeader: customFileHeader,
+  },
   transforms: [
     'attribute/cti',
     'name/cti/kebab',
@@ -94,30 +117,31 @@ platforms.scss = {
     {
       destination: '_variables.scss',
       format: 'scss/variables',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // SCSS CSS variables mixin
     {
       destination: '_mixins.scss',
-      format: 'cssVariablesMixin',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      format: 'css/variables/custom/sass/mixin',
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
   ],
 }
 
-// JavaScript
+/**
+ * JavaScript Variables
+ *
+ * Important: Every exported file in this platform key **must** have a corresponding TypeScript declaration export.
+ */
 platforms.javascript = {
-  prefix: KONG_TOKEN_PREFIX,
+  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'js',
   buildPath: `${TOKEN_DIRECTORY}/js/`,
+  options: {
+    fileHeader: customFileHeader,
+  },
   transforms: [
     'attribute/cti',
     'name/cti/constant',
@@ -128,71 +152,18 @@ platforms.javascript = {
     {
       destination: 'index.js',
       format: 'javascript/es6',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
-    // TypeScript types
+    // Constants TypeScript types
     {
       destination: 'index.d.ts',
       format: 'typescript/es6-declarations',
       options: {
-        fileHeader: customFileHeader,
         outputStringLiterals: true,
       },
-      // Exclude alias tokens
-      filter: (token) => token.isSource === true,
-    },
-  ],
-}
-
-// Font families
-platforms['assets/embed/scss'] = {
-  transforms: [
-    'attribute/cti',
-    'name/cti/kebab',
-    'asset/base64',
-  ],
-  buildPath: `${TOKEN_DIRECTORY}/scss/`,
-  files: [
-    {
-      destination: '_fonts.scss',
-      format: 'scss/variables',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      filter: {
-        attributes: {
-          category: 'asset',
-          type: 'font',
-        },
-      },
-    },
-  ],
-}
-
-platforms['assets/embed/css'] = {
-  transforms: [
-    'attribute/cti',
-    'name/cti/kebab',
-    'asset/base64',
-  ],
-  buildPath: `${TOKEN_DIRECTORY}/css/`,
-  files: [
-    {
-      destination: 'fonts.css',
-      format: 'css/variables',
-      options: {
-        fileHeader: customFileHeader,
-      },
-      filter: {
-        attributes: {
-          category: 'asset',
-          type: 'font',
-        },
-      },
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
   ],
 }
