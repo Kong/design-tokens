@@ -1,79 +1,102 @@
 <template>
-  <h4>SVG via JavaScript</h4>
-  <img
-    v-for="(icon, idx) in icons"
-    :key="`js-icon-${idx}`"
-    alt="js-svg-icon"
-    class="kong-icon"
-    :src="icon.source"
-  >
-  <h4>SVG via Sass variable</h4>
-  <div
-    v-for="(icon, idx) in icons"
-    :key="`sass-icon-${idx}`"
-    alt="test-icon"
-    class="kong-icon is-sass"
-    :class="icon.key"
-  />
+  <div>
+    <div class="kong-icon-container">
+      <div>SVG via JavaScript</div>
+      <img
+        alt="js-svg-icon"
+        class="kong-icon"
+        :src="props.icon.source"
+      >
+    </div>
+    <div class="kong-icon-container">
+      <div>SVG via Sass variable</div>
+      <div
+        alt="scss-svg-icon"
+        class="kong-icon is-sass"
+        :class="props.icon.key"
+      />
+    </div>
+    <div class="kong-icon-container">
+      <div>SVG via Sass variable and mask-image</div>
+      <div
+        alt="scss-svg-icon"
+        class="kong-icon is-sass-mask"
+        :class="props.icon.key"
+      />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { KUI_ASSET_ICON_ADD, KUI_ASSET_ICON_COG, KUI_ASSET_ICON_MESH } from '@tokens/js/icons'
+import { PropType } from 'vue'
 
-const icons = computed((): { key: string, source: string }[] => {
-  const getIconSrc = (icon: string): string => `data:image/svg+xml;base64,${icon}`
-
-  return [
-    {
-      key: 'add',
-      source: getIconSrc(KUI_ASSET_ICON_ADD),
-    },
-    {
-      key: 'cog',
-      source: getIconSrc(KUI_ASSET_ICON_COG),
-    },
-    {
-      key: 'mesh',
-      source: getIconSrc(KUI_ASSET_ICON_MESH),
-    },
-  ]
+const props = defineProps({
+  icon: {
+    type: Object as PropType<{ key: string, source: string }>,
+    required: true,
+  },
 })
 </script>
 
-<style lang="scss">
-@import "../../dist/tokens/css/icons.css";
-</style>
-
 <style lang="scss" scoped>
+@import "../../dist/tokens/scss/variables";
 // Import SCSS icon variables
 @import "../../dist/tokens/scss/icons";
 
 $icon-size: 36px;
 
+.kong-icon-container {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  font-size: $kui-font-size-30;
+  border-bottom: 1px solid $kui-color-background-neutral-weaker;
+
+  &:first-of-type {
+    border-top: 1px solid $kui-color-background-neutral;
+  }
+}
+
 .kong-icon {
-  display: inline-block;
+  display: block;
   width: $icon-size;
   height: $icon-size;
-  margin-right: 8px;
-
-  &:last-of-type {
-    margin-right: 0;
-  }
+  margin: 0 8px 0 8px;
 
   &.is-sass {
     background-size: $icon-size;
     background-repeat: no-repeat;
+
+    &.add {
+      background-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-add}');
+    }
+    &.cog {
+      background-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-cog}');
+    }
+    &.mesh {
+      background-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-mesh}');
+    }
   }
 
-  &.add {
-    background-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-add}');
-  }
-  &.cog {
-    background-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-cog}');
-  }
-  &.mesh {
-    background-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-mesh}');
+  &.is-sass-mask {
+    background: var(--kui-color-background-primary-strong, $kui-color-background-primary-strong);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: $icon-size;
+    mask-size: $icon-size;
+
+    &.add {
+      -webkit-mask-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-add}');
+      mask-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-add}');
+    }
+    &.cog {
+      -webkit-mask-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-cog}');
+      mask-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-cog}');
+    }
+    &.mesh {
+      -webkit-mask-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-mesh}');
+      mask-image: url('data:image/svg+xml;base64,#{$kui-asset-icon-mesh}');
+    }
   }
 }
 </style>

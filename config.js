@@ -229,16 +229,16 @@ platforms['assets/embed/css'] = {
   buildPath: `${TOKEN_DIRECTORY}/css/`,
   files: [
     // Fonts
-    {
-      destination: 'fonts.css',
-      format: 'css/variables',
-      filter: {
-        attributes: {
-          category: 'asset',
-          type: 'font',
-        },
-      },
-    },
+    // {
+    //   destination: 'fonts.css',
+    //   format: 'css/variables',
+    //   filter: {
+    //     attributes: {
+    //       category: 'asset',
+    //       type: 'font',
+    //     },
+    //   },
+    // },
     // Icons
     {
       destination: 'icons.css',
@@ -269,16 +269,16 @@ platforms['assets/embed/scss'] = {
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
   files: [
     // Fonts
-    {
-      destination: '_fonts.scss',
-      format: 'scss/variables',
-      filter: {
-        attributes: {
-          category: 'asset',
-          type: 'font',
-        },
-      },
-    },
+    // {
+    //   destination: '_fonts.scss',
+    //   format: 'scss/variables',
+    //   filter: {
+    //     attributes: {
+    //       category: 'asset',
+    //       type: 'font',
+    //     },
+    //   },
+    // },
     // Icons
     {
       destination: '_icons.scss',
