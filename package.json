@@ -1,6 +1,6 @@
 {
-  "name": "@kong/design-system",
-  "version": "1.0.2",
+  "name": "@kong/design-tokens",
+  "version": "0.0.1",
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
     "build": "yarn build:clean && style-dictionary build",
@@ -27,13 +27,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kong/design-system.git"
+    "url": "https://github.com/Kong/design-tokens.git"
   },
   "author": "Kong Inc.",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/Kong/design-system#readme",
+  "homepage": "https://github.com/Kong/design-tokens#readme",
   "bugs": {
-    "url": "https://github.com/Kong/design-system/issues"
+    "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.4.2",

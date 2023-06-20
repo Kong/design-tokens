@@ -25,7 +25,7 @@ const customFileHeader = (defaultMessage) => {
   return [
     ...defaultMessage,
     '',
-    'GitHub: https://github.com/Kong/design-system',
+    'GitHub: https://github.com/Kong/design-tokens',
     'License: Apache-2.0',
   ]
 }
@@ -50,7 +50,7 @@ StyleDictionary.registerFormat({
     return fileHeader({ file }) +
       '/**\n' +
       ' * {mixin} @kui-css-variables\n' +
-      ' * Scope the @kong/design-system CSS variables inside of a custom selector.\n' +
+      ' * Scope the @kong/design-tokens CSS variables inside of a custom selector.\n' +
       ' * Specifically added for https://github.com/Kong/kong-auth-elements\n' +
       ' *\n' +
       ' * Example:\n' +
