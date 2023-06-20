@@ -31,7 +31,7 @@ jobs:
 
           prNumber="${{github.event.number}}"
 
-          pkgName="@kong/design-system"
+          pkgName="@kong/design-tokens"
 
           npm dist-tag rm "${pkgName}" "pr-${prNumber}" || true
 
