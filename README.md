@@ -1,6 +1,6 @@
-# Kong UI Design System
+# Kong UI Design Tokens
 
-Kong's Design System and **Style Dictionary**, created with [Style Dictionary](https://github.com/amzn/style-dictionary).
+Kong's Design Tokens and **Style Dictionary**, created with [Style Dictionary](https://github.com/amzn/style-dictionary).
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
