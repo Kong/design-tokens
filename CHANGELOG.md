@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Kong/design-tokens/compare/v1.1.0...v1.1.1) (2023-06-27)
+
+
+### Bug Fixes
+
+* publish public package ([#25](https://github.com/Kong/design-tokens/issues/25)) ([3d305b2](https://github.com/Kong/design-tokens/commit/3d305b2331cd830f3aa03adc69ead0ec4f651fe5))
+
 # [1.1.0](https://github.com/Kong/design-tokens/compare/v1.0.2...v1.1.0) (2023-06-20)
 
 
