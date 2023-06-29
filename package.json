@@ -22,6 +22,7 @@
   ],
   "types": "dist/tokens/js/index.d.ts",
   "exports": {
+    ".": "./dist/tokens/js/index.js",
     "./package.json": "./package.json",
     "./tokens/*": "./dist/tokens/*"
   },
