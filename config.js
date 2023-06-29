@@ -86,8 +86,8 @@ platforms.css = {
   ],
   files: [
     {
-      destination: 'variables.css',
       format: 'css/variables',
+      destination: 'variables.css',
       options: {
         selector: ':root', // You can override the default selector; may be necessary for consumers (e.g. Kongponents)
       },
@@ -115,15 +115,15 @@ platforms.scss = {
   files: [
     // SCSS variables
     {
-      destination: '_variables.scss',
       format: 'scss/variables',
+      destination: '_variables.scss',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // SCSS CSS variables mixin
     {
-      destination: '_mixins.scss',
       format: 'css/variables/custom/sass/mixin',
+      destination: '_mixins.scss',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
@@ -148,17 +148,34 @@ platforms.javascript = {
     'color/css',
   ],
   files: [
-    // JavaScript constants
+    // JavaScript ES constants
     {
-      destination: 'index.js',
       format: 'javascript/es6',
+      destination: 'index.js',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // Constants TypeScript types
     {
-      destination: 'index.d.ts',
       format: 'typescript/es6-declarations',
+      destination: 'index.d.ts',
+      options: {
+        outputStringLiterals: true,
+      },
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+    },
+    // JavaScript CommonJS
+    {
+      format: 'javascript/module-flat',
+      destination: 'cjs/index.cjs',
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+    },
+    // CommonJS types
+    {
+      format: 'typescript/module-declarations',
+      destination: 'cjs/index.d.ts',
       options: {
         outputStringLiterals: true,
       },

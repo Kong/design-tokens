@@ -22,7 +22,16 @@
   ],
   "types": "dist/tokens/js/index.d.ts",
   "exports": {
-    ".": "./dist/tokens/js/index.js",
+    ".": {
+      "import": {
+        "default": "./dist/tokens/js/index.js",
+        "types": "./dist/tokens/js/index.d.ts"
+      },
+      "require": {
+        "default": "./dist/tokens/js/cjs/index.cjs",
+        "types": "./dist/tokens/js/cjs/index.d.ts"
+      }
+    },
     "./package.json": "./package.json",
     "./tokens/*": "./dist/tokens/*"
   },
