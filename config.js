@@ -168,14 +168,14 @@ platforms.javascript = {
     // JavaScript CommonJS
     {
       format: 'javascript/module-flat',
-      destination: 'index.cjs',
+      destination: 'cjs/index.cjs',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // CommonJS types
     {
       format: 'typescript/module-declarations',
-      destination: 'index.d.cjs',
+      destination: 'cjs/index.d.ts',
       options: {
         outputStringLiterals: true,
       },

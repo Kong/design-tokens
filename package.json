@@ -28,8 +28,8 @@
         "types": "./dist/tokens/js/index.d.ts"
       },
       "require": {
-        "default": "./dist/tokens/js/index.cjs",
-        "types": "./dist/tokens/js/index.d.cjs"
+        "default": "./dist/tokens/js/cjs/index.cjs",
+        "types": "./dist/tokens/js/cjs/index.d.ts"
       }
     },
     "./package.json": "./package.json",
