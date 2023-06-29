@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/Kong/design-tokens/compare/v1.1.2...v1.1.3) (2023-06-29)
+
+
+### Bug Fixes
+
+* **package:** add commonjs exports and exports config ([#27](https://github.com/Kong/design-tokens/issues/27)) ([05e3ad8](https://github.com/Kong/design-tokens/commit/05e3ad84445b43778dd15e7283593fa77907da12))
+
 ## [1.1.2](https://github.com/Kong/design-tokens/compare/v1.1.1...v1.1.2) (2023-06-29)
 
 
