@@ -13,6 +13,7 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
   - [Token Requirements](#token-requirements)
 - [Updating Tokens \& Local Development](#updating-tokens--local-development)
   - [VS Code extensions](#vs-code-extensions)
+  - [Server-Side Rendering (SSR)](#server-side-rendering-ssr)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
@@ -107,6 +108,25 @@ yarn install --frozen-lockfile
     "**/node_modules/!(@kong/design-tokens),"
   ],
 }
+```
+
+### Server-Side Rendering (SSR)
+
+If your host app utilizes SSR, you may need to resolve aliases to the package exports.
+
+For example, for a VitePress site, add the following to your `vite.config.ts`
+
+```ts
+export default defineConfig({
+  resolve: {
+    alias: {
+      // We must alias `@kong/design-tokens` imports to specifically utilize the esm build
+      '@kong/design-tokens/tokens/scss/variables': path.resolve(__dirname, '../node_modules/@kong/design-tokens/dist/tokens/scss/variables.scss'),
+      '@kong/design-tokens': path.resolve(__dirname, '../node_modules/@kong/design-tokens/dist/tokens/js/'),
+    },
+  },
+})
+
 ```
 
 ### Development Sandbox
