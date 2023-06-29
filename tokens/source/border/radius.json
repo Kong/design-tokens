@@ -21,7 +21,7 @@
         "value": "50%"
       },
       "round": {
-        "comment": "Used to completely round the corners. Value of 100px",
+        "comment": "Used to round element corners. Value of 100px",
         "value": "100px"
       }
     }
