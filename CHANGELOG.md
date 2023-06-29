@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Kong/design-tokens/compare/v1.1.5...v1.2.0) (2023-06-29)
+
+
+### Features
+
+* **tokens:** add border-radius-round token ([#30](https://github.com/Kong/design-tokens/issues/30)) ([17c80c6](https://github.com/Kong/design-tokens/commit/17c80c693e720662d670804b870c7cfc66bf0a7d))
+
 ## [1.1.5](https://github.com/Kong/design-tokens/compare/v1.1.4...v1.1.5) (2023-06-29)
 
 
