@@ -19,6 +19,10 @@
       "circle": {
         "comment": "Used to create a circle. Value of 50%",
         "value": "50%"
+      },
+      "round": {
+        "comment": "Used to round element corners. Value of 100px",
+        "value": "100px"
       }
     }
   }
