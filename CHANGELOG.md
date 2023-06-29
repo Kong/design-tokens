@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/Kong/design-tokens/compare/v1.1.1...v1.1.2) (2023-06-29)
+
+
+### Bug Fixes
+
+* package exports ([#26](https://github.com/Kong/design-tokens/issues/26)) ([8fdf50c](https://github.com/Kong/design-tokens/commit/8fdf50c162c40b1bdab09e52ace77d94e36d7b7e))
+
 ## [1.1.1](https://github.com/Kong/design-tokens/compare/v1.1.0...v1.1.1) (2023-06-27)
 
 
