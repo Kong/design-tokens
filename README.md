@@ -12,6 +12,7 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
 - [Tokens](#tokens)
   - [Token Requirements](#token-requirements)
 - [Updating Tokens \& Local Development](#updating-tokens--local-development)
+  - [VS Code extensions](#vs-code-extensions)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
@@ -87,6 +88,25 @@ To get started, install the package dependencies
 
 ```sh
 yarn install --frozen-lockfile
+```
+
+### VS Code extensions
+
+> Note: TODO
+
+```json
+{
+  "cssVariables.lookupFiles": [
+    "**/*.css",
+    "**/*.scss",
+    "node_modules/@kong/design-tokens/dist/tokens/css/variables.css",
+  ],
+  "scss.scannerExclude": [
+    "**/.git",
+    "**/bower_components",
+    "**/node_modules/!(@kong/design-tokens),"
+  ],
+}
 ```
 
 ### Development Sandbox
