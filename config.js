@@ -151,14 +151,14 @@ platforms.javascript = {
     // JavaScript ES constants
     {
       format: 'javascript/es6',
-      destination: 'index.mjs',
+      destination: 'index.js',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // Constants TypeScript types
     {
       format: 'typescript/es6-declarations',
-      destination: 'index.d.mts',
+      destination: 'index.d.ts',
       options: {
         outputStringLiterals: true,
       },
