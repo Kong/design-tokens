@@ -151,14 +151,14 @@ platforms.javascript = {
     // JavaScript ES constants
     {
       format: 'javascript/es6',
-      destination: 'index.js',
+      destination: 'index.mjs',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // Constants TypeScript types
     {
       format: 'typescript/es6-declarations',
-      destination: 'index.d.ts',
+      destination: 'index.d.mts',
       options: {
         outputStringLiterals: true,
       },
@@ -175,7 +175,7 @@ platforms.javascript = {
     // CommonJS types
     {
       format: 'typescript/module-declarations',
-      destination: 'cjs/index.d.ts',
+      destination: 'cjs/index.d.cts',
       options: {
         outputStringLiterals: true,
       },
