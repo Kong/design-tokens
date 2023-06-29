@@ -20,7 +20,7 @@
         "comment": "Used to create a circle. Value of 50%",
         "value": "50%"
       },
-      "rounded": {
+      "round": {
         "comment": "Used to completely round the corners. Value of 100px",
         "value": "100px"
       }
