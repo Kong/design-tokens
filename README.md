@@ -4,7 +4,7 @@ Kong's Design Tokens and **Style Dictionary**, created with [Style Dictionary](h
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-> **Note**: Repository and documentation is a work in progress. This package is currently for Kong internal-use only, but is published publically in order to consume in our OSS projects.
+> **Note**: Repository and documentation is a work in progress. This package is currently for Kong internal-use only, but is published publicly in order to consume in our OSS projects.
 
 A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - iOS, Android, CSS, JS, HTML, sketch files, style documentation, or anything you can think of.
 
