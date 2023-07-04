@@ -8,9 +8,14 @@ Kong's Design Tokens and **Style Dictionary**, created with [Style Dictionary](h
 
 A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - iOS, Android, CSS, JS, HTML, sketch files, style documentation, or anything you can think of.
 
-- [Usage](#usage)
 - [Tokens](#tokens)
   - [Token Requirements](#token-requirements)
+  - [Package Exports](#package-exports)
+- [Usage](#usage)
+  - [In components](#in-components)
+  - [In a host application](#in-a-host-application)
+  - [Customization](#customization)
+  - [Reusability](#reusability)
 - [Updating Tokens \& Local Development](#updating-tokens--local-development)
   - [VS Code extensions](#vs-code-extensions)
   - [Server-Side Rendering (SSR)](#server-side-rendering-ssr)
@@ -20,10 +25,6 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
   - [Token Update Workflow](#token-update-workflow)
   - [Committing Changes](#committing-changes)
   - [Package Publishing](#package-publishing)
-
-## Usage
-
-TODO.
 
 ## Tokens
 
@@ -45,6 +46,7 @@ Directory | Description
 - Tokens defined in the `/tokens/source/` directory **WILL** be exported in the build files.
 - Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
 - Token aliases (e.g. color aliases) **must not** be exposed/exported from the production build
+- Component tokens **must** be defined within the `/tokens/source/components` directory. All tokens for a component should be defined in a single JSON file, `{component-name}.json`
 - Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens. Example:
 
     <details>
@@ -82,6 +84,84 @@ Directory | Description
     ```
 
     </details>
+
+### Package Exports
+
+This package exports Kong's design tokens in multiple formats:
+
+- JavaScript tokens (ESM and CJS), along with corresponding TypeScript types
+- SCSS variables
+- CSS variables, exported raw as well as within a SCSS mixin for scoping the parent container
+
+## Usage
+
+### In components
+
+The primary consideration when using Kong's design tokens in **components** is to determine if the component needs to allow for downstream customization.
+
+**If your component does not need to offer any customization, only utilize the SCSS and JavaScript design tokens in your component.**
+
+If your component _does_ want to offer customization, you will want to reference CSS variables with a fallback value.
+
+As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue component library, we want to offer deep levels of customization to allow for an _external_ host application to override component styles. Enabling customization is easy by using Kong's Design System's CSS variables with the SCSS variable as the fallback.
+
+```html
+<style lang="scss">
+// Import SCSS variables
+@import "@kong/design-tokens/tokens/scss/variables";
+
+.my-component-class {
+  color: var(--kui-color-text-primary, $kui-color-text-primary);
+  font-weight: var(--kui-font-weight-semibold, $kui-font-weight-semibold);
+  padding: var(--kui-space-20, $kui-space-20) var(--kui-space-40, $kui-space-40);
+}
+</style>
+```
+
+Inspecting the example above, you will notice that we fist import the SCSS variables. We then set each style property to the CSS variable, using the SCSS static variable as the fallback.
+
+**Important**: notice we did **not** import the CSS variables.
+
+When Kongponents are imported and used in a host application, the components will utilize the SCSS fallback values by default since the CSS variables are undefined. This is the normal usage and works great for most applications.
+
+If your application wants to customize some of the properties, it's easy by simply defining the CSS variables you want to override inside of your host application, as shown here:
+
+```html
+<style>
+// You may scope the variable to `root:` to impact the whole application...
+:root {
+  --kui-color-text-primary: green;
+}
+
+// ...or scope the variable to a specific container to keep the changes isolated
+table .my-table-row {
+  --kui-color-text-primary: purple;
+}
+</style>
+```
+
+Now that we have set a value for the CSS variable `--kui-color-text-primary` in our host application, any instance of this CSS variable in the components will utilize our custom value instead of the default value.
+
+### In a host application
+
+Most commonly, a host application should utilize the SCSS and/or JavaScript variables to define its styles. Host applications typically do not need to be customized after compile time, meaning there is no reason to use the CSS variables with fallbacks. Here's an example:
+
+```html
+<style lang="scss">
+// Import SCSS variables
+@import "@kong/design-tokens/tokens/scss/variables";
+
+.my-app-custom-class {
+  color: $kui-color-text-primary;
+  font-weight: $kui-font-weight-semibold;
+  padding: $kui-space-20 $kui-space-40;
+}
+</style>
+```
+
+### Customization
+
+### Reusability
 
 ## Updating Tokens & Local Development
 
