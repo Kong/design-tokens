@@ -25,7 +25,7 @@
       },
       "neutral": {
         "_": {
-          "comment": "gray.100",
+          "comment": "gray.60",
           "value": "{color.alias.gray.60}"
         },
         "strong": {
