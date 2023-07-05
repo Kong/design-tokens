@@ -23,7 +23,7 @@ const ruleFunction = () => {
     postcssRoot.walkDecls((decl) => {
       const declProp = decl.prop
       const declValue = decl.value
-      const hasToken = declValue.includes(KONG_TOKEN_PREFIX)
+      const hasToken = declValue.includes(`--${KONG_TOKEN_PREFIX}`) || declValue.includes(`$${KONG_TOKEN_PREFIX}`)
       // check if the property is in the property map
       const isEnforcedProp = !!Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))
 
