@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Kong/design-tokens/compare/v1.2.0...v1.3.0) (2023-07-05)
+
+
+### Features
+
+* remove css variable exports ([#32](https://github.com/Kong/design-tokens/issues/32)) ([4fef2df](https://github.com/Kong/design-tokens/commit/4fef2dfe2ee9eed4eff035f0bf15902c7e4b879a))
+
 # [1.2.0](https://github.com/Kong/design-tokens/compare/v1.1.5...v1.2.0) (2023-06-29)
 
 
