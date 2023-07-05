@@ -4,13 +4,14 @@ Kong's Design Tokens and **Style Dictionary**, created with [Style Dictionary](h
 
 > **Note**: Repository and documentation is a work in progress. This package is currently for Kong internal-use only, but is published publicly in order to consume in our OSS projects.
 
-A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - iOS, Android, CSS, JS, HTML, sketch files, style documentation, or anything you can think of.
+A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - CSS, JS, HTML, style documentation, or anything you can think of.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 - [Tokens](#tokens)
   - [Token Requirements](#token-requirements)
-  - [Package Exports](#package-exports)
+  - [Token Formats](#token-formats)
+  - [SCSS Variables](#scss-variables)
 - [Usage](#usage)
   - [Installation](#installation)
   - [Standalone components](#standalone-components)
@@ -30,22 +31,21 @@ All design tokens **must** be placed inside of the `/tokens` directory in one of
 
 Directory | Description
 ---------|----------
-`/tokens/alias` | The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports.
-`/tokens/source` | The `source` directory contains all tokens that **will be** available for consumption from the package exports.
+
 
 ### Token Requirements
 
-- Tokens **must** be defined in the corresponding JSON files within the `/tokens` directory
-  - The `category` of each token should be its own directory.
-  - Each `type` of token should be a file in the `category` directory, named `{type}.json`
-  - If there is only a single `type` of token within a `category`, you **should** name the file `index.json`
+- Tokens **must** be defined in the corresponding JSON files within the `/tokens` directory in one of two sub-directories:
+  - `/tokens/alias` - The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports. Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
+  - `/tokens/source` - The `source` directory contains all tokens that **will be** available for consumption from the package exports.
+- The `category` of each token should be its own directory (e.g. `tokens/color/`)
+- Each `type` of token should be a file in the `category` directory, named `{type}.json` (e.g. `tokens/color/background.json`)
+- If there is only a single `type` of token within a `category`, you **should** name the file `index.json` (e.g. `tokens/line-height/index.json`)
+- Component tokens **must** be defined within the `/tokens/source/components` directory. All tokens for a component should be defined in a single JSON file, `{component-name}.json`, with the name of the component as the top-level property in the file.
 - Token keys **must** be lowercase and snake_case
 - Token keys **must** be defined in normal alphabetical order
-- Tokens defined in the `/tokens/source/` directory **WILL** be exported in the build files.
-- Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
-- Token aliases (e.g. color aliases) **must not** be exposed/exported from the production build
-- Component tokens **must** be defined within the `/tokens/source/components` directory. All tokens for a component should be defined in a single JSON file, `{component-name}.json`
-- Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens. Example:
+- Token aliases (e.g. color aliases) **must not** be exposed/exported from the package exports
+- Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens.
 
     <details>
 
@@ -83,12 +83,50 @@ Directory | Description
 
     </details>
 
-### Package Exports
+### Token Formats
 
-This package exports Kong's design tokens in multiple formats:
+The `@kong/design-tokens` package exports tokens in multiple formats:
 
-- JavaScript tokens (ESM and CJS), along with corresponding TypeScript types
 - SCSS variables
+- JavaScript tokens (ESM and CJS), along with corresponding TypeScript types
+
+Exports are available from the package root, meaning you do not need to include the `dist/` directory in your imports:
+
+```ts
+import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens/tokens/js'
+```
+
+### SCSS Variables
+
+SCSS variables can be utilized in your project's SCSS files or in-component style blocks (this assumes your app is already configured to compile Sass).
+
+To use the SCSS variables, you need to import them into your component or app stylesheet so they are available throughout your project utilizing one of the methods below:
+
+#### Import into your app or component's stylesheet or style block
+
+```scss
+@import '@kong/design-tokens/tokens/scss/variables';
+```
+
+#### Globally import with Vite
+
+If your component or application utilizes [Vite](https://vitejs.dev/) to build and compile, you may add the following configuration to your `vite.config.ts` to import the SCSS variables into all components within your project
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+
+export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Inject the @kong/design-tokens SCSS variables to make them available for all components.
+        additionalData: '@import "@kong/design-tokens/tokens/scss/variables";',
+      },
+    },
+  },
+})
+```
 
 ## Usage
 
@@ -112,9 +150,11 @@ The primary consideration when using Kong's design tokens in **components** is t
 
 **If your component does not need to offer any customization, only utilize the SCSS and JavaScript design tokens in your component.**
 
-If your component _does_ want to offer customization, you will want to reference CSS variables with a fallback value.
+If your component _does_ want to offer customization, you will want to reference the corresponding token CSS variable with a fallback SCSS variable.
 
-As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue component library, we want to offer deep levels of customization to allow for an _external_ host application to override component styles. Enabling customization is easy by using Kong's Design System's CSS variables with the SCSS variable as the fallback.
+#### Component Example
+
+As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue component library, we want to offer deep levels of customization to allow for an _external_ host application to override component styles. Enabling customization is easy by using the Kong Design Token's CSS variables with SCSS variable values as the fallback.
 
 ```html
 <style lang="scss">
@@ -131,7 +171,7 @@ As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue compo
 
 Inspecting the example above, you will notice that we fist import the SCSS variables. We then set each style property to the CSS variable, using the SCSS static variable as the fallback.
 
-**Important**: notice we did **not** import the CSS variables.
+**Important**: notice we do **not** import CSS variables.
 
 When Kongponents are imported and used in a host application, the components will utilize the SCSS fallback values by default since the CSS variables are undefined. This is the normal usage and works great for most applications.
 
@@ -155,13 +195,14 @@ Now that we have set a value for the CSS variable `--kui-color-text-primary` in 
 
 ### Host applications
 
-Most commonly, a host application should utilize the SCSS and/or JavaScript variables to define its styles. Host applications typically do not need to be customized after compile time, meaning there is no reason to use the CSS variables with fallbacks. Here's an example:
+Typically, a host application should only utilize the SCSS and/or JavaScript variables to define its styles. Host applications typically **do not need to be customized** after compile time, meaning there is no reason to use the CSS variables with SCSS variable fallbacks. Here's an example:
 
 ```html
 <style lang="scss">
 // Import SCSS variables
 @import "@kong/design-tokens/tokens/scss/variables";
 
+// We directly reference the SCSS variables here which will be replaced with static values during the build
 .my-app-custom-class {
   color: $kui-color-text-primary;
   font-weight: $kui-font-weight-semibold;
@@ -174,7 +215,7 @@ Most commonly, a host application should utilize the SCSS and/or JavaScript vari
 
 If your host application utilizes SSR, you may need to resolve aliases to the package exports.
 
-For example, for a VitePress site, add the following to your `vite.config.ts`
+For example, in a [VitePress](https://vitepress.vuejs.org/) site, add the following to your `vite.config.ts`
 
 ```ts
 export default defineConfig({
