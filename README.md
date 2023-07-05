@@ -2,11 +2,11 @@
 
 Kong's Design Tokens and **Style Dictionary**, created with [Style Dictionary](https://github.com/amzn/style-dictionary).
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
 > **Note**: Repository and documentation is a work in progress. This package is currently for Kong internal-use only, but is published publicly in order to consume in our OSS projects.
 
 A **Style Dictionary** is a build system that allows you to define styles once, in a way for any platform or language to consume. A single place to create and edit your styles, and a single command exports these rules to all the places you need them - iOS, Android, CSS, JS, HTML, sketch files, style documentation, or anything you can think of.
+
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 - [Tokens](#tokens)
   - [Token Requirements](#token-requirements)
@@ -15,14 +15,11 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
   - [Installation](#installation)
   - [Standalone components](#standalone-components)
   - [Host applications](#host-applications)
-  - [Customization](#customization)
-  - [Reusability](#reusability)
 - [Updating Tokens \& Local Development](#updating-tokens--local-development)
-  - [VS Code extensions](#vs-code-extensions)
-  - [Server-Side Rendering (SSR)](#server-side-rendering-ssr)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
+  - [VS Code extension](#vs-code-extension)
   - [Token Update Workflow](#token-update-workflow)
   - [Committing Changes](#committing-changes)
   - [Package Publishing](#package-publishing)
@@ -92,7 +89,6 @@ This package exports Kong's design tokens in multiple formats:
 
 - JavaScript tokens (ESM and CJS), along with corresponding TypeScript types
 - SCSS variables
-- CSS variables, exported raw as well as within a SCSS mixin for scoping the parent container
 
 ## Usage
 
@@ -174,40 +170,9 @@ Most commonly, a host application should utilize the SCSS and/or JavaScript vari
 </style>
 ```
 
-### Customization
+#### Server-Side Rendering (SSR)
 
-### Reusability
-
-## Updating Tokens & Local Development
-
-To get started, install the package dependencies
-
-```sh
-yarn install --frozen-lockfile
-```
-
-### VS Code extensions
-
-> Note: TODO
-
-```json
-{
-  "cssVariables.lookupFiles": [
-    "**/*.css",
-    "**/*.scss",
-    "node_modules/@kong/design-tokens/dist/tokens/css/variables.css",
-  ],
-  "scss.scannerExclude": [
-    "**/.git",
-    "**/bower_components",
-    "**/node_modules/!(@kong/design-tokens),"
-  ],
-}
-```
-
-### Server-Side Rendering (SSR)
-
-If your host app utilizes SSR, you may need to resolve aliases to the package exports.
+If your host application utilizes SSR, you may need to resolve aliases to the package exports.
 
 For example, for a VitePress site, add the following to your `vite.config.ts`
 
@@ -215,13 +180,21 @@ For example, for a VitePress site, add the following to your `vite.config.ts`
 export default defineConfig({
   resolve: {
     alias: {
-      // We must alias `@kong/design-tokens` imports to specifically utilize the esm build
+      // Explicitly alias the SCSS file since we are overriding the default import below
       '@kong/design-tokens/tokens/scss/variables': path.resolve(__dirname, '../node_modules/@kong/design-tokens/dist/tokens/scss/variables.scss'),
+      // Alias `@kong/design-tokens` imports to specifically utilize the esm build
       '@kong/design-tokens': path.resolve(__dirname, '../node_modules/@kong/design-tokens/dist/tokens/js/'),
     },
   },
 })
+```
 
+## Updating Tokens & Local Development
+
+To get started, install the package dependencies
+
+```sh
+yarn install --frozen-lockfile
 ```
 
 ### Development Sandbox
@@ -260,25 +233,40 @@ yarn build
 
 If additional sub-directories (other than `dist/tokens`) are added to the `dist/` directory in `/config.js`, you will also need to create a new corresponding entry in the `package.json > exports` section to allow for importing into the host project without `dist/` in the path.
 
-For example, if I want to add a new `icons` folder, I'd update the `exports` entry as shown here:
+For example, if I want to add a new `my-feature` folder, I'd update the `exports` entry as shown here:
 
 ```jsonc
 "exports": {
   "./package.json": "./package.json",
   "./tokens/*": "./dist/tokens/*",
-  "./icons/*": "./dist/icons/*" // New directory
+  "./my-feature/*": "./dist/my-feature/*" // New directory
+}
+```
+
+### VS Code extension
+
+To get auto-completion of the SCSS variables in your project, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion:
+
+```jsonc
+// settings.json
+{
+  "scss.scannerExclude": [
+    "**/.git",
+    "**/bower_components",
+    "**/node_modules/!(@kong/design-tokens),"
+  ]
 }
 ```
 
 ### Token Update Workflow
 
-1. Pull down the latest code by running `git pull origin main`
-2. Checkout a new branch for your changes with `git checkout -b {type}/{jira-ticket}-{description}` - as an example, `feat/khcp-1234-add-color-tokens`
+1. Ensure you are on the `main` branch, then pull down the latest code by running `git checkout main && git pull origin main`
+2. Checkout a new branch for your changes with `git checkout -b {type}/{jira-ticket}-{description}` - as an example, `git checkout feat/khcp-1234-add-color-tokens`
 3. Add/edit the tokens in the `/tokens` directory as needed, ensuring to adhere to the [Token Requirements](#token-requirements)
 4. Before committing your changes, locally run `yarn lint` to ensure you do not have any linting errors. If you have errors, you can try running `yarn lint:fix` to resolve
 5. Commit your changes, adhering to [Conventional Commits](#committing-changes). To make this easier, you're encouraged to run `yarn commit` to help build your commit message
 6. Push your branch up to the remote with `git push origin {branch-name}`
-7. Open a pull request and request review
+7. Open a pull request and request a review
 
 ### Committing Changes
 
