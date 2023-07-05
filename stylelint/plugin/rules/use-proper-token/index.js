@@ -2,7 +2,7 @@ const stylelint = require('stylelint')
 const { ruleMessages, validateOptions, report } = stylelint.utils
 const { KONG_TOKEN_PREFIX, PROPERTY_TOKEN_MAP, extractTokensFromValue, RULE_NAME_PREFIX } = require('../../utilities')
 
-const ruleName = `${RULE_NAME_PREFIX}/appropriate-token-for-property`
+const ruleName = `${RULE_NAME_PREFIX}/use-proper-token`
 const messages = ruleMessages(ruleName, {
   unexpected: (token, property) => `Unexpected usage of '${token}' token in '${property}' property.`,
 })
@@ -21,6 +21,11 @@ const ruleFunction = () => {
     }
 
     postcssRoot.walkDecls((decl) => {
+      /**
+       * PostCSS AST declaration node
+       * Docs: https://postcss.org/api/#declaration
+       */
+
       const declProp = decl.prop
       const declValue = decl.value
       const hasToken = declValue.includes(`--${KONG_TOKEN_PREFIX}`) || declValue.includes(`$${KONG_TOKEN_PREFIX}`)
@@ -44,7 +49,6 @@ const ruleFunction = () => {
               node: decl,
               result: postcssResult,
               ruleName,
-              severity: 'warning',
             })
           })
         }

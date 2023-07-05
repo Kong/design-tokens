@@ -1,3 +1,3 @@
-const appropriateTokenForProperty = require('./rules/appropriate-token-for-property')
+const useProperToken = require('./rules/use-proper-token')
 
-module.exports = [appropriateTokenForProperty]
+module.exports = [useProperToken]
