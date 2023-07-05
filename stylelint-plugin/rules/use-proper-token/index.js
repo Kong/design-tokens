@@ -29,29 +29,29 @@ const ruleFunction = () => {
       const declProp = decl.prop
       const declValue = decl.value
       const hasToken = declValue.includes(`--${KONG_TOKEN_PREFIX}`) || declValue.includes(`$${KONG_TOKEN_PREFIX}`)
-      // check if the property is in the property map
-      const isEnforcedProp = !!Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))
-
-      if (!hasToken || !isEnforcedProp) {
+      if (!hasToken) {
         return
       }
 
-      // if the property is in the map and the value has a token
-      if (isEnforcedProp && hasToken) {
-        const valueTokens = extractTokensFromValue(declValue)
-        const appropriateTokens = PROPERTY_TOKEN_MAP[Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))].map(token => KONG_TOKEN_PREFIX.concat(token))
-        const inappropriateTokens = valueTokens.filter(vToken => !appropriateTokens.some(aToken => vToken.includes(aToken)))
+      // check if the property is in the property map
+      const isEnforcedProp = !!Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))
+      if (!isEnforcedProp) {
+        return
+      }
 
-        if (inappropriateTokens.length) {
-          inappropriateTokens.forEach((token) => {
-            report({
-              message: messages.unexpected(token, declProp),
-              node: decl,
-              result: postcssResult,
-              ruleName,
-            })
+      const valueTokens = extractTokensFromValue(declValue)
+      const appropriateTokens = PROPERTY_TOKEN_MAP[Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))].map(token => KONG_TOKEN_PREFIX.concat(token))
+      const inappropriateTokens = valueTokens.filter(vToken => !appropriateTokens.some(aToken => vToken.includes(aToken)))
+
+      if (inappropriateTokens.length) {
+        inappropriateTokens.forEach((token) => {
+          report({
+            message: messages.unexpected(token, declProp),
+            node: decl,
+            result: postcssResult,
+            ruleName,
           })
-        }
+        })
       }
     })
   }
