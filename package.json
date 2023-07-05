@@ -42,7 +42,7 @@
     },
     "./package.json": "./package.json",
     "./tokens/*": "./dist/tokens/*",
-    "./stylelint/*": "./dist/stylelint/*"
+    "./stylelint-plugin": "./dist/stylelint-plugin/index.js"
   },
   "repository": {
     "type": "git",
