@@ -17,4 +17,7 @@ const PROPERTY_TOKEN_MAP = {
   'line-height': ['line-height'],
 }
 
-module.exports = { KONG_TOKEN_PREFIX, PROPERTY_TOKEN_MAP }
+// prefix for all rule names
+const RULE_NAME_PREFIX = '@kong/design-tokens'
+
+module.exports = { KONG_TOKEN_PREFIX, PROPERTY_TOKEN_MAP, RULE_NAME_PREFIX }

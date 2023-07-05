@@ -1,8 +1,8 @@
 const stylelint = require('stylelint')
 const { ruleMessages, validateOptions, report } = stylelint.utils
-const { KONG_TOKEN_PREFIX, PROPERTY_TOKEN_MAP, extractTokensFromValue } = require('../../utilities')
+const { KONG_TOKEN_PREFIX, PROPERTY_TOKEN_MAP, extractTokensFromValue, RULE_NAME_PREFIX } = require('../../utilities')
 
-const ruleName = '@kong/design-tokens/appropriate-token-for-property'
+const ruleName = `${RULE_NAME_PREFIX}/appropriate-token-for-property`
 const messages = ruleMessages(ruleName, {
   unexpected: (token, property) => `Unexpected usage of '${token}' token in '${property}' property.`,
 })
