@@ -7,8 +7,8 @@ const messages = ruleMessages(ruleName, {
   unexpected: (token, property) => `Unexpected usage of '${token}' token in '${property}' property.`,
 })
 const meta = {
-  // TODO: add url
-  // url: 'https://github.com/Kong/design-tokens#readme#appropriate-token-for-property',
+  // TODO: add separate docs file for all rules
+  url: 'https://github.com/Kong/design-tokens#readme',
   fixable: false,
 }
 
@@ -27,6 +27,10 @@ const ruleFunction = () => {
       // check if the property is in the property map
       const isEnforcedProp = !!Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))
 
+      if (!hasToken || !isEnforcedProp) {
+        return
+      }
+
       // if the property is in the map and the value has a token
       if (isEnforcedProp && hasToken) {
         const valueTokens = extractTokensFromValue(declValue)
@@ -43,11 +47,7 @@ const ruleFunction = () => {
               severity: 'warning',
             })
           })
-        } else {
-          // continue
         }
-      } else {
-        // continue
       }
     })
   }

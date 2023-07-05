@@ -2,7 +2,7 @@ const { KONG_TOKEN_PREFIX } = require('./constants')
 
 // returns an array of unique design tokens found in a css value
 const extractTokensFromValue = (cssValue) => {
-  const regex = new RegExp(`${KONG_TOKEN_PREFIX}[a-zA-Z0-9-]+`, 'g')
+  const regex = new RegExp(`${KONG_TOKEN_PREFIX}[a-z0-9-]+`, 'gi')
   const matches = cssValue.match(regex)
 
   if (!matches) {
