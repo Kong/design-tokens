@@ -39,6 +39,6 @@ Rule that finds usages of inappropriate design tokens for a given CSS property. 
 
 ```scss
 .foo {
-  background-color: $kui-color-background-primary; // will NOT trigger an error, appropriate token for the value
+  background-color: $kui-color-background-primary; // will NOT trigger an error, appropriate token for the property
 }
 ```
