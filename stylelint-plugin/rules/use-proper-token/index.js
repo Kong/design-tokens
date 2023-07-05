@@ -28,7 +28,7 @@ const ruleFunction = () => {
 
       const declProp = decl.prop
       const declValue = decl.value
-      const hasToken = declValue.includes(`--${KONG_TOKEN_PREFIX}`) || declValue.includes(`$${KONG_TOKEN_PREFIX}`)
+      const hasToken = [`--${KONG_TOKEN_PREFIX}`, `$${KONG_TOKEN_PREFIX}`].some(pattern => declValue.includes(pattern))
       if (!hasToken) {
         return
       }
