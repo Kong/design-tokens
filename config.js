@@ -70,34 +70,6 @@ StyleDictionary.registerFormat({
 const platforms = {}
 
 /**
- * CSS Variables
- */
-platforms.css = {
-  prefix: KONG_TOKEN_PREFIX, // required
-  transformGroup: 'css',
-  buildPath: `${TOKEN_DIRECTORY}/css/`,
-  options: {
-    fileHeader: customFileHeader,
-  },
-  transforms: [
-    'attribute/cti',
-    'name/cti/kebab',
-    'color/css',
-  ],
-  files: [
-    {
-      format: 'css/variables',
-      destination: 'variables.css',
-      options: {
-        selector: ':root', // You can override the default selector; may be necessary for consumers (e.g. Kongponents)
-      },
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
-    },
-  ],
-}
-
-/**
  * SCSS Variables
  */
 platforms.scss = {
