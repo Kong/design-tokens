@@ -12,8 +12,9 @@ A **Style Dictionary** is a build system that allows you to define styles once, 
   - [Token Requirements](#token-requirements)
   - [Package Exports](#package-exports)
 - [Usage](#usage)
-  - [In components](#in-components)
-  - [In a host application](#in-a-host-application)
+  - [Installation](#installation)
+  - [Standalone components](#standalone-components)
+  - [Host applications](#host-applications)
   - [Customization](#customization)
   - [Reusability](#reusability)
 - [Updating Tokens \& Local Development](#updating-tokens--local-development)
@@ -95,7 +96,21 @@ This package exports Kong's design tokens in multiple formats:
 
 ## Usage
 
-### In components
+### Installation
+
+In your host project, install the package **only** as a `devDependency`:
+
+```shell
+yarn add -D @kong/design-tokens
+```
+
+#### Why a `devDependency`?
+
+This package is intended to be consumed by a host component or application that will be compiled before publishing. This means when the component or app is compiled, any tokens it consumes (e.g. SCSS tokens, JavaScript variables, etc.) will be replaced during the build with the static token value.
+
+This strategy alleviates the need for a consuming application to need to install the `@kong/design-tokens` package when using a component that utilizes the tokens under-the-hood.
+
+### Standalone components
 
 The primary consideration when using Kong's design tokens in **components** is to determine if the component needs to allow for downstream customization.
 
@@ -142,7 +157,7 @@ table .my-table-row {
 
 Now that we have set a value for the CSS variable `--kui-color-text-primary` in our host application, any instance of this CSS variable in the components will utilize our custom value instead of the default value.
 
-### In a host application
+### Host applications
 
 Most commonly, a host application should utilize the SCSS and/or JavaScript variables to define its styles. Host applications typically do not need to be customized after compile time, meaning there is no reason to use the CSS variables with fallbacks. Here's an example:
 
