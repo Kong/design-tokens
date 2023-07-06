@@ -4,8 +4,6 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
 
 > **Note**: Repository and documentation is a work in progress. This package is currently for Kong internal-use only, but is published publicly in order to consume in our OSS projects.
 
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
-
 - [Tokens](#tokens)
   - [Token Formats](#token-formats)
   - [SCSS Variables](#scss-variables)
