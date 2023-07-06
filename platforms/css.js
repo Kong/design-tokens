@@ -1,6 +1,5 @@
 const StyleDictionary = require('style-dictionary')
-const { TOKEN_DIRECTORY } = require('../constants')
-const { unquoteString } = require('../utilities')
+const { unquoteString, TOKEN_DIRECTORY } = require('../utilities')
 
 const { fileHeader } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({

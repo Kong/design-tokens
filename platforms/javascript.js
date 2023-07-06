@@ -1,4 +1,4 @@
-const { TOKEN_DIRECTORY } = require('../constants')
+const { TOKEN_DIRECTORY } = require('../utilities')
 
 /**
  * JavaScript Variables

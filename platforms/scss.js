@@ -1,5 +1,5 @@
 const StyleDictionary = require('style-dictionary')
-const { TOKEN_DIRECTORY } = require('../constants')
+const { TOKEN_DIRECTORY } = require('../utilities')
 
 /**
  * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to

@@ -1,6 +1,5 @@
 const StyleDictionary = require('style-dictionary')
-const { TOKEN_DIRECTORY } = require('../constants')
-const { unquoteString } = require('../utilities')
+const { unquoteString, TOKEN_DIRECTORY } = require('../utilities')
 
 const { fileHeader } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
@@ -25,8 +24,9 @@ StyleDictionary.registerFormat({
       const comment = unquoteString(JSON.stringify(token.comment))
 
       // Set the value of the variable to `initial` to initialize as essentially an empty value
-      let tokenOutput = `  --${token.name}: initial; /* `
+      let tokenOutput = `--${token.name}: initial; /* `
       if (comment) {
+        // Append the comment and a trailing `.` (period)
         tokenOutput += comment.replace(/([^.])$/, '$1.')
       }
       tokenOutput += ` Default value: \`${value}\` */`
@@ -91,7 +91,7 @@ While CSS variables are _utilized_ in Kong's repositories to allow for CSS custo
 
 <summary>Click to view the list of CSS variables</summary>
 
-\`\`\`css
+\`\`\`scss
 ${cssTokens}
 \`\`\`
 
