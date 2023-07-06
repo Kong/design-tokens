@@ -2,9 +2,10 @@ const StyleDictionary = require('style-dictionary')
 const { TOKEN_DIRECTORY } = require('../constants')
 const { unquoteString } = require('../utilities')
 
+const { fileHeader } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/markdown',
-  formatter: function({ dictionary }) {
+  formatter: function({ dictionary, file }) {
     // Generate the SCSS variable tokens
     const scssTokens = dictionary.allTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.value))
@@ -46,8 +47,7 @@ StyleDictionary.registerFormat({
     }).join('\n')
 
     // Generate the markdown file
-    return `
-# Kong Design Tokens
+    return fileHeader({ file }).replace('/**', '<!--').replace(' */', '-->') + `# Kong Design Tokens
 
 This document outlines all of the available tokens.
 

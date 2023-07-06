@@ -3,6 +3,7 @@ const customFileHeader = (defaultMessage) => {
   return [
     ...defaultMessage,
     '',
+    'Kong Design Tokens',
     'GitHub: https://github.com/Kong/design-tokens',
     'License: Apache-2.0',
   ]
