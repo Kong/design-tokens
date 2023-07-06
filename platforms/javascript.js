@@ -15,10 +15,10 @@ const platform = {
     'color/css',
   ],
   files: [
-    // JavaScript ES constants
+    // JavaScript ES6 constants
     {
       format: 'javascript/es6',
-      destination: 'index.js',
+      destination: 'index.mjs',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
@@ -35,14 +35,14 @@ const platform = {
     // JavaScript CommonJS
     {
       format: 'javascript/module-flat',
-      destination: 'cjs/index.cjs',
+      destination: 'cjs/index.js',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
     // CommonJS types
     {
       format: 'typescript/module-declarations',
-      destination: 'cjs/index.d.cts',
+      destination: 'cjs/index.d.ts',
       options: {
         outputStringLiterals: true,
       },

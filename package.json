@@ -20,18 +20,18 @@
   "files": [
     "dist"
   ],
-  "main": "dist/tokens/js/cjs/index.cjs",
-  "module": "dist/tokens/js/index.js",
+  "main": "dist/tokens/js/cjs/index.js",
+  "module": "dist/tokens/js/index.mjs",
   "types": "dist/tokens/js/index.d.ts",
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/tokens/js/index.js",
+        "default": "./dist/tokens/js/index.mjs",
         "types": "./dist/tokens/js/index.d.ts"
       },
       "require": {
-        "default": "./dist/tokens/js/cjs/index.cjs",
-        "types": "./dist/tokens/js/cjs/index.d.cts"
+        "default": "./dist/tokens/js/cjs/index.js",
+        "types": "./dist/tokens/js/cjs/index.d.ts"
       }
     },
     "./package.json": "./package.json",
