@@ -1,7 +1,7 @@
 <!--
  * Do not edit directly
- * Generated on Thu, 06 Jul 2023 16:13:08 GMT
- *
+ * Generated on Thu, 06 Jul 2023 17:18:27 GMT
+ * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
  * License: Apache-2.0
@@ -315,7 +315,7 @@ export const KUI_SPACE_AUTO = "auto"; /* auto */
 
 While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
 
-The purpose of the `@kong/design-tokens/tokens/css/variables.css` file is to provide a list of all available CSS variables.
+The purpose of the `@kong/design-tokens/tokens/css/variables.css` file is to provide a list of all available CSS variables, to utilize alongside auto-complete extensions in your IDE, etc.
 
 If you want to customize default token values, provided the element(s) in question utilize CSS variable fallbacks, simply set the variables from this list to your desired value within your host application, scoped inside your desired CSS selector, and it will override the default value.
 

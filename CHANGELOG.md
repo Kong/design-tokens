@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Kong/design-tokens/compare/v1.3.0...v1.4.0) (2023-07-06)
+
+
+### Features
+
+* trigger release ([6768513](https://github.com/Kong/design-tokens/commit/6768513ae4dd37032b24150068bebde7b70d9282))
+
 # [1.3.0](https://github.com/Kong/design-tokens/compare/v1.2.0...v1.3.0) (2023-07-05)
 
 
