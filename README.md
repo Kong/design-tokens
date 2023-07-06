@@ -332,7 +332,7 @@ For example, if I want to add a new `my-feature` folder, I'd update the `exports
 
 ```jsonc
 "exports": {
-  "./package.json": "./package.json",
+  // ... more entries
   "./tokens/*": "./dist/tokens/*",
   "./my-feature/*": "./dist/my-feature/*" // New directory
 }
