@@ -7,20 +7,20 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 - [Tokens](#tokens)
-  - [Token Requirements](#token-requirements)
   - [Token Formats](#token-formats)
   - [SCSS Variables](#scss-variables)
   - [JavaScript Variables](#javascript-variables)
   - [CSS Variables](#css-variables)
 - [Usage](#usage)
   - [Installation](#installation)
+  - [Recommended VS Code extension](#recommended-vs-code-extension)
   - [Standalone components](#standalone-components)
   - [Host applications](#host-applications)
 - [Updating Tokens \& Local Development](#updating-tokens--local-development)
+  - [Token Requirements](#token-requirements)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
-  - [VS Code extension](#vs-code-extension)
   - [Token Update Workflow](#token-update-workflow)
   - [Committing Changes](#committing-changes)
   - [Package Publishing](#package-publishing)
@@ -31,65 +31,13 @@ All design tokens **must** be placed inside of the `/tokens` directory in one of
 
 [View the lists of available tokens here](TOKENS.md), or keep reading for more information.
 
-### Token Requirements
-
-- Tokens **must** be defined in the corresponding JSON files within the `/tokens` directory in one of two sub-directories:
-
-    Directory | Description
-    ---------|----------
-    `/tokens/alias` | The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports. Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
-    `/tokens/source` | The `source` directory contains all tokens that **will be** available for consumption from the package exports.
-
-- Token keys **must** be lowercase, snake_case, and defined in normal alphabetical order (rules enforced by the eslint config)
-- The `category` of each token should be its own directory (e.g. `tokens/color/`)
-- Each `type` of token should be a file in the `category` directory, named `{type}.json` (e.g. `tokens/color/background.json`)
-- If there is only a single `type` of token within a `category`, you **should** name the file `index.json` (e.g. `tokens/line-height/index.json`)
-- Component tokens **must** be defined within the `/tokens/source/components/` directory. All tokens for a component should be defined in a single JSON file, `{component-name}.json`, with the name of the component as the top-level property in the file.
-- Token aliases (e.g. color aliases) **must not** be exposed/exported from the package exports
-- Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens.
-
-    <details>
-
-    <summary>Click to view an example of root-level tokens</summary>
-
-    ```json
-    {
-      "color": {
-        "text": {
-          "_": {
-            "comment": "blue-100",
-            "value": "{color.alias.blue.100}"
-          },
-          "neutral": {
-            "_": {
-              "comment": "gray-100",
-              "value": "{color.alias.gray.60}"
-            },
-            "strong": {
-              "comment": "gray-70",
-              "value": "{color.alias.gray.70}"
-            }
-          }
-        }
-      }
-    }
-    ```
-
-    ```css
-    /* Output */
-    --kui-color-text: #000933;
-    --kui-color-text-neutral: #6c7489;
-    --kui-color-text-neutral-strong: #52596e;
-    ```
-
-    </details>
-
 ### Token Formats
 
 The `@kong/design-tokens` package exports tokens in multiple formats:
 
-- SCSS variables
-- JavaScript tokens (ESM and CJS), along with corresponding TypeScript types
+- [SCSS variables](#scss-variables)
+- [JavaScript variables](#javascript-variables) (ESM and CJS), along with corresponding TypeScript types
+- [CSS variables](#css-variables) (**for reference only**)
 
 Exports are available from the package root, meaning you do not need to include the `dist/` directory in your imports:
 
@@ -180,6 +128,22 @@ yarn add -D @kong/design-tokens
 This package is intended to be consumed by a host component or application that will be compiled before publishing. This means when the component or app is compiled, any tokens it consumes (e.g. SCSS tokens, JavaScript variables, etc.) will be replaced during the build with the static token value.
 
 This strategy alleviates the need for a consuming application to need to install the `@kong/design-tokens` package when using a component that utilizes the tokens under-the-hood.
+
+### Recommended VS Code extension
+
+To get auto-completion of the SCSS variables in your project within VS Code, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion. Notice that we are explicitly **not excluding** `node_modules`:
+
+```jsonc
+// settings.json
+{
+  "scss.scannerExclude": [
+    "**/.git",
+    "**/bower_components"
+  ]
+}
+```
+
+If you are installing the package as a `devDependency` in your project, you can add a `/.vscode/settings.json` file into your project that will enforce these settings in your project for all developers.
 
 ### Standalone components
 
@@ -275,6 +239,59 @@ To get started, install the package dependencies
 yarn install --frozen-lockfile
 ```
 
+### Token Requirements
+
+- Tokens **must** be defined in the corresponding JSON files within the `/tokens` directory in one of two sub-directories:
+
+    Directory | Description
+    ---------|----------
+    `/tokens/alias` | The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports. Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
+    `/tokens/source` | The `source` directory contains all tokens that **will be** available for consumption from the package exports.
+
+- Token keys **must** be lowercase, snake_case, and defined in normal alphabetical order (rules enforced by the eslint config)
+- The `category` of each token should be its own directory (e.g. `tokens/color/`)
+- Each `type` of token should be a file in the `category` directory, named `{type}.json` (e.g. `tokens/color/background.json`)
+- If there is only a single `type` of token within a `category`, you **should** name the file `index.json` (e.g. `tokens/line-height/index.json`)
+- Component tokens **must** be defined within the `/tokens/source/components/` directory. All tokens for a component should be defined in a single JSON file, `{component-name}.json`, with the name of the component as the top-level property in the file.
+- Token aliases (e.g. color aliases) **must not** be exposed/exported from the package exports
+- Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens.
+
+    <details>
+
+    <summary>Click to view an example of root-level tokens</summary>
+
+    ```json
+    {
+      "color": {
+        "text": {
+          "_": {
+            "comment": "blue-100",
+            "value": "{color.alias.blue.100}"
+          },
+          "neutral": {
+            "_": {
+              "comment": "gray-100",
+              "value": "{color.alias.gray.60}"
+            },
+            "strong": {
+              "comment": "gray-70",
+              "value": "{color.alias.gray.70}"
+            }
+          }
+        }
+      }
+    }
+    ```
+
+    ```css
+    /* Output */
+    --kui-color-text: #000933;
+    --kui-color-text-neutral: #6c7489;
+    --kui-color-text-neutral-strong: #52596e;
+    ```
+
+    </details>
+
 ### Development Sandbox
 
 This repository includes a Vue sandbox (see the `/sandbox` directory) to allow you to experiment with consuming tokens.
@@ -318,20 +335,6 @@ For example, if I want to add a new `my-feature` folder, I'd update the `exports
   "./package.json": "./package.json",
   "./tokens/*": "./dist/tokens/*",
   "./my-feature/*": "./dist/my-feature/*" // New directory
-}
-```
-
-### VS Code extension
-
-To get auto-completion of the SCSS variables in your project, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion. Notice that we are explicitly **not excluding** `node_modules`:
-
-```jsonc
-// settings.json
-{
-  "scss.scannerExclude": [
-    "**/.git",
-    "**/bower_components"
-  ]
 }
 ```
 
