@@ -9,7 +9,6 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
 - [Tokens](#tokens)
   - [Token Requirements](#token-requirements)
   - [Token Formats](#token-formats)
-  - [Exported Tokens](#exported-tokens)
   - [SCSS Variables](#scss-variables)
 - [Usage](#usage)
   - [Installation](#installation)
@@ -27,6 +26,8 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
 ## Tokens
 
 All design tokens **must** be placed inside of the `/tokens` directory in one of two sub-directories.
+
+[View the lists of available tokens here](TOKENS.md), or keep reading for more information.
 
 ### Token Requirements
 
@@ -93,10 +94,6 @@ Exports are available from the package root, meaning you do not need to include 
 ```ts
 import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens/tokens/js'
 ```
-
-### Exported Tokens
-
-[View the lists of available tokens here](TOKENS.md)
 
 ### SCSS Variables
 
