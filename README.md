@@ -285,15 +285,14 @@ For example, if I want to add a new `my-feature` folder, I'd update the `exports
 
 ### VS Code extension
 
-To get auto-completion of the SCSS variables in your project, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion:
+To get auto-completion of the SCSS variables in your project, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion. Notice that we are explicitly not excluding `node_modules`:
 
 ```jsonc
 // settings.json
 {
   "scss.scannerExclude": [
     "**/.git",
-    "**/bower_components",
-    "**/node_modules/!(@kong/design-tokens),"
+    "**/bower_components"
   ]
 }
 ```
