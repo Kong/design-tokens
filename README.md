@@ -40,7 +40,8 @@ The `@kong/design-tokens` package exports tokens in multiple formats:
 Exports are available from the package root, meaning you do not need to include the `dist/` directory in your imports:
 
 ```ts
-import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens/tokens/js'
+// Notice that for JavaScript/TypeScript, we can just import from the root
+import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens'
 ```
 
 ### SCSS Variables
@@ -82,7 +83,8 @@ JavaScript variables can be utilized in your project's component files, or other
 To use the JavaScript variables, simply import the variables you need into your component/file:
 
 ```ts
-import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens/tokens/js'
+// Notice that for JavaScript/TypeScript, we can just import from the root
+import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens'
 ```
 
 ### CSS Variables
