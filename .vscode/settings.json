@@ -19,7 +19,6 @@
   ],
   "scss.scannerExclude": [
     "**/.git",
-    "**/bower_components",
-    "**/node_modules/!(@kong/design-tokens),"
+    "**/bower_components"
   ]
 }
