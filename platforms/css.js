@@ -9,7 +9,8 @@ StyleDictionary.registerFormat({
     '/**\n' +
     ' * IMPORTANT: You should **not** import this file in your host project.\n' +
     ' *\n' +
-    ' * The purpose of this file is to provide a list of all available CSS variables.\n' +
+    ' * The purpose of this file is to provide a list of all available CSS variables, to\n' +
+    ' * utilize alongside auto-complete extensions in your IDE, etc.\n' +
     ' *\n' +
     ' * If you want to customize default token values, provided the element(s) in question\n' +
     ' * utilize CSS variable fallbacks, simply set the variables from this list\n' +

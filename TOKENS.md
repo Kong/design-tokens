@@ -1,7 +1,7 @@
 <!--
  * Do not edit directly
  * Generated on Thu, 06 Jul 2023 16:13:08 GMT
- * 
+ *
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
  * License: Apache-2.0
@@ -313,13 +313,13 @@ export const KUI_SPACE_AUTO = "auto"; /* auto */
 
 **IMPORTANT**: You should **never** import the `@kong/design-tokens/tokens/css/variables.css` file in your host project.
 
+While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
+
 The purpose of the `@kong/design-tokens/tokens/css/variables.css` file is to provide a list of all available CSS variables.
 
 If you want to customize default token values, provided the element(s) in question utilize CSS variable fallbacks, simply set the variables from this list to your desired value within your host application, scoped inside your desired CSS selector, and it will override the default value.
 
 You may scope your CSS variable overrides inside the `:root` selector as shown here, or inside any other valid CSS selector.
-
-While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
 
 <details>
 

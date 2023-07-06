@@ -10,6 +10,8 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
   - [Token Requirements](#token-requirements)
   - [Token Formats](#token-formats)
   - [SCSS Variables](#scss-variables)
+  - [JavaScript Variables](#javascript-variables)
+  - [CSS Variables](#css-variables)
 - [Usage](#usage)
   - [Installation](#installation)
   - [Standalone components](#standalone-components)
@@ -125,6 +127,42 @@ export default defineConfig({
     },
   },
 })
+```
+
+### JavaScript Variables
+
+JavaScript variables can be utilized in your project's component files, or other JavaScript/TypeScript files.
+
+To use the JavaScript variables, simply import the variables you need into your component/file:
+
+```ts
+import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens/tokens/js'
+```
+
+### CSS Variables
+
+**IMPORTANT**: You should **never** import the `@kong/design-tokens/tokens/css/variables.css` file in your host project.
+
+While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
+
+The purpose of the `@kong/design-tokens/tokens/css/variables.css` file is to provide a list of all available CSS variables, to utilize alongside auto-complete extensions in your IDE, etc.
+
+If you want to customize default token values, provided the element(s) in question utilize CSS variable fallbacks, simply set the variables from this list to your desired value within your host application, scoped inside your desired CSS selector, and it will override the default value.
+
+You may scope your CSS variable overrides inside the `:root` selector as shown here, or inside any other valid CSS selector.
+
+```html
+<style>
+// You may scope the variable to `root:` to impact the whole application...
+:root {
+  --kui-color-text-primary: green;
+}
+
+// ...or scope the variable to a specific container to keep the changes isolated
+table .my-table-row {
+  --kui-color-text-primary: purple;
+}
+</style>
 ```
 
 ## Usage
@@ -285,7 +323,7 @@ For example, if I want to add a new `my-feature` folder, I'd update the `exports
 
 ### VS Code extension
 
-To get auto-completion of the SCSS variables in your project, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion. Notice that we are explicitly not excluding `node_modules`:
+To get auto-completion of the SCSS variables in your project, you can add the [SCSS IntelliSense extension](https://marketplace.visualstudio.com/items?itemName=mrmlnc.vscode-scss) to VS Code on your machine along with the corresponding settings object which will auto-import the variables for auto-completion. Notice that we are explicitly **not excluding** `node_modules`:
 
 ```jsonc
 // settings.json
