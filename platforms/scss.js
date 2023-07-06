@@ -1,5 +1,5 @@
 const StyleDictionary = require('style-dictionary')
-const { KONG_TOKEN_PREFIX, TOKEN_DIRECTORY } = require('../constants')
+const { TOKEN_DIRECTORY } = require('../constants')
 
 /**
  * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to
@@ -41,7 +41,6 @@ StyleDictionary.registerFormat({
  * SCSS Variables
  */
 const platform = {
-  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'scss',
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
   transforms: [

@@ -1,7 +1,9 @@
 const { KONG_TOKEN_PREFIX } = require('../constants')
 // Import all platforms
 const scss = require('./scss')
+const css = require('./css')
 const javascript = require('./javascript')
+const markdown = require('./markdown')
 // Import utilities
 const { customFileHeader } = require('../utilities')
 
@@ -9,7 +11,9 @@ const { customFileHeader } = require('../utilities')
 // The property key should match platform.transformGroup; e.g. `scss: scss`
 const platforms = {
   scss,
+  css,
   javascript,
+  markdown,
 }
 
 // Loop through all platforms

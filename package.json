@@ -5,6 +5,7 @@
   "scripts": {
     "build": "yarn build:clean && style-dictionary build",
     "build:clean": "rimraf ./dist",
+    "copy:tokens-readme": "copyfiles -f -u 'dist/tokens/README.md' ./TOKENS.md",
     "lint": "eslint '**/*.{js,ts,vue,json}'",
     "lint:fix": "eslint '**/*.{js,ts,vue,json}' --fix",
     "sandbox": "run-p sandbox:open watch:tokens",
@@ -59,6 +60,7 @@
     "@vitejs/plugin-vue": "^4.2.3",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.0",
+    "copyfiles": "^2.4.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.34.0",
     "eslint-config-standard": "^17.1.0",

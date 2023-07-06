@@ -1,4 +1,4 @@
-const { KONG_TOKEN_PREFIX, TOKEN_DIRECTORY } = require('../constants')
+const { TOKEN_DIRECTORY } = require('../constants')
 
 /**
  * JavaScript Variables
@@ -6,7 +6,6 @@ const { KONG_TOKEN_PREFIX, TOKEN_DIRECTORY } = require('../constants')
  * Important: Every exported file in this platform key **must** have a corresponding TypeScript declaration export.
  */
 const platform = {
-  prefix: KONG_TOKEN_PREFIX, // required
   transformGroup: 'js',
   buildPath: `${TOKEN_DIRECTORY}/js/`,
   transforms: [
