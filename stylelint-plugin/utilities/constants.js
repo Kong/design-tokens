@@ -9,7 +9,7 @@ const PROPERTY_TOKEN_MAP = {
   'border-bottom-width,border-left-width,border-right-width,border-top-width,border-width': ['border-width'],
   'border-spacing,bottom,column-gap,gap,inset,left,margin,margin-bottom,margin-left,margin-right,margin-top,padding,padding-bottom,padding-left,padding-right,padding-top,right,row-gap,top': ['space'],
   'border,border-bottom,border-left,border-right,border-top': ['border-radius', 'border-width', 'color-border'],
-  color: ['color-text', 'method-color-text'],
+  'color,stroke': ['color-text', 'method-color-text'],
   font: ['font-family', 'font-size', 'font-weight'],
   'font-family': ['font-family'],
   'font-size': ['font-size'],
