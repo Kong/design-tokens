@@ -1,7 +1,7 @@
 * @adamdehaven @jillztom @portikM
 
-# Dependabot approvals
-# Allow Kongponents BOT to approve dependabot updates
+# Renovate approvals
+# Allow Kongponents BOT to approve renovate updates
 # These rules MUST remain at the bottom as the last entry
 package.json @kongponents-bot @adamdehaven @jillztom @portikM
 yarn.lock @kongponents-bot @adamdehaven @jillztom @portikM
