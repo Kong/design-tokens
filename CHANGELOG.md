@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Kong/design-tokens/compare/v1.4.0...v1.5.0) (2023-07-11)
+
+
+### Features
+
+* use public tokens ([#43](https://github.com/Kong/design-tokens/issues/43)) ([4f9380e](https://github.com/Kong/design-tokens/commit/4f9380ea6ad525fbde80819f1e324ae87ef5adc5))
+
 # [1.4.0](https://github.com/Kong/design-tokens/compare/v1.3.0...v1.4.0) (2023-07-06)
 
 
