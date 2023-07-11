@@ -9,7 +9,7 @@ jobs:
   run-tests:
     name: Tests
     # Since we aren't specifying the workflow {owner}/{repo} and @{ref}, it will use the same commit as the caller workflow (same repo and branch)
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/test.yaml
 
   publish:
     name: Build and Publish
