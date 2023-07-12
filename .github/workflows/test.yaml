@@ -53,10 +53,11 @@ jobs:
           echo "preid=${preid}"
 
           # Discard changes to the tokens file before checking out the files
-          git restore TOKENS.md
-          git checkout ${{ github.head_ref }}
+          # git restore TOKENS.md
+          # TODO: Need to checkout?
+          # git checkout ${{ github.head_ref }}
 
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
 
           yarn version --prerelease --preid ${preid} --allow-branch ${{ github.head_ref }} --no-git-tag-version --yes --amend
 
