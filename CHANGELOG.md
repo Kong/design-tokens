@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/Kong/design-tokens/compare/v1.5.0...v1.5.1) (2023-07-12)
+
+
+### Bug Fixes
+
+* **ci:** pass token ([#45](https://github.com/Kong/design-tokens/issues/45)) ([7650343](https://github.com/Kong/design-tokens/commit/7650343a66d08032160c120bd82a65fff78841a1))
+
 # [1.5.0](https://github.com/Kong/design-tokens/compare/v1.4.0...v1.5.0) (2023-07-11)
 
 
