@@ -12,6 +12,8 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}
     steps:
       - name: Remove preview consumption comment
         if: github.event_name == 'pull_request'
@@ -42,8 +44,6 @@ jobs:
 
       - name: Publish Previews
         if: github.event_name == 'pull_request'
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}
         run: |
           git config user.email "konnectx-engineers+kongponents-bot@konghq.com"
           git config user.name "Kong UI Bot"
@@ -52,10 +52,9 @@ jobs:
           tag="pr-${{ github.event.pull_request.number }}"
           echo "preid=${preid}"
 
-          # TODO: We probably need to checkout here
-          # git checkout ${{ github.head_ref }}
+          git checkout ${{ github.head_ref }}
 
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}" > .npmrc
 
           yarn version --prerelease --preid ${preid} --allow-branch ${{ github.head_ref }} --no-git-tag-version --yes --amend
 
