@@ -19,7 +19,8 @@
     "access": "public"
   },
   "files": [
-    "dist"
+    "dist",
+    "TOKENS.md"
   ],
   "main": "dist/tokens/js/cjs/index.js",
   "module": "dist/tokens/js/index.mjs",
