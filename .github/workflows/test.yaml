@@ -52,6 +52,8 @@ jobs:
           tag="pr-${{ github.event.pull_request.number }}"
           echo "preid=${preid}"
 
+          # Discard changes to the tokens file before checking out the files
+          git restore TOKENS.md
           git checkout ${{ github.head_ref }}
 
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}" > .npmrc
