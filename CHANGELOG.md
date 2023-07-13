@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Kong/design-tokens/compare/v1.5.1...v1.6.0) (2023-07-13)
+
+
+### Features
+
+* **icon:** add icon component tokens ([#48](https://github.com/Kong/design-tokens/issues/48)) ([c9a4b1e](https://github.com/Kong/design-tokens/commit/c9a4b1eae82c9648cd5182eeb7cbe8683fc7d48e))
+
 ## [1.5.1](https://github.com/Kong/design-tokens/compare/v1.5.0...v1.5.1) (2023-07-12)
 
 

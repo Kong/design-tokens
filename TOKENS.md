@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 12 Jul 2023 18:40:37 GMT
+ * Generated on Thu, 13 Jul 2023 20:37:48 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -95,6 +95,14 @@ $kui-breakpoint-laptop: 1280px; /* Used for standard desktop screens. */
 $kui-breakpoint-mobile: 640px; /* Used for larger mobile screens. Anything under this value is considered mobile. */
 $kui-breakpoint-phablet: 768px; /* Used for tablet screens. */
 $kui-breakpoint-tablet: 1024px; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. */
+$kui-icon-size-10: 10px;
+$kui-icon-size-20: 12px;
+$kui-icon-size-30: 16px;
+$kui-icon-size-40: 20px;
+$kui-icon-size-50: 24px; /* The default icon size */
+$kui-icon-size-60: 32px;
+$kui-icon-size-70: 40px;
+$kui-icon-size-80: 48px;
 $kui-method-color-background-connect: #f1f0ff; /* purple.10 */
 $kui-method-color-background-delete: #ffe5e5; /* red.10 */
 $kui-method-color-background-get: #eefaff; /* blue.10 */
@@ -244,6 +252,14 @@ export const KUI_BREAKPOINT_LAPTOP = "1280px"; /* Used for standard desktop scre
 export const KUI_BREAKPOINT_MOBILE = "640px"; /* Used for larger mobile screens. Anything under this value is considered mobile. */
 export const KUI_BREAKPOINT_PHABLET = "768px"; /* Used for tablet screens. */
 export const KUI_BREAKPOINT_TABLET = "1024px"; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. */
+export const KUI_ICON_SIZE_10 = "10px";
+export const KUI_ICON_SIZE_20 = "12px";
+export const KUI_ICON_SIZE_30 = "16px";
+export const KUI_ICON_SIZE_40 = "20px";
+export const KUI_ICON_SIZE_50 = "24px"; /* The default icon size */
+export const KUI_ICON_SIZE_60 = "32px";
+export const KUI_ICON_SIZE_70 = "40px";
+export const KUI_ICON_SIZE_80 = "48px";
 export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = "#f1f0ff"; /* purple.10 */
 export const KUI_METHOD_COLOR_BACKGROUND_DELETE = "#ffe5e5"; /* red.10 */
 export const KUI_METHOD_COLOR_BACKGROUND_GET = "#eefaff"; /* blue.10 */
@@ -403,6 +419,14 @@ You may scope your CSS variable overrides inside the `:root` selector as shown h
 --kui-breakpoint-mobile: initial; /* Used for larger mobile screens. Anything under this value is considered mobile. Default value: `640px` */
 --kui-breakpoint-phablet: initial; /* Used for tablet screens. Default value: `768px` */
 --kui-breakpoint-tablet: initial; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. Default value: `1024px` */
+--kui-icon-size-10: initial; /*  Default value: `10px` */
+--kui-icon-size-20: initial; /*  Default value: `12px` */
+--kui-icon-size-30: initial; /*  Default value: `16px` */
+--kui-icon-size-40: initial; /*  Default value: `20px` */
+--kui-icon-size-50: initial; /* The default icon size. Default value: `24px` */
+--kui-icon-size-60: initial; /*  Default value: `32px` */
+--kui-icon-size-70: initial; /*  Default value: `40px` */
+--kui-icon-size-80: initial; /*  Default value: `48px` */
 --kui-method-color-background-connect: initial; /* purple.10. Default value: `#f1f0ff` */
 --kui-method-color-background-delete: initial; /* red.10. Default value: `#ffe5e5` */
 --kui-method-color-background-get: initial; /* blue.10. Default value: `#eefaff` */
