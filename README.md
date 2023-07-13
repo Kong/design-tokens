@@ -163,6 +163,16 @@ As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue compo
 @import "@kong/design-tokens/tokens/scss/variables";
 
 .my-component-class {
+  /**
+   * When setting a CSS variable value to a SCSS variable, you need to 
+   * interpolate the SCSS variable. Interpolation can be used 
+   * almost anywhere in a Sass stylesheet to embed the result of a 
+   * SassScript expression into a chunk of CSS. 
+   * Just wrap the expression in `#{}`
+  */
+  --my-custom-scoped-css-variable: var(--kui-space-20, #{$kui-space-20});
+  
+  margin: var(--my-custom-scoped-css-variable, #{$kui-space-10});
   color: var(--kui-color-text-primary, $kui-color-text-primary);
   font-weight: var(--kui-font-weight-semibold, $kui-font-weight-semibold);
   padding: var(--kui-space-20, $kui-space-20) var(--kui-space-40, $kui-space-40);
@@ -175,6 +185,8 @@ Inspecting the example above, you will notice that we fist import the SCSS varia
 **Important**: notice we do **not** import CSS variables.
 
 When Kongponents are imported and used in a host application, the components will utilize the SCSS fallback values by default since the CSS variables are undefined. This is the normal usage and works great for most applications.
+
+**Note:** notice how you have to use [interpolation](https://sass-lang.com/documentation/interpolation/) when using SCSS variable tokens in custom property values (such as defining CSS variable).
 
 If your application wants to customize some of the properties, it's easy by simply defining the CSS variables you want to override inside of your host application, as shown here:
 
