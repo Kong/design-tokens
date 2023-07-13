@@ -1,0 +1,31 @@
+{
+  "icon": {
+    "size": {
+      "10": {
+        "value": "10px"
+      },
+      "20": {
+        "value": "12px"
+      },
+      "30": {
+        "value": "16px"
+      },
+      "40": {
+        "value": "20px"
+      },
+      "50": {
+        "comment": "The default icon size",
+        "value": "24px"
+      },
+      "60": {
+        "value": "32px"
+      },
+      "70": {
+        "value": "40px"
+      },
+      "80": {
+        "value": "48px"
+      }
+    }
+  }
+}
