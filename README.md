@@ -163,8 +163,11 @@ As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue compo
 @import "@kong/design-tokens/tokens/scss/variables";
 
 .my-component-class {
-  --my-css-variable: var(--kui-space-10, #{$kui-space-10});
-  margin: var(--my-css-variable);
+  // When setting a CSS variable value to a SCSS variable, you need to interpolate the SCSS variable
+  // Interpolation can be used almost anywhere in a Sass stylesheet to embed the result of a SassScript expression into a chunk of CSS. Just wrap an expression in `#{}`
+  --my-custom-scoped-css-variable: var(--kui-space-20, #{$kui-space-20});
+  
+  margin: var(--my-custom-scoped-css-variable, #{$kui-space-10});
   color: var(--kui-color-text-primary, $kui-color-text-primary);
   font-weight: var(--kui-font-weight-semibold, $kui-font-weight-semibold);
   padding: var(--kui-space-20, $kui-space-20) var(--kui-space-40, $kui-space-40);
@@ -178,7 +181,7 @@ Inspecting the example above, you will notice that we fist import the SCSS varia
 
 When Kongponents are imported and used in a host application, the components will utilize the SCSS fallback values by default since the CSS variables are undefined. This is the normal usage and works great for most applications.
 
-**Note:** notice how you have to use [interpolation](https://sass-lang.com/documentation/interpolation/) when using SCSS tokens in custom property values (such as defining your CSS variable).
+**Note:** notice how you have to use [interpolation](https://sass-lang.com/documentation/interpolation/) when using SCSS variable tokens in custom property values (such as defining CSS variable).
 
 If your application wants to customize some of the properties, it's easy by simply defining the CSS variables you want to override inside of your host application, as shown here:
 
@@ -247,10 +250,10 @@ yarn install --frozen-lockfile
 
 - Tokens **must** be defined in the corresponding JSON files within the `/tokens` directory in one of two sub-directories:
 
-    | Directory        | Description                                                                                                                                                                                                                                                                                                                                                                         |
-    | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `/tokens/alias`  | The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports. Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files. |
-    | `/tokens/source` | The `source` directory contains all tokens that **will be** available for consumption from the package exports.                                                                                                                                                                                                                                                                     |
+    Directory | Description
+    ---------|----------
+    `/tokens/alias` | The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports. Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
+    `/tokens/source` | The `source` directory contains all tokens that **will be** available for consumption from the package exports.
 
 - Token keys **must** be lowercase, snake_case, and defined in normal alphabetical order (rules enforced by the eslint config)
 - The `category` of each token should be its own directory (e.g. `tokens/color/`)
