@@ -170,7 +170,6 @@ As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue compo
    * SassScript expression into a chunk of CSS. 
    * Just wrap the expression in `#{}`
   */
-  
   --my-custom-scoped-css-variable: var(--kui-space-20, #{$kui-space-20});
   
   margin: var(--my-custom-scoped-css-variable, #{$kui-space-10});
