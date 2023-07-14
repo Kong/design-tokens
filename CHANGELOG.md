@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/Kong/design-tokens/compare/v1.6.0...v1.6.1) (2023-07-14)
+
+
+### Bug Fixes
+
+* ci package preview ([#49](https://github.com/Kong/design-tokens/issues/49)) ([9f3a313](https://github.com/Kong/design-tokens/commit/9f3a313665c41b4fff4247b90576a0866ae26b32))
+
 # [1.6.0](https://github.com/Kong/design-tokens/compare/v1.5.1...v1.6.0) (2023-07-13)
 
 
