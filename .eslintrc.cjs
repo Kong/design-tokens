@@ -93,5 +93,12 @@ module.exports = {
       files: ['*.json'],
       parser: 'jsonc-eslint-parser',
     },
+    // Ignore the sort order for the breakpoint tokens so they can be ordered from smallest to largest
+    {
+      files: ['tokens/source/breakpoint/**/*.json'],
+      rules: {
+        'jsonc/sort-keys': 'off',
+      },
+    },
   ],
 }

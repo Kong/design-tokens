@@ -1,15 +1,7 @@
 {
   "breakpoint": {
-    "desktop": {
-      "comment": "Used for larger desktop screens.",
-      "value": "1536px"
-    },
-    "laptop": {
-      "comment": "Used for standard desktop screens.",
-      "value": "1280px"
-    },
     "mobile": {
-      "comment": "Used for larger mobile screens. Anything under this value is considered mobile.",
+      "comment": "Used for larger mobile screens. Anything viewport width under this value is considered mobile.",
       "value": "640px"
     },
     "phablet": {
@@ -17,8 +9,16 @@
       "value": "768px"
     },
     "tablet": {
-      "comment": "Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout.",
+      "comment": "Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout.",
       "value": "1024px"
+    },
+    "laptop": {
+      "comment": "Used for standard desktop screens.",
+      "value": "1280px"
+    },
+    "desktop": {
+      "comment": "Used for larger desktop screens.",
+      "value": "1536px"
     }
   }
 }
