@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/Kong/design-tokens/compare/v1.6.1...v1.6.2) (2023-07-20)
+
+
+### Bug Fixes
+
+* update comments and eslint setting ([c698171](https://github.com/Kong/design-tokens/commit/c698171b92bd33c1a9ec681b2ab267a36730a052))
+
 ## [1.6.1](https://github.com/Kong/design-tokens/compare/v1.6.0...v1.6.1) (2023-07-14)
 
 

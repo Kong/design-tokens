@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Fri, 14 Jul 2023 13:08:05 GMT
+ * Generated on Thu, 20 Jul 2023 21:02:31 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -90,11 +90,11 @@ $kui-border-width-0: 0px;
 $kui-border-width-10: 1px;
 $kui-border-width-20: 2px;
 $kui-border-width-30: 4px;
-$kui-breakpoint-desktop: 1536px; /* Used for larger desktop screens. */
-$kui-breakpoint-laptop: 1280px; /* Used for standard desktop screens. */
-$kui-breakpoint-mobile: 640px; /* Used for larger mobile screens. Anything under this value is considered mobile. */
+$kui-breakpoint-mobile: 640px; /* Used for larger mobile screens. Anything viewport width under this value is considered mobile. */
 $kui-breakpoint-phablet: 768px; /* Used for tablet screens. */
-$kui-breakpoint-tablet: 1024px; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. */
+$kui-breakpoint-tablet: 1024px; /* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
+$kui-breakpoint-laptop: 1280px; /* Used for standard desktop screens. */
+$kui-breakpoint-desktop: 1536px; /* Used for larger desktop screens. */
 $kui-icon-size-10: 10px;
 $kui-icon-size-20: 12px;
 $kui-icon-size-30: 16px;
@@ -247,11 +247,11 @@ export const KUI_BORDER_WIDTH_0 = "0px";
 export const KUI_BORDER_WIDTH_10 = "1px";
 export const KUI_BORDER_WIDTH_20 = "2px";
 export const KUI_BORDER_WIDTH_30 = "4px";
-export const KUI_BREAKPOINT_DESKTOP = "1536px"; /* Used for larger desktop screens. */
-export const KUI_BREAKPOINT_LAPTOP = "1280px"; /* Used for standard desktop screens. */
-export const KUI_BREAKPOINT_MOBILE = "640px"; /* Used for larger mobile screens. Anything under this value is considered mobile. */
+export const KUI_BREAKPOINT_MOBILE = "640px"; /* Used for larger mobile screens. Anything viewport width under this value is considered mobile. */
 export const KUI_BREAKPOINT_PHABLET = "768px"; /* Used for tablet screens. */
-export const KUI_BREAKPOINT_TABLET = "1024px"; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. */
+export const KUI_BREAKPOINT_TABLET = "1024px"; /* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
+export const KUI_BREAKPOINT_LAPTOP = "1280px"; /* Used for standard desktop screens. */
+export const KUI_BREAKPOINT_DESKTOP = "1536px"; /* Used for larger desktop screens. */
 export const KUI_ICON_SIZE_10 = "10px";
 export const KUI_ICON_SIZE_20 = "12px";
 export const KUI_ICON_SIZE_30 = "16px";
@@ -414,11 +414,11 @@ You may scope your CSS variable overrides inside the `:root` selector as shown h
 --kui-border-width-10: initial; /*  Default value: `1px` */
 --kui-border-width-20: initial; /*  Default value: `2px` */
 --kui-border-width-30: initial; /*  Default value: `4px` */
---kui-breakpoint-desktop: initial; /* Used for larger desktop screens. Default value: `1536px` */
---kui-breakpoint-laptop: initial; /* Used for standard desktop screens. Default value: `1280px` */
---kui-breakpoint-mobile: initial; /* Used for larger mobile screens. Anything under this value is considered mobile. Default value: `640px` */
+--kui-breakpoint-mobile: initial; /* Used for larger mobile screens. Anything viewport width under this value is considered mobile. Default value: `640px` */
 --kui-breakpoint-phablet: initial; /* Used for tablet screens. Default value: `768px` */
---kui-breakpoint-tablet: initial; /* Used for larger tablet screens. Any viewport width less than this value is considered a mobile layout. Any viewport width this size and greater is considered a desktop layout. Default value: `1024px` */
+--kui-breakpoint-tablet: initial; /* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. Default value: `1024px` */
+--kui-breakpoint-laptop: initial; /* Used for standard desktop screens. Default value: `1280px` */
+--kui-breakpoint-desktop: initial; /* Used for larger desktop screens. Default value: `1536px` */
 --kui-icon-size-10: initial; /*  Default value: `10px` */
 --kui-icon-size-20: initial; /*  Default value: `12px` */
 --kui-icon-size-30: initial; /*  Default value: `16px` */
