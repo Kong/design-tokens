@@ -1,7 +1,7 @@
 {
   "breakpoint": {
     "mobile": {
-      "comment": "Used for larger mobile screens. Anything viewport width under this value is considered mobile.",
+      "comment": "Used for larger mobile screens. Any viewport width under this value is considered mobile.",
       "value": "640px"
     },
     "phablet": {
