@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/Kong/design-tokens/compare/v1.7.0...v1.7.1) (2023-07-21)
+
+
+### Bug Fixes
+
+* **json:** format json tokens ([1c871d8](https://github.com/Kong/design-tokens/commit/1c871d85d87b6b609d4a69cbb13d07bdc221fe73))
+
 # [1.7.0](https://github.com/Kong/design-tokens/compare/v1.6.2...v1.7.0) (2023-07-21)
 
 
