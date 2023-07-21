@@ -3,9 +3,6 @@
 </template>
 
 <style lang="scss">
-// Import CSS variables
-@import "../dist/tokens/css/variables.css";
-
 html,
 body {
   font-family: var(--kui-font-family-text, 'Inter', sans-serif);

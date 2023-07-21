@@ -45,6 +45,12 @@ dist/
 sandbox/dist/
 sandbox/dist-copy/
 
+# Vitepress docs
+docs/.vitepress/.temp
+docs/.vitepress/.cache
+docs/.vitepress/cache
+docs/.vitepress/dist
+
 # Android Specific Files
 .gradle/
 local.properties

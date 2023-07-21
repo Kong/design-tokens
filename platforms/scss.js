@@ -56,6 +56,14 @@ const platform = {
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
+    // SCSS map
+    {
+      format: 'scss/map-flat',
+      mapName: 'tokens-map',
+      destination: '_map.scss',
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+    },
     // SCSS CSS variables mixin
     {
       format: 'css/variables/custom/sass/mixin',

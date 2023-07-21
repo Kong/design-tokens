@@ -10,26 +10,50 @@ StyleDictionary.registerFormat({
       const value = unquoteString(JSON.stringify(token.value))
       const comment = unquoteString(JSON.stringify(token.comment))
 
-      // Set the value of the variable to `initial` to initialize as essentially an empty value
-      let tokenOutput = `$${token.name}: ${value};`
+      let tokenOutput = ''
       if (comment) {
-        tokenOutput += ` /* ${comment} */`
+        tokenOutput += `/* ${comment} */\n`
       }
+      tokenOutput += `$${token.name}: ${value};`
       return tokenOutput
     }).join('\n')
 
-    // Generate the CSS variable tokens
+    // Generate the SCSS variable tokens
+    const scssMap = dictionary.allTokens.map(token => {
+      const value = unquoteString(JSON.stringify(token.value))
+      const comment = unquoteString(JSON.stringify(token.comment))
+
+      let tokenOutput = ''
+      if (comment) {
+        tokenOutput += `  /* ${comment} */\n`
+      }
+      tokenOutput += `  '${token.name}': ${value};`
+      return tokenOutput
+    }).join('\n')
+
+    // Generate the LESS variable tokens
+    const lessTokens = dictionary.allTokens.map(token => {
+      const value = unquoteString(JSON.stringify(token.value))
+      const comment = unquoteString(JSON.stringify(token.comment))
+
+      let tokenOutput = ''
+      if (comment) {
+        tokenOutput += `/* ${comment} */\n`
+      }
+      tokenOutput += `@${token.name}: ${value};`
+      return tokenOutput
+    }).join('\n')
+
+    // Generate the CSS custom properties
     const cssTokens = dictionary.allTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.value))
       const comment = unquoteString(JSON.stringify(token.comment))
 
-      // Set the value of the variable to `initial` to initialize as essentially an empty value
-      let tokenOutput = `--${token.name}: initial; /* `
+      let tokenOutput = ''
       if (comment) {
-        // Append the comment and a trailing `.` (period)
-        tokenOutput += comment.replace(/([^.])$/, '$1.')
+        tokenOutput += `/* ${comment} */\n`
       }
-      tokenOutput += ` Default value: \`${value}\` */`
+      tokenOutput += `--${token.name}: ${value};`
       return tokenOutput
     }).join('\n')
 
@@ -38,10 +62,21 @@ StyleDictionary.registerFormat({
       const value = JSON.stringify(token.value)
       const comment = unquoteString(JSON.stringify(token.comment))
 
-      // Set the value of the variable to `initial` to initialize as essentially an empty value
-      let tokenOutput = `export const ${token.name.replace(/-/g, '_').toUpperCase()} = ${value};`
+      let tokenOutput = ''
       if (comment) {
-        tokenOutput += ` /* ${comment} */`
+        tokenOutput += `/* ${comment} */\n`
+      }
+      tokenOutput += `export const ${token.name.replace(/-/g, '_').toUpperCase()} = ${value};`
+      return tokenOutput
+    }).join('\n')
+
+    // Generate the JavaScript variable tokens
+    const jsonTokens = dictionary.allTokens.map((token, idx) => {
+      const value = JSON.stringify(token.value)
+
+      let tokenOutput = `  "${token.name}": ${value},`
+      if ((idx + 1) === dictionary.allTokens.length) {
+        tokenOutput = tokenOutput.replace(/,$/, '')
       }
       return tokenOutput
     }).join('\n')
@@ -51,7 +86,9 @@ StyleDictionary.registerFormat({
 
 This document outlines all of the available tokens.
 
-## SCSS Variables
+## SCSS
+
+### SCSS Variables
 
 <details>
 
@@ -63,7 +100,53 @@ ${scssTokens}
 
 </details>
 
-## JavaScript Variables
+### SCSS Map
+
+<details>
+
+<summary>Click to view exported SCSS map</summary>
+
+\`\`\`scss
+$tokens-map: (
+${scssMap}
+);
+\`\`\`
+
+</details>
+
+## LESS
+
+### LESS Variables
+
+<details>
+
+<summary>Click to view the list of LESS variables</summary>
+
+\`\`\`less
+${lessTokens}
+\`\`\`
+
+</details>
+
+## CSS
+
+### CSS Custom Properties
+
+You may scope your CSS custom property overrides inside the \`:root\` selector as shown here, or inside any other valid CSS selector.
+
+<details>
+
+<summary>Click to view the list of CSS custom properties</summary>
+
+\`\`\`scss
+${cssTokens}
+\`\`\`
+
+</details>
+
+## JavaScript
+
+### JavaScript / TypeScript Constants
 
 <details>
 
@@ -75,24 +158,16 @@ ${javascriptTokens}
 
 </details>
 
-## CSS Variables
-
-**IMPORTANT**: You should **never** import the \`@kong/design-tokens/tokens/css/variables.css\` file in your host project.
-
-While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
-
-The purpose of the \`@kong/design-tokens/tokens/css/variables.css\` file is to provide a list of all available CSS variables, to utilize alongside auto-complete extensions in your IDE, etc.
-
-If you want to customize default token values, provided the element(s) in question utilize CSS variable fallbacks, simply set the variables from this list to your desired value within your host application, scoped inside your desired CSS selector, and it will override the default value.
-
-You may scope your CSS variable overrides inside the \`:root\` selector as shown here, or inside any other valid CSS selector.
+### JSON
 
 <details>
 
-<summary>Click to view the list of CSS variables</summary>
+<summary>Click to view the exported JSON object</summary>
 
-\`\`\`scss
-${cssTokens}
+\`\`\`json
+{
+${jsonTokens}
+}
 \`\`\`
 
 </details>

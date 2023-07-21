@@ -26,11 +26,8 @@ StyleDictionary.registerFormat({
         const comment = unquoteString(JSON.stringify(token.comment))
 
         // Set the value of the variable to `initial` to initialize as essentially an empty value
-        let tokenOutput = `  --${token.name}: initial; /* `
-        if (comment) {
-          tokenOutput += comment.replace(/([^.])$/, '$1.')
-        }
-        tokenOutput += ` Default value: \`${value}\` */`
+        let tokenOutput = `  /* ${comment ? comment.replace(/([^.])$/, '$1.') : ''} Default value: \`${value}\` */\n`
+        tokenOutput += `  --${token.name}: initial;`
         return tokenOutput
       }).join('\n') +
     '\n}\n'
@@ -53,7 +50,13 @@ const platform = {
   files: [
     {
       format: 'css/variables/custom/initial-values',
-      destination: 'variables.css',
+      destination: 'custom-properties-list.css',
+      // Exclude alias tokens and asset tokens compiled in a separate file
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+    },
+    {
+      format: 'css/variables',
+      destination: 'custom-properties.css',
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },

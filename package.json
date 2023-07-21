@@ -11,6 +11,9 @@
     "sandbox": "run-p sandbox:open watch:tokens",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
     "watch:tokens": "yarn build && chokidar \"tokens/**/*.json\" -c \"yarn build\"",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
     "commit": "cz"
@@ -78,6 +81,7 @@
     "typescript": "^5.1.6",
     "vite": "^4.4.3",
     "vite-plugin-restart": "^0.3.1",
+    "vitepress": "^1.0.0-beta.5",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4"
   },

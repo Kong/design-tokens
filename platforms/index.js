@@ -1,7 +1,9 @@
 // Import all platforms
 const scss = require('./scss')
+const less = require('./less')
 const css = require('./css')
 const javascript = require('./javascript')
+const json = require('./json')
 const markdown = require('./markdown')
 // Import utilities
 const { customFileHeader, KONG_TOKEN_PREFIX } = require('../utilities')
@@ -10,8 +12,10 @@ const { customFileHeader, KONG_TOKEN_PREFIX } = require('../utilities')
 // The property key should match platform.transformGroup; e.g. `scss: scss`
 const platforms = {
   scss,
+  less,
   css,
   javascript,
+  json,
   markdown,
 }
 

@@ -6,9 +6,10 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
 
 - [Tokens](#tokens)
   - [Token Formats](#token-formats)
-  - [SCSS Variables](#scss-variables)
-  - [JavaScript Variables](#javascript-variables)
-  - [CSS Variables](#css-variables)
+  - [SCSS](#scss)
+  - [LESS](#less)
+  - [JavaScript](#javascript)
+  - [CSS Custom Properties](#css-custom-properties)
 - [Usage](#usage)
   - [Installation](#installation)
   - [Recommended VS Code extension](#recommended-vs-code-extension)
@@ -44,19 +45,21 @@ Exports are available from the package root, meaning you do not need to include 
 import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens'
 ```
 
-### SCSS Variables
+### SCSS
+
+#### SCSS Variables
 
 SCSS variables can be utilized in your project's SCSS files or in-component style blocks (this assumes your app is already configured to compile Sass).
 
 To use the SCSS variables, you need to import them into your component or app stylesheet so they are available throughout your project utilizing one of the methods below:
 
-#### Import into your app or component's stylesheet or style block
+##### Import into your app or component's stylesheet or style block
 
 ```scss
 @import '@kong/design-tokens/tokens/scss/variables';
 ```
 
-#### Globally import with Vite
+##### Globally import with Vite
 
 If your component or application utilizes [Vite](https://vitejs.dev/) to build and compile, you may add the following configuration to your `vite.config.ts` to import the SCSS variables into all components within your project
 
@@ -76,7 +79,28 @@ export default defineConfig({
 })
 ```
 
-### JavaScript Variables
+#### SCSS Map
+
+The package also exports a SCSS map of the tokens from the `@kong/design-tokens/tokens/scss/map` file
+
+```scss
+$tokens-map: (
+  'kui-color-background': #ffffff,
+  // ... etc.
+);
+```
+
+### LESS
+
+#### LESS Variables
+
+LESS variables can be utilized in your project's LESS files or in-component style blocks (this assumes your app is already configured to compile LESS).
+
+To use the LESS variables, you need to import them into your component or app stylesheet so they are available throughout your project via the export from `@kong/design-tokens/tokens/less/variables.less`.
+
+### JavaScript
+
+#### JavaScript Variables
 
 JavaScript variables can be utilized in your project's component files, or other JavaScript/TypeScript files.
 
@@ -87,17 +111,31 @@ To use the JavaScript variables, simply import the variables you need into your 
 import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens'
 ```
 
-### CSS Variables
+#### JSON
 
-**IMPORTANT**: You should **never** import the `@kong/design-tokens/tokens/css/variables.css` file in your host project.
+The package also exports a JSON file of all tokens from `@kong/design-tokens/tokens/js/tokens.json`
 
-While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
-
-The purpose of the `@kong/design-tokens/tokens/css/variables.css` file is to provide a list of all available CSS variables, to utilize alongside auto-complete extensions in your IDE, etc.
-
-If you want to customize default token values, provided the element(s) in question utilize CSS variable fallbacks, simply set the variables from this list to your desired value within your host application, scoped inside your desired CSS selector, and it will override the default value.
+### CSS Custom Properties
 
 You may scope your CSS variable overrides inside the `:root` selector as shown here, or inside any other valid CSS selector.
+
+Two versions of the [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) are exported from the package.
+
+#### `@kong/design-tokens/tokens/css/custom-properties.css`
+
+This file exports all available custom properties with the values set to their actual raw value.
+
+#### `@kong/design-tokens/tokens/css/custom-properties-list.css`
+
+This file exports the custom properties with a value of `initial`; mainly used for IDE auto-completion where you do not actually need the token values.
+
+> **IMPORTANT**: You should **never** import the `@kong/design-tokens/tokens/css/custom-properties-list.css` file in your host project.
+>
+> While CSS variables are _utilized_ in Kong's repositories to allow for CSS customization, the variables themselves are never actually provided values or imported from this package.
+>
+> The purpose of the `@kong/design-tokens/tokens/css/custom-properties-list.css` file is to provide a list of all available CSS variables, to utilize alongside auto-complete extensions in your IDE, etc.
+>
+> If you want to customize default token values, provided the element(s) in question utilize CSS variable fallbacks, simply set the variables from this list to your desired value within your host application, scoped inside your desired CSS selector, and it will override the default value.
 
 ```html
 <style>
@@ -164,14 +202,14 @@ As an example, in Kong's [Kongponents](https://kongponents.konghq.com) Vue compo
 
 .my-component-class {
   /**
-   * When setting a CSS variable value to a SCSS variable, you need to 
-   * interpolate the SCSS variable. Interpolation can be used 
-   * almost anywhere in a Sass stylesheet to embed the result of a 
-   * SassScript expression into a chunk of CSS. 
+   * When setting a CSS variable value to a SCSS variable, you need to
+   * interpolate the SCSS variable. Interpolation can be used
+   * almost anywhere in a Sass stylesheet to embed the result of a
+   * SassScript expression into a chunk of CSS.
    * Just wrap the expression in `#{}`
   */
   --my-custom-scoped-css-variable: var(--kui-space-20, #{$kui-space-20});
-  
+
   margin: var(--my-custom-scoped-css-variable, #{$kui-space-10});
   color: var(--kui-color-text-primary, $kui-color-text-primary);
   font-weight: var(--kui-font-weight-semibold, $kui-font-weight-semibold);
