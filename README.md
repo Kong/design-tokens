@@ -34,9 +34,10 @@ All design tokens **must** be placed inside of the `/tokens` directory in one of
 
 The `@kong/design-tokens` package exports tokens in multiple formats:
 
-- [SCSS variables](#scss-variables)
-- [JavaScript variables](#javascript-variables) (ESM and CJS), along with corresponding TypeScript types
-- [CSS variables](#css-variables) (**for reference only**)
+- [SCSS](#scss)
+- [LESS](#less)
+- [CSS Custom Properties](#css-custom-properties)
+- [JavaScript](#javascript) (ESM, CJS, and JSON), along with corresponding TypeScript types
 
 Exports are available from the package root, meaning you do not need to include the `dist/` directory in your imports:
 
