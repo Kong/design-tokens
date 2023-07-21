@@ -8,8 +8,8 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
   - [Token Formats](#token-formats)
   - [SCSS](#scss)
   - [LESS](#less)
-  - [JavaScript](#javascript)
   - [CSS Custom Properties](#css-custom-properties)
+  - [JavaScript](#javascript)
 - [Usage](#usage)
   - [Installation](#installation)
   - [Recommended VS Code extension](#recommended-vs-code-extension)
@@ -99,23 +99,6 @@ LESS variables can be utilized in your project's LESS files or in-component styl
 
 To use the LESS variables, you need to import them into your component or app stylesheet so they are available throughout your project via the export from `@kong/design-tokens/tokens/less/variables.less`.
 
-### JavaScript
-
-#### JavaScript Variables
-
-JavaScript variables can be utilized in your project's component files, or other JavaScript/TypeScript files.
-
-To use the JavaScript variables, simply import the variables you need into your component/file:
-
-```ts
-// Notice that for JavaScript/TypeScript, we can just import from the root
-import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens'
-```
-
-#### JSON
-
-The package also exports a JSON file of all tokens from `@kong/design-tokens/tokens/js/tokens.json`
-
 ### CSS Custom Properties
 
 You may scope your CSS variable overrides inside the `:root` selector as shown here, or inside any other valid CSS selector.
@@ -151,6 +134,23 @@ table .my-table-row {
 }
 </style>
 ```
+
+### JavaScript
+
+#### JavaScript Variables
+
+JavaScript variables can be utilized in your project's component files, or other JavaScript/TypeScript files.
+
+To use the JavaScript variables, simply import the variables you need into your component/file:
+
+```ts
+// Notice that for JavaScript/TypeScript, we can just import from the root
+import { KUI_COLOR_BACKGROUND_PRIMARY_STRONG } from '@kong/design-tokens'
+```
+
+#### JSON
+
+The package also exports a JSON file of all tokens from `@kong/design-tokens/tokens/js/tokens.json`
 
 ## Usage
 
