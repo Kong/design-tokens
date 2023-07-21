@@ -84,7 +84,7 @@ StyleDictionary.registerFormat({
     // Generate the markdown file
     return fileHeader({ file }).replace('/**', '<!--').replace(' */', '-->') + `# Kong Design Tokens
 
-This document outlines all of the available tokens.
+This document outlines the majority of the available tokens.
 
 ## SCSS
 
