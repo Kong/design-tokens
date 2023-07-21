@@ -74,7 +74,7 @@ StyleDictionary.registerFormat({
     const jsonTokens = dictionary.allTokens.map((token, idx) => {
       const value = JSON.stringify(token.value)
 
-      let tokenOutput = `  "${token.name}": ${value},`
+      let tokenOutput = `  "${token.name.replace(/-/g, '_').toLowerCase()}": ${value},`
       if ((idx + 1) === dictionary.allTokens.length) {
         tokenOutput = tokenOutput.replace(/,$/, '')
       }

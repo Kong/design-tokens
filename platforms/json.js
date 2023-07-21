@@ -8,11 +8,11 @@ const platform = {
   buildPath: `${TOKEN_DIRECTORY}/js/`,
   transforms: [
     'attribute/cti',
-    'name/cti/kebab',
+    'name/cti/snake',
     'color/css',
   ],
   files: [
-    // LESS variables
+    // JSON flat
     {
       format: 'json/flat',
       destination: 'tokens.json',
