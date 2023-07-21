@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Kong/design-tokens/compare/v1.6.2...v1.7.0) (2023-07-21)
+
+
+### Features
+
+* add token formats and improve docs ([7db4a54](https://github.com/Kong/design-tokens/commit/7db4a545529f78d240a2bca4cb95e66fe1d563ab))
+
 ## [1.6.2](https://github.com/Kong/design-tokens/compare/v1.6.1...v1.6.2) (2023-07-20)
 
 
