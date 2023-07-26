@@ -7,7 +7,7 @@ const PROPERTY_TOKEN_MAP = {
   'border-bottom-color,border-color,border-left-color,border-right-color,border-top-color': ['color-border'],
   'border-bottom-left-radius,border-bottom-right-radius,border-radius,border-top-left-radius,border-top-right-radius': ['border-radius'],
   'border-bottom-width,border-left-width,border-right-width,border-top-width,border-width': ['border-width'],
-  'border-spacing,bottom,column-gap,gap,inset,left,margin,margin-bottom,margin-left,margin-right,margin-top,padding,padding-bottom,padding-left,padding-right,padding-top,right,row-gap,top': ['space'],
+  'border-spacing,column-gap,gap,margin,margin-bottom,margin-left,margin-right,margin-top,padding,padding-bottom,padding-left,padding-right,padding-top,row-gap': ['space'],
   'border,border-bottom,border-left,border-right,border-top': ['border-radius', 'border-width', 'color-border'],
   'color,stroke': ['color-text', 'method-color-text'],
   font: ['font-family', 'font-size', 'font-weight'],
