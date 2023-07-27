@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/Kong/design-tokens/compare/v1.7.1...v1.8.0) (2023-07-27)
+
+
+### Features
+
+* **ci:** add timeout-minutes to ci jobs [KHCP-8104] ([#61](https://github.com/Kong/design-tokens/issues/61)) ([b9c8b10](https://github.com/Kong/design-tokens/commit/b9c8b10ace6009824c5c6737bbaae7dfce9c7aa7))
+
 ## [1.7.1](https://github.com/Kong/design-tokens/compare/v1.7.0...v1.7.1) (2023-07-21)
 
 
