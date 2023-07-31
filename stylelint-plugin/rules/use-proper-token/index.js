@@ -9,7 +9,7 @@ const messages = ruleMessages(ruleName, {
 })
 const meta = {
   // TODO: add separate docs file for all rules
-  url: 'https://github.com/Kong/design-tokens#readme',
+  url: 'https://github.com/Kong/design-tokens/blob/main/stylelint-plugin/README.md',
   fixable: false,
 }
 
