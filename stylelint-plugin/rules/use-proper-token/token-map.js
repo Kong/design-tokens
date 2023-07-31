@@ -40,6 +40,7 @@ const PROPERTY_TOKEN_MAP = {
   'font-weight': ['font-weight'],
   gap: ['space'],
   height: [],
+  inset: [],
   left: [],
   'line-height': ['line-height'],
   margin: ['space'],
