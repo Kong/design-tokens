@@ -2,6 +2,10 @@
 
 [Stylelint](https://github.com/stylelint/stylelint) plugin for linting design tokens.
 
+- [Usage](#usage)
+- [Rules](#rules)
+  - [`use-proper-token`](#use-proper-token)
+
 ## Usage
 
 Install `@kong/design-tokens` and `stylelint` packages as a `devDependency` in your project
@@ -26,9 +30,13 @@ rules: {
 
 ## Rules
 
-### `@kong/design-tokens/use-proper-token`
+### `use-proper-token`
 
-Rule that finds usages of inappropriate design tokens for a given CSS property. Example:
+Rule that parses CSS properties for inappropriate tokens being referenced.
+
+For example, the `kui-color-text-primary` token **should** be used as a value for `color`, but **should not** be used for `background-color`.
+
+#### :red_circle: Incorrect
 
 ```scss
 .foo {
@@ -37,9 +45,11 @@ Rule that finds usages of inappropriate design tokens for a given CSS property. 
 }
 ```
 
+#### :green_circle: Correct
+
 ```scss
 .foo {
   // This **will NOT** trigger an error, appropriate token for the property
-  background-color: $kui-color-background-primary;
+  color: $kui-color-text-primary;
 }
 ```
