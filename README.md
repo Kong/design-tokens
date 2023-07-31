@@ -12,6 +12,7 @@ Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-diction
   - [JavaScript](#javascript)
 - [Usage](#usage)
   - [Installation](#installation)
+  - [Stylelint Plugin](#stylelint-plugin)
   - [Recommended VS Code extension](#recommended-vs-code-extension)
   - [Standalone components](#standalone-components)
   - [Host applications](#host-applications)
@@ -167,6 +168,12 @@ yarn add -D @kong/design-tokens
 This package is intended to be consumed by a host component or application that will be compiled before publishing. This means when the component or app is compiled, any tokens it consumes (e.g. SCSS tokens, JavaScript variables, etc.) will be replaced during the build with the static token value.
 
 This strategy alleviates the need for a consuming application to need to install the `@kong/design-tokens` package when using a component that utilizes the tokens under-the-hood.
+
+### Stylelint Plugin
+
+This package offers a [Stylelint](https://github.com/stylelint/stylelint) plugin for linting the usage of Kong Design Tokens.
+
+[View the Stylelint plugin docs for usage instructions](./stylelint-plugin/README.md)
 
 ### Recommended VS Code extension
 

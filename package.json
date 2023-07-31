@@ -3,9 +3,10 @@
   "version": "1.8.0",
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
-    "build": "yarn build:clean && style-dictionary build && yarn copy:tokens-doc",
+    "build": "yarn build:clean && style-dictionary build && yarn copy:tokens-doc && yarn copy:stylelint-plugin",
     "build:clean": "rimraf ./dist",
     "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
+    "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",
     "lint": "eslint '**/*.{js,ts,vue,json}'",
     "lint:fix": "eslint '**/*.{js,ts,vue,json}' --fix",
     "sandbox": "run-p sandbox:open watch:tokens",
@@ -40,7 +41,8 @@
       }
     },
     "./package.json": "./package.json",
-    "./tokens/*": "./dist/tokens/*"
+    "./tokens/*": "./dist/tokens/*",
+    "./stylelint-plugin": "./dist/stylelint-plugin/index.js"
   },
   "repository": {
     "type": "git",
@@ -71,6 +73,7 @@
     "eslint-plugin-jsonc": "^2.9.0",
     "eslint-plugin-n": "^16.0.1",
     "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-vue": "^9.15.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.1",

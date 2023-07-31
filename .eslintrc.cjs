@@ -13,7 +13,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
   },
-  plugins: ['import', '@typescript-eslint'],
+  plugins: ['import', '@typescript-eslint', 'sort-keys-fix'],
   rules: {
     indent: [
       'error',
@@ -89,6 +89,13 @@ module.exports = {
     ],
   },
   overrides: [
+    {
+      files: ['stylelint-plugin/rules/use-proper-token/token-map.js'],
+      rules: {
+        'sort-keys': ['error', 'asc', { natural: true, minKeys: 2, caseSensitive: false }],
+        'sort-keys-fix/sort-keys-fix': 'error',
+      },
+    },
     {
       files: ['*.json'],
       parser: 'jsonc-eslint-parser',
