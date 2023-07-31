@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/Kong/design-tokens/compare/v1.8.0...v1.9.0) (2023-07-31)
+
+
+### Features
+
+* add stylelint plugin ([#33](https://github.com/Kong/design-tokens/issues/33)) ([55d7f7b](https://github.com/Kong/design-tokens/commit/55d7f7b6edad1c2482f33c91310859292c3f9d29))
+
 # [1.8.0](https://github.com/Kong/design-tokens/compare/v1.7.1...v1.8.0) (2023-07-27)
 
 
