@@ -1,6 +1,7 @@
 const stylelint = require('stylelint')
 const { ruleMessages, validateOptions, report } = stylelint.utils
-const { KONG_TOKEN_PREFIX, PROPERTY_TOKEN_MAP, extractTokensFromValue, RULE_NAME_PREFIX } = require('../../utilities')
+const PROPERTY_TOKEN_MAP = require('./token-map')
+const { KONG_TOKEN_PREFIX, extractTokensFromValue, RULE_NAME_PREFIX } = require('../../utilities')
 
 const ruleName = `${RULE_NAME_PREFIX}/use-proper-token`
 const messages = ruleMessages(ruleName, {
@@ -33,14 +34,16 @@ const ruleFunction = () => {
         return
       }
 
+      const tokenProperty = Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))
+
       // check if the property is in the property map
-      const isEnforcedProp = !!Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))
+      const isEnforcedProp = !!tokenProperty
       if (!isEnforcedProp) {
         return
       }
 
       const valueTokens = extractTokensFromValue(declValue)
-      const appropriateTokens = PROPERTY_TOKEN_MAP[Object.keys(PROPERTY_TOKEN_MAP).find(key => key.split(',').some(prop => prop === declProp))].map(token => KONG_TOKEN_PREFIX.concat(token))
+      const appropriateTokens = PROPERTY_TOKEN_MAP[tokenProperty].map(token => KONG_TOKEN_PREFIX.concat(token))
       const inappropriateTokens = valueTokens.filter(vToken => !appropriateTokens.some(aToken => vToken.includes(aToken)))
 
       if (inappropriateTokens.length) {

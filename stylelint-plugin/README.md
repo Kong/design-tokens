@@ -4,26 +4,25 @@
 
 ## Usage
 
-1. Install `@kong/design-tokens` package as a `devDependency`:
+Install `@kong/design-tokens` and `stylelint` packages as a `devDependency` in your project
+
 ```sh
-yarn add --dev @kong/design-tokens
+yarn add -D @kong/design-tokens stylelint
 ```
-2. In your stylelint config file, add the plugin and enable rules that you want to use:
-```
+
+In your stylelint config file, add the plugin and enable rules that you want to use:
+
+```javascript
 plugins: [
-  ...
   '@kong/design-tokens/stylelint-plugin'
 ],
 rules: {
-  ...
   '@kong/design-tokens/use-proper-token': [true, {
     disableFix: true,
-    severity: 'warning'
+    severity: 'error' // You can also configure as `warning`
   }]
 }
 ```
-
-**Note:** you **must** have stylelint as a `devDependency` in your consuming app.
 
 ## Rules
 
@@ -33,12 +32,14 @@ Rule that finds usages of inappropriate design tokens for a given CSS property. 
 
 ```scss
 .foo {
-  background-color: $kui-color-text-primary; // will trigger an error, text color token used for background-color property
+  // This **will** trigger an error, text color token used for background-color property
+  background-color: $kui-color-text-primary;
 }
 ```
 
 ```scss
 .foo {
-  background-color: $kui-color-background-primary; // will NOT trigger an error, appropriate token for the property
+  // This **will NOT** trigger an error, appropriate token for the property
+  background-color: $kui-color-background-primary;
 }
 ```
