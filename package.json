@@ -139,8 +139,5 @@
   "volta": {
     "node": "18.17.0",
     "yarn": "1.22.19"
-  },
-  "dependencies": {
-    "@kong-ui/konnect-app-shell": "^0.55.18-pr.1727.c3d7a63f.0"
   }
 }
