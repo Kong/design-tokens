@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/Kong/design-tokens/compare/v1.9.0...v1.9.1) (2023-08-14)
+
+
+### Bug Fixes
+
+* **scss:** allow overriding ([06e5402](https://github.com/Kong/design-tokens/commit/06e540206a340bdf589e6a9822def523442cea67))
+
 # [1.9.0](https://github.com/Kong/design-tokens/compare/v1.8.0...v1.9.0) (2023-07-31)
 
 
