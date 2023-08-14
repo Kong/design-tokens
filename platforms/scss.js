@@ -53,6 +53,9 @@ const platform = {
     {
       format: 'scss/variables',
       destination: '_variables.scss',
+      options: {
+        themeable: true,
+      },
       // Exclude alias tokens and asset tokens compiled in a separate file
       filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
     },
