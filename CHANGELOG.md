@@ -1,3 +1,15 @@
+# [2.0.0-alpha.1](https://github.com/Kong/design-tokens/compare/v1.11.0-alpha.1...v2.0.0-alpha.1) (2023-09-07)
+
+
+### Features
+
+* alpha version ([564eb68](https://github.com/Kong/design-tokens/commit/564eb68439b2279a188475b721b6c46063290ad7))
+
+
+### BREAKING CHANGES
+
+* Alpha version
+
 # [1.11.0-alpha.1](https://github.com/Kong/design-tokens/compare/v1.10.0...v1.11.0-alpha.1) (2023-09-07)
 
 
