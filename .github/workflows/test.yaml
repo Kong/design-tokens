@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - alpha
 
   # Allow workflow to be called by another workflow
   workflow_call:
