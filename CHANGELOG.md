@@ -1,3 +1,10 @@
+# [2.0.0-alpha.2](https://github.com/Kong/design-tokens/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2023-09-07)
+
+
+### Bug Fixes
+
+* head ref ([e870166](https://github.com/Kong/design-tokens/commit/e870166967dbd114a4680bb680e9a505e7ea5497))
+
 # [2.0.0-alpha.1](https://github.com/Kong/design-tokens/compare/v1.11.0-alpha.1...v2.0.0-alpha.1) (2023-09-07)
 
 
