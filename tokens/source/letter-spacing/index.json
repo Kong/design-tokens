@@ -1,0 +1,34 @@
+{
+  "letter_spacing": {
+    "0": {
+      "comment": "Alias for letter-spacing-normal",
+      "value": "{letter_spacing.normal}"
+    },
+    "minus": {
+      "10": {
+        "comment": "-0.12px",
+        "value": "-0.12px"
+      },
+      "20": {
+        "comment": "-0.24px",
+        "value": "-0.24px"
+      },
+      "30": {
+        "comment": "-0.32px",
+        "value": "-0.32px"
+      },
+      "40": {
+        "comment": "-0.4px",
+        "value": "-0.4px"
+      },
+      "50": {
+        "comment": "-0.48px",
+        "value": "-0.48px"
+      }
+    },
+    "normal": {
+      "comment": "normal",
+      "value": "normal"
+    }
+  }
+}

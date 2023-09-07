@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 14 Aug 2023 15:16:41 GMT
+ * Generated on Thu, 07 Sep 2023 16:25:47 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -232,6 +232,20 @@ $kui-font-weight-medium: 500;
 $kui-font-weight-regular: 400;
 /* 600 */
 $kui-font-weight-semibold: 600;
+/* Alias for letter-spacing-normal */
+$kui-letter-spacing-0: normal;
+/* -0.12px */
+$kui-letter-spacing-minus-10: -0.12px;
+/* -0.24px */
+$kui-letter-spacing-minus-20: -0.24px;
+/* -0.32px */
+$kui-letter-spacing-minus-30: -0.32px;
+/* -0.4px */
+$kui-letter-spacing-minus-40: -0.4px;
+/* -0.48px */
+$kui-letter-spacing-minus-50: -0.48px;
+/* normal */
+$kui-letter-spacing-normal: normal;
 /* 12px */
 $kui-line-height-10: 12px;
 /* 16px */
@@ -252,6 +266,10 @@ $kui-line-height-80: 40px;
 $kui-line-height-90: 48px;
 /* 56px */
 $kui-line-height-100: 56px;
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+$kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+$kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
 /* 0px */
 $kui-space-0: 0px;
 /* 2px */
@@ -510,6 +528,20 @@ $tokens-map: (
   'kui-font-weight-regular': 400;
   /* 600 */
   'kui-font-weight-semibold': 600;
+  /* Alias for letter-spacing-normal */
+  'kui-letter-spacing-0': normal;
+  /* -0.12px */
+  'kui-letter-spacing-minus-10': -0.12px;
+  /* -0.24px */
+  'kui-letter-spacing-minus-20': -0.24px;
+  /* -0.32px */
+  'kui-letter-spacing-minus-30': -0.32px;
+  /* -0.4px */
+  'kui-letter-spacing-minus-40': -0.4px;
+  /* -0.48px */
+  'kui-letter-spacing-minus-50': -0.48px;
+  /* normal */
+  'kui-letter-spacing-normal': normal;
   /* 12px */
   'kui-line-height-10': 12px;
   /* 16px */
@@ -530,6 +562,10 @@ $tokens-map: (
   'kui-line-height-90': 48px;
   /* 56px */
   'kui-line-height-100': 56px;
+  /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+  'kui-shadow': 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+  'kui-shadow-focus': 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
   /* 0px */
   'kui-space-0': 0px;
   /* 2px */
@@ -790,6 +826,20 @@ $tokens-map: (
 @kui-font-weight-regular: 400;
 /* 600 */
 @kui-font-weight-semibold: 600;
+/* Alias for letter-spacing-normal */
+@kui-letter-spacing-0: normal;
+/* -0.12px */
+@kui-letter-spacing-minus-10: -0.12px;
+/* -0.24px */
+@kui-letter-spacing-minus-20: -0.24px;
+/* -0.32px */
+@kui-letter-spacing-minus-30: -0.32px;
+/* -0.4px */
+@kui-letter-spacing-minus-40: -0.4px;
+/* -0.48px */
+@kui-letter-spacing-minus-50: -0.48px;
+/* normal */
+@kui-letter-spacing-normal: normal;
 /* 12px */
 @kui-line-height-10: 12px;
 /* 16px */
@@ -810,6 +860,10 @@ $tokens-map: (
 @kui-line-height-90: 48px;
 /* 56px */
 @kui-line-height-100: 56px;
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+@kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+@kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
 /* 0px */
 @kui-space-0: 0px;
 /* 2px */
@@ -1071,6 +1125,20 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-font-weight-regular: 400;
 /* 600 */
 --kui-font-weight-semibold: 600;
+/* Alias for letter-spacing-normal */
+--kui-letter-spacing-0: normal;
+/* -0.12px */
+--kui-letter-spacing-minus-10: -0.12px;
+/* -0.24px */
+--kui-letter-spacing-minus-20: -0.24px;
+/* -0.32px */
+--kui-letter-spacing-minus-30: -0.32px;
+/* -0.4px */
+--kui-letter-spacing-minus-40: -0.4px;
+/* -0.48px */
+--kui-letter-spacing-minus-50: -0.48px;
+/* normal */
+--kui-letter-spacing-normal: normal;
 /* 12px */
 --kui-line-height-10: 12px;
 /* 16px */
@@ -1091,6 +1159,10 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-line-height-90: 48px;
 /* 56px */
 --kui-line-height-100: 56px;
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+--kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+--kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
 /* 0px */
 --kui-space-0: 0px;
 /* 2px */
@@ -1350,6 +1422,20 @@ export const KUI_FONT_WEIGHT_MEDIUM = "500";
 export const KUI_FONT_WEIGHT_REGULAR = "400";
 /* 600 */
 export const KUI_FONT_WEIGHT_SEMIBOLD = "600";
+/* Alias for letter-spacing-normal */
+export const KUI_LETTER_SPACING_0 = "normal";
+/* -0.12px */
+export const KUI_LETTER_SPACING_MINUS_10 = "-0.12px";
+/* -0.24px */
+export const KUI_LETTER_SPACING_MINUS_20 = "-0.24px";
+/* -0.32px */
+export const KUI_LETTER_SPACING_MINUS_30 = "-0.32px";
+/* -0.4px */
+export const KUI_LETTER_SPACING_MINUS_40 = "-0.4px";
+/* -0.48px */
+export const KUI_LETTER_SPACING_MINUS_50 = "-0.48px";
+/* normal */
+export const KUI_LETTER_SPACING_NORMAL = "normal";
 /* 12px */
 export const KUI_LINE_HEIGHT_10 = "12px";
 /* 16px */
@@ -1370,6 +1456,10 @@ export const KUI_LINE_HEIGHT_80 = "40px";
 export const KUI_LINE_HEIGHT_90 = "48px";
 /* 56px */
 export const KUI_LINE_HEIGHT_100 = "56px";
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+export const KUI_SHADOW_FOCUS = "0px 0px 0px 4px rgba(0, 68, 244, 0.2)";
 /* 0px */
 export const KUI_SPACE_0 = "0px";
 /* 2px */
@@ -1535,6 +1625,13 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_font_weight_medium": "500",
   "kui_font_weight_regular": "400",
   "kui_font_weight_semibold": "600",
+  "kui_letter_spacing_0": "normal",
+  "kui_letter_spacing_minus_10": "-0.12px",
+  "kui_letter_spacing_minus_20": "-0.24px",
+  "kui_letter_spacing_minus_30": "-0.32px",
+  "kui_letter_spacing_minus_40": "-0.4px",
+  "kui_letter_spacing_minus_50": "-0.48px",
+  "kui_letter_spacing_normal": "normal",
   "kui_line_height_10": "12px",
   "kui_line_height_20": "16px",
   "kui_line_height_30": "20px",
@@ -1545,6 +1642,8 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_line_height_80": "40px",
   "kui_line_height_90": "48px",
   "kui_line_height_100": "56px",
+  "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+  "kui_shadow_focus": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
   "kui_space_0": "0px",
   "kui_space_10": "2px",
   "kui_space_20": "4px",
