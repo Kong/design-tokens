@@ -1,3 +1,10 @@
+# [2.0.0-alpha.5](https://github.com/Kong/design-tokens/compare/v2.0.0-alpha.4...v2.0.0-alpha.5) (2023-09-07)
+
+
+### Bug Fixes
+
+* commitlint ([9003195](https://github.com/Kong/design-tokens/commit/9003195eb63767b8af1248a602178eccd225c9ed))
+
 # [2.0.0-alpha.4](https://github.com/Kong/design-tokens/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2023-09-07)
 
 
