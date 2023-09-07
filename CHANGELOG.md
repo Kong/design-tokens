@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/Kong/design-tokens/compare/v1.9.1...v1.10.0) (2023-09-07)
+
+
+### Features
+
+* add tokens ([#88](https://github.com/Kong/design-tokens/issues/88)) ([6f57947](https://github.com/Kong/design-tokens/commit/6f579471878ddf68cc4fbb0d56b19466d497d766))
+
 ## [1.9.1](https://github.com/Kong/design-tokens/compare/v1.9.0...v1.9.1) (2023-08-14)
 
 
