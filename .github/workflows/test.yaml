@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - alpha
+      - beta
 
   # Allow workflow to be called by another workflow
   workflow_call:
@@ -44,7 +45,8 @@ jobs:
 
       - name: Publish package preview
         id: package-preview
-        if: github.event_name == 'pull_request'
+        # Do not run for `alpha` or `beta` branches
+        if: ${{ github.event_name == 'pull_request' && github.ref != 'refs/heads/alpha' && github.ref != 'refs/heads/beta' }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}
         run: |
@@ -84,7 +86,8 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Provide preview link info
-        if: ${{ steps.package-preview.outputs.npm_instructions != '' }}
+        # Do not run for `alpha` or `beta` branches
+        if: ${{ steps.package-preview.outputs.npm_instructions != '' && github.ref != 'refs/heads/alpha' && github.ref != 'refs/heads/beta' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: pr_preview_consumption
