@@ -86,7 +86,6 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Provide preview link info
-        # Do not run for `alpha` or `beta` branches
         if: ${{ steps.package-preview.outputs.npm_instructions != '' }}
         uses: marocchino/sticky-pull-request-comment@v2
         with:
