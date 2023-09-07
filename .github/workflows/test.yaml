@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+      - alpha
+      - beta
 
   # Allow workflow to be called by another workflow
   workflow_call:
@@ -43,7 +45,8 @@ jobs:
 
       - name: Publish package preview
         id: package-preview
-        if: github.event_name == 'pull_request'
+        # Do not run for `alpha` or `beta` branches
+        if: github.event_name == 'pull_request' && github.actor != 'renovate[bot]' && !contains(github.head_ref || github.ref_name, 'alpha') && !contains(github.head_ref || github.ref_name, 'beta')
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN_PUBLIC_PUBLISH }}
         run: |
