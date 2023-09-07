@@ -1,0 +1,12 @@
+{
+  "shadow": {
+    "_": {
+      "comment": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+      "value": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)"
+    },
+    "focus": {
+      "comment": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
+      "value": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)"
+    }
+  }
+}
