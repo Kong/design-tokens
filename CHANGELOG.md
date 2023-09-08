@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/Kong/design-tokens/compare/v1.10.1...v1.10.2) (2023-09-08)
+
+
+### Bug Fixes
+
+* renovate config ([#95](https://github.com/Kong/design-tokens/issues/95)) ([a26d2bf](https://github.com/Kong/design-tokens/commit/a26d2bf4ad033487151079c1e9d622afdc04197d))
+
 ## [1.10.1](https://github.com/Kong/design-tokens/compare/v1.10.0...v1.10.1) (2023-09-07)
 
 

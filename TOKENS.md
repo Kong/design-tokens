@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Thu, 07 Sep 2023 19:35:00 GMT
+ * Generated on Fri, 08 Sep 2023 14:28:06 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
