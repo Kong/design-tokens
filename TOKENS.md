@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Fri, 08 Sep 2023 14:28:06 GMT
+ * Generated on Tue, 26 Sep 2023 20:32:49 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -180,10 +180,10 @@ $kui-method-color-background-connect: #f1f0ff;
 $kui-method-color-background-delete: #ffe5e5;
 /* blue.10 */
 $kui-method-color-background-get: #eefaff;
-/* gray.60 */
-$kui-method-color-background-head: #6c7489;
-/* gray.10 */
-$kui-method-color-background-options: #f9fafb;
+/* gray.70 */
+$kui-method-color-background-head: #52596e;
+/* gray.20 */
+$kui-method-color-background-options: #e0e4ea;
 /* aqua.10 */
 $kui-method-color-background-patch: #ecfcff;
 /* green.10 */
@@ -198,10 +198,10 @@ $kui-method-color-text-connect: #6f28ff;
 $kui-method-color-text-delete: #d60027;
 /* blue.60 */
 $kui-method-color-text-get: #0044f4;
-/* gray.10 */
-$kui-method-color-text-head: #f9fafb;
-/* gray.60 */
-$kui-method-color-text-options: #6c7489;
+/* gray.20 */
+$kui-method-color-text-head: #e0e4ea;
+/* gray.70 */
+$kui-method-color-text-options: #52596e;
 /* aqua.60 */
 $kui-method-color-text-patch: #00819d;
 /* green.60 */
@@ -476,10 +476,10 @@ $tokens-map: (
   'kui-method-color-background-delete': #ffe5e5;
   /* blue.10 */
   'kui-method-color-background-get': #eefaff;
-  /* gray.60 */
-  'kui-method-color-background-head': #6c7489;
-  /* gray.10 */
-  'kui-method-color-background-options': #f9fafb;
+  /* gray.70 */
+  'kui-method-color-background-head': #52596e;
+  /* gray.20 */
+  'kui-method-color-background-options': #e0e4ea;
   /* aqua.10 */
   'kui-method-color-background-patch': #ecfcff;
   /* green.10 */
@@ -494,10 +494,10 @@ $tokens-map: (
   'kui-method-color-text-delete': #d60027;
   /* blue.60 */
   'kui-method-color-text-get': #0044f4;
-  /* gray.10 */
-  'kui-method-color-text-head': #f9fafb;
-  /* gray.60 */
-  'kui-method-color-text-options': #6c7489;
+  /* gray.20 */
+  'kui-method-color-text-head': #e0e4ea;
+  /* gray.70 */
+  'kui-method-color-text-options': #52596e;
   /* aqua.60 */
   'kui-method-color-text-patch': #00819d;
   /* green.60 */
@@ -774,10 +774,10 @@ $tokens-map: (
 @kui-method-color-background-delete: #ffe5e5;
 /* blue.10 */
 @kui-method-color-background-get: #eefaff;
-/* gray.60 */
-@kui-method-color-background-head: #6c7489;
-/* gray.10 */
-@kui-method-color-background-options: #f9fafb;
+/* gray.70 */
+@kui-method-color-background-head: #52596e;
+/* gray.20 */
+@kui-method-color-background-options: #e0e4ea;
 /* aqua.10 */
 @kui-method-color-background-patch: #ecfcff;
 /* green.10 */
@@ -792,10 +792,10 @@ $tokens-map: (
 @kui-method-color-text-delete: #d60027;
 /* blue.60 */
 @kui-method-color-text-get: #0044f4;
-/* gray.10 */
-@kui-method-color-text-head: #f9fafb;
-/* gray.60 */
-@kui-method-color-text-options: #6c7489;
+/* gray.20 */
+@kui-method-color-text-head: #e0e4ea;
+/* gray.70 */
+@kui-method-color-text-options: #52596e;
 /* aqua.60 */
 @kui-method-color-text-patch: #00819d;
 /* green.60 */
@@ -1073,10 +1073,10 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-background-delete: #ffe5e5;
 /* blue.10 */
 --kui-method-color-background-get: #eefaff;
-/* gray.60 */
---kui-method-color-background-head: #6c7489;
-/* gray.10 */
---kui-method-color-background-options: #f9fafb;
+/* gray.70 */
+--kui-method-color-background-head: #52596e;
+/* gray.20 */
+--kui-method-color-background-options: #e0e4ea;
 /* aqua.10 */
 --kui-method-color-background-patch: #ecfcff;
 /* green.10 */
@@ -1091,10 +1091,10 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-text-delete: #d60027;
 /* blue.60 */
 --kui-method-color-text-get: #0044f4;
-/* gray.10 */
---kui-method-color-text-head: #f9fafb;
-/* gray.60 */
---kui-method-color-text-options: #6c7489;
+/* gray.20 */
+--kui-method-color-text-head: #e0e4ea;
+/* gray.70 */
+--kui-method-color-text-options: #52596e;
 /* aqua.60 */
 --kui-method-color-text-patch: #00819d;
 /* green.60 */
@@ -1370,10 +1370,10 @@ export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = "#f1f0ff";
 export const KUI_METHOD_COLOR_BACKGROUND_DELETE = "#ffe5e5";
 /* blue.10 */
 export const KUI_METHOD_COLOR_BACKGROUND_GET = "#eefaff";
-/* gray.60 */
-export const KUI_METHOD_COLOR_BACKGROUND_HEAD = "#6c7489";
-/* gray.10 */
-export const KUI_METHOD_COLOR_BACKGROUND_OPTIONS = "#f9fafb";
+/* gray.70 */
+export const KUI_METHOD_COLOR_BACKGROUND_HEAD = "#52596e";
+/* gray.20 */
+export const KUI_METHOD_COLOR_BACKGROUND_OPTIONS = "#e0e4ea";
 /* aqua.10 */
 export const KUI_METHOD_COLOR_BACKGROUND_PATCH = "#ecfcff";
 /* green.10 */
@@ -1388,10 +1388,10 @@ export const KUI_METHOD_COLOR_TEXT_CONNECT = "#6f28ff";
 export const KUI_METHOD_COLOR_TEXT_DELETE = "#d60027";
 /* blue.60 */
 export const KUI_METHOD_COLOR_TEXT_GET = "#0044f4";
-/* gray.10 */
-export const KUI_METHOD_COLOR_TEXT_HEAD = "#f9fafb";
-/* gray.60 */
-export const KUI_METHOD_COLOR_TEXT_OPTIONS = "#6c7489";
+/* gray.20 */
+export const KUI_METHOD_COLOR_TEXT_HEAD = "#e0e4ea";
+/* gray.70 */
+export const KUI_METHOD_COLOR_TEXT_OPTIONS = "#52596e";
 /* aqua.60 */
 export const KUI_METHOD_COLOR_TEXT_PATCH = "#00819d";
 /* green.60 */
@@ -1594,8 +1594,8 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_method_color_background_connect": "#f1f0ff",
   "kui_method_color_background_delete": "#ffe5e5",
   "kui_method_color_background_get": "#eefaff",
-  "kui_method_color_background_head": "#6c7489",
-  "kui_method_color_background_options": "#f9fafb",
+  "kui_method_color_background_head": "#52596e",
+  "kui_method_color_background_options": "#e0e4ea",
   "kui_method_color_background_patch": "#ecfcff",
   "kui_method_color_background_post": "#ecfffb",
   "kui_method_color_background_put": "#fffce0",
@@ -1603,8 +1603,8 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_method_color_text_connect": "#6f28ff",
   "kui_method_color_text_delete": "#d60027",
   "kui_method_color_text_get": "#0044f4",
-  "kui_method_color_text_head": "#f9fafb",
-  "kui_method_color_text_options": "#6c7489",
+  "kui_method_color_text_head": "#e0e4ea",
+  "kui_method_color_text_options": "#52596e",
   "kui_method_color_text_patch": "#00819d",
   "kui_method_color_text_post": "#007d60",
   "kui_method_color_text_put": "#995c00",

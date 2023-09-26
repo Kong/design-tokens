@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/Kong/design-tokens/compare/v1.10.2...v1.10.3) (2023-09-26)
+
+
+### Bug Fixes
+
+* **tokens:** update method badge tokens ([#108](https://github.com/Kong/design-tokens/issues/108)) ([3306347](https://github.com/Kong/design-tokens/commit/3306347fb21a762de4cad549c21010d1d84740b0))
+
 ## [1.10.2](https://github.com/Kong/design-tokens/compare/v1.10.1...v1.10.2) (2023-09-08)
 
 
