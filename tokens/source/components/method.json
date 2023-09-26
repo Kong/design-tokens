@@ -15,12 +15,12 @@
           "value": "{color.alias.blue.10}"
         },
         "head": {
-          "comment": "gray.60",
-          "value": "{color.alias.gray.60}"
+          "comment": "gray.70",
+          "value": "{color.alias.gray.70}"
         },
         "options": {
-          "comment": "gray.10",
-          "value": "{color.alias.gray.10}"
+          "comment": "gray.20",
+          "value": "{color.alias.gray.20}"
         },
         "patch": {
           "comment": "aqua.10",
@@ -53,12 +53,12 @@
           "value": "{color.alias.blue.60}"
         },
         "head": {
-          "comment": "gray.10",
-          "value": "{color.alias.gray.10}"
+          "comment": "gray.20",
+          "value": "{color.alias.gray.20}"
         },
         "options": {
-          "comment": "gray.60",
-          "value": "{color.alias.gray.60}"
+          "comment": "gray.70",
+          "value": "{color.alias.gray.70}"
         },
         "patch": {
           "comment": "aqua.60",
