@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/Kong/design-tokens/compare/v1.11.1...v1.11.2) (2023-09-27)
+
+
+### Bug Fixes
+
+* **release:** trigger release ([12c2888](https://github.com/Kong/design-tokens/commit/12c2888f65be23d2711750ad84b8966c7cc145f5))
+
 ## [1.11.1](https://github.com/Kong/design-tokens/compare/v1.11.0...v1.11.1) (2023-09-27)
 
 
