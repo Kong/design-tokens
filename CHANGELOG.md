@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/Kong/design-tokens/compare/v1.11.0...v1.11.1) (2023-09-27)
+
+
+### Bug Fixes
+
+* **tokens:** add color-text-primary-strongest token ([#111](https://github.com/Kong/design-tokens/issues/111)) ([a1767c1](https://github.com/Kong/design-tokens/commit/a1767c135e760275bdb018379435e0138f97a4da))
+
 # [1.11.0](https://github.com/Kong/design-tokens/compare/v1.10.3...v1.11.0) (2023-09-27)
 
 

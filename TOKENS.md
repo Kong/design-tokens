@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 27 Sep 2023 16:52:16 GMT
+ * Generated on Wed, 27 Sep 2023 21:33:54 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -138,6 +138,8 @@ $kui-color-text-primary: #0044f4;
 $kui-color-text-primary-strong: #0030cc;
 /* blue.80 */
 $kui-color-text-primary-stronger: #002099;
+/* blue.90 */
+$kui-color-text-primary-strongest: #001466;
 /* green.60 */
 $kui-color-text-success: #007d60;
 /* yellow.60 */
@@ -436,6 +438,8 @@ $tokens-map: (
   'kui-color-text-primary-strong': #0030cc;
   /* blue.80 */
   'kui-color-text-primary-stronger': #002099;
+  /* blue.90 */
+  'kui-color-text-primary-strongest': #001466;
   /* green.60 */
   'kui-color-text-success': #007d60;
   /* yellow.60 */
@@ -736,6 +740,8 @@ $tokens-map: (
 @kui-color-text-primary-strong: #0030cc;
 /* blue.80 */
 @kui-color-text-primary-stronger: #002099;
+/* blue.90 */
+@kui-color-text-primary-strongest: #001466;
 /* green.60 */
 @kui-color-text-success: #007d60;
 /* yellow.60 */
@@ -1037,6 +1043,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-primary-strong: #0030cc;
 /* blue.80 */
 --kui-color-text-primary-stronger: #002099;
+/* blue.90 */
+--kui-color-text-primary-strongest: #001466;
 /* green.60 */
 --kui-color-text-success: #007d60;
 /* yellow.60 */
@@ -1336,6 +1344,8 @@ export const KUI_COLOR_TEXT_PRIMARY = "#0044f4";
 export const KUI_COLOR_TEXT_PRIMARY_STRONG = "#0030cc";
 /* blue.80 */
 export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#002099";
+/* blue.90 */
+export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#001466";
 /* green.60 */
 export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
 /* yellow.60 */
@@ -1575,6 +1585,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_primary": "#0044f4",
   "kui_color_text_primary_strong": "#0030cc",
   "kui_color_text_primary_stronger": "#002099",
+  "kui_color_text_primary_strongest": "#001466",
   "kui_color_text_success": "#007d60",
   "kui_color_text_warning": "#995c00",
   "kui_animation_duration_20": "0.2s",
