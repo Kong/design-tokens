@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Tue, 26 Sep 2023 20:32:49 GMT
+ * Generated on Wed, 27 Sep 2023 16:52:16 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -142,6 +142,8 @@ $kui-color-text-primary-stronger: #002099;
 $kui-color-text-success: #007d60;
 /* yellow.60 */
 $kui-color-text-warning: #995c00;
+/* Default transition timing */
+$kui-animation-duration-20: 0.2s;
 $kui-border-radius-0: 0px;
 $kui-border-radius-10: 2px;
 $kui-border-radius-20: 4px;
@@ -438,6 +440,8 @@ $tokens-map: (
   'kui-color-text-success': #007d60;
   /* yellow.60 */
   'kui-color-text-warning': #995c00;
+  /* Default transition timing */
+  'kui-animation-duration-20': 0.2s;
   'kui-border-radius-0': 0px;
   'kui-border-radius-10': 2px;
   'kui-border-radius-20': 4px;
@@ -736,6 +740,8 @@ $tokens-map: (
 @kui-color-text-success: #007d60;
 /* yellow.60 */
 @kui-color-text-warning: #995c00;
+/* Default transition timing */
+@kui-animation-duration-20: 0.2s;
 @kui-border-radius-0: 0px;
 @kui-border-radius-10: 2px;
 @kui-border-radius-20: 4px;
@@ -1035,6 +1041,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-success: #007d60;
 /* yellow.60 */
 --kui-color-text-warning: #995c00;
+/* Default transition timing */
+--kui-animation-duration-20: 0.2s;
 --kui-border-radius-0: 0px;
 --kui-border-radius-10: 2px;
 --kui-border-radius-20: 4px;
@@ -1332,6 +1340,8 @@ export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#002099";
 export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
 /* yellow.60 */
 export const KUI_COLOR_TEXT_WARNING = "#995c00";
+/* Default transition timing */
+export const KUI_ANIMATION_DURATION_20 = "0.2s";
 export const KUI_BORDER_RADIUS_0 = "0px";
 export const KUI_BORDER_RADIUS_10 = "2px";
 export const KUI_BORDER_RADIUS_20 = "4px";
@@ -1567,6 +1577,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_primary_stronger": "#002099",
   "kui_color_text_success": "#007d60",
   "kui_color_text_warning": "#995c00",
+  "kui_animation_duration_20": "0.2s",
   "kui_border_radius_0": "0px",
   "kui_border_radius_10": "2px",
   "kui_border_radius_20": "4px",

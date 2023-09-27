@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/Kong/design-tokens/compare/v1.10.3...v1.11.0) (2023-09-27)
+
+
+### Features
+
+* **tokens:** add animation timing token ([#110](https://github.com/Kong/design-tokens/issues/110)) ([23c8e47](https://github.com/Kong/design-tokens/commit/23c8e47a8c2629924f11c9024a2499cdc7523248))
+
 ## [1.10.3](https://github.com/Kong/design-tokens/compare/v1.10.2...v1.10.3) (2023-09-26)
 
 
