@@ -57,6 +57,10 @@
         "stronger": {
           "comment": "blue.80",
           "value": "{color.alias.blue.80}"
+        },
+        "strongest": {
+          "comment": "blue.90",
+          "value": "{color.alias.blue.90}"
         }
       },
       "success": {
