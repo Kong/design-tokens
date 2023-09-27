@@ -1,8 +1,0 @@
-{
-  "animation_timing": {
-    "transition": {
-      "comment": "Default transition timing",
-      "value": "0.2s"
-    }
-  }
-}
