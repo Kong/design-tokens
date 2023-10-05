@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 27 Sep 2023 22:04:54 GMT
+ * Generated on Thu, 05 Oct 2023 15:24:13 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -272,6 +272,16 @@ $kui-line-height-90: 48px;
 $kui-line-height-100: 56px;
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 $kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 1px gray.20 inset */
+$kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px red.60 inset */
+$kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px gray.20 inset */
+$kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px blue.60 inset */
+$kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.40 inset */
+$kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 $kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
 /* 0px */
@@ -572,6 +582,16 @@ $tokens-map: (
   'kui-line-height-100': 56px;
   /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
   'kui-shadow': 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  /* 0px 0px 0px 1px gray.20 inset */
+  'kui-shadow-border': 0px 0px 0px 1px #e0e4ea inset;
+  /* 0px 0px 0px 1px red.60 inset */
+  'kui-shadow-border-danger': 0px 0px 0px 1px #d60027 inset;
+  /* 0px 0px 0px 1px gray.20 inset */
+  'kui-shadow-border-disabled': 0px 0px 0px 1px #e0e4ea inset;
+  /* 0px 0px 0px 1px blue.60 inset */
+  'kui-shadow-border-primary': 0px 0px 0px 1px #0044f4 inset;
+  /* 0px 0px 0px 1px blue.40 inset */
+  'kui-shadow-border-primary-weak': 0px 0px 0px 1px #5f9aff inset;
   /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
   'kui-shadow-focus': 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
   /* 0px */
@@ -874,6 +894,16 @@ $tokens-map: (
 @kui-line-height-100: 56px;
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 @kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 1px gray.20 inset */
+@kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px red.60 inset */
+@kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px gray.20 inset */
+@kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px blue.60 inset */
+@kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.40 inset */
+@kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 @kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
 /* 0px */
@@ -1177,6 +1207,16 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-line-height-100: 56px;
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 --kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 1px gray.20 inset */
+--kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px red.60 inset */
+--kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px gray.20 inset */
+--kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px blue.60 inset */
+--kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.40 inset */
+--kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 --kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
 /* 0px */
@@ -1478,6 +1518,16 @@ export const KUI_LINE_HEIGHT_90 = "48px";
 export const KUI_LINE_HEIGHT_100 = "56px";
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
+/* 0px 0px 0px 1px gray.20 inset */
+export const KUI_SHADOW_BORDER = "0px 0px 0px 1px #e0e4ea inset";
+/* 0px 0px 0px 1px red.60 inset */
+export const KUI_SHADOW_BORDER_DANGER = "0px 0px 0px 1px #d60027 inset";
+/* 0px 0px 0px 1px gray.20 inset */
+export const KUI_SHADOW_BORDER_DISABLED = "0px 0px 0px 1px #e0e4ea inset";
+/* 0px 0px 0px 1px blue.60 inset */
+export const KUI_SHADOW_BORDER_PRIMARY = "0px 0px 0px 1px #0044f4 inset";
+/* 0px 0px 0px 1px blue.40 inset */
+export const KUI_SHADOW_BORDER_PRIMARY_WEAK = "0px 0px 0px 1px #5f9aff inset";
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 export const KUI_SHADOW_FOCUS = "0px 0px 0px 4px rgba(0, 68, 244, 0.2)";
 /* 0px */
@@ -1665,6 +1715,11 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_line_height_90": "48px",
   "kui_line_height_100": "56px",
   "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+  "kui_shadow_border": "0px 0px 0px 1px #e0e4ea inset",
+  "kui_shadow_border_danger": "0px 0px 0px 1px #d60027 inset",
+  "kui_shadow_border_disabled": "0px 0px 0px 1px #e0e4ea inset",
+  "kui_shadow_border_primary": "0px 0px 0px 1px #0044f4 inset",
+  "kui_shadow_border_primary_weak": "0px 0px 0px 1px #5f9aff inset",
   "kui_shadow_focus": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
   "kui_space_0": "0px",
   "kui_space_10": "2px",

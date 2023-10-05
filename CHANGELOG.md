@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/Kong/design-tokens/compare/v1.11.2...v1.11.3) (2023-10-05)
+
+
+### Bug Fixes
+
+* **tokens/shadow:** add border box-shadow tokens ([#120](https://github.com/Kong/design-tokens/issues/120)) ([b3f328b](https://github.com/Kong/design-tokens/commit/b3f328b80790865dc78f5835bbbc7ec927ed5f8d))
+
 ## [1.11.2](https://github.com/Kong/design-tokens/compare/v1.11.1...v1.11.2) (2023-09-27)
 
 
