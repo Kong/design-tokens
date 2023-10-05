@@ -4,6 +4,30 @@
       "comment": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
       "value": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)"
     },
+    "border": {
+      "_": {
+        "comment": "0px 0px 0px 1px gray.20 inset",
+        "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
+      },
+      "danger": {
+        "comment": "0px 0px 0px 1px red.60 inset",
+        "value": "0px 0px 0px 1px {color.alias.red.60} inset"
+      },
+      "disabled": {
+        "comment": "0px 0px 0px 1px gray.20 inset",
+        "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
+      },
+      "primary": {
+        "_": {
+          "comment": "0px 0px 0px 1px blue.60 inset",
+          "value": "0px 0px 0px 1px {color.alias.blue.60} inset"
+        },
+        "weak": {
+          "comment": "0px 0px 0px 1px blue.40 inset",
+          "value": "0px 0px 0px 1px {color.alias.blue.40} inset"
+        }
+      }
+    },
     "focus": {
       "comment": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
       "value": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)"
