@@ -42,7 +42,7 @@ const PROPERTY_TOKEN_MAP = {
   'font-size': ['font-size'],
   'font-weight': ['font-weight'],
   gap: ['space'],
-  height: [],
+  height: ['icon-size'],
   inset: [],
   left: [],
   'letter-spacing': [],
@@ -69,7 +69,7 @@ const PROPERTY_TOKEN_MAP = {
   stroke: ['color-text', 'method-color-text'],
   'text-decoration-color': ['color-text', 'method-color-text'],
   top: [],
-  width: [],
+  width: ['icon-size'],
 }
 
 module.exports = PROPERTY_TOKEN_MAP
