@@ -1,3 +1,10 @@
+## [1.11.4](https://github.com/Kong/design-tokens/compare/v1.11.3...v1.11.4) (2023-10-17)
+
+
+### Bug Fixes
+
+* **stylelint-plugin:** allow icon-size token in width and height ([#125](https://github.com/Kong/design-tokens/issues/125)) ([3f3b1b4](https://github.com/Kong/design-tokens/commit/3f3b1b4f73e2082a13a7ae94340234b421dd0e54))
+
 ## [1.11.3](https://github.com/Kong/design-tokens/compare/v1.11.2...v1.11.3) (2023-10-05)
 
 
