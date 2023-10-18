@@ -2,120 +2,120 @@
   "color": {
     "background": {
       "_": {
-        "comment": "white",
+        "comment": "Default background color for containers (white).",
         "value": "{color.alias.white}"
       },
       "danger": {
         "_": {
-          "comment": "red.60",
+          "comment": "Background color for danger actions or messages (red.60).",
           "value": "{color.alias.red.60}"
         },
         "strong": {
-          "comment": "red.70",
+          "comment": "Strong background color for danger actions or messages (red.70).",
           "value": "{color.alias.red.70}"
         },
         "stronger": {
-          "comment": "red.80",
+          "comment": "Stronger background color for danger actions or messages (red.80).",
           "value": "{color.alias.red.80}"
         },
         "strongest": {
-          "comment": "red.90",
+          "comment": "Strongest background color for danger actions or messages (red.90).",
           "value": "{color.alias.red.90}"
         },
         "weak": {
-          "comment": "red.40",
+          "comment": "Weak background color for danger actions or messages (red.40).",
           "value": "{color.alias.red.40}"
         },
         "weaker": {
-          "comment": "red.20",
+          "comment": "Weaker background color for danger actions or messages (red.20).",
           "value": "{color.alias.red.20}"
         },
         "weakest": {
-          "comment": "red.10",
+          "comment": "Weakest background color for danger actions or messages (red.10).",
           "value": "{color.alias.red.10}"
         }
       },
       "disabled": {
-        "comment": "gray.20",
+        "comment": "Background color for disabled elements (gray.20).",
         "value": "{color.alias.gray.20}"
       },
       "inverse": {
-        "comment": "blue.100",
+        "comment": "Inverse background color for containers (blue.100)",
         "value": "{color.alias.blue.100}"
       },
       "neutral": {
         "_": {
-          "comment": "gray.60",
+          "comment": "Background color for neutral elements (gray.60).",
           "value": "{color.alias.gray.60}"
         },
         "strong": {
-          "comment": "gray.70",
+          "comment": "Strong background color for neutral elements (gray.70).",
           "value": "{color.alias.gray.70}"
         },
         "stronger": {
-          "comment": "gray.80",
+          "comment": "Stronger background color for neutral elements (gray.80).",
           "value": "{color.alias.gray.80}"
         },
         "strongest": {
-          "comment": "gray.90",
+          "comment": "Strongest background color for neutral elements (gray.90).",
           "value": "{color.alias.gray.90}"
         },
         "weak": {
-          "comment": "gray.40",
+          "comment": "Weak background color for neutral elements (gray.40).",
           "value": "{color.alias.gray.40}"
         },
         "weaker": {
-          "comment": "gray.20",
+          "comment": "Weaker background color for neutral elements (gray.20).",
           "value": "{color.alias.gray.20}"
         },
         "weakest": {
-          "comment": "gray.10",
+          "comment": "Weakest background color for neutral elements (gray.10).",
           "value": "{color.alias.gray.10}"
         }
       },
       "primary": {
         "_": {
-          "comment": "blue.60",
+          "comment": "Background color for primary actions or messages (blue.60).",
           "value": "{color.alias.blue.60}"
         },
         "strong": {
-          "comment": "blue.70",
+          "comment": "Strong background color for primary actions or messages (blue.70).",
           "value": "{color.alias.blue.70}"
         },
         "stronger": {
-          "comment": "blue.80",
+          "comment": "Stronger background color for primary actions or messages (blue.80).",
           "value": "{color.alias.blue.80}"
         },
         "strongest": {
-          "comment": "blue.90",
+          "comment": "Strongest background color for primary actions or messages (blue.90).",
           "value": "{color.alias.blue.90}"
         },
         "weak": {
-          "comment": "blue.40",
+          "comment": "Weak background color for primary actions or messages (blue.40).",
           "value": "{color.alias.blue.40}"
         },
         "weaker": {
-          "comment": "blue.20",
+          "comment": "Weaker background color for primary actions or messages (blue.20).",
           "value": "{color.alias.blue.20}"
         },
         "weakest": {
-          "comment": "blue.10",
+          "comment": "Weakest background color for primary actions or messages (blue.10)",
           "value": "{color.alias.blue.10}"
         }
       },
       "success": {
         "weakest": {
-          "comment": "green.10",
+          "comment": "Weakest background color for success elements (green.10).",
           "value": "{color.alias.green.10}"
         }
       },
       "transparent": {
-        "comment": "transparent",
+        "comment": "Transparent background color (transparent).",
         "value": "{color.alias.transparent}"
       },
       "warning": {
         "weakest": {
-          "comment": "yellow.10",
+          "comment": "Weakest background color for warning elements (yellow.10).",
           "value": "{color.alias.yellow.10}"
         }
       }

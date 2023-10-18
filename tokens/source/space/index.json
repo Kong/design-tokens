@@ -1,67 +1,67 @@
 {
   "space": {
     "0": {
-      "comment": "0px",
+      "comment": "0px value for gaps, margin, or padding.",
       "value": "0px"
     },
     "10": {
-      "comment": "2px",
+      "comment": "2px value for gaps, margin, or padding.",
       "value": "2px"
     },
     "20": {
-      "comment": "4px",
+      "comment": "4px value for gaps, margin, or padding.",
       "value": "4px"
     },
     "30": {
-      "comment": "6px",
+      "comment": "6px value for gaps, margin, or padding.",
       "value": "6px"
     },
     "40": {
-      "comment": "8px",
+      "comment": "8px value for gaps, margin, or padding.",
       "value": "8px"
     },
     "50": {
-      "comment": "12px",
+      "comment": "12px value for gaps, margin, or padding.",
       "value": "12px"
     },
     "60": {
-      "comment": "16px",
+      "comment": "16px value for gaps, margin, or padding.",
       "value": "16px"
     },
     "70": {
-      "comment": "20px",
+      "comment": "20px value for gaps, margin, or padding.",
       "value": "20px"
     },
     "80": {
-      "comment": "24px",
+      "comment": "24px value for gaps, margin, or padding.",
       "value": "24px"
     },
     "90": {
-      "comment": "32px",
+      "comment": "32px value for gaps, margin, or padding.",
       "value": "32px"
     },
     "100": {
-      "comment": "40px",
+      "comment": "40px value for gaps, margin, or padding.",
       "value": "40px"
     },
     "110": {
-      "comment": "48px",
+      "comment": "48px value for gaps, margin, or padding.",
       "value": "48px"
     },
     "120": {
-      "comment": "56px",
+      "comment": "56px value for gaps, margin, or padding.",
       "value": "56px"
     },
     "130": {
-      "comment": "64px",
+      "comment": "64px value for gaps, margin, or padding.",
       "value": "64px"
     },
     "140": {
-      "comment": "80px",
+      "comment": "80px value for gaps, margin, or padding.",
       "value": "80px"
     },
     "150": {
-      "comment": "96px",
+      "comment": "96px value for gaps, margin, or padding.",
       "value": "96px"
     },
     "auto": {

@@ -2,15 +2,19 @@
   "border": {
     "width": {
       "0": {
+        "comment": "0px border width.",
         "value": "0px"
       },
       "10": {
+        "comment": "1px border width.",
         "value": "1px"
       },
       "20": {
+        "comment": "2px border width.",
         "value": "2px"
       },
       "30": {
+        "comment": "4px border width.",
         "value": "4px"
       }
     }
