@@ -2,28 +2,35 @@
   "icon": {
     "size": {
       "10": {
+        "comment": "10px icon size.",
         "value": "10px"
       },
       "20": {
+        "comment": "12px icon size.",
         "value": "12px"
       },
       "30": {
+        "comment": "16px icon size.",
         "value": "16px"
       },
       "40": {
+        "comment": "20px icon size.",
         "value": "20px"
       },
       "50": {
-        "comment": "The default icon size",
+        "comment": "24px icon size (default).",
         "value": "24px"
       },
       "60": {
+        "comment": "32px icon size.",
         "value": "32px"
       },
       "70": {
+        "comment": "40px icon size.",
         "value": "40px"
       },
       "80": {
+        "comment": "48px icon size.",
         "value": "48px"
       }
     }

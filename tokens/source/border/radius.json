@@ -2,26 +2,31 @@
   "border": {
     "radius": {
       "0": {
+        "comment": "0px border radius.",
         "value": "0px"
       },
       "10": {
+        "comment": "2px border radius.",
         "value": "2px"
       },
       "20": {
+        "comment": "4px border radius.",
         "value": "4px"
       },
       "30": {
+        "comment": "6px border radius.",
         "value": "6px"
       },
       "40": {
+        "comment": "8px border radius.",
         "value": "8px"
       },
       "circle": {
-        "comment": "Used to create a circle. Value of 50%",
+        "comment": "50% border radius used to create circles.",
         "value": "50%"
       },
       "round": {
-        "comment": "Used to round element corners. Value of 100px",
+        "comment": "100px border radius used to create pill shapes.",
         "value": "100px"
       }
     }
