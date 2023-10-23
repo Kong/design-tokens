@@ -1,3 +1,10 @@
+## [1.11.5](https://github.com/Kong/design-tokens/compare/v1.11.4...v1.11.5) (2023-10-23)
+
+
+### Bug Fixes
+
+* **shadow:** add border danger strong token ([#131](https://github.com/Kong/design-tokens/issues/131)) ([f0a9185](https://github.com/Kong/design-tokens/commit/f0a9185293a0047a92d2d1fa1d5dd6e9f38daec2))
+
 ## [1.11.4](https://github.com/Kong/design-tokens/compare/v1.11.3...v1.11.4) (2023-10-17)
 
 

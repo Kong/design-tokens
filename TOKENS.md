@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Tue, 17 Oct 2023 20:23:33 GMT
+ * Generated on Mon, 23 Oct 2023 16:24:35 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -20,144 +20,153 @@ This document outlines the majority of the available tokens.
 <summary>Click to view the list of SCSS variables</summary>
 
 ```scss
-/* white */
+/* Default background color for containers (white). */
 $kui-color-background: #ffffff;
-/* red.60 */
+/* Background color for danger actions or messages (red.60). */
 $kui-color-background-danger: #d60027;
-/* red.70 */
+/* Strong background color for danger actions or messages (red.70). */
 $kui-color-background-danger-strong: #ad000e;
-/* red.80 */
+/* Stronger background color for danger actions or messages (red.80). */
 $kui-color-background-danger-stronger: #850000;
-/* red.90 */
+/* Strongest background color for danger actions or messages (red.90). */
 $kui-color-background-danger-strongest: #5c0000;
-/* red.40 */
+/* Weak background color for danger actions or messages (red.40). */
 $kui-color-background-danger-weak: #ff3954;
-/* red.20 */
+/* Weaker background color for danger actions or messages (red.20). */
 $kui-color-background-danger-weaker: #ffabab;
-/* red.10 */
+/* Weakest background color for danger actions or messages (red.10). */
 $kui-color-background-danger-weakest: #ffe5e5;
-/* gray.20 */
+/* Background color for disabled elements (gray.20). */
 $kui-color-background-disabled: #e0e4ea;
-/* blue.100 */
+/* Inverse background color for containers (blue.100) */
 $kui-color-background-inverse: #000933;
-/* gray.60 */
+/* Background color for neutral elements (gray.60). */
 $kui-color-background-neutral: #6c7489;
-/* gray.70 */
+/* Strong background color for neutral elements (gray.70). */
 $kui-color-background-neutral-strong: #52596e;
-/* gray.80 */
+/* Stronger background color for neutral elements (gray.80). */
 $kui-color-background-neutral-stronger: #3a3f51;
-/* gray.90 */
+/* Strongest background color for neutral elements (gray.90). */
 $kui-color-background-neutral-strongest: #232633;
-/* gray.40 */
+/* Weak background color for neutral elements (gray.40). */
 $kui-color-background-neutral-weak: #afb7c5;
-/* gray.20 */
+/* Weaker background color for neutral elements (gray.20). */
 $kui-color-background-neutral-weaker: #e0e4ea;
-/* gray.10 */
+/* Weakest background color for neutral elements (gray.10). */
 $kui-color-background-neutral-weakest: #f9fafb;
-/* blue.60 */
+/* Background color for primary actions or messages (blue.60). */
 $kui-color-background-primary: #0044f4;
-/* blue.70 */
+/* Strong background color for primary actions or messages (blue.70). */
 $kui-color-background-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger background color for primary actions or messages (blue.80). */
 $kui-color-background-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest background color for primary actions or messages (blue.90). */
 $kui-color-background-primary-strongest: #001466;
-/* blue.40 */
+/* Weak background color for primary actions or messages (blue.40). */
 $kui-color-background-primary-weak: #5f9aff;
-/* blue.20 */
+/* Weaker background color for primary actions or messages (blue.20). */
 $kui-color-background-primary-weaker: #bee2ff;
-/* blue.10 */
+/* Weakest background color for primary actions or messages (blue.10) */
 $kui-color-background-primary-weakest: #eefaff;
-/* green.10 */
+/* Weakest background color for success elements (green.10). */
 $kui-color-background-success-weakest: #ecfffb;
-/* transparent */
+/* Transparent background color (transparent). */
 $kui-color-background-transparent: rgba(0, 0, 0, 0);
-/* yellow.10 */
+/* Weakest background color for warning elements (yellow.10). */
 $kui-color-background-warning-weakest: #fffce0;
-/* gray.20 */
+/* Default border color for containers (gray.20). */
 $kui-color-border: #e0e4ea;
-/* red.60 */
+/* Border color for danger actions or messages (red.60). */
 $kui-color-border-danger: #d60027;
-/* red.70 */
+/* Strong border color for danger actions or messages (red.70). */
 $kui-color-border-danger-strong: #ad000e;
-/* red.80 */
+/* Stronger border color for danger actions or messages (red.80). */
 $kui-color-border-danger-stronger: #850000;
-/* red.90 */
+/* Strongest border color for danger actions or messages (red.90). */
 $kui-color-border-danger-strongest: #5c0000;
-/* red.40 */
+/* Weak border color for danger actions or messages (red.40). */
 $kui-color-border-danger-weak: #ff3954;
-/* red.20 */
+/* Weaker border color for danger actions or messages (red.20). */
 $kui-color-border-danger-weaker: #ffabab;
-/* red.10 */
+/* Weakest border color for danger actions or messages (red.10). */
 $kui-color-border-danger-weakest: #ffe5e5;
-/* purple.60 */
+/* Border color for decorative purposes (purple.60). */
 $kui-color-border-decorative: #6f28ff;
-/* gray.20 */
+/* Border color for disabled elements (gray.20). */
 $kui-color-border-disabled: #e0e4ea;
-/* gray.40 */
+/* Weak border color for neutral elements (gray.40) */
 $kui-color-border-neutral-weak: #afb7c5;
-/* blue.60 */
+/* Border color for primary actions or messages (blue.60). */
 $kui-color-border-primary: #0044f4;
-/* blue.70 */
+/* Strong border color for primary actions or messages (blue.70). */
 $kui-color-border-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger border color for primary actions or messages (blue.80). */
 $kui-color-border-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest border color for primary actions or messages (blue.90). */
 $kui-color-border-primary-strongest: #001466;
-/* blue.40 */
+/* Weak border color for primary actions or messages (blue.40). */
 $kui-color-border-primary-weak: #5f9aff;
-/* blue.20 */
+/* Weaker border color for primary actions or messages (blue.20). */
 $kui-color-border-primary-weaker: #bee2ff;
-/* blue.10 */
+/* Weakest border color for primary actions or messages (blue.10). */
 $kui-color-border-primary-weakest: #eefaff;
-/* transparent */
+/* Transparent border color (transparent). */
 $kui-color-border-transparent: rgba(0, 0, 0, 0);
-/* blue.100 */
+/* Default text color (blue.100). */
 $kui-color-text: #000933;
-/* red.60 */
+/* Text color for danger actions or messages (red.60). */
 $kui-color-text-danger: #d60027;
-/* aqua.50 */
+/* Text color for decorative purposes (aqua.50). */
 $kui-color-text-decorative: #00abd2;
-/* gray.50 */
+/* Text color for disabled elements (gray.50). */
 $kui-color-text-disabled: #828a9e;
-/* white */
+/* Inverse text color (white). */
 $kui-color-text-inverse: #ffffff;
-/* gray.60 */
+/* Text color for neutral elements (gray.60). */
 $kui-color-text-neutral: #6c7489;
-/* gray.70 */
+/* Strong text color for neutral elements (gray.70). */
 $kui-color-text-neutral-strong: #52596e;
-/* gray.80 */
+/* Stronger text color for neutral elements (gray.80). */
 $kui-color-text-neutral-stronger: #3a3f51;
-/* gray.90 */
+/* Strongest text color for neutral elements (gray.90). */
 $kui-color-text-neutral-strongest: #232633;
-/* gray.40 */
+/* Weak text color for neutral elements (gray.40). */
 $kui-color-text-neutral-weak: #afb7c5;
-/* blue.60 */
+/* Text color for primary actions or messages (blue.60). */
 $kui-color-text-primary: #0044f4;
-/* blue.70 */
+/* Strong text color for primary actions or messages (blue.70). */
 $kui-color-text-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger text color for primary actions or messages (blue.80). */
 $kui-color-text-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest text color for primary actions or messages (blue.90). */
 $kui-color-text-primary-strongest: #001466;
-/* green.60 */
+/* Text color for success actions or messages (green.60). */
 $kui-color-text-success: #007d60;
-/* yellow.60 */
+/* Text color for warning actions or messages (yellow.60). */
 $kui-color-text-warning: #995c00;
 /* Default transition timing */
 $kui-animation-duration-20: 0.2s;
+/* 0px border radius. */
 $kui-border-radius-0: 0px;
+/* 2px border radius. */
 $kui-border-radius-10: 2px;
+/* 4px border radius. */
 $kui-border-radius-20: 4px;
+/* 6px border radius. */
 $kui-border-radius-30: 6px;
+/* 8px border radius. */
 $kui-border-radius-40: 8px;
-/* Used to create a circle. Value of 50% */
+/* 50% border radius used to create circles. */
 $kui-border-radius-circle: 50%;
-/* Used to round element corners. Value of 100px */
+/* 100px border radius used to create pill shapes. */
 $kui-border-radius-round: 100px;
+/* 0px border width. */
 $kui-border-width-0: 0px;
+/* 1px border width. */
 $kui-border-width-10: 1px;
+/* 2px border width. */
 $kui-border-width-20: 2px;
+/* 4px border width. */
 $kui-border-width-30: 4px;
 /* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
 $kui-breakpoint-mobile: 640px;
@@ -169,50 +178,57 @@ $kui-breakpoint-tablet: 1024px;
 $kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 $kui-breakpoint-desktop: 1536px;
+/* 10px icon size. */
 $kui-icon-size-10: 10px;
+/* 12px icon size. */
 $kui-icon-size-20: 12px;
+/* 16px icon size. */
 $kui-icon-size-30: 16px;
+/* 20px icon size. */
 $kui-icon-size-40: 20px;
-/* The default icon size */
+/* 24px icon size (default). */
 $kui-icon-size-50: 24px;
+/* 32px icon size. */
 $kui-icon-size-60: 32px;
+/* 40px icon size. */
 $kui-icon-size-70: 40px;
+/* 48px icon size. */
 $kui-icon-size-80: 48px;
-/* purple.10 */
+/* Background color for the CONNECT method (purple.10). */
 $kui-method-color-background-connect: #f1f0ff;
-/* red.10 */
+/* Background color for the DELETE method (red.10). */
 $kui-method-color-background-delete: #ffe5e5;
-/* blue.10 */
+/* Background color for the GET method (blue.10). */
 $kui-method-color-background-get: #eefaff;
-/* gray.70 */
+/* Background color for the HEAD method (gray.70). */
 $kui-method-color-background-head: #52596e;
-/* gray.20 */
+/* Background color for the OPTIONS method (gray.20). */
 $kui-method-color-background-options: #e0e4ea;
-/* aqua.10 */
+/* Background color for the PATCH method (aqua.10). */
 $kui-method-color-background-patch: #ecfcff;
-/* green.10 */
+/* Background color for the POST method (green.10). */
 $kui-method-color-background-post: #ecfffb;
-/* yellow.10 */
+/* Background color for the PUT method (yellow.10). */
 $kui-method-color-background-put: #fffce0;
-/* pink.10 */
+/* Background color for the TRACE method (pink.10). */
 $kui-method-color-background-trace: #fff0f7;
-/* purple.60 */
+/* Text color for the CONNECT method (purple.60). */
 $kui-method-color-text-connect: #6f28ff;
-/* red.60 */
+/* Text color for the DELETE method (red.60). */
 $kui-method-color-text-delete: #d60027;
-/* blue.60 */
+/* Text color for the GET method (blue.60). */
 $kui-method-color-text-get: #0044f4;
-/* gray.20 */
+/* Text color for the HEAD method (gray.20). */
 $kui-method-color-text-head: #e0e4ea;
-/* gray.70 */
+/* Text color for the OPTIONS method (gray.70). */
 $kui-method-color-text-options: #52596e;
-/* aqua.60 */
+/* Text color for the PATCH method (aqua.60). */
 $kui-method-color-text-patch: #00819d;
-/* green.60 */
+/* Text color for the POST method (green.60). */
 $kui-method-color-text-post: #007d60;
-/* yellow.60 */
+/* Text color for the PUT method (yellow.60). */
 $kui-method-color-text-put: #995c00;
-/* pink.60 */
+/* Text color for the TRACE method (pink.60). */
 $kui-method-color-text-trace: #d60067;
 /* The standard monospace font family. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
@@ -276,6 +292,8 @@ $kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 $kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px red.60 inset */
 $kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px red.70 inset */
+$kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
 /* 0px 0px 0px 1px gray.20 inset */
 $kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px blue.60 inset */
@@ -284,37 +302,37 @@ $kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
 $kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 $kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px */
+/* 0px value for gaps, margin, or padding. */
 $kui-space-0: 0px;
-/* 2px */
+/* 2px value for gaps, margin, or padding. */
 $kui-space-10: 2px;
-/* 4px */
+/* 4px value for gaps, margin, or padding. */
 $kui-space-20: 4px;
-/* 6px */
+/* 6px value for gaps, margin, or padding. */
 $kui-space-30: 6px;
-/* 8px */
+/* 8px value for gaps, margin, or padding. */
 $kui-space-40: 8px;
-/* 12px */
+/* 12px value for gaps, margin, or padding. */
 $kui-space-50: 12px;
-/* 16px */
+/* 16px value for gaps, margin, or padding. */
 $kui-space-60: 16px;
-/* 20px */
+/* 20px value for gaps, margin, or padding. */
 $kui-space-70: 20px;
-/* 24px */
+/* 24px value for gaps, margin, or padding. */
 $kui-space-80: 24px;
-/* 32px */
+/* 32px value for gaps, margin, or padding. */
 $kui-space-90: 32px;
-/* 40px */
+/* 40px value for gaps, margin, or padding. */
 $kui-space-100: 40px;
-/* 48px */
+/* 48px value for gaps, margin, or padding. */
 $kui-space-110: 48px;
-/* 56px */
+/* 56px value for gaps, margin, or padding. */
 $kui-space-120: 56px;
-/* 64px */
+/* 64px value for gaps, margin, or padding. */
 $kui-space-130: 64px;
-/* 80px */
+/* 80px value for gaps, margin, or padding. */
 $kui-space-140: 80px;
-/* 96px */
+/* 96px value for gaps, margin, or padding. */
 $kui-space-150: 96px;
 /* auto */
 $kui-space-auto: auto;
@@ -330,144 +348,153 @@ $kui-space-auto: auto;
 
 ```scss
 $tokens-map: (
-  /* white */
+  /* Default background color for containers (white). */
   'kui-color-background': #ffffff;
-  /* red.60 */
+  /* Background color for danger actions or messages (red.60). */
   'kui-color-background-danger': #d60027;
-  /* red.70 */
+  /* Strong background color for danger actions or messages (red.70). */
   'kui-color-background-danger-strong': #ad000e;
-  /* red.80 */
+  /* Stronger background color for danger actions or messages (red.80). */
   'kui-color-background-danger-stronger': #850000;
-  /* red.90 */
+  /* Strongest background color for danger actions or messages (red.90). */
   'kui-color-background-danger-strongest': #5c0000;
-  /* red.40 */
+  /* Weak background color for danger actions or messages (red.40). */
   'kui-color-background-danger-weak': #ff3954;
-  /* red.20 */
+  /* Weaker background color for danger actions or messages (red.20). */
   'kui-color-background-danger-weaker': #ffabab;
-  /* red.10 */
+  /* Weakest background color for danger actions or messages (red.10). */
   'kui-color-background-danger-weakest': #ffe5e5;
-  /* gray.20 */
+  /* Background color for disabled elements (gray.20). */
   'kui-color-background-disabled': #e0e4ea;
-  /* blue.100 */
+  /* Inverse background color for containers (blue.100) */
   'kui-color-background-inverse': #000933;
-  /* gray.60 */
+  /* Background color for neutral elements (gray.60). */
   'kui-color-background-neutral': #6c7489;
-  /* gray.70 */
+  /* Strong background color for neutral elements (gray.70). */
   'kui-color-background-neutral-strong': #52596e;
-  /* gray.80 */
+  /* Stronger background color for neutral elements (gray.80). */
   'kui-color-background-neutral-stronger': #3a3f51;
-  /* gray.90 */
+  /* Strongest background color for neutral elements (gray.90). */
   'kui-color-background-neutral-strongest': #232633;
-  /* gray.40 */
+  /* Weak background color for neutral elements (gray.40). */
   'kui-color-background-neutral-weak': #afb7c5;
-  /* gray.20 */
+  /* Weaker background color for neutral elements (gray.20). */
   'kui-color-background-neutral-weaker': #e0e4ea;
-  /* gray.10 */
+  /* Weakest background color for neutral elements (gray.10). */
   'kui-color-background-neutral-weakest': #f9fafb;
-  /* blue.60 */
+  /* Background color for primary actions or messages (blue.60). */
   'kui-color-background-primary': #0044f4;
-  /* blue.70 */
+  /* Strong background color for primary actions or messages (blue.70). */
   'kui-color-background-primary-strong': #0030cc;
-  /* blue.80 */
+  /* Stronger background color for primary actions or messages (blue.80). */
   'kui-color-background-primary-stronger': #002099;
-  /* blue.90 */
+  /* Strongest background color for primary actions or messages (blue.90). */
   'kui-color-background-primary-strongest': #001466;
-  /* blue.40 */
+  /* Weak background color for primary actions or messages (blue.40). */
   'kui-color-background-primary-weak': #5f9aff;
-  /* blue.20 */
+  /* Weaker background color for primary actions or messages (blue.20). */
   'kui-color-background-primary-weaker': #bee2ff;
-  /* blue.10 */
+  /* Weakest background color for primary actions or messages (blue.10) */
   'kui-color-background-primary-weakest': #eefaff;
-  /* green.10 */
+  /* Weakest background color for success elements (green.10). */
   'kui-color-background-success-weakest': #ecfffb;
-  /* transparent */
+  /* Transparent background color (transparent). */
   'kui-color-background-transparent': rgba(0, 0, 0, 0);
-  /* yellow.10 */
+  /* Weakest background color for warning elements (yellow.10). */
   'kui-color-background-warning-weakest': #fffce0;
-  /* gray.20 */
+  /* Default border color for containers (gray.20). */
   'kui-color-border': #e0e4ea;
-  /* red.60 */
+  /* Border color for danger actions or messages (red.60). */
   'kui-color-border-danger': #d60027;
-  /* red.70 */
+  /* Strong border color for danger actions or messages (red.70). */
   'kui-color-border-danger-strong': #ad000e;
-  /* red.80 */
+  /* Stronger border color for danger actions or messages (red.80). */
   'kui-color-border-danger-stronger': #850000;
-  /* red.90 */
+  /* Strongest border color for danger actions or messages (red.90). */
   'kui-color-border-danger-strongest': #5c0000;
-  /* red.40 */
+  /* Weak border color for danger actions or messages (red.40). */
   'kui-color-border-danger-weak': #ff3954;
-  /* red.20 */
+  /* Weaker border color for danger actions or messages (red.20). */
   'kui-color-border-danger-weaker': #ffabab;
-  /* red.10 */
+  /* Weakest border color for danger actions or messages (red.10). */
   'kui-color-border-danger-weakest': #ffe5e5;
-  /* purple.60 */
+  /* Border color for decorative purposes (purple.60). */
   'kui-color-border-decorative': #6f28ff;
-  /* gray.20 */
+  /* Border color for disabled elements (gray.20). */
   'kui-color-border-disabled': #e0e4ea;
-  /* gray.40 */
+  /* Weak border color for neutral elements (gray.40) */
   'kui-color-border-neutral-weak': #afb7c5;
-  /* blue.60 */
+  /* Border color for primary actions or messages (blue.60). */
   'kui-color-border-primary': #0044f4;
-  /* blue.70 */
+  /* Strong border color for primary actions or messages (blue.70). */
   'kui-color-border-primary-strong': #0030cc;
-  /* blue.80 */
+  /* Stronger border color for primary actions or messages (blue.80). */
   'kui-color-border-primary-stronger': #002099;
-  /* blue.90 */
+  /* Strongest border color for primary actions or messages (blue.90). */
   'kui-color-border-primary-strongest': #001466;
-  /* blue.40 */
+  /* Weak border color for primary actions or messages (blue.40). */
   'kui-color-border-primary-weak': #5f9aff;
-  /* blue.20 */
+  /* Weaker border color for primary actions or messages (blue.20). */
   'kui-color-border-primary-weaker': #bee2ff;
-  /* blue.10 */
+  /* Weakest border color for primary actions or messages (blue.10). */
   'kui-color-border-primary-weakest': #eefaff;
-  /* transparent */
+  /* Transparent border color (transparent). */
   'kui-color-border-transparent': rgba(0, 0, 0, 0);
-  /* blue.100 */
+  /* Default text color (blue.100). */
   'kui-color-text': #000933;
-  /* red.60 */
+  /* Text color for danger actions or messages (red.60). */
   'kui-color-text-danger': #d60027;
-  /* aqua.50 */
+  /* Text color for decorative purposes (aqua.50). */
   'kui-color-text-decorative': #00abd2;
-  /* gray.50 */
+  /* Text color for disabled elements (gray.50). */
   'kui-color-text-disabled': #828a9e;
-  /* white */
+  /* Inverse text color (white). */
   'kui-color-text-inverse': #ffffff;
-  /* gray.60 */
+  /* Text color for neutral elements (gray.60). */
   'kui-color-text-neutral': #6c7489;
-  /* gray.70 */
+  /* Strong text color for neutral elements (gray.70). */
   'kui-color-text-neutral-strong': #52596e;
-  /* gray.80 */
+  /* Stronger text color for neutral elements (gray.80). */
   'kui-color-text-neutral-stronger': #3a3f51;
-  /* gray.90 */
+  /* Strongest text color for neutral elements (gray.90). */
   'kui-color-text-neutral-strongest': #232633;
-  /* gray.40 */
+  /* Weak text color for neutral elements (gray.40). */
   'kui-color-text-neutral-weak': #afb7c5;
-  /* blue.60 */
+  /* Text color for primary actions or messages (blue.60). */
   'kui-color-text-primary': #0044f4;
-  /* blue.70 */
+  /* Strong text color for primary actions or messages (blue.70). */
   'kui-color-text-primary-strong': #0030cc;
-  /* blue.80 */
+  /* Stronger text color for primary actions or messages (blue.80). */
   'kui-color-text-primary-stronger': #002099;
-  /* blue.90 */
+  /* Strongest text color for primary actions or messages (blue.90). */
   'kui-color-text-primary-strongest': #001466;
-  /* green.60 */
+  /* Text color for success actions or messages (green.60). */
   'kui-color-text-success': #007d60;
-  /* yellow.60 */
+  /* Text color for warning actions or messages (yellow.60). */
   'kui-color-text-warning': #995c00;
   /* Default transition timing */
   'kui-animation-duration-20': 0.2s;
+  /* 0px border radius. */
   'kui-border-radius-0': 0px;
+  /* 2px border radius. */
   'kui-border-radius-10': 2px;
+  /* 4px border radius. */
   'kui-border-radius-20': 4px;
+  /* 6px border radius. */
   'kui-border-radius-30': 6px;
+  /* 8px border radius. */
   'kui-border-radius-40': 8px;
-  /* Used to create a circle. Value of 50% */
+  /* 50% border radius used to create circles. */
   'kui-border-radius-circle': 50%;
-  /* Used to round element corners. Value of 100px */
+  /* 100px border radius used to create pill shapes. */
   'kui-border-radius-round': 100px;
+  /* 0px border width. */
   'kui-border-width-0': 0px;
+  /* 1px border width. */
   'kui-border-width-10': 1px;
+  /* 2px border width. */
   'kui-border-width-20': 2px;
+  /* 4px border width. */
   'kui-border-width-30': 4px;
   /* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
   'kui-breakpoint-mobile': 640px;
@@ -479,50 +506,57 @@ $tokens-map: (
   'kui-breakpoint-laptop': 1280px;
   /* Used for larger desktop screens. */
   'kui-breakpoint-desktop': 1536px;
+  /* 10px icon size. */
   'kui-icon-size-10': 10px;
+  /* 12px icon size. */
   'kui-icon-size-20': 12px;
+  /* 16px icon size. */
   'kui-icon-size-30': 16px;
+  /* 20px icon size. */
   'kui-icon-size-40': 20px;
-  /* The default icon size */
+  /* 24px icon size (default). */
   'kui-icon-size-50': 24px;
+  /* 32px icon size. */
   'kui-icon-size-60': 32px;
+  /* 40px icon size. */
   'kui-icon-size-70': 40px;
+  /* 48px icon size. */
   'kui-icon-size-80': 48px;
-  /* purple.10 */
+  /* Background color for the CONNECT method (purple.10). */
   'kui-method-color-background-connect': #f1f0ff;
-  /* red.10 */
+  /* Background color for the DELETE method (red.10). */
   'kui-method-color-background-delete': #ffe5e5;
-  /* blue.10 */
+  /* Background color for the GET method (blue.10). */
   'kui-method-color-background-get': #eefaff;
-  /* gray.70 */
+  /* Background color for the HEAD method (gray.70). */
   'kui-method-color-background-head': #52596e;
-  /* gray.20 */
+  /* Background color for the OPTIONS method (gray.20). */
   'kui-method-color-background-options': #e0e4ea;
-  /* aqua.10 */
+  /* Background color for the PATCH method (aqua.10). */
   'kui-method-color-background-patch': #ecfcff;
-  /* green.10 */
+  /* Background color for the POST method (green.10). */
   'kui-method-color-background-post': #ecfffb;
-  /* yellow.10 */
+  /* Background color for the PUT method (yellow.10). */
   'kui-method-color-background-put': #fffce0;
-  /* pink.10 */
+  /* Background color for the TRACE method (pink.10). */
   'kui-method-color-background-trace': #fff0f7;
-  /* purple.60 */
+  /* Text color for the CONNECT method (purple.60). */
   'kui-method-color-text-connect': #6f28ff;
-  /* red.60 */
+  /* Text color for the DELETE method (red.60). */
   'kui-method-color-text-delete': #d60027;
-  /* blue.60 */
+  /* Text color for the GET method (blue.60). */
   'kui-method-color-text-get': #0044f4;
-  /* gray.20 */
+  /* Text color for the HEAD method (gray.20). */
   'kui-method-color-text-head': #e0e4ea;
-  /* gray.70 */
+  /* Text color for the OPTIONS method (gray.70). */
   'kui-method-color-text-options': #52596e;
-  /* aqua.60 */
+  /* Text color for the PATCH method (aqua.60). */
   'kui-method-color-text-patch': #00819d;
-  /* green.60 */
+  /* Text color for the POST method (green.60). */
   'kui-method-color-text-post': #007d60;
-  /* yellow.60 */
+  /* Text color for the PUT method (yellow.60). */
   'kui-method-color-text-put': #995c00;
-  /* pink.60 */
+  /* Text color for the TRACE method (pink.60). */
   'kui-method-color-text-trace': #d60067;
   /* The standard monospace font family. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
@@ -586,6 +620,8 @@ $tokens-map: (
   'kui-shadow-border': 0px 0px 0px 1px #e0e4ea inset;
   /* 0px 0px 0px 1px red.60 inset */
   'kui-shadow-border-danger': 0px 0px 0px 1px #d60027 inset;
+  /* 0px 0px 0px 1px red.70 inset */
+  'kui-shadow-border-danger-strong': 0px 0px 0px 1px #ad000e inset;
   /* 0px 0px 0px 1px gray.20 inset */
   'kui-shadow-border-disabled': 0px 0px 0px 1px #e0e4ea inset;
   /* 0px 0px 0px 1px blue.60 inset */
@@ -594,37 +630,37 @@ $tokens-map: (
   'kui-shadow-border-primary-weak': 0px 0px 0px 1px #5f9aff inset;
   /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
   'kui-shadow-focus': 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-  /* 0px */
+  /* 0px value for gaps, margin, or padding. */
   'kui-space-0': 0px;
-  /* 2px */
+  /* 2px value for gaps, margin, or padding. */
   'kui-space-10': 2px;
-  /* 4px */
+  /* 4px value for gaps, margin, or padding. */
   'kui-space-20': 4px;
-  /* 6px */
+  /* 6px value for gaps, margin, or padding. */
   'kui-space-30': 6px;
-  /* 8px */
+  /* 8px value for gaps, margin, or padding. */
   'kui-space-40': 8px;
-  /* 12px */
+  /* 12px value for gaps, margin, or padding. */
   'kui-space-50': 12px;
-  /* 16px */
+  /* 16px value for gaps, margin, or padding. */
   'kui-space-60': 16px;
-  /* 20px */
+  /* 20px value for gaps, margin, or padding. */
   'kui-space-70': 20px;
-  /* 24px */
+  /* 24px value for gaps, margin, or padding. */
   'kui-space-80': 24px;
-  /* 32px */
+  /* 32px value for gaps, margin, or padding. */
   'kui-space-90': 32px;
-  /* 40px */
+  /* 40px value for gaps, margin, or padding. */
   'kui-space-100': 40px;
-  /* 48px */
+  /* 48px value for gaps, margin, or padding. */
   'kui-space-110': 48px;
-  /* 56px */
+  /* 56px value for gaps, margin, or padding. */
   'kui-space-120': 56px;
-  /* 64px */
+  /* 64px value for gaps, margin, or padding. */
   'kui-space-130': 64px;
-  /* 80px */
+  /* 80px value for gaps, margin, or padding. */
   'kui-space-140': 80px;
-  /* 96px */
+  /* 96px value for gaps, margin, or padding. */
   'kui-space-150': 96px;
   /* auto */
   'kui-space-auto': auto;
@@ -642,144 +678,153 @@ $tokens-map: (
 <summary>Click to view the list of LESS variables</summary>
 
 ```less
-/* white */
+/* Default background color for containers (white). */
 @kui-color-background: #ffffff;
-/* red.60 */
+/* Background color for danger actions or messages (red.60). */
 @kui-color-background-danger: #d60027;
-/* red.70 */
+/* Strong background color for danger actions or messages (red.70). */
 @kui-color-background-danger-strong: #ad000e;
-/* red.80 */
+/* Stronger background color for danger actions or messages (red.80). */
 @kui-color-background-danger-stronger: #850000;
-/* red.90 */
+/* Strongest background color for danger actions or messages (red.90). */
 @kui-color-background-danger-strongest: #5c0000;
-/* red.40 */
+/* Weak background color for danger actions or messages (red.40). */
 @kui-color-background-danger-weak: #ff3954;
-/* red.20 */
+/* Weaker background color for danger actions or messages (red.20). */
 @kui-color-background-danger-weaker: #ffabab;
-/* red.10 */
+/* Weakest background color for danger actions or messages (red.10). */
 @kui-color-background-danger-weakest: #ffe5e5;
-/* gray.20 */
+/* Background color for disabled elements (gray.20). */
 @kui-color-background-disabled: #e0e4ea;
-/* blue.100 */
+/* Inverse background color for containers (blue.100) */
 @kui-color-background-inverse: #000933;
-/* gray.60 */
+/* Background color for neutral elements (gray.60). */
 @kui-color-background-neutral: #6c7489;
-/* gray.70 */
+/* Strong background color for neutral elements (gray.70). */
 @kui-color-background-neutral-strong: #52596e;
-/* gray.80 */
+/* Stronger background color for neutral elements (gray.80). */
 @kui-color-background-neutral-stronger: #3a3f51;
-/* gray.90 */
+/* Strongest background color for neutral elements (gray.90). */
 @kui-color-background-neutral-strongest: #232633;
-/* gray.40 */
+/* Weak background color for neutral elements (gray.40). */
 @kui-color-background-neutral-weak: #afb7c5;
-/* gray.20 */
+/* Weaker background color for neutral elements (gray.20). */
 @kui-color-background-neutral-weaker: #e0e4ea;
-/* gray.10 */
+/* Weakest background color for neutral elements (gray.10). */
 @kui-color-background-neutral-weakest: #f9fafb;
-/* blue.60 */
+/* Background color for primary actions or messages (blue.60). */
 @kui-color-background-primary: #0044f4;
-/* blue.70 */
+/* Strong background color for primary actions or messages (blue.70). */
 @kui-color-background-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger background color for primary actions or messages (blue.80). */
 @kui-color-background-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest background color for primary actions or messages (blue.90). */
 @kui-color-background-primary-strongest: #001466;
-/* blue.40 */
+/* Weak background color for primary actions or messages (blue.40). */
 @kui-color-background-primary-weak: #5f9aff;
-/* blue.20 */
+/* Weaker background color for primary actions or messages (blue.20). */
 @kui-color-background-primary-weaker: #bee2ff;
-/* blue.10 */
+/* Weakest background color for primary actions or messages (blue.10) */
 @kui-color-background-primary-weakest: #eefaff;
-/* green.10 */
+/* Weakest background color for success elements (green.10). */
 @kui-color-background-success-weakest: #ecfffb;
-/* transparent */
+/* Transparent background color (transparent). */
 @kui-color-background-transparent: rgba(0, 0, 0, 0);
-/* yellow.10 */
+/* Weakest background color for warning elements (yellow.10). */
 @kui-color-background-warning-weakest: #fffce0;
-/* gray.20 */
+/* Default border color for containers (gray.20). */
 @kui-color-border: #e0e4ea;
-/* red.60 */
+/* Border color for danger actions or messages (red.60). */
 @kui-color-border-danger: #d60027;
-/* red.70 */
+/* Strong border color for danger actions or messages (red.70). */
 @kui-color-border-danger-strong: #ad000e;
-/* red.80 */
+/* Stronger border color for danger actions or messages (red.80). */
 @kui-color-border-danger-stronger: #850000;
-/* red.90 */
+/* Strongest border color for danger actions or messages (red.90). */
 @kui-color-border-danger-strongest: #5c0000;
-/* red.40 */
+/* Weak border color for danger actions or messages (red.40). */
 @kui-color-border-danger-weak: #ff3954;
-/* red.20 */
+/* Weaker border color for danger actions or messages (red.20). */
 @kui-color-border-danger-weaker: #ffabab;
-/* red.10 */
+/* Weakest border color for danger actions or messages (red.10). */
 @kui-color-border-danger-weakest: #ffe5e5;
-/* purple.60 */
+/* Border color for decorative purposes (purple.60). */
 @kui-color-border-decorative: #6f28ff;
-/* gray.20 */
+/* Border color for disabled elements (gray.20). */
 @kui-color-border-disabled: #e0e4ea;
-/* gray.40 */
+/* Weak border color for neutral elements (gray.40) */
 @kui-color-border-neutral-weak: #afb7c5;
-/* blue.60 */
+/* Border color for primary actions or messages (blue.60). */
 @kui-color-border-primary: #0044f4;
-/* blue.70 */
+/* Strong border color for primary actions or messages (blue.70). */
 @kui-color-border-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger border color for primary actions or messages (blue.80). */
 @kui-color-border-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest border color for primary actions or messages (blue.90). */
 @kui-color-border-primary-strongest: #001466;
-/* blue.40 */
+/* Weak border color for primary actions or messages (blue.40). */
 @kui-color-border-primary-weak: #5f9aff;
-/* blue.20 */
+/* Weaker border color for primary actions or messages (blue.20). */
 @kui-color-border-primary-weaker: #bee2ff;
-/* blue.10 */
+/* Weakest border color for primary actions or messages (blue.10). */
 @kui-color-border-primary-weakest: #eefaff;
-/* transparent */
+/* Transparent border color (transparent). */
 @kui-color-border-transparent: rgba(0, 0, 0, 0);
-/* blue.100 */
+/* Default text color (blue.100). */
 @kui-color-text: #000933;
-/* red.60 */
+/* Text color for danger actions or messages (red.60). */
 @kui-color-text-danger: #d60027;
-/* aqua.50 */
+/* Text color for decorative purposes (aqua.50). */
 @kui-color-text-decorative: #00abd2;
-/* gray.50 */
+/* Text color for disabled elements (gray.50). */
 @kui-color-text-disabled: #828a9e;
-/* white */
+/* Inverse text color (white). */
 @kui-color-text-inverse: #ffffff;
-/* gray.60 */
+/* Text color for neutral elements (gray.60). */
 @kui-color-text-neutral: #6c7489;
-/* gray.70 */
+/* Strong text color for neutral elements (gray.70). */
 @kui-color-text-neutral-strong: #52596e;
-/* gray.80 */
+/* Stronger text color for neutral elements (gray.80). */
 @kui-color-text-neutral-stronger: #3a3f51;
-/* gray.90 */
+/* Strongest text color for neutral elements (gray.90). */
 @kui-color-text-neutral-strongest: #232633;
-/* gray.40 */
+/* Weak text color for neutral elements (gray.40). */
 @kui-color-text-neutral-weak: #afb7c5;
-/* blue.60 */
+/* Text color for primary actions or messages (blue.60). */
 @kui-color-text-primary: #0044f4;
-/* blue.70 */
+/* Strong text color for primary actions or messages (blue.70). */
 @kui-color-text-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger text color for primary actions or messages (blue.80). */
 @kui-color-text-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest text color for primary actions or messages (blue.90). */
 @kui-color-text-primary-strongest: #001466;
-/* green.60 */
+/* Text color for success actions or messages (green.60). */
 @kui-color-text-success: #007d60;
-/* yellow.60 */
+/* Text color for warning actions or messages (yellow.60). */
 @kui-color-text-warning: #995c00;
 /* Default transition timing */
 @kui-animation-duration-20: 0.2s;
+/* 0px border radius. */
 @kui-border-radius-0: 0px;
+/* 2px border radius. */
 @kui-border-radius-10: 2px;
+/* 4px border radius. */
 @kui-border-radius-20: 4px;
+/* 6px border radius. */
 @kui-border-radius-30: 6px;
+/* 8px border radius. */
 @kui-border-radius-40: 8px;
-/* Used to create a circle. Value of 50% */
+/* 50% border radius used to create circles. */
 @kui-border-radius-circle: 50%;
-/* Used to round element corners. Value of 100px */
+/* 100px border radius used to create pill shapes. */
 @kui-border-radius-round: 100px;
+/* 0px border width. */
 @kui-border-width-0: 0px;
+/* 1px border width. */
 @kui-border-width-10: 1px;
+/* 2px border width. */
 @kui-border-width-20: 2px;
+/* 4px border width. */
 @kui-border-width-30: 4px;
 /* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
 @kui-breakpoint-mobile: 640px;
@@ -791,50 +836,57 @@ $tokens-map: (
 @kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 @kui-breakpoint-desktop: 1536px;
+/* 10px icon size. */
 @kui-icon-size-10: 10px;
+/* 12px icon size. */
 @kui-icon-size-20: 12px;
+/* 16px icon size. */
 @kui-icon-size-30: 16px;
+/* 20px icon size. */
 @kui-icon-size-40: 20px;
-/* The default icon size */
+/* 24px icon size (default). */
 @kui-icon-size-50: 24px;
+/* 32px icon size. */
 @kui-icon-size-60: 32px;
+/* 40px icon size. */
 @kui-icon-size-70: 40px;
+/* 48px icon size. */
 @kui-icon-size-80: 48px;
-/* purple.10 */
+/* Background color for the CONNECT method (purple.10). */
 @kui-method-color-background-connect: #f1f0ff;
-/* red.10 */
+/* Background color for the DELETE method (red.10). */
 @kui-method-color-background-delete: #ffe5e5;
-/* blue.10 */
+/* Background color for the GET method (blue.10). */
 @kui-method-color-background-get: #eefaff;
-/* gray.70 */
+/* Background color for the HEAD method (gray.70). */
 @kui-method-color-background-head: #52596e;
-/* gray.20 */
+/* Background color for the OPTIONS method (gray.20). */
 @kui-method-color-background-options: #e0e4ea;
-/* aqua.10 */
+/* Background color for the PATCH method (aqua.10). */
 @kui-method-color-background-patch: #ecfcff;
-/* green.10 */
+/* Background color for the POST method (green.10). */
 @kui-method-color-background-post: #ecfffb;
-/* yellow.10 */
+/* Background color for the PUT method (yellow.10). */
 @kui-method-color-background-put: #fffce0;
-/* pink.10 */
+/* Background color for the TRACE method (pink.10). */
 @kui-method-color-background-trace: #fff0f7;
-/* purple.60 */
+/* Text color for the CONNECT method (purple.60). */
 @kui-method-color-text-connect: #6f28ff;
-/* red.60 */
+/* Text color for the DELETE method (red.60). */
 @kui-method-color-text-delete: #d60027;
-/* blue.60 */
+/* Text color for the GET method (blue.60). */
 @kui-method-color-text-get: #0044f4;
-/* gray.20 */
+/* Text color for the HEAD method (gray.20). */
 @kui-method-color-text-head: #e0e4ea;
-/* gray.70 */
+/* Text color for the OPTIONS method (gray.70). */
 @kui-method-color-text-options: #52596e;
-/* aqua.60 */
+/* Text color for the PATCH method (aqua.60). */
 @kui-method-color-text-patch: #00819d;
-/* green.60 */
+/* Text color for the POST method (green.60). */
 @kui-method-color-text-post: #007d60;
-/* yellow.60 */
+/* Text color for the PUT method (yellow.60). */
 @kui-method-color-text-put: #995c00;
-/* pink.60 */
+/* Text color for the TRACE method (pink.60). */
 @kui-method-color-text-trace: #d60067;
 /* The standard monospace font family. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
@@ -898,6 +950,8 @@ $tokens-map: (
 @kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px red.60 inset */
 @kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px red.70 inset */
+@kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
 /* 0px 0px 0px 1px gray.20 inset */
 @kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px blue.60 inset */
@@ -906,37 +960,37 @@ $tokens-map: (
 @kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 @kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px */
+/* 0px value for gaps, margin, or padding. */
 @kui-space-0: 0px;
-/* 2px */
+/* 2px value for gaps, margin, or padding. */
 @kui-space-10: 2px;
-/* 4px */
+/* 4px value for gaps, margin, or padding. */
 @kui-space-20: 4px;
-/* 6px */
+/* 6px value for gaps, margin, or padding. */
 @kui-space-30: 6px;
-/* 8px */
+/* 8px value for gaps, margin, or padding. */
 @kui-space-40: 8px;
-/* 12px */
+/* 12px value for gaps, margin, or padding. */
 @kui-space-50: 12px;
-/* 16px */
+/* 16px value for gaps, margin, or padding. */
 @kui-space-60: 16px;
-/* 20px */
+/* 20px value for gaps, margin, or padding. */
 @kui-space-70: 20px;
-/* 24px */
+/* 24px value for gaps, margin, or padding. */
 @kui-space-80: 24px;
-/* 32px */
+/* 32px value for gaps, margin, or padding. */
 @kui-space-90: 32px;
-/* 40px */
+/* 40px value for gaps, margin, or padding. */
 @kui-space-100: 40px;
-/* 48px */
+/* 48px value for gaps, margin, or padding. */
 @kui-space-110: 48px;
-/* 56px */
+/* 56px value for gaps, margin, or padding. */
 @kui-space-120: 56px;
-/* 64px */
+/* 64px value for gaps, margin, or padding. */
 @kui-space-130: 64px;
-/* 80px */
+/* 80px value for gaps, margin, or padding. */
 @kui-space-140: 80px;
-/* 96px */
+/* 96px value for gaps, margin, or padding. */
 @kui-space-150: 96px;
 /* auto */
 @kui-space-auto: auto;
@@ -955,144 +1009,153 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 <summary>Click to view the list of CSS custom properties</summary>
 
 ```scss
-/* white */
+/* Default background color for containers (white). */
 --kui-color-background: #ffffff;
-/* red.60 */
+/* Background color for danger actions or messages (red.60). */
 --kui-color-background-danger: #d60027;
-/* red.70 */
+/* Strong background color for danger actions or messages (red.70). */
 --kui-color-background-danger-strong: #ad000e;
-/* red.80 */
+/* Stronger background color for danger actions or messages (red.80). */
 --kui-color-background-danger-stronger: #850000;
-/* red.90 */
+/* Strongest background color for danger actions or messages (red.90). */
 --kui-color-background-danger-strongest: #5c0000;
-/* red.40 */
+/* Weak background color for danger actions or messages (red.40). */
 --kui-color-background-danger-weak: #ff3954;
-/* red.20 */
+/* Weaker background color for danger actions or messages (red.20). */
 --kui-color-background-danger-weaker: #ffabab;
-/* red.10 */
+/* Weakest background color for danger actions or messages (red.10). */
 --kui-color-background-danger-weakest: #ffe5e5;
-/* gray.20 */
+/* Background color for disabled elements (gray.20). */
 --kui-color-background-disabled: #e0e4ea;
-/* blue.100 */
+/* Inverse background color for containers (blue.100) */
 --kui-color-background-inverse: #000933;
-/* gray.60 */
+/* Background color for neutral elements (gray.60). */
 --kui-color-background-neutral: #6c7489;
-/* gray.70 */
+/* Strong background color for neutral elements (gray.70). */
 --kui-color-background-neutral-strong: #52596e;
-/* gray.80 */
+/* Stronger background color for neutral elements (gray.80). */
 --kui-color-background-neutral-stronger: #3a3f51;
-/* gray.90 */
+/* Strongest background color for neutral elements (gray.90). */
 --kui-color-background-neutral-strongest: #232633;
-/* gray.40 */
+/* Weak background color for neutral elements (gray.40). */
 --kui-color-background-neutral-weak: #afb7c5;
-/* gray.20 */
+/* Weaker background color for neutral elements (gray.20). */
 --kui-color-background-neutral-weaker: #e0e4ea;
-/* gray.10 */
+/* Weakest background color for neutral elements (gray.10). */
 --kui-color-background-neutral-weakest: #f9fafb;
-/* blue.60 */
+/* Background color for primary actions or messages (blue.60). */
 --kui-color-background-primary: #0044f4;
-/* blue.70 */
+/* Strong background color for primary actions or messages (blue.70). */
 --kui-color-background-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger background color for primary actions or messages (blue.80). */
 --kui-color-background-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest background color for primary actions or messages (blue.90). */
 --kui-color-background-primary-strongest: #001466;
-/* blue.40 */
+/* Weak background color for primary actions or messages (blue.40). */
 --kui-color-background-primary-weak: #5f9aff;
-/* blue.20 */
+/* Weaker background color for primary actions or messages (blue.20). */
 --kui-color-background-primary-weaker: #bee2ff;
-/* blue.10 */
+/* Weakest background color for primary actions or messages (blue.10) */
 --kui-color-background-primary-weakest: #eefaff;
-/* green.10 */
+/* Weakest background color for success elements (green.10). */
 --kui-color-background-success-weakest: #ecfffb;
-/* transparent */
+/* Transparent background color (transparent). */
 --kui-color-background-transparent: rgba(0, 0, 0, 0);
-/* yellow.10 */
+/* Weakest background color for warning elements (yellow.10). */
 --kui-color-background-warning-weakest: #fffce0;
-/* gray.20 */
+/* Default border color for containers (gray.20). */
 --kui-color-border: #e0e4ea;
-/* red.60 */
+/* Border color for danger actions or messages (red.60). */
 --kui-color-border-danger: #d60027;
-/* red.70 */
+/* Strong border color for danger actions or messages (red.70). */
 --kui-color-border-danger-strong: #ad000e;
-/* red.80 */
+/* Stronger border color for danger actions or messages (red.80). */
 --kui-color-border-danger-stronger: #850000;
-/* red.90 */
+/* Strongest border color for danger actions or messages (red.90). */
 --kui-color-border-danger-strongest: #5c0000;
-/* red.40 */
+/* Weak border color for danger actions or messages (red.40). */
 --kui-color-border-danger-weak: #ff3954;
-/* red.20 */
+/* Weaker border color for danger actions or messages (red.20). */
 --kui-color-border-danger-weaker: #ffabab;
-/* red.10 */
+/* Weakest border color for danger actions or messages (red.10). */
 --kui-color-border-danger-weakest: #ffe5e5;
-/* purple.60 */
+/* Border color for decorative purposes (purple.60). */
 --kui-color-border-decorative: #6f28ff;
-/* gray.20 */
+/* Border color for disabled elements (gray.20). */
 --kui-color-border-disabled: #e0e4ea;
-/* gray.40 */
+/* Weak border color for neutral elements (gray.40) */
 --kui-color-border-neutral-weak: #afb7c5;
-/* blue.60 */
+/* Border color for primary actions or messages (blue.60). */
 --kui-color-border-primary: #0044f4;
-/* blue.70 */
+/* Strong border color for primary actions or messages (blue.70). */
 --kui-color-border-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger border color for primary actions or messages (blue.80). */
 --kui-color-border-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest border color for primary actions or messages (blue.90). */
 --kui-color-border-primary-strongest: #001466;
-/* blue.40 */
+/* Weak border color for primary actions or messages (blue.40). */
 --kui-color-border-primary-weak: #5f9aff;
-/* blue.20 */
+/* Weaker border color for primary actions or messages (blue.20). */
 --kui-color-border-primary-weaker: #bee2ff;
-/* blue.10 */
+/* Weakest border color for primary actions or messages (blue.10). */
 --kui-color-border-primary-weakest: #eefaff;
-/* transparent */
+/* Transparent border color (transparent). */
 --kui-color-border-transparent: rgba(0, 0, 0, 0);
-/* blue.100 */
+/* Default text color (blue.100). */
 --kui-color-text: #000933;
-/* red.60 */
+/* Text color for danger actions or messages (red.60). */
 --kui-color-text-danger: #d60027;
-/* aqua.50 */
+/* Text color for decorative purposes (aqua.50). */
 --kui-color-text-decorative: #00abd2;
-/* gray.50 */
+/* Text color for disabled elements (gray.50). */
 --kui-color-text-disabled: #828a9e;
-/* white */
+/* Inverse text color (white). */
 --kui-color-text-inverse: #ffffff;
-/* gray.60 */
+/* Text color for neutral elements (gray.60). */
 --kui-color-text-neutral: #6c7489;
-/* gray.70 */
+/* Strong text color for neutral elements (gray.70). */
 --kui-color-text-neutral-strong: #52596e;
-/* gray.80 */
+/* Stronger text color for neutral elements (gray.80). */
 --kui-color-text-neutral-stronger: #3a3f51;
-/* gray.90 */
+/* Strongest text color for neutral elements (gray.90). */
 --kui-color-text-neutral-strongest: #232633;
-/* gray.40 */
+/* Weak text color for neutral elements (gray.40). */
 --kui-color-text-neutral-weak: #afb7c5;
-/* blue.60 */
+/* Text color for primary actions or messages (blue.60). */
 --kui-color-text-primary: #0044f4;
-/* blue.70 */
+/* Strong text color for primary actions or messages (blue.70). */
 --kui-color-text-primary-strong: #0030cc;
-/* blue.80 */
+/* Stronger text color for primary actions or messages (blue.80). */
 --kui-color-text-primary-stronger: #002099;
-/* blue.90 */
+/* Strongest text color for primary actions or messages (blue.90). */
 --kui-color-text-primary-strongest: #001466;
-/* green.60 */
+/* Text color for success actions or messages (green.60). */
 --kui-color-text-success: #007d60;
-/* yellow.60 */
+/* Text color for warning actions or messages (yellow.60). */
 --kui-color-text-warning: #995c00;
 /* Default transition timing */
 --kui-animation-duration-20: 0.2s;
+/* 0px border radius. */
 --kui-border-radius-0: 0px;
+/* 2px border radius. */
 --kui-border-radius-10: 2px;
+/* 4px border radius. */
 --kui-border-radius-20: 4px;
+/* 6px border radius. */
 --kui-border-radius-30: 6px;
+/* 8px border radius. */
 --kui-border-radius-40: 8px;
-/* Used to create a circle. Value of 50% */
+/* 50% border radius used to create circles. */
 --kui-border-radius-circle: 50%;
-/* Used to round element corners. Value of 100px */
+/* 100px border radius used to create pill shapes. */
 --kui-border-radius-round: 100px;
+/* 0px border width. */
 --kui-border-width-0: 0px;
+/* 1px border width. */
 --kui-border-width-10: 1px;
+/* 2px border width. */
 --kui-border-width-20: 2px;
+/* 4px border width. */
 --kui-border-width-30: 4px;
 /* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
 --kui-breakpoint-mobile: 640px;
@@ -1104,50 +1167,57 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 --kui-breakpoint-desktop: 1536px;
+/* 10px icon size. */
 --kui-icon-size-10: 10px;
+/* 12px icon size. */
 --kui-icon-size-20: 12px;
+/* 16px icon size. */
 --kui-icon-size-30: 16px;
+/* 20px icon size. */
 --kui-icon-size-40: 20px;
-/* The default icon size */
+/* 24px icon size (default). */
 --kui-icon-size-50: 24px;
+/* 32px icon size. */
 --kui-icon-size-60: 32px;
+/* 40px icon size. */
 --kui-icon-size-70: 40px;
+/* 48px icon size. */
 --kui-icon-size-80: 48px;
-/* purple.10 */
+/* Background color for the CONNECT method (purple.10). */
 --kui-method-color-background-connect: #f1f0ff;
-/* red.10 */
+/* Background color for the DELETE method (red.10). */
 --kui-method-color-background-delete: #ffe5e5;
-/* blue.10 */
+/* Background color for the GET method (blue.10). */
 --kui-method-color-background-get: #eefaff;
-/* gray.70 */
+/* Background color for the HEAD method (gray.70). */
 --kui-method-color-background-head: #52596e;
-/* gray.20 */
+/* Background color for the OPTIONS method (gray.20). */
 --kui-method-color-background-options: #e0e4ea;
-/* aqua.10 */
+/* Background color for the PATCH method (aqua.10). */
 --kui-method-color-background-patch: #ecfcff;
-/* green.10 */
+/* Background color for the POST method (green.10). */
 --kui-method-color-background-post: #ecfffb;
-/* yellow.10 */
+/* Background color for the PUT method (yellow.10). */
 --kui-method-color-background-put: #fffce0;
-/* pink.10 */
+/* Background color for the TRACE method (pink.10). */
 --kui-method-color-background-trace: #fff0f7;
-/* purple.60 */
+/* Text color for the CONNECT method (purple.60). */
 --kui-method-color-text-connect: #6f28ff;
-/* red.60 */
+/* Text color for the DELETE method (red.60). */
 --kui-method-color-text-delete: #d60027;
-/* blue.60 */
+/* Text color for the GET method (blue.60). */
 --kui-method-color-text-get: #0044f4;
-/* gray.20 */
+/* Text color for the HEAD method (gray.20). */
 --kui-method-color-text-head: #e0e4ea;
-/* gray.70 */
+/* Text color for the OPTIONS method (gray.70). */
 --kui-method-color-text-options: #52596e;
-/* aqua.60 */
+/* Text color for the PATCH method (aqua.60). */
 --kui-method-color-text-patch: #00819d;
-/* green.60 */
+/* Text color for the POST method (green.60). */
 --kui-method-color-text-post: #007d60;
-/* yellow.60 */
+/* Text color for the PUT method (yellow.60). */
 --kui-method-color-text-put: #995c00;
-/* pink.60 */
+/* Text color for the TRACE method (pink.60). */
 --kui-method-color-text-trace: #d60067;
 /* The standard monospace font family. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
@@ -1211,6 +1281,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px red.60 inset */
 --kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px red.70 inset */
+--kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
 /* 0px 0px 0px 1px gray.20 inset */
 --kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px blue.60 inset */
@@ -1219,37 +1291,37 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 --kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px */
+/* 0px value for gaps, margin, or padding. */
 --kui-space-0: 0px;
-/* 2px */
+/* 2px value for gaps, margin, or padding. */
 --kui-space-10: 2px;
-/* 4px */
+/* 4px value for gaps, margin, or padding. */
 --kui-space-20: 4px;
-/* 6px */
+/* 6px value for gaps, margin, or padding. */
 --kui-space-30: 6px;
-/* 8px */
+/* 8px value for gaps, margin, or padding. */
 --kui-space-40: 8px;
-/* 12px */
+/* 12px value for gaps, margin, or padding. */
 --kui-space-50: 12px;
-/* 16px */
+/* 16px value for gaps, margin, or padding. */
 --kui-space-60: 16px;
-/* 20px */
+/* 20px value for gaps, margin, or padding. */
 --kui-space-70: 20px;
-/* 24px */
+/* 24px value for gaps, margin, or padding. */
 --kui-space-80: 24px;
-/* 32px */
+/* 32px value for gaps, margin, or padding. */
 --kui-space-90: 32px;
-/* 40px */
+/* 40px value for gaps, margin, or padding. */
 --kui-space-100: 40px;
-/* 48px */
+/* 48px value for gaps, margin, or padding. */
 --kui-space-110: 48px;
-/* 56px */
+/* 56px value for gaps, margin, or padding. */
 --kui-space-120: 56px;
-/* 64px */
+/* 64px value for gaps, margin, or padding. */
 --kui-space-130: 64px;
-/* 80px */
+/* 80px value for gaps, margin, or padding. */
 --kui-space-140: 80px;
-/* 96px */
+/* 96px value for gaps, margin, or padding. */
 --kui-space-150: 96px;
 /* auto */
 --kui-space-auto: auto;
@@ -1266,144 +1338,153 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 <summary>Click to view the list of JavaScript variables</summary>
 
 ```javascript
-/* white */
+/* Default background color for containers (white). */
 export const KUI_COLOR_BACKGROUND = "#ffffff";
-/* red.60 */
+/* Background color for danger actions or messages (red.60). */
 export const KUI_COLOR_BACKGROUND_DANGER = "#d60027";
-/* red.70 */
+/* Strong background color for danger actions or messages (red.70). */
 export const KUI_COLOR_BACKGROUND_DANGER_STRONG = "#ad000e";
-/* red.80 */
+/* Stronger background color for danger actions or messages (red.80). */
 export const KUI_COLOR_BACKGROUND_DANGER_STRONGER = "#850000";
-/* red.90 */
+/* Strongest background color for danger actions or messages (red.90). */
 export const KUI_COLOR_BACKGROUND_DANGER_STRONGEST = "#5c0000";
-/* red.40 */
+/* Weak background color for danger actions or messages (red.40). */
 export const KUI_COLOR_BACKGROUND_DANGER_WEAK = "#ff3954";
-/* red.20 */
+/* Weaker background color for danger actions or messages (red.20). */
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKER = "#ffabab";
-/* red.10 */
+/* Weakest background color for danger actions or messages (red.10). */
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKEST = "#ffe5e5";
-/* gray.20 */
+/* Background color for disabled elements (gray.20). */
 export const KUI_COLOR_BACKGROUND_DISABLED = "#e0e4ea";
-/* blue.100 */
+/* Inverse background color for containers (blue.100) */
 export const KUI_COLOR_BACKGROUND_INVERSE = "#000933";
-/* gray.60 */
+/* Background color for neutral elements (gray.60). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL = "#6c7489";
-/* gray.70 */
+/* Strong background color for neutral elements (gray.70). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONG = "#52596e";
-/* gray.80 */
+/* Stronger background color for neutral elements (gray.80). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONGER = "#3a3f51";
-/* gray.90 */
+/* Strongest background color for neutral elements (gray.90). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONGEST = "#232633";
-/* gray.40 */
+/* Weak background color for neutral elements (gray.40). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAK = "#afb7c5";
-/* gray.20 */
+/* Weaker background color for neutral elements (gray.20). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKER = "#e0e4ea";
-/* gray.10 */
+/* Weakest background color for neutral elements (gray.10). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKEST = "#f9fafb";
-/* blue.60 */
+/* Background color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BACKGROUND_PRIMARY = "#0044f4";
-/* blue.70 */
+/* Strong background color for primary actions or messages (blue.70). */
 export const KUI_COLOR_BACKGROUND_PRIMARY_STRONG = "#0030cc";
-/* blue.80 */
+/* Stronger background color for primary actions or messages (blue.80). */
 export const KUI_COLOR_BACKGROUND_PRIMARY_STRONGER = "#002099";
-/* blue.90 */
+/* Strongest background color for primary actions or messages (blue.90). */
 export const KUI_COLOR_BACKGROUND_PRIMARY_STRONGEST = "#001466";
-/* blue.40 */
+/* Weak background color for primary actions or messages (blue.40). */
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAK = "#5f9aff";
-/* blue.20 */
+/* Weaker background color for primary actions or messages (blue.20). */
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKER = "#bee2ff";
-/* blue.10 */
+/* Weakest background color for primary actions or messages (blue.10) */
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKEST = "#eefaff";
-/* green.10 */
+/* Weakest background color for success elements (green.10). */
 export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKEST = "#ecfffb";
-/* transparent */
+/* Transparent background color (transparent). */
 export const KUI_COLOR_BACKGROUND_TRANSPARENT = "rgba(0, 0, 0, 0)";
-/* yellow.10 */
+/* Weakest background color for warning elements (yellow.10). */
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = "#fffce0";
-/* gray.20 */
+/* Default border color for containers (gray.20). */
 export const KUI_COLOR_BORDER = "#e0e4ea";
-/* red.60 */
+/* Border color for danger actions or messages (red.60). */
 export const KUI_COLOR_BORDER_DANGER = "#d60027";
-/* red.70 */
+/* Strong border color for danger actions or messages (red.70). */
 export const KUI_COLOR_BORDER_DANGER_STRONG = "#ad000e";
-/* red.80 */
+/* Stronger border color for danger actions or messages (red.80). */
 export const KUI_COLOR_BORDER_DANGER_STRONGER = "#850000";
-/* red.90 */
+/* Strongest border color for danger actions or messages (red.90). */
 export const KUI_COLOR_BORDER_DANGER_STRONGEST = "#5c0000";
-/* red.40 */
+/* Weak border color for danger actions or messages (red.40). */
 export const KUI_COLOR_BORDER_DANGER_WEAK = "#ff3954";
-/* red.20 */
+/* Weaker border color for danger actions or messages (red.20). */
 export const KUI_COLOR_BORDER_DANGER_WEAKER = "#ffabab";
-/* red.10 */
+/* Weakest border color for danger actions or messages (red.10). */
 export const KUI_COLOR_BORDER_DANGER_WEAKEST = "#ffe5e5";
-/* purple.60 */
+/* Border color for decorative purposes (purple.60). */
 export const KUI_COLOR_BORDER_DECORATIVE = "#6f28ff";
-/* gray.20 */
+/* Border color for disabled elements (gray.20). */
 export const KUI_COLOR_BORDER_DISABLED = "#e0e4ea";
-/* gray.40 */
+/* Weak border color for neutral elements (gray.40) */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAK = "#afb7c5";
-/* blue.60 */
+/* Border color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BORDER_PRIMARY = "#0044f4";
-/* blue.70 */
+/* Strong border color for primary actions or messages (blue.70). */
 export const KUI_COLOR_BORDER_PRIMARY_STRONG = "#0030cc";
-/* blue.80 */
+/* Stronger border color for primary actions or messages (blue.80). */
 export const KUI_COLOR_BORDER_PRIMARY_STRONGER = "#002099";
-/* blue.90 */
+/* Strongest border color for primary actions or messages (blue.90). */
 export const KUI_COLOR_BORDER_PRIMARY_STRONGEST = "#001466";
-/* blue.40 */
+/* Weak border color for primary actions or messages (blue.40). */
 export const KUI_COLOR_BORDER_PRIMARY_WEAK = "#5f9aff";
-/* blue.20 */
+/* Weaker border color for primary actions or messages (blue.20). */
 export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#bee2ff";
-/* blue.10 */
+/* Weakest border color for primary actions or messages (blue.10). */
 export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff";
-/* transparent */
+/* Transparent border color (transparent). */
 export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)";
-/* blue.100 */
+/* Default text color (blue.100). */
 export const KUI_COLOR_TEXT = "#000933";
-/* red.60 */
+/* Text color for danger actions or messages (red.60). */
 export const KUI_COLOR_TEXT_DANGER = "#d60027";
-/* aqua.50 */
+/* Text color for decorative purposes (aqua.50). */
 export const KUI_COLOR_TEXT_DECORATIVE = "#00abd2";
-/* gray.50 */
+/* Text color for disabled elements (gray.50). */
 export const KUI_COLOR_TEXT_DISABLED = "#828a9e";
-/* white */
+/* Inverse text color (white). */
 export const KUI_COLOR_TEXT_INVERSE = "#ffffff";
-/* gray.60 */
+/* Text color for neutral elements (gray.60). */
 export const KUI_COLOR_TEXT_NEUTRAL = "#6c7489";
-/* gray.70 */
+/* Strong text color for neutral elements (gray.70). */
 export const KUI_COLOR_TEXT_NEUTRAL_STRONG = "#52596e";
-/* gray.80 */
+/* Stronger text color for neutral elements (gray.80). */
 export const KUI_COLOR_TEXT_NEUTRAL_STRONGER = "#3a3f51";
-/* gray.90 */
+/* Strongest text color for neutral elements (gray.90). */
 export const KUI_COLOR_TEXT_NEUTRAL_STRONGEST = "#232633";
-/* gray.40 */
+/* Weak text color for neutral elements (gray.40). */
 export const KUI_COLOR_TEXT_NEUTRAL_WEAK = "#afb7c5";
-/* blue.60 */
+/* Text color for primary actions or messages (blue.60). */
 export const KUI_COLOR_TEXT_PRIMARY = "#0044f4";
-/* blue.70 */
+/* Strong text color for primary actions or messages (blue.70). */
 export const KUI_COLOR_TEXT_PRIMARY_STRONG = "#0030cc";
-/* blue.80 */
+/* Stronger text color for primary actions or messages (blue.80). */
 export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#002099";
-/* blue.90 */
+/* Strongest text color for primary actions or messages (blue.90). */
 export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#001466";
-/* green.60 */
+/* Text color for success actions or messages (green.60). */
 export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
-/* yellow.60 */
+/* Text color for warning actions or messages (yellow.60). */
 export const KUI_COLOR_TEXT_WARNING = "#995c00";
 /* Default transition timing */
 export const KUI_ANIMATION_DURATION_20 = "0.2s";
+/* 0px border radius. */
 export const KUI_BORDER_RADIUS_0 = "0px";
+/* 2px border radius. */
 export const KUI_BORDER_RADIUS_10 = "2px";
+/* 4px border radius. */
 export const KUI_BORDER_RADIUS_20 = "4px";
+/* 6px border radius. */
 export const KUI_BORDER_RADIUS_30 = "6px";
+/* 8px border radius. */
 export const KUI_BORDER_RADIUS_40 = "8px";
-/* Used to create a circle. Value of 50% */
+/* 50% border radius used to create circles. */
 export const KUI_BORDER_RADIUS_CIRCLE = "50%";
-/* Used to round element corners. Value of 100px */
+/* 100px border radius used to create pill shapes. */
 export const KUI_BORDER_RADIUS_ROUND = "100px";
+/* 0px border width. */
 export const KUI_BORDER_WIDTH_0 = "0px";
+/* 1px border width. */
 export const KUI_BORDER_WIDTH_10 = "1px";
+/* 2px border width. */
 export const KUI_BORDER_WIDTH_20 = "2px";
+/* 4px border width. */
 export const KUI_BORDER_WIDTH_30 = "4px";
 /* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
 export const KUI_BREAKPOINT_MOBILE = "640px";
@@ -1415,50 +1496,57 @@ export const KUI_BREAKPOINT_TABLET = "1024px";
 export const KUI_BREAKPOINT_LAPTOP = "1280px";
 /* Used for larger desktop screens. */
 export const KUI_BREAKPOINT_DESKTOP = "1536px";
+/* 10px icon size. */
 export const KUI_ICON_SIZE_10 = "10px";
+/* 12px icon size. */
 export const KUI_ICON_SIZE_20 = "12px";
+/* 16px icon size. */
 export const KUI_ICON_SIZE_30 = "16px";
+/* 20px icon size. */
 export const KUI_ICON_SIZE_40 = "20px";
-/* The default icon size */
+/* 24px icon size (default). */
 export const KUI_ICON_SIZE_50 = "24px";
+/* 32px icon size. */
 export const KUI_ICON_SIZE_60 = "32px";
+/* 40px icon size. */
 export const KUI_ICON_SIZE_70 = "40px";
+/* 48px icon size. */
 export const KUI_ICON_SIZE_80 = "48px";
-/* purple.10 */
+/* Background color for the CONNECT method (purple.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = "#f1f0ff";
-/* red.10 */
+/* Background color for the DELETE method (red.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_DELETE = "#ffe5e5";
-/* blue.10 */
+/* Background color for the GET method (blue.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_GET = "#eefaff";
-/* gray.70 */
+/* Background color for the HEAD method (gray.70). */
 export const KUI_METHOD_COLOR_BACKGROUND_HEAD = "#52596e";
-/* gray.20 */
+/* Background color for the OPTIONS method (gray.20). */
 export const KUI_METHOD_COLOR_BACKGROUND_OPTIONS = "#e0e4ea";
-/* aqua.10 */
+/* Background color for the PATCH method (aqua.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_PATCH = "#ecfcff";
-/* green.10 */
+/* Background color for the POST method (green.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_POST = "#ecfffb";
-/* yellow.10 */
+/* Background color for the PUT method (yellow.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_PUT = "#fffce0";
-/* pink.10 */
+/* Background color for the TRACE method (pink.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_TRACE = "#fff0f7";
-/* purple.60 */
+/* Text color for the CONNECT method (purple.60). */
 export const KUI_METHOD_COLOR_TEXT_CONNECT = "#6f28ff";
-/* red.60 */
+/* Text color for the DELETE method (red.60). */
 export const KUI_METHOD_COLOR_TEXT_DELETE = "#d60027";
-/* blue.60 */
+/* Text color for the GET method (blue.60). */
 export const KUI_METHOD_COLOR_TEXT_GET = "#0044f4";
-/* gray.20 */
+/* Text color for the HEAD method (gray.20). */
 export const KUI_METHOD_COLOR_TEXT_HEAD = "#e0e4ea";
-/* gray.70 */
+/* Text color for the OPTIONS method (gray.70). */
 export const KUI_METHOD_COLOR_TEXT_OPTIONS = "#52596e";
-/* aqua.60 */
+/* Text color for the PATCH method (aqua.60). */
 export const KUI_METHOD_COLOR_TEXT_PATCH = "#00819d";
-/* green.60 */
+/* Text color for the POST method (green.60). */
 export const KUI_METHOD_COLOR_TEXT_POST = "#007d60";
-/* yellow.60 */
+/* Text color for the PUT method (yellow.60). */
 export const KUI_METHOD_COLOR_TEXT_PUT = "#995c00";
-/* pink.60 */
+/* Text color for the TRACE method (pink.60). */
 export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
 /* The standard monospace font family. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
@@ -1522,6 +1610,8 @@ export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
 export const KUI_SHADOW_BORDER = "0px 0px 0px 1px #e0e4ea inset";
 /* 0px 0px 0px 1px red.60 inset */
 export const KUI_SHADOW_BORDER_DANGER = "0px 0px 0px 1px #d60027 inset";
+/* 0px 0px 0px 1px red.70 inset */
+export const KUI_SHADOW_BORDER_DANGER_STRONG = "0px 0px 0px 1px #ad000e inset";
 /* 0px 0px 0px 1px gray.20 inset */
 export const KUI_SHADOW_BORDER_DISABLED = "0px 0px 0px 1px #e0e4ea inset";
 /* 0px 0px 0px 1px blue.60 inset */
@@ -1530,37 +1620,37 @@ export const KUI_SHADOW_BORDER_PRIMARY = "0px 0px 0px 1px #0044f4 inset";
 export const KUI_SHADOW_BORDER_PRIMARY_WEAK = "0px 0px 0px 1px #5f9aff inset";
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
 export const KUI_SHADOW_FOCUS = "0px 0px 0px 4px rgba(0, 68, 244, 0.2)";
-/* 0px */
+/* 0px value for gaps, margin, or padding. */
 export const KUI_SPACE_0 = "0px";
-/* 2px */
+/* 2px value for gaps, margin, or padding. */
 export const KUI_SPACE_10 = "2px";
-/* 4px */
+/* 4px value for gaps, margin, or padding. */
 export const KUI_SPACE_20 = "4px";
-/* 6px */
+/* 6px value for gaps, margin, or padding. */
 export const KUI_SPACE_30 = "6px";
-/* 8px */
+/* 8px value for gaps, margin, or padding. */
 export const KUI_SPACE_40 = "8px";
-/* 12px */
+/* 12px value for gaps, margin, or padding. */
 export const KUI_SPACE_50 = "12px";
-/* 16px */
+/* 16px value for gaps, margin, or padding. */
 export const KUI_SPACE_60 = "16px";
-/* 20px */
+/* 20px value for gaps, margin, or padding. */
 export const KUI_SPACE_70 = "20px";
-/* 24px */
+/* 24px value for gaps, margin, or padding. */
 export const KUI_SPACE_80 = "24px";
-/* 32px */
+/* 32px value for gaps, margin, or padding. */
 export const KUI_SPACE_90 = "32px";
-/* 40px */
+/* 40px value for gaps, margin, or padding. */
 export const KUI_SPACE_100 = "40px";
-/* 48px */
+/* 48px value for gaps, margin, or padding. */
 export const KUI_SPACE_110 = "48px";
-/* 56px */
+/* 56px value for gaps, margin, or padding. */
 export const KUI_SPACE_120 = "56px";
-/* 64px */
+/* 64px value for gaps, margin, or padding. */
 export const KUI_SPACE_130 = "64px";
-/* 80px */
+/* 80px value for gaps, margin, or padding. */
 export const KUI_SPACE_140 = "80px";
-/* 96px */
+/* 96px value for gaps, margin, or padding. */
 export const KUI_SPACE_150 = "96px";
 /* auto */
 export const KUI_SPACE_AUTO = "auto";
@@ -1717,6 +1807,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
   "kui_shadow_border": "0px 0px 0px 1px #e0e4ea inset",
   "kui_shadow_border_danger": "0px 0px 0px 1px #d60027 inset",
+  "kui_shadow_border_danger_strong": "0px 0px 0px 1px #ad000e inset",
   "kui_shadow_border_disabled": "0px 0px 0px 1px #e0e4ea inset",
   "kui_shadow_border_primary": "0px 0px 0px 1px #0044f4 inset",
   "kui_shadow_border_primary_weak": "0px 0px 0px 1px #5f9aff inset",

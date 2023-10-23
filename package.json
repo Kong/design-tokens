@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "1.11.4",
+  "version": "1.11.5",
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
     "build": "yarn build:clean && style-dictionary build && yarn copy:tokens-doc && yarn copy:stylelint-plugin",
