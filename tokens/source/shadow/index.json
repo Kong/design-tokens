@@ -25,15 +25,15 @@
       },
       "filled": {
         "danger": {
-          "comment": "shadow.border.danger but with 5px radius",
+          "comment": "0px 0px 0px 1px red.60 inset",
           "value": "0px 0px 0px 5px {color.alias.red.60} inset"
         },
         "disabled": {
-          "comment": "shadow.border.disabled but with 5px radius",
+          "comment": "0px 0px 0px 5px gray.20 inset",
           "value": "0px 0px 0px 5px {color.alias.gray.20} inset"
         },
         "primary": {
-          "comment": "shadow.border.primary but with 5px radius",
+          "comment": "0px 0px 0px 5px blue.60 inset",
           "value": "0px 0px 0px 5px {color.alias.blue.60} inset"
         }
       },
