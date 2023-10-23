@@ -25,7 +25,7 @@
       },
       "filled": {
         "danger": {
-          "comment": "0px 0px 0px 1px red.60 inset",
+          "comment": "0px 0px 0px 5px red.60 inset",
           "value": "0px 0px 0px 5px {color.alias.red.60} inset"
         },
         "disabled": {
