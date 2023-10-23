@@ -10,8 +10,14 @@
         "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
       },
       "danger": {
-        "comment": "0px 0px 0px 1px red.60 inset",
-        "value": "0px 0px 0px 1px {color.alias.red.60} inset"
+        "_": {
+          "comment": "0px 0px 0px 1px red.60 inset",
+          "value": "0px 0px 0px 1px {color.alias.red.60} inset"
+        },
+        "strong": {
+          "comment": "0px 0px 0px 1px red.70 inset",
+          "value": "0px 0px 0px 1px {color.alias.red.70} inset"
+        }
       },
       "disabled": {
         "comment": "0px 0px 0px 1px gray.20 inset",
