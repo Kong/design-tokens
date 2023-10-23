@@ -28,6 +28,10 @@
           "comment": "0px 0px 0px 1px blue.60 inset",
           "value": "0px 0px 0px 1px {color.alias.blue.60} inset"
         },
+        "strongest": {
+          "comment": "0px 0px 0px 1px blue.90 inset",
+          "value": "0px 0px 0px 1px {color.alias.blue.90} inset"
+        },
         "weak": {
           "comment": "0px 0px 0px 1px blue.40 inset",
           "value": "0px 0px 0px 1px {color.alias.blue.40} inset"
