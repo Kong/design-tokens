@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 23 Oct 2023 16:24:35 GMT
+ * Generated on Mon, 23 Oct 2023 19:21:52 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -298,6 +298,8 @@ $kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
 $kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px blue.60 inset */
 $kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.90 inset */
+$kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
 /* 0px 0px 0px 1px blue.40 inset */
 $kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
@@ -626,6 +628,8 @@ $tokens-map: (
   'kui-shadow-border-disabled': 0px 0px 0px 1px #e0e4ea inset;
   /* 0px 0px 0px 1px blue.60 inset */
   'kui-shadow-border-primary': 0px 0px 0px 1px #0044f4 inset;
+  /* 0px 0px 0px 1px blue.90 inset */
+  'kui-shadow-border-primary-strongest': 0px 0px 0px 1px #001466 inset;
   /* 0px 0px 0px 1px blue.40 inset */
   'kui-shadow-border-primary-weak': 0px 0px 0px 1px #5f9aff inset;
   /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
@@ -956,6 +960,8 @@ $tokens-map: (
 @kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px blue.60 inset */
 @kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.90 inset */
+@kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
 /* 0px 0px 0px 1px blue.40 inset */
 @kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
@@ -1287,6 +1293,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
 /* 0px 0px 0px 1px blue.60 inset */
 --kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.90 inset */
+--kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
 /* 0px 0px 0px 1px blue.40 inset */
 --kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
@@ -1616,6 +1624,8 @@ export const KUI_SHADOW_BORDER_DANGER_STRONG = "0px 0px 0px 1px #ad000e inset";
 export const KUI_SHADOW_BORDER_DISABLED = "0px 0px 0px 1px #e0e4ea inset";
 /* 0px 0px 0px 1px blue.60 inset */
 export const KUI_SHADOW_BORDER_PRIMARY = "0px 0px 0px 1px #0044f4 inset";
+/* 0px 0px 0px 1px blue.90 inset */
+export const KUI_SHADOW_BORDER_PRIMARY_STRONGEST = "0px 0px 0px 1px #001466 inset";
 /* 0px 0px 0px 1px blue.40 inset */
 export const KUI_SHADOW_BORDER_PRIMARY_WEAK = "0px 0px 0px 1px #5f9aff inset";
 /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
@@ -1810,6 +1820,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_shadow_border_danger_strong": "0px 0px 0px 1px #ad000e inset",
   "kui_shadow_border_disabled": "0px 0px 0px 1px #e0e4ea inset",
   "kui_shadow_border_primary": "0px 0px 0px 1px #0044f4 inset",
+  "kui_shadow_border_primary_strongest": "0px 0px 0px 1px #001466 inset",
   "kui_shadow_border_primary_weak": "0px 0px 0px 1px #5f9aff inset",
   "kui_shadow_focus": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
   "kui_space_0": "0px",

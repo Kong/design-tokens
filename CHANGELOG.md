@@ -1,3 +1,10 @@
+## [1.11.6](https://github.com/Kong/design-tokens/compare/v1.11.5...v1.11.6) (2023-10-23)
+
+
+### Bug Fixes
+
+* **shadow:** add shadow border primary strongest token ([#132](https://github.com/Kong/design-tokens/issues/132)) ([f0bfe34](https://github.com/Kong/design-tokens/commit/f0bfe345eace313ea5d10ad882769fe7e9379f94))
+
 ## [1.11.5](https://github.com/Kong/design-tokens/compare/v1.11.4...v1.11.5) (2023-10-23)
 
 
