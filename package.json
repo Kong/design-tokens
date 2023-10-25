@@ -55,8 +55,8 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.2",
-    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/cli": "^17.8.0",
+    "@commitlint/config-conventional": "^17.8.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^1.5.2",
     "@semantic-release/changelog": "^6.0.3",
@@ -71,7 +71,7 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jsonc": "^2.10.0",
-    "eslint-plugin-n": "^16.1.0",
+    "eslint-plugin-n": "^16.2.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-vue": "^9.17.0",
@@ -137,7 +137,7 @@
     }
   },
   "volta": {
-    "node": "18.17.1",
+    "node": "18.18.2",
     "yarn": "1.22.19"
   }
 }
