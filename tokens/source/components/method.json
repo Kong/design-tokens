@@ -97,7 +97,7 @@
           },
           "strong": {
             "comment": "Strong text color for the PATCH method (aqua.70).",
-            "value": "{color.alias.aqua.60}"
+            "value": "{color.alias.aqua.70}"
           }
         },
         "post": {
