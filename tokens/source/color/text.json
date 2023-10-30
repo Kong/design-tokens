@@ -9,6 +9,10 @@
         "_": {
           "comment": "Text color for danger actions or messages (red.60).",
           "value": "{color.alias.red.60}"
+        },
+        "strong": {
+          "comment": "Strong text color for danger actions or messages (red.70).",
+          "value": "{color.alias.red.70}"
         }
       },
       "decorative": {
@@ -67,12 +71,20 @@
         "_": {
           "comment": "Text color for success actions or messages (green.60).",
           "value": "{color.alias.green.60}"
+        },
+        "strong": {
+          "comment": "Strong text color for success actions or messages (green.70).",
+          "value": "{color.alias.green.70}"
         }
       },
       "warning": {
         "_": {
           "comment": "Text color for warning actions or messages (yellow.60).",
           "value": "{color.alias.yellow.60}"
+        },
+        "strong": {
+          "comment": "Text color for warning actions or messages (yellow.70).",
+          "value": "{color.alias.yellow.70}"
         }
       }
     }

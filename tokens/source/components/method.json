@@ -41,40 +41,94 @@
       },
       "text": {
         "connect": {
-          "comment": "Text color for the CONNECT method (purple.60).",
-          "value": "{color.alias.purple.60}"
+          "_": {
+            "comment": "Text color for the CONNECT method (purple.60).",
+            "value": "{color.alias.purple.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the CONNECT method (purple.70).",
+            "value": "{color.alias.purple.70}"
+          }
         },
         "delete": {
-          "comment": "Text color for the DELETE method (red.60).",
-          "value": "{color.alias.red.60}"
+          "_": {
+            "comment": "Text color for the DELETE method (red.60).",
+            "value": "{color.alias.red.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the DELETE method (red.70).",
+            "value": "{color.alias.red.70}"
+          }
         },
         "get": {
-          "comment": "Text color for the GET method (blue.60).",
-          "value": "{color.alias.blue.60}"
+          "_": {
+            "comment": "Text color for the GET method (blue.60).",
+            "value": "{color.alias.blue.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the GET method (blue.70).",
+            "value": "{color.alias.blue.70}"
+          }
         },
         "head": {
-          "comment": "Text color for the HEAD method (gray.20).",
-          "value": "{color.alias.gray.20}"
+          "_": {
+            "comment": "Text color for the HEAD method (gray.20).",
+            "value": "{color.alias.gray.20}"
+          },
+          "strong": {
+            "comment": "Strong text color for the HEAD method (gray.40).",
+            "value": "{color.alias.gray.40}"
+          }
         },
         "options": {
-          "comment": "Text color for the OPTIONS method (gray.70).",
-          "value": "{color.alias.gray.70}"
+          "_": {
+            "comment": "Text color for the OPTIONS method (gray.70).",
+            "value": "{color.alias.gray.70}"
+          },
+          "strong": {
+            "comment": "Strong text color for the OPTIONS method (gray.80).",
+            "value": "{color.alias.gray.80}"
+          }
         },
         "patch": {
-          "comment": "Text color for the PATCH method (aqua.60).",
-          "value": "{color.alias.aqua.60}"
+          "_": {
+            "comment": "Text color for the PATCH method (aqua.60).",
+            "value": "{color.alias.aqua.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the PATCH method (aqua.70).",
+            "value": "{color.alias.aqua.60}"
+          }
         },
         "post": {
-          "comment": "Text color for the POST method (green.60).",
-          "value": "{color.alias.green.60}"
+          "_": {
+            "comment": "Text color for the POST method (green.60).",
+            "value": "{color.alias.green.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the POST method (green.70).",
+            "value": "{color.alias.green.70}"
+          }
         },
         "put": {
-          "comment": "Text color for the PUT method (yellow.60).",
-          "value": "{color.alias.yellow.60}"
+          "_": {
+            "comment": "Text color for the PUT method (yellow.60).",
+            "value": "{color.alias.yellow.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the PUT method (yellow.70).",
+            "value": "{color.alias.yellow.70}"
+          }
         },
         "trace": {
-          "comment": "Text color for the TRACE method (pink.60).",
-          "value": "{color.alias.pink.60}"
+          "_": {
+            "comment": "Text color for the TRACE method (pink.60).",
+            "value": "{color.alias.pink.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for the TRACE method (pink.70).",
+            "value": "{color.alias.pink.70}"
+          }
         }
       }
     }
