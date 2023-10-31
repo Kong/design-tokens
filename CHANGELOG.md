@@ -1,3 +1,10 @@
+## [1.11.8](https://github.com/Kong/design-tokens/compare/v1.11.7...v1.11.8) (2023-10-31)
+
+
+### Bug Fixes
+
+* **stylelint-plugin:** allo letter spacing token for property ([#141](https://github.com/Kong/design-tokens/issues/141)) ([88b2238](https://github.com/Kong/design-tokens/commit/88b22385d2ca75fba3c7b5893121ad83d9de5cac))
+
 ## [1.11.7](https://github.com/Kong/design-tokens/compare/v1.11.6...v1.11.7) (2023-10-31)
 
 
