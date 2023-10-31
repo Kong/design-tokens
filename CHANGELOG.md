@@ -1,3 +1,10 @@
+## [1.11.7](https://github.com/Kong/design-tokens/compare/v1.11.6...v1.11.7) (2023-10-31)
+
+
+### Bug Fixes
+
+* **color, components-method:** add strong tokens ([#138](https://github.com/Kong/design-tokens/issues/138)) ([899af90](https://github.com/Kong/design-tokens/commit/899af9090ff723037b41b72ed9de7ece7fe47329))
+
 ## [1.11.6](https://github.com/Kong/design-tokens/compare/v1.11.5...v1.11.6) (2023-10-23)
 
 

@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 23 Oct 2023 19:21:52 GMT
+ * Generated on Tue, 31 Oct 2023 17:45:02 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -116,6 +116,8 @@ $kui-color-border-transparent: rgba(0, 0, 0, 0);
 $kui-color-text: #000933;
 /* Text color for danger actions or messages (red.60). */
 $kui-color-text-danger: #d60027;
+/* Strong text color for danger actions or messages (red.70). */
+$kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
 $kui-color-text-decorative: #00abd2;
 /* Text color for disabled elements (gray.50). */
@@ -142,8 +144,12 @@ $kui-color-text-primary-stronger: #002099;
 $kui-color-text-primary-strongest: #001466;
 /* Text color for success actions or messages (green.60). */
 $kui-color-text-success: #007d60;
+/* Strong text color for success actions or messages (green.70). */
+$kui-color-text-success-strong: #005944;
 /* Text color for warning actions or messages (yellow.60). */
 $kui-color-text-warning: #995c00;
+/* Text color for warning actions or messages (yellow.70). */
+$kui-color-text-warning-strong: #804400;
 /* Default transition timing */
 $kui-animation-duration-20: 0.2s;
 /* 0px border radius. */
@@ -214,22 +220,40 @@ $kui-method-color-background-put: #fffce0;
 $kui-method-color-background-trace: #fff0f7;
 /* Text color for the CONNECT method (purple.60). */
 $kui-method-color-text-connect: #6f28ff;
+/* Strong text color for the CONNECT method (purple.70). */
+$kui-method-color-text-connect-strong: #5e00f5;
 /* Text color for the DELETE method (red.60). */
 $kui-method-color-text-delete: #d60027;
+/* Strong text color for the DELETE method (red.70). */
+$kui-method-color-text-delete-strong: #ad000e;
 /* Text color for the GET method (blue.60). */
 $kui-method-color-text-get: #0044f4;
+/* Strong text color for the GET method (blue.70). */
+$kui-method-color-text-get-strong: #0030cc;
 /* Text color for the HEAD method (gray.20). */
 $kui-method-color-text-head: #e0e4ea;
+/* Strong text color for the HEAD method (gray.40). */
+$kui-method-color-text-head-strong: #afb7c5;
 /* Text color for the OPTIONS method (gray.70). */
 $kui-method-color-text-options: #52596e;
+/* Strong text color for the OPTIONS method (gray.80). */
+$kui-method-color-text-options-strong: #3a3f51;
 /* Text color for the PATCH method (aqua.60). */
 $kui-method-color-text-patch: #00819d;
+/* Strong text color for the PATCH method (aqua.70). */
+$kui-method-color-text-patch-strong: #00647a;
 /* Text color for the POST method (green.60). */
 $kui-method-color-text-post: #007d60;
+/* Strong text color for the POST method (green.70). */
+$kui-method-color-text-post-strong: #005944;
 /* Text color for the PUT method (yellow.60). */
 $kui-method-color-text-put: #995c00;
+/* Strong text color for the PUT method (yellow.70). */
+$kui-method-color-text-put-strong: #804400;
 /* Text color for the TRACE method (pink.60). */
 $kui-method-color-text-trace: #d60067;
+/* Strong text color for the TRACE method (pink.70). */
+$kui-method-color-text-trace-strong: #ad0053;
 /* The standard monospace font family. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard text font family. */
@@ -446,6 +470,8 @@ $tokens-map: (
   'kui-color-text': #000933;
   /* Text color for danger actions or messages (red.60). */
   'kui-color-text-danger': #d60027;
+  /* Strong text color for danger actions or messages (red.70). */
+  'kui-color-text-danger-strong': #ad000e;
   /* Text color for decorative purposes (aqua.50). */
   'kui-color-text-decorative': #00abd2;
   /* Text color for disabled elements (gray.50). */
@@ -472,8 +498,12 @@ $tokens-map: (
   'kui-color-text-primary-strongest': #001466;
   /* Text color for success actions or messages (green.60). */
   'kui-color-text-success': #007d60;
+  /* Strong text color for success actions or messages (green.70). */
+  'kui-color-text-success-strong': #005944;
   /* Text color for warning actions or messages (yellow.60). */
   'kui-color-text-warning': #995c00;
+  /* Text color for warning actions or messages (yellow.70). */
+  'kui-color-text-warning-strong': #804400;
   /* Default transition timing */
   'kui-animation-duration-20': 0.2s;
   /* 0px border radius. */
@@ -544,22 +574,40 @@ $tokens-map: (
   'kui-method-color-background-trace': #fff0f7;
   /* Text color for the CONNECT method (purple.60). */
   'kui-method-color-text-connect': #6f28ff;
+  /* Strong text color for the CONNECT method (purple.70). */
+  'kui-method-color-text-connect-strong': #5e00f5;
   /* Text color for the DELETE method (red.60). */
   'kui-method-color-text-delete': #d60027;
+  /* Strong text color for the DELETE method (red.70). */
+  'kui-method-color-text-delete-strong': #ad000e;
   /* Text color for the GET method (blue.60). */
   'kui-method-color-text-get': #0044f4;
+  /* Strong text color for the GET method (blue.70). */
+  'kui-method-color-text-get-strong': #0030cc;
   /* Text color for the HEAD method (gray.20). */
   'kui-method-color-text-head': #e0e4ea;
+  /* Strong text color for the HEAD method (gray.40). */
+  'kui-method-color-text-head-strong': #afb7c5;
   /* Text color for the OPTIONS method (gray.70). */
   'kui-method-color-text-options': #52596e;
+  /* Strong text color for the OPTIONS method (gray.80). */
+  'kui-method-color-text-options-strong': #3a3f51;
   /* Text color for the PATCH method (aqua.60). */
   'kui-method-color-text-patch': #00819d;
+  /* Strong text color for the PATCH method (aqua.70). */
+  'kui-method-color-text-patch-strong': #00647a;
   /* Text color for the POST method (green.60). */
   'kui-method-color-text-post': #007d60;
+  /* Strong text color for the POST method (green.70). */
+  'kui-method-color-text-post-strong': #005944;
   /* Text color for the PUT method (yellow.60). */
   'kui-method-color-text-put': #995c00;
+  /* Strong text color for the PUT method (yellow.70). */
+  'kui-method-color-text-put-strong': #804400;
   /* Text color for the TRACE method (pink.60). */
   'kui-method-color-text-trace': #d60067;
+  /* Strong text color for the TRACE method (pink.70). */
+  'kui-method-color-text-trace-strong': #ad0053;
   /* The standard monospace font family. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
   /* The standard text font family. */
@@ -778,6 +826,8 @@ $tokens-map: (
 @kui-color-text: #000933;
 /* Text color for danger actions or messages (red.60). */
 @kui-color-text-danger: #d60027;
+/* Strong text color for danger actions or messages (red.70). */
+@kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
 @kui-color-text-decorative: #00abd2;
 /* Text color for disabled elements (gray.50). */
@@ -804,8 +854,12 @@ $tokens-map: (
 @kui-color-text-primary-strongest: #001466;
 /* Text color for success actions or messages (green.60). */
 @kui-color-text-success: #007d60;
+/* Strong text color for success actions or messages (green.70). */
+@kui-color-text-success-strong: #005944;
 /* Text color for warning actions or messages (yellow.60). */
 @kui-color-text-warning: #995c00;
+/* Text color for warning actions or messages (yellow.70). */
+@kui-color-text-warning-strong: #804400;
 /* Default transition timing */
 @kui-animation-duration-20: 0.2s;
 /* 0px border radius. */
@@ -876,22 +930,40 @@ $tokens-map: (
 @kui-method-color-background-trace: #fff0f7;
 /* Text color for the CONNECT method (purple.60). */
 @kui-method-color-text-connect: #6f28ff;
+/* Strong text color for the CONNECT method (purple.70). */
+@kui-method-color-text-connect-strong: #5e00f5;
 /* Text color for the DELETE method (red.60). */
 @kui-method-color-text-delete: #d60027;
+/* Strong text color for the DELETE method (red.70). */
+@kui-method-color-text-delete-strong: #ad000e;
 /* Text color for the GET method (blue.60). */
 @kui-method-color-text-get: #0044f4;
+/* Strong text color for the GET method (blue.70). */
+@kui-method-color-text-get-strong: #0030cc;
 /* Text color for the HEAD method (gray.20). */
 @kui-method-color-text-head: #e0e4ea;
+/* Strong text color for the HEAD method (gray.40). */
+@kui-method-color-text-head-strong: #afb7c5;
 /* Text color for the OPTIONS method (gray.70). */
 @kui-method-color-text-options: #52596e;
+/* Strong text color for the OPTIONS method (gray.80). */
+@kui-method-color-text-options-strong: #3a3f51;
 /* Text color for the PATCH method (aqua.60). */
 @kui-method-color-text-patch: #00819d;
+/* Strong text color for the PATCH method (aqua.70). */
+@kui-method-color-text-patch-strong: #00647a;
 /* Text color for the POST method (green.60). */
 @kui-method-color-text-post: #007d60;
+/* Strong text color for the POST method (green.70). */
+@kui-method-color-text-post-strong: #005944;
 /* Text color for the PUT method (yellow.60). */
 @kui-method-color-text-put: #995c00;
+/* Strong text color for the PUT method (yellow.70). */
+@kui-method-color-text-put-strong: #804400;
 /* Text color for the TRACE method (pink.60). */
 @kui-method-color-text-trace: #d60067;
+/* Strong text color for the TRACE method (pink.70). */
+@kui-method-color-text-trace-strong: #ad0053;
 /* The standard monospace font family. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard text font family. */
@@ -1111,6 +1183,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text: #000933;
 /* Text color for danger actions or messages (red.60). */
 --kui-color-text-danger: #d60027;
+/* Strong text color for danger actions or messages (red.70). */
+--kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
 --kui-color-text-decorative: #00abd2;
 /* Text color for disabled elements (gray.50). */
@@ -1137,8 +1211,12 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-primary-strongest: #001466;
 /* Text color for success actions or messages (green.60). */
 --kui-color-text-success: #007d60;
+/* Strong text color for success actions or messages (green.70). */
+--kui-color-text-success-strong: #005944;
 /* Text color for warning actions or messages (yellow.60). */
 --kui-color-text-warning: #995c00;
+/* Text color for warning actions or messages (yellow.70). */
+--kui-color-text-warning-strong: #804400;
 /* Default transition timing */
 --kui-animation-duration-20: 0.2s;
 /* 0px border radius. */
@@ -1209,22 +1287,40 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-background-trace: #fff0f7;
 /* Text color for the CONNECT method (purple.60). */
 --kui-method-color-text-connect: #6f28ff;
+/* Strong text color for the CONNECT method (purple.70). */
+--kui-method-color-text-connect-strong: #5e00f5;
 /* Text color for the DELETE method (red.60). */
 --kui-method-color-text-delete: #d60027;
+/* Strong text color for the DELETE method (red.70). */
+--kui-method-color-text-delete-strong: #ad000e;
 /* Text color for the GET method (blue.60). */
 --kui-method-color-text-get: #0044f4;
+/* Strong text color for the GET method (blue.70). */
+--kui-method-color-text-get-strong: #0030cc;
 /* Text color for the HEAD method (gray.20). */
 --kui-method-color-text-head: #e0e4ea;
+/* Strong text color for the HEAD method (gray.40). */
+--kui-method-color-text-head-strong: #afb7c5;
 /* Text color for the OPTIONS method (gray.70). */
 --kui-method-color-text-options: #52596e;
+/* Strong text color for the OPTIONS method (gray.80). */
+--kui-method-color-text-options-strong: #3a3f51;
 /* Text color for the PATCH method (aqua.60). */
 --kui-method-color-text-patch: #00819d;
+/* Strong text color for the PATCH method (aqua.70). */
+--kui-method-color-text-patch-strong: #00647a;
 /* Text color for the POST method (green.60). */
 --kui-method-color-text-post: #007d60;
+/* Strong text color for the POST method (green.70). */
+--kui-method-color-text-post-strong: #005944;
 /* Text color for the PUT method (yellow.60). */
 --kui-method-color-text-put: #995c00;
+/* Strong text color for the PUT method (yellow.70). */
+--kui-method-color-text-put-strong: #804400;
 /* Text color for the TRACE method (pink.60). */
 --kui-method-color-text-trace: #d60067;
+/* Strong text color for the TRACE method (pink.70). */
+--kui-method-color-text-trace-strong: #ad0053;
 /* The standard monospace font family. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard text font family. */
@@ -1442,6 +1538,8 @@ export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)";
 export const KUI_COLOR_TEXT = "#000933";
 /* Text color for danger actions or messages (red.60). */
 export const KUI_COLOR_TEXT_DANGER = "#d60027";
+/* Strong text color for danger actions or messages (red.70). */
+export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
 /* Text color for decorative purposes (aqua.50). */
 export const KUI_COLOR_TEXT_DECORATIVE = "#00abd2";
 /* Text color for disabled elements (gray.50). */
@@ -1468,8 +1566,12 @@ export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#002099";
 export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#001466";
 /* Text color for success actions or messages (green.60). */
 export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
+/* Strong text color for success actions or messages (green.70). */
+export const KUI_COLOR_TEXT_SUCCESS_STRONG = "#005944";
 /* Text color for warning actions or messages (yellow.60). */
 export const KUI_COLOR_TEXT_WARNING = "#995c00";
+/* Text color for warning actions or messages (yellow.70). */
+export const KUI_COLOR_TEXT_WARNING_STRONG = "#804400";
 /* Default transition timing */
 export const KUI_ANIMATION_DURATION_20 = "0.2s";
 /* 0px border radius. */
@@ -1540,22 +1642,40 @@ export const KUI_METHOD_COLOR_BACKGROUND_PUT = "#fffce0";
 export const KUI_METHOD_COLOR_BACKGROUND_TRACE = "#fff0f7";
 /* Text color for the CONNECT method (purple.60). */
 export const KUI_METHOD_COLOR_TEXT_CONNECT = "#6f28ff";
+/* Strong text color for the CONNECT method (purple.70). */
+export const KUI_METHOD_COLOR_TEXT_CONNECT_STRONG = "#5e00f5";
 /* Text color for the DELETE method (red.60). */
 export const KUI_METHOD_COLOR_TEXT_DELETE = "#d60027";
+/* Strong text color for the DELETE method (red.70). */
+export const KUI_METHOD_COLOR_TEXT_DELETE_STRONG = "#ad000e";
 /* Text color for the GET method (blue.60). */
 export const KUI_METHOD_COLOR_TEXT_GET = "#0044f4";
+/* Strong text color for the GET method (blue.70). */
+export const KUI_METHOD_COLOR_TEXT_GET_STRONG = "#0030cc";
 /* Text color for the HEAD method (gray.20). */
 export const KUI_METHOD_COLOR_TEXT_HEAD = "#e0e4ea";
+/* Strong text color for the HEAD method (gray.40). */
+export const KUI_METHOD_COLOR_TEXT_HEAD_STRONG = "#afb7c5";
 /* Text color for the OPTIONS method (gray.70). */
 export const KUI_METHOD_COLOR_TEXT_OPTIONS = "#52596e";
+/* Strong text color for the OPTIONS method (gray.80). */
+export const KUI_METHOD_COLOR_TEXT_OPTIONS_STRONG = "#3a3f51";
 /* Text color for the PATCH method (aqua.60). */
 export const KUI_METHOD_COLOR_TEXT_PATCH = "#00819d";
+/* Strong text color for the PATCH method (aqua.70). */
+export const KUI_METHOD_COLOR_TEXT_PATCH_STRONG = "#00647a";
 /* Text color for the POST method (green.60). */
 export const KUI_METHOD_COLOR_TEXT_POST = "#007d60";
+/* Strong text color for the POST method (green.70). */
+export const KUI_METHOD_COLOR_TEXT_POST_STRONG = "#005944";
 /* Text color for the PUT method (yellow.60). */
 export const KUI_METHOD_COLOR_TEXT_PUT = "#995c00";
+/* Strong text color for the PUT method (yellow.70). */
+export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = "#804400";
 /* Text color for the TRACE method (pink.60). */
 export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
+/* Strong text color for the TRACE method (pink.70). */
+export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
 /* The standard monospace font family. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
 /* The standard text font family. */
@@ -1724,6 +1844,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_transparent": "rgba(0, 0, 0, 0)",
   "kui_color_text": "#000933",
   "kui_color_text_danger": "#d60027",
+  "kui_color_text_danger_strong": "#ad000e",
   "kui_color_text_decorative": "#00abd2",
   "kui_color_text_disabled": "#828a9e",
   "kui_color_text_inverse": "#ffffff",
@@ -1737,7 +1858,9 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_primary_stronger": "#002099",
   "kui_color_text_primary_strongest": "#001466",
   "kui_color_text_success": "#007d60",
+  "kui_color_text_success_strong": "#005944",
   "kui_color_text_warning": "#995c00",
+  "kui_color_text_warning_strong": "#804400",
   "kui_animation_duration_20": "0.2s",
   "kui_border_radius_0": "0px",
   "kui_border_radius_10": "2px",
@@ -1773,14 +1896,23 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_method_color_background_put": "#fffce0",
   "kui_method_color_background_trace": "#fff0f7",
   "kui_method_color_text_connect": "#6f28ff",
+  "kui_method_color_text_connect_strong": "#5e00f5",
   "kui_method_color_text_delete": "#d60027",
+  "kui_method_color_text_delete_strong": "#ad000e",
   "kui_method_color_text_get": "#0044f4",
+  "kui_method_color_text_get_strong": "#0030cc",
   "kui_method_color_text_head": "#e0e4ea",
+  "kui_method_color_text_head_strong": "#afb7c5",
   "kui_method_color_text_options": "#52596e",
+  "kui_method_color_text_options_strong": "#3a3f51",
   "kui_method_color_text_patch": "#00819d",
+  "kui_method_color_text_patch_strong": "#00647a",
   "kui_method_color_text_post": "#007d60",
+  "kui_method_color_text_post_strong": "#005944",
   "kui_method_color_text_put": "#995c00",
+  "kui_method_color_text_put_strong": "#804400",
   "kui_method_color_text_trace": "#d60067",
+  "kui_method_color_text_trace_strong": "#ad0053",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
   "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_size_10": "10px",
