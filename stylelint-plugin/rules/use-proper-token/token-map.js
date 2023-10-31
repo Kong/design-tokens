@@ -45,7 +45,7 @@ const PROPERTY_TOKEN_MAP = {
   height: ['icon-size'],
   inset: [],
   left: [],
-  'letter-spacing': [],
+  'letter-spacing': ['letter-spacing'],
   'line-height': ['line-height'],
   margin: ['space'],
   'margin-bottom': ['space'],
