@@ -1,3 +1,10 @@
+## [1.11.9](https://github.com/Kong/design-tokens/compare/v1.11.8...v1.11.9) (2023-11-02)
+
+
+### Bug Fixes
+
+* **colors:** add decorative tokens ([#144](https://github.com/Kong/design-tokens/issues/144)) ([4b295e2](https://github.com/Kong/design-tokens/commit/4b295e20a9be79aea77822bc9b8068a0bee79497))
+
 ## [1.11.8](https://github.com/Kong/design-tokens/compare/v1.11.7...v1.11.8) (2023-10-31)
 
 

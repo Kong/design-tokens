@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Tue, 31 Oct 2023 19:21:14 GMT
+ * Generated on Thu, 02 Nov 2023 16:06:42 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -36,6 +36,8 @@ $kui-color-background-danger-weak: #ff3954;
 $kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 $kui-color-background-danger-weakest: #ffe5e5;
+/* Weakest background color for decorative purposes (purple.10). */
+$kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
 $kui-color-background-disabled: #e0e4ea;
 /* Inverse background color for containers (blue.100) */
@@ -91,7 +93,7 @@ $kui-color-border-danger-weaker: #ffabab;
 /* Weakest border color for danger actions or messages (red.10). */
 $kui-color-border-danger-weakest: #ffe5e5;
 /* Border color for decorative purposes (purple.60). */
-$kui-color-border-decorative: #6f28ff;
+$kui-color-border-decorative-purple: #6f28ff;
 /* Border color for disabled elements (gray.20). */
 $kui-color-border-disabled: #e0e4ea;
 /* Weak border color for neutral elements (gray.40) */
@@ -119,7 +121,9 @@ $kui-color-text-danger: #d60027;
 /* Strong text color for danger actions or messages (red.70). */
 $kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
-$kui-color-text-decorative: #00abd2;
+$kui-color-text-decorative-aqua: #00abd2;
+/* Text color for decorative purposes (purple.60). */
+$kui-color-text-decorative-purple: #6f28ff;
 /* Text color for disabled elements (gray.50). */
 $kui-color-text-disabled: #828a9e;
 /* Inverse text color (white). */
@@ -390,6 +394,8 @@ $tokens-map: (
   'kui-color-background-danger-weaker': #ffabab;
   /* Weakest background color for danger actions or messages (red.10). */
   'kui-color-background-danger-weakest': #ffe5e5;
+  /* Weakest background color for decorative purposes (purple.10). */
+  'kui-color-background-decorative-purple-weakest': #f1f0ff;
   /* Background color for disabled elements (gray.20). */
   'kui-color-background-disabled': #e0e4ea;
   /* Inverse background color for containers (blue.100) */
@@ -445,7 +451,7 @@ $tokens-map: (
   /* Weakest border color for danger actions or messages (red.10). */
   'kui-color-border-danger-weakest': #ffe5e5;
   /* Border color for decorative purposes (purple.60). */
-  'kui-color-border-decorative': #6f28ff;
+  'kui-color-border-decorative-purple': #6f28ff;
   /* Border color for disabled elements (gray.20). */
   'kui-color-border-disabled': #e0e4ea;
   /* Weak border color for neutral elements (gray.40) */
@@ -473,7 +479,9 @@ $tokens-map: (
   /* Strong text color for danger actions or messages (red.70). */
   'kui-color-text-danger-strong': #ad000e;
   /* Text color for decorative purposes (aqua.50). */
-  'kui-color-text-decorative': #00abd2;
+  'kui-color-text-decorative-aqua': #00abd2;
+  /* Text color for decorative purposes (purple.60). */
+  'kui-color-text-decorative-purple': #6f28ff;
   /* Text color for disabled elements (gray.50). */
   'kui-color-text-disabled': #828a9e;
   /* Inverse text color (white). */
@@ -746,6 +754,8 @@ $tokens-map: (
 @kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 @kui-color-background-danger-weakest: #ffe5e5;
+/* Weakest background color for decorative purposes (purple.10). */
+@kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
 @kui-color-background-disabled: #e0e4ea;
 /* Inverse background color for containers (blue.100) */
@@ -801,7 +811,7 @@ $tokens-map: (
 /* Weakest border color for danger actions or messages (red.10). */
 @kui-color-border-danger-weakest: #ffe5e5;
 /* Border color for decorative purposes (purple.60). */
-@kui-color-border-decorative: #6f28ff;
+@kui-color-border-decorative-purple: #6f28ff;
 /* Border color for disabled elements (gray.20). */
 @kui-color-border-disabled: #e0e4ea;
 /* Weak border color for neutral elements (gray.40) */
@@ -829,7 +839,9 @@ $tokens-map: (
 /* Strong text color for danger actions or messages (red.70). */
 @kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
-@kui-color-text-decorative: #00abd2;
+@kui-color-text-decorative-aqua: #00abd2;
+/* Text color for decorative purposes (purple.60). */
+@kui-color-text-decorative-purple: #6f28ff;
 /* Text color for disabled elements (gray.50). */
 @kui-color-text-disabled: #828a9e;
 /* Inverse text color (white). */
@@ -1103,6 +1115,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 --kui-color-background-danger-weakest: #ffe5e5;
+/* Weakest background color for decorative purposes (purple.10). */
+--kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
 --kui-color-background-disabled: #e0e4ea;
 /* Inverse background color for containers (blue.100) */
@@ -1158,7 +1172,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Weakest border color for danger actions or messages (red.10). */
 --kui-color-border-danger-weakest: #ffe5e5;
 /* Border color for decorative purposes (purple.60). */
---kui-color-border-decorative: #6f28ff;
+--kui-color-border-decorative-purple: #6f28ff;
 /* Border color for disabled elements (gray.20). */
 --kui-color-border-disabled: #e0e4ea;
 /* Weak border color for neutral elements (gray.40) */
@@ -1186,7 +1200,9 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Strong text color for danger actions or messages (red.70). */
 --kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
---kui-color-text-decorative: #00abd2;
+--kui-color-text-decorative-aqua: #00abd2;
+/* Text color for decorative purposes (purple.60). */
+--kui-color-text-decorative-purple: #6f28ff;
 /* Text color for disabled elements (gray.50). */
 --kui-color-text-disabled: #828a9e;
 /* Inverse text color (white). */
@@ -1458,6 +1474,8 @@ export const KUI_COLOR_BACKGROUND_DANGER_WEAK = "#ff3954";
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKER = "#ffabab";
 /* Weakest background color for danger actions or messages (red.10). */
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKEST = "#ffe5e5";
+/* Weakest background color for decorative purposes (purple.10). */
+export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE_WEAKEST = "#f1f0ff";
 /* Background color for disabled elements (gray.20). */
 export const KUI_COLOR_BACKGROUND_DISABLED = "#e0e4ea";
 /* Inverse background color for containers (blue.100) */
@@ -1513,7 +1531,7 @@ export const KUI_COLOR_BORDER_DANGER_WEAKER = "#ffabab";
 /* Weakest border color for danger actions or messages (red.10). */
 export const KUI_COLOR_BORDER_DANGER_WEAKEST = "#ffe5e5";
 /* Border color for decorative purposes (purple.60). */
-export const KUI_COLOR_BORDER_DECORATIVE = "#6f28ff";
+export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = "#6f28ff";
 /* Border color for disabled elements (gray.20). */
 export const KUI_COLOR_BORDER_DISABLED = "#e0e4ea";
 /* Weak border color for neutral elements (gray.40) */
@@ -1541,7 +1559,9 @@ export const KUI_COLOR_TEXT_DANGER = "#d60027";
 /* Strong text color for danger actions or messages (red.70). */
 export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
 /* Text color for decorative purposes (aqua.50). */
-export const KUI_COLOR_TEXT_DECORATIVE = "#00abd2";
+export const KUI_COLOR_TEXT_DECORATIVE_AQUA = "#00abd2";
+/* Text color for decorative purposes (purple.60). */
+export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = "#6f28ff";
 /* Text color for disabled elements (gray.50). */
 export const KUI_COLOR_TEXT_DISABLED = "#828a9e";
 /* Inverse text color (white). */
@@ -1804,6 +1824,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_danger_weak": "#ff3954",
   "kui_color_background_danger_weaker": "#ffabab",
   "kui_color_background_danger_weakest": "#ffe5e5",
+  "kui_color_background_decorative_purple_weakest": "#f1f0ff",
   "kui_color_background_disabled": "#e0e4ea",
   "kui_color_background_inverse": "#000933",
   "kui_color_background_neutral": "#6c7489",
@@ -1831,7 +1852,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_danger_weak": "#ff3954",
   "kui_color_border_danger_weaker": "#ffabab",
   "kui_color_border_danger_weakest": "#ffe5e5",
-  "kui_color_border_decorative": "#6f28ff",
+  "kui_color_border_decorative_purple": "#6f28ff",
   "kui_color_border_disabled": "#e0e4ea",
   "kui_color_border_neutral_weak": "#afb7c5",
   "kui_color_border_primary": "#0044f4",
@@ -1845,7 +1866,8 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text": "#000933",
   "kui_color_text_danger": "#d60027",
   "kui_color_text_danger_strong": "#ad000e",
-  "kui_color_text_decorative": "#00abd2",
+  "kui_color_text_decorative_aqua": "#00abd2",
+  "kui_color_text_decorative_purple": "#6f28ff",
   "kui_color_text_disabled": "#828a9e",
   "kui_color_text_inverse": "#ffffff",
   "kui_color_text_neutral": "#6c7489",
