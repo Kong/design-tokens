@@ -36,10 +36,6 @@
         }
       },
       "decorative": {
-        "_": {
-          "comment": "This token has been deprecated and will be removed soon. Please use the `purple` token instead.",
-          "value": "{color.alias.purple.60}"
-        },
         "purple": {
           "comment": "Border color for decorative purposes (purple.60).",
           "value": "{color.alias.purple.60}"
