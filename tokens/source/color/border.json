@@ -36,8 +36,10 @@
         }
       },
       "decorative": {
-        "comment": "Border color for decorative purposes (purple.60).",
-        "value": "{color.alias.purple.60}"
+        "purple": {
+          "comment": "Border color for decorative purposes (purple.60).",
+          "value": "{color.alias.purple.60}"
+        }
       },
       "disabled": {
         "comment": "Border color for disabled elements (gray.20).",
