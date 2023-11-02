@@ -16,8 +16,18 @@
         }
       },
       "decorative": {
-        "comment": "Text color for decorative purposes (aqua.50).",
-        "value": "{color.alias.aqua.50}"
+        "_": {
+          "comment": "This token has been deprecated and will be removed soon. Please use the `aqua` token instead.",
+          "value": "{color.alias.aqua.50}"
+        },
+        "aqua": {
+          "comment": "Text color for decorative purposes (aqua.50).",
+          "value": "{color.alias.aqua.50}"
+        },
+        "purple": {
+          "comment": "Text color for decorative purposes (purple.60).",
+          "value": "{color.alias.purple.60}"
+        }
       },
       "disabled": {
         "comment": "Text color for disabled elements (gray.50).",
