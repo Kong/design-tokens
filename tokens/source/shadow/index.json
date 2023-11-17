@@ -5,36 +5,72 @@
       "value": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)"
     },
     "border": {
-      "_": {
-        "comment": "0px 0px 0px 1px gray.20 inset",
-        "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
-      },
-      "danger": {
+      "10": {
         "_": {
-          "comment": "0px 0px 0px 1px red.60 inset",
-          "value": "0px 0px 0px 1px {color.alias.red.60} inset"
+          "comment": "0px 0px 0px 1px gray.20 inset",
+          "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
         },
-        "strong": {
-          "comment": "0px 0px 0px 1px red.70 inset",
-          "value": "0px 0px 0px 1px {color.alias.red.70} inset"
+        "danger": {
+          "_": {
+            "comment": "0px 0px 0px 1px red.60 inset",
+            "value": "0px 0px 0px 1px {color.alias.red.60} inset"
+          },
+          "strong": {
+            "comment": "0px 0px 0px 1px red.70 inset",
+            "value": "0px 0px 0px 1px {color.alias.red.70} inset"
+          }
+        },
+        "disabled": {
+          "comment": "0px 0px 0px 1px gray.20 inset",
+          "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
+        },
+        "primary": {
+          "_": {
+            "comment": "0px 0px 0px 1px blue.60 inset",
+            "value": "0px 0px 0px 1px {color.alias.blue.60} inset"
+          },
+          "strongest": {
+            "comment": "0px 0px 0px 1px blue.90 inset",
+            "value": "0px 0px 0px 1px {color.alias.blue.90} inset"
+          },
+          "weak": {
+            "comment": "0px 0px 0px 1px blue.40 inset",
+            "value": "0px 0px 0px 1px {color.alias.blue.40} inset"
+          }
         }
       },
-      "disabled": {
-        "comment": "0px 0px 0px 1px gray.20 inset",
-        "value": "0px 0px 0px 1px {color.alias.gray.20} inset"
-      },
-      "primary": {
-        "_": {
-          "comment": "0px 0px 0px 1px blue.60 inset",
-          "value": "0px 0px 0px 1px {color.alias.blue.60} inset"
+      "20": {
+        "danger": {
+          "_": {
+            "comment": "0px 0px 0px 2px red.60 inset",
+            "value": "0px 0px 0px 2px {color.alias.red.60} inset"
+          },
+          "strong": {
+            "comment": "0px 0px 0px 2px red.70 inset",
+            "value": "0px 0px 0px 2px {color.alias.red.70} inset"
+          }
         },
-        "strongest": {
-          "comment": "0px 0px 0px 1px blue.90 inset",
-          "value": "0px 0px 0px 1px {color.alias.blue.90} inset"
+        "disabled": {
+          "comment": "0px 0px 0px 2px gray.20 inset",
+          "value": "0px 0px 0px 2px {color.alias.gray.20} inset"
         },
-        "weak": {
-          "comment": "0px 0px 0px 1px blue.40 inset",
-          "value": "0px 0px 0px 1px {color.alias.blue.40} inset"
+        "primary": {
+          "_": {
+            "comment": "0px 0px 0px 2px blue.60 inset",
+            "value": "0px 0px 0px 2px {color.alias.blue.60} inset"
+          },
+          "strong": {
+            "comment": "0px 0px 0px 2px blue.80 inset",
+            "value": "0px 0px 0px 2px {color.alias.blue.80} inset"
+          },
+          "stronger": {
+            "comment": "0px 0px 0px 2px blue.90 inset",
+            "value": "0px 0px 0px 2px {color.alias.blue.90} inset"
+          },
+          "strongest": {
+            "comment": "0px 0px 0px 2px blue.90 inset",
+            "value": "0px 0px 0px 2px {color.alias.blue.90} inset"
+          }
         }
       }
     },
