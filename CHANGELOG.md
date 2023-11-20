@@ -1,3 +1,10 @@
+## [1.11.10](https://github.com/Kong/design-tokens/compare/v1.11.9...v1.11.10) (2023-11-20)
+
+
+### Bug Fixes
+
+* **stylelint-plugin:** add box-shadow property token rule ([#159](https://github.com/Kong/design-tokens/issues/159)) ([0a728a5](https://github.com/Kong/design-tokens/commit/0a728a54da7f645acd7e311af459b11f2dca6366))
+
 ## [1.11.9](https://github.com/Kong/design-tokens/compare/v1.11.8...v1.11.9) (2023-11-02)
 
 
