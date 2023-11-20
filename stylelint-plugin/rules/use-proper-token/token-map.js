@@ -33,6 +33,7 @@ const PROPERTY_TOKEN_MAP = {
   'border-top-width': ['border-width'],
   'border-width': ['border-width'],
   bottom: [],
+  'box-shadow': ['border-width', 'color-border', 'shadow'],
   color: ['color-text', 'method-color-text'],
   'column-gap': ['space'],
   'column-width': [],
