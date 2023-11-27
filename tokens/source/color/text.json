@@ -21,8 +21,14 @@
           "value": "{color.alias.aqua.50}"
         },
         "purple": {
-          "comment": "Text color for decorative purposes (purple.60).",
-          "value": "{color.alias.purple.60}"
+          "_": {
+            "comment": "Text color for decorative purposes (purple.60).",
+            "value": "{color.alias.purple.60}"
+          },
+          "strong": {
+            "comment": "Strong text color for decorative purposes (purple.70).",
+            "value": "{color.alias.purple.70}"
+          }
         }
       },
       "disabled": {
