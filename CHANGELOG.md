@@ -1,3 +1,10 @@
+## [1.11.11](https://github.com/Kong/design-tokens/compare/v1.11.10...v1.11.11) (2023-11-27)
+
+
+### Bug Fixes
+
+* **color-text:** add decorative-purple-strong token ([#167](https://github.com/Kong/design-tokens/issues/167)) ([cbd449c](https://github.com/Kong/design-tokens/commit/cbd449c62c251ea021adc8320aa3f9e27d8366f3))
+
 ## [1.11.10](https://github.com/Kong/design-tokens/compare/v1.11.9...v1.11.10) (2023-11-20)
 
 

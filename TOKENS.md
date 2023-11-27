@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 20 Nov 2023 15:11:49 GMT
+ * Generated on Mon, 27 Nov 2023 21:54:22 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -124,6 +124,8 @@ $kui-color-text-danger-strong: #ad000e;
 $kui-color-text-decorative-aqua: #00abd2;
 /* Text color for decorative purposes (purple.60). */
 $kui-color-text-decorative-purple: #6f28ff;
+/* Strong text color for decorative purposes (purple.70). */
+$kui-color-text-decorative-purple-strong: #5e00f5;
 /* Text color for disabled elements (gray.50). */
 $kui-color-text-disabled: #828a9e;
 /* Inverse text color (white). */
@@ -482,6 +484,8 @@ $tokens-map: (
   'kui-color-text-decorative-aqua': #00abd2;
   /* Text color for decorative purposes (purple.60). */
   'kui-color-text-decorative-purple': #6f28ff;
+  /* Strong text color for decorative purposes (purple.70). */
+  'kui-color-text-decorative-purple-strong': #5e00f5;
   /* Text color for disabled elements (gray.50). */
   'kui-color-text-disabled': #828a9e;
   /* Inverse text color (white). */
@@ -842,6 +846,8 @@ $tokens-map: (
 @kui-color-text-decorative-aqua: #00abd2;
 /* Text color for decorative purposes (purple.60). */
 @kui-color-text-decorative-purple: #6f28ff;
+/* Strong text color for decorative purposes (purple.70). */
+@kui-color-text-decorative-purple-strong: #5e00f5;
 /* Text color for disabled elements (gray.50). */
 @kui-color-text-disabled: #828a9e;
 /* Inverse text color (white). */
@@ -1203,6 +1209,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-decorative-aqua: #00abd2;
 /* Text color for decorative purposes (purple.60). */
 --kui-color-text-decorative-purple: #6f28ff;
+/* Strong text color for decorative purposes (purple.70). */
+--kui-color-text-decorative-purple-strong: #5e00f5;
 /* Text color for disabled elements (gray.50). */
 --kui-color-text-disabled: #828a9e;
 /* Inverse text color (white). */
@@ -1562,6 +1570,8 @@ export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
 export const KUI_COLOR_TEXT_DECORATIVE_AQUA = "#00abd2";
 /* Text color for decorative purposes (purple.60). */
 export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = "#6f28ff";
+/* Strong text color for decorative purposes (purple.70). */
+export const KUI_COLOR_TEXT_DECORATIVE_PURPLE_STRONG = "#5e00f5";
 /* Text color for disabled elements (gray.50). */
 export const KUI_COLOR_TEXT_DISABLED = "#828a9e";
 /* Inverse text color (white). */
@@ -1868,6 +1878,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_danger_strong": "#ad000e",
   "kui_color_text_decorative_aqua": "#00abd2",
   "kui_color_text_decorative_purple": "#6f28ff",
+  "kui_color_text_decorative_purple_strong": "#5e00f5",
   "kui_color_text_disabled": "#828a9e",
   "kui_color_text_inverse": "#ffffff",
   "kui_color_text_neutral": "#6c7489",
