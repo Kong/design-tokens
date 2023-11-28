@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 27 Nov 2023 21:54:22 GMT
+ * Generated on Tue, 28 Nov 2023 17:26:56 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -36,6 +36,8 @@ $kui-color-background-danger-weak: #ff3954;
 $kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 $kui-color-background-danger-weakest: #ffe5e5;
+/* Background color for decorative purposes (purple.60). */
+$kui-color-background-decorative-purple: #6f28ff;
 /* Weakest background color for decorative purposes (purple.10). */
 $kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
@@ -168,6 +170,8 @@ $kui-border-radius-20: 4px;
 $kui-border-radius-30: 6px;
 /* 8px border radius. */
 $kui-border-radius-40: 8px;
+/* 10px border radius. */
+$kui-border-radius-50: 10px;
 /* 50% border radius used to create circles. */
 $kui-border-radius-circle: 50%;
 /* 100px border radius used to create pill shapes. */
@@ -396,6 +400,8 @@ $tokens-map: (
   'kui-color-background-danger-weaker': #ffabab;
   /* Weakest background color for danger actions or messages (red.10). */
   'kui-color-background-danger-weakest': #ffe5e5;
+  /* Background color for decorative purposes (purple.60). */
+  'kui-color-background-decorative-purple': #6f28ff;
   /* Weakest background color for decorative purposes (purple.10). */
   'kui-color-background-decorative-purple-weakest': #f1f0ff;
   /* Background color for disabled elements (gray.20). */
@@ -528,6 +534,8 @@ $tokens-map: (
   'kui-border-radius-30': 6px;
   /* 8px border radius. */
   'kui-border-radius-40': 8px;
+  /* 10px border radius. */
+  'kui-border-radius-50': 10px;
   /* 50% border radius used to create circles. */
   'kui-border-radius-circle': 50%;
   /* 100px border radius used to create pill shapes. */
@@ -758,6 +766,8 @@ $tokens-map: (
 @kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 @kui-color-background-danger-weakest: #ffe5e5;
+/* Background color for decorative purposes (purple.60). */
+@kui-color-background-decorative-purple: #6f28ff;
 /* Weakest background color for decorative purposes (purple.10). */
 @kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
@@ -890,6 +900,8 @@ $tokens-map: (
 @kui-border-radius-30: 6px;
 /* 8px border radius. */
 @kui-border-radius-40: 8px;
+/* 10px border radius. */
+@kui-border-radius-50: 10px;
 /* 50% border radius used to create circles. */
 @kui-border-radius-circle: 50%;
 /* 100px border radius used to create pill shapes. */
@@ -1121,6 +1133,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 --kui-color-background-danger-weakest: #ffe5e5;
+/* Background color for decorative purposes (purple.60). */
+--kui-color-background-decorative-purple: #6f28ff;
 /* Weakest background color for decorative purposes (purple.10). */
 --kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
@@ -1253,6 +1267,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-border-radius-30: 6px;
 /* 8px border radius. */
 --kui-border-radius-40: 8px;
+/* 10px border radius. */
+--kui-border-radius-50: 10px;
 /* 50% border radius used to create circles. */
 --kui-border-radius-circle: 50%;
 /* 100px border radius used to create pill shapes. */
@@ -1482,6 +1498,8 @@ export const KUI_COLOR_BACKGROUND_DANGER_WEAK = "#ff3954";
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKER = "#ffabab";
 /* Weakest background color for danger actions or messages (red.10). */
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKEST = "#ffe5e5";
+/* Background color for decorative purposes (purple.60). */
+export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE = "#6f28ff";
 /* Weakest background color for decorative purposes (purple.10). */
 export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE_WEAKEST = "#f1f0ff";
 /* Background color for disabled elements (gray.20). */
@@ -1614,6 +1632,8 @@ export const KUI_BORDER_RADIUS_20 = "4px";
 export const KUI_BORDER_RADIUS_30 = "6px";
 /* 8px border radius. */
 export const KUI_BORDER_RADIUS_40 = "8px";
+/* 10px border radius. */
+export const KUI_BORDER_RADIUS_50 = "10px";
 /* 50% border radius used to create circles. */
 export const KUI_BORDER_RADIUS_CIRCLE = "50%";
 /* 100px border radius used to create pill shapes. */
@@ -1834,6 +1854,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_danger_weak": "#ff3954",
   "kui_color_background_danger_weaker": "#ffabab",
   "kui_color_background_danger_weakest": "#ffe5e5",
+  "kui_color_background_decorative_purple": "#6f28ff",
   "kui_color_background_decorative_purple_weakest": "#f1f0ff",
   "kui_color_background_disabled": "#e0e4ea",
   "kui_color_background_inverse": "#000933",
@@ -1900,6 +1921,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_border_radius_20": "4px",
   "kui_border_radius_30": "6px",
   "kui_border_radius_40": "8px",
+  "kui_border_radius_50": "10px",
   "kui_border_radius_circle": "50%",
   "kui_border_radius_round": "100px",
   "kui_border_width_0": "0px",

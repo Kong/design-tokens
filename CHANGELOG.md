@@ -1,3 +1,11 @@
+## [1.11.12](https://github.com/Kong/design-tokens/compare/v1.11.11...v1.11.12) (2023-11-28)
+
+
+### Bug Fixes
+
+* add new tokens ([#171](https://github.com/Kong/design-tokens/issues/171)) ([aefe768](https://github.com/Kong/design-tokens/commit/aefe7682507a3efd409a119a12bb092bf158708f))
+* **breakpoint:** allow breakpoint tokens in width props ([#170](https://github.com/Kong/design-tokens/issues/170)) ([8242fad](https://github.com/Kong/design-tokens/commit/8242fade3942503520d68c163a80379df4e6c836))
+
 ## [1.11.11](https://github.com/Kong/design-tokens/compare/v1.11.10...v1.11.11) (2023-11-27)
 
 
