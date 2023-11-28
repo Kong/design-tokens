@@ -21,6 +21,10 @@
         "comment": "8px border radius.",
         "value": "8px"
       },
+      "50": {
+        "comment": "10px border radius.",
+        "value": "10px"
+      },
       "circle": {
         "comment": "50% border radius used to create circles.",
         "value": "50%"
