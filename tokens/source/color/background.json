@@ -37,6 +37,10 @@
       },
       "decorative": {
         "purple": {
+          "_": {
+            "comment": "Background color for decorative purposes (purple.60).",
+            "value": "{color.alias.purple.60}"
+          },
           "weakest": {
             "comment": "Weakest background color for decorative purposes (purple.10).",
             "value": "{color.alias.purple.10}"
