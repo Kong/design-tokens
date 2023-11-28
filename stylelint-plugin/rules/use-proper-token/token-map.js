@@ -54,9 +54,9 @@ const PROPERTY_TOKEN_MAP = {
   'margin-right': ['space'],
   'margin-top': ['space'],
   'max-height': [],
-  'max-width': [],
+  'max-width': ['breakpoint'],
   'min-height': [],
-  'min-width': [],
+  'min-width': ['breakpoint'],
   outline: [],
   'outline-color': [],
   'outline-width': [],
@@ -70,7 +70,7 @@ const PROPERTY_TOKEN_MAP = {
   stroke: ['color-text', 'method-color-text'],
   'text-decoration-color': ['color-text', 'method-color-text'],
   top: [],
-  width: ['icon-size'],
+  width: ['icon-size', 'breakpoint'],
 }
 
 module.exports = PROPERTY_TOKEN_MAP
