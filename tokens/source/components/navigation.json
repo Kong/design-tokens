@@ -1,0 +1,64 @@
+{
+  "navigation": {
+    "color": {
+      "background": {
+        "_": {
+          "comment": "blue.100",
+          "value": "{color.alias.blue.100}"
+        },
+        "selected": {
+          "comment": "rgba(255, 255, 255, 0.12)",
+          "value": "rgba(255, 255, 255, 0.12)"
+        }
+      },
+      "border": {
+        "_": {
+          "comment": "rgba(255, 255, 255, 0.12)",
+          "value": "rgba(255, 255, 255, 0.12)"
+        },
+        "child": {
+          "comment": "green.30",
+          "value": "{color.alias.green.30}"
+        },
+        "divider": {
+          "comment": "rgba(255, 255, 255, 0.24)",
+          "value": "rgba(255, 255, 255, 0.24)"
+        }
+      },
+      "text": {
+        "_": {
+          "comment": "blue.20",
+          "value": "{color.alias.blue.20}"
+        },
+        "focus": {
+          "comment": "white",
+          "value": "{color.alias.white}"
+        },
+        "hover": {
+          "comment": "blue.10",
+          "value": "{color.alias.blue.10}"
+        },
+        "selected": {
+          "comment": "green.30",
+          "value": "{color.alias.green.30}"
+        }
+      }
+    },
+    "shadow": {
+      "border": {
+        "_": {
+          "comment": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
+          "value": "0 0 0 1px rgba(255, 255, 255, 0.12) inset"
+        },
+        "child": {
+          "comment": "4px 0 0 0 {color.alias.green.30} inset",
+          "value": "4px 0 0 0 {color.alias.green.30} inset"
+        }
+      },
+      "focus": {
+        "comment": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
+        "value": "0 0 0 1px rgba(255, 255, 255, 0.60) inset"
+      }
+    }
+  }
+}

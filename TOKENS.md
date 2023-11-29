@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Tue, 28 Nov 2023 17:26:56 GMT
+ * Generated on Wed, 29 Nov 2023 19:34:43 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -264,6 +264,30 @@ $kui-method-color-text-put-strong: #804400;
 $kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 $kui-method-color-text-trace-strong: #ad0053;
+/* blue.100 */
+$kui-navigation-color-background: #000933;
+/* rgba(255, 255, 255, 0.12) */
+$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+$kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* green.30 */
+$kui-navigation-color-border-child: #00fabe;
+/* rgba(255, 255, 255, 0.24) */
+$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* blue.20 */
+$kui-navigation-color-text: #bee2ff;
+/* white */
+$kui-navigation-color-text-focus: #ffffff;
+/* blue.10 */
+$kui-navigation-color-text-hover: #eefaff;
+/* green.30 */
+$kui-navigation-color-text-selected: #00fabe;
+/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* 4px 0 0 0 #00fabe inset */
+$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* The standard monospace font family. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard text font family. */
@@ -628,6 +652,30 @@ $tokens-map: (
   'kui-method-color-text-trace': #d60067;
   /* Strong text color for the TRACE method (pink.70). */
   'kui-method-color-text-trace-strong': #ad0053;
+  /* blue.100 */
+  'kui-navigation-color-background': #000933;
+  /* rgba(255, 255, 255, 0.12) */
+  'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12);
+  /* rgba(255, 255, 255, 0.12) */
+  'kui-navigation-color-border': rgba(255, 255, 255, 0.12);
+  /* green.30 */
+  'kui-navigation-color-border-child': #00fabe;
+  /* rgba(255, 255, 255, 0.24) */
+  'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24);
+  /* blue.20 */
+  'kui-navigation-color-text': #bee2ff;
+  /* white */
+  'kui-navigation-color-text-focus': #ffffff;
+  /* blue.10 */
+  'kui-navigation-color-text-hover': #eefaff;
+  /* green.30 */
+  'kui-navigation-color-text-selected': #00fabe;
+  /* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+  'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  /* 4px 0 0 0 #00fabe inset */
+  'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset;
+  /* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+  'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
   /* The standard monospace font family. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
   /* The standard text font family. */
@@ -994,6 +1042,30 @@ $tokens-map: (
 @kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 @kui-method-color-text-trace-strong: #ad0053;
+/* blue.100 */
+@kui-navigation-color-background: #000933;
+/* rgba(255, 255, 255, 0.12) */
+@kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+@kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* green.30 */
+@kui-navigation-color-border-child: #00fabe;
+/* rgba(255, 255, 255, 0.24) */
+@kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* blue.20 */
+@kui-navigation-color-text: #bee2ff;
+/* white */
+@kui-navigation-color-text-focus: #ffffff;
+/* blue.10 */
+@kui-navigation-color-text-hover: #eefaff;
+/* green.30 */
+@kui-navigation-color-text-selected: #00fabe;
+/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+@kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* 4px 0 0 0 #00fabe inset */
+@kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+@kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* The standard monospace font family. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard text font family. */
@@ -1361,6 +1433,30 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 --kui-method-color-text-trace-strong: #ad0053;
+/* blue.100 */
+--kui-navigation-color-background: #000933;
+/* rgba(255, 255, 255, 0.12) */
+--kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+--kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* green.30 */
+--kui-navigation-color-border-child: #00fabe;
+/* rgba(255, 255, 255, 0.24) */
+--kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* blue.20 */
+--kui-navigation-color-text: #bee2ff;
+/* white */
+--kui-navigation-color-text-focus: #ffffff;
+/* blue.10 */
+--kui-navigation-color-text-hover: #eefaff;
+/* green.30 */
+--kui-navigation-color-text-selected: #00fabe;
+/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+--kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* 4px 0 0 0 #00fabe inset */
+--kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+--kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* The standard monospace font family. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard text font family. */
@@ -1726,6 +1822,30 @@ export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = "#804400";
 export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
 /* Strong text color for the TRACE method (pink.70). */
 export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
+/* blue.100 */
+export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
+/* rgba(255, 255, 255, 0.12) */
+export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
+/* rgba(255, 255, 255, 0.12) */
+export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
+/* green.30 */
+export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
+/* rgba(255, 255, 255, 0.24) */
+export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
+/* blue.20 */
+export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
+/* white */
+export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
+/* blue.10 */
+export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
+/* green.30 */
+export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
+/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
+/* 4px 0 0 0 #00fabe inset */
+export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
+/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
 /* The standard monospace font family. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
 /* The standard text font family. */
@@ -1968,6 +2088,18 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_method_color_text_put_strong": "#804400",
   "kui_method_color_text_trace": "#d60067",
   "kui_method_color_text_trace_strong": "#ad0053",
+  "kui_navigation_color_background": "#000933",
+  "kui_navigation_color_background_selected": "rgba(255, 255, 255, 0.12)",
+  "kui_navigation_color_border": "rgba(255, 255, 255, 0.12)",
+  "kui_navigation_color_border_child": "#00fabe",
+  "kui_navigation_color_border_divider": "rgba(255, 255, 255, 0.24)",
+  "kui_navigation_color_text": "#bee2ff",
+  "kui_navigation_color_text_focus": "#ffffff",
+  "kui_navigation_color_text_hover": "#eefaff",
+  "kui_navigation_color_text_selected": "#00fabe",
+  "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
+  "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
+  "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
   "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_size_10": "10px",
