@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/Kong/design-tokens/compare/v1.11.12...v1.12.0) (2023-11-29)
+
+
+### Features
+
+* **navigation:** add tokens [KHCP-9385] ([#172](https://github.com/Kong/design-tokens/issues/172)) ([cb1f550](https://github.com/Kong/design-tokens/commit/cb1f5508af82c968112aefb69e76bbe32e799ff2))
+
 ## [1.11.12](https://github.com/Kong/design-tokens/compare/v1.11.11...v1.11.12) (2023-11-28)
 
 

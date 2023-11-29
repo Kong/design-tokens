@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 29 Nov 2023 19:34:43 GMT
+ * Generated on Wed, 29 Nov 2023 21:27:35 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -266,27 +266,27 @@ $kui-method-color-text-trace: #d60067;
 $kui-method-color-text-trace-strong: #ad0053;
 /* blue.100 */
 $kui-navigation-color-background: #000933;
-/* rgba(255, 255, 255, 0.12) */
+/* The background color of a selected navigation item. */
 $kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
 /* rgba(255, 255, 255, 0.12) */
 $kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* green.30 */
+/* The border color for a selected child navigation item. */
 $kui-navigation-color-border-child: #00fabe;
-/* rgba(255, 255, 255, 0.24) */
+/* The color of the navigation section divider. */
 $kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* blue.20 */
+/* Navigation link and icon color. */
 $kui-navigation-color-text: #bee2ff;
-/* white */
+/* Navigation link and icon focus-visible color. */
 $kui-navigation-color-text-focus: #ffffff;
-/* blue.10 */
+/* Navigation link and icon hover color. */
 $kui-navigation-color-text-hover: #eefaff;
-/* green.30 */
+/* Navigation link and icon selected color. */
 $kui-navigation-color-text-selected: #00fabe;
-/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+/* The box-shadow for a focus-visible navigation link. */
 $kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* 4px 0 0 0 #00fabe inset */
+/* The left box-shadow for an active child navigation link. */
 $kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+/* Navigation link focus-visible box-shadow. */
 $kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* The standard monospace font family. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
@@ -654,27 +654,27 @@ $tokens-map: (
   'kui-method-color-text-trace-strong': #ad0053;
   /* blue.100 */
   'kui-navigation-color-background': #000933;
-  /* rgba(255, 255, 255, 0.12) */
+  /* The background color of a selected navigation item. */
   'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12);
   /* rgba(255, 255, 255, 0.12) */
   'kui-navigation-color-border': rgba(255, 255, 255, 0.12);
-  /* green.30 */
+  /* The border color for a selected child navigation item. */
   'kui-navigation-color-border-child': #00fabe;
-  /* rgba(255, 255, 255, 0.24) */
+  /* The color of the navigation section divider. */
   'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24);
-  /* blue.20 */
+  /* Navigation link and icon color. */
   'kui-navigation-color-text': #bee2ff;
-  /* white */
+  /* Navigation link and icon focus-visible color. */
   'kui-navigation-color-text-focus': #ffffff;
-  /* blue.10 */
+  /* Navigation link and icon hover color. */
   'kui-navigation-color-text-hover': #eefaff;
-  /* green.30 */
+  /* Navigation link and icon selected color. */
   'kui-navigation-color-text-selected': #00fabe;
-  /* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+  /* The box-shadow for a focus-visible navigation link. */
   'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-  /* 4px 0 0 0 #00fabe inset */
+  /* The left box-shadow for an active child navigation link. */
   'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset;
-  /* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+  /* Navigation link focus-visible box-shadow. */
   'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
   /* The standard monospace font family. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
@@ -1044,27 +1044,27 @@ $tokens-map: (
 @kui-method-color-text-trace-strong: #ad0053;
 /* blue.100 */
 @kui-navigation-color-background: #000933;
-/* rgba(255, 255, 255, 0.12) */
+/* The background color of a selected navigation item. */
 @kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
 /* rgba(255, 255, 255, 0.12) */
 @kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* green.30 */
+/* The border color for a selected child navigation item. */
 @kui-navigation-color-border-child: #00fabe;
-/* rgba(255, 255, 255, 0.24) */
+/* The color of the navigation section divider. */
 @kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* blue.20 */
+/* Navigation link and icon color. */
 @kui-navigation-color-text: #bee2ff;
-/* white */
+/* Navigation link and icon focus-visible color. */
 @kui-navigation-color-text-focus: #ffffff;
-/* blue.10 */
+/* Navigation link and icon hover color. */
 @kui-navigation-color-text-hover: #eefaff;
-/* green.30 */
+/* Navigation link and icon selected color. */
 @kui-navigation-color-text-selected: #00fabe;
-/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+/* The box-shadow for a focus-visible navigation link. */
 @kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* 4px 0 0 0 #00fabe inset */
+/* The left box-shadow for an active child navigation link. */
 @kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+/* Navigation link focus-visible box-shadow. */
 @kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* The standard monospace font family. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
@@ -1435,27 +1435,27 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-text-trace-strong: #ad0053;
 /* blue.100 */
 --kui-navigation-color-background: #000933;
-/* rgba(255, 255, 255, 0.12) */
+/* The background color of a selected navigation item. */
 --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
 /* rgba(255, 255, 255, 0.12) */
 --kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* green.30 */
+/* The border color for a selected child navigation item. */
 --kui-navigation-color-border-child: #00fabe;
-/* rgba(255, 255, 255, 0.24) */
+/* The color of the navigation section divider. */
 --kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* blue.20 */
+/* Navigation link and icon color. */
 --kui-navigation-color-text: #bee2ff;
-/* white */
+/* Navigation link and icon focus-visible color. */
 --kui-navigation-color-text-focus: #ffffff;
-/* blue.10 */
+/* Navigation link and icon hover color. */
 --kui-navigation-color-text-hover: #eefaff;
-/* green.30 */
+/* Navigation link and icon selected color. */
 --kui-navigation-color-text-selected: #00fabe;
-/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+/* The box-shadow for a focus-visible navigation link. */
 --kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* 4px 0 0 0 #00fabe inset */
+/* The left box-shadow for an active child navigation link. */
 --kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+/* Navigation link focus-visible box-shadow. */
 --kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* The standard monospace font family. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
@@ -1824,27 +1824,27 @@ export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
 export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
 /* blue.100 */
 export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
-/* rgba(255, 255, 255, 0.12) */
+/* The background color of a selected navigation item. */
 export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
 /* rgba(255, 255, 255, 0.12) */
 export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
-/* green.30 */
+/* The border color for a selected child navigation item. */
 export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
-/* rgba(255, 255, 255, 0.24) */
+/* The color of the navigation section divider. */
 export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
-/* blue.20 */
+/* Navigation link and icon color. */
 export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
-/* white */
+/* Navigation link and icon focus-visible color. */
 export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
-/* blue.10 */
+/* Navigation link and icon hover color. */
 export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
-/* green.30 */
+/* Navigation link and icon selected color. */
 export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
-/* 0 0 0 1px rgba(255, 255, 255, 0.12) inset */
+/* The box-shadow for a focus-visible navigation link. */
 export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
-/* 4px 0 0 0 #00fabe inset */
+/* The left box-shadow for an active child navigation link. */
 export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
-/* 0 0 0 1px rgba(255, 255, 255, 0.60) inset */
+/* Navigation link focus-visible box-shadow. */
 export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
 /* The standard monospace font family. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
