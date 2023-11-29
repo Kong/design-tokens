@@ -1,0 +1,64 @@
+{
+  "navigation": {
+    "color": {
+      "background": {
+        "_": {
+          "comment": "blue.100",
+          "value": "{color.alias.blue.100}"
+        },
+        "selected": {
+          "comment": "The background color of a selected navigation item.",
+          "value": "rgba(255, 255, 255, 0.12)"
+        }
+      },
+      "border": {
+        "_": {
+          "comment": "rgba(255, 255, 255, 0.12)",
+          "value": "rgba(255, 255, 255, 0.12)"
+        },
+        "child": {
+          "comment": "The border color for a selected child navigation item.",
+          "value": "{color.alias.green.30}"
+        },
+        "divider": {
+          "comment": "The color of the navigation section divider.",
+          "value": "rgba(255, 255, 255, 0.24)"
+        }
+      },
+      "text": {
+        "_": {
+          "comment": "Navigation link and icon color.",
+          "value": "{color.alias.blue.20}"
+        },
+        "focus": {
+          "comment": "Navigation link and icon focus-visible color.",
+          "value": "{color.alias.white}"
+        },
+        "hover": {
+          "comment": "Navigation link and icon hover color.",
+          "value": "{color.alias.blue.10}"
+        },
+        "selected": {
+          "comment": "Navigation link and icon selected color.",
+          "value": "{color.alias.green.30}"
+        }
+      }
+    },
+    "shadow": {
+      "border": {
+        "_": {
+          "comment": "The box-shadow for a focus-visible navigation link.",
+          "value": "0 0 0 1px rgba(255, 255, 255, 0.12) inset"
+        },
+        "child": {
+          "comment": "The left box-shadow for an active child navigation link.",
+          "value": "4px 0 0 0 {color.alias.green.30} inset"
+        }
+      },
+      "focus": {
+        "comment": "Navigation link focus-visible box-shadow.",
+        "value": "0 0 0 1px rgba(255, 255, 255, 0.60) inset"
+      }
+    }
+  }
+}
