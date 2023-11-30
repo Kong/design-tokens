@@ -84,7 +84,7 @@
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-plugin-restart": "^0.3.1",
-    "vitepress": "^1.0.0-rc.27",
+    "vitepress": "^1.0.0-rc.29",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
