@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 29 Nov 2023 21:27:35 GMT
+ * Generated on Mon, 04 Dec 2023 21:18:34 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -100,6 +100,8 @@ $kui-color-border-decorative-purple: #6f28ff;
 $kui-color-border-disabled: #e0e4ea;
 /* Weak border color for neutral elements (gray.40) */
 $kui-color-border-neutral-weak: #afb7c5;
+/* Weaker border color for neutral elements (gray.20) */
+$kui-color-border-neutral-weaker: #e0e4ea;
 /* Border color for primary actions or messages (blue.60). */
 $kui-color-border-primary: #0044f4;
 /* Strong border color for primary actions or messages (blue.70). */
@@ -488,6 +490,8 @@ $tokens-map: (
   'kui-color-border-disabled': #e0e4ea;
   /* Weak border color for neutral elements (gray.40) */
   'kui-color-border-neutral-weak': #afb7c5;
+  /* Weaker border color for neutral elements (gray.20) */
+  'kui-color-border-neutral-weaker': #e0e4ea;
   /* Border color for primary actions or messages (blue.60). */
   'kui-color-border-primary': #0044f4;
   /* Strong border color for primary actions or messages (blue.70). */
@@ -878,6 +882,8 @@ $tokens-map: (
 @kui-color-border-disabled: #e0e4ea;
 /* Weak border color for neutral elements (gray.40) */
 @kui-color-border-neutral-weak: #afb7c5;
+/* Weaker border color for neutral elements (gray.20) */
+@kui-color-border-neutral-weaker: #e0e4ea;
 /* Border color for primary actions or messages (blue.60). */
 @kui-color-border-primary: #0044f4;
 /* Strong border color for primary actions or messages (blue.70). */
@@ -1269,6 +1275,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-border-disabled: #e0e4ea;
 /* Weak border color for neutral elements (gray.40) */
 --kui-color-border-neutral-weak: #afb7c5;
+/* Weaker border color for neutral elements (gray.20) */
+--kui-color-border-neutral-weaker: #e0e4ea;
 /* Border color for primary actions or messages (blue.60). */
 --kui-color-border-primary: #0044f4;
 /* Strong border color for primary actions or messages (blue.70). */
@@ -1658,6 +1666,8 @@ export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = "#6f28ff";
 export const KUI_COLOR_BORDER_DISABLED = "#e0e4ea";
 /* Weak border color for neutral elements (gray.40) */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAK = "#afb7c5";
+/* Weaker border color for neutral elements (gray.20) */
+export const KUI_COLOR_BORDER_NEUTRAL_WEAKER = "#e0e4ea";
 /* Border color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BORDER_PRIMARY = "#0044f4";
 /* Strong border color for primary actions or messages (blue.70). */
@@ -2006,6 +2016,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_decorative_purple": "#6f28ff",
   "kui_color_border_disabled": "#e0e4ea",
   "kui_color_border_neutral_weak": "#afb7c5",
+  "kui_color_border_neutral_weaker": "#e0e4ea",
   "kui_color_border_primary": "#0044f4",
   "kui_color_border_primary_strong": "#0030cc",
   "kui_color_border_primary_stronger": "#002099",
