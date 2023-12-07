@@ -1,10 +1,12 @@
 # Summary
 
-<!-- Insert a description of the changes in the PR, along with a JIRA ticket reference, if applicable. -->
+<!-- 
+  Be sure your Pull Request includes:
 
-## PR Checklist
-
-* [ ] **Tests pass:** check the output of all package unit and/or component tests.
-  * [ ] If this PR is the result of a bug, test coverage was added accordingly.
-* [ ] **Conventional Commits** all commits follow the conventional commit standards [outlined in the main README](https://github.com/Kong/shared-ui-components#committing-changes).
-* [ ] **Docs:** includes a technically accurate README, and the docs have been updated accordingly based on the changes in this PR.
+  - JIRA ticket number in the title, and link in the summary
+  - An accurate summary of what is being added/edited/removed
+  - Tests (unit, component, regression)
+  - Updated documentation and commented code
+  - Link to Figma, if applicable
+  - Conventional Commits
+-->
