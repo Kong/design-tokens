@@ -58,7 +58,7 @@
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^1.5.3",
+    "@evilmartians/lefthook": "^1.5.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^6.12.0",
