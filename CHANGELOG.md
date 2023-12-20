@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/Kong/design-tokens/compare/v1.12.2...v1.12.3) (2023-12-20)
+
+
+### Bug Fixes
+
+* **navigation:** add component tokens ([8357018](https://github.com/Kong/design-tokens/commit/835701827822b4e3a8fd4aa5407e1091d8bf3ec0))
+
 ## [1.12.2](https://github.com/Kong/design-tokens/compare/v1.12.1...v1.12.2) (2023-12-20)
 
 
