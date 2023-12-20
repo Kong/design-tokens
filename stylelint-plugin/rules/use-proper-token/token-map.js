@@ -8,8 +8,8 @@
  * To enforce no token should be used for a CSS property, set the value to an empty array.
  */
 const PROPERTY_TOKEN_MAP = {
-  background: ['color-background', 'method-color-background'],
-  'background-color': ['color-background', 'method-color-background'],
+  background: ['color-background', 'method-color-background', 'navigation-color-background'],
+  'background-color': ['color-background', 'method-color-background', 'navigation-color-background'],
   'background-size': [],
   border: ['border-radius', 'border-width', 'color-border'],
   'border-bottom': ['border-radius', 'border-width', 'color-border'],
@@ -33,8 +33,8 @@ const PROPERTY_TOKEN_MAP = {
   'border-top-width': ['border-width'],
   'border-width': ['border-width'],
   bottom: [],
-  'box-shadow': ['border-width', 'color-border', 'shadow'],
-  color: ['color-text', 'method-color-text'],
+  'box-shadow': ['border-width', 'color-border', 'shadow', 'navigation-shadow'],
+  color: ['color-text', 'method-color-text', 'navigation-color-text'],
   'column-gap': ['space'],
   'column-width': [],
   fill: ['color-text', 'method-color-text'],
