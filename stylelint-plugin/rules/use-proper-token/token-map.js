@@ -1,14 +1,14 @@
 /**
  * Map of CSS properties and their corresponding allowed design tokens
- * Example: `background,background-color` CSS properties allowed tokens are `color-background` and `method-color-background`
+ * Example: for `background-color` CSS property allowed tokens are `color-background` and `method-color-background`
  *
  * key: CSS Property name
  * value: Array of valid Kong Design Tokens, without the `kui-` prefix
  *
- * To enforce no token should be used for a CSS property, set the value to an empty array.
+ * ! To enforce no token should be used for a CSS property, set the value to an empty array.
  */
 const PROPERTY_TOKEN_MAP = {
-  background: ['color-background', 'method-color-background', 'navigation-color-background'],
+  background: ['color-background'],
   'background-color': ['color-background', 'method-color-background', 'navigation-color-background'],
   'background-size': [],
   border: ['border-radius', 'border-width', 'color-border', 'navigation-color-border'],
