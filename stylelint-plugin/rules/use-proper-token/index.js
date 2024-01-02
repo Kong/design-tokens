@@ -43,7 +43,7 @@ const ruleFunction = () => {
       }
 
       const valueTokens = extractTokensFromValue(declValue)
-      const appropriateTokens = PROPERTY_TOKEN_MAP[tokenProperty].map(token => new RegExp('^' + KONG_TOKEN_PREFIX + '[a-z0-9-]*' + token + '[a-z0-9-]*'))
+      const appropriateTokens = PROPERTY_TOKEN_MAP[tokenProperty].map(token => new RegExp(KONG_TOKEN_PREFIX + '(?:[a-z0-9-]+-)?' + token + '(?:-[a-z0-9-]+)?$'))
       const inappropriateTokens = valueTokens.filter(vToken => !appropriateTokens.some(aTokenRegex => aTokenRegex.test(vToken)))
 
       if (inappropriateTokens.length) {
