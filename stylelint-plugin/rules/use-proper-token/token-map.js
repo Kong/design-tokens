@@ -1,43 +1,50 @@
 /**
  * Map of CSS properties and their corresponding allowed design tokens
- * Example: `background,background-color` CSS properties allowed tokens are `color-background` and `method-color-background`
+ * Example: for `background-color` CSS property allowed tokens are `color-background` and `method-color-background`
+ *
+ * As long as tokens follow this pattern, they don't need to be added to the arrays in the map:
+ * - starts with a prefix `kui-`
+ * - optionally followed by a component name in kebab-case
+ * - followed by a token name in kebab-case
+ * - optionally followed by a variant name in kebab-case
+ * Examples: `kui-analytics-chart-background-color-inverse`, `kui-color-background`, `kui-color-background-inverse`
  *
  * key: CSS Property name
  * value: Array of valid Kong Design Tokens, without the `kui-` prefix
  *
- * To enforce no token should be used for a CSS property, set the value to an empty array.
+ * ! To enforce no token should be used for a CSS property, set the value to an empty array.
  */
 const PROPERTY_TOKEN_MAP = {
-  background: ['color-background', 'method-color-background', 'navigation-color-background'],
-  'background-color': ['color-background', 'method-color-background', 'navigation-color-background'],
+  background: ['color-background'],
+  'background-color': ['color-background'],
   'background-size': [],
-  border: ['border-radius', 'border-width', 'color-border', 'navigation-color-border'],
-  'border-bottom': ['border-radius', 'border-width', 'color-border', 'navigation-color-border'],
-  'border-bottom-color': ['color-border', 'navigation-color-border'],
+  border: ['border-radius', 'border-width', 'color-border'],
+  'border-bottom': ['border-radius', 'border-width', 'color-border'],
+  'border-bottom-color': ['color-border'],
   'border-bottom-left-radius': ['border-radius'],
   'border-bottom-right-radius': ['border-radius'],
   'border-bottom-width': ['border-width'],
-  'border-color': ['color-border', 'navigation-color-border'],
-  'border-left': ['border-radius', 'border-width', 'color-border', 'navigation-color-border'],
-  'border-left-color': ['color-border', 'navigation-color-border'],
+  'border-color': ['color-border'],
+  'border-left': ['border-radius', 'border-width', 'color-border'],
+  'border-left-color': ['color-border'],
   'border-left-width': ['border-width'],
   'border-radius': ['border-radius'],
-  'border-right': ['border-radius', 'border-width', 'color-border', 'navigation-color-border'],
-  'border-right-color': ['color-border', 'navigation-color-border'],
+  'border-right': ['border-radius', 'border-width', 'color-border'],
+  'border-right-color': ['color-border'],
   'border-right-width': ['border-width'],
   'border-spacing': ['space'],
-  'border-top': ['border-radius', 'border-width', 'color-border', 'navigation-color-border'],
-  'border-top-color': ['color-border', 'navigation-color-border'],
+  'border-top': ['border-radius', 'border-width', 'color-border'],
+  'border-top-color': ['color-border'],
   'border-top-left-radius': ['border-radius'],
   'border-top-right-radius': ['border-radius'],
   'border-top-width': ['border-width'],
   'border-width': ['border-width'],
   bottom: [],
-  'box-shadow': ['border-width', 'color-border', 'shadow', 'navigation-shadow'],
-  color: ['color-text', 'method-color-text', 'navigation-color-text'],
+  'box-shadow': ['border-width', 'color-border', 'shadow'],
+  color: ['color-text'],
   'column-gap': ['space'],
   'column-width': [],
-  fill: ['color-text', 'method-color-text'],
+  fill: ['color-text'],
   font: ['font-family', 'font-size', 'font-weight'],
   'font-family': ['font-family'],
   'font-size': ['font-size'],
@@ -67,8 +74,8 @@ const PROPERTY_TOKEN_MAP = {
   'padding-top': ['space'],
   right: [],
   'row-gap': ['space'],
-  stroke: ['color-text', 'method-color-text'],
-  'text-decoration-color': ['color-text', 'method-color-text'],
+  stroke: ['color-text'],
+  'text-decoration-color': ['color-text'],
   top: [],
   width: ['icon-size', 'breakpoint'],
 }

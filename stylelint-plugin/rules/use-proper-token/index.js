@@ -8,7 +8,6 @@ const messages = ruleMessages(ruleName, {
   unexpected: (token, property) => `Unexpected usage of '${token}' token in '${property}' property.`,
 })
 const meta = {
-  // TODO: add separate docs file for all rules
   url: 'https://github.com/Kong/design-tokens/blob/main/stylelint-plugin/README.md',
   fixable: false,
 }
@@ -29,8 +28,10 @@ const ruleFunction = () => {
 
       const declProp = decl.prop
       const declValue = decl.value
+      // check if the value contains a token as CSS or SCSS variable
       const hasToken = [`--${KONG_TOKEN_PREFIX}`, `$${KONG_TOKEN_PREFIX}`].some(pattern => declValue.includes(pattern))
       if (!hasToken) {
+        // skip validating if the value does not contain a token
         return
       }
 
@@ -43,10 +44,15 @@ const ruleFunction = () => {
       }
 
       const valueTokens = extractTokensFromValue(declValue)
-      const appropriateTokens = PROPERTY_TOKEN_MAP[tokenProperty].map(token => KONG_TOKEN_PREFIX.concat(token))
-      const inappropriateTokens = valueTokens.filter(vToken => !appropriateTokens.some(aToken => vToken.includes(aToken)))
+      // get the appropriate tokens for the property and create regex for each
+      // regex pattern: /kui-(?:[a-z0-9-]+-)?token(?:-[a-z0-9-]+)?$/
+      // this allows to match both regular and component tokens
+      const appropriateTokens = PROPERTY_TOKEN_MAP[tokenProperty].map(token => new RegExp(KONG_TOKEN_PREFIX + '(?:[a-z0-9-]+-)?' + token + '(?:-[a-z0-9-]+)?$'))
+      // filter out tokens that are not appropriate for the property
+      const inappropriateTokens = valueTokens.filter(vToken => !appropriateTokens.some(aTokenRegex => aTokenRegex.test(vToken)))
 
       if (inappropriateTokens.length) {
+        // report the error for each inappropriate token
         inappropriateTokens.forEach((token) => {
           report({
             message: messages.unexpected(token, declProp),
