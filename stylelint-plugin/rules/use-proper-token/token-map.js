@@ -2,6 +2,13 @@
  * Map of CSS properties and their corresponding allowed design tokens
  * Example: for `background-color` CSS property allowed tokens are `color-background` and `method-color-background`
  *
+ * As long as tokens follow this pattern, they don't need to be added to the arrays in the map:
+ * - starts with a prefix `kui-`
+ * - optionally followed by a component name in kebab-case
+ * - followed by a token name in kebab-case
+ * - optionally followed by a variant name in kebab-case
+ * Examples: `kui-analytics-chart-background-color-inverse`, `kui-color-background`, `kui-color-background-inverse`
+ *
  * key: CSS Property name
  * value: Array of valid Kong Design Tokens, without the `kui-` prefix
  *
