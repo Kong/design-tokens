@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/Kong/design-tokens/compare/v1.12.3...v1.12.4) (2024-01-02)
+
+
+### Bug Fixes
+
+* **stylelint-plugin/use-proper-token:** compare with regex [KHCP-10185] ([#200](https://github.com/Kong/design-tokens/issues/200)) ([bac7931](https://github.com/Kong/design-tokens/commit/bac7931b86ca445bcddfb1cc06be20f86d12a057))
+
 ## [1.12.3](https://github.com/Kong/design-tokens/compare/v1.12.2...v1.12.3) (2023-12-20)
 
 
