@@ -82,7 +82,7 @@
     "shx": "^0.3.4",
     "style-dictionary": "^3.9.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
+    "vite": "^5.0.11",
     "vite-plugin-restart": "^0.4.0",
     "vitepress": "^1.0.0-rc.35",
     "vue": "^3.4.5",
