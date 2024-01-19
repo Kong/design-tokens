@@ -1,0 +1,15 @@
+{
+  "name": "@kong/stylelint-plugin",
+  "version": "0.0.1",
+  "author": "Kong Inc.",
+  "scripts": {
+    "test:unit": "vitest",
+    "test:unit:open": "vitest --ui",
+    "test:unit:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.2.1",
+    "@vitest/ui": "^1.2.1",
+    "vitest": "^1.2.1"
+  }
+}
