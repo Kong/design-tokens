@@ -5,7 +5,7 @@ describe('use-proper-token', () => {
     expect(true).toBe(true)
   })
 
-  // it('dummy failing test', () => {
-  //   expect(true).toBe(false)
-  // })
+  it('dummy failing test', () => {
+    expect(true).toBe(false)
+  })
 })
