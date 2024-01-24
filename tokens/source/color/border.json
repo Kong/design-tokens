@@ -3,91 +3,91 @@
     "border": {
       "_": {
         "comment": "Default border color for containers (gray.20).",
-        "value": "{color.alias.gray.20}"
+        "value": "{color.alias.gray.20.value}"
       },
       "danger": {
         "_": {
           "comment": "Border color for danger actions or messages (red.60).",
-          "value": "{color.alias.red.60}"
+          "value": "{color.alias.red.60.value}"
         },
         "strong": {
           "comment": "Strong border color for danger actions or messages (red.70).",
-          "value": "{color.alias.red.70}"
+          "value": "{color.alias.red.70.value}"
         },
         "stronger": {
           "comment": "Stronger border color for danger actions or messages (red.80).",
-          "value": "{color.alias.red.80}"
+          "value": "{color.alias.red.80.value}"
         },
         "strongest": {
           "comment": "Strongest border color for danger actions or messages (red.90).",
-          "value": "{color.alias.red.90}"
+          "value": "{color.alias.red.90.value}"
         },
         "weak": {
           "comment": "Weak border color for danger actions or messages (red.40).",
-          "value": "{color.alias.red.40}"
+          "value": "{color.alias.red.40.value}"
         },
         "weaker": {
           "comment": "Weaker border color for danger actions or messages (red.20).",
-          "value": "{color.alias.red.20}"
+          "value": "{color.alias.red.20.value}"
         },
         "weakest": {
           "comment": "Weakest border color for danger actions or messages (red.10).",
-          "value": "{color.alias.red.10}"
+          "value": "{color.alias.red.10.value}"
         }
       },
       "decorative": {
         "purple": {
           "comment": "Border color for decorative purposes (purple.60).",
-          "value": "{color.alias.purple.60}"
+          "value": "{color.alias.purple.60.value}"
         }
       },
       "disabled": {
         "comment": "Border color for disabled elements (gray.20).",
-        "value": "{color.alias.gray.20}"
+        "value": "{color.alias.gray.20.value}"
       },
       "neutral": {
         "weak": {
           "comment": "Weak border color for neutral elements (gray.40)",
-          "value": "{color.alias.gray.40}"
+          "value": "{color.alias.gray.40.value}"
         },
         "weaker": {
           "comment": "Weaker border color for neutral elements (gray.20)",
-          "value": "{color.alias.gray.20}"
+          "value": "{color.alias.gray.20.value}"
         }
       },
       "primary": {
         "_": {
           "comment": "Border color for primary actions or messages (blue.60).",
-          "value": "{color.alias.blue.60}"
+          "value": "{color.alias.blue.60.value}"
         },
         "strong": {
           "comment": "Strong border color for primary actions or messages (blue.70).",
-          "value": "{color.alias.blue.70}"
+          "value": "{color.alias.blue.70.value}"
         },
         "stronger": {
           "comment": "Stronger border color for primary actions or messages (blue.80).",
-          "value": "{color.alias.blue.80}"
+          "value": "{color.alias.blue.80.value}"
         },
         "strongest": {
           "comment": "Strongest border color for primary actions or messages (blue.90).",
-          "value": "{color.alias.blue.90}"
+          "value": "{color.alias.blue.90.value}"
         },
         "weak": {
           "comment": "Weak border color for primary actions or messages (blue.40).",
-          "value": "{color.alias.blue.40}"
+          "value": "{color.alias.blue.40.value}"
         },
         "weaker": {
           "comment": "Weaker border color for primary actions or messages (blue.20).",
-          "value": "{color.alias.blue.20}"
+          "value": "{color.alias.blue.20.value}"
         },
         "weakest": {
           "comment": "Weakest border color for primary actions or messages (blue.10).",
-          "value": "{color.alias.blue.10}"
+          "value": "{color.alias.blue.10.value}"
         }
       },
       "transparent": {
         "comment": "Transparent border color (transparent).",
-        "value": "{color.alias.transparent}"
+        "value": "{color.alias.transparent.value}"
       }
     }
   }
