@@ -1,3 +1,10 @@
+## [1.12.5](https://github.com/Kong/design-tokens/compare/v1.12.4...v1.12.5) (2024-01-24)
+
+
+### Bug Fixes
+
+* **color-background:** add overlay token ([#215](https://github.com/Kong/design-tokens/issues/215)) ([e5355e7](https://github.com/Kong/design-tokens/commit/e5355e704e105e8a6117581025367fcc9dc2eb08))
+
 ## [1.12.4](https://github.com/Kong/design-tokens/compare/v1.12.3...v1.12.4) (2024-01-02)
 
 
