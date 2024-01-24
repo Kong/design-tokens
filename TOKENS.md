@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 24 Jan 2024 17:00:12 GMT
+ * Generated on Wed, 24 Jan 2024 17:30:57 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -59,7 +59,7 @@ $kui-color-background-neutral-weaker: #e0e4ea;
 /* Weakest background color for neutral elements (gray.10). */
 $kui-color-background-neutral-weakest: #f9fafb;
 /* Overlay background color (rgba(blue.100, 0.6)) */
-$kui-color-background-overlay: rgba(#000933, 0.6);
+$kui-color-background-overlay: rgba(0, 9, 51, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 $kui-color-background-primary: #0044f4;
 /* Strong background color for primary actions or messages (blue.70). */
@@ -451,7 +451,7 @@ $tokens-map: (
   /* Weakest background color for neutral elements (gray.10). */
   'kui-color-background-neutral-weakest': #f9fafb;
   /* Overlay background color (rgba(blue.100, 0.6)) */
-  'kui-color-background-overlay': rgba(#000933, 0.6);
+  'kui-color-background-overlay': rgba(0, 9, 51, 0.6);
   /* Background color for primary actions or messages (blue.60). */
   'kui-color-background-primary': #0044f4;
   /* Strong background color for primary actions or messages (blue.70). */
@@ -845,7 +845,7 @@ $tokens-map: (
 /* Weakest background color for neutral elements (gray.10). */
 @kui-color-background-neutral-weakest: #f9fafb;
 /* Overlay background color (rgba(blue.100, 0.6)) */
-@kui-color-background-overlay: rgba(#000933, 0.6);
+@kui-color-background-overlay: rgba(0, 9, 51, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 @kui-color-background-primary: #0044f4;
 /* Strong background color for primary actions or messages (blue.70). */
@@ -1240,7 +1240,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Weakest background color for neutral elements (gray.10). */
 --kui-color-background-neutral-weakest: #f9fafb;
 /* Overlay background color (rgba(blue.100, 0.6)) */
---kui-color-background-overlay: rgba(#000933, 0.6);
+--kui-color-background-overlay: rgba(0, 9, 51, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 --kui-color-background-primary: #0044f4;
 /* Strong background color for primary actions or messages (blue.70). */
@@ -1633,7 +1633,7 @@ export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKER = "#e0e4ea";
 /* Weakest background color for neutral elements (gray.10). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKEST = "#f9fafb";
 /* Overlay background color (rgba(blue.100, 0.6)) */
-export const KUI_COLOR_BACKGROUND_OVERLAY = "rgba(#000933, 0.6)";
+export const KUI_COLOR_BACKGROUND_OVERLAY = "rgba(0, 9, 51, 0.6)";
 /* Background color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BACKGROUND_PRIMARY = "#0044f4";
 /* Strong background color for primary actions or messages (blue.70). */
@@ -2005,7 +2005,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_neutral_weak": "#afb7c5",
   "kui_color_background_neutral_weaker": "#e0e4ea",
   "kui_color_background_neutral_weakest": "#f9fafb",
-  "kui_color_background_overlay": "rgba(#000933, 0.6)",
+  "kui_color_background_overlay": "rgba(0, 9, 51, 0.6)",
   "kui_color_background_primary": "#0044f4",
   "kui_color_background_primary_strong": "#0030cc",
   "kui_color_background_primary_stronger": "#002099",
