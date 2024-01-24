@@ -4,130 +4,130 @@
       "background": {
         "connect": {
           "comment": "Background color for the CONNECT method (purple.10).",
-          "value": "{color.alias.purple.10}"
+          "value": "{color.alias.purple.10.value}"
         },
         "delete": {
           "comment": "Background color for the DELETE method (red.10).",
-          "value": "{color.alias.red.10}"
+          "value": "{color.alias.red.10.value}"
         },
         "get": {
           "comment": "Background color for the GET method (blue.10).",
-          "value": "{color.alias.blue.10}"
+          "value": "{color.alias.blue.10.value}"
         },
         "head": {
           "comment": "Background color for the HEAD method (gray.70).",
-          "value": "{color.alias.gray.70}"
+          "value": "{color.alias.gray.70.value}"
         },
         "options": {
           "comment": "Background color for the OPTIONS method (gray.20).",
-          "value": "{color.alias.gray.20}"
+          "value": "{color.alias.gray.20.value}"
         },
         "patch": {
           "comment": "Background color for the PATCH method (aqua.10).",
-          "value": "{color.alias.aqua.10}"
+          "value": "{color.alias.aqua.10.value}"
         },
         "post": {
           "comment": "Background color for the POST method (green.10).",
-          "value": "{color.alias.green.10}"
+          "value": "{color.alias.green.10.value}"
         },
         "put": {
           "comment": "Background color for the PUT method (yellow.10).",
-          "value": "{color.alias.yellow.10}"
+          "value": "{color.alias.yellow.10.value}"
         },
         "trace": {
           "comment": "Background color for the TRACE method (pink.10).",
-          "value": "{color.alias.pink.10}"
+          "value": "{color.alias.pink.10.value}"
         }
       },
       "text": {
         "connect": {
           "_": {
             "comment": "Text color for the CONNECT method (purple.60).",
-            "value": "{color.alias.purple.60}"
+            "value": "{color.alias.purple.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the CONNECT method (purple.70).",
-            "value": "{color.alias.purple.70}"
+            "value": "{color.alias.purple.70.value}"
           }
         },
         "delete": {
           "_": {
             "comment": "Text color for the DELETE method (red.60).",
-            "value": "{color.alias.red.60}"
+            "value": "{color.alias.red.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the DELETE method (red.70).",
-            "value": "{color.alias.red.70}"
+            "value": "{color.alias.red.70.value}"
           }
         },
         "get": {
           "_": {
             "comment": "Text color for the GET method (blue.60).",
-            "value": "{color.alias.blue.60}"
+            "value": "{color.alias.blue.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the GET method (blue.70).",
-            "value": "{color.alias.blue.70}"
+            "value": "{color.alias.blue.70.value}"
           }
         },
         "head": {
           "_": {
             "comment": "Text color for the HEAD method (gray.20).",
-            "value": "{color.alias.gray.20}"
+            "value": "{color.alias.gray.20.value}"
           },
           "strong": {
             "comment": "Strong text color for the HEAD method (gray.40).",
-            "value": "{color.alias.gray.40}"
+            "value": "{color.alias.gray.40.value}"
           }
         },
         "options": {
           "_": {
             "comment": "Text color for the OPTIONS method (gray.70).",
-            "value": "{color.alias.gray.70}"
+            "value": "{color.alias.gray.70.value}"
           },
           "strong": {
             "comment": "Strong text color for the OPTIONS method (gray.80).",
-            "value": "{color.alias.gray.80}"
+            "value": "{color.alias.gray.80.value}"
           }
         },
         "patch": {
           "_": {
             "comment": "Text color for the PATCH method (aqua.60).",
-            "value": "{color.alias.aqua.60}"
+            "value": "{color.alias.aqua.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the PATCH method (aqua.70).",
-            "value": "{color.alias.aqua.70}"
+            "value": "{color.alias.aqua.70.value}"
           }
         },
         "post": {
           "_": {
             "comment": "Text color for the POST method (green.60).",
-            "value": "{color.alias.green.60}"
+            "value": "{color.alias.green.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the POST method (green.70).",
-            "value": "{color.alias.green.70}"
+            "value": "{color.alias.green.70.value}"
           }
         },
         "put": {
           "_": {
             "comment": "Text color for the PUT method (yellow.60).",
-            "value": "{color.alias.yellow.60}"
+            "value": "{color.alias.yellow.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the PUT method (yellow.70).",
-            "value": "{color.alias.yellow.70}"
+            "value": "{color.alias.yellow.70.value}"
           }
         },
         "trace": {
           "_": {
             "comment": "Text color for the TRACE method (pink.60).",
-            "value": "{color.alias.pink.60}"
+            "value": "{color.alias.pink.60.value}"
           },
           "strong": {
             "comment": "Strong text color for the TRACE method (pink.70).",
-            "value": "{color.alias.pink.70}"
+            "value": "{color.alias.pink.70.value}"
           }
         }
       }
