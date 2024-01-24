@@ -87,7 +87,7 @@
       },
       "overlay": {
         "comment": "Overlay background color (rgba(blue.100, 0.6))",
-        "value": "rgba({color.alias.blue.100}, 0.6)"
+        "value": "rgba({color.alias.blue.100.rgb}, 0.6)"
       },
       "primary": {
         "_": {
