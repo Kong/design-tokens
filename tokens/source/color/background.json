@@ -85,6 +85,10 @@
           "value": "{color.alias.gray.10}"
         }
       },
+      "overlay": {
+        "comment": "Overlay background color (rgba(blue.100, 0.6))",
+        "value": "rgba({color.alias.blue.100.rgb}, 0.6)"
+      },
       "primary": {
         "_": {
           "comment": "Background color for primary actions or messages (blue.60).",
