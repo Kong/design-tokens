@@ -1,3 +1,10 @@
+## [1.12.6](https://github.com/Kong/design-tokens/compare/v1.12.5...v1.12.6) (2024-01-24)
+
+
+### Bug Fixes
+
+* reference alias values ([#216](https://github.com/Kong/design-tokens/issues/216)) ([213f02a](https://github.com/Kong/design-tokens/commit/213f02acf18ed1b3754ebcd7a1c415de7527ede3))
+
 ## [1.12.5](https://github.com/Kong/design-tokens/compare/v1.12.4...v1.12.5) (2024-01-24)
 
 
