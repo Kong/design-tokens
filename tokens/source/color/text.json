@@ -32,8 +32,8 @@
         }
       },
       "disabled": {
-        "comment": "Text color for disabled elements (gray.50).",
-        "value": "{color.alias.gray.50.value}"
+        "comment": "Text color for disabled elements (gray.40).",
+        "value": "{color.alias.gray.40.value}"
       },
       "inverse": {
         "comment": "Inverse text color (white).",
