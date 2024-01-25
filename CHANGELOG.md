@@ -1,3 +1,10 @@
+## [1.12.7](https://github.com/Kong/design-tokens/compare/v1.12.6...v1.12.7) (2024-01-25)
+
+
+### Bug Fixes
+
+* **color-text-disabled:** change token value ([#217](https://github.com/Kong/design-tokens/issues/217)) ([d23ecec](https://github.com/Kong/design-tokens/commit/d23ecec716c54f868d52ea5b724dea2af3a77248))
+
 ## [1.12.6](https://github.com/Kong/design-tokens/compare/v1.12.5...v1.12.6) (2024-01-24)
 
 
