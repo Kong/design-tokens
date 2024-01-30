@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import VueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
 import viteRestart from 'vite-plugin-restart'
 
@@ -13,6 +14,7 @@ export default defineConfig({
         '../dist/**/*',
       ],
     }),
+    VueDevTools(),
   ],
   resolve: {
     alias: {

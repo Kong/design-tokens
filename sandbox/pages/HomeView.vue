@@ -1,9 +1,9 @@
 <template>
   <h2>Colors</h2>
-  <ColorBlock token="kui-color-background-primary" />
-  <ColorBlock token="kui-color-background-warning-weakest" />
-  <ColorBlock token="kui-color-background-danger" />
-  <ColorBlock token="kui-color-background-success-weakest" />
+  <ColorBlock token="KUI_COLOR_BACKGROUND_PRIMARY" />
+  <ColorBlock token="KUI_COLOR_BACKGROUND_NEUTRAL_STRONGER" />
+  <ColorBlock token="KUI_COLOR_BACKGROUND_DANGER" />
+  <ColorBlock token="KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE" />
 </template>
 
 <script setup lang="ts">
