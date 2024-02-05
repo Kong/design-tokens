@@ -52,8 +52,8 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.5.0",
-    "@commitlint/config-conventional": "^18.5.0",
+    "@commitlint/cli": "^18.6.0",
+    "@commitlint/config-conventional": "^18.6.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^1.6.0",
     "@semantic-release/changelog": "^6.0.3",
