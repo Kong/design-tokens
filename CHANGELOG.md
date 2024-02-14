@@ -1,3 +1,10 @@
+## [1.12.8](https://github.com/Kong/design-tokens/compare/v1.12.7...v1.12.8) (2024-02-14)
+
+
+### Bug Fixes
+
+* **background:** add color weak tokens ([#230](https://github.com/Kong/design-tokens/issues/230)) ([1820d80](https://github.com/Kong/design-tokens/commit/1820d80021c5c76d6af6354e26c344fd0c8d25a6))
+
 ## [1.12.7](https://github.com/Kong/design-tokens/compare/v1.12.6...v1.12.7) (2024-01-25)
 
 

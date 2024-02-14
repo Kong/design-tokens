@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Tue, 30 Jan 2024 17:16:16 GMT
+ * Generated on Wed, 14 Feb 2024 18:29:15 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -74,10 +74,14 @@ $kui-color-background-primary-weak: #5f9aff;
 $kui-color-background-primary-weaker: #bee2ff;
 /* Weakest background color for primary actions or messages (blue.10) */
 $kui-color-background-primary-weakest: #eefaff;
+/* Weak background color for success elements (green.40). */
+$kui-color-background-success-weak: #00d6a4;
 /* Weakest background color for success elements (green.10). */
 $kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
 $kui-color-background-transparent: rgba(0, 0, 0, 0);
+/* Weak background color for warning elements (yellow.40). */
+$kui-color-background-warning-weak: #ffc400;
 /* Weakest background color for warning elements (yellow.10). */
 $kui-color-background-warning-weakest: #fffce0;
 /* Default border color for containers (gray.20). */
@@ -466,10 +470,14 @@ $tokens-map: (
   'kui-color-background-primary-weaker': #bee2ff;
   /* Weakest background color for primary actions or messages (blue.10) */
   'kui-color-background-primary-weakest': #eefaff;
+  /* Weak background color for success elements (green.40). */
+  'kui-color-background-success-weak': #00d6a4;
   /* Weakest background color for success elements (green.10). */
   'kui-color-background-success-weakest': #ecfffb;
   /* Transparent background color (transparent). */
   'kui-color-background-transparent': rgba(0, 0, 0, 0);
+  /* Weak background color for warning elements (yellow.40). */
+  'kui-color-background-warning-weak': #ffc400;
   /* Weakest background color for warning elements (yellow.10). */
   'kui-color-background-warning-weakest': #fffce0;
   /* Default border color for containers (gray.20). */
@@ -860,10 +868,14 @@ $tokens-map: (
 @kui-color-background-primary-weaker: #bee2ff;
 /* Weakest background color for primary actions or messages (blue.10) */
 @kui-color-background-primary-weakest: #eefaff;
+/* Weak background color for success elements (green.40). */
+@kui-color-background-success-weak: #00d6a4;
 /* Weakest background color for success elements (green.10). */
 @kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
 @kui-color-background-transparent: rgba(0, 0, 0, 0);
+/* Weak background color for warning elements (yellow.40). */
+@kui-color-background-warning-weak: #ffc400;
 /* Weakest background color for warning elements (yellow.10). */
 @kui-color-background-warning-weakest: #fffce0;
 /* Default border color for containers (gray.20). */
@@ -1255,10 +1267,14 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-primary-weaker: #bee2ff;
 /* Weakest background color for primary actions or messages (blue.10) */
 --kui-color-background-primary-weakest: #eefaff;
+/* Weak background color for success elements (green.40). */
+--kui-color-background-success-weak: #00d6a4;
 /* Weakest background color for success elements (green.10). */
 --kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
 --kui-color-background-transparent: rgba(0, 0, 0, 0);
+/* Weak background color for warning elements (yellow.40). */
+--kui-color-background-warning-weak: #ffc400;
 /* Weakest background color for warning elements (yellow.10). */
 --kui-color-background-warning-weakest: #fffce0;
 /* Default border color for containers (gray.20). */
@@ -1648,10 +1664,14 @@ export const KUI_COLOR_BACKGROUND_PRIMARY_WEAK = "#5f9aff";
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKER = "#bee2ff";
 /* Weakest background color for primary actions or messages (blue.10) */
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKEST = "#eefaff";
+/* Weak background color for success elements (green.40). */
+export const KUI_COLOR_BACKGROUND_SUCCESS_WEAK = "#00d6a4";
 /* Weakest background color for success elements (green.10). */
 export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKEST = "#ecfffb";
 /* Transparent background color (transparent). */
 export const KUI_COLOR_BACKGROUND_TRANSPARENT = "rgba(0, 0, 0, 0)";
+/* Weak background color for warning elements (yellow.40). */
+export const KUI_COLOR_BACKGROUND_WARNING_WEAK = "#ffc400";
 /* Weakest background color for warning elements (yellow.10). */
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = "#fffce0";
 /* Default border color for containers (gray.20). */
@@ -2013,8 +2033,10 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_primary_weak": "#5f9aff",
   "kui_color_background_primary_weaker": "#bee2ff",
   "kui_color_background_primary_weakest": "#eefaff",
+  "kui_color_background_success_weak": "#00d6a4",
   "kui_color_background_success_weakest": "#ecfffb",
   "kui_color_background_transparent": "rgba(0, 0, 0, 0)",
+  "kui_color_background_warning_weak": "#ffc400",
   "kui_color_background_warning_weakest": "#fffce0",
   "kui_color_border": "#e0e4ea",
   "kui_color_border_danger": "#d60027",
