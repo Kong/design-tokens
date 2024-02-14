@@ -13,10 +13,6 @@
         "strong": {
           "comment": "Strong text color for danger actions or messages (red.70).",
           "value": "{color.alias.red.70.value}"
-        },
-        "weak": {
-          "comment": "Weak text color for danger actions or messages (red.40).",
-          "value": "{color.alias.red.40.value}"
         }
       },
       "decorative": {
@@ -81,10 +77,6 @@
         "strongest": {
           "comment": "Strongest text color for primary actions or messages (blue.90).",
           "value": "{color.alias.blue.90.value}"
-        },
-        "weak": {
-          "comment": "Weak text color for primary actions or messages (blue.40).",
-          "value": "{color.alias.blue.40.value}"
         }
       },
       "success": {
@@ -95,10 +87,6 @@
         "strong": {
           "comment": "Strong text color for success actions or messages (green.70).",
           "value": "{color.alias.green.70.value}"
-        },
-        "weak": {
-          "comment": "Weak text color for success actions or messages (green.40).",
-          "value": "{color.alias.green.40.value}"
         }
       },
       "warning": {
@@ -109,10 +97,6 @@
         "strong": {
           "comment": "Text color for warning actions or messages (yellow.70).",
           "value": "{color.alias.yellow.70.value}"
-        },
-        "weak": {
-          "comment": "Weak text color for warning actions or messages (yellow.40).",
-          "value": "{color.alias.yellow.40.value}"
         }
       }
     }
