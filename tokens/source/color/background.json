@@ -120,6 +120,10 @@
         }
       },
       "success": {
+        "weak": {
+          "comment": "Weak background color for success elements (green.40).",
+          "value": "{color.alias.green.40.value}"
+        },
         "weakest": {
           "comment": "Weakest background color for success elements (green.10).",
           "value": "{color.alias.green.10.value}"
@@ -130,6 +134,10 @@
         "value": "{color.alias.transparent.value}"
       },
       "warning": {
+        "weak": {
+          "comment": "Weak background color for warning elements (yellow.40).",
+          "value": "{color.alias.yellow.40.value}"
+        },
         "weakest": {
           "comment": "Weakest background color for warning elements (yellow.10).",
           "value": "{color.alias.yellow.10.value}"
