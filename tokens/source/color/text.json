@@ -59,6 +59,10 @@
         "weak": {
           "comment": "Weak text color for neutral elements (gray.40).",
           "value": "{color.alias.gray.40.value}"
+        },
+        "weaker": {
+          "comment": "Weaker text color for neutral elements (gray.20).",
+          "value": "{color.alias.gray.20.value}"
         }
       },
       "primary": {
