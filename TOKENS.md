@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 14 Feb 2024 18:29:15 GMT
+ * Generated on Thu, 15 Feb 2024 22:39:19 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -150,6 +150,8 @@ $kui-color-text-neutral-stronger: #3a3f51;
 $kui-color-text-neutral-strongest: #232633;
 /* Weak text color for neutral elements (gray.40). */
 $kui-color-text-neutral-weak: #afb7c5;
+/* Weaker text color for neutral elements (gray.20). */
+$kui-color-text-neutral-weaker: #e0e4ea;
 /* Text color for primary actions or messages (blue.60). */
 $kui-color-text-primary: #0044f4;
 /* Strong text color for primary actions or messages (blue.70). */
@@ -546,6 +548,8 @@ $tokens-map: (
   'kui-color-text-neutral-strongest': #232633;
   /* Weak text color for neutral elements (gray.40). */
   'kui-color-text-neutral-weak': #afb7c5;
+  /* Weaker text color for neutral elements (gray.20). */
+  'kui-color-text-neutral-weaker': #e0e4ea;
   /* Text color for primary actions or messages (blue.60). */
   'kui-color-text-primary': #0044f4;
   /* Strong text color for primary actions or messages (blue.70). */
@@ -944,6 +948,8 @@ $tokens-map: (
 @kui-color-text-neutral-strongest: #232633;
 /* Weak text color for neutral elements (gray.40). */
 @kui-color-text-neutral-weak: #afb7c5;
+/* Weaker text color for neutral elements (gray.20). */
+@kui-color-text-neutral-weaker: #e0e4ea;
 /* Text color for primary actions or messages (blue.60). */
 @kui-color-text-primary: #0044f4;
 /* Strong text color for primary actions or messages (blue.70). */
@@ -1343,6 +1349,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-neutral-strongest: #232633;
 /* Weak text color for neutral elements (gray.40). */
 --kui-color-text-neutral-weak: #afb7c5;
+/* Weaker text color for neutral elements (gray.20). */
+--kui-color-text-neutral-weaker: #e0e4ea;
 /* Text color for primary actions or messages (blue.60). */
 --kui-color-text-primary: #0044f4;
 /* Strong text color for primary actions or messages (blue.70). */
@@ -1740,6 +1748,8 @@ export const KUI_COLOR_TEXT_NEUTRAL_STRONGER = "#3a3f51";
 export const KUI_COLOR_TEXT_NEUTRAL_STRONGEST = "#232633";
 /* Weak text color for neutral elements (gray.40). */
 export const KUI_COLOR_TEXT_NEUTRAL_WEAK = "#afb7c5";
+/* Weaker text color for neutral elements (gray.20). */
+export const KUI_COLOR_TEXT_NEUTRAL_WEAKER = "#e0e4ea";
 /* Text color for primary actions or messages (blue.60). */
 export const KUI_COLOR_TEXT_PRIMARY = "#0044f4";
 /* Strong text color for primary actions or messages (blue.70). */
@@ -2071,6 +2081,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_neutral_stronger": "#3a3f51",
   "kui_color_text_neutral_strongest": "#232633",
   "kui_color_text_neutral_weak": "#afb7c5",
+  "kui_color_text_neutral_weaker": "#e0e4ea",
   "kui_color_text_primary": "#0044f4",
   "kui_color_text_primary_strong": "#0030cc",
   "kui_color_text_primary_stronger": "#002099",

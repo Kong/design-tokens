@@ -1,3 +1,10 @@
+## [1.12.9](https://github.com/Kong/design-tokens/compare/v1.12.8...v1.12.9) (2024-02-15)
+
+
+### Bug Fixes
+
+* **color-text:** add neutral-weaker token ([#231](https://github.com/Kong/design-tokens/issues/231)) ([21d3c1b](https://github.com/Kong/design-tokens/commit/21d3c1ba9ab709be85cb31eecea9b663a9bde8e8))
+
 ## [1.12.8](https://github.com/Kong/design-tokens/compare/v1.12.7...v1.12.8) (2024-02-14)
 
 
