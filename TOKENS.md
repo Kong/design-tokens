@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Thu, 15 Feb 2024 22:39:19 GMT
+ * Generated on Fri, 16 Feb 2024 20:03:35 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -132,6 +132,8 @@ $kui-color-text-danger: #d60027;
 $kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
 $kui-color-text-decorative-aqua: #00abd2;
+/* Text color for decorative purposes (pink.60). */
+$kui-color-text-decorative-pink: #d60067;
 /* Text color for decorative purposes (purple.60). */
 $kui-color-text-decorative-purple: #6f28ff;
 /* Strong text color for decorative purposes (purple.70). */
@@ -530,6 +532,8 @@ $tokens-map: (
   'kui-color-text-danger-strong': #ad000e;
   /* Text color for decorative purposes (aqua.50). */
   'kui-color-text-decorative-aqua': #00abd2;
+  /* Text color for decorative purposes (pink.60). */
+  'kui-color-text-decorative-pink': #d60067;
   /* Text color for decorative purposes (purple.60). */
   'kui-color-text-decorative-purple': #6f28ff;
   /* Strong text color for decorative purposes (purple.70). */
@@ -930,6 +934,8 @@ $tokens-map: (
 @kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
 @kui-color-text-decorative-aqua: #00abd2;
+/* Text color for decorative purposes (pink.60). */
+@kui-color-text-decorative-pink: #d60067;
 /* Text color for decorative purposes (purple.60). */
 @kui-color-text-decorative-purple: #6f28ff;
 /* Strong text color for decorative purposes (purple.70). */
@@ -1331,6 +1337,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-danger-strong: #ad000e;
 /* Text color for decorative purposes (aqua.50). */
 --kui-color-text-decorative-aqua: #00abd2;
+/* Text color for decorative purposes (pink.60). */
+--kui-color-text-decorative-pink: #d60067;
 /* Text color for decorative purposes (purple.60). */
 --kui-color-text-decorative-purple: #6f28ff;
 /* Strong text color for decorative purposes (purple.70). */
@@ -1730,6 +1738,8 @@ export const KUI_COLOR_TEXT_DANGER = "#d60027";
 export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
 /* Text color for decorative purposes (aqua.50). */
 export const KUI_COLOR_TEXT_DECORATIVE_AQUA = "#00abd2";
+/* Text color for decorative purposes (pink.60). */
+export const KUI_COLOR_TEXT_DECORATIVE_PINK = "#d60067";
 /* Text color for decorative purposes (purple.60). */
 export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = "#6f28ff";
 /* Strong text color for decorative purposes (purple.70). */
@@ -2072,6 +2082,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_danger": "#d60027",
   "kui_color_text_danger_strong": "#ad000e",
   "kui_color_text_decorative_aqua": "#00abd2",
+  "kui_color_text_decorative_pink": "#d60067",
   "kui_color_text_decorative_purple": "#6f28ff",
   "kui_color_text_decorative_purple_strong": "#5e00f5",
   "kui_color_text_disabled": "#afb7c5",

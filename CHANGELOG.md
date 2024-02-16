@@ -1,3 +1,10 @@
+## [1.12.10](https://github.com/Kong/design-tokens/compare/v1.12.9...v1.12.10) (2024-02-16)
+
+
+### Bug Fixes
+
+* add decorative pink token for search ([#233](https://github.com/Kong/design-tokens/issues/233)) ([99a9d01](https://github.com/Kong/design-tokens/commit/99a9d01098e26a038faa11a61d91b1966a1b7729))
+
 ## [1.12.9](https://github.com/Kong/design-tokens/compare/v1.12.8...v1.12.9) (2024-02-15)
 
 
