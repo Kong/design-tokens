@@ -20,6 +20,10 @@
           "comment": "Text color for decorative purposes (aqua.50).",
           "value": "{color.alias.aqua.50.value}"
         },
+        "pink": {
+          "comment": "Text color for decorative purposes (pink.60).",
+          "value": "{color.alias.pink.60.value}"
+        },
         "purple": {
           "_": {
             "comment": "Text color for decorative purposes (purple.60).",
