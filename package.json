@@ -74,7 +74,7 @@
     "eslint-plugin-vue": "^9.21.1",
     "npm-run-all2": "^5.0.2",
     "rimraf": "^5.0.5",
-    "sass": "^1.70.0",
+    "sass": "^1.71.0",
     "semantic-release": "^22.0.12",
     "shx": "^0.3.4",
     "style-dictionary": "^3.9.2",
