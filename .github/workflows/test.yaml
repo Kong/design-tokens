@@ -45,6 +45,11 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Unit test stylelint-plugin
+        run: |
+          yarn --cwd stylelint-plugin install --frozen-lockfile
+          yarn --cwd stylelint-plugin test:unit
+
       - name: Build style dictionary
         run: yarn build
 
