@@ -86,8 +86,14 @@
         }
       },
       "overlay": {
-        "comment": "Overlay background color (rgba(blue.100, 0.6))",
-        "value": "rgba({color.alias.blue.100.rgb}, 0.6)"
+        "_": {
+          "comment": "Overlay background color (rgba(blue.100, 0.6))",
+          "value": "rgba({color.alias.blue.100.rgb}, 0.6)"
+        },
+        "inverse": {
+          "comment": "Inverse overlay background color (rgba(white, 0.12))",
+          "value": "rgba({color.alias.white.rgb}, 0.12)"
+        }
       },
       "primary": {
         "_": {
