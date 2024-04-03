@@ -50,10 +50,6 @@
         "value": "rgba({color.alias.white.rgb}, 0.2)"
       },
       "neutral": {
-        "_": {
-          "comment": "Border color for neutral elements (gray.60).",
-          "value": "{color.alias.gray.60.value}"
-        },
         "weak": {
           "comment": "Weak border color for neutral elements (gray.40)",
           "value": "{color.alias.gray.40.value}"
