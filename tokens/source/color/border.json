@@ -46,10 +46,8 @@
         "value": "{color.alias.gray.20.value}"
       },
       "inverse": {
-        "_": {
-          "comment": "Inverse border color (rgba(white, 0.2)).",
-          "value": "rgba({color.alias.white.rgb}, 0.2)"
-        }
+        "comment": "Inverse border color (rgba(white, 0.2)).",
+        "value": "rgba({color.alias.white.rgb}, 0.2)"
       },
       "neutral": {
         "weak": {
