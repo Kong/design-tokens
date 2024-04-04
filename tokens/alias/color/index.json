@@ -306,6 +306,7 @@
       },
       "white": {
         "comment": "Alias for #FFF.",
+        "rgb": "255, 255, 255",
         "value": "#FFF"
       },
       "yellow": {

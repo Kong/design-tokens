@@ -85,6 +85,10 @@
         "strongest": {
           "comment": "Strongest text color for primary actions or messages (blue.90).",
           "value": "{color.alias.blue.90.value}"
+        },
+        "weak": {
+          "comment": "Weak text color for primary actions or messages (blue.40).",
+          "value": "{color.alias.blue.40.value}"
         }
       },
       "success": {

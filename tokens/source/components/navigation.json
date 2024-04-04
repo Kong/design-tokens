@@ -8,13 +8,13 @@
         },
         "selected": {
           "comment": "The background color of a selected navigation item.",
-          "value": "rgba(255, 255, 255, 0.12)"
+          "value": "rgba({color.alias.white.rgb}, 0.12)"
         }
       },
       "border": {
         "_": {
-          "comment": "rgba(255, 255, 255, 0.12)",
-          "value": "rgba(255, 255, 255, 0.12)"
+          "comment": "rgba(white, 0.12)",
+          "value": "rgba({color.alias.white.rgb}, 0.12)"
         },
         "child": {
           "comment": "The border color for a selected child navigation item.",
@@ -22,7 +22,7 @@
         },
         "divider": {
           "comment": "The color of the navigation section divider.",
-          "value": "rgba(255, 255, 255, 0.24)"
+          "value": "rgba({color.alias.white.rgb}, 0.24)"
         }
       },
       "text": {
@@ -48,7 +48,7 @@
       "border": {
         "_": {
           "comment": "The box-shadow for a focus-visible navigation link.",
-          "value": "0 0 0 1px rgba(255, 255, 255, 0.12) inset"
+          "value": "0 0 0 1px rgba({color.alias.white.rgb}, 0.12) inset"
         },
         "child": {
           "comment": "The left box-shadow for an active child navigation link.",
@@ -57,7 +57,7 @@
       },
       "focus": {
         "comment": "Navigation link focus-visible box-shadow.",
-        "value": "0 0 0 1px rgba(255, 255, 255, 0.60) inset"
+        "value": "0 0 0 1px rgba({color.alias.white.rgb}, 0.60) inset"
       }
     }
   }
