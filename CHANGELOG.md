@@ -1,3 +1,10 @@
+## [1.12.11](https://github.com/Kong/design-tokens/compare/v1.12.10...v1.12.11) (2024-04-04)
+
+
+### Bug Fixes
+
+* **border, text:** add border and text tokens ([#261](https://github.com/Kong/design-tokens/issues/261)) ([efb3c40](https://github.com/Kong/design-tokens/commit/efb3c401d613a7b95e2617d69916b3b775f458a8))
+
 ## [1.12.10](https://github.com/Kong/design-tokens/compare/v1.12.9...v1.12.10) (2024-02-16)
 
 
