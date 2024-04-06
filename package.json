@@ -14,7 +14,10 @@
     "watch:tokens": "yarn build && chokidar \"tokens/**/*.json\" -c \"yarn build\"",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
-    "commit": "cz"
+    "commit": "cz",
+    "test:unit": "vitest",
+    "test:unit:open": "vitest --ui",
+    "test:unit:coverage": "vitest run --coverage"
   },
   "publishConfig": {
     "access": "public"
@@ -61,6 +64,8 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/ui": "^1.4.0",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -82,6 +87,7 @@
     "vite": "^5.2.6",
     "vite-plugin-restart": "^0.4.0",
     "vite-plugin-vue-devtools": "^7.0.21",
+    "vitest": "^1.4.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

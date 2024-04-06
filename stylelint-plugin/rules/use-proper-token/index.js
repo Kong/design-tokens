@@ -1,7 +1,7 @@
 const stylelint = require('stylelint')
 const { ruleMessages, validateOptions, report } = stylelint.utils
 const { RULE_NAME_PREFIX } = require('../../utilities')
-const getInappropriateTokens = require('./getInappropriateTokens')
+const getInappropriateTokens = require('./get-inappropriate-tokens')
 
 const ruleName = `${RULE_NAME_PREFIX}/use-proper-token`
 const messages = ruleMessages(ruleName, {
