@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "1.12.4",
+  "version": "1.12.11",
   "description": "Kong UI Design Tokens and style dictionary",
   "scripts": {
     "build": "yarn build:clean && style-dictionary build && yarn copy:tokens-doc && yarn copy:stylelint-plugin",
@@ -12,9 +12,6 @@
     "sandbox": "run-p sandbox:open watch:tokens",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
     "watch:tokens": "yarn build && chokidar \"tokens/**/*.json\" -c \"yarn build\"",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
     "commit": "cz"
@@ -55,38 +52,38 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^18.4.4",
-    "@commitlint/config-conventional": "^18.4.4",
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^1.5.5",
+    "@evilmartians/lefthook": "^1.6.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^6.18.0",
-    "@typescript-eslint/parser": "^6.18.0",
-    "@vitejs/plugin-vue": "^5.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "@vitejs/plugin-vue": "^5.0.4",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsonc": "^2.11.2",
-    "eslint-plugin-n": "^16.6.1",
+    "eslint-plugin-jsonc": "^2.14.1",
+    "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
-    "eslint-plugin-vue": "^9.19.2",
-    "npm-run-all": "^4.1.5",
+    "eslint-plugin-vue": "^9.23.0",
+    "npm-run-all2": "^6.1.2",
     "rimraf": "^5.0.5",
-    "sass": "^1.69.7",
+    "sass": "^1.72.0",
     "semantic-release": "^22.0.12",
     "shx": "^0.3.4",
-    "style-dictionary": "^3.9.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.11",
+    "style-dictionary": "^3.9.2",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.6",
     "vite-plugin-restart": "^0.4.0",
-    "vitepress": "^1.0.0-rc.35",
-    "vue": "^3.4.5",
-    "vue-router": "^4.2.5"
+    "vite-plugin-vue-devtools": "^7.0.21",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   },
   "release": {
     "branches": [
@@ -137,7 +134,7 @@
     }
   },
   "volta": {
-    "node": "18.19.0",
-    "yarn": "1.22.21"
+    "node": "18.19.1",
+    "yarn": "1.22.22"
   }
 }

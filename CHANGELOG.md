@@ -1,3 +1,52 @@
+## [1.12.11](https://github.com/Kong/design-tokens/compare/v1.12.10...v1.12.11) (2024-04-04)
+
+
+### Bug Fixes
+
+* **border, text:** add border and text tokens ([#261](https://github.com/Kong/design-tokens/issues/261)) ([efb3c40](https://github.com/Kong/design-tokens/commit/efb3c401d613a7b95e2617d69916b3b775f458a8))
+
+## [1.12.10](https://github.com/Kong/design-tokens/compare/v1.12.9...v1.12.10) (2024-02-16)
+
+
+### Bug Fixes
+
+* add decorative pink token for search ([#233](https://github.com/Kong/design-tokens/issues/233)) ([99a9d01](https://github.com/Kong/design-tokens/commit/99a9d01098e26a038faa11a61d91b1966a1b7729))
+
+## [1.12.9](https://github.com/Kong/design-tokens/compare/v1.12.8...v1.12.9) (2024-02-15)
+
+
+### Bug Fixes
+
+* **color-text:** add neutral-weaker token ([#231](https://github.com/Kong/design-tokens/issues/231)) ([21d3c1b](https://github.com/Kong/design-tokens/commit/21d3c1ba9ab709be85cb31eecea9b663a9bde8e8))
+
+## [1.12.8](https://github.com/Kong/design-tokens/compare/v1.12.7...v1.12.8) (2024-02-14)
+
+
+### Bug Fixes
+
+* **background:** add color weak tokens ([#230](https://github.com/Kong/design-tokens/issues/230)) ([1820d80](https://github.com/Kong/design-tokens/commit/1820d80021c5c76d6af6354e26c344fd0c8d25a6))
+
+## [1.12.7](https://github.com/Kong/design-tokens/compare/v1.12.6...v1.12.7) (2024-01-25)
+
+
+### Bug Fixes
+
+* **color-text-disabled:** change token value ([#217](https://github.com/Kong/design-tokens/issues/217)) ([d23ecec](https://github.com/Kong/design-tokens/commit/d23ecec716c54f868d52ea5b724dea2af3a77248))
+
+## [1.12.6](https://github.com/Kong/design-tokens/compare/v1.12.5...v1.12.6) (2024-01-24)
+
+
+### Bug Fixes
+
+* reference alias values ([#216](https://github.com/Kong/design-tokens/issues/216)) ([213f02a](https://github.com/Kong/design-tokens/commit/213f02acf18ed1b3754ebcd7a1c415de7527ede3))
+
+## [1.12.5](https://github.com/Kong/design-tokens/compare/v1.12.4...v1.12.5) (2024-01-24)
+
+
+### Bug Fixes
+
+* **color-background:** add overlay token ([#215](https://github.com/Kong/design-tokens/issues/215)) ([e5355e7](https://github.com/Kong/design-tokens/commit/e5355e704e105e8a6117581025367fcc9dc2eb08))
+
 ## [1.12.4](https://github.com/Kong/design-tokens/compare/v1.12.3...v1.12.4) (2024-01-02)
 
 

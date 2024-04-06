@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import * as tokens from '@tokens/js'
 
 const props = defineProps({
   token: {
@@ -23,7 +24,8 @@ const props = defineProps({
 
 const sanitizedToken = computed((): string => props.token.replace(/^--/, ''))
 const swatchStyles = computed((): Record<string, string> => ({
-  backgroundColor: `var(--${sanitizedToken.value.replace(/^--/, '')}, '#000')`,
+  // @ts-ignore
+  backgroundColor: tokens[props.token],
 }))
 </script>
 

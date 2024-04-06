@@ -86,6 +86,7 @@
         },
         "100": {
           "comment": "Alias for #000933.",
+          "rgb": "0, 9, 51",
           "value": "#000933"
         }
       },
@@ -305,6 +306,7 @@
       },
       "white": {
         "comment": "Alias for #FFF.",
+        "rgb": "255, 255, 255",
         "value": "#FFF"
       },
       "yellow": {
