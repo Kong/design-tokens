@@ -3,8 +3,10 @@
 [Stylelint](https://github.com/stylelint/stylelint) plugin for linting design tokens.
 
 - [Usage](#usage)
+- [Testing](#testing)
 - [Rules](#rules)
   - [`use-proper-token`](#use-proper-token)
+- [Creating a rule](#creating-a-rule)
 
 ## Usage
 
@@ -27,6 +29,10 @@ rules: {
   }]
 }
 ```
+
+## Testing
+
+Run `yarn test:unit` or `test:unit:open`
 
 ## Rules
 
@@ -53,3 +59,11 @@ For example, the `kui-color-text-primary` token **should** be used as a value fo
   color: $kui-color-text-primary;
 }
 ```
+
+## Creating a rule
+
+1. Create a directory with same name as your rule (use kebab case) in `stylelint-plugin/rules/`
+2. Organize the directory in such way so that rule logic lives in a separate file that exports the function(s) with rule logic
+3. Create a `*.spec.ts` - this is where unit tests for your rule will live
+4. Check out helpful utilities in `stylelint-plugin/utilities/`
+   * If you need to create any helper/utility functions that might be helpful in other rules, you can place it there
