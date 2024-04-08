@@ -4,7 +4,6 @@
     "dbaeumer.vscode-eslint",
     "mrmlnc.vscode-scss",
     "Vue.volar",
-    "Vue.vscode-typescript-vue-plugin",
     "vunguyentuan.vscode-css-variables"
   ],
   "unwantedRecommendations": []
