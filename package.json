@@ -58,8 +58,8 @@
     "@evilmartians/lefthook": "^1.6.7",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
+    "@typescript-eslint/eslint-plugin": "^7.5.0",
+    "@typescript-eslint/parser": "^7.5.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.0",
@@ -67,14 +67,14 @@
     "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-jsonc": "^2.14.1",
+    "eslint-plugin-jsonc": "^2.15.0",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
-    "eslint-plugin-vue": "^9.23.0",
+    "eslint-plugin-vue": "^9.24.0",
     "npm-run-all2": "^6.1.2",
     "rimraf": "^5.0.5",
-    "sass": "^1.72.0",
+    "sass": "^1.74.1",
     "semantic-release": "^22.0.12",
     "shx": "^0.3.4",
     "style-dictionary": "^3.9.2",
@@ -134,7 +134,7 @@
     }
   },
   "volta": {
-    "node": "18.19.1",
+    "node": "18.20.1",
     "yarn": "1.22.22"
   }
 }
