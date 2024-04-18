@@ -45,6 +45,9 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Run unit tests
+        run: yarn test:unit:coverage
+
       - name: Build style dictionary
         run: yarn build
 
