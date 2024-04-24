@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
-    "@commitlint/config-conventional": "^19.1.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^1.6.8",
     "@semantic-release/changelog": "^6.0.3",
