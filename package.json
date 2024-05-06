@@ -68,7 +68,7 @@
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsonc": "^2.15.1",
-    "eslint-plugin-n": "^17.2.1",
+    "eslint-plugin-n": "^17.3.1",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "eslint-plugin-vue": "^9.25.0",
@@ -81,7 +81,7 @@
     "typescript": "^5.4.5",
     "vite": "^5.2.10",
     "vite-plugin-restart": "^0.4.0",
-    "vite-plugin-vue-devtools": "^7.0.27",
+    "vite-plugin-vue-devtools": "^7.1.2",
     "vue": "^3.4.25",
     "vue-router": "^4.3.2"
   },
