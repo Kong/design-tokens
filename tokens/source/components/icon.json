@@ -1,5 +1,27 @@
 {
   "icon": {
+    "color": {
+      "danger": {
+        "comment": "Danger color for icons.",
+        "value": "{color.alias.red.50.value}"
+      },
+      "neutral": {
+        "comment": "Neutral color for icons.",
+        "value": "{color.alias.gray.50.value}"
+      },
+      "primary": {
+        "comment": "Primary color for icons.",
+        "value": "{color.alias.blue.50.value}"
+      },
+      "success": {
+        "comment": "Success color for icons.",
+        "value": "{color.alias.green.50.value}"
+      },
+      "warning": {
+        "comment": "Warning color for icons.",
+        "value": "{color.alias.yellow.40.value}"
+      }
+    },
     "size": {
       "10": {
         "comment": "10px icon size.",
