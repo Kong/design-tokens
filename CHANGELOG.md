@@ -1,3 +1,10 @@
+## [1.12.12](https://github.com/Kong/design-tokens/compare/v1.12.11...v1.12.12) (2024-05-10)
+
+
+### Bug Fixes
+
+* add icon specific colors ([#287](https://github.com/Kong/design-tokens/issues/287)) ([63a4038](https://github.com/Kong/design-tokens/commit/63a403815139aa67e19cf7202f569ccd324a3a30))
+
 ## [1.12.11](https://github.com/Kong/design-tokens/compare/v1.12.10...v1.12.11) (2024-04-04)
 
 

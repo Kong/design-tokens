@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Thu, 04 Apr 2024 15:06:03 GMT
+ * Generated on Fri, 10 May 2024 18:15:23 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -210,6 +210,16 @@ $kui-breakpoint-tablet: 1024px;
 $kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 $kui-breakpoint-desktop: 1536px;
+/* Danger color for icons. */
+$kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+$kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+$kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+$kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+$kui-icon-color-warning: #ffc400;
 /* 10px icon size. */
 $kui-icon-size-10: 10px;
 /* 12px icon size. */
@@ -614,6 +624,16 @@ $tokens-map: (
   'kui-breakpoint-laptop': 1280px;
   /* Used for larger desktop screens. */
   'kui-breakpoint-desktop': 1536px;
+  /* Danger color for icons. */
+  'kui-icon-color-danger': #f50045;
+  /* Neutral color for icons. */
+  'kui-icon-color-neutral': #828a9e;
+  /* Primary color for icons. */
+  'kui-icon-color-primary': #306fff;
+  /* Success color for icons. */
+  'kui-icon-color-success': #00a17b;
+  /* Warning color for icons. */
+  'kui-icon-color-warning': #ffc400;
   /* 10px icon size. */
   'kui-icon-size-10': 10px;
   /* 12px icon size. */
@@ -1020,6 +1040,16 @@ $tokens-map: (
 @kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 @kui-breakpoint-desktop: 1536px;
+/* Danger color for icons. */
+@kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+@kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+@kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+@kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+@kui-icon-color-warning: #ffc400;
 /* 10px icon size. */
 @kui-icon-size-10: 10px;
 /* 12px icon size. */
@@ -1427,6 +1457,16 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 --kui-breakpoint-desktop: 1536px;
+/* Danger color for icons. */
+--kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+--kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+--kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+--kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+--kui-icon-color-warning: #ffc400;
 /* 10px icon size. */
 --kui-icon-size-10: 10px;
 /* 12px icon size. */
@@ -1832,6 +1872,16 @@ export const KUI_BREAKPOINT_TABLET = "1024px";
 export const KUI_BREAKPOINT_LAPTOP = "1280px";
 /* Used for larger desktop screens. */
 export const KUI_BREAKPOINT_DESKTOP = "1536px";
+/* Danger color for icons. */
+export const KUI_ICON_COLOR_DANGER = "#f50045";
+/* Neutral color for icons. */
+export const KUI_ICON_COLOR_NEUTRAL = "#828a9e";
+/* Primary color for icons. */
+export const KUI_ICON_COLOR_PRIMARY = "#306fff";
+/* Success color for icons. */
+export const KUI_ICON_COLOR_SUCCESS = "#00a17b";
+/* Warning color for icons. */
+export const KUI_ICON_COLOR_WARNING = "#ffc400";
 /* 10px icon size. */
 export const KUI_ICON_SIZE_10 = "10px";
 /* 12px icon size. */
@@ -2141,6 +2191,11 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_breakpoint_tablet": "1024px",
   "kui_breakpoint_laptop": "1280px",
   "kui_breakpoint_desktop": "1536px",
+  "kui_icon_color_danger": "#f50045",
+  "kui_icon_color_neutral": "#828a9e",
+  "kui_icon_color_primary": "#306fff",
+  "kui_icon_color_success": "#00a17b",
+  "kui_icon_color_warning": "#ffc400",
   "kui_icon_size_10": "10px",
   "kui_icon_size_20": "12px",
   "kui_icon_size_30": "16px",
