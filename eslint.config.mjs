@@ -8,12 +8,6 @@ export default [
     ...config,
     files: ['tokens/**/*.json'],
   })),
-  // {
-  //   files: ['stylelint-plugin/rules/use-proper-token/token-map.js'],
-  //   rules: {
-  //     'sort-keys': ['error', 'asc', { natural: true, minKeys: 2, caseSensitive: false }],
-  //   },
-  // },
   {
     files: [
       '**/*.{js,cjs,jsx}',
