@@ -24,7 +24,7 @@ const props = defineProps({
 
 const sanitizedToken = computed((): string => props.token.replace(/^--/, ''))
 const swatchStyles = computed((): Record<string, string> => ({
-  // @ts-ignore
+  // @ts-ignore: props.token is a valid string
   backgroundColor: tokens[props.token],
 }))
 </script>
