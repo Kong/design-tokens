@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/Kong/design-tokens/compare/v1.12.12...v1.13.0) (2024-06-06)
+
+
+### Features
+
+* **eslint:** eslint v9 and shared flat config [KHCP-11627] ([#301](https://github.com/Kong/design-tokens/issues/301)) ([5c2e20b](https://github.com/Kong/design-tokens/commit/5c2e20b8b90a91646de4c050f9e9736bb149e205))
+
 ## [1.12.12](https://github.com/Kong/design-tokens/compare/v1.12.11...v1.12.12) (2024-05-10)
 
 
