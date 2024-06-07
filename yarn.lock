@@ -6663,7 +6663,7 @@ vite-plugin-restart@^0.4.0:
   dependencies:
     micromatch "^4.0.5"
 
-vite-plugin-vue-devtools@^7.2.0:
+vite-plugin-vue-devtools@^7.2.1:
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/vite-plugin-vue-devtools/-/vite-plugin-vue-devtools-7.2.1.tgz#489b94b8a183d220057c266cf78f09543c0f99c2"
   integrity sha512-4k7QNZz0nSojoePQoxnE5fIzi8RU1QJHc0TEg4golv2phZxhBGfjScZD2B8X6bcrRbUQ9CaRKN0dzBs1xtzzNg==
