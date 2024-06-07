@@ -1,3 +1,10 @@
+## [1.13.2](https://github.com/Kong/design-tokens/compare/v1.13.1...v1.13.2) (2024-06-07)
+
+
+### Bug Fixes
+
+* semantic release ([9f9ee0b](https://github.com/Kong/design-tokens/commit/9f9ee0bde566be229ad6f545f0154b280e5fc8dc))
+
 ## [1.13.1](https://github.com/Kong/design-tokens/compare/v1.13.0...v1.13.1) (2024-06-07)
 
 
