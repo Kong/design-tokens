@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/Kong/design-tokens/compare/v1.13.0...v1.13.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* lockfile ([775bf92](https://github.com/Kong/design-tokens/commit/775bf92db4ca8deb61dc7b671443f79702a4b8e4))
+
 # [1.13.0](https://github.com/Kong/design-tokens/compare/v1.12.12...v1.13.0) (2024-06-06)
 
 
