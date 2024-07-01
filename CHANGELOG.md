@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/Kong/design-tokens/compare/v1.13.2...v1.14.0) (2024-07-01)
+
+
+### Features
+
+* **analytics-status-colors:** orange pallete, status codes [MA-2473] ([#318](https://github.com/Kong/design-tokens/issues/318)) ([860ac69](https://github.com/Kong/design-tokens/commit/860ac69fcb549ba628b10af50a3cc036f4b2770c))
+
 ## [1.13.2](https://github.com/Kong/design-tokens/compare/v1.13.1...v1.13.2) (2024-06-07)
 
 
