@@ -67,7 +67,7 @@
     "npm-run-all2": "^6.2.0",
     "rimraf": "^5.0.7",
     "sass": "^1.77.6",
-    "semantic-release": "^22.0.12",
+    "semantic-release": "^24.0.0",
     "shx": "^0.3.4",
     "style-dictionary": "^3.9.2",
     "typescript": "^5.4.5",
