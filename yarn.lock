@@ -731,10 +731,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kong/eslint-config-kong-ui@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@kong/eslint-config-kong-ui/-/eslint-config-kong-ui-1.1.0.tgz#231e12849900720c9c1a215286b6afc0a0a74933"
-  integrity sha512-PSZaL7IhVLmbojwpBPaKIfxLIBBLnYFIjjrr5Nbz0Ia4cSYFqdwkdFB3t5PnjLHWwQr0IpLgN5e2vGe1n9Hpig==
+"@kong/eslint-config-kong-ui@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@kong/eslint-config-kong-ui/-/eslint-config-kong-ui-1.1.1.tgz#7b48d8f16783860707ad8d4f218e86701d8a5979"
+  integrity sha512-L66Nqif4KcWlaSX9xb9WToMh9JbcxGrRb6tF1hz36GsZZaBsk6cHdVKVXUjPA7jgtkE1aUHpzQO1IM/UMLQCQg==
   dependencies:
     "@eslint/compat" "^1.0.3"
     "@eslint/eslintrc" "^3.1.0"
