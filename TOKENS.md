@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Wed, 10 Jul 2024 16:17:52 GMT
+ * Generated on Mon, 01 Jul 2024 19:31:35 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -314,7 +314,141 @@ $kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
 $kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
 /* Navigation link focus-visible box-shadow. */
 $kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+/* Analytics request status color 100 (blue.20). */
+$kui-status-color-100: #bee2ff;
+/* Analytics request status color 101 (blue.30). */
+$kui-status-color-101: #8fc1ff;
+/* Analytics request status color 102 (blue.40). */
+$kui-status-color-102: #5f9aff;
+/* Analytics request status color 103 (blue.50). */
+$kui-status-color-103: #306fff;
+/* Analytics request status color 200 (green.20). */
+$kui-status-color-200: #b5ffee;
+/* Analytics request status color 201 (green.30). */
+$kui-status-color-201: #00fabe;
+/* Analytics request status color 202 (green.40). */
+$kui-status-color-202: #00d6a4;
+/* Analytics request status color 203 (green.50). */
+$kui-status-color-203: #00a17b;
+/* Analytics request status color 204 (green.60). */
+$kui-status-color-204: #007d60;
+/* Analytics request status color 205 (green.70). */
+$kui-status-color-205: #005944;
+/* Analytics request status color 206 (green.20). */
+$kui-status-color-206: #b5ffee;
+/* Analytics request status color 207 (green.30). */
+$kui-status-color-207: #00fabe;
+/* Analytics request status color 208 (green.40). */
+$kui-status-color-208: #b5ffee;
+/* Analytics request status color 226 (green.50). */
+$kui-status-color-226: #00a17b;
+/* Analytics request status color 100 (yellow.20). */
+$kui-status-color-300: #fff296;
+/* Analytics request status color 101 (yellow.30). */
+$kui-status-color-301: #ffe04b;
+/* Analytics request status color 102 (yellow.40). */
+$kui-status-color-302: #ffc400;
+/* Analytics request status color 103 (yellow.50). */
+$kui-status-color-303: #b37600;
+/* Analytics request status color 103 (yellow.60). */
+$kui-status-color-304: #995c00;
+/* Analytics request status color 103 (yellow.70). */
+$kui-status-color-305: #804400;
+/* Analytics request status color 103 (yellow.20). */
+$kui-status-color-307: #fff296;
+/* Analytics request status color 103 (yellow.30). */
+$kui-status-color-308: #ffe04b;
+/* Analytics request status color 400 (orange.20). */
+$kui-status-color-400: #ffc2b3;
+/* Analytics request status color 401 (orange.30). */
+$kui-status-color-401: #ff9877;
+/* Analytics request status color 402 (orange.40). */
+$kui-status-color-402: #ff723c;
+/* Analytics request status color 403 (orange.50). */
+$kui-status-color-403: #f75008;
+/* Analytics request status color 404 (orange.60). */
+$kui-status-color-404: #d13500;
+/* Analytics request status color 405 (orange.70). */
+$kui-status-color-405: #a31f00;
+/* Analytics request status color 406 (orange.20). */
+$kui-status-color-406: #ffc2b3;
+/* Analytics request status color 407 (orange.30). */
+$kui-status-color-407: #ff9877;
+/* Analytics request status color 408 (orange.40). */
+$kui-status-color-408: #ff723c;
+/* Analytics request status color 409 (orange.50). */
+$kui-status-color-409: #f75008;
+/* Analytics request status color 410 (orange.60). */
+$kui-status-color-410: #d13500;
+/* Analytics request status color 411 (orange.70). */
+$kui-status-color-411: #a31f00;
+/* Analytics request status color 412 (orange.20). */
+$kui-status-color-412: #ffc2b3;
+/* Analytics request status color 413 (orange.30). */
+$kui-status-color-413: #ff9877;
+/* Analytics request status color 414 (orange.40). */
+$kui-status-color-414: #ff723c;
+/* Analytics request status color 415 (orange.50). */
+$kui-status-color-415: #f75008;
+/* Analytics request status color 416 (orange.60). */
+$kui-status-color-416: #d13500;
+/* Analytics request status color 417 (orange.70). */
+$kui-status-color-417: #a31f00;
+/* Analytics request status color 418 (orange.20). */
+$kui-status-color-418: #ffc2b3;
+/* Analytics request status color 421 (orange.30). */
+$kui-status-color-421: #ff9877;
+/* Analytics request status color 422 (orange.40). */
+$kui-status-color-422: #ff723c;
+/* Analytics request status color 423 (orange.50). */
+$kui-status-color-423: #f75008;
+/* Analytics request status color 424 (orange.60). */
+$kui-status-color-424: #d13500;
+/* Analytics request status color 425 (orange.70). */
+$kui-status-color-425: #a31f00;
+/* Analytics request status color 426 (orange.20). */
+$kui-status-color-426: #ffc2b3;
+/* Analytics request status color 428 (orange.30). */
+$kui-status-color-428: #ff9877;
+/* Analytics request status color 429 (orange.40). */
+$kui-status-color-429: #ff723c;
+/* Analytics request status color 431 (orange.50). */
+$kui-status-color-431: #f75008;
+/* Analytics request status color 451 (orange.60). */
+$kui-status-color-451: #d13500;
+/* Analytics request status color 500 (red.20). */
+$kui-status-color-500: #ffabab;
+/* Analytics request status color 501 (red.30). */
+$kui-status-color-501: #ff7272;
+/* Analytics request status color 502 (red.40). */
+$kui-status-color-502: #ff3954;
+/* Analytics request status color 503 (red.50). */
+$kui-status-color-503: #f50045;
+/* Analytics request status color 504 (red.60). */
+$kui-status-color-504: #d60027;
+/* Analytics request status color 505 (red.70). */
+$kui-status-color-505: #ad000e;
+/* Analytics request status color 506 (red.20). */
+$kui-status-color-506: #ffabab;
+/* Analytics request status color 507 (red.30). */
+$kui-status-color-507: #ff7272;
+/* Analytics request status color 508 (red.40). */
+$kui-status-color-508: #ff3954;
+/* Analytics request status color 510 (red.50). */
+$kui-status-color-510: #f50045;
+/* Analytics request status color 511 (red.60). */
+$kui-status-color-511: #d60027;
+/* Analytics request status color 1xx wildcard (blue.10). */
+$kui-status-color-1xx: #eefaff;
+/* Analytics request status color 2xx wildcard (green.10). */
+$kui-status-color-2xx: #ecfffb;
+/* Analytics request status color 3xx wildcard (yellow.10). */
+$kui-status-color-3xx: #fffce0;
+/* Analytics request status color 4xx wildcard (orange.10). */
+$kui-status-color-4xx: #fff1ef;
+/* Analytics request status color 5xx wildcard (red.10). */
+$kui-status-color-5xx: #ffe5e5;
+/* The standard monospace font family. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
 $kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
@@ -730,7 +864,141 @@ $tokens-map: (
   'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset;
   /* Navigation link focus-visible box-shadow. */
   'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-  /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+  /* Analytics request status color 100 (blue.20). */
+  'kui-status-color-100': #bee2ff;
+  /* Analytics request status color 101 (blue.30). */
+  'kui-status-color-101': #8fc1ff;
+  /* Analytics request status color 102 (blue.40). */
+  'kui-status-color-102': #5f9aff;
+  /* Analytics request status color 103 (blue.50). */
+  'kui-status-color-103': #306fff;
+  /* Analytics request status color 200 (green.20). */
+  'kui-status-color-200': #b5ffee;
+  /* Analytics request status color 201 (green.30). */
+  'kui-status-color-201': #00fabe;
+  /* Analytics request status color 202 (green.40). */
+  'kui-status-color-202': #00d6a4;
+  /* Analytics request status color 203 (green.50). */
+  'kui-status-color-203': #00a17b;
+  /* Analytics request status color 204 (green.60). */
+  'kui-status-color-204': #007d60;
+  /* Analytics request status color 205 (green.70). */
+  'kui-status-color-205': #005944;
+  /* Analytics request status color 206 (green.20). */
+  'kui-status-color-206': #b5ffee;
+  /* Analytics request status color 207 (green.30). */
+  'kui-status-color-207': #00fabe;
+  /* Analytics request status color 208 (green.40). */
+  'kui-status-color-208': #b5ffee;
+  /* Analytics request status color 226 (green.50). */
+  'kui-status-color-226': #00a17b;
+  /* Analytics request status color 100 (yellow.20). */
+  'kui-status-color-300': #fff296;
+  /* Analytics request status color 101 (yellow.30). */
+  'kui-status-color-301': #ffe04b;
+  /* Analytics request status color 102 (yellow.40). */
+  'kui-status-color-302': #ffc400;
+  /* Analytics request status color 103 (yellow.50). */
+  'kui-status-color-303': #b37600;
+  /* Analytics request status color 103 (yellow.60). */
+  'kui-status-color-304': #995c00;
+  /* Analytics request status color 103 (yellow.70). */
+  'kui-status-color-305': #804400;
+  /* Analytics request status color 103 (yellow.20). */
+  'kui-status-color-307': #fff296;
+  /* Analytics request status color 103 (yellow.30). */
+  'kui-status-color-308': #ffe04b;
+  /* Analytics request status color 400 (orange.20). */
+  'kui-status-color-400': #ffc2b3;
+  /* Analytics request status color 401 (orange.30). */
+  'kui-status-color-401': #ff9877;
+  /* Analytics request status color 402 (orange.40). */
+  'kui-status-color-402': #ff723c;
+  /* Analytics request status color 403 (orange.50). */
+  'kui-status-color-403': #f75008;
+  /* Analytics request status color 404 (orange.60). */
+  'kui-status-color-404': #d13500;
+  /* Analytics request status color 405 (orange.70). */
+  'kui-status-color-405': #a31f00;
+  /* Analytics request status color 406 (orange.20). */
+  'kui-status-color-406': #ffc2b3;
+  /* Analytics request status color 407 (orange.30). */
+  'kui-status-color-407': #ff9877;
+  /* Analytics request status color 408 (orange.40). */
+  'kui-status-color-408': #ff723c;
+  /* Analytics request status color 409 (orange.50). */
+  'kui-status-color-409': #f75008;
+  /* Analytics request status color 410 (orange.60). */
+  'kui-status-color-410': #d13500;
+  /* Analytics request status color 411 (orange.70). */
+  'kui-status-color-411': #a31f00;
+  /* Analytics request status color 412 (orange.20). */
+  'kui-status-color-412': #ffc2b3;
+  /* Analytics request status color 413 (orange.30). */
+  'kui-status-color-413': #ff9877;
+  /* Analytics request status color 414 (orange.40). */
+  'kui-status-color-414': #ff723c;
+  /* Analytics request status color 415 (orange.50). */
+  'kui-status-color-415': #f75008;
+  /* Analytics request status color 416 (orange.60). */
+  'kui-status-color-416': #d13500;
+  /* Analytics request status color 417 (orange.70). */
+  'kui-status-color-417': #a31f00;
+  /* Analytics request status color 418 (orange.20). */
+  'kui-status-color-418': #ffc2b3;
+  /* Analytics request status color 421 (orange.30). */
+  'kui-status-color-421': #ff9877;
+  /* Analytics request status color 422 (orange.40). */
+  'kui-status-color-422': #ff723c;
+  /* Analytics request status color 423 (orange.50). */
+  'kui-status-color-423': #f75008;
+  /* Analytics request status color 424 (orange.60). */
+  'kui-status-color-424': #d13500;
+  /* Analytics request status color 425 (orange.70). */
+  'kui-status-color-425': #a31f00;
+  /* Analytics request status color 426 (orange.20). */
+  'kui-status-color-426': #ffc2b3;
+  /* Analytics request status color 428 (orange.30). */
+  'kui-status-color-428': #ff9877;
+  /* Analytics request status color 429 (orange.40). */
+  'kui-status-color-429': #ff723c;
+  /* Analytics request status color 431 (orange.50). */
+  'kui-status-color-431': #f75008;
+  /* Analytics request status color 451 (orange.60). */
+  'kui-status-color-451': #d13500;
+  /* Analytics request status color 500 (red.20). */
+  'kui-status-color-500': #ffabab;
+  /* Analytics request status color 501 (red.30). */
+  'kui-status-color-501': #ff7272;
+  /* Analytics request status color 502 (red.40). */
+  'kui-status-color-502': #ff3954;
+  /* Analytics request status color 503 (red.50). */
+  'kui-status-color-503': #f50045;
+  /* Analytics request status color 504 (red.60). */
+  'kui-status-color-504': #d60027;
+  /* Analytics request status color 505 (red.70). */
+  'kui-status-color-505': #ad000e;
+  /* Analytics request status color 506 (red.20). */
+  'kui-status-color-506': #ffabab;
+  /* Analytics request status color 507 (red.30). */
+  'kui-status-color-507': #ff7272;
+  /* Analytics request status color 508 (red.40). */
+  'kui-status-color-508': #ff3954;
+  /* Analytics request status color 510 (red.50). */
+  'kui-status-color-510': #f50045;
+  /* Analytics request status color 511 (red.60). */
+  'kui-status-color-511': #d60027;
+  /* Analytics request status color 1xx wildcard (blue.10). */
+  'kui-status-color-1xx': #eefaff;
+  /* Analytics request status color 2xx wildcard (green.10). */
+  'kui-status-color-2xx': #ecfffb;
+  /* Analytics request status color 3xx wildcard (yellow.10). */
+  'kui-status-color-3xx': #fffce0;
+  /* Analytics request status color 4xx wildcard (orange.10). */
+  'kui-status-color-4xx': #fff1ef;
+  /* Analytics request status color 5xx wildcard (red.10). */
+  'kui-status-color-5xx': #ffe5e5;
+  /* The standard monospace font family. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
   /* The standard heading text font family. */
   'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif;
@@ -1148,7 +1416,141 @@ $tokens-map: (
 @kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
 /* Navigation link focus-visible box-shadow. */
 @kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+/* Analytics request status color 100 (blue.20). */
+@kui-status-color-100: #bee2ff;
+/* Analytics request status color 101 (blue.30). */
+@kui-status-color-101: #8fc1ff;
+/* Analytics request status color 102 (blue.40). */
+@kui-status-color-102: #5f9aff;
+/* Analytics request status color 103 (blue.50). */
+@kui-status-color-103: #306fff;
+/* Analytics request status color 200 (green.20). */
+@kui-status-color-200: #b5ffee;
+/* Analytics request status color 201 (green.30). */
+@kui-status-color-201: #00fabe;
+/* Analytics request status color 202 (green.40). */
+@kui-status-color-202: #00d6a4;
+/* Analytics request status color 203 (green.50). */
+@kui-status-color-203: #00a17b;
+/* Analytics request status color 204 (green.60). */
+@kui-status-color-204: #007d60;
+/* Analytics request status color 205 (green.70). */
+@kui-status-color-205: #005944;
+/* Analytics request status color 206 (green.20). */
+@kui-status-color-206: #b5ffee;
+/* Analytics request status color 207 (green.30). */
+@kui-status-color-207: #00fabe;
+/* Analytics request status color 208 (green.40). */
+@kui-status-color-208: #b5ffee;
+/* Analytics request status color 226 (green.50). */
+@kui-status-color-226: #00a17b;
+/* Analytics request status color 100 (yellow.20). */
+@kui-status-color-300: #fff296;
+/* Analytics request status color 101 (yellow.30). */
+@kui-status-color-301: #ffe04b;
+/* Analytics request status color 102 (yellow.40). */
+@kui-status-color-302: #ffc400;
+/* Analytics request status color 103 (yellow.50). */
+@kui-status-color-303: #b37600;
+/* Analytics request status color 103 (yellow.60). */
+@kui-status-color-304: #995c00;
+/* Analytics request status color 103 (yellow.70). */
+@kui-status-color-305: #804400;
+/* Analytics request status color 103 (yellow.20). */
+@kui-status-color-307: #fff296;
+/* Analytics request status color 103 (yellow.30). */
+@kui-status-color-308: #ffe04b;
+/* Analytics request status color 400 (orange.20). */
+@kui-status-color-400: #ffc2b3;
+/* Analytics request status color 401 (orange.30). */
+@kui-status-color-401: #ff9877;
+/* Analytics request status color 402 (orange.40). */
+@kui-status-color-402: #ff723c;
+/* Analytics request status color 403 (orange.50). */
+@kui-status-color-403: #f75008;
+/* Analytics request status color 404 (orange.60). */
+@kui-status-color-404: #d13500;
+/* Analytics request status color 405 (orange.70). */
+@kui-status-color-405: #a31f00;
+/* Analytics request status color 406 (orange.20). */
+@kui-status-color-406: #ffc2b3;
+/* Analytics request status color 407 (orange.30). */
+@kui-status-color-407: #ff9877;
+/* Analytics request status color 408 (orange.40). */
+@kui-status-color-408: #ff723c;
+/* Analytics request status color 409 (orange.50). */
+@kui-status-color-409: #f75008;
+/* Analytics request status color 410 (orange.60). */
+@kui-status-color-410: #d13500;
+/* Analytics request status color 411 (orange.70). */
+@kui-status-color-411: #a31f00;
+/* Analytics request status color 412 (orange.20). */
+@kui-status-color-412: #ffc2b3;
+/* Analytics request status color 413 (orange.30). */
+@kui-status-color-413: #ff9877;
+/* Analytics request status color 414 (orange.40). */
+@kui-status-color-414: #ff723c;
+/* Analytics request status color 415 (orange.50). */
+@kui-status-color-415: #f75008;
+/* Analytics request status color 416 (orange.60). */
+@kui-status-color-416: #d13500;
+/* Analytics request status color 417 (orange.70). */
+@kui-status-color-417: #a31f00;
+/* Analytics request status color 418 (orange.20). */
+@kui-status-color-418: #ffc2b3;
+/* Analytics request status color 421 (orange.30). */
+@kui-status-color-421: #ff9877;
+/* Analytics request status color 422 (orange.40). */
+@kui-status-color-422: #ff723c;
+/* Analytics request status color 423 (orange.50). */
+@kui-status-color-423: #f75008;
+/* Analytics request status color 424 (orange.60). */
+@kui-status-color-424: #d13500;
+/* Analytics request status color 425 (orange.70). */
+@kui-status-color-425: #a31f00;
+/* Analytics request status color 426 (orange.20). */
+@kui-status-color-426: #ffc2b3;
+/* Analytics request status color 428 (orange.30). */
+@kui-status-color-428: #ff9877;
+/* Analytics request status color 429 (orange.40). */
+@kui-status-color-429: #ff723c;
+/* Analytics request status color 431 (orange.50). */
+@kui-status-color-431: #f75008;
+/* Analytics request status color 451 (orange.60). */
+@kui-status-color-451: #d13500;
+/* Analytics request status color 500 (red.20). */
+@kui-status-color-500: #ffabab;
+/* Analytics request status color 501 (red.30). */
+@kui-status-color-501: #ff7272;
+/* Analytics request status color 502 (red.40). */
+@kui-status-color-502: #ff3954;
+/* Analytics request status color 503 (red.50). */
+@kui-status-color-503: #f50045;
+/* Analytics request status color 504 (red.60). */
+@kui-status-color-504: #d60027;
+/* Analytics request status color 505 (red.70). */
+@kui-status-color-505: #ad000e;
+/* Analytics request status color 506 (red.20). */
+@kui-status-color-506: #ffabab;
+/* Analytics request status color 507 (red.30). */
+@kui-status-color-507: #ff7272;
+/* Analytics request status color 508 (red.40). */
+@kui-status-color-508: #ff3954;
+/* Analytics request status color 510 (red.50). */
+@kui-status-color-510: #f50045;
+/* Analytics request status color 511 (red.60). */
+@kui-status-color-511: #d60027;
+/* Analytics request status color 1xx wildcard (blue.10). */
+@kui-status-color-1xx: #eefaff;
+/* Analytics request status color 2xx wildcard (green.10). */
+@kui-status-color-2xx: #ecfffb;
+/* Analytics request status color 3xx wildcard (yellow.10). */
+@kui-status-color-3xx: #fffce0;
+/* Analytics request status color 4xx wildcard (orange.10). */
+@kui-status-color-4xx: #fff1ef;
+/* Analytics request status color 5xx wildcard (red.10). */
+@kui-status-color-5xx: #ffe5e5;
+/* The standard monospace font family. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
 @kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
@@ -1567,7 +1969,141 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
 /* Navigation link focus-visible box-shadow. */
 --kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+/* Analytics request status color 100 (blue.20). */
+--kui-status-color-100: #bee2ff;
+/* Analytics request status color 101 (blue.30). */
+--kui-status-color-101: #8fc1ff;
+/* Analytics request status color 102 (blue.40). */
+--kui-status-color-102: #5f9aff;
+/* Analytics request status color 103 (blue.50). */
+--kui-status-color-103: #306fff;
+/* Analytics request status color 200 (green.20). */
+--kui-status-color-200: #b5ffee;
+/* Analytics request status color 201 (green.30). */
+--kui-status-color-201: #00fabe;
+/* Analytics request status color 202 (green.40). */
+--kui-status-color-202: #00d6a4;
+/* Analytics request status color 203 (green.50). */
+--kui-status-color-203: #00a17b;
+/* Analytics request status color 204 (green.60). */
+--kui-status-color-204: #007d60;
+/* Analytics request status color 205 (green.70). */
+--kui-status-color-205: #005944;
+/* Analytics request status color 206 (green.20). */
+--kui-status-color-206: #b5ffee;
+/* Analytics request status color 207 (green.30). */
+--kui-status-color-207: #00fabe;
+/* Analytics request status color 208 (green.40). */
+--kui-status-color-208: #b5ffee;
+/* Analytics request status color 226 (green.50). */
+--kui-status-color-226: #00a17b;
+/* Analytics request status color 100 (yellow.20). */
+--kui-status-color-300: #fff296;
+/* Analytics request status color 101 (yellow.30). */
+--kui-status-color-301: #ffe04b;
+/* Analytics request status color 102 (yellow.40). */
+--kui-status-color-302: #ffc400;
+/* Analytics request status color 103 (yellow.50). */
+--kui-status-color-303: #b37600;
+/* Analytics request status color 103 (yellow.60). */
+--kui-status-color-304: #995c00;
+/* Analytics request status color 103 (yellow.70). */
+--kui-status-color-305: #804400;
+/* Analytics request status color 103 (yellow.20). */
+--kui-status-color-307: #fff296;
+/* Analytics request status color 103 (yellow.30). */
+--kui-status-color-308: #ffe04b;
+/* Analytics request status color 400 (orange.20). */
+--kui-status-color-400: #ffc2b3;
+/* Analytics request status color 401 (orange.30). */
+--kui-status-color-401: #ff9877;
+/* Analytics request status color 402 (orange.40). */
+--kui-status-color-402: #ff723c;
+/* Analytics request status color 403 (orange.50). */
+--kui-status-color-403: #f75008;
+/* Analytics request status color 404 (orange.60). */
+--kui-status-color-404: #d13500;
+/* Analytics request status color 405 (orange.70). */
+--kui-status-color-405: #a31f00;
+/* Analytics request status color 406 (orange.20). */
+--kui-status-color-406: #ffc2b3;
+/* Analytics request status color 407 (orange.30). */
+--kui-status-color-407: #ff9877;
+/* Analytics request status color 408 (orange.40). */
+--kui-status-color-408: #ff723c;
+/* Analytics request status color 409 (orange.50). */
+--kui-status-color-409: #f75008;
+/* Analytics request status color 410 (orange.60). */
+--kui-status-color-410: #d13500;
+/* Analytics request status color 411 (orange.70). */
+--kui-status-color-411: #a31f00;
+/* Analytics request status color 412 (orange.20). */
+--kui-status-color-412: #ffc2b3;
+/* Analytics request status color 413 (orange.30). */
+--kui-status-color-413: #ff9877;
+/* Analytics request status color 414 (orange.40). */
+--kui-status-color-414: #ff723c;
+/* Analytics request status color 415 (orange.50). */
+--kui-status-color-415: #f75008;
+/* Analytics request status color 416 (orange.60). */
+--kui-status-color-416: #d13500;
+/* Analytics request status color 417 (orange.70). */
+--kui-status-color-417: #a31f00;
+/* Analytics request status color 418 (orange.20). */
+--kui-status-color-418: #ffc2b3;
+/* Analytics request status color 421 (orange.30). */
+--kui-status-color-421: #ff9877;
+/* Analytics request status color 422 (orange.40). */
+--kui-status-color-422: #ff723c;
+/* Analytics request status color 423 (orange.50). */
+--kui-status-color-423: #f75008;
+/* Analytics request status color 424 (orange.60). */
+--kui-status-color-424: #d13500;
+/* Analytics request status color 425 (orange.70). */
+--kui-status-color-425: #a31f00;
+/* Analytics request status color 426 (orange.20). */
+--kui-status-color-426: #ffc2b3;
+/* Analytics request status color 428 (orange.30). */
+--kui-status-color-428: #ff9877;
+/* Analytics request status color 429 (orange.40). */
+--kui-status-color-429: #ff723c;
+/* Analytics request status color 431 (orange.50). */
+--kui-status-color-431: #f75008;
+/* Analytics request status color 451 (orange.60). */
+--kui-status-color-451: #d13500;
+/* Analytics request status color 500 (red.20). */
+--kui-status-color-500: #ffabab;
+/* Analytics request status color 501 (red.30). */
+--kui-status-color-501: #ff7272;
+/* Analytics request status color 502 (red.40). */
+--kui-status-color-502: #ff3954;
+/* Analytics request status color 503 (red.50). */
+--kui-status-color-503: #f50045;
+/* Analytics request status color 504 (red.60). */
+--kui-status-color-504: #d60027;
+/* Analytics request status color 505 (red.70). */
+--kui-status-color-505: #ad000e;
+/* Analytics request status color 506 (red.20). */
+--kui-status-color-506: #ffabab;
+/* Analytics request status color 507 (red.30). */
+--kui-status-color-507: #ff7272;
+/* Analytics request status color 508 (red.40). */
+--kui-status-color-508: #ff3954;
+/* Analytics request status color 510 (red.50). */
+--kui-status-color-510: #f50045;
+/* Analytics request status color 511 (red.60). */
+--kui-status-color-511: #d60027;
+/* Analytics request status color 1xx wildcard (blue.10). */
+--kui-status-color-1xx: #eefaff;
+/* Analytics request status color 2xx wildcard (green.10). */
+--kui-status-color-2xx: #ecfffb;
+/* Analytics request status color 3xx wildcard (yellow.10). */
+--kui-status-color-3xx: #fffce0;
+/* Analytics request status color 4xx wildcard (orange.10). */
+--kui-status-color-4xx: #fff1ef;
+/* Analytics request status color 5xx wildcard (red.10). */
+--kui-status-color-5xx: #ffe5e5;
+/* The standard monospace font family. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
 --kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
@@ -1984,7 +2520,141 @@ export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12)
 export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
 /* Navigation link focus-visible box-shadow. */
 export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+/* Analytics request status color 100 (blue.20). */
+export const KUI_STATUS_COLOR_100 = "#bee2ff";
+/* Analytics request status color 101 (blue.30). */
+export const KUI_STATUS_COLOR_101 = "#8fc1ff";
+/* Analytics request status color 102 (blue.40). */
+export const KUI_STATUS_COLOR_102 = "#5f9aff";
+/* Analytics request status color 103 (blue.50). */
+export const KUI_STATUS_COLOR_103 = "#306fff";
+/* Analytics request status color 200 (green.20). */
+export const KUI_STATUS_COLOR_200 = "#b5ffee";
+/* Analytics request status color 201 (green.30). */
+export const KUI_STATUS_COLOR_201 = "#00fabe";
+/* Analytics request status color 202 (green.40). */
+export const KUI_STATUS_COLOR_202 = "#00d6a4";
+/* Analytics request status color 203 (green.50). */
+export const KUI_STATUS_COLOR_203 = "#00a17b";
+/* Analytics request status color 204 (green.60). */
+export const KUI_STATUS_COLOR_204 = "#007d60";
+/* Analytics request status color 205 (green.70). */
+export const KUI_STATUS_COLOR_205 = "#005944";
+/* Analytics request status color 206 (green.20). */
+export const KUI_STATUS_COLOR_206 = "#b5ffee";
+/* Analytics request status color 207 (green.30). */
+export const KUI_STATUS_COLOR_207 = "#00fabe";
+/* Analytics request status color 208 (green.40). */
+export const KUI_STATUS_COLOR_208 = "#b5ffee";
+/* Analytics request status color 226 (green.50). */
+export const KUI_STATUS_COLOR_226 = "#00a17b";
+/* Analytics request status color 100 (yellow.20). */
+export const KUI_STATUS_COLOR_300 = "#fff296";
+/* Analytics request status color 101 (yellow.30). */
+export const KUI_STATUS_COLOR_301 = "#ffe04b";
+/* Analytics request status color 102 (yellow.40). */
+export const KUI_STATUS_COLOR_302 = "#ffc400";
+/* Analytics request status color 103 (yellow.50). */
+export const KUI_STATUS_COLOR_303 = "#b37600";
+/* Analytics request status color 103 (yellow.60). */
+export const KUI_STATUS_COLOR_304 = "#995c00";
+/* Analytics request status color 103 (yellow.70). */
+export const KUI_STATUS_COLOR_305 = "#804400";
+/* Analytics request status color 103 (yellow.20). */
+export const KUI_STATUS_COLOR_307 = "#fff296";
+/* Analytics request status color 103 (yellow.30). */
+export const KUI_STATUS_COLOR_308 = "#ffe04b";
+/* Analytics request status color 400 (orange.20). */
+export const KUI_STATUS_COLOR_400 = "#ffc2b3";
+/* Analytics request status color 401 (orange.30). */
+export const KUI_STATUS_COLOR_401 = "#ff9877";
+/* Analytics request status color 402 (orange.40). */
+export const KUI_STATUS_COLOR_402 = "#ff723c";
+/* Analytics request status color 403 (orange.50). */
+export const KUI_STATUS_COLOR_403 = "#f75008";
+/* Analytics request status color 404 (orange.60). */
+export const KUI_STATUS_COLOR_404 = "#d13500";
+/* Analytics request status color 405 (orange.70). */
+export const KUI_STATUS_COLOR_405 = "#a31f00";
+/* Analytics request status color 406 (orange.20). */
+export const KUI_STATUS_COLOR_406 = "#ffc2b3";
+/* Analytics request status color 407 (orange.30). */
+export const KUI_STATUS_COLOR_407 = "#ff9877";
+/* Analytics request status color 408 (orange.40). */
+export const KUI_STATUS_COLOR_408 = "#ff723c";
+/* Analytics request status color 409 (orange.50). */
+export const KUI_STATUS_COLOR_409 = "#f75008";
+/* Analytics request status color 410 (orange.60). */
+export const KUI_STATUS_COLOR_410 = "#d13500";
+/* Analytics request status color 411 (orange.70). */
+export const KUI_STATUS_COLOR_411 = "#a31f00";
+/* Analytics request status color 412 (orange.20). */
+export const KUI_STATUS_COLOR_412 = "#ffc2b3";
+/* Analytics request status color 413 (orange.30). */
+export const KUI_STATUS_COLOR_413 = "#ff9877";
+/* Analytics request status color 414 (orange.40). */
+export const KUI_STATUS_COLOR_414 = "#ff723c";
+/* Analytics request status color 415 (orange.50). */
+export const KUI_STATUS_COLOR_415 = "#f75008";
+/* Analytics request status color 416 (orange.60). */
+export const KUI_STATUS_COLOR_416 = "#d13500";
+/* Analytics request status color 417 (orange.70). */
+export const KUI_STATUS_COLOR_417 = "#a31f00";
+/* Analytics request status color 418 (orange.20). */
+export const KUI_STATUS_COLOR_418 = "#ffc2b3";
+/* Analytics request status color 421 (orange.30). */
+export const KUI_STATUS_COLOR_421 = "#ff9877";
+/* Analytics request status color 422 (orange.40). */
+export const KUI_STATUS_COLOR_422 = "#ff723c";
+/* Analytics request status color 423 (orange.50). */
+export const KUI_STATUS_COLOR_423 = "#f75008";
+/* Analytics request status color 424 (orange.60). */
+export const KUI_STATUS_COLOR_424 = "#d13500";
+/* Analytics request status color 425 (orange.70). */
+export const KUI_STATUS_COLOR_425 = "#a31f00";
+/* Analytics request status color 426 (orange.20). */
+export const KUI_STATUS_COLOR_426 = "#ffc2b3";
+/* Analytics request status color 428 (orange.30). */
+export const KUI_STATUS_COLOR_428 = "#ff9877";
+/* Analytics request status color 429 (orange.40). */
+export const KUI_STATUS_COLOR_429 = "#ff723c";
+/* Analytics request status color 431 (orange.50). */
+export const KUI_STATUS_COLOR_431 = "#f75008";
+/* Analytics request status color 451 (orange.60). */
+export const KUI_STATUS_COLOR_451 = "#d13500";
+/* Analytics request status color 500 (red.20). */
+export const KUI_STATUS_COLOR_500 = "#ffabab";
+/* Analytics request status color 501 (red.30). */
+export const KUI_STATUS_COLOR_501 = "#ff7272";
+/* Analytics request status color 502 (red.40). */
+export const KUI_STATUS_COLOR_502 = "#ff3954";
+/* Analytics request status color 503 (red.50). */
+export const KUI_STATUS_COLOR_503 = "#f50045";
+/* Analytics request status color 504 (red.60). */
+export const KUI_STATUS_COLOR_504 = "#d60027";
+/* Analytics request status color 505 (red.70). */
+export const KUI_STATUS_COLOR_505 = "#ad000e";
+/* Analytics request status color 506 (red.20). */
+export const KUI_STATUS_COLOR_506 = "#ffabab";
+/* Analytics request status color 507 (red.30). */
+export const KUI_STATUS_COLOR_507 = "#ff7272";
+/* Analytics request status color 508 (red.40). */
+export const KUI_STATUS_COLOR_508 = "#ff3954";
+/* Analytics request status color 510 (red.50). */
+export const KUI_STATUS_COLOR_510 = "#f50045";
+/* Analytics request status color 511 (red.60). */
+export const KUI_STATUS_COLOR_511 = "#d60027";
+/* Analytics request status color 1xx wildcard (blue.10). */
+export const KUI_STATUS_COLOR_1XX = "#eefaff";
+/* Analytics request status color 2xx wildcard (green.10). */
+export const KUI_STATUS_COLOR_2XX = "#ecfffb";
+/* Analytics request status color 3xx wildcard (yellow.10). */
+export const KUI_STATUS_COLOR_3XX = "#fffce0";
+/* Analytics request status color 4xx wildcard (orange.10). */
+export const KUI_STATUS_COLOR_4XX = "#fff1ef";
+/* Analytics request status color 5xx wildcard (red.10). */
+export const KUI_STATUS_COLOR_5XX = "#ffe5e5";
+/* The standard monospace font family. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
 /* The standard heading text font family. */
 export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
@@ -2253,6 +2923,73 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
   "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
   "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
+  "kui_status_color_100": "#bee2ff",
+  "kui_status_color_101": "#8fc1ff",
+  "kui_status_color_102": "#5f9aff",
+  "kui_status_color_103": "#306fff",
+  "kui_status_color_200": "#b5ffee",
+  "kui_status_color_201": "#00fabe",
+  "kui_status_color_202": "#00d6a4",
+  "kui_status_color_203": "#00a17b",
+  "kui_status_color_204": "#007d60",
+  "kui_status_color_205": "#005944",
+  "kui_status_color_206": "#b5ffee",
+  "kui_status_color_207": "#00fabe",
+  "kui_status_color_208": "#b5ffee",
+  "kui_status_color_226": "#00a17b",
+  "kui_status_color_300": "#fff296",
+  "kui_status_color_301": "#ffe04b",
+  "kui_status_color_302": "#ffc400",
+  "kui_status_color_303": "#b37600",
+  "kui_status_color_304": "#995c00",
+  "kui_status_color_305": "#804400",
+  "kui_status_color_307": "#fff296",
+  "kui_status_color_308": "#ffe04b",
+  "kui_status_color_400": "#ffc2b3",
+  "kui_status_color_401": "#ff9877",
+  "kui_status_color_402": "#ff723c",
+  "kui_status_color_403": "#f75008",
+  "kui_status_color_404": "#d13500",
+  "kui_status_color_405": "#a31f00",
+  "kui_status_color_406": "#ffc2b3",
+  "kui_status_color_407": "#ff9877",
+  "kui_status_color_408": "#ff723c",
+  "kui_status_color_409": "#f75008",
+  "kui_status_color_410": "#d13500",
+  "kui_status_color_411": "#a31f00",
+  "kui_status_color_412": "#ffc2b3",
+  "kui_status_color_413": "#ff9877",
+  "kui_status_color_414": "#ff723c",
+  "kui_status_color_415": "#f75008",
+  "kui_status_color_416": "#d13500",
+  "kui_status_color_417": "#a31f00",
+  "kui_status_color_418": "#ffc2b3",
+  "kui_status_color_421": "#ff9877",
+  "kui_status_color_422": "#ff723c",
+  "kui_status_color_423": "#f75008",
+  "kui_status_color_424": "#d13500",
+  "kui_status_color_425": "#a31f00",
+  "kui_status_color_426": "#ffc2b3",
+  "kui_status_color_428": "#ff9877",
+  "kui_status_color_429": "#ff723c",
+  "kui_status_color_431": "#f75008",
+  "kui_status_color_451": "#d13500",
+  "kui_status_color_500": "#ffabab",
+  "kui_status_color_501": "#ff7272",
+  "kui_status_color_502": "#ff3954",
+  "kui_status_color_503": "#f50045",
+  "kui_status_color_504": "#d60027",
+  "kui_status_color_505": "#ad000e",
+  "kui_status_color_506": "#ffabab",
+  "kui_status_color_507": "#ff7272",
+  "kui_status_color_508": "#ff3954",
+  "kui_status_color_510": "#f50045",
+  "kui_status_color_511": "#d60027",
+  "kui_status_color_1xx": "#eefaff",
+  "kui_status_color_2xx": "#ecfffb",
+  "kui_status_color_3xx": "#fffce0",
+  "kui_status_color_4xx": "#fff1ef",
+  "kui_status_color_5xx": "#ffe5e5",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
   "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",

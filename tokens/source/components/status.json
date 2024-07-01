@@ -1,0 +1,300 @@
+{
+  "status": {
+    "color": {
+      "100": {
+        "comment": "Analytics request status color 100 (blue.20).",
+        "value": "{color.alias.blue.20.value}"
+      },
+      "101": {
+        "comment": "Analytics request status color 101 (blue.30).",
+        "value": "{color.alias.blue.30.value}"
+      },
+      "102": {
+        "comment": "Analytics request status color 102 (blue.40).",
+        "value": "{color.alias.blue.40.value}"
+      },
+      "103": {
+        "comment": "Analytics request status color 103 (blue.50).",
+        "value": "{color.alias.blue.50.value}"
+      },
+
+      "200": {
+        "comment": "Analytics request status color 200 (green.20).",
+        "value": "{color.alias.green.20.value}"
+      },
+      "201": {
+        "comment": "Analytics request status color 201 (green.30).",
+        "value": "{color.alias.green.30.value}"
+      },
+      "202": {
+        "comment": "Analytics request status color 202 (green.40).",
+        "value": "{color.alias.green.40.value}"
+      },
+      "203": {
+        "comment": "Analytics request status color 203 (green.50).",
+        "value": "{color.alias.green.50.value}"
+      },
+      "204": {
+        "comment": "Analytics request status color 204 (green.60).",
+        "value": "{color.alias.green.60.value}"
+      },
+      "205": {
+        "comment": "Analytics request status color 205 (green.70).",
+        "value": "{color.alias.green.70.value}"
+      },
+      "206": {
+        "comment": "Analytics request status color 206 (green.20).",
+        "value": "{color.alias.green.20.value}"
+      },
+      "207": {
+        "comment": "Analytics request status color 207 (green.30).",
+        "value": "{color.alias.green.30.value}"
+      },
+      "208": {
+        "comment": "Analytics request status color 208 (green.40).",
+        "value": "{color.alias.green.20.value}"
+      },
+      "226": {
+        "comment": "Analytics request status color 226 (green.50).",
+        "value": "{color.alias.green.50.value}"
+      },
+
+      "300": {
+        "comment": "Analytics request status color 100 (yellow.20).",
+        "value": "{color.alias.yellow.20.value}"
+      },
+      "301": {
+        "comment": "Analytics request status color 101 (yellow.30).",
+        "value": "{color.alias.yellow.30.value}"
+      },
+      "302": {
+        "comment": "Analytics request status color 102 (yellow.40).",
+        "value": "{color.alias.yellow.40.value}"
+      },
+      "303": {
+        "comment": "Analytics request status color 103 (yellow.50).",
+        "value": "{color.alias.yellow.50.value}"
+      },
+      "304": {
+        "comment": "Analytics request status color 103 (yellow.60).",
+        "value": "{color.alias.yellow.60.value}"
+      },
+      "305": {
+        "comment": "Analytics request status color 103 (yellow.70).",
+        "value": "{color.alias.yellow.70.value}"
+      },
+      "307": {
+        "comment": "Analytics request status color 103 (yellow.20).",
+        "value": "{color.alias.yellow.20.value}"
+      },
+      "308": {
+        "comment": "Analytics request status color 103 (yellow.30).",
+        "value": "{color.alias.yellow.30.value}"
+      },
+
+      "400": {
+        "comment": "Analytics request status color 400 (orange.20).",
+        "value": "{color.alias.orange.20.value}"
+      },
+      "401": {
+        "comment": "Analytics request status color 401 (orange.30).",
+        "value": "{color.alias.orange.30.value}"
+      },
+      "402": {
+        "comment": "Analytics request status color 402 (orange.40).",
+        "value": "{color.alias.orange.40.value}"
+      },
+      "403": {
+        "comment": "Analytics request status color 403 (orange.50).",
+        "value": "{color.alias.orange.50.value}"
+      },
+      "404": {
+        "comment": "Analytics request status color 404 (orange.60).",
+        "value": "{color.alias.orange.60.value}"
+      },
+      "405": {
+        "comment": "Analytics request status color 405 (orange.70).",
+        "value": "{color.alias.orange.70.value}"
+      },
+      "406": {
+        "comment": "Analytics request status color 406 (orange.20).",
+        "value": "{color.alias.orange.20.value}"
+      },
+      "407": {
+        "comment": "Analytics request status color 407 (orange.30).",
+        "value": "{color.alias.orange.30.value}"
+      },
+      "408": {
+        "comment": "Analytics request status color 408 (orange.40).",
+        "value": "{color.alias.orange.40.value}"
+      },
+      "409": {
+        "comment": "Analytics request status color 409 (orange.50).",
+        "value": "{color.alias.orange.50.value}"
+      },
+      "410": {
+        "comment": "Analytics request status color 410 (orange.60).",
+        "value": "{color.alias.orange.60.value}"
+      },
+      "411": {
+        "comment": "Analytics request status color 411 (orange.70).",
+        "value": "{color.alias.orange.70.value}"
+      },
+      "412": {
+        "comment": "Analytics request status color 412 (orange.20).",
+        "value": "{color.alias.orange.20.value}"
+      },
+      "413": {
+        "comment": "Analytics request status color 413 (orange.30).",
+        "value": "{color.alias.orange.30.value}"
+      },
+      "414": {
+        "comment": "Analytics request status color 414 (orange.40).",
+        "value": "{color.alias.orange.40.value}"
+      },
+      "415": {
+        "comment": "Analytics request status color 415 (orange.50).",
+        "value": "{color.alias.orange.50.value}"
+      },
+      "416": {
+        "comment": "Analytics request status color 416 (orange.60).",
+        "value": "{color.alias.orange.60.value}"
+      },
+      "417": {
+        "comment": "Analytics request status color 417 (orange.70).",
+        "value": "{color.alias.orange.70.value}"
+      },
+      "418": {
+        "comment": "Analytics request status color 418 (orange.20).",
+        "value": "{color.alias.orange.20.value}"
+      },
+      "421": {
+        "comment": "Analytics request status color 421 (orange.30).",
+        "value": "{color.alias.orange.30.value}"
+      },
+      "422": {
+        "comment": "Analytics request status color 422 (orange.40).",
+        "value": "{color.alias.orange.40.value}"
+      },
+      "423": {
+        "comment": "Analytics request status color 423 (orange.50).",
+        "value": "{color.alias.orange.50.value}"
+      },
+      "424": {
+        "comment": "Analytics request status color 424 (orange.60).",
+        "value": "{color.alias.orange.60.value}"
+      },
+      "425": {
+        "comment": "Analytics request status color 425 (orange.70).",
+        "value": "{color.alias.orange.70.value}"
+      },
+      "426": {
+        "comment": "Analytics request status color 426 (orange.20).",
+        "value": "{color.alias.orange.20.value}"
+      },
+      "428": {
+        "comment": "Analytics request status color 428 (orange.30).",
+        "value": "{color.alias.orange.30.value}"
+      },
+      "429": {
+        "comment": "Analytics request status color 429 (orange.40).",
+        "value": "{color.alias.orange.40.value}"
+      },
+      "431": {
+        "comment": "Analytics request status color 431 (orange.50).",
+        "value": "{color.alias.orange.50.value}"
+      },
+      "451": {
+        "comment": "Analytics request status color 451 (orange.60).",
+        "value": "{color.alias.orange.60.value}"
+      },
+
+      "500": {
+        "comment": "Analytics request status color 500 (red.20).",
+        "value": "{color.alias.red.20.value}"
+      },
+      "501": {
+        "comment": "Analytics request status color 501 (red.30).",
+        "value": "{color.alias.red.30.value}"
+      },
+      "502": {
+        "comment": "Analytics request status color 502 (red.40).",
+        "value": "{color.alias.red.40.value}"
+      },
+      "503": {
+        "comment": "Analytics request status color 503 (red.50).",
+        "value": "{color.alias.red.50.value}"
+      },
+      "504": {
+        "comment": "Analytics request status color 504 (red.60).",
+        "value": "{color.alias.red.60.value}"
+      },
+      "505": {
+        "comment": "Analytics request status color 505 (red.70).",
+        "value": "{color.alias.red.70.value}"
+      },
+      "506": {
+        "comment": "Analytics request status color 506 (red.20).",
+        "value": "{color.alias.red.20.value}"
+      },
+      "507": {
+        "comment": "Analytics request status color 507 (red.30).",
+        "value": "{color.alias.red.30.value}"
+      },
+      "508": {
+        "comment": "Analytics request status color 508 (red.40).",
+        "value": "{color.alias.red.40.value}"
+      },
+      "510": {
+        "comment": "Analytics request status color 510 (red.50).",
+        "value": "{color.alias.red.50.value}"
+      },
+      "511": {
+        "comment": "Analytics request status color 511 (red.60).",
+        "value": "{color.alias.red.60.value}"
+      },
+
+      "range_100": {
+        "comment": "Analytics wildcard 1xx request status color (blue.40).",
+        "value": "{color.alias.blue.40.value}"
+      },
+      "range_200": {
+        "comment": "Analytics wildcard 2xx request status color (green.40).",
+        "value": "{color.alias.green.40.value}"
+      },
+      "range_300": {
+        "comment": "Analytics wildcard 3xx request status color (yellow.40).",
+        "value": "{color.alias.yellow.40.value}"
+      },
+      "range_400": {
+        "comment": "Analytics wildcard 4xx request status color (orange.40).",
+        "value": "{color.alias.orange.40.value}"
+      },
+      "range_500": {
+        "comment": "Analytics wildcard 5xx request status color (red.40).",
+        "value": "{color.alias.red.40.value}"
+      },
+
+      "unknown_100": {
+        "comment": "Analytics unknown 1xx request status color (blue.10).",
+        "value": "{color.alias.blue.10.value}"
+      },
+      "unknown_200": {
+        "comment": "Analytics unknown 2xx request status color (green.10).",
+        "value": "{color.alias.green.10.value}"
+      },
+      "unknown_300": {
+        "comment": "Analytics unknown 3xx request status color (yellow.10).",
+        "value": "{color.alias.yellow.10.value}"
+      },
+      "unknown_400": {
+        "comment": "Analytics unknown 4xx request status color (orange.10).",
+        "value": "{color.alias.orange.10.value}"
+      },
+      "unknown_500": {
+        "comment": "Analytics unknown 5xx request status color (red.10).",
+        "value": "{color.alias.red.10.value}"
+      }
+    }
+  }
+}
