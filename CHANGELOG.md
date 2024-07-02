@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/Kong/design-tokens/compare/v1.14.0...v1.15.0) (2024-07-02)
+
+
+### Features
+
+* add font-family-heading ([#321](https://github.com/Kong/design-tokens/issues/321)) ([efed625](https://github.com/Kong/design-tokens/commit/efed6251531b57b2330610d69e053cd5a70e2d65))
+
 # [1.14.0](https://github.com/Kong/design-tokens/compare/v1.13.2...v1.14.0) (2024-07-01)
 
 
