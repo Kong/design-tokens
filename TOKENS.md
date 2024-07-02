@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 01 Jul 2024 22:01:08 GMT
+ * Generated on Tue, 02 Jul 2024 15:10:45 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -448,8 +448,10 @@ $kui-status-color-3xx: #fffce0;
 $kui-status-color-4xx: #fff1ef;
 /* Analytics request status color 5xx wildcard (red.10). */
 $kui-status-color-5xx: #ffe5e5;
-/* The standard monospace font family. */
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
+/* The standard heading text font family. */
+$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
 /* The standard text font family. */
 $kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
 $kui-font-size-10: 10px;
@@ -996,8 +998,10 @@ $tokens-map: (
   'kui-status-color-4xx': #fff1ef;
   /* Analytics request status color 5xx wildcard (red.10). */
   'kui-status-color-5xx': #ffe5e5;
-  /* The standard monospace font family. */
+  /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
+  /* The standard heading text font family. */
+  'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif;
   /* The standard text font family. */
   'kui-font-family-text': 'Inter', Roboto, Helvetica, sans-serif;
   'kui-font-size-10': 10px;
@@ -1546,8 +1550,10 @@ $tokens-map: (
 @kui-status-color-4xx: #fff1ef;
 /* Analytics request status color 5xx wildcard (red.10). */
 @kui-status-color-5xx: #ffe5e5;
-/* The standard monospace font family. */
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
+/* The standard heading text font family. */
+@kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
 /* The standard text font family. */
 @kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
 @kui-font-size-10: 10px;
@@ -2097,8 +2103,10 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-status-color-4xx: #fff1ef;
 /* Analytics request status color 5xx wildcard (red.10). */
 --kui-status-color-5xx: #ffe5e5;
-/* The standard monospace font family. */
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
+/* The standard heading text font family. */
+--kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
 /* The standard text font family. */
 --kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
 --kui-font-size-10: 10px;
@@ -2646,8 +2654,10 @@ export const KUI_STATUS_COLOR_3XX = "#fffce0";
 export const KUI_STATUS_COLOR_4XX = "#fff1ef";
 /* Analytics request status color 5xx wildcard (red.10). */
 export const KUI_STATUS_COLOR_5XX = "#ffe5e5";
-/* The standard monospace font family. */
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
+/* The standard heading text font family. */
+export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
 /* The standard text font family. */
 export const KUI_FONT_FAMILY_TEXT = "'Inter', Roboto, Helvetica, sans-serif";
 export const KUI_FONT_SIZE_10 = "10px";
@@ -2981,6 +2991,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_4xx": "#fff1ef",
   "kui_status_color_5xx": "#ffe5e5",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
+  "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_size_10": "10px",
   "kui_font_size_20": "12px",
