@@ -667,7 +667,7 @@
   resolved "https://registry.yarnpkg.com/@eslint/object-schema/-/object-schema-2.1.4.tgz#9e69f8bb4031e11df79e03db09f9dbbae1740843"
   integrity sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==
 
-"@evilmartians/lefthook@^1.6.17":
+"@evilmartians/lefthook@^1.6.18":
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/@evilmartians/lefthook/-/lefthook-1.6.18.tgz#be0e090c70cbf234215c5d673673b853c410d980"
   integrity sha512-nvJ1uYgz/F1DbykTMIiI2nUZctVmijUYkqdGqmGkrL0ImEKFjWxk1jZg6pULJ5vWxsArfUFJiFuOhUnUhyMbig==
@@ -6742,7 +6742,7 @@ vite-plugin-restart@^0.4.0:
   dependencies:
     micromatch "^4.0.5"
 
-vite-plugin-vue-devtools@^7.3.2:
+vite-plugin-vue-devtools@^7.3.3:
   version "7.3.5"
   resolved "https://registry.yarnpkg.com/vite-plugin-vue-devtools/-/vite-plugin-vue-devtools-7.3.5.tgz#e938fe75fcbd34fcb6bfbb2d21d6bc1c6bcba27d"
   integrity sha512-6omLXTfYu0bmSmncPSbj4mdMPB3t5dAZkUyriJikahGEnvv5gynHlydDsJShHT6l/5dCkvmSesSji/2a6FfutQ==
