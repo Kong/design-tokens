@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/Kong/design-tokens/compare/v1.15.0...v1.15.1) (2024-07-02)
+
+
+### Reverts
+
+* analytics status tokens ([#322](https://github.com/Kong/design-tokens/issues/322)) ([79350b0](https://github.com/Kong/design-tokens/commit/79350b05eeaa1013fad2f80d18aee8012ffa598d)), closes [#318](https://github.com/Kong/design-tokens/issues/318)
+
 # [1.15.0](https://github.com/Kong/design-tokens/compare/v1.14.0...v1.15.0) (2024-07-02)
 
 
