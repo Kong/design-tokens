@@ -41,7 +41,7 @@ const PROPERTY_TOKEN_MAP = {
   'border-width': ['border-width'],
   bottom: [],
   'box-shadow': ['border-width', 'color-border', 'shadow'],
-  color: ['color-text'],
+  color: ['color-text', 'icon-color'],
   'column-gap': ['space'],
   'column-width': [],
   fill: ['color-text'],
