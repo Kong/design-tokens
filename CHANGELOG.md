@@ -1,3 +1,10 @@
+## [1.15.2](https://github.com/Kong/design-tokens/compare/v1.15.1...v1.15.2) (2024-07-10)
+
+
+### Bug Fixes
+
+* **stylelint-plugin:** allow icon-color token in color property ([#325](https://github.com/Kong/design-tokens/issues/325)) ([f4e36f4](https://github.com/Kong/design-tokens/commit/f4e36f4ce22738d7789534c8d97e88885ad3ba6f))
+
 ## [1.15.1](https://github.com/Kong/design-tokens/compare/v1.15.0...v1.15.1) (2024-07-02)
 
 
