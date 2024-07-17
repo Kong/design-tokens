@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly
- * Generated on Mon, 01 Jul 2024 19:31:35 GMT
+ * Generated on Wed, 17 Jul 2024 22:40:54 GMT
  * 
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
@@ -438,17 +438,27 @@ $kui-status-color-508: #ff3954;
 $kui-status-color-510: #f50045;
 /* Analytics request status color 511 (red.60). */
 $kui-status-color-511: #d60027;
-/* Analytics request status color 1xx wildcard (blue.10). */
-$kui-status-color-1xx: #eefaff;
-/* Analytics request status color 2xx wildcard (green.10). */
-$kui-status-color-2xx: #ecfffb;
-/* Analytics request status color 3xx wildcard (yellow.10). */
-$kui-status-color-3xx: #fffce0;
-/* Analytics request status color 4xx wildcard (orange.10). */
-$kui-status-color-4xx: #fff1ef;
-/* Analytics request status color 5xx wildcard (red.10). */
-$kui-status-color-5xx: #ffe5e5;
-/* The standard monospace font family. */
+/* Analytics wildcard 1xx request status color (blue.40). */
+$kui-status-color-range-100: #5f9aff;
+/* Analytics wildcard 2xx request status color (green.40). */
+$kui-status-color-range-200: #00d6a4;
+/* Analytics wildcard 3xx request status color (yellow.40). */
+$kui-status-color-range-300: #ffc400;
+/* Analytics wildcard 4xx request status color (orange.40). */
+$kui-status-color-range-400: #ff723c;
+/* Analytics wildcard 5xx request status color (red.40). */
+$kui-status-color-range-500: #ff3954;
+/* Analytics unknown 1xx request status color (blue.10). */
+$kui-status-color-unknown-100: #eefaff;
+/* Analytics unknown 2xx request status color (green.10). */
+$kui-status-color-unknown-200: #ecfffb;
+/* Analytics unknown 3xx request status color (yellow.10). */
+$kui-status-color-unknown-300: #fffce0;
+/* Analytics unknown 4xx request status color (orange.10). */
+$kui-status-color-unknown-400: #fff1ef;
+/* Analytics unknown 5xx request status color (red.10). */
+$kui-status-color-unknown-500: #ffe5e5;
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
 $kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
@@ -988,17 +998,27 @@ $tokens-map: (
   'kui-status-color-510': #f50045;
   /* Analytics request status color 511 (red.60). */
   'kui-status-color-511': #d60027;
-  /* Analytics request status color 1xx wildcard (blue.10). */
-  'kui-status-color-1xx': #eefaff;
-  /* Analytics request status color 2xx wildcard (green.10). */
-  'kui-status-color-2xx': #ecfffb;
-  /* Analytics request status color 3xx wildcard (yellow.10). */
-  'kui-status-color-3xx': #fffce0;
-  /* Analytics request status color 4xx wildcard (orange.10). */
-  'kui-status-color-4xx': #fff1ef;
-  /* Analytics request status color 5xx wildcard (red.10). */
-  'kui-status-color-5xx': #ffe5e5;
-  /* The standard monospace font family. */
+  /* Analytics wildcard 1xx request status color (blue.40). */
+  'kui-status-color-range-100': #5f9aff;
+  /* Analytics wildcard 2xx request status color (green.40). */
+  'kui-status-color-range-200': #00d6a4;
+  /* Analytics wildcard 3xx request status color (yellow.40). */
+  'kui-status-color-range-300': #ffc400;
+  /* Analytics wildcard 4xx request status color (orange.40). */
+  'kui-status-color-range-400': #ff723c;
+  /* Analytics wildcard 5xx request status color (red.40). */
+  'kui-status-color-range-500': #ff3954;
+  /* Analytics unknown 1xx request status color (blue.10). */
+  'kui-status-color-unknown-100': #eefaff;
+  /* Analytics unknown 2xx request status color (green.10). */
+  'kui-status-color-unknown-200': #ecfffb;
+  /* Analytics unknown 3xx request status color (yellow.10). */
+  'kui-status-color-unknown-300': #fffce0;
+  /* Analytics unknown 4xx request status color (orange.10). */
+  'kui-status-color-unknown-400': #fff1ef;
+  /* Analytics unknown 5xx request status color (red.10). */
+  'kui-status-color-unknown-500': #ffe5e5;
+  /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
   /* The standard heading text font family. */
   'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif;
@@ -1540,17 +1560,27 @@ $tokens-map: (
 @kui-status-color-510: #f50045;
 /* Analytics request status color 511 (red.60). */
 @kui-status-color-511: #d60027;
-/* Analytics request status color 1xx wildcard (blue.10). */
-@kui-status-color-1xx: #eefaff;
-/* Analytics request status color 2xx wildcard (green.10). */
-@kui-status-color-2xx: #ecfffb;
-/* Analytics request status color 3xx wildcard (yellow.10). */
-@kui-status-color-3xx: #fffce0;
-/* Analytics request status color 4xx wildcard (orange.10). */
-@kui-status-color-4xx: #fff1ef;
-/* Analytics request status color 5xx wildcard (red.10). */
-@kui-status-color-5xx: #ffe5e5;
-/* The standard monospace font family. */
+/* Analytics wildcard 1xx request status color (blue.40). */
+@kui-status-color-range-100: #5f9aff;
+/* Analytics wildcard 2xx request status color (green.40). */
+@kui-status-color-range-200: #00d6a4;
+/* Analytics wildcard 3xx request status color (yellow.40). */
+@kui-status-color-range-300: #ffc400;
+/* Analytics wildcard 4xx request status color (orange.40). */
+@kui-status-color-range-400: #ff723c;
+/* Analytics wildcard 5xx request status color (red.40). */
+@kui-status-color-range-500: #ff3954;
+/* Analytics unknown 1xx request status color (blue.10). */
+@kui-status-color-unknown-100: #eefaff;
+/* Analytics unknown 2xx request status color (green.10). */
+@kui-status-color-unknown-200: #ecfffb;
+/* Analytics unknown 3xx request status color (yellow.10). */
+@kui-status-color-unknown-300: #fffce0;
+/* Analytics unknown 4xx request status color (orange.10). */
+@kui-status-color-unknown-400: #fff1ef;
+/* Analytics unknown 5xx request status color (red.10). */
+@kui-status-color-unknown-500: #ffe5e5;
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
 @kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
@@ -2093,17 +2123,27 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-status-color-510: #f50045;
 /* Analytics request status color 511 (red.60). */
 --kui-status-color-511: #d60027;
-/* Analytics request status color 1xx wildcard (blue.10). */
---kui-status-color-1xx: #eefaff;
-/* Analytics request status color 2xx wildcard (green.10). */
---kui-status-color-2xx: #ecfffb;
-/* Analytics request status color 3xx wildcard (yellow.10). */
---kui-status-color-3xx: #fffce0;
-/* Analytics request status color 4xx wildcard (orange.10). */
---kui-status-color-4xx: #fff1ef;
-/* Analytics request status color 5xx wildcard (red.10). */
---kui-status-color-5xx: #ffe5e5;
-/* The standard monospace font family. */
+/* Analytics wildcard 1xx request status color (blue.40). */
+--kui-status-color-range-100: #5f9aff;
+/* Analytics wildcard 2xx request status color (green.40). */
+--kui-status-color-range-200: #00d6a4;
+/* Analytics wildcard 3xx request status color (yellow.40). */
+--kui-status-color-range-300: #ffc400;
+/* Analytics wildcard 4xx request status color (orange.40). */
+--kui-status-color-range-400: #ff723c;
+/* Analytics wildcard 5xx request status color (red.40). */
+--kui-status-color-range-500: #ff3954;
+/* Analytics unknown 1xx request status color (blue.10). */
+--kui-status-color-unknown-100: #eefaff;
+/* Analytics unknown 2xx request status color (green.10). */
+--kui-status-color-unknown-200: #ecfffb;
+/* Analytics unknown 3xx request status color (yellow.10). */
+--kui-status-color-unknown-300: #fffce0;
+/* Analytics unknown 4xx request status color (orange.10). */
+--kui-status-color-unknown-400: #fff1ef;
+/* Analytics unknown 5xx request status color (red.10). */
+--kui-status-color-unknown-500: #ffe5e5;
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
 --kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
@@ -2644,17 +2684,27 @@ export const KUI_STATUS_COLOR_508 = "#ff3954";
 export const KUI_STATUS_COLOR_510 = "#f50045";
 /* Analytics request status color 511 (red.60). */
 export const KUI_STATUS_COLOR_511 = "#d60027";
-/* Analytics request status color 1xx wildcard (blue.10). */
-export const KUI_STATUS_COLOR_1XX = "#eefaff";
-/* Analytics request status color 2xx wildcard (green.10). */
-export const KUI_STATUS_COLOR_2XX = "#ecfffb";
-/* Analytics request status color 3xx wildcard (yellow.10). */
-export const KUI_STATUS_COLOR_3XX = "#fffce0";
-/* Analytics request status color 4xx wildcard (orange.10). */
-export const KUI_STATUS_COLOR_4XX = "#fff1ef";
-/* Analytics request status color 5xx wildcard (red.10). */
-export const KUI_STATUS_COLOR_5XX = "#ffe5e5";
-/* The standard monospace font family. */
+/* Analytics wildcard 1xx request status color (blue.40). */
+export const KUI_STATUS_COLOR_RANGE_100 = "#5f9aff";
+/* Analytics wildcard 2xx request status color (green.40). */
+export const KUI_STATUS_COLOR_RANGE_200 = "#00d6a4";
+/* Analytics wildcard 3xx request status color (yellow.40). */
+export const KUI_STATUS_COLOR_RANGE_300 = "#ffc400";
+/* Analytics wildcard 4xx request status color (orange.40). */
+export const KUI_STATUS_COLOR_RANGE_400 = "#ff723c";
+/* Analytics wildcard 5xx request status color (red.40). */
+export const KUI_STATUS_COLOR_RANGE_500 = "#ff3954";
+/* Analytics unknown 1xx request status color (blue.10). */
+export const KUI_STATUS_COLOR_UNKNOWN_100 = "#eefaff";
+/* Analytics unknown 2xx request status color (green.10). */
+export const KUI_STATUS_COLOR_UNKNOWN_200 = "#ecfffb";
+/* Analytics unknown 3xx request status color (yellow.10). */
+export const KUI_STATUS_COLOR_UNKNOWN_300 = "#fffce0";
+/* Analytics unknown 4xx request status color (orange.10). */
+export const KUI_STATUS_COLOR_UNKNOWN_400 = "#fff1ef";
+/* Analytics unknown 5xx request status color (red.10). */
+export const KUI_STATUS_COLOR_UNKNOWN_500 = "#ffe5e5";
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
 /* The standard heading text font family. */
 export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
@@ -2985,11 +3035,16 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_508": "#ff3954",
   "kui_status_color_510": "#f50045",
   "kui_status_color_511": "#d60027",
-  "kui_status_color_1xx": "#eefaff",
-  "kui_status_color_2xx": "#ecfffb",
-  "kui_status_color_3xx": "#fffce0",
-  "kui_status_color_4xx": "#fff1ef",
-  "kui_status_color_5xx": "#ffe5e5",
+  "kui_status_color_range_100": "#5f9aff",
+  "kui_status_color_range_200": "#00d6a4",
+  "kui_status_color_range_300": "#ffc400",
+  "kui_status_color_range_400": "#ff723c",
+  "kui_status_color_range_500": "#ff3954",
+  "kui_status_color_unknown_100": "#eefaff",
+  "kui_status_color_unknown_200": "#ecfffb",
+  "kui_status_color_unknown_300": "#fffce0",
+  "kui_status_color_unknown_400": "#fff1ef",
+  "kui_status_color_unknown_500": "#ffe5e5",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
   "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
