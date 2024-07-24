@@ -1,3 +1,10 @@
+## [1.15.3](https://github.com/Kong/design-tokens/compare/v1.15.2...v1.15.3) (2024-07-19)
+
+
+### Bug Fixes
+
+* **rules:** allow icon-size ([#330](https://github.com/Kong/design-tokens/issues/330)) ([932bc3a](https://github.com/Kong/design-tokens/commit/932bc3a83772d9a7cb257109846cf9f6b2e89a5f))
+
 ## [1.15.2](https://github.com/Kong/design-tokens/compare/v1.15.1...v1.15.2) (2024-07-10)
 
 
