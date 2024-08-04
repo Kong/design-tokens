@@ -11,7 +11,7 @@
 Install `@kong/design-tokens` and `stylelint` packages as a `devDependency` in your project
 
 ```sh
-yarn add -D @kong/design-tokens stylelint
+pnpm add -D @kong/design-tokens stylelint
 ```
 
 In your stylelint config file, add the plugin and enable rules that you want to use:

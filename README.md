@@ -160,7 +160,7 @@ The package also exports a JSON file of all tokens from `@kong/design-tokens/tok
 In your host project, install the package **only** as a `devDependency`:
 
 ```shell
-yarn add -D @kong/design-tokens
+pnpm add -D @kong/design-tokens
 ```
 
 #### Why a `devDependency`?
@@ -294,7 +294,7 @@ export default defineConfig({
 To get started, install the package dependencies
 
 ```sh
-yarn install --frozen-lockfile
+pnpm install
 ```
 
 ### Token Requirements
@@ -357,7 +357,7 @@ This repository includes a Vue sandbox (see the `/sandbox` directory) to allow y
 To start the sandbox:
 
 ```sh
-yarn sandbox
+pnpm sandbox
 ```
 
 This command will simultaneously start the Vite dev server and initialize a watcher on the `/tokens` directory. If any files in the `/tokens` directory are modified, the sandbox will automatically run the build command to update the tokens and then restart the Vite dev server (simulating hot module reload).
@@ -370,10 +370,10 @@ Lint package files, and optionally auto-fix detected issues.
 
 ```sh
 # Lint only
-yarn lint
+pnpm lint
 
 # Lint and fix
-yarn lint:fix
+pnpm lint:fix
 ```
 
 ### Build for production
@@ -381,7 +381,7 @@ yarn lint:fix
 Utilize the `style-dictionary` CLI to build the token assets for production based on the configuration in `/config.js`.
 
 ```sh
-yarn build
+pnpm build
 ```
 
 If additional sub-directories (other than `dist/tokens`) are added to the `dist/` directory in `/config.js`, you will also need to create a new corresponding entry in the `package.json > exports` section to allow for importing into the host project without `dist/` in the path.
@@ -401,8 +401,8 @@ For example, if I want to add a new `my-feature` folder, I'd update the `exports
 1. Ensure you are on the `main` branch, then pull down the latest code by running `git checkout main && git pull origin main`
 2. Checkout a new branch for your changes with `git checkout -b {type}/{jira-ticket}-{description}` - as an example, `git checkout feat/khcp-1234-add-color-tokens`
 3. Add/edit the tokens in the `/tokens` directory as needed, ensuring to adhere to the [Token Requirements](#token-requirements)
-4. Before committing your changes, locally run `yarn lint` to ensure you do not have any linting errors. If you have errors, you can try running `yarn lint:fix` to resolve
-5. Commit your changes, adhering to [Conventional Commits](#committing-changes). To make this easier, you're encouraged to run `yarn commit` to help build your commit message
+4. Before committing your changes, locally run `pnpm lint` to ensure you do not have any linting errors. If you have errors, you can try running `pnpm lint:fix` to resolve
+5. Commit your changes, adhering to [Conventional Commits](#committing-changes). To make this easier, you're encouraged to run `pnpm commit` to help build your commit message
 6. Push your branch up to the remote with `git push origin {branch-name}`
 7. Open a pull request and request a review
 
@@ -417,7 +417,7 @@ This repo uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.
 It is **highly recommended** to use the following command in order to create your commits:
 
 ```sh
-yarn commit
+pnpm commit
 ```
 
 This will trigger the Commitizen interactive prompt for building your commit message.

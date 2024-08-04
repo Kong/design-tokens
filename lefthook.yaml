@@ -4,9 +4,9 @@
 pre-push:
   commands:
     eslint:
-      run: yarn lint
+      run: pnpm lint
 
 commit-msg:
   commands:
     commitlint:
-      run: yarn commitlint --edit "$1"
+      run: pnpm commitlint --edit "$1"
