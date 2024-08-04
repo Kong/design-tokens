@@ -4,7 +4,7 @@ import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
  * LESS Variables
  */
 export default {
-  transformGroup: 'web',
+  transformGroup: 'less',
   buildPath: `${TOKEN_DIRECTORY}/less/`,
   transforms: [
     'attribute/cti',
