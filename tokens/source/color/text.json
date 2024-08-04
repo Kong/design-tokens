@@ -3,111 +3,135 @@
     "text": {
       "_": {
         "comment": "Default text color (blue.100).",
+        "type": "color",
         "value": "{color.alias.blue.100.value}"
       },
       "danger": {
         "_": {
           "comment": "Text color for danger actions or messages (red.60).",
+          "type": "color",
           "value": "{color.alias.red.60.value}"
         },
         "strong": {
           "comment": "Strong text color for danger actions or messages (red.70).",
+          "type": "color",
           "value": "{color.alias.red.70.value}"
         }
       },
       "decorative": {
         "aqua": {
           "comment": "Text color for decorative purposes (aqua.50).",
+          "type": "color",
           "value": "{color.alias.aqua.50.value}"
         },
         "pink": {
           "comment": "Text color for decorative purposes (pink.60).",
+          "type": "color",
           "value": "{color.alias.pink.60.value}"
         },
         "purple": {
           "_": {
             "comment": "Text color for decorative purposes (purple.60).",
+            "type": "color",
             "value": "{color.alias.purple.60.value}"
           },
           "strong": {
             "comment": "Strong text color for decorative purposes (purple.70).",
+            "type": "color",
             "value": "{color.alias.purple.70.value}"
           }
         }
       },
       "disabled": {
         "comment": "Text color for disabled elements (gray.40).",
+        "type": "color",
         "value": "{color.alias.gray.40.value}"
       },
       "inverse": {
         "comment": "Inverse text color (white).",
+        "type": "color",
         "value": "{color.alias.white.value}"
       },
       "neutral": {
         "_": {
           "comment": "Text color for neutral elements (gray.60).",
+          "type": "color",
           "value": "{color.alias.gray.60.value}"
         },
         "strong": {
           "comment": "Strong text color for neutral elements (gray.70).",
+          "type": "color",
           "value": "{color.alias.gray.70.value}"
         },
         "stronger": {
           "comment": "Stronger text color for neutral elements (gray.80).",
+          "type": "color",
           "value": "{color.alias.gray.80.value}"
         },
         "strongest": {
           "comment": "Strongest text color for neutral elements (gray.90).",
+          "type": "color",
           "value": "{color.alias.gray.90.value}"
         },
         "weak": {
           "comment": "Weak text color for neutral elements (gray.40).",
+          "type": "color",
           "value": "{color.alias.gray.40.value}"
         },
         "weaker": {
           "comment": "Weaker text color for neutral elements (gray.20).",
+          "type": "color",
           "value": "{color.alias.gray.20.value}"
         }
       },
       "primary": {
         "_": {
           "comment": "Text color for primary actions or messages (blue.60).",
+          "type": "color",
           "value": "{color.alias.blue.60.value}"
         },
         "strong": {
           "comment": "Strong text color for primary actions or messages (blue.70).",
+          "type": "color",
           "value": "{color.alias.blue.70.value}"
         },
         "stronger": {
           "comment": "Stronger text color for primary actions or messages (blue.80).",
+          "type": "color",
           "value": "{color.alias.blue.80.value}"
         },
         "strongest": {
           "comment": "Strongest text color for primary actions or messages (blue.90).",
+          "type": "color",
           "value": "{color.alias.blue.90.value}"
         },
         "weak": {
           "comment": "Weak text color for primary actions or messages (blue.40).",
+          "type": "color",
           "value": "{color.alias.blue.40.value}"
         }
       },
       "success": {
         "_": {
           "comment": "Text color for success actions or messages (green.60).",
+          "type": "color",
           "value": "{color.alias.green.60.value}"
         },
         "strong": {
           "comment": "Strong text color for success actions or messages (green.70).",
+          "type": "color",
           "value": "{color.alias.green.70.value}"
         }
       },
       "warning": {
         "_": {
           "comment": "Text color for warning actions or messages (yellow.60).",
+          "type": "color",
           "value": "{color.alias.yellow.60.value}"
         },
         "strong": {
           "comment": "Text color for warning actions or messages (yellow.70).",
+          "type": "color",
           "value": "{color.alias.yellow.70.value}"
         }
       }

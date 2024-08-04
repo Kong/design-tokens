@@ -2,22 +2,27 @@
   "breakpoint": {
     "mobile": {
       "comment": "Used for larger mobile screens. Any viewport width under this value is considered mobile.",
+      "type": "breakpoint",
       "value": "640px"
     },
     "phablet": {
       "comment": "Used for tablet screens.",
+      "type": "breakpoint",
       "value": "768px"
     },
     "tablet": {
       "comment": "Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout.",
+      "type": "breakpoint",
       "value": "1024px"
     },
     "laptop": {
       "comment": "Used for standard desktop screens.",
+      "type": "breakpoint",
       "value": "1280px"
     },
     "desktop": {
       "comment": "Used for larger desktop screens.",
+      "type": "breakpoint",
       "value": "1536px"
     }
   }

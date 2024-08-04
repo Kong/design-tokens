@@ -2,33 +2,43 @@
   "font": {
     "size": {
       "10": {
+        "type": "font",
         "value": "10px"
       },
       "20": {
+        "type": "font",
         "value": "12px"
       },
       "30": {
+        "type": "font",
         "value": "14px"
       },
       "40": {
+        "type": "font",
         "value": "16px"
       },
       "50": {
+        "type": "font",
         "value": "18px"
       },
       "60": {
+        "type": "font",
         "value": "20px"
       },
       "70": {
+        "type": "font",
         "value": "24px"
       },
       "80": {
+        "type": "font",
         "value": "32px"
       },
       "90": {
+        "type": "font",
         "value": "40px"
       },
       "100": {
+        "type": "font",
         "value": "48px"
       }
     }

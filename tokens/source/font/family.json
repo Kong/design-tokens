@@ -3,14 +3,17 @@
     "family": {
       "code": {
         "comment": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.",
+        "type": "font",
         "value": "'JetBrains Mono', Consolas, monospace"
       },
       "heading": {
         "comment": "The standard heading text font family.",
+        "type": "font",
         "value": "{font.family.text.value}"
       },
       "text": {
         "comment": "The standard text font family.",
+        "type": "font",
         "value": "'Inter', Roboto, Helvetica, sans-serif"
       }
     }
