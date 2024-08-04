@@ -1,12 +1,12 @@
 // Import all platforms
-const scss = require('./scss')
-const less = require('./less')
-const css = require('./css')
-const javascript = require('./javascript')
-const json = require('./json')
-const markdown = require('./markdown')
+import scss from './scss.mjs'
+import less from './less.mjs'
+import css from './css.mjs'
+import javascript from './javascript.mjs'
+import json from './json.mjs'
+import markdown from './markdown.mjs'
 // Import utilities
-const { customFileHeader, KONG_TOKEN_PREFIX } = require('../utilities')
+import { customFileHeader, KONG_TOKEN_PREFIX } from '../utilities/index.mjs'
 
 // Add platforms to const
 // The property key should match platform.transformGroup; e.g. `scss: scss`
@@ -32,7 +32,10 @@ for (const platform in platforms) {
     ...platformOptions,
     // Add the standard custom file header
     fileHeader: customFileHeader,
+    formatting: {
+      fileHeaderTimestamp: true,
+    },
   }
 }
 
-module.exports = platforms
+export default platforms

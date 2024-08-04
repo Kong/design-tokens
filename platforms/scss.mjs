@@ -1,5 +1,6 @@
-const StyleDictionary = require('style-dictionary')
-const { TOKEN_DIRECTORY } = require('../utilities')
+import StyleDictionary from 'style-dictionary'
+import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
+import { fileHeader, formattedVariables } from 'style-dictionary/utils'
 
 /**
  * Create a custom format to utilize CSS variables inside a SCSS mixin, which allows you to
@@ -12,13 +13,12 @@ const { TOKEN_DIRECTORY } = require('../utilities')
  * }
  * ```
  */
-const { fileHeader, formattedVariables } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/sass/mixin',
-  formatter: function({ dictionary, file, options }) {
+  format: async function({ dictionary, file, options }) {
     const { outputReferences } = options
 
-    return fileHeader({ file }) +
+    return (await fileHeader({ file })) +
       '/**\n' +
       ' * {mixin} @kui-css-variables\n' +
       ' * Scope the @kong/design-tokens CSS variables inside of a custom selector.\n' +
@@ -40,12 +40,12 @@ StyleDictionary.registerFormat({
 /**
  * SCSS Variables
  */
-const platform = {
+export default {
   transformGroup: 'scss',
   buildPath: `${TOKEN_DIRECTORY}/scss/`,
   transforms: [
     'attribute/cti',
-    'name/cti/kebab',
+    'name/kebab',
     'color/css',
   ],
   files: [
@@ -76,5 +76,3 @@ const platform = {
     },
   ],
 }
-
-module.exports = platform

@@ -1,14 +1,14 @@
-const { TOKEN_DIRECTORY } = require('../utilities')
+import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
 
 /**
  * LESS Variables
  */
-const platform = {
-  transformGroup: 'less',
+export default {
+  transformGroup: 'web',
   buildPath: `${TOKEN_DIRECTORY}/less/`,
   transforms: [
     'attribute/cti',
-    'name/cti/kebab',
+    'name/kebab',
     'color/css',
   ],
   files: [
@@ -21,5 +21,3 @@ const platform = {
     },
   ],
 }
-
-module.exports = platform
