@@ -14,7 +14,7 @@
  *
  * ! To enforce no token should be used for a CSS property, set the value to an empty array.
  */
-const PROPERTY_TOKEN_MAP = {
+export const PROPERTY_TOKEN_MAP = {
   background: ['color-background'],
   'background-color': ['color-background'],
   'background-size': [],
@@ -79,5 +79,3 @@ const PROPERTY_TOKEN_MAP = {
   top: [],
   width: ['icon-size', 'breakpoint'],
 }
-
-module.exports = PROPERTY_TOKEN_MAP
