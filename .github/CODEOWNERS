@@ -4,4 +4,4 @@
 # Allow Kongponents BOT to approve renovate updates
 # These rules MUST remain at the bottom as the last entry
 package.json @kongponents-bot @adamdehaven @jillztom @portikM
-yarn.lock @kongponents-bot @adamdehaven @jillztom @portikM
+pnpm-lock.yaml @kongponents-bot @Kong/team-core-ui
