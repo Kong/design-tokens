@@ -1,14 +1,13 @@
-const { TOKEN_DIRECTORY } = require('../utilities')
+import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
 
 /**
  * JSON
  */
-const platform = {
-  transformGroup: 'json',
+export default {
   buildPath: `${TOKEN_DIRECTORY}/js/`,
   transforms: [
     'attribute/cti',
-    'name/cti/snake',
+    'name/snake',
     'color/css',
   ],
   files: [
@@ -21,5 +20,3 @@ const platform = {
     },
   ],
 }
-
-module.exports = platform

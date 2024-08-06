@@ -1,8 +1,8 @@
-const stylelint = require('stylelint')
-const { ruleMessages, validateOptions, report } = stylelint.utils
-const PROPERTY_TOKEN_MAP = require('./token-map')
-const { KONG_TOKEN_PREFIX, extractTokensFromValue, RULE_NAME_PREFIX } = require('../../utilities')
+import stylelint from 'stylelint'
+import { PROPERTY_TOKEN_MAP } from './token-map.mjs'
+import { KONG_TOKEN_PREFIX, extractTokensFromValue, RULE_NAME_PREFIX } from '../../utilities/index.mjs'
 
+const { ruleMessages, validateOptions, report } = stylelint.utils
 const ruleName = `${RULE_NAME_PREFIX}/use-proper-token`
 const messages = ruleMessages(ruleName, {
   unexpected: (token, property) => `Unexpected usage of '${token}' token in '${property}' property.`,
@@ -70,4 +70,4 @@ ruleFunction.ruleName = ruleName
 ruleFunction.messages = messages
 ruleFunction.meta = meta
 
-module.exports = stylelint.createPlugin(ruleName, ruleFunction)
+export default stylelint.createPlugin(ruleName, ruleFunction)

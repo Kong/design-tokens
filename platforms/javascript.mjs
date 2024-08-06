@@ -1,16 +1,15 @@
-const { TOKEN_DIRECTORY } = require('../utilities')
+import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
 
 /**
  * JavaScript Variables
  *
  * Important: Every exported file in this platform key **must** have a corresponding TypeScript declaration export.
  */
-const platform = {
-  transformGroup: 'js',
+export default {
   buildPath: `${TOKEN_DIRECTORY}/js/`,
   transforms: [
     'attribute/cti',
-    'name/cti/constant',
+    'name/constant',
     'color/css',
   ],
   files: [
@@ -50,5 +49,3 @@ const platform = {
     },
   ],
 }
-
-module.exports = platform

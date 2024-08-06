@@ -1,4 +1,4 @@
-const platforms = require('./platforms')
+import platforms from './platforms/index.mjs'
 
 // Create Style Dictionary config object
 const config = {
@@ -12,7 +12,7 @@ const config = {
   ],
 }
 
-module.exports = {
+export default {
   ...config,
   platforms,
 }
