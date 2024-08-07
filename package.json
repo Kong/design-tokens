@@ -73,7 +73,7 @@
     "style-dictionary": "^4.0.1",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
-    "vite-plugin-restart": "^0.4.0",
+    "vite-plugin-restart": "^0.4.1",
     "vite-plugin-vue-devtools": "^7.3.5",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0"
