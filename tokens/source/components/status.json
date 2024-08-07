@@ -1,9 +1,34 @@
 {
   "status": {
     "color": {
+      "1na": {
+        "comment": "Analytics unknown 1xx request status color (blue.10).",
+        "value": "{color.alias.blue.10.value}"
+      },
+      "2na": {
+        "comment": "Analytics unknown 2xx request status color (green.10).",
+        "value": "{color.alias.green.10.value}"
+      },
+      "3na": {
+        "comment": "Analytics unknown 3xx request status color (yellow.10).",
+        "value": "{color.alias.yellow.10.value}"
+      },
+      "4na": {
+        "comment": "Analytics unknown 4xx request status color (orange.10).",
+        "value": "{color.alias.orange.10.value}"
+      },
+      "5na": {
+        "comment": "Analytics unknown 5xx request status color (red.10).",
+        "value": "{color.alias.red.10.value}"
+      },
+
       "100": {
         "comment": "Analytics request status color 100 (blue.20).",
         "value": "{color.alias.blue.20.value}"
+      },
+      "100s": {
+        "comment": "Analytics request status code group color in 100-199 range (blue.40).",
+        "value": "{color.alias.blue.40.value}"
       },
       "101": {
         "comment": "Analytics request status color 101 (blue.30).",
@@ -21,6 +46,10 @@
       "200": {
         "comment": "Analytics request status color 200 (green.20).",
         "value": "{color.alias.green.20.value}"
+      },
+      "200s": {
+        "comment": "Analytics request status code group color in 200-299 range (green.40).",
+        "value": "{color.alias.green.40.value}"
       },
       "201": {
         "comment": "Analytics request status color 201 (green.30).",
@@ -63,6 +92,10 @@
         "comment": "Analytics request status color 100 (yellow.20).",
         "value": "{color.alias.yellow.20.value}"
       },
+      "300s": {
+        "comment": "Analytics request status code group color in 300-399 range (yellow.40).",
+        "value": "{color.alias.yellow.40.value}"
+      },
       "301": {
         "comment": "Analytics request status color 101 (yellow.30).",
         "value": "{color.alias.yellow.30.value}"
@@ -95,6 +128,10 @@
       "400": {
         "comment": "Analytics request status color 400 (orange.20).",
         "value": "{color.alias.orange.20.value}"
+      },
+      "400s": {
+        "comment": "Analytics request status code group color in 400-499 range (orange.40).",
+        "value": "{color.alias.orange.40.value}"
       },
       "401": {
         "comment": "Analytics request status color 401 (orange.30).",
@@ -212,6 +249,10 @@
       "500": {
         "comment": "Analytics request status color 500 (red.20).",
         "value": "{color.alias.red.20.value}"
+      },
+      "500s": {
+        "comment": "Analytics request status code group color in 500-599 range (red.40).",
+        "value": "{color.alias.red.40.value}"
       },
       "501": {
         "comment": "Analytics request status color 501 (red.30).",

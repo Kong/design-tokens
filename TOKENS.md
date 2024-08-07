@@ -436,6 +436,26 @@ $kui-status-color-508: #ff3954;
 $kui-status-color-510: #f50045;
 /* Analytics request status color 511 (red.60). */
 $kui-status-color-511: #d60027;
+/* Analytics unknown 1xx request status color (blue.10). */
+$kui-status-color-1na: #eefaff;
+/* Analytics unknown 2xx request status color (green.10). */
+$kui-status-color-2na: #ecfffb;
+/* Analytics unknown 3xx request status color (yellow.10). */
+$kui-status-color-3na: #fffce0;
+/* Analytics unknown 4xx request status color (orange.10). */
+$kui-status-color-4na: #FFF1EF;
+/* Analytics unknown 5xx request status color (red.10). */
+$kui-status-color-5na: #ffe5e5;
+/* Analytics request status code group color in 100-199 range (blue.40). */
+$kui-status-color-100s: #5f9aff;
+/* Analytics request status code group color in 200-299 range (green.40). */
+$kui-status-color-200s: #00d6a4;
+/* Analytics request status code group color in 300-399 range (yellow.40). */
+$kui-status-color-300s: #ffc400;
+/* Analytics request status code group color in 400-499 range (orange.40). */
+$kui-status-color-400s: #FF723C;
+/* Analytics request status code group color in 500-599 range (red.40). */
+$kui-status-color-500s: #ff3954;
 /* Analytics wildcard 1xx request status color (blue.40). */
 $kui-status-color-range-100: #5f9aff;
 /* Analytics wildcard 2xx request status color (green.40). */
@@ -996,6 +1016,26 @@ $tokens-map: (
   'kui-status-color-510': #f50045;
   /* Analytics request status color 511 (red.60). */
   'kui-status-color-511': #d60027;
+  /* Analytics unknown 1xx request status color (blue.10). */
+  'kui-status-color-1na': #eefaff;
+  /* Analytics unknown 2xx request status color (green.10). */
+  'kui-status-color-2na': #ecfffb;
+  /* Analytics unknown 3xx request status color (yellow.10). */
+  'kui-status-color-3na': #fffce0;
+  /* Analytics unknown 4xx request status color (orange.10). */
+  'kui-status-color-4na': #FFF1EF;
+  /* Analytics unknown 5xx request status color (red.10). */
+  'kui-status-color-5na': #ffe5e5;
+  /* Analytics request status code group color in 100-199 range (blue.40). */
+  'kui-status-color-100s': #5f9aff;
+  /* Analytics request status code group color in 200-299 range (green.40). */
+  'kui-status-color-200s': #00d6a4;
+  /* Analytics request status code group color in 300-399 range (yellow.40). */
+  'kui-status-color-300s': #ffc400;
+  /* Analytics request status code group color in 400-499 range (orange.40). */
+  'kui-status-color-400s': #FF723C;
+  /* Analytics request status code group color in 500-599 range (red.40). */
+  'kui-status-color-500s': #ff3954;
   /* Analytics wildcard 1xx request status color (blue.40). */
   'kui-status-color-range-100': #5f9aff;
   /* Analytics wildcard 2xx request status color (green.40). */
@@ -1558,6 +1598,26 @@ $tokens-map: (
 @kui-status-color-510: #f50045;
 /* Analytics request status color 511 (red.60). */
 @kui-status-color-511: #d60027;
+/* Analytics unknown 1xx request status color (blue.10). */
+@kui-status-color-1na: #eefaff;
+/* Analytics unknown 2xx request status color (green.10). */
+@kui-status-color-2na: #ecfffb;
+/* Analytics unknown 3xx request status color (yellow.10). */
+@kui-status-color-3na: #fffce0;
+/* Analytics unknown 4xx request status color (orange.10). */
+@kui-status-color-4na: #FFF1EF;
+/* Analytics unknown 5xx request status color (red.10). */
+@kui-status-color-5na: #ffe5e5;
+/* Analytics request status code group color in 100-199 range (blue.40). */
+@kui-status-color-100s: #5f9aff;
+/* Analytics request status code group color in 200-299 range (green.40). */
+@kui-status-color-200s: #00d6a4;
+/* Analytics request status code group color in 300-399 range (yellow.40). */
+@kui-status-color-300s: #ffc400;
+/* Analytics request status code group color in 400-499 range (orange.40). */
+@kui-status-color-400s: #FF723C;
+/* Analytics request status code group color in 500-599 range (red.40). */
+@kui-status-color-500s: #ff3954;
 /* Analytics wildcard 1xx request status color (blue.40). */
 @kui-status-color-range-100: #5f9aff;
 /* Analytics wildcard 2xx request status color (green.40). */
@@ -2121,6 +2181,26 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-status-color-510: #f50045;
 /* Analytics request status color 511 (red.60). */
 --kui-status-color-511: #d60027;
+/* Analytics unknown 1xx request status color (blue.10). */
+--kui-status-color-1na: #eefaff;
+/* Analytics unknown 2xx request status color (green.10). */
+--kui-status-color-2na: #ecfffb;
+/* Analytics unknown 3xx request status color (yellow.10). */
+--kui-status-color-3na: #fffce0;
+/* Analytics unknown 4xx request status color (orange.10). */
+--kui-status-color-4na: #FFF1EF;
+/* Analytics unknown 5xx request status color (red.10). */
+--kui-status-color-5na: #ffe5e5;
+/* Analytics request status code group color in 100-199 range (blue.40). */
+--kui-status-color-100s: #5f9aff;
+/* Analytics request status code group color in 200-299 range (green.40). */
+--kui-status-color-200s: #00d6a4;
+/* Analytics request status code group color in 300-399 range (yellow.40). */
+--kui-status-color-300s: #ffc400;
+/* Analytics request status code group color in 400-499 range (orange.40). */
+--kui-status-color-400s: #FF723C;
+/* Analytics request status code group color in 500-599 range (red.40). */
+--kui-status-color-500s: #ff3954;
 /* Analytics wildcard 1xx request status color (blue.40). */
 --kui-status-color-range-100: #5f9aff;
 /* Analytics wildcard 2xx request status color (green.40). */
@@ -2682,6 +2762,26 @@ export const KUI_STATUS_COLOR_508 = "#ff3954";
 export const KUI_STATUS_COLOR_510 = "#f50045";
 /* Analytics request status color 511 (red.60). */
 export const KUI_STATUS_COLOR_511 = "#d60027";
+/* Analytics unknown 1xx request status color (blue.10). */
+export const KUI_STATUS_COLOR_1NA = "#eefaff";
+/* Analytics unknown 2xx request status color (green.10). */
+export const KUI_STATUS_COLOR_2NA = "#ecfffb";
+/* Analytics unknown 3xx request status color (yellow.10). */
+export const KUI_STATUS_COLOR_3NA = "#fffce0";
+/* Analytics unknown 4xx request status color (orange.10). */
+export const KUI_STATUS_COLOR_4NA = "#FFF1EF";
+/* Analytics unknown 5xx request status color (red.10). */
+export const KUI_STATUS_COLOR_5NA = "#ffe5e5";
+/* Analytics request status code group color in 100-199 range (blue.40). */
+export const KUI_STATUS_COLOR_100S = "#5f9aff";
+/* Analytics request status code group color in 200-299 range (green.40). */
+export const KUI_STATUS_COLOR_200S = "#00d6a4";
+/* Analytics request status code group color in 300-399 range (yellow.40). */
+export const KUI_STATUS_COLOR_300S = "#ffc400";
+/* Analytics request status code group color in 400-499 range (orange.40). */
+export const KUI_STATUS_COLOR_400S = "#FF723C";
+/* Analytics request status code group color in 500-599 range (red.40). */
+export const KUI_STATUS_COLOR_500S = "#ff3954";
 /* Analytics wildcard 1xx request status color (blue.40). */
 export const KUI_STATUS_COLOR_RANGE_100 = "#5f9aff";
 /* Analytics wildcard 2xx request status color (green.40). */
@@ -3033,6 +3133,16 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_508": "#ff3954",
   "kui_status_color_510": "#f50045",
   "kui_status_color_511": "#d60027",
+  "kui_status_color_1na": "#eefaff",
+  "kui_status_color_2na": "#ecfffb",
+  "kui_status_color_3na": "#fffce0",
+  "kui_status_color_4na": "#FFF1EF",
+  "kui_status_color_5na": "#ffe5e5",
+  "kui_status_color_100s": "#5f9aff",
+  "kui_status_color_200s": "#00d6a4",
+  "kui_status_color_300s": "#ffc400",
+  "kui_status_color_400s": "#FF723C",
+  "kui_status_color_500s": "#ff3954",
   "kui_status_color_range_100": "#5f9aff",
   "kui_status_color_range_200": "#00d6a4",
   "kui_status_color_range_300": "#ffc400",
