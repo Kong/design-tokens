@@ -3,18 +3,22 @@
     "weight": {
       "bold": {
         "comment": "700",
+        "type": "font",
         "value": "700"
       },
       "medium": {
         "comment": "500",
+        "type": "font",
         "value": "500"
       },
       "regular": {
         "comment": "400: The normal font weight.",
+        "type": "font",
         "value": "400"
       },
       "semibold": {
         "comment": "600",
+        "type": "font",
         "value": "600"
       }
     }

@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/Kong/design-tokens/compare/v1.15.3...v1.16.0) (2024-08-06)
+
+
+### Features
+
+* **style-dictionary:** upgrade to v4 and esm [KHCP-12846] ([#332](https://github.com/Kong/design-tokens/issues/332)) ([2669bb9](https://github.com/Kong/design-tokens/commit/2669bb9cde5937bdbef10af1e46b98a8408921e4))
+
 ## [1.15.3](https://github.com/Kong/design-tokens/compare/v1.15.2...v1.15.3) (2024-07-19)
 
 

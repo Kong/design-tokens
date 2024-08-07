@@ -1,5 +1,5 @@
 // Define a custom file header for all formats
-const customFileHeader = (defaultMessage) => {
+export const customFileHeader = (defaultMessage) => {
   return [
     ...defaultMessage,
     '',
@@ -8,5 +8,3 @@ const customFileHeader = (defaultMessage) => {
     'License: Apache-2.0',
   ]
 }
-
-module.exports = customFileHeader

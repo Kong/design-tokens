@@ -4,173 +4,214 @@
       "aqua": {
         "10": {
           "comment": "Alias for #ECFCFF.",
+          "type": "color",
           "value": "#ECFCFF"
         },
         "20": {
           "comment": "Alias for #B3F1FF.",
+          "type": "color",
           "value": "#B3F1FF"
         },
         "30": {
           "comment": "Alias for #67E3FF.",
+          "type": "color",
           "value": "#67E3FF"
         },
         "40": {
           "comment": "Alias for #00C8F4.",
+          "type": "color",
           "value": "#00C8F4"
         },
         "50": {
           "comment": "Alias for #00ABD2.",
+          "type": "color",
           "value": "#00ABD2"
         },
         "60": {
           "comment": "Alias for #00819D.",
+          "type": "color",
           "value": "#00819D"
         },
         "70": {
           "comment": "Alias for #00647A.",
+          "type": "color",
           "value": "#00647A"
         },
         "80": {
           "comment": "Alias for #004757.",
+          "type": "color",
           "value": "#004757"
         },
         "90": {
           "comment": "Alias for #003946.",
+          "type": "color",
           "value": "#003946"
         },
         "100": {
           "comment": "Alias for #002B34.",
+          "type": "color",
           "value": "#002B34"
         }
       },
       "black": {
         "comment": "Alias for #000.",
+        "type": "color",
         "value": "#000"
       },
       "blue": {
         "10": {
           "comment": "Alias for #EEFAFF.",
+          "type": "color",
           "value": "#EEFAFF"
         },
         "20": {
           "comment": "Alias for #BEE2FF.",
+          "type": "color",
           "value": "#BEE2FF"
         },
         "30": {
           "comment": "Alias for #8FC1FF.",
+          "type": "color",
           "value": "#8FC1FF"
         },
         "40": {
           "comment": "Alias for #5F9AFF.",
+          "type": "color",
           "value": "#5F9AFF"
         },
         "50": {
           "comment": "Alias for #306FFF.",
+          "type": "color",
           "value": "#306FFF"
         },
         "60": {
           "comment": "Alias for #0044F4.",
+          "type": "color",
           "value": "#0044F4"
         },
         "70": {
           "comment": "Alias for #0030CC.",
+          "type": "color",
           "value": "#0030CC"
         },
         "80": {
           "comment": "Alias for #002099.",
+          "type": "color",
           "value": "#002099"
         },
         "90": {
           "comment": "Alias for #001466.",
+          "type": "color",
           "value": "#001466"
         },
         "100": {
           "comment": "Alias for #000933.",
           "rgb": "0, 9, 51",
+          "type": "color",
           "value": "#000933"
         }
       },
       "gray": {
         "10": {
           "comment": "Alias for #F9FAFB.",
+          "type": "color",
           "value": "#F9FAFB"
         },
         "20": {
           "comment": "Alias for #E0E4EA.",
+          "type": "color",
           "value": "#E0E4EA"
         },
         "30": {
           "comment": "Alias for #C7CED8.",
+          "type": "color",
           "value": "#C7CED8"
         },
         "40": {
           "comment": "Alias for #AFB7C5.",
+          "type": "color",
           "value": "#AFB7C5"
         },
         "50": {
           "comment": "Alias for #828A9E.",
+          "type": "color",
           "value": "#828A9E"
         },
         "60": {
           "comment": "Alias for #6C7489",
+          "type": "color",
           "value": "#6C7489"
         },
         "70": {
           "comment": "Alias for #52596E.",
+          "type": "color",
           "value": "#52596E"
         },
         "80": {
           "comment": "Alias for #3A3F51.",
+          "type": "color",
           "value": "#3A3F51"
         },
         "90": {
           "comment": "Alias for #232633.",
+          "type": "color",
           "value": "#232633"
         },
         "100": {
           "comment": "Alias for #0D0E14.",
+          "type": "color",
           "value": "#0D0E14"
         }
       },
       "green": {
         "10": {
           "comment": "Alias for #ECFFFB.",
+          "type": "color",
           "value": "#ECFFFB"
         },
         "20": {
           "comment": "Alias for #B5FFEE.",
+          "type": "color",
           "value": "#B5FFEE"
         },
         "30": {
           "comment": "Alias for #00FABE.",
+          "type": "color",
           "value": "#00FABE"
         },
         "40": {
           "comment": "Alias for #00D6A4.",
+          "type": "color",
           "value": "#00D6A4"
         },
         "50": {
           "comment": "Alias for #00A17B.",
+          "type": "color",
           "value": "#00A17B"
         },
         "60": {
           "comment": "Alias for #007D60.",
+          "type": "color",
           "value": "#007D60"
         },
         "70": {
           "comment": "Alias for #005944.",
+          "type": "color",
           "value": "#005944"
         },
         "80": {
           "comment": "Alias for #004737.",
+          "type": "color",
           "value": "#004737"
         },
         "90": {
           "comment": "Alias for #003629.",
+          "type": "color",
           "value": "#003629"
         },
         "100": {
           "comment": "Alias for #00241B.",
+          "type": "color",
           "value": "#00241B"
         }
       },
@@ -219,126 +260,156 @@
       "pink": {
         "10": {
           "comment": "Alias for #FFF0F7.",
+          "type": "color",
           "value": "#FFF0F7"
         },
         "20": {
           "comment": "Alias for #FFB4D8.",
+          "type": "color",
           "value": "#FFB4D8"
         },
         "30": {
           "comment": "Alias for #FF78B9.",
+          "type": "color",
           "value": "#FF78B9"
         },
         "40": {
           "comment": "Alias for #FF3C99.",
+          "type": "color",
           "value": "#FF3C99"
         },
         "50": {
           "comment": "Alias for #F4007A.",
+          "type": "color",
           "value": "#F4007A"
         },
         "60": {
           "comment": "Alias for #D60067.",
+          "type": "color",
           "value": "#D60067"
         },
         "70": {
           "comment": "Alias for #AD0053.",
+          "type": "color",
           "value": "#AD0053"
         },
         "80": {
           "comment": "Alias for #85003F.",
+          "type": "color",
           "value": "#85003F"
         },
         "90": {
           "comment": "Alias for #5C002C.",
+          "type": "color",
           "value": "#5C002C"
         },
         "100": {
           "comment": "Alias for #330018.",
+          "type": "color",
           "value": "#330018"
         }
       },
       "purple": {
         "10": {
           "comment": "Alias for #F1F0FF.",
+          "type": "color",
           "value": "#F1F0FF"
         },
         "20": {
           "comment": "Alias for #CFC8FF.",
+          "type": "color",
           "value": "#CFC8FF"
         },
         "30": {
           "comment": "Alias for #B2A0FF.",
+          "type": "color",
           "value": "#B2A0FF"
         },
         "40": {
           "comment": "Alias for #9878FF.",
+          "type": "color",
           "value": "#9878FF"
         },
         "50": {
           "comment": "Alias for #8250FF.",
+          "type": "color",
           "value": "#8250FF"
         },
         "60": {
           "comment": "Alias for #6F28FF.",
+          "type": "color",
           "value": "#6F28FF"
         },
         "70": {
           "comment": "Alias for #5E00F5.",
+          "type": "color",
           "value": "#5E00F5"
         },
         "80": {
           "comment": "Alias for #4900C2.",
+          "type": "color",
           "value": "#4900C2"
         },
         "90": {
           "comment": "Alias for #350085.",
+          "type": "color",
           "value": "#350085"
         },
         "100": {
           "comment": "Alias for #200047.",
+          "type": "color",
           "value": "#200047"
         }
       },
       "red": {
         "10": {
           "comment": "Alias for #FFE5E5.",
+          "type": "color",
           "value": "#FFE5E5"
         },
         "20": {
           "comment": "Alias for #FFABAB.",
+          "type": "color",
           "value": "#FFABAB"
         },
         "30": {
           "comment": "Alias for #FF7272.",
+          "type": "color",
           "value": "#FF7272"
         },
         "40": {
           "comment": "Alias for #FF3954.",
+          "type": "color",
           "value": "#FF3954"
         },
         "50": {
           "comment": "Alias for #F50045.",
+          "type": "color",
           "value": "#F50045"
         },
         "60": {
           "comment": "Alias for #D60027.",
+          "type": "color",
           "value": "#D60027"
         },
         "70": {
           "comment": "Alias for #AD000E.",
+          "type": "color",
           "value": "#AD000E"
         },
         "80": {
           "comment": "Alias for #850000.",
+          "type": "color",
           "value": "#850000"
         },
         "90": {
           "comment": "Alias for #5C0000.",
+          "type": "color",
           "value": "#5C0000"
         },
         "100": {
           "comment": "Alias for #330000.",
+          "type": "color",
           "value": "#330000"
         }
       },
@@ -349,47 +420,58 @@
       "white": {
         "comment": "Alias for #FFF.",
         "rgb": "255, 255, 255",
+        "type": "color",
         "value": "#FFF"
       },
       "yellow": {
         "10": {
           "comment": "Alias for #FFFCE0.",
+          "type": "color",
           "value": "#FFFCE0"
         },
         "20": {
           "comment": "Alias for #FFF296.",
+          "type": "color",
           "value": "#FFF296"
         },
         "30": {
           "comment": "Alias for #FFE04B.",
+          "type": "color",
           "value": "#FFE04B"
         },
         "40": {
           "comment": "Alias for #FFC400.",
+          "type": "color",
           "value": "#FFC400"
         },
         "50": {
           "comment": "Alias for #B37600.",
+          "type": "color",
           "value": "#B37600"
         },
         "60": {
           "comment": "Alias for #995C00.",
+          "type": "color",
           "value": "#995C00"
         },
         "70": {
           "comment": "Alias for #804400.",
+          "type": "color",
           "value": "#804400"
         },
         "80": {
           "comment": "Alias for #662D00.",
+          "type": "color",
           "value": "#662D00"
         },
         "90": {
           "comment": "Alias for #4D1B00.",
+          "type": "color",
           "value": "#4D1B00"
         },
         "100": {
           "comment": "Alias for #330C00.",
+          "type": "color",
           "value": "#330C00"
         }
       }

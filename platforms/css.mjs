@@ -1,11 +1,11 @@
-const StyleDictionary = require('style-dictionary')
-const { unquoteString, TOKEN_DIRECTORY } = require('../utilities')
+import StyleDictionary from 'style-dictionary'
+import { unquoteString, TOKEN_DIRECTORY } from '../utilities/index.mjs'
+import { fileHeader } from 'style-dictionary/utils'
 
-const { fileHeader } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/initial-values',
-  formatter: function({ dictionary, file }) {
-    return fileHeader({ file }) +
+  format: async function({ dictionary, file, options }) {
+    return (await fileHeader({ file })) +
     '/**\n' +
     ' * IMPORTANT: You should **not** import this file in your host project.\n' +
     ' *\n' +
@@ -39,12 +39,12 @@ StyleDictionary.registerFormat({
  *
  * We only export the CSS variables with their value set to `initial` -- the exported file is for reference only and should *NEVER* be imported by a host project.
  */
-const platform = {
+export default {
   transformGroup: 'css',
   buildPath: `${TOKEN_DIRECTORY}/css/`,
   transforms: [
     'attribute/cti',
-    'name/cti/kebab',
+    'name/kebab',
     'color/css',
   ],
   files: [
@@ -62,5 +62,3 @@ const platform = {
     },
   ],
 }
-
-module.exports = platform

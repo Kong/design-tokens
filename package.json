@@ -1,9 +1,10 @@
 {
   "name": "@kong/design-tokens",
-  "version": "1.15.3",
+  "version": "1.16.0",
   "description": "Kong UI Design Tokens and style dictionary",
+  "type": "module",
   "scripts": {
-    "build": "yarn build:clean && style-dictionary build && yarn copy:tokens-doc && yarn copy:stylelint-plugin",
+    "build": "pnpm build:clean && style-dictionary build --config ./config.mjs && pnpm copy:tokens-doc && pnpm copy:stylelint-plugin",
     "build:clean": "rimraf ./dist",
     "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
     "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",
@@ -11,7 +12,7 @@
     "lint:fix": "eslint --fix",
     "sandbox": "run-p sandbox:open watch:tokens",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
-    "watch:tokens": "yarn build && chokidar \"tokens/**/*.json\" -c \"yarn build\"",
+    "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
     "commit": "cz"
@@ -39,7 +40,7 @@
     },
     "./package.json": "./package.json",
     "./tokens/*": "./dist/tokens/*",
-    "./stylelint-plugin": "./dist/stylelint-plugin/index.js"
+    "./stylelint-plugin": "./dist/stylelint-plugin/index.mjs"
   },
   "repository": {
     "type": "git",
@@ -69,10 +70,10 @@
     "sass": "^1.77.6",
     "semantic-release": "^22.0.12",
     "shx": "^0.3.4",
-    "style-dictionary": "^3.9.2",
+    "style-dictionary": "^4.0.1",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
-    "vite-plugin-restart": "^0.4.0",
+    "vite-plugin-restart": "^0.4.1",
     "vite-plugin-vue-devtools": "^7.3.5",
     "vue": "^3.4.31",
     "vue-router": "^4.4.0"
@@ -125,8 +126,11 @@
       "jiraAppend": "]"
     }
   },
+  "engines": {
+    "node": ">=18.20.4"
+  },
   "volta": {
-    "node": "18.20.3",
-    "yarn": "1.22.22"
+    "node": "20.16.0",
+    "pnpm": "9.6.0"
   }
 }

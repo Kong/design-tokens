@@ -1,10 +1,10 @@
-const StyleDictionary = require('style-dictionary')
-const { unquoteString, TOKEN_DIRECTORY } = require('../utilities')
+import StyleDictionary from 'style-dictionary'
+import { unquoteString, TOKEN_DIRECTORY } from '../utilities/index.mjs'
+import { fileHeader } from 'style-dictionary/utils'
 
-const { fileHeader } = StyleDictionary.formatHelpers
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/markdown',
-  formatter: function({ dictionary, file }) {
+  format: async function({ dictionary, file, options }) {
     // Generate the SCSS variable tokens
     const scssTokens = dictionary.allTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.value))
@@ -82,8 +82,7 @@ StyleDictionary.registerFormat({
     }).join('\n')
 
     // Generate the markdown file
-    return fileHeader({ file }).replace('/**', '<!--').replace(' */', '-->') + `# Kong Design Tokens
-
+    return (await fileHeader({ file })).replace('/**', '<!--').replace(' */', '-->') + `# Kong Design Tokens
 This document outlines the majority of the available tokens.
 
 ## SCSS
@@ -178,12 +177,12 @@ ${jsonTokens}
 /**
  * Markdown files
  */
-const platform = {
-  transformGroup: 'markdown',
+export default {
+  transformGroup: 'web',
   buildPath: `${TOKEN_DIRECTORY}/`,
   transforms: [
     'attribute/cti',
-    'name/cti/kebab',
+    'name/kebab',
     'color/css',
   ],
   files: [
@@ -195,5 +194,3 @@ const platform = {
     },
   ],
 }
-
-module.exports = platform
