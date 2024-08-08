@@ -18,7 +18,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/node@22.1.0)(typescript@5.5.4)
       '@evilmartians/lefthook':
-        specifier: ^1.6.18
+        specifier: ^1.6.22
         version: 1.7.11
       '@kong/eslint-config-kong-ui':
         specifier: ^1.1.1
@@ -30,7 +30,7 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@22.0.12(typescript@5.5.4))
       '@vitejs/plugin-vue':
-        specifier: ^5.0.5
+        specifier: ^5.1.1
         version: 5.1.2(vite@5.3.5(@types/node@22.1.0)(sass@1.77.8))(vue@3.4.35(typescript@5.5.4))
       chokidar-cli:
         specifier: ^3.0.0
@@ -42,16 +42,16 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@22.1.0)(typescript@5.5.4)
       eslint:
-        specifier: ^9.5.0
+        specifier: ^9.8.0
         version: 9.8.0
       npm-run-all2:
         specifier: ^6.2.2
         version: 6.2.2
       rimraf:
-        specifier: ^5.0.7
+        specifier: ^5.0.9
         version: 5.0.10
       sass:
-        specifier: ^1.77.6
+        specifier: ^1.77.8
         version: 1.77.8
       semantic-release:
         specifier: ^22.0.12
@@ -63,19 +63,19 @@ importers:
         specifier: ^4.0.1
         version: 4.0.1
       typescript:
-        specifier: ^5.5.3
+        specifier: ^5.5.4
         version: 5.5.4
       vite:
-        specifier: ^5.3.3
+        specifier: ^5.3.5
         version: 5.3.5(@types/node@22.1.0)(sass@1.77.8)
       vite-plugin-restart:
         specifier: ^0.4.1
         version: 0.4.1(vite@5.3.5(@types/node@22.1.0)(sass@1.77.8))
       vite-plugin-vue-devtools:
-        specifier: ^7.3.5
+        specifier: ^7.3.7
         version: 7.3.7(rollup@4.20.0)(vite@5.3.5(@types/node@22.1.0)(sass@1.77.8))(vue@3.4.35(typescript@5.5.4))
       vue:
-        specifier: ^3.4.31
+        specifier: ^3.4.34
         version: 3.4.35(typescript@5.5.4)
       vue-router:
         specifier: ^4.4.0
