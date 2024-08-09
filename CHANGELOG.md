@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/Kong/design-tokens/compare/v1.16.0...v1.17.0) (2024-08-09)
+
+
+### Features
+
+* **analytics:** add status color tokens [MA-2473] ([#329](https://github.com/Kong/design-tokens/issues/329)) ([b719a9b](https://github.com/Kong/design-tokens/commit/b719a9b49ecd1b7d5e2f14b3158a530cc628a1ad))
+
 # [1.16.0](https://github.com/Kong/design-tokens/compare/v1.15.3...v1.16.0) (2024-08-06)
 
 
