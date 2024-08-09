@@ -15,8 +15,8 @@
  * ! To enforce no token should be used for a CSS property, set the value to an empty array.
  */
 export const PROPERTY_TOKEN_MAP = {
-  background: ['color-background'],
-  'background-color': ['color-background'],
+  background: ['color-background', 'status-color'],
+  'background-color': ['color-background', 'status-color'],
   'background-size': [],
   border: ['border-radius', 'border-width', 'color-border'],
   'border-bottom': ['border-radius', 'border-width', 'color-border'],
@@ -41,10 +41,10 @@ export const PROPERTY_TOKEN_MAP = {
   'border-width': ['border-width'],
   bottom: [],
   'box-shadow': ['border-width', 'color-border', 'shadow'],
-  color: ['color-text', 'icon-color'],
+  color: ['color-text', 'icon-color', 'status-color'],
   'column-gap': ['space'],
   'column-width': [],
-  fill: ['color-text'],
+  fill: ['color-text', 'status-color'],
   font: ['font-family', 'font-size', 'font-weight'],
   'font-family': ['font-family'],
   'font-size': ['font-size'],
@@ -74,7 +74,7 @@ export const PROPERTY_TOKEN_MAP = {
   'padding-top': ['space'],
   right: [],
   'row-gap': ['space'],
-  stroke: ['color-text'],
+  stroke: ['color-text', 'status-color'],
   'text-decoration-color': ['color-text'],
   top: [],
   width: ['icon-size', 'breakpoint'],
