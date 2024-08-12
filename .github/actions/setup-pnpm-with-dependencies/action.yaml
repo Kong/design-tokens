@@ -28,13 +28,13 @@ runs:
         if [[ $voltaNodeVersion == null ]]; then
           voltaNodeVersion="${{ inputs.nodejs-version }}"
         fi
-        voltaPnpmVersion=$(cat package.json|jq -r ".volta.pnpm")
-        if [[ $voltaPnpmVersion == null ]]; then
-          voltaPnpmVersion="9.3.0"
+        packageManagerVersion=$(cat package.json|jq -r ".volta.pnpm")
+        if [[ $packageManagerVersion == null ]]; then
+          packageManagerVersion="9.7.0"
         fi
 
         echo "node-version=${voltaNodeVersion}">> $GITHUB_OUTPUT
-        echo "pnpm-version=${voltaPnpmVersion}">> $GITHUB_OUTPUT
+        echo "package-manager-version=${packageManagerVersion}">> $GITHUB_OUTPUT
 
     - name: Setup Node
       uses: actions/setup-node@v4
@@ -44,7 +44,7 @@ runs:
     - name: Install PNPM
       shell: bash
       run: |
-        npm i -g pnpm@${{ steps.node-version.outputs.pnpm-version }}
+        npm i -g ${{ steps.node-version.outputs.package-manager-version }}
         pnpm --version
 
     - name: Dependency Cache
@@ -52,7 +52,7 @@ runs:
       uses: actions/cache@v4
       with:
         path: '**/node_modules'
-        key: pnpm-${{ steps.node-version.outputs.pnpm-version }}-${{ steps.node-version.outputs.node-version }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        key: ${{ steps.node-version.outputs.package-manager-version }}-${{ steps.node-version.outputs.node-version }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
     - name: Install Dependencies
       if: ${{ inputs.force-install == 'true' || steps.dependency-cache.outputs.cache-hit != 'true' }}
