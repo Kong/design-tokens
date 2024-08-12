@@ -1,3 +1,10 @@
+## [1.17.2](https://github.com/Kong/design-tokens/compare/v1.17.1...v1.17.2) (2024-08-12)
+
+
+### Bug Fixes
+
+* engines range ([82d1e52](https://github.com/Kong/design-tokens/commit/82d1e524d7c290c865b236e7656d1264bdfbf86e))
+
 ## [1.17.1](https://github.com/Kong/design-tokens/compare/v1.17.0...v1.17.1) (2024-08-12)
 
 
