@@ -1,3 +1,10 @@
+## [1.17.1](https://github.com/Kong/design-tokens/compare/v1.17.0...v1.17.1) (2024-08-12)
+
+
+### Bug Fixes
+
+* ci version ([154d8cd](https://github.com/Kong/design-tokens/commit/154d8cd965a4b9fa7f4ae3c0adc9ce316d953f89))
+
 # [1.17.0](https://github.com/Kong/design-tokens/compare/v1.16.0...v1.17.0) (2024-08-09)
 
 
