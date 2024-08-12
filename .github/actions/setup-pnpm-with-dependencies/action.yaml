@@ -28,7 +28,7 @@ runs:
         if [[ $voltaNodeVersion == null ]]; then
           voltaNodeVersion="${{ inputs.nodejs-version }}"
         fi
-        packageManagerVersion=$(cat package.json|jq -r ".volta.pnpm")
+        packageManagerVersion=$(cat package.json|jq -r ".packageManager")
         if [[ $packageManagerVersion == null ]]; then
           packageManagerVersion="9.7.0"
         fi
