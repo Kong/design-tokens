@@ -64,7 +64,7 @@
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.9.0",
+    "eslint": "^9.10.0",
     "npm-run-all2": "^6.2.2",
     "rimraf": "^5.0.10",
     "sass": "^1.77.8",
