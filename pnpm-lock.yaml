@@ -42,7 +42,7 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0(@types/node@22.1.0)(typescript@5.5.4)
       eslint:
-        specifier: ^9.9.1
+        specifier: ^9.10.0
         version: 9.11.1(jiti@1.21.6)
       npm-run-all2:
         specifier: ^6.2.2
@@ -4111,7 +4111,7 @@ snapshots:
 
   '@rollup/pluginutils@5.1.0(rollup@4.20.0)':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       estree-walker: 2.0.2
       picomatch: 2.3.1
     optionalDependencies:
@@ -4316,7 +4316,7 @@ snapshots:
 
   '@types/eslint@9.6.0':
     dependencies:
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
       '@types/json-schema': 7.0.15
 
   '@types/estree@1.0.5': {}
