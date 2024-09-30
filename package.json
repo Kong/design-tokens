@@ -53,30 +53,30 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.4.0",
+    "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.2.2",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^1.7.11",
+    "@evilmartians/lefthook": "^1.7.15",
     "@kong/eslint-config-kong-ui": "^1.1.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@vitejs/plugin-vue": "^5.1.2",
+    "@vitejs/plugin-vue": "^5.1.4",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.10.0",
-    "npm-run-all2": "^6.2.2",
+    "npm-run-all2": "^6.2.3",
     "rimraf": "^5.0.10",
     "sass": "^1.77.8",
     "semantic-release": "^22.0.12",
     "shx": "^0.3.4",
     "style-dictionary": "^4.0.1",
     "typescript": "^5.5.4",
-    "vite": "^5.4.0",
+    "vite": "^5.4.6",
     "vite-plugin-restart": "^0.4.1",
-    "vite-plugin-vue-devtools": "^7.3.7",
-    "vue": "^3.4.35",
-    "vue-router": "^4.4.2"
+    "vite-plugin-vue-devtools": "^7.3.9",
+    "vue": "^3.4.38",
+    "vue-router": "^4.4.5"
   },
   "release": {
     "branches": [
@@ -126,10 +126,10 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@9.7.0",
+  "packageManager": "pnpm@9.7.1",
   "engines": {
     "node": ">=18.20.4",
-    "pnpm": ">=9.7.0"
+    "pnpm": ">=9.7.1"
   },
   "volta": {
     "node": "20.16.0"
