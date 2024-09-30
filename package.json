@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
-    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/config-conventional": "^19.5.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^1.7.15",
     "@kong/eslint-config-kong-ui": "^1.1.1",
@@ -67,11 +67,11 @@
     "eslint": "^9.10.0",
     "npm-run-all2": "^6.2.3",
     "rimraf": "^5.0.10",
-    "sass": "^1.77.8",
+    "sass": "^1.79.1",
     "semantic-release": "^24.1.1",
     "shx": "^0.3.4",
-    "style-dictionary": "^4.0.1",
-    "typescript": "^5.5.4",
+    "style-dictionary": "^4.1.2",
+    "typescript": "^5.6.2",
     "vite": "^5.4.6",
     "vite-plugin-restart": "^0.4.1",
     "vite-plugin-vue-devtools": "^7.3.9",
@@ -126,12 +126,12 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@9.7.1",
+  "packageManager": "pnpm@9.10.0",
   "engines": {
     "node": ">=18.20.4",
-    "pnpm": ">=9.7.1"
+    "pnpm": ">=9.10.0"
   },
   "volta": {
-    "node": "20.16.0"
+    "node": "20.17.0"
   }
 }
