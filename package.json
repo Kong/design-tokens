@@ -53,7 +53,7 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.4.1",
+    "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^1.7.15",
@@ -74,8 +74,8 @@
     "typescript": "^5.6.2",
     "vite": "^5.4.6",
     "vite-plugin-restart": "^0.4.1",
-    "vite-plugin-vue-devtools": "^7.3.9",
-    "vue": "^3.4.38",
+    "vite-plugin-vue-devtools": "^7.4.5",
+    "vue": "^3.5.6",
     "vue-router": "^4.4.5"
   },
   "release": {
