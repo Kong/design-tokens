@@ -51,7 +51,7 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       sass:
-        specifier: ^1.79.1
+        specifier: ^1.79.2
         version: 1.79.4
       semantic-release:
         specifier: ^24.1.1
