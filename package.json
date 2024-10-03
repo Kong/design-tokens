@@ -126,10 +126,10 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@9.10.0",
+  "packageManager": "pnpm@9.11.0",
   "engines": {
     "node": ">=20.17.0",
-    "pnpm": ">=9.10.0"
+    "pnpm": ">=9.11.0"
   },
   "volta": {
     "node": "20.17.0"
