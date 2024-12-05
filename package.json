@@ -53,8 +53,8 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.5.0",
-    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^1.8.4",
     "@kong/eslint-config-kong-ui": "^1.1.2",
@@ -70,11 +70,11 @@
     "sass": "^1.81.0",
     "semantic-release": "^24.2.0",
     "shx": "^0.3.4",
-    "style-dictionary": "^4.1.4",
-    "typescript": "^5.6.3",
+    "style-dictionary": "^4.2.0",
+    "typescript": "^5.7.2",
     "vite": "^5.4.11",
     "vite-plugin-restart": "^0.4.1",
-    "vite-plugin-vue-devtools": "^7.4.6",
+    "vite-plugin-vue-devtools": "^7.6.4",
     "vue": "^3.5.13",
     "vue-router": "^4.4.5"
   },
@@ -126,12 +126,12 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@9.14.2",
   "engines": {
-    "node": ">=20.17.0",
-    "pnpm": ">=9.11.0"
+    "node": ">=20.18.1",
+    "pnpm": ">=9.14.2"
   },
   "volta": {
-    "node": "20.17.0"
+    "node": "20.18.1"
   }
 }
