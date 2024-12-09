@@ -30,8 +30,8 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1(semantic-release@24.2.0(typescript@5.7.2))
       '@vitejs/plugin-vue':
-        specifier: ^5.2.0
-        version: 5.2.0(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))(vue@3.5.13(typescript@5.7.2))
+        specifier: ^5.2.1
+        version: 5.2.1(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))(vue@3.5.13(typescript@5.7.2))
       chokidar-cli:
         specifier: ^3.0.0
         version: 3.0.0
@@ -1037,11 +1037,11 @@ packages:
     resolution: {integrity: sha512-oN0K4nkHuOyF3PVMyETbpP5zp6wfyOvm7tWhTMfoqxSSsPmJIh6JNASuZDlODE8eE+0EB9uar+6+vxr9DBTYOA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@vitejs/plugin-vue@5.2.0':
-    resolution: {integrity: sha512-7n7KdUEtx/7Yl7I/WVAMZ1bEb0eVvXF3ummWTeLcs/9gvo9pJhuLdouSXGjdZ/MKD1acf1I272+X0RMua4/R3g==}
+  '@vitejs/plugin-vue@5.2.1':
+    resolution: {integrity: sha512-cxh314tzaWwOLqVes2gnnCtvBDcM1UMdn+iFR+UjAn411dPT3tOmqrJjbMd7koZpMAmBM/GqeV4n9ge7JSiJJQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      vite: ^5.0.0
+      vite: ^5.0.0 || ^6.0.0
       vue: ^3.2.25
 
   '@vue/babel-helper-vue-transform-on@1.2.2':
@@ -4829,7 +4829,7 @@ snapshots:
       '@typescript-eslint/types': 8.0.0
       eslint-visitor-keys: 3.4.3
 
-  '@vitejs/plugin-vue@5.2.0(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))(vue@3.5.13(typescript@5.7.2))':
+  '@vitejs/plugin-vue@5.2.1(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))(vue@3.5.13(typescript@5.7.2))':
     dependencies:
       vite: 5.4.11(@types/node@22.1.0)(sass@1.81.0)
       vue: 3.5.13(typescript@5.7.2)
