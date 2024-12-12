@@ -69,8 +69,8 @@ importers:
         specifier: ^5.4.11
         version: 5.4.11(@types/node@22.1.0)(sass@1.81.0)
       vite-plugin-restart:
-        specifier: ^0.4.1
-        version: 0.4.1(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))
+        specifier: ^0.4.2
+        version: 0.4.2(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))
       vite-plugin-vue-devtools:
         specifier: ^7.6.7
         version: 7.6.7(rollup@4.20.0)(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))(vue@3.5.13(typescript@5.7.2))
@@ -2520,6 +2520,10 @@ packages:
     resolution: {integrity: sha512-LPP/3KorzCwBxfeUuZmaR6bG2kdeHSbe0P2tY3FLRU4vYrjYz5hI4QZwV0njUx3jeuKe67YukQ1LSPZBKDqO/Q==}
     engines: {node: '>=8.6'}
 
+  micromatch@4.0.8:
+    resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
+    engines: {node: '>=8.6'}
+
   mime@4.0.4:
     resolution: {integrity: sha512-v8yqInVjhXyqP6+Kw4fV3ZzeMRqEW6FotRsKXjRS5VMTNIuXsdRoAvklpoRgSqXm6o9VNH4/C0mgedko9DdLsQ==}
     engines: {node: '>=16'}
@@ -3546,10 +3550,10 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  vite-plugin-restart@0.4.1:
-    resolution: {integrity: sha512-MYhDFaa2HMoSavr/2pShj6toKVFso+zqF6FAdWGC8JSIrsNig+4giy9EzoSySgGRJvsnbwZXKdjAvn8ag8rUkA==}
+  vite-plugin-restart@0.4.2:
+    resolution: {integrity: sha512-9aWN2ScJ8hbT7aC8SDeZnsbWapnslz1vhNq6Vgf2GU9WdN4NExlrWhtnu7pmtOUG3Guj8y6lPcUZ+ls7SVP33w==}
     peerDependencies:
-      vite: ^2.9.0 || ^3.0.0 || ^4.0.0 || ^5.0.0
+      vite: ^2.9.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
 
   vite-plugin-vue-devtools@7.6.7:
     resolution: {integrity: sha512-H1ZyjtpWjP5mHA5R15sQeYgAARuh2Myg3TDFXWZK6QOQRy8s3XjTIt319DogVjU/x3rC3L/jJQjIasRU04mWXA==}
@@ -6421,6 +6425,11 @@ snapshots:
       braces: 3.0.3
       picomatch: 2.3.1
 
+  micromatch@4.0.8:
+    dependencies:
+      braces: 3.0.3
+      picomatch: 2.3.1
+
   mime@4.0.4: {}
 
   mimic-fn@2.1.0: {}
@@ -7349,9 +7358,9 @@ snapshots:
       - rollup
       - supports-color
 
-  vite-plugin-restart@0.4.1(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0)):
+  vite-plugin-restart@0.4.2(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0)):
     dependencies:
-      micromatch: 4.0.7
+      micromatch: 4.0.8
       vite: 5.4.11(@types/node@22.1.0)(sass@1.81.0)
 
   vite-plugin-vue-devtools@7.6.7(rollup@4.20.0)(vite@5.4.11(@types/node@22.1.0)(sass@1.81.0))(vue@3.5.13(typescript@5.7.2)):
