@@ -18,8 +18,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/node@22.1.0)(typescript@5.7.2)
       '@evilmartians/lefthook':
-        specifier: ^1.8.5
-        version: 1.8.5
+        specifier: ^1.9.2
+        version: 1.9.2
       '@kong/eslint-config-kong-ui':
         specifier: ^1.1.2
         version: 1.1.2(eslint@9.16.0(jiti@1.21.6))(typescript@5.7.2)
@@ -60,8 +60,8 @@ importers:
         specifier: ^0.3.4
         version: 0.3.4
       style-dictionary:
-        specifier: ^4.2.0
-        version: 4.2.0(prettier@3.4.2)
+        specifier: ^4.3.0
+        version: 4.3.0
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
@@ -524,8 +524,8 @@ packages:
     resolution: {integrity: sha512-2b/g5hRmpbb1o4GnTZax9N9m0FXzz9OV42ZzI4rDDMDuHUqigAiQCEWChBWCY4ztAGVRjoWT19v0yMmc5/L5kA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@evilmartians/lefthook@1.8.5':
-    resolution: {integrity: sha512-TuAL6W+bj2DqYxqm5JnFi3s7RnjpU/IUxxHFZWUHNytZ+HDQfkceogo+1DlSBFXFva2V21CSaDkeWJJHOmmECw==}
+  '@evilmartians/lefthook@1.9.2':
+    resolution: {integrity: sha512-bcYrzoRh8toQTk/kHgzJbRiWPmogIn9jHxFpPFj/mbhz5y6CmIy1ebfncIRYTJl8XhztSlr2Zf7/5t1FNgi+bA==}
     cpu: [x64, arm64, ia32]
     os: [darwin, linux, win32]
     hasBin: true
@@ -2915,8 +2915,8 @@ packages:
     resolution: {integrity: sha512-5HviZNaZcfqP95rwpv+1HDgUamezbqdSYTyzjTvwtJSnIH+3vnbmWsItli8OFEndS984VT55M3jduxZbX351gg==}
     engines: {node: '>=12'}
 
-  path-unified@0.1.0:
-    resolution: {integrity: sha512-/Oaz9ZJforrkmFrwkR/AcvjVsCAwGSJHO0X6O6ISj8YeFbATjIEBXLDcZfnK3MO4uvCBrJTdVIxdOc79PMqSdg==}
+  path-unified@0.2.0:
+    resolution: {integrity: sha512-MNKqvrKbbbb5p7XHXV6ZAsf/1f/yJQa13S/fcX0uua8ew58Tgc6jXV+16JyAbnR/clgCH+euKDxrF2STxMHdrg==}
 
   path@0.12.7:
     resolution: {integrity: sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==}
@@ -3318,12 +3318,10 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  style-dictionary@4.2.0:
-    resolution: {integrity: sha512-bjynavc9g80Zl9GpR3cw+ibqtbMbak9YXpuZteTsRTzoacUTjh7GLu1nlT1ukf264Nw5Vhu/ICQpY5xxOquvtA==}
+  style-dictionary@4.3.0:
+    resolution: {integrity: sha512-bwasoBSGzIUzeZKR9HKD+qaTFzcVc3SAx+ziD41DAbDZ8OGFnfXfU3Nb3xdZb8VhxNKT21MowR5jOFvdJE9ayQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-    peerDependencies:
-      prettier: 3.x
 
   super-regex@1.0.0:
     resolution: {integrity: sha512-CY8u7DtbvucKuquCmOFEKhr9Besln7n9uN8eFbwcoGYWXOMW07u2o8njWaiXt11ylS3qoGF55pILjRmPlbodyg==}
@@ -4260,7 +4258,7 @@ snapshots:
     dependencies:
       levn: 0.4.1
 
-  '@evilmartians/lefthook@1.8.5': {}
+  '@evilmartians/lefthook@1.9.2': {}
 
   '@humanfs/core@0.19.1': {}
 
@@ -6731,7 +6729,7 @@ snapshots:
 
   path-type@5.0.0: {}
 
-  path-unified@0.1.0: {}
+  path-unified@0.2.0: {}
 
   path@0.12.7:
     dependencies:
@@ -7146,7 +7144,7 @@ snapshots:
 
   strip-json-comments@3.1.1: {}
 
-  style-dictionary@4.2.0(prettier@3.4.2):
+  style-dictionary@4.3.0:
     dependencies:
       '@bundled-es-modules/deepmerge': 4.3.1
       '@bundled-es-modules/glob': 10.4.2
@@ -7158,7 +7156,7 @@ snapshots:
       is-plain-obj: 4.1.0
       json5: 2.2.3
       patch-package: 8.0.0
-      path-unified: 0.1.0
+      path-unified: 0.2.0
       prettier: 3.4.2
       tinycolor2: 1.6.0
 
