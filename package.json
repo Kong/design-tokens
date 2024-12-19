@@ -30,17 +30,17 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/tokens/js/index.mjs",
-        "types": "./dist/tokens/js/index.d.ts"
+        "types": "./dist/tokens/js/index.d.ts",
+        "default": "./dist/tokens/js/index.mjs"
       },
       "require": {
-        "default": "./dist/tokens/js/cjs/index.js",
-        "types": "./dist/tokens/js/cjs/index.d.ts"
+        "types": "./dist/tokens/js/cjs/index.d.ts",
+        "default": "./dist/tokens/js/cjs/index.js"
       }
     },
-    "./package.json": "./package.json",
     "./tokens/*": "./dist/tokens/*",
-    "./stylelint-plugin": "./dist/stylelint-plugin/index.mjs"
+    "./stylelint-plugin": "./dist/stylelint-plugin/index.mjs",
+    "./package.json": "./package.json"
   },
   "repository": {
     "type": "git",
@@ -72,7 +72,7 @@
     "shx": "^0.3.4",
     "style-dictionary": "^4.3.0",
     "typescript": "^5.7.2",
-    "vite": "^5.4.11",
+    "vite": "^6.0.2",
     "vite-plugin-restart": "^0.4.2",
     "vite-plugin-vue-devtools": "^7.6.7",
     "vue": "^3.5.13",
