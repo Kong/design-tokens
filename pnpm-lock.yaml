@@ -18,7 +18,7 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/node@22.1.0)(typescript@5.7.2)
       '@evilmartians/lefthook':
-        specifier: ^1.10.0
+        specifier: ^1.10.1
         version: 1.10.1
       '@kong/eslint-config-kong-ui':
         specifier: ^1.1.3
