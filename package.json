@@ -56,7 +56,7 @@
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^1.10.5",
+    "@evilmartians/lefthook": "^1.10.10",
     "@kong/eslint-config-kong-ui": "^1.2.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -70,9 +70,9 @@
     "sass": "^1.83.4",
     "semantic-release": "^24.2.1",
     "shx": "^0.3.4",
-    "style-dictionary": "^4.3.0",
+    "style-dictionary": "^4.3.2",
     "typescript": "^5.7.3",
-    "vite": "^6.0.7",
+    "vite": "^6.0.11",
     "vite-plugin-restart": "^0.4.2",
     "vite-plugin-vue-devtools": "^7.7.0",
     "vue": "^3.5.13",
@@ -128,10 +128,10 @@
   },
   "packageManager": "pnpm@9.15.4",
   "engines": {
-    "node": ">=20.18.1",
+    "node": ">=20.18.2",
     "pnpm": ">=9.15.2"
   },
   "volta": {
-    "node": "22.13.0"
+    "node": "22.13.1"
   }
 }
