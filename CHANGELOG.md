@@ -1,3 +1,10 @@
+## [1.17.3](https://github.com/Kong/design-tokens/compare/v1.17.2...v1.17.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* comments ([0c85799](https://github.com/Kong/design-tokens/commit/0c85799baf1dd95e51f2174624d07a06afff3cc1))
+
 ## [1.17.2](https://github.com/Kong/design-tokens/compare/v1.17.1...v1.17.2) (2024-08-12)
 
 

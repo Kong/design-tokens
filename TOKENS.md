@@ -472,13 +472,13 @@ $kui-font-size-70: 24px;
 $kui-font-size-80: 32px;
 $kui-font-size-90: 40px;
 $kui-font-size-100: 48px;
-/* 700 */
+/* 700: The bold font weight. */
 $kui-font-weight-bold: 700;
-/* 500 */
+/* 500: The medium font weight. */
 $kui-font-weight-medium: 500;
 /* 400: The normal font weight. */
 $kui-font-weight-regular: 400;
-/* 600 */
+/* 600: The semibold font weight. */
 $kui-font-weight-semibold: 600;
 /* Alias for letter-spacing-normal */
 $kui-letter-spacing-0: normal;
@@ -1032,13 +1032,13 @@ $tokens-map: (
   'kui-font-size-80': 32px;
   'kui-font-size-90': 40px;
   'kui-font-size-100': 48px;
-  /* 700 */
+  /* 700: The bold font weight. */
   'kui-font-weight-bold': 700;
-  /* 500 */
+  /* 500: The medium font weight. */
   'kui-font-weight-medium': 500;
   /* 400: The normal font weight. */
   'kui-font-weight-regular': 400;
-  /* 600 */
+  /* 600: The semibold font weight. */
   'kui-font-weight-semibold': 600;
   /* Alias for letter-spacing-normal */
   'kui-letter-spacing-0': normal;
@@ -1594,13 +1594,13 @@ $tokens-map: (
 @kui-font-size-80: 32px;
 @kui-font-size-90: 40px;
 @kui-font-size-100: 48px;
-/* 700 */
+/* 700: The bold font weight. */
 @kui-font-weight-bold: 700;
-/* 500 */
+/* 500: The medium font weight. */
 @kui-font-weight-medium: 500;
 /* 400: The normal font weight. */
 @kui-font-weight-regular: 400;
-/* 600 */
+/* 600: The semibold font weight. */
 @kui-font-weight-semibold: 600;
 /* Alias for letter-spacing-normal */
 @kui-letter-spacing-0: normal;
@@ -2157,13 +2157,13 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-font-size-80: 32px;
 --kui-font-size-90: 40px;
 --kui-font-size-100: 48px;
-/* 700 */
+/* 700: The bold font weight. */
 --kui-font-weight-bold: 700;
-/* 500 */
+/* 500: The medium font weight. */
 --kui-font-weight-medium: 500;
 /* 400: The normal font weight. */
 --kui-font-weight-regular: 400;
-/* 600 */
+/* 600: The semibold font weight. */
 --kui-font-weight-semibold: 600;
 /* Alias for letter-spacing-normal */
 --kui-letter-spacing-0: normal;
@@ -2718,13 +2718,13 @@ export const KUI_FONT_SIZE_70 = "24px";
 export const KUI_FONT_SIZE_80 = "32px";
 export const KUI_FONT_SIZE_90 = "40px";
 export const KUI_FONT_SIZE_100 = "48px";
-/* 700 */
+/* 700: The bold font weight. */
 export const KUI_FONT_WEIGHT_BOLD = "700";
-/* 500 */
+/* 500: The medium font weight. */
 export const KUI_FONT_WEIGHT_MEDIUM = "500";
 /* 400: The normal font weight. */
 export const KUI_FONT_WEIGHT_REGULAR = "400";
-/* 600 */
+/* 600: The semibold font weight. */
 export const KUI_FONT_WEIGHT_SEMIBOLD = "600";
 /* Alias for letter-spacing-normal */
 export const KUI_LETTER_SPACING_0 = "normal";
