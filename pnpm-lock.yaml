@@ -21,8 +21,8 @@ importers:
         specifier: ^1.10.10
         version: 1.10.10
       '@kong/eslint-config-kong-ui':
-        specifier: ^1.2.4
-        version: 1.2.4(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)
+        specifier: ^1.2.5
+        version: 1.2.5(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)
       '@semantic-release/changelog':
         specifier: ^6.0.3
         version: 6.0.3(semantic-release@24.2.1(typescript@5.7.3))
@@ -521,10 +521,6 @@ packages:
     resolution: {integrity: sha512-grOjVNN8P3hjJn/eIETF1wwd12DdnwFDoyceUJLYYdkpbwq3nLi+4fqrTAONx7XDALqlL220wC/RHSC/QTI/0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@eslint/js@9.17.0':
-    resolution: {integrity: sha512-Sxc4hqcs1kTu0iID3kcZDW3JHq2a77HO9P8CP6YEA/FpH3Ll8UXE2r/86Rz9YJLKme39S9vU5OWNjC6Xl0Cr3w==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
   '@eslint/js@9.19.0':
     resolution: {integrity: sha512-rbq9/g38qjfqFLOVPvwjIvFFdNziEC5S65jmjPw5r6A//QH+W91akh9irMwjDN8zKUTak6W9EsAv4m/7Wnw0UQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -603,11 +599,11 @@ packages:
     peerDependencies:
       tslib: '2'
 
-  '@kong/eslint-config-kong-ui@1.2.4':
-    resolution: {integrity: sha512-DoYY1BNITrPP3N1BdN9KMryOSXGWlUUf1ko+ELDuGG2SerAOxyMxVIlP1YgbMjhHY6aFAaX1BH5qnX6W1bkYHg==}
+  '@kong/eslint-config-kong-ui@1.2.5':
+    resolution: {integrity: sha512-zEoaOhEC/2wpjoZW3USwXisKGyFGecMOsqscTLA+NcnIimDQA178YN9sRYs1XN0Kp2MTdkoOxoDoR+Jb6m4qmw==}
     engines: {node: '>=18.0.0 || >=20.13.1'}
     peerDependencies:
-      eslint: '>= 9.17.0'
+      eslint: '>= 9.18.0'
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -927,8 +923,8 @@ packages:
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
 
-  '@stylistic/eslint-plugin@2.12.1':
-    resolution: {integrity: sha512-fubZKIHSPuo07FgRTn6S4Nl0uXPRPYVNpyZzIDGfp7Fny6JjNus6kReLD7NI380JXi4HtUTSOZ34LBuNPO1XLQ==}
+  '@stylistic/eslint-plugin@2.13.0':
+    resolution: {integrity: sha512-RnO1SaiCFHn666wNz2QfZEFxvmiNRqhzaMXHXxXXKt+MEP7aajlPxUSMIQpKAaJfverpovEYqjBOXDq6dDcaOQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       eslint: '>=8.40.0'
@@ -4220,8 +4216,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@eslint/js@9.17.0': {}
-
   '@eslint/js@9.19.0': {}
 
   '@eslint/object-schema@2.1.4': {}
@@ -4288,12 +4282,12 @@ snapshots:
     dependencies:
       tslib: 2.6.3
 
-  '@kong/eslint-config-kong-ui@1.2.4(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)':
+  '@kong/eslint-config-kong-ui@1.2.5(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@eslint/compat': 1.2.4(eslint@9.19.0(jiti@2.4.2))
       '@eslint/eslintrc': 3.2.0
-      '@eslint/js': 9.17.0
-      '@stylistic/eslint-plugin': 2.12.1(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)
+      '@eslint/js': 9.19.0
+      '@stylistic/eslint-plugin': 2.13.0(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.19.0(jiti@2.4.2)
       eslint-plugin-cypress: 3.6.0(eslint@9.19.0(jiti@2.4.2))
       eslint-plugin-jsonc: 2.18.2(eslint@9.19.0(jiti@2.4.2))
@@ -4621,7 +4615,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
-  '@stylistic/eslint-plugin@2.12.1(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)':
+  '@stylistic/eslint-plugin@2.13.0(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/utils': 8.20.0(eslint@9.19.0(jiti@2.4.2))(typescript@5.7.3)
       eslint: 9.19.0(jiti@2.4.2)
