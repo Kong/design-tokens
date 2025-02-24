@@ -68,9 +68,9 @@
     "npm-run-all2": "^7.0.2",
     "rimraf": "^6.0.1",
     "sass": "^1.84.0",
-    "semantic-release": "^24.2.1",
+    "semantic-release": "^24.2.2",
     "shx": "^0.3.4",
-    "style-dictionary": "^4.3.2",
+    "style-dictionary": "^4.3.3",
     "typescript": "^5.7.3",
     "vite": "^6.1.0",
     "vite-plugin-restart": "^0.4.2",
@@ -128,7 +128,7 @@
   },
   "packageManager": "pnpm@10.2.1",
   "engines": {
-    "node": ">=20.18.2",
+    "node": ">=20.18.3",
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
