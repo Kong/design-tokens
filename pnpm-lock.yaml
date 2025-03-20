@@ -18,8 +18,8 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(@types/node@22.1.0)(typescript@5.8.2)
       '@evilmartians/lefthook':
-        specifier: ^1.11.2
-        version: 1.11.2
+        specifier: ^1.11.3
+        version: 1.11.3
       '@kong/eslint-config-kong-ui':
         specifier: ^1.2.6
         version: 1.2.6(eslint@9.21.0(jiti@2.4.2))(typescript@5.8.2)
@@ -541,8 +541,8 @@ packages:
     resolution: {integrity: sha512-JubJ5B2pJ4k4yGxaNLdbjrnk9d/iDz6/q8wOilpIowd6PJPgaxCuHBnBszq7Ce2TyMrywm5r4PnKm6V3iiZF+g==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@evilmartians/lefthook@1.11.2':
-    resolution: {integrity: sha512-8jTMnouJ+OBJmC7CKtI8Fj6lZ8aLC0W01QMsWkZdfdfZmVZ4x1LLGTRhSDb6o6Ooz/455CzRyMvtKuwARr+EHQ==}
+  '@evilmartians/lefthook@1.11.3':
+    resolution: {integrity: sha512-ic3gCgCnm7XQCxGLsnLXU+33J86iFuC5r4JYSWrMXo0rTjGT6EqKKpSDuA0r/1F14VZmdgmvRUTXTBOvXA2UXA==}
     cpu: [x64, arm64, ia32]
     os: [darwin, linux, win32]
     hasBin: true
@@ -4253,7 +4253,7 @@ snapshots:
       '@eslint/core': 0.12.0
       levn: 0.4.1
 
-  '@evilmartians/lefthook@1.11.2': {}
+  '@evilmartians/lefthook@1.11.3': {}
 
   '@humanfs/core@0.19.1': {}
 
