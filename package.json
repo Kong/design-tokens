@@ -133,5 +133,13 @@
   },
   "volta": {
     "node": "22.14.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@bundled-es-modules/glob",
+      "@evilmartians/lefthook",
+      "esbuild",
+      "style-dictionary"
+    ]
   }
 }
