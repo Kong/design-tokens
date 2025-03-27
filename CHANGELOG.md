@@ -1,3 +1,10 @@
+## [1.17.4](https://github.com/Kong/design-tokens/compare/v1.17.3...v1.17.4) (2025-03-27)
+
+
+### Bug Fixes
+
+* **pnpm:** approve builds ([#454](https://github.com/Kong/design-tokens/issues/454)) ([7fe7519](https://github.com/Kong/design-tokens/commit/7fe7519328c78eb9074e627ac2dc8efeca284f01))
+
 ## [1.17.3](https://github.com/Kong/design-tokens/compare/v1.17.2...v1.17.3) (2025-02-04)
 
 
