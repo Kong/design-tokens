@@ -126,7 +126,7 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.6.4",
+  "packageManager": "pnpm@10.7.0",
   "engines": {
     "node": ">=20.19.0",
     "pnpm": ">=9.14.4 || >=10.1.0"
