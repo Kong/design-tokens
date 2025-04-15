@@ -67,7 +67,7 @@
     "eslint": "^9.23.0",
     "npm-run-all2": "^7.0.2",
     "rimraf": "^6.0.1",
-    "sass": "^1.86.1",
+    "sass": "^1.86.2",
     "semantic-release": "^24.2.3",
     "shx": "^0.4.0",
     "style-dictionary": "^4.3.3",
