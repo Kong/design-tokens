@@ -67,7 +67,7 @@
     "eslint": "^9.25.0",
     "npm-run-all2": "^7.0.2",
     "rimraf": "^6.0.1",
-    "sass": "^1.86.3",
+    "sass": "^1.87.0",
     "semantic-release": "^24.2.3",
     "shx": "^0.4.0",
     "style-dictionary": "^4.3.3",
@@ -126,13 +126,13 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.9.0",
   "engines": {
     "node": ">=20.19.0",
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
-    "node": "22.14.0"
+    "node": "22.15.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
