@@ -128,11 +128,11 @@
   },
   "packageManager": "pnpm@10.10.0",
   "engines": {
-    "node": ">=20.19.1",
+    "node": ">=20.19.2",
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
-    "node": "22.15.0"
+    "node": "22.15.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
