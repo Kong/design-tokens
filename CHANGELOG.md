@@ -1,3 +1,10 @@
+## [1.17.5](https://github.com/Kong/design-tokens/compare/v1.17.4...v1.17.5) (2025-07-10)
+
+
+### Bug Fixes
+
+* **stylelint-plugin:** allow border tokens in outline [KHCP-16698] ([#504](https://github.com/Kong/design-tokens/issues/504)) ([6283a8b](https://github.com/Kong/design-tokens/commit/6283a8beee0f4ffd9f3f31a3c2b5565d85c3d66f))
+
 ## [1.17.4](https://github.com/Kong/design-tokens/compare/v1.17.3...v1.17.4) (2025-03-27)
 
 
