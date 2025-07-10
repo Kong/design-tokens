@@ -64,7 +64,7 @@ export const PROPERTY_TOKEN_MAP = {
   'max-width': ['icon-size', 'breakpoint'],
   'min-height': ['icon-size'],
   'min-width': ['icon-size', 'breakpoint'],
-  outline: [],
+  outline: ['border-width', 'color-border'],
   'outline-color': [],
   'outline-width': [],
   padding: ['space'],
