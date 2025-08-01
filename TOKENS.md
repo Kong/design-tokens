@@ -34,6 +34,8 @@ $kui-color-background-danger-weak: #ff3954;
 $kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 $kui-color-background-danger-weakest: #ffe5e5;
+/* Weakest background color for decorative purposes (aqua.10). */
+$kui-color-background-decorative-aqua-weakest: #ecfcff;
 /* Background color for decorative purposes (purple.60). */
 $kui-color-background-decorative-purple: #6f28ff;
 /* Weakest background color for decorative purposes (purple.10). */
@@ -594,6 +596,8 @@ $tokens-map: (
   'kui-color-background-danger-weaker': #ffabab;
   /* Weakest background color for danger actions or messages (red.10). */
   'kui-color-background-danger-weakest': #ffe5e5;
+  /* Weakest background color for decorative purposes (aqua.10). */
+  'kui-color-background-decorative-aqua-weakest': #ecfcff;
   /* Background color for decorative purposes (purple.60). */
   'kui-color-background-decorative-purple': #6f28ff;
   /* Weakest background color for decorative purposes (purple.10). */
@@ -1156,6 +1160,8 @@ $tokens-map: (
 @kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 @kui-color-background-danger-weakest: #ffe5e5;
+/* Weakest background color for decorative purposes (aqua.10). */
+@kui-color-background-decorative-aqua-weakest: #ecfcff;
 /* Background color for decorative purposes (purple.60). */
 @kui-color-background-decorative-purple: #6f28ff;
 /* Weakest background color for decorative purposes (purple.10). */
@@ -1719,6 +1725,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-danger-weaker: #ffabab;
 /* Weakest background color for danger actions or messages (red.10). */
 --kui-color-background-danger-weakest: #ffe5e5;
+/* Weakest background color for decorative purposes (aqua.10). */
+--kui-color-background-decorative-aqua-weakest: #ecfcff;
 /* Background color for decorative purposes (purple.60). */
 --kui-color-background-decorative-purple: #6f28ff;
 /* Weakest background color for decorative purposes (purple.10). */
@@ -2280,6 +2288,8 @@ export const KUI_COLOR_BACKGROUND_DANGER_WEAK = "#ff3954";
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKER = "#ffabab";
 /* Weakest background color for danger actions or messages (red.10). */
 export const KUI_COLOR_BACKGROUND_DANGER_WEAKEST = "#ffe5e5";
+/* Weakest background color for decorative purposes (aqua.10). */
+export const KUI_COLOR_BACKGROUND_DECORATIVE_AQUA_WEAKEST = "#ecfcff";
 /* Background color for decorative purposes (purple.60). */
 export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE = "#6f28ff";
 /* Weakest background color for decorative purposes (purple.10). */
@@ -2832,6 +2842,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_danger_weak": "#ff3954",
   "kui_color_background_danger_weaker": "#ffabab",
   "kui_color_background_danger_weakest": "#ffe5e5",
+  "kui_color_background_decorative_aqua_weakest": "#ecfcff",
   "kui_color_background_decorative_purple": "#6f28ff",
   "kui_color_background_decorative_purple_weakest": "#f1f0ff",
   "kui_color_background_disabled": "#e0e4ea",

@@ -1,3 +1,10 @@
+## [1.17.6](https://github.com/Kong/design-tokens/compare/v1.17.5...v1.17.6) (2025-08-01)
+
+
+### Bug Fixes
+
+* **color:** add color-background-decorative-aqua-weakest token ([#518](https://github.com/Kong/design-tokens/issues/518)) ([b04bd4a](https://github.com/Kong/design-tokens/commit/b04bd4a7378ca79e3a87c29c964e6f049fc62df6))
+
 ## [1.17.5](https://github.com/Kong/design-tokens/compare/v1.17.4...v1.17.5) (2025-07-10)
 
 
