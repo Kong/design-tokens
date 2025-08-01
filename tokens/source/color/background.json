@@ -44,6 +44,13 @@
         }
       },
       "decorative": {
+        "aqua": {
+          "weakest": {
+            "comment": "Weakest background color for decorative purposes (aqua.10).",
+            "type": "color",
+            "value": "{color.alias.aqua.10.value}"
+          }
+        },
         "purple": {
           "_": {
             "comment": "Background color for decorative purposes (purple.60).",
