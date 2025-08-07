@@ -42,6 +42,20 @@ $kui-color-background-decorative-purple: #6f28ff;
 $kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
 $kui-color-background-disabled: #e0e4ea;
+/* Background color for info elements (blue.60). */
+$kui-color-background-info: #0044f4;
+/* Strong background color for info elements (blue.70). */
+$kui-color-background-info-strong: #0030cc;
+/* Stronger background color for info elements (blue.80). */
+$kui-color-background-info-stronger: #002099;
+/* Strongest background color for info elements (blue.90). */
+$kui-color-background-info-strongest: #001466;
+/* Weak background color for info elements (blue.40). */
+$kui-color-background-info-weak: #5f9aff;
+/* Weaker background color for info elements (blue.20). */
+$kui-color-background-info-weaker: #bee2ff;
+/* Weakest background color for info elements (blue.10). */
+$kui-color-background-info-weakest: #eefaff;
 /* Inverse background color for containers (blue.100) */
 $kui-color-background-inverse: #000933;
 /* Background color for neutral elements (gray.60). */
@@ -74,14 +88,34 @@ $kui-color-background-primary-weak: #5f9aff;
 $kui-color-background-primary-weaker: #bee2ff;
 /* Weakest background color for primary actions or messages (blue.10) */
 $kui-color-background-primary-weakest: #eefaff;
+/* Background color for success elements (green.60). */
+$kui-color-background-success: #007d60;
+/* Strong background color for success elements (green.70). */
+$kui-color-background-success-strong: #005944;
+/* Stronger background color for success elements (green.80). */
+$kui-color-background-success-stronger: #004737;
+/* Strongest background color for success elements (green.90). */
+$kui-color-background-success-strongest: #003629;
 /* Weak background color for success elements (green.40). */
 $kui-color-background-success-weak: #00d6a4;
+/* Weaker background color for success elements (green.20). */
+$kui-color-background-success-weaker: #b5ffee;
 /* Weakest background color for success elements (green.10). */
 $kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
 $kui-color-background-transparent: transparent;
+/* Background color for warning elements (yellow.60). */
+$kui-color-background-warning: #995c00;
+/* Strong background color for warning elements (yellow.70). */
+$kui-color-background-warning-strong: #804400;
+/* Stronger background color for warning elements (yellow.80). */
+$kui-color-background-warning-stronger: #662d00;
+/* Strongest background color for warning elements (yellow.90). */
+$kui-color-background-warning-strongest: #4d1b00;
 /* Weak background color for warning elements (yellow.40). */
 $kui-color-background-warning-weak: #ffc400;
+/* Weaker background color for warning elements (yellow.20). */
+$kui-color-background-warning-weaker: #fff296;
 /* Weakest background color for warning elements (yellow.10). */
 $kui-color-background-warning-weakest: #fffce0;
 /* Default border color for containers (gray.20). */
@@ -106,10 +140,20 @@ $kui-color-border-decorative-purple: #6f28ff;
 $kui-color-border-disabled: #e0e4ea;
 /* Inverse border color (rgba(white, 0.2)). */
 $kui-color-border-inverse: rgba(255, 255, 255, 0.2);
+/* Border color for neutral elements (gray.60) */
+$kui-color-border-neutral: #6c7489;
+/* Strong border color for neutral elements (gray.70) */
+$kui-color-border-neutral-strong: #52596e;
+/* Stronger border color for neutral elements (gray.80) */
+$kui-color-border-neutral-stronger: #3a3f51;
+/* Strongest border color for neutral elements (gray.90) */
+$kui-color-border-neutral-strongest: #232633;
 /* Weak border color for neutral elements (gray.40) */
 $kui-color-border-neutral-weak: #afb7c5;
 /* Weaker border color for neutral elements (gray.20) */
 $kui-color-border-neutral-weaker: #e0e4ea;
+/* Weakest border color for neutral elements (gray.10) */
+$kui-color-border-neutral-weakest: #f9fafb;
 /* Border color for primary actions or messages (blue.60). */
 $kui-color-border-primary: #0044f4;
 /* Strong border color for primary actions or messages (blue.70). */
@@ -132,6 +176,16 @@ $kui-color-text: #000933;
 $kui-color-text-danger: #d60027;
 /* Strong text color for danger actions or messages (red.70). */
 $kui-color-text-danger-strong: #ad000e;
+/* Stronger text color for danger actions or messages (red.80). */
+$kui-color-text-danger-stronger: #850000;
+/* Strongest text color for danger actions or messages (red.90). */
+$kui-color-text-danger-strongest: #5c0000;
+/* Weak text color for danger actions or messages (red.40). */
+$kui-color-text-danger-weak: #ff3954;
+/* Weaker text color for danger actions or messages (red.20). */
+$kui-color-text-danger-weaker: #ffabab;
+/* Weakest text color for danger actions or messages (red.10). */
+$kui-color-text-danger-weakest: #ffe5e5;
 /* Text color for decorative purposes (aqua.50). */
 $kui-color-text-decorative-aqua: #00abd2;
 /* Text color for decorative purposes (pink.60). */
@@ -142,6 +196,20 @@ $kui-color-text-decorative-purple: #6f28ff;
 $kui-color-text-decorative-purple-strong: #5e00f5;
 /* Text color for disabled elements (gray.40). */
 $kui-color-text-disabled: #afb7c5;
+/* Text color for info elements (blue.60). */
+$kui-color-text-info: #0044f4;
+/* Strong text color for info elements (blue.70). */
+$kui-color-text-info-strong: #0030cc;
+/* Stronger text color for info elements (blue.80). */
+$kui-color-text-info-stronger: #002099;
+/* Strongest text color for info elements (blue.90). */
+$kui-color-text-info-strongest: #001466;
+/* Weak text color for info elements (blue.40). */
+$kui-color-text-info-weak: #5f9aff;
+/* Weaker text color for info elements (blue.20). */
+$kui-color-text-info-weaker: #bee2ff;
+/* Weakest text color for info elements (blue.10). */
+$kui-color-text-info-weakest: #eefaff;
 /* Inverse text color (white). */
 $kui-color-text-inverse: #ffffff;
 /* Text color for neutral elements (gray.60). */
@@ -156,6 +224,8 @@ $kui-color-text-neutral-strongest: #232633;
 $kui-color-text-neutral-weak: #afb7c5;
 /* Weaker text color for neutral elements (gray.20). */
 $kui-color-text-neutral-weaker: #e0e4ea;
+/* Weakest text color for neutral elements (gray.10). */
+$kui-color-text-neutral-weakest: #f9fafb;
 /* Text color for primary actions or messages (blue.60). */
 $kui-color-text-primary: #0044f4;
 /* Strong text color for primary actions or messages (blue.70). */
@@ -166,14 +236,38 @@ $kui-color-text-primary-stronger: #002099;
 $kui-color-text-primary-strongest: #001466;
 /* Weak text color for primary actions or messages (blue.40). */
 $kui-color-text-primary-weak: #5f9aff;
-/* Text color for success actions or messages (green.60). */
+/* Weaker text color for primary actions or messages (blue.20). */
+$kui-color-text-primary-weaker: #bee2ff;
+/* Weakest text color for primary actions or messages (blue.10). */
+$kui-color-text-primary-weakest: #eefaff;
+/* Text color for success elements (green.60). */
 $kui-color-text-success: #007d60;
-/* Strong text color for success actions or messages (green.70). */
+/* Strong text color for success elements (green.70). */
 $kui-color-text-success-strong: #005944;
-/* Text color for warning actions or messages (yellow.60). */
+/* Stronger text color for success elements (green.80). */
+$kui-color-text-success-stronger: #004737;
+/* Stronger text color for success elements (green.90). */
+$kui-color-text-success-strongest: #003629;
+/* Weak text color for success elements (green.40). */
+$kui-color-text-success-weak: #00d6a4;
+/* Weaker text color for success elements (green.20). */
+$kui-color-text-success-weaker: #b5ffee;
+/* Weakest text color for success elements (green.10). */
+$kui-color-text-success-weakest: #ecfffb;
+/* Text color for warning elements (yellow.60). */
 $kui-color-text-warning: #995c00;
-/* Text color for warning actions or messages (yellow.70). */
+/* Strong text color for warning elements (yellow.70). */
 $kui-color-text-warning-strong: #804400;
+/* Stronger text color for warning elements (yellow.80). */
+$kui-color-text-warning-stronger: #662d00;
+/* Strongest text color for warning elements (yellow.90). */
+$kui-color-text-warning-strongest: #4d1b00;
+/* Weak text color for warning elements (yellow.40). */
+$kui-color-text-warning-weak: #ffc400;
+/* Weaker text color for warning elements (yellow.20). */
+$kui-color-text-warning-weaker: #fff296;
+/* Weakest text color for warning elements (yellow.10). */
+$kui-color-text-warning-weakest: #fffce0;
 /* Default transition timing */
 $kui-animation-duration-20: 0.2s;
 /* 0px border radius. */
@@ -604,6 +698,20 @@ $tokens-map: (
   'kui-color-background-decorative-purple-weakest': #f1f0ff;
   /* Background color for disabled elements (gray.20). */
   'kui-color-background-disabled': #e0e4ea;
+  /* Background color for info elements (blue.60). */
+  'kui-color-background-info': #0044f4;
+  /* Strong background color for info elements (blue.70). */
+  'kui-color-background-info-strong': #0030cc;
+  /* Stronger background color for info elements (blue.80). */
+  'kui-color-background-info-stronger': #002099;
+  /* Strongest background color for info elements (blue.90). */
+  'kui-color-background-info-strongest': #001466;
+  /* Weak background color for info elements (blue.40). */
+  'kui-color-background-info-weak': #5f9aff;
+  /* Weaker background color for info elements (blue.20). */
+  'kui-color-background-info-weaker': #bee2ff;
+  /* Weakest background color for info elements (blue.10). */
+  'kui-color-background-info-weakest': #eefaff;
   /* Inverse background color for containers (blue.100) */
   'kui-color-background-inverse': #000933;
   /* Background color for neutral elements (gray.60). */
@@ -636,14 +744,34 @@ $tokens-map: (
   'kui-color-background-primary-weaker': #bee2ff;
   /* Weakest background color for primary actions or messages (blue.10) */
   'kui-color-background-primary-weakest': #eefaff;
+  /* Background color for success elements (green.60). */
+  'kui-color-background-success': #007d60;
+  /* Strong background color for success elements (green.70). */
+  'kui-color-background-success-strong': #005944;
+  /* Stronger background color for success elements (green.80). */
+  'kui-color-background-success-stronger': #004737;
+  /* Strongest background color for success elements (green.90). */
+  'kui-color-background-success-strongest': #003629;
   /* Weak background color for success elements (green.40). */
   'kui-color-background-success-weak': #00d6a4;
+  /* Weaker background color for success elements (green.20). */
+  'kui-color-background-success-weaker': #b5ffee;
   /* Weakest background color for success elements (green.10). */
   'kui-color-background-success-weakest': #ecfffb;
   /* Transparent background color (transparent). */
   'kui-color-background-transparent': transparent;
+  /* Background color for warning elements (yellow.60). */
+  'kui-color-background-warning': #995c00;
+  /* Strong background color for warning elements (yellow.70). */
+  'kui-color-background-warning-strong': #804400;
+  /* Stronger background color for warning elements (yellow.80). */
+  'kui-color-background-warning-stronger': #662d00;
+  /* Strongest background color for warning elements (yellow.90). */
+  'kui-color-background-warning-strongest': #4d1b00;
   /* Weak background color for warning elements (yellow.40). */
   'kui-color-background-warning-weak': #ffc400;
+  /* Weaker background color for warning elements (yellow.20). */
+  'kui-color-background-warning-weaker': #fff296;
   /* Weakest background color for warning elements (yellow.10). */
   'kui-color-background-warning-weakest': #fffce0;
   /* Default border color for containers (gray.20). */
@@ -668,10 +796,20 @@ $tokens-map: (
   'kui-color-border-disabled': #e0e4ea;
   /* Inverse border color (rgba(white, 0.2)). */
   'kui-color-border-inverse': rgba(255, 255, 255, 0.2);
+  /* Border color for neutral elements (gray.60) */
+  'kui-color-border-neutral': #6c7489;
+  /* Strong border color for neutral elements (gray.70) */
+  'kui-color-border-neutral-strong': #52596e;
+  /* Stronger border color for neutral elements (gray.80) */
+  'kui-color-border-neutral-stronger': #3a3f51;
+  /* Strongest border color for neutral elements (gray.90) */
+  'kui-color-border-neutral-strongest': #232633;
   /* Weak border color for neutral elements (gray.40) */
   'kui-color-border-neutral-weak': #afb7c5;
   /* Weaker border color for neutral elements (gray.20) */
   'kui-color-border-neutral-weaker': #e0e4ea;
+  /* Weakest border color for neutral elements (gray.10) */
+  'kui-color-border-neutral-weakest': #f9fafb;
   /* Border color for primary actions or messages (blue.60). */
   'kui-color-border-primary': #0044f4;
   /* Strong border color for primary actions or messages (blue.70). */
@@ -694,6 +832,16 @@ $tokens-map: (
   'kui-color-text-danger': #d60027;
   /* Strong text color for danger actions or messages (red.70). */
   'kui-color-text-danger-strong': #ad000e;
+  /* Stronger text color for danger actions or messages (red.80). */
+  'kui-color-text-danger-stronger': #850000;
+  /* Strongest text color for danger actions or messages (red.90). */
+  'kui-color-text-danger-strongest': #5c0000;
+  /* Weak text color for danger actions or messages (red.40). */
+  'kui-color-text-danger-weak': #ff3954;
+  /* Weaker text color for danger actions or messages (red.20). */
+  'kui-color-text-danger-weaker': #ffabab;
+  /* Weakest text color for danger actions or messages (red.10). */
+  'kui-color-text-danger-weakest': #ffe5e5;
   /* Text color for decorative purposes (aqua.50). */
   'kui-color-text-decorative-aqua': #00abd2;
   /* Text color for decorative purposes (pink.60). */
@@ -704,6 +852,20 @@ $tokens-map: (
   'kui-color-text-decorative-purple-strong': #5e00f5;
   /* Text color for disabled elements (gray.40). */
   'kui-color-text-disabled': #afb7c5;
+  /* Text color for info elements (blue.60). */
+  'kui-color-text-info': #0044f4;
+  /* Strong text color for info elements (blue.70). */
+  'kui-color-text-info-strong': #0030cc;
+  /* Stronger text color for info elements (blue.80). */
+  'kui-color-text-info-stronger': #002099;
+  /* Strongest text color for info elements (blue.90). */
+  'kui-color-text-info-strongest': #001466;
+  /* Weak text color for info elements (blue.40). */
+  'kui-color-text-info-weak': #5f9aff;
+  /* Weaker text color for info elements (blue.20). */
+  'kui-color-text-info-weaker': #bee2ff;
+  /* Weakest text color for info elements (blue.10). */
+  'kui-color-text-info-weakest': #eefaff;
   /* Inverse text color (white). */
   'kui-color-text-inverse': #ffffff;
   /* Text color for neutral elements (gray.60). */
@@ -718,6 +880,8 @@ $tokens-map: (
   'kui-color-text-neutral-weak': #afb7c5;
   /* Weaker text color for neutral elements (gray.20). */
   'kui-color-text-neutral-weaker': #e0e4ea;
+  /* Weakest text color for neutral elements (gray.10). */
+  'kui-color-text-neutral-weakest': #f9fafb;
   /* Text color for primary actions or messages (blue.60). */
   'kui-color-text-primary': #0044f4;
   /* Strong text color for primary actions or messages (blue.70). */
@@ -728,14 +892,38 @@ $tokens-map: (
   'kui-color-text-primary-strongest': #001466;
   /* Weak text color for primary actions or messages (blue.40). */
   'kui-color-text-primary-weak': #5f9aff;
-  /* Text color for success actions or messages (green.60). */
+  /* Weaker text color for primary actions or messages (blue.20). */
+  'kui-color-text-primary-weaker': #bee2ff;
+  /* Weakest text color for primary actions or messages (blue.10). */
+  'kui-color-text-primary-weakest': #eefaff;
+  /* Text color for success elements (green.60). */
   'kui-color-text-success': #007d60;
-  /* Strong text color for success actions or messages (green.70). */
+  /* Strong text color for success elements (green.70). */
   'kui-color-text-success-strong': #005944;
-  /* Text color for warning actions or messages (yellow.60). */
+  /* Stronger text color for success elements (green.80). */
+  'kui-color-text-success-stronger': #004737;
+  /* Stronger text color for success elements (green.90). */
+  'kui-color-text-success-strongest': #003629;
+  /* Weak text color for success elements (green.40). */
+  'kui-color-text-success-weak': #00d6a4;
+  /* Weaker text color for success elements (green.20). */
+  'kui-color-text-success-weaker': #b5ffee;
+  /* Weakest text color for success elements (green.10). */
+  'kui-color-text-success-weakest': #ecfffb;
+  /* Text color for warning elements (yellow.60). */
   'kui-color-text-warning': #995c00;
-  /* Text color for warning actions or messages (yellow.70). */
+  /* Strong text color for warning elements (yellow.70). */
   'kui-color-text-warning-strong': #804400;
+  /* Stronger text color for warning elements (yellow.80). */
+  'kui-color-text-warning-stronger': #662d00;
+  /* Strongest text color for warning elements (yellow.90). */
+  'kui-color-text-warning-strongest': #4d1b00;
+  /* Weak text color for warning elements (yellow.40). */
+  'kui-color-text-warning-weak': #ffc400;
+  /* Weaker text color for warning elements (yellow.20). */
+  'kui-color-text-warning-weaker': #fff296;
+  /* Weakest text color for warning elements (yellow.10). */
+  'kui-color-text-warning-weakest': #fffce0;
   /* Default transition timing */
   'kui-animation-duration-20': 0.2s;
   /* 0px border radius. */
@@ -1168,6 +1356,20 @@ $tokens-map: (
 @kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
 @kui-color-background-disabled: #e0e4ea;
+/* Background color for info elements (blue.60). */
+@kui-color-background-info: #0044f4;
+/* Strong background color for info elements (blue.70). */
+@kui-color-background-info-strong: #0030cc;
+/* Stronger background color for info elements (blue.80). */
+@kui-color-background-info-stronger: #002099;
+/* Strongest background color for info elements (blue.90). */
+@kui-color-background-info-strongest: #001466;
+/* Weak background color for info elements (blue.40). */
+@kui-color-background-info-weak: #5f9aff;
+/* Weaker background color for info elements (blue.20). */
+@kui-color-background-info-weaker: #bee2ff;
+/* Weakest background color for info elements (blue.10). */
+@kui-color-background-info-weakest: #eefaff;
 /* Inverse background color for containers (blue.100) */
 @kui-color-background-inverse: #000933;
 /* Background color for neutral elements (gray.60). */
@@ -1200,14 +1402,34 @@ $tokens-map: (
 @kui-color-background-primary-weaker: #bee2ff;
 /* Weakest background color for primary actions or messages (blue.10) */
 @kui-color-background-primary-weakest: #eefaff;
+/* Background color for success elements (green.60). */
+@kui-color-background-success: #007d60;
+/* Strong background color for success elements (green.70). */
+@kui-color-background-success-strong: #005944;
+/* Stronger background color for success elements (green.80). */
+@kui-color-background-success-stronger: #004737;
+/* Strongest background color for success elements (green.90). */
+@kui-color-background-success-strongest: #003629;
 /* Weak background color for success elements (green.40). */
 @kui-color-background-success-weak: #00d6a4;
+/* Weaker background color for success elements (green.20). */
+@kui-color-background-success-weaker: #b5ffee;
 /* Weakest background color for success elements (green.10). */
 @kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
 @kui-color-background-transparent: transparent;
+/* Background color for warning elements (yellow.60). */
+@kui-color-background-warning: #995c00;
+/* Strong background color for warning elements (yellow.70). */
+@kui-color-background-warning-strong: #804400;
+/* Stronger background color for warning elements (yellow.80). */
+@kui-color-background-warning-stronger: #662d00;
+/* Strongest background color for warning elements (yellow.90). */
+@kui-color-background-warning-strongest: #4d1b00;
 /* Weak background color for warning elements (yellow.40). */
 @kui-color-background-warning-weak: #ffc400;
+/* Weaker background color for warning elements (yellow.20). */
+@kui-color-background-warning-weaker: #fff296;
 /* Weakest background color for warning elements (yellow.10). */
 @kui-color-background-warning-weakest: #fffce0;
 /* Default border color for containers (gray.20). */
@@ -1232,10 +1454,20 @@ $tokens-map: (
 @kui-color-border-disabled: #e0e4ea;
 /* Inverse border color (rgba(white, 0.2)). */
 @kui-color-border-inverse: rgba(255, 255, 255, 0.2);
+/* Border color for neutral elements (gray.60) */
+@kui-color-border-neutral: #6c7489;
+/* Strong border color for neutral elements (gray.70) */
+@kui-color-border-neutral-strong: #52596e;
+/* Stronger border color for neutral elements (gray.80) */
+@kui-color-border-neutral-stronger: #3a3f51;
+/* Strongest border color for neutral elements (gray.90) */
+@kui-color-border-neutral-strongest: #232633;
 /* Weak border color for neutral elements (gray.40) */
 @kui-color-border-neutral-weak: #afb7c5;
 /* Weaker border color for neutral elements (gray.20) */
 @kui-color-border-neutral-weaker: #e0e4ea;
+/* Weakest border color for neutral elements (gray.10) */
+@kui-color-border-neutral-weakest: #f9fafb;
 /* Border color for primary actions or messages (blue.60). */
 @kui-color-border-primary: #0044f4;
 /* Strong border color for primary actions or messages (blue.70). */
@@ -1258,6 +1490,16 @@ $tokens-map: (
 @kui-color-text-danger: #d60027;
 /* Strong text color for danger actions or messages (red.70). */
 @kui-color-text-danger-strong: #ad000e;
+/* Stronger text color for danger actions or messages (red.80). */
+@kui-color-text-danger-stronger: #850000;
+/* Strongest text color for danger actions or messages (red.90). */
+@kui-color-text-danger-strongest: #5c0000;
+/* Weak text color for danger actions or messages (red.40). */
+@kui-color-text-danger-weak: #ff3954;
+/* Weaker text color for danger actions or messages (red.20). */
+@kui-color-text-danger-weaker: #ffabab;
+/* Weakest text color for danger actions or messages (red.10). */
+@kui-color-text-danger-weakest: #ffe5e5;
 /* Text color for decorative purposes (aqua.50). */
 @kui-color-text-decorative-aqua: #00abd2;
 /* Text color for decorative purposes (pink.60). */
@@ -1268,6 +1510,20 @@ $tokens-map: (
 @kui-color-text-decorative-purple-strong: #5e00f5;
 /* Text color for disabled elements (gray.40). */
 @kui-color-text-disabled: #afb7c5;
+/* Text color for info elements (blue.60). */
+@kui-color-text-info: #0044f4;
+/* Strong text color for info elements (blue.70). */
+@kui-color-text-info-strong: #0030cc;
+/* Stronger text color for info elements (blue.80). */
+@kui-color-text-info-stronger: #002099;
+/* Strongest text color for info elements (blue.90). */
+@kui-color-text-info-strongest: #001466;
+/* Weak text color for info elements (blue.40). */
+@kui-color-text-info-weak: #5f9aff;
+/* Weaker text color for info elements (blue.20). */
+@kui-color-text-info-weaker: #bee2ff;
+/* Weakest text color for info elements (blue.10). */
+@kui-color-text-info-weakest: #eefaff;
 /* Inverse text color (white). */
 @kui-color-text-inverse: #ffffff;
 /* Text color for neutral elements (gray.60). */
@@ -1282,6 +1538,8 @@ $tokens-map: (
 @kui-color-text-neutral-weak: #afb7c5;
 /* Weaker text color for neutral elements (gray.20). */
 @kui-color-text-neutral-weaker: #e0e4ea;
+/* Weakest text color for neutral elements (gray.10). */
+@kui-color-text-neutral-weakest: #f9fafb;
 /* Text color for primary actions or messages (blue.60). */
 @kui-color-text-primary: #0044f4;
 /* Strong text color for primary actions or messages (blue.70). */
@@ -1292,14 +1550,38 @@ $tokens-map: (
 @kui-color-text-primary-strongest: #001466;
 /* Weak text color for primary actions or messages (blue.40). */
 @kui-color-text-primary-weak: #5f9aff;
-/* Text color for success actions or messages (green.60). */
+/* Weaker text color for primary actions or messages (blue.20). */
+@kui-color-text-primary-weaker: #bee2ff;
+/* Weakest text color for primary actions or messages (blue.10). */
+@kui-color-text-primary-weakest: #eefaff;
+/* Text color for success elements (green.60). */
 @kui-color-text-success: #007d60;
-/* Strong text color for success actions or messages (green.70). */
+/* Strong text color for success elements (green.70). */
 @kui-color-text-success-strong: #005944;
-/* Text color for warning actions or messages (yellow.60). */
+/* Stronger text color for success elements (green.80). */
+@kui-color-text-success-stronger: #004737;
+/* Stronger text color for success elements (green.90). */
+@kui-color-text-success-strongest: #003629;
+/* Weak text color for success elements (green.40). */
+@kui-color-text-success-weak: #00d6a4;
+/* Weaker text color for success elements (green.20). */
+@kui-color-text-success-weaker: #b5ffee;
+/* Weakest text color for success elements (green.10). */
+@kui-color-text-success-weakest: #ecfffb;
+/* Text color for warning elements (yellow.60). */
 @kui-color-text-warning: #995c00;
-/* Text color for warning actions or messages (yellow.70). */
+/* Strong text color for warning elements (yellow.70). */
 @kui-color-text-warning-strong: #804400;
+/* Stronger text color for warning elements (yellow.80). */
+@kui-color-text-warning-stronger: #662d00;
+/* Strongest text color for warning elements (yellow.90). */
+@kui-color-text-warning-strongest: #4d1b00;
+/* Weak text color for warning elements (yellow.40). */
+@kui-color-text-warning-weak: #ffc400;
+/* Weaker text color for warning elements (yellow.20). */
+@kui-color-text-warning-weaker: #fff296;
+/* Weakest text color for warning elements (yellow.10). */
+@kui-color-text-warning-weakest: #fffce0;
 /* Default transition timing */
 @kui-animation-duration-20: 0.2s;
 /* 0px border radius. */
@@ -1733,6 +2015,20 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-decorative-purple-weakest: #f1f0ff;
 /* Background color for disabled elements (gray.20). */
 --kui-color-background-disabled: #e0e4ea;
+/* Background color for info elements (blue.60). */
+--kui-color-background-info: #0044f4;
+/* Strong background color for info elements (blue.70). */
+--kui-color-background-info-strong: #0030cc;
+/* Stronger background color for info elements (blue.80). */
+--kui-color-background-info-stronger: #002099;
+/* Strongest background color for info elements (blue.90). */
+--kui-color-background-info-strongest: #001466;
+/* Weak background color for info elements (blue.40). */
+--kui-color-background-info-weak: #5f9aff;
+/* Weaker background color for info elements (blue.20). */
+--kui-color-background-info-weaker: #bee2ff;
+/* Weakest background color for info elements (blue.10). */
+--kui-color-background-info-weakest: #eefaff;
 /* Inverse background color for containers (blue.100) */
 --kui-color-background-inverse: #000933;
 /* Background color for neutral elements (gray.60). */
@@ -1765,14 +2061,34 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-primary-weaker: #bee2ff;
 /* Weakest background color for primary actions or messages (blue.10) */
 --kui-color-background-primary-weakest: #eefaff;
+/* Background color for success elements (green.60). */
+--kui-color-background-success: #007d60;
+/* Strong background color for success elements (green.70). */
+--kui-color-background-success-strong: #005944;
+/* Stronger background color for success elements (green.80). */
+--kui-color-background-success-stronger: #004737;
+/* Strongest background color for success elements (green.90). */
+--kui-color-background-success-strongest: #003629;
 /* Weak background color for success elements (green.40). */
 --kui-color-background-success-weak: #00d6a4;
+/* Weaker background color for success elements (green.20). */
+--kui-color-background-success-weaker: #b5ffee;
 /* Weakest background color for success elements (green.10). */
 --kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
 --kui-color-background-transparent: transparent;
+/* Background color for warning elements (yellow.60). */
+--kui-color-background-warning: #995c00;
+/* Strong background color for warning elements (yellow.70). */
+--kui-color-background-warning-strong: #804400;
+/* Stronger background color for warning elements (yellow.80). */
+--kui-color-background-warning-stronger: #662d00;
+/* Strongest background color for warning elements (yellow.90). */
+--kui-color-background-warning-strongest: #4d1b00;
 /* Weak background color for warning elements (yellow.40). */
 --kui-color-background-warning-weak: #ffc400;
+/* Weaker background color for warning elements (yellow.20). */
+--kui-color-background-warning-weaker: #fff296;
 /* Weakest background color for warning elements (yellow.10). */
 --kui-color-background-warning-weakest: #fffce0;
 /* Default border color for containers (gray.20). */
@@ -1797,10 +2113,20 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-border-disabled: #e0e4ea;
 /* Inverse border color (rgba(white, 0.2)). */
 --kui-color-border-inverse: rgba(255, 255, 255, 0.2);
+/* Border color for neutral elements (gray.60) */
+--kui-color-border-neutral: #6c7489;
+/* Strong border color for neutral elements (gray.70) */
+--kui-color-border-neutral-strong: #52596e;
+/* Stronger border color for neutral elements (gray.80) */
+--kui-color-border-neutral-stronger: #3a3f51;
+/* Strongest border color for neutral elements (gray.90) */
+--kui-color-border-neutral-strongest: #232633;
 /* Weak border color for neutral elements (gray.40) */
 --kui-color-border-neutral-weak: #afb7c5;
 /* Weaker border color for neutral elements (gray.20) */
 --kui-color-border-neutral-weaker: #e0e4ea;
+/* Weakest border color for neutral elements (gray.10) */
+--kui-color-border-neutral-weakest: #f9fafb;
 /* Border color for primary actions or messages (blue.60). */
 --kui-color-border-primary: #0044f4;
 /* Strong border color for primary actions or messages (blue.70). */
@@ -1823,6 +2149,16 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-danger: #d60027;
 /* Strong text color for danger actions or messages (red.70). */
 --kui-color-text-danger-strong: #ad000e;
+/* Stronger text color for danger actions or messages (red.80). */
+--kui-color-text-danger-stronger: #850000;
+/* Strongest text color for danger actions or messages (red.90). */
+--kui-color-text-danger-strongest: #5c0000;
+/* Weak text color for danger actions or messages (red.40). */
+--kui-color-text-danger-weak: #ff3954;
+/* Weaker text color for danger actions or messages (red.20). */
+--kui-color-text-danger-weaker: #ffabab;
+/* Weakest text color for danger actions or messages (red.10). */
+--kui-color-text-danger-weakest: #ffe5e5;
 /* Text color for decorative purposes (aqua.50). */
 --kui-color-text-decorative-aqua: #00abd2;
 /* Text color for decorative purposes (pink.60). */
@@ -1833,6 +2169,20 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-decorative-purple-strong: #5e00f5;
 /* Text color for disabled elements (gray.40). */
 --kui-color-text-disabled: #afb7c5;
+/* Text color for info elements (blue.60). */
+--kui-color-text-info: #0044f4;
+/* Strong text color for info elements (blue.70). */
+--kui-color-text-info-strong: #0030cc;
+/* Stronger text color for info elements (blue.80). */
+--kui-color-text-info-stronger: #002099;
+/* Strongest text color for info elements (blue.90). */
+--kui-color-text-info-strongest: #001466;
+/* Weak text color for info elements (blue.40). */
+--kui-color-text-info-weak: #5f9aff;
+/* Weaker text color for info elements (blue.20). */
+--kui-color-text-info-weaker: #bee2ff;
+/* Weakest text color for info elements (blue.10). */
+--kui-color-text-info-weakest: #eefaff;
 /* Inverse text color (white). */
 --kui-color-text-inverse: #ffffff;
 /* Text color for neutral elements (gray.60). */
@@ -1847,6 +2197,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-neutral-weak: #afb7c5;
 /* Weaker text color for neutral elements (gray.20). */
 --kui-color-text-neutral-weaker: #e0e4ea;
+/* Weakest text color for neutral elements (gray.10). */
+--kui-color-text-neutral-weakest: #f9fafb;
 /* Text color for primary actions or messages (blue.60). */
 --kui-color-text-primary: #0044f4;
 /* Strong text color for primary actions or messages (blue.70). */
@@ -1857,14 +2209,38 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-text-primary-strongest: #001466;
 /* Weak text color for primary actions or messages (blue.40). */
 --kui-color-text-primary-weak: #5f9aff;
-/* Text color for success actions or messages (green.60). */
+/* Weaker text color for primary actions or messages (blue.20). */
+--kui-color-text-primary-weaker: #bee2ff;
+/* Weakest text color for primary actions or messages (blue.10). */
+--kui-color-text-primary-weakest: #eefaff;
+/* Text color for success elements (green.60). */
 --kui-color-text-success: #007d60;
-/* Strong text color for success actions or messages (green.70). */
+/* Strong text color for success elements (green.70). */
 --kui-color-text-success-strong: #005944;
-/* Text color for warning actions or messages (yellow.60). */
+/* Stronger text color for success elements (green.80). */
+--kui-color-text-success-stronger: #004737;
+/* Stronger text color for success elements (green.90). */
+--kui-color-text-success-strongest: #003629;
+/* Weak text color for success elements (green.40). */
+--kui-color-text-success-weak: #00d6a4;
+/* Weaker text color for success elements (green.20). */
+--kui-color-text-success-weaker: #b5ffee;
+/* Weakest text color for success elements (green.10). */
+--kui-color-text-success-weakest: #ecfffb;
+/* Text color for warning elements (yellow.60). */
 --kui-color-text-warning: #995c00;
-/* Text color for warning actions or messages (yellow.70). */
+/* Strong text color for warning elements (yellow.70). */
 --kui-color-text-warning-strong: #804400;
+/* Stronger text color for warning elements (yellow.80). */
+--kui-color-text-warning-stronger: #662d00;
+/* Strongest text color for warning elements (yellow.90). */
+--kui-color-text-warning-strongest: #4d1b00;
+/* Weak text color for warning elements (yellow.40). */
+--kui-color-text-warning-weak: #ffc400;
+/* Weaker text color for warning elements (yellow.20). */
+--kui-color-text-warning-weaker: #fff296;
+/* Weakest text color for warning elements (yellow.10). */
+--kui-color-text-warning-weakest: #fffce0;
 /* Default transition timing */
 --kui-animation-duration-20: 0.2s;
 /* 0px border radius. */
@@ -2296,6 +2672,20 @@ export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE = "#6f28ff";
 export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE_WEAKEST = "#f1f0ff";
 /* Background color for disabled elements (gray.20). */
 export const KUI_COLOR_BACKGROUND_DISABLED = "#e0e4ea";
+/* Background color for info elements (blue.60). */
+export const KUI_COLOR_BACKGROUND_INFO = "#0044f4";
+/* Strong background color for info elements (blue.70). */
+export const KUI_COLOR_BACKGROUND_INFO_STRONG = "#0030cc";
+/* Stronger background color for info elements (blue.80). */
+export const KUI_COLOR_BACKGROUND_INFO_STRONGER = "#002099";
+/* Strongest background color for info elements (blue.90). */
+export const KUI_COLOR_BACKGROUND_INFO_STRONGEST = "#001466";
+/* Weak background color for info elements (blue.40). */
+export const KUI_COLOR_BACKGROUND_INFO_WEAK = "#5f9aff";
+/* Weaker background color for info elements (blue.20). */
+export const KUI_COLOR_BACKGROUND_INFO_WEAKER = "#bee2ff";
+/* Weakest background color for info elements (blue.10). */
+export const KUI_COLOR_BACKGROUND_INFO_WEAKEST = "#eefaff";
 /* Inverse background color for containers (blue.100) */
 export const KUI_COLOR_BACKGROUND_INVERSE = "#000933";
 /* Background color for neutral elements (gray.60). */
@@ -2328,14 +2718,34 @@ export const KUI_COLOR_BACKGROUND_PRIMARY_WEAK = "#5f9aff";
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKER = "#bee2ff";
 /* Weakest background color for primary actions or messages (blue.10) */
 export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKEST = "#eefaff";
+/* Background color for success elements (green.60). */
+export const KUI_COLOR_BACKGROUND_SUCCESS = "#007d60";
+/* Strong background color for success elements (green.70). */
+export const KUI_COLOR_BACKGROUND_SUCCESS_STRONG = "#005944";
+/* Stronger background color for success elements (green.80). */
+export const KUI_COLOR_BACKGROUND_SUCCESS_STRONGER = "#004737";
+/* Strongest background color for success elements (green.90). */
+export const KUI_COLOR_BACKGROUND_SUCCESS_STRONGEST = "#003629";
 /* Weak background color for success elements (green.40). */
 export const KUI_COLOR_BACKGROUND_SUCCESS_WEAK = "#00d6a4";
+/* Weaker background color for success elements (green.20). */
+export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKER = "#b5ffee";
 /* Weakest background color for success elements (green.10). */
 export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKEST = "#ecfffb";
 /* Transparent background color (transparent). */
 export const KUI_COLOR_BACKGROUND_TRANSPARENT = "transparent";
+/* Background color for warning elements (yellow.60). */
+export const KUI_COLOR_BACKGROUND_WARNING = "#995c00";
+/* Strong background color for warning elements (yellow.70). */
+export const KUI_COLOR_BACKGROUND_WARNING_STRONG = "#804400";
+/* Stronger background color for warning elements (yellow.80). */
+export const KUI_COLOR_BACKGROUND_WARNING_STRONGER = "#662d00";
+/* Strongest background color for warning elements (yellow.90). */
+export const KUI_COLOR_BACKGROUND_WARNING_STRONGEST = "#4d1b00";
 /* Weak background color for warning elements (yellow.40). */
 export const KUI_COLOR_BACKGROUND_WARNING_WEAK = "#ffc400";
+/* Weaker background color for warning elements (yellow.20). */
+export const KUI_COLOR_BACKGROUND_WARNING_WEAKER = "#fff296";
 /* Weakest background color for warning elements (yellow.10). */
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = "#fffce0";
 /* Default border color for containers (gray.20). */
@@ -2360,10 +2770,20 @@ export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = "#6f28ff";
 export const KUI_COLOR_BORDER_DISABLED = "#e0e4ea";
 /* Inverse border color (rgba(white, 0.2)). */
 export const KUI_COLOR_BORDER_INVERSE = "rgba(255, 255, 255, 0.2)";
+/* Border color for neutral elements (gray.60) */
+export const KUI_COLOR_BORDER_NEUTRAL = "#6c7489";
+/* Strong border color for neutral elements (gray.70) */
+export const KUI_COLOR_BORDER_NEUTRAL_STRONG = "#52596e";
+/* Stronger border color for neutral elements (gray.80) */
+export const KUI_COLOR_BORDER_NEUTRAL_STRONGER = "#3a3f51";
+/* Strongest border color for neutral elements (gray.90) */
+export const KUI_COLOR_BORDER_NEUTRAL_STRONGEST = "#232633";
 /* Weak border color for neutral elements (gray.40) */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAK = "#afb7c5";
 /* Weaker border color for neutral elements (gray.20) */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAKER = "#e0e4ea";
+/* Weakest border color for neutral elements (gray.10) */
+export const KUI_COLOR_BORDER_NEUTRAL_WEAKEST = "#f9fafb";
 /* Border color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BORDER_PRIMARY = "#0044f4";
 /* Strong border color for primary actions or messages (blue.70). */
@@ -2386,6 +2806,16 @@ export const KUI_COLOR_TEXT = "#000933";
 export const KUI_COLOR_TEXT_DANGER = "#d60027";
 /* Strong text color for danger actions or messages (red.70). */
 export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
+/* Stronger text color for danger actions or messages (red.80). */
+export const KUI_COLOR_TEXT_DANGER_STRONGER = "#850000";
+/* Strongest text color for danger actions or messages (red.90). */
+export const KUI_COLOR_TEXT_DANGER_STRONGEST = "#5c0000";
+/* Weak text color for danger actions or messages (red.40). */
+export const KUI_COLOR_TEXT_DANGER_WEAK = "#ff3954";
+/* Weaker text color for danger actions or messages (red.20). */
+export const KUI_COLOR_TEXT_DANGER_WEAKER = "#ffabab";
+/* Weakest text color for danger actions or messages (red.10). */
+export const KUI_COLOR_TEXT_DANGER_WEAKEST = "#ffe5e5";
 /* Text color for decorative purposes (aqua.50). */
 export const KUI_COLOR_TEXT_DECORATIVE_AQUA = "#00abd2";
 /* Text color for decorative purposes (pink.60). */
@@ -2396,6 +2826,20 @@ export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = "#6f28ff";
 export const KUI_COLOR_TEXT_DECORATIVE_PURPLE_STRONG = "#5e00f5";
 /* Text color for disabled elements (gray.40). */
 export const KUI_COLOR_TEXT_DISABLED = "#afb7c5";
+/* Text color for info elements (blue.60). */
+export const KUI_COLOR_TEXT_INFO = "#0044f4";
+/* Strong text color for info elements (blue.70). */
+export const KUI_COLOR_TEXT_INFO_STRONG = "#0030cc";
+/* Stronger text color for info elements (blue.80). */
+export const KUI_COLOR_TEXT_INFO_STRONGER = "#002099";
+/* Strongest text color for info elements (blue.90). */
+export const KUI_COLOR_TEXT_INFO_STRONGEST = "#001466";
+/* Weak text color for info elements (blue.40). */
+export const KUI_COLOR_TEXT_INFO_WEAK = "#5f9aff";
+/* Weaker text color for info elements (blue.20). */
+export const KUI_COLOR_TEXT_INFO_WEAKER = "#bee2ff";
+/* Weakest text color for info elements (blue.10). */
+export const KUI_COLOR_TEXT_INFO_WEAKEST = "#eefaff";
 /* Inverse text color (white). */
 export const KUI_COLOR_TEXT_INVERSE = "#ffffff";
 /* Text color for neutral elements (gray.60). */
@@ -2410,6 +2854,8 @@ export const KUI_COLOR_TEXT_NEUTRAL_STRONGEST = "#232633";
 export const KUI_COLOR_TEXT_NEUTRAL_WEAK = "#afb7c5";
 /* Weaker text color for neutral elements (gray.20). */
 export const KUI_COLOR_TEXT_NEUTRAL_WEAKER = "#e0e4ea";
+/* Weakest text color for neutral elements (gray.10). */
+export const KUI_COLOR_TEXT_NEUTRAL_WEAKEST = "#f9fafb";
 /* Text color for primary actions or messages (blue.60). */
 export const KUI_COLOR_TEXT_PRIMARY = "#0044f4";
 /* Strong text color for primary actions or messages (blue.70). */
@@ -2420,14 +2866,38 @@ export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#002099";
 export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#001466";
 /* Weak text color for primary actions or messages (blue.40). */
 export const KUI_COLOR_TEXT_PRIMARY_WEAK = "#5f9aff";
-/* Text color for success actions or messages (green.60). */
+/* Weaker text color for primary actions or messages (blue.20). */
+export const KUI_COLOR_TEXT_PRIMARY_WEAKER = "#bee2ff";
+/* Weakest text color for primary actions or messages (blue.10). */
+export const KUI_COLOR_TEXT_PRIMARY_WEAKEST = "#eefaff";
+/* Text color for success elements (green.60). */
 export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
-/* Strong text color for success actions or messages (green.70). */
+/* Strong text color for success elements (green.70). */
 export const KUI_COLOR_TEXT_SUCCESS_STRONG = "#005944";
-/* Text color for warning actions or messages (yellow.60). */
+/* Stronger text color for success elements (green.80). */
+export const KUI_COLOR_TEXT_SUCCESS_STRONGER = "#004737";
+/* Stronger text color for success elements (green.90). */
+export const KUI_COLOR_TEXT_SUCCESS_STRONGEST = "#003629";
+/* Weak text color for success elements (green.40). */
+export const KUI_COLOR_TEXT_SUCCESS_WEAK = "#00d6a4";
+/* Weaker text color for success elements (green.20). */
+export const KUI_COLOR_TEXT_SUCCESS_WEAKER = "#b5ffee";
+/* Weakest text color for success elements (green.10). */
+export const KUI_COLOR_TEXT_SUCCESS_WEAKEST = "#ecfffb";
+/* Text color for warning elements (yellow.60). */
 export const KUI_COLOR_TEXT_WARNING = "#995c00";
-/* Text color for warning actions or messages (yellow.70). */
+/* Strong text color for warning elements (yellow.70). */
 export const KUI_COLOR_TEXT_WARNING_STRONG = "#804400";
+/* Stronger text color for warning elements (yellow.80). */
+export const KUI_COLOR_TEXT_WARNING_STRONGER = "#662d00";
+/* Strongest text color for warning elements (yellow.90). */
+export const KUI_COLOR_TEXT_WARNING_STRONGEST = "#4d1b00";
+/* Weak text color for warning elements (yellow.40). */
+export const KUI_COLOR_TEXT_WARNING_WEAK = "#ffc400";
+/* Weaker text color for warning elements (yellow.20). */
+export const KUI_COLOR_TEXT_WARNING_WEAKER = "#fff296";
+/* Weakest text color for warning elements (yellow.10). */
+export const KUI_COLOR_TEXT_WARNING_WEAKEST = "#fffce0";
 /* Default transition timing */
 export const KUI_ANIMATION_DURATION_20 = "0.2s";
 /* 0px border radius. */
@@ -2846,6 +3316,13 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_decorative_purple": "#6f28ff",
   "kui_color_background_decorative_purple_weakest": "#f1f0ff",
   "kui_color_background_disabled": "#e0e4ea",
+  "kui_color_background_info": "#0044f4",
+  "kui_color_background_info_strong": "#0030cc",
+  "kui_color_background_info_stronger": "#002099",
+  "kui_color_background_info_strongest": "#001466",
+  "kui_color_background_info_weak": "#5f9aff",
+  "kui_color_background_info_weaker": "#bee2ff",
+  "kui_color_background_info_weakest": "#eefaff",
   "kui_color_background_inverse": "#000933",
   "kui_color_background_neutral": "#6c7489",
   "kui_color_background_neutral_strong": "#52596e",
@@ -2862,10 +3339,20 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_primary_weak": "#5f9aff",
   "kui_color_background_primary_weaker": "#bee2ff",
   "kui_color_background_primary_weakest": "#eefaff",
+  "kui_color_background_success": "#007d60",
+  "kui_color_background_success_strong": "#005944",
+  "kui_color_background_success_stronger": "#004737",
+  "kui_color_background_success_strongest": "#003629",
   "kui_color_background_success_weak": "#00d6a4",
+  "kui_color_background_success_weaker": "#b5ffee",
   "kui_color_background_success_weakest": "#ecfffb",
   "kui_color_background_transparent": "transparent",
+  "kui_color_background_warning": "#995c00",
+  "kui_color_background_warning_strong": "#804400",
+  "kui_color_background_warning_stronger": "#662d00",
+  "kui_color_background_warning_strongest": "#4d1b00",
   "kui_color_background_warning_weak": "#ffc400",
+  "kui_color_background_warning_weaker": "#fff296",
   "kui_color_background_warning_weakest": "#fffce0",
   "kui_color_border": "#e0e4ea",
   "kui_color_border_danger": "#d60027",
@@ -2878,8 +3365,13 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_decorative_purple": "#6f28ff",
   "kui_color_border_disabled": "#e0e4ea",
   "kui_color_border_inverse": "rgba(255, 255, 255, 0.2)",
+  "kui_color_border_neutral": "#6c7489",
+  "kui_color_border_neutral_strong": "#52596e",
+  "kui_color_border_neutral_stronger": "#3a3f51",
+  "kui_color_border_neutral_strongest": "#232633",
   "kui_color_border_neutral_weak": "#afb7c5",
   "kui_color_border_neutral_weaker": "#e0e4ea",
+  "kui_color_border_neutral_weakest": "#f9fafb",
   "kui_color_border_primary": "#0044f4",
   "kui_color_border_primary_strong": "#0030cc",
   "kui_color_border_primary_stronger": "#002099",
@@ -2891,11 +3383,23 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text": "#000933",
   "kui_color_text_danger": "#d60027",
   "kui_color_text_danger_strong": "#ad000e",
+  "kui_color_text_danger_stronger": "#850000",
+  "kui_color_text_danger_strongest": "#5c0000",
+  "kui_color_text_danger_weak": "#ff3954",
+  "kui_color_text_danger_weaker": "#ffabab",
+  "kui_color_text_danger_weakest": "#ffe5e5",
   "kui_color_text_decorative_aqua": "#00abd2",
   "kui_color_text_decorative_pink": "#d60067",
   "kui_color_text_decorative_purple": "#6f28ff",
   "kui_color_text_decorative_purple_strong": "#5e00f5",
   "kui_color_text_disabled": "#afb7c5",
+  "kui_color_text_info": "#0044f4",
+  "kui_color_text_info_strong": "#0030cc",
+  "kui_color_text_info_stronger": "#002099",
+  "kui_color_text_info_strongest": "#001466",
+  "kui_color_text_info_weak": "#5f9aff",
+  "kui_color_text_info_weaker": "#bee2ff",
+  "kui_color_text_info_weakest": "#eefaff",
   "kui_color_text_inverse": "#ffffff",
   "kui_color_text_neutral": "#6c7489",
   "kui_color_text_neutral_strong": "#52596e",
@@ -2903,15 +3407,28 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_neutral_strongest": "#232633",
   "kui_color_text_neutral_weak": "#afb7c5",
   "kui_color_text_neutral_weaker": "#e0e4ea",
+  "kui_color_text_neutral_weakest": "#f9fafb",
   "kui_color_text_primary": "#0044f4",
   "kui_color_text_primary_strong": "#0030cc",
   "kui_color_text_primary_stronger": "#002099",
   "kui_color_text_primary_strongest": "#001466",
   "kui_color_text_primary_weak": "#5f9aff",
+  "kui_color_text_primary_weaker": "#bee2ff",
+  "kui_color_text_primary_weakest": "#eefaff",
   "kui_color_text_success": "#007d60",
   "kui_color_text_success_strong": "#005944",
+  "kui_color_text_success_stronger": "#004737",
+  "kui_color_text_success_strongest": "#003629",
+  "kui_color_text_success_weak": "#00d6a4",
+  "kui_color_text_success_weaker": "#b5ffee",
+  "kui_color_text_success_weakest": "#ecfffb",
   "kui_color_text_warning": "#995c00",
   "kui_color_text_warning_strong": "#804400",
+  "kui_color_text_warning_stronger": "#662d00",
+  "kui_color_text_warning_strongest": "#4d1b00",
+  "kui_color_text_warning_weak": "#ffc400",
+  "kui_color_text_warning_weaker": "#fff296",
+  "kui_color_text_warning_weakest": "#fffce0",
   "kui_animation_duration_20": "0.2s",
   "kui_border_radius_0": "0px",
   "kui_border_radius_10": "2px",
