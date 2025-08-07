@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "1.17.6",
+  "version": "1.18.0",
   "description": "Kong UI Design Tokens and style dictionary",
   "type": "module",
   "scripts": {

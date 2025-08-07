@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/Kong/design-tokens/compare/v1.17.6...v1.18.0) (2025-08-07)
+
+
+### Features
+
+* additional appearance tokens ([#522](https://github.com/Kong/design-tokens/issues/522)) ([b193472](https://github.com/Kong/design-tokens/commit/b1934724f34a028398d08150b6403d9d39f3e3fb))
+
 ## [1.17.6](https://github.com/Kong/design-tokens/compare/v1.17.5...v1.17.6) (2025-08-01)
 
 
