@@ -71,7 +71,7 @@
     "semantic-release": "^24.2.7",
     "shx": "^0.4.0",
     "style-dictionary": "^4.4.0",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.2",
     "vite": "^7.0.6",
     "vite-plugin-restart": "^1.0.0",
     "vite-plugin-vue-devtools": "^8.0.0",
@@ -126,13 +126,13 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "engines": {
     "node": ">=20.19.4",
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
-    "node": "22.17.1"
+    "node": "22.18.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
