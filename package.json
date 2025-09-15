@@ -67,7 +67,7 @@
     "eslint": "^9.34.0",
     "npm-run-all2": "^8.0.4",
     "rimraf": "^6.0.1",
-    "sass": "^1.91.0",
+    "sass": "^1.92.0",
     "semantic-release": "^24.2.7",
     "shx": "^0.4.0",
     "style-dictionary": "^4.4.0",
@@ -131,9 +131,9 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.15.0",
+  "packageManager": "pnpm@10.15.1",
   "engines": {
-    "node": ">=20.19.4",
+    "node": ">=20.19.5",
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
