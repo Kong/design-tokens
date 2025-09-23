@@ -74,8 +74,8 @@
     "typescript": "^5.9.2",
     "vite": "^7.1.5",
     "vite-plugin-restart": "^1.0.0",
-    "vite-plugin-vue-devtools": "^8.0.0",
-    "vue": "^3.5.19",
+    "vite-plugin-vue-devtools": "^8.0.1",
+    "vue": "^3.5.21",
     "vue-router": "^4.5.1"
   },
   "release": {
