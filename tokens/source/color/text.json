@@ -16,6 +16,31 @@
           "comment": "Strong text color for danger actions or messages (red.70).",
           "type": "color",
           "value": "{color.alias.red.70.value}"
+        },
+        "stronger": {
+          "comment": "Stronger text color for danger actions or messages (red.80).",
+          "type": "color",
+          "value": "{color.alias.red.80.value}"
+        },
+        "strongest": {
+          "comment": "Strongest text color for danger actions or messages (red.90).",
+          "type": "color",
+          "value": "{color.alias.red.90.value}"
+        },
+        "weak": {
+          "comment": "Weak text color for danger actions or messages (red.40).",
+          "type": "color",
+          "value": "{color.alias.red.40.value}"
+        },
+        "weaker": {
+          "comment": "Weaker text color for danger actions or messages (red.20).",
+          "type": "color",
+          "value": "{color.alias.red.20.value}"
+        },
+        "weakest": {
+          "comment": "Weakest text color for danger actions or messages (red.10).",
+          "type": "color",
+          "value": "{color.alias.red.10.value}"
         }
       },
       "decorative": {
@@ -46,6 +71,43 @@
         "comment": "Text color for disabled elements (gray.40).",
         "type": "color",
         "value": "{color.alias.gray.40.value}"
+      },
+      "info": {
+        "_": {
+          "comment": "Text color for info elements (blue.60).",
+          "type": "color",
+          "value": "{color.alias.blue.60.value}"
+        },
+        "strong": {
+          "comment": "Strong text color for info elements (blue.70).",
+          "type": "color",
+          "value": "{color.alias.blue.70.value}"
+        },
+        "stronger": {
+          "comment": "Stronger text color for info elements (blue.80).",
+          "type": "color",
+          "value": "{color.alias.blue.80.value}"
+        },
+        "strongest": {
+          "comment": "Strongest text color for info elements (blue.90).",
+          "type": "color",
+          "value": "{color.alias.blue.90.value}"
+        },
+        "weak": {
+          "comment": "Weak text color for info elements (blue.40).",
+          "type": "color",
+          "value": "{color.alias.blue.40.value}"
+        },
+        "weaker": {
+          "comment": "Weaker text color for info elements (blue.20).",
+          "type": "color",
+          "value": "{color.alias.blue.20.value}"
+        },
+        "weakest": {
+          "comment": "Weakest text color for info elements (blue.10).",
+          "type": "color",
+          "value": "{color.alias.blue.10.value}"
+        }
       },
       "inverse": {
         "comment": "Inverse text color (white).",
@@ -82,6 +144,11 @@
           "comment": "Weaker text color for neutral elements (gray.20).",
           "type": "color",
           "value": "{color.alias.gray.20.value}"
+        },
+        "weakest": {
+          "comment": "Weakest text color for neutral elements (gray.10).",
+          "type": "color",
+          "value": "{color.alias.gray.10.value}"
         }
       },
       "primary": {
@@ -109,30 +176,90 @@
           "comment": "Weak text color for primary actions or messages (blue.40).",
           "type": "color",
           "value": "{color.alias.blue.40.value}"
+        },
+        "weaker": {
+          "comment": "Weaker text color for primary actions or messages (blue.20).",
+          "type": "color",
+          "value": "{color.alias.blue.20.value}"
+        },
+        "weakest": {
+          "comment": "Weakest text color for primary actions or messages (blue.10).",
+          "type": "color",
+          "value": "{color.alias.blue.10.value}"
         }
       },
       "success": {
         "_": {
-          "comment": "Text color for success actions or messages (green.60).",
+          "comment": "Text color for success elements (green.60).",
           "type": "color",
           "value": "{color.alias.green.60.value}"
         },
         "strong": {
-          "comment": "Strong text color for success actions or messages (green.70).",
+          "comment": "Strong text color for success elements (green.70).",
           "type": "color",
           "value": "{color.alias.green.70.value}"
+        },
+        "stronger": {
+          "comment": "Stronger text color for success elements (green.80).",
+          "type": "color",
+          "value": "{color.alias.green.80.value}"
+        },
+        "strongest": {
+          "comment": "Stronger text color for success elements (green.90).",
+          "type": "color",
+          "value": "{color.alias.green.90.value}"
+        },
+        "weak": {
+          "comment": "Weak text color for success elements (green.40).",
+          "type": "color",
+          "value": "{color.alias.green.40.value}"
+        },
+        "weaker": {
+          "comment": "Weaker text color for success elements (green.20).",
+          "type": "color",
+          "value": "{color.alias.green.20.value}"
+        },
+        "weakest": {
+          "comment": "Weakest text color for success elements (green.10).",
+          "type": "color",
+          "value": "{color.alias.green.10.value}"
         }
       },
       "warning": {
         "_": {
-          "comment": "Text color for warning actions or messages (yellow.60).",
+          "comment": "Text color for warning elements (yellow.60).",
           "type": "color",
           "value": "{color.alias.yellow.60.value}"
         },
         "strong": {
-          "comment": "Text color for warning actions or messages (yellow.70).",
+          "comment": "Strong text color for warning elements (yellow.70).",
           "type": "color",
           "value": "{color.alias.yellow.70.value}"
+        },
+        "stronger": {
+          "comment": "Stronger text color for warning elements (yellow.80).",
+          "type": "color",
+          "value": "{color.alias.yellow.80.value}"
+        },
+        "strongest": {
+          "comment": "Strongest text color for warning elements (yellow.90).",
+          "type": "color",
+          "value": "{color.alias.yellow.90.value}"
+        },
+        "weak": {
+          "comment": "Weak text color for warning elements (yellow.40).",
+          "type": "color",
+          "value": "{color.alias.yellow.40.value}"
+        },
+        "weaker": {
+          "comment": "Weaker text color for warning elements (yellow.20).",
+          "type": "color",
+          "value": "{color.alias.yellow.20.value}"
+        },
+        "weakest": {
+          "comment": "Weakest text color for warning elements (yellow.10).",
+          "type": "color",
+          "value": "{color.alias.yellow.10.value}"
         }
       }
     }

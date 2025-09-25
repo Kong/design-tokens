@@ -2,12 +2,12 @@
   "font": {
     "weight": {
       "bold": {
-        "comment": "700",
+        "comment": "700: The bold font weight.",
         "type": "font",
         "value": "700"
       },
       "medium": {
-        "comment": "500",
+        "comment": "500: The medium font weight.",
         "type": "font",
         "value": "500"
       },
@@ -17,7 +17,7 @@
         "value": "400"
       },
       "semibold": {
-        "comment": "600",
+        "comment": "600: The semibold font weight.",
         "type": "font",
         "value": "600"
       }

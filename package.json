@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "1.17.2",
+  "version": "1.18.0",
   "description": "Kong UI Design Tokens and style dictionary",
   "type": "module",
   "scripts": {
@@ -53,30 +53,30 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^1.10.1",
-    "@kong/eslint-config-kong-ui": "^1.1.3",
+    "@evilmartians/lefthook": "^1.12.4",
+    "@kong/eslint-config-kong-ui": "^1.5.5",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@vitejs/plugin-vue": "^5.2.1",
+    "@vitejs/plugin-vue": "^6.0.1",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.17.0",
-    "npm-run-all2": "^7.0.2",
+    "eslint": "^9.35.0",
+    "npm-run-all2": "^8.0.4",
     "rimraf": "^6.0.1",
-    "sass": "^1.83.0",
-    "semantic-release": "^24.2.0",
-    "shx": "^0.3.4",
-    "style-dictionary": "^4.3.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.6",
-    "vite-plugin-restart": "^0.4.2",
-    "vite-plugin-vue-devtools": "^7.6.8",
-    "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "sass": "^1.92.1",
+    "semantic-release": "^24.2.7",
+    "shx": "^0.4.0",
+    "style-dictionary": "^4.4.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vite-plugin-restart": "^1.0.0",
+    "vite-plugin-vue-devtools": "^8.0.0",
+    "vue": "^3.5.19",
+    "vue-router": "^4.5.1"
   },
   "release": {
     "branches": [
@@ -102,7 +102,12 @@
           "changelogFile": "CHANGELOG.md"
         }
       ],
-      "@semantic-release/npm",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
       [
         "@semantic-release/git",
         {
@@ -126,12 +131,20 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@9.15.1",
+  "packageManager": "pnpm@10.15.1",
   "engines": {
-    "node": ">=20.18.1",
-    "pnpm": ">=9.15.1"
+    "node": ">=20.19.5",
+    "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
-    "node": "22.12.0"
+    "node": "24.8.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@bundled-es-modules/glob",
+      "@evilmartians/lefthook",
+      "esbuild",
+      "style-dictionary"
+    ]
   }
 }

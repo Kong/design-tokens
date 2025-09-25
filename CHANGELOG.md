@@ -1,3 +1,38 @@
+# [1.18.0](https://github.com/Kong/design-tokens/compare/v1.17.6...v1.18.0) (2025-08-07)
+
+
+### Features
+
+* additional appearance tokens ([#522](https://github.com/Kong/design-tokens/issues/522)) ([b193472](https://github.com/Kong/design-tokens/commit/b1934724f34a028398d08150b6403d9d39f3e3fb))
+
+## [1.17.6](https://github.com/Kong/design-tokens/compare/v1.17.5...v1.17.6) (2025-08-01)
+
+
+### Bug Fixes
+
+* **color:** add color-background-decorative-aqua-weakest token ([#518](https://github.com/Kong/design-tokens/issues/518)) ([b04bd4a](https://github.com/Kong/design-tokens/commit/b04bd4a7378ca79e3a87c29c964e6f049fc62df6))
+
+## [1.17.5](https://github.com/Kong/design-tokens/compare/v1.17.4...v1.17.5) (2025-07-10)
+
+
+### Bug Fixes
+
+* **stylelint-plugin:** allow border tokens in outline [KHCP-16698] ([#504](https://github.com/Kong/design-tokens/issues/504)) ([6283a8b](https://github.com/Kong/design-tokens/commit/6283a8beee0f4ffd9f3f31a3c2b5565d85c3d66f))
+
+## [1.17.4](https://github.com/Kong/design-tokens/compare/v1.17.3...v1.17.4) (2025-03-27)
+
+
+### Bug Fixes
+
+* **pnpm:** approve builds ([#454](https://github.com/Kong/design-tokens/issues/454)) ([7fe7519](https://github.com/Kong/design-tokens/commit/7fe7519328c78eb9074e627ac2dc8efeca284f01))
+
+## [1.17.3](https://github.com/Kong/design-tokens/compare/v1.17.2...v1.17.3) (2025-02-04)
+
+
+### Bug Fixes
+
+* comments ([0c85799](https://github.com/Kong/design-tokens/commit/0c85799baf1dd95e51f2174624d07a06afff3cc1))
+
 ## [1.17.2](https://github.com/Kong/design-tokens/compare/v1.17.1...v1.17.2) (2024-08-12)
 
 
