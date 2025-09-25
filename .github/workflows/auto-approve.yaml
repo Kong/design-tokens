@@ -12,7 +12,7 @@ on:
 jobs:
   renovate-autoapprove:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'renovate[bot]' }}
+    if: ${{ github.actor == 'renovate[bot]' || github.actor == 'mend[bot]' }}
     steps:
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
