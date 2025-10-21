@@ -41,7 +41,7 @@ The `@kong/design-tokens` package exports tokens in multiple formats:
 - [CSS Custom Properties](#css-custom-properties)
 - [JavaScript](#javascript) (ESM, CJS, and JSON), along with corresponding TypeScript types
 
-Exports are available from the package root, meaning you do not need to include the `dist/` directory in your imports:
+Exports are available from the package root meaning you do not need to include the `dist/` directory in your imports:
 
 ```ts
 // Notice that for JavaScript/TypeScript, we can just import from the root
