@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/Kong/design-tokens/compare/v1.18.0...v1.18.1) (2025-10-21)
+
+
+### Bug Fixes
+
+* formatting in README ([01f3e04](https://github.com/Kong/design-tokens/commit/01f3e04fdb6389518355f2175c89fe66f4b13d7e))
+
 # [1.18.0](https://github.com/Kong/design-tokens/compare/v1.17.6...v1.18.0) (2025-08-07)
 
 
