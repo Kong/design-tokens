@@ -76,7 +76,7 @@
     "vite-plugin-restart": "^1.0.0",
     "vite-plugin-vue-devtools": "^8.0.2",
     "vue": "^3.5.22",
-    "vue-router": "^4.6.0"
+    "vue-router": "^4.6.2"
   },
   "release": {
     "branches": [
