@@ -69,8 +69,8 @@ importers:
         specifier: ^7.1.12
         version: 7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0)
       vite-plugin-restart:
-        specifier: ^1.0.0
-        version: 1.0.0(vite@7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0))
+        specifier: ^2.0.0
+        version: 2.0.0(vite@7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0))
       vite-plugin-vue-devtools:
         specifier: ^8.0.3
         version: 8.0.3(vite@7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0))(vue@3.5.22(typescript@5.9.3))
@@ -3690,8 +3690,8 @@ packages:
       '@nuxt/kit':
         optional: true
 
-  vite-plugin-restart@1.0.0:
-    resolution: {integrity: sha512-t2ktkTOa+DQX05TEZm/3FE0DyrYEyFXdhG5gLcta5p71zOpg9yG3DeRcHWJVLJgWNoaVtOr4fUlr1kKu+WfXyQ==}
+  vite-plugin-restart@2.0.0:
+    resolution: {integrity: sha512-OYsD89msjtd72HHpXnidZmQ+14ztJR74IxQq9aPa48LUx3IeukS+NmnVtk+/VaNoYQJLnTFWG3Sbq/AEwaAyeQ==}
     peerDependencies:
       vite: ^2.9.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
@@ -7613,7 +7613,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-restart@1.0.0(vite@7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0)):
+  vite-plugin-restart@2.0.0(vite@7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0)):
     dependencies:
       micromatch: 4.0.8
       vite: 7.2.0(@types/node@22.1.0)(jiti@2.4.2)(sass@1.94.0)(yaml@2.5.0)
