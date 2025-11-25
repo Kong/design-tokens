@@ -1,3 +1,10 @@
+## [1.18.2](https://github.com/Kong/design-tokens/compare/v1.18.1...v1.18.2) (2025-11-25)
+
+
+### Bug Fixes
+
+* back to publishing using semantic-release [KHCP-17673] ([#593](https://github.com/Kong/design-tokens/issues/593)) ([fbe744b](https://github.com/Kong/design-tokens/commit/fbe744be2195062d0628682d9d034c7a84c9ffc5))
+
 ## [1.18.1](https://github.com/Kong/design-tokens/compare/v1.18.0...v1.18.1) (2025-10-21)
 
 
