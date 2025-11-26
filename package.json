@@ -56,26 +56,26 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^2.0.2",
+    "@evilmartians/lefthook": "^2.0.4",
     "@kong/eslint-config-kong-ui": "^1.5.6",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@vitejs/plugin-vue": "^6.0.1",
+    "@vitejs/plugin-vue": "^6.0.2",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^9.39.1",
     "npm-run-all2": "^8.0.4",
-    "rimraf": "^6.1.0",
-    "sass": "^1.93.3",
-    "semantic-release": "^25.0.1",
+    "rimraf": "^6.1.2",
+    "sass": "^1.94.2",
+    "semantic-release": "^25.0.2",
     "shx": "^0.4.0",
     "style-dictionary": "^4.4.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.12",
+    "vite": "^7.2.4",
     "vite-plugin-restart": "^2.0.0",
-    "vite-plugin-vue-devtools": "^8.0.3",
-    "vue": "^3.5.22",
+    "vite-plugin-vue-devtools": "^8.0.5",
+    "vue": "^3.5.24",
     "vue-router": "^4.6.3"
   },
   "release": {
@@ -132,7 +132,7 @@
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
-    "node": "24.11.0"
+    "node": "24.11.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
