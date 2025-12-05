@@ -70,7 +70,7 @@
     "sass": "^1.94.2",
     "semantic-release": "^25.0.2",
     "shx": "^0.4.0",
-    "style-dictionary": "^4.4.0",
+    "style-dictionary": "^5.1.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.4",
     "vite-plugin-restart": "^2.0.0",
