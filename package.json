@@ -56,18 +56,18 @@
     "@commitlint/cli": "^20.2.0",
     "@commitlint/config-conventional": "^20.2.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^2.0.9",
+    "@evilmartians/lefthook": "^2.0.11",
     "@kong/eslint-config-kong-ui": "^1.5.6",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@vitejs/plugin-vue": "^6.0.2",
+    "@vitejs/plugin-vue": "^6.0.3",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "npm-run-all2": "^8.0.4",
     "rimraf": "^6.1.2",
-    "sass": "^1.94.3",
+    "sass": "^1.96.0",
     "semantic-release": "^25.0.2",
     "shx": "^0.4.0",
     "style-dictionary": "^4.4.0",
@@ -76,7 +76,7 @@
     "vite-plugin-restart": "^2.0.0",
     "vite-plugin-vue-devtools": "^8.0.5",
     "vue": "^3.5.25",
-    "vue-router": "^4.6.3"
+    "vue-router": "^4.6.4"
   },
   "release": {
     "branches": [
