@@ -36,8 +36,8 @@ const findAllTokenOccurrences = (value, token) => {
 // Enforces exact format: var(--token, $token) with exactly one space before comma
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
   // Calculate exact positions based on enforced format: var(--token, $token)
-  // var(-- = 5 chars, token name = cssToken.length - 2, , = 2 chars (comma + space)
-  const charactersBack = cssToken.length + 5 // 5 + (cssToken.length - 2) + 2
+  // var(-- = 6 chars, token name = cssToken.length - 2, , = 2 chars (comma + space)
+  const charactersBack = cssToken.length + 6 // 6 + (cssToken.length - 2) + 2
   const charactersForward = token.length + 1 // token + )
 
   const startIndex = tokenIndex - charactersBack
