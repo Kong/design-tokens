@@ -47,7 +47,7 @@ const isTokenProperlyWrapped = (value, tokenIndex, token, pattern) => {
 
 const ruleFunction = () => {
   return (postcssRoot, postcssResult) => {
-    const validOptions = validateOptions(postcssRoot, ruleName, {})
+    const validOptions = validateOptions(postcssResult, ruleName, {})
 
     if (!validOptions) {
       return
