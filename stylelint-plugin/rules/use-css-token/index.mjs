@@ -39,18 +39,45 @@ const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
   // Escape special regex characters in tokens (though they should only have letters/digits/hyphens)
   const pattern = new RegExp(`var\\(${cssToken}, ${token}\\)`, 'g')
 
+  console.log(`[DEBUG] Checking token "${token}" at position ${tokenIndex}:`, {
+    token,
+    tokenIndex,
+    cssToken,
+    pattern: `var(${cssToken}, ${token})`,
+    valueContext: value.substring(Math.max(0, tokenIndex - 50), Math.min(value.length, tokenIndex + token.length + 50)),
+  })
+
   // Find all matches
   let match
+  const matches = []
   while ((match = pattern.exec(value)) !== null) {
     const matchStart = match.index
     const matchEnd = matchStart + match[0].length
+    matches.push({
+      start: matchStart,
+      end: matchEnd,
+      match: match[0],
+    })
 
     // Check if our token at tokenIndex is inside this match
     const tokenEndIndex = tokenIndex + token.length
     if (tokenIndex >= matchStart && tokenEndIndex <= matchEnd) {
+      console.log(`[DEBUG] Token "${token}" at ${tokenIndex} is properly wrapped in:`, {
+        match: match[0],
+        matchStart,
+        matchEnd,
+        tokenIndex,
+        tokenEndIndex,
+      })
       return true
     }
   }
+
+  console.log(`[DEBUG] Token "${token}" at ${tokenIndex} is NOT properly wrapped. Found ${matches.length} pattern matches:`, {
+    matches,
+    tokenIndex,
+    tokenEndIndex: tokenIndex + token.length,
+  })
 
   return false
 }
@@ -66,6 +93,8 @@ const ruleFunction = () => {
     postcssRoot.walkDecls((decl) => {
       const declValue = decl.value
 
+      console.log(`[DEBUG] Checking declaration: ${decl.prop} = "${declValue}"`)
+
       // Extract all SCSS tokens (starting with $kui-)
       const scssTokenRegex = new RegExp(`\\$${KONG_TOKEN_PREFIX}[a-z0-9-]+`, 'g')
       const scssTokens = declValue.match(scssTokenRegex)
@@ -78,6 +107,8 @@ const ruleFunction = () => {
       // Get unique SCSS tokens
       const uniqueScssTokens = Array.from(new Set(scssTokens))
 
+      console.log(`[DEBUG] Found ${uniqueScssTokens.length} unique SCSS tokens:`, uniqueScssTokens)
+
       // Check if each SCSS token is properly wrapped in var()
       // Pattern: var(--kui-token-name, $kui-token-name)
       const improperlyUsedTokens = []
@@ -86,17 +117,23 @@ const ruleFunction = () => {
         const cssToken = getCssToken(scssToken)
         const tokenOccurrences = findAllTokenOccurrences(declValue, scssToken)
 
+        console.log(`[DEBUG] Checking token "${scssToken}" (CSS: "${cssToken}") at ${tokenOccurrences.length} occurrence(s):`, tokenOccurrences)
+
         // Check each occurrence to see if it's properly wrapped
         const hasImproperUsage = tokenOccurrences.some((tokenIndex) => {
           return !isTokenProperlyWrapped(declValue, tokenIndex, scssToken, cssToken)
         })
 
         if (hasImproperUsage) {
+          console.log(`[DEBUG] Token "${scssToken}" has improper usage`)
           improperlyUsedTokens.push(scssToken)
+        } else {
+          console.log(`[DEBUG] Token "${scssToken}" is properly used`)
         }
       })
 
       if (improperlyUsedTokens.length > 0) {
+        console.log(`[DEBUG] Reporting ${improperlyUsedTokens.length} improperly used token(s):`, improperlyUsedTokens)
         // Create fix function
         const fix = () => {
           let fixedValue = declValue
