@@ -35,25 +35,24 @@ const findAllTokenOccurrences = (value, token) => {
 // Check if token at given position is properly wrapped in var()
 // Enforces exact format: var(--token, $token) with exactly one space before comma
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
-  // Calculate exact positions based on enforced format: var(--token, $token)
-  // var(-- = 6 chars, token name = cssToken.length - 2, , = 2 chars (comma + space)
-  const charactersBack = cssToken.length + 6 // 6 + (cssToken.length - 2) + 2
-  const charactersForward = token.length + 1 // token + )
+  // Use regex to find all var(--token, $token) patterns
+  // Escape special regex characters in tokens (though they should only have letters/digits/hyphens)
+  const pattern = new RegExp(`var\\(${cssToken}, ${token}\\)`, 'g')
 
-  const startIndex = tokenIndex - charactersBack
-  const endIndex = tokenIndex + charactersForward
+  // Find all matches
+  let match
+  while ((match = pattern.exec(value)) !== null) {
+    const matchStart = match.index
+    const matchEnd = matchStart + match[0].length
 
-  // Check bounds
-  if (startIndex < 0 || endIndex > value.length) {
-    return false
+    // Check if our token at tokenIndex is inside this match
+    const tokenEndIndex = tokenIndex + token.length
+    if (tokenIndex >= matchStart && tokenEndIndex <= matchEnd) {
+      return true
+    }
   }
 
-  // Extract the substring that should match the exact pattern
-  const substring = value.substring(startIndex, endIndex)
-
-  // Check if it matches the exact pattern: var(--token, $token)
-  const expectedPattern = new RegExp(`^var\\(${cssToken}, ${token}\\)$`)
-  return expectedPattern.test(substring)
+  return false
 }
 
 const ruleFunction = () => {
