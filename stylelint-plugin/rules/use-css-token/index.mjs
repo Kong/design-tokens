@@ -36,8 +36,8 @@ const findAllTokenOccurrences = (value, token) => {
 // Enforces exact format: var(--token, $token) with exactly one space before comma
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
   // Use regex to find all var(--token, $token) patterns
-  // Escape $ in token since it's a special regex character
-  const escapedToken = token.replace(/\$/g, '\\$')
+  // Escape regex metacharacters in token so it is treated literally in the pattern
+  const escapedToken = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const pattern = new RegExp(`var\\(${cssToken}, ${escapedToken}\\)`, 'g')
 
   // Find all matches
