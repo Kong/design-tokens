@@ -34,48 +34,23 @@ const findAllTokenOccurrences = (value, token) => {
 
 // Check if token at given position is properly wrapped in var()
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
-  // Find the var() expression that contains this token
-  // Look backwards to find the nearest var( before the token
-  const beforeToken = value.substring(0, tokenIndex)
-  const varStartIndex = beforeToken.lastIndexOf('var(')
+  // Create pattern to match var(--css-token, $scss-token) where our token appears
+  const pattern = new RegExp(`var\\(\\s*${cssToken}\\s*,\\s*${token}\\s*\\)`, 'g')
 
-  if (varStartIndex === -1) {
-    return false
-  }
+  // Find all matches of the pattern
+  let match
+  while ((match = pattern.exec(value)) !== null) {
+    const matchStart = match.index
+    const matchEnd = matchStart + match[0].length
 
-  // Find the matching closing parenthesis starting from var(
-  let parenCount = 0
-  let searchIndex = varStartIndex
-  let varEndIndex = -1
-
-  while (searchIndex < value.length) {
-    const char = value[searchIndex]
-    if (char === '(') {
-      parenCount++
-    } else if (char === ')') {
-      parenCount--
-      if (parenCount === 0) {
-        varEndIndex = searchIndex
-        break
-      }
+    // Check if our token at tokenIndex is inside this match
+    const tokenEndIndex = tokenIndex + token.length
+    if (tokenIndex >= matchStart && tokenEndIndex <= matchEnd) {
+      return true
     }
-    searchIndex++
   }
 
-  if (varEndIndex === -1) {
-    return false
-  }
-
-  // Verify the token is actually inside this var() expression
-  const tokenEndIndex = tokenIndex + token.length
-  if (tokenIndex < varStartIndex || tokenEndIndex > varEndIndex) {
-    return false
-  }
-
-  // Extract the full var() expression and check if it matches the pattern
-  const varExpression = value.substring(varStartIndex, varEndIndex + 1)
-  const expectedPattern = new RegExp(`^var\\(\\s*${cssToken}\\s*,\\s*${token}\\s*\\)$`)
-  return expectedPattern.test(varExpression)
+  return false
 }
 
 const ruleFunction = () => {
