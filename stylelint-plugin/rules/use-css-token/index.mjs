@@ -4,7 +4,7 @@ import { KONG_TOKEN_PREFIX, RULE_NAME_PREFIX } from '../../utilities/index.mjs'
 const { ruleMessages, validateOptions, report } = stylelint.utils
 const ruleName = `${RULE_NAME_PREFIX}/use-css-token`
 const messages = ruleMessages(ruleName, {
-  expected: 'SCSS tokens must be used as fallback values in CSS custom properties. Use format: var(--kui-design-token, $kui-design-token)',
+  expected: 'SCSS tokens must be used as fallback values in CSS custom properties. Use format: var(--kui-design-token, $kui-design-token) with exactly one space before the comma and no other spaces.',
 })
 const meta = {
   url: 'https://github.com/Kong/design-tokens/blob/main/stylelint-plugin/README.md',
@@ -33,24 +33,27 @@ const findAllTokenOccurrences = (value, token) => {
 }
 
 // Check if token at given position is properly wrapped in var()
+// Enforces exact format: var(--token, $token) with exactly one space before comma
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
-  // Create pattern to match var(--css-token, $scss-token) where our token appears
-  const pattern = new RegExp(`var\\(\\s*${cssToken}\\s*,\\s*${token}\\s*\\)`, 'g')
+  // Calculate exact positions based on enforced format: var(--token, $token)
+  // var(-- = 5 chars, token name = cssToken.length - 2, , = 2 chars (comma + space)
+  const charactersBack = cssToken.length + 5 // 5 + (cssToken.length - 2) + 2
+  const charactersForward = token.length + 1 // token + )
 
-  // Find all matches of the pattern
-  let match
-  while ((match = pattern.exec(value)) !== null) {
-    const matchStart = match.index
-    const matchEnd = matchStart + match[0].length
+  const startIndex = tokenIndex - charactersBack
+  const endIndex = tokenIndex + charactersForward
 
-    // Check if our token at tokenIndex is inside this match
-    const tokenEndIndex = tokenIndex + token.length
-    if (tokenIndex >= matchStart && tokenEndIndex <= matchEnd) {
-      return true
-    }
+  // Check bounds
+  if (startIndex < 0 || endIndex > value.length) {
+    return false
   }
 
-  return false
+  // Extract the substring that should match the exact pattern
+  const substring = value.substring(startIndex, endIndex)
+
+  // Check if it matches the exact pattern: var(--token, $token)
+  const expectedPattern = new RegExp(`^var\\(${cssToken}, ${token}\\)$`)
+  return expectedPattern.test(substring)
 }
 
 const ruleFunction = () => {
@@ -106,15 +109,50 @@ const ruleFunction = () => {
             const tokenOccurrences = findAllTokenOccurrences(fixedValue, scssToken)
             const properFormat = `var(${cssToken}, ${scssToken})`
 
-            tokenOccurrences.forEach((index) => {
+            tokenOccurrences.forEach((tokenIndex) => {
               // Check if this occurrence is in proper format
-              if (!isTokenProperlyWrapped(fixedValue, index, scssToken, cssToken)) {
-                // This occurrence needs to be replaced
-                replacements.push({
-                  start: index,
-                  end: index + scssToken.length,
-                  replacement: properFormat,
-                })
+              if (!isTokenProperlyWrapped(fixedValue, tokenIndex, scssToken, cssToken)) {
+                // Find the var() expression containing this token to replace the whole thing
+                const beforeToken = fixedValue.substring(0, tokenIndex)
+                const varStartIndex = beforeToken.lastIndexOf('var(')
+
+                if (varStartIndex === -1) {
+                  // No var( found, just replace the token with proper format
+                  replacements.push({
+                    start: tokenIndex,
+                    end: tokenIndex + scssToken.length,
+                    replacement: properFormat,
+                  })
+                  return
+                }
+
+                // Find the matching closing parenthesis
+                let parenCount = 0
+                let searchIndex = varStartIndex
+                let varEndIndex = -1
+
+                while (searchIndex < fixedValue.length) {
+                  const char = fixedValue[searchIndex]
+                  if (char === '(') {
+                    parenCount++
+                  } else if (char === ')') {
+                    parenCount--
+                    if (parenCount === 0) {
+                      varEndIndex = searchIndex
+                      break
+                    }
+                  }
+                  searchIndex++
+                }
+
+                if (varEndIndex !== -1) {
+                  // Replace the entire var() expression
+                  replacements.push({
+                    start: varStartIndex,
+                    end: varEndIndex + 1,
+                    replacement: properFormat,
+                  })
+                }
               }
             })
           })
@@ -122,8 +160,18 @@ const ruleFunction = () => {
           // Sort replacements by position (descending) to avoid offset issues
           replacements.sort((a, b) => b.start - a.start)
 
+          // Remove duplicates (same start position)
+          const uniqueReplacements = []
+          const seenStarts = new Set()
+          replacements.forEach((replacement) => {
+            if (!seenStarts.has(replacement.start)) {
+              seenStarts.add(replacement.start)
+              uniqueReplacements.push(replacement)
+            }
+          })
+
           // Apply replacements from end to start
-          replacements.forEach(({ start, end, replacement }) => {
+          uniqueReplacements.forEach(({ start, end, replacement }) => {
             fixedValue = fixedValue.substring(0, start) + replacement + fixedValue.substring(end)
           })
 
