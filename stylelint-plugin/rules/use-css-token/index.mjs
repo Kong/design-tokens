@@ -17,11 +17,6 @@ const getCssToken = (scssToken) => {
   return `--${tokenName}`
 }
 
-// Create regex pattern to match var(--token, $token) format
-const createProperUsagePattern = (cssToken, scssToken) => {
-  return new RegExp(`var\\(\\s*${cssToken}\\s*,\\s*${scssToken}\\s*\\)`)
-}
-
 // Find all occurrences of a token in a value
 const findAllTokenOccurrences = (value, token) => {
   const occurrences = []
@@ -38,11 +33,27 @@ const findAllTokenOccurrences = (value, token) => {
 }
 
 // Check if token at given position is properly wrapped in var()
-const isTokenProperlyWrapped = (value, tokenIndex, token, pattern) => {
-  const windowStart = Math.max(0, tokenIndex - 100)
-  const windowEnd = Math.min(value.length, tokenIndex + token.length + 100)
-  const context = value.substring(windowStart, windowEnd)
-  return pattern.test(context)
+const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
+  // Calculate exact positions based on enforced format: var(--css-token, $scss-token)
+  // Format breakdown: var(-- + token-name + , $ + scss-token + )
+  // var(-- = 6 chars, token-name = cssToken.length - 2, , $ = 3 chars
+  const charactersBack = cssToken.length + 7 // 6 + (cssToken.length - 2) + 3
+  const charactersForward = token.length + 1 // token + )
+
+  const startIndex = tokenIndex - charactersBack
+  const endIndex = tokenIndex + charactersForward
+
+  // Check bounds
+  if (startIndex < 0 || endIndex > value.length) {
+    return false
+  }
+
+  // Extract the substring that should match the pattern
+  const substring = value.substring(startIndex, endIndex)
+
+  // Check if it matches the expected pattern: var(--css-token, $scss-token)
+  const expectedPattern = new RegExp(`^var\\(\\s*${cssToken}\\s*,\\s*${token}\\s*\\)$`)
+  return expectedPattern.test(substring)
 }
 
 const ruleFunction = () => {
@@ -74,12 +85,11 @@ const ruleFunction = () => {
 
       uniqueScssTokens.forEach((scssToken) => {
         const cssToken = getCssToken(scssToken)
-        const properUsagePattern = createProperUsagePattern(cssToken, scssToken)
         const tokenOccurrences = findAllTokenOccurrences(declValue, scssToken)
 
         // Check each occurrence to see if it's properly wrapped
         const hasImproperUsage = tokenOccurrences.some((tokenIndex) => {
-          return !isTokenProperlyWrapped(declValue, tokenIndex, scssToken, properUsagePattern)
+          return !isTokenProperlyWrapped(declValue, tokenIndex, scssToken, cssToken)
         })
 
         if (hasImproperUsage) {
@@ -96,13 +106,12 @@ const ruleFunction = () => {
           // First, identify all positions that need to be replaced
           improperlyUsedTokens.forEach((scssToken) => {
             const cssToken = getCssToken(scssToken)
-            const properUsagePattern = createProperUsagePattern(cssToken, scssToken)
             const tokenOccurrences = findAllTokenOccurrences(fixedValue, scssToken)
             const properFormat = `var(${cssToken}, ${scssToken})`
 
             tokenOccurrences.forEach((index) => {
               // Check if this occurrence is in proper format
-              if (!isTokenProperlyWrapped(fixedValue, index, scssToken, properUsagePattern)) {
+              if (!isTokenProperlyWrapped(fixedValue, index, scssToken, cssToken)) {
                 // This occurrence needs to be replaced
                 replacements.push({
                   start: index,
