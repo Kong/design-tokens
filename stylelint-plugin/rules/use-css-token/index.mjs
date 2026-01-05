@@ -34,26 +34,48 @@ const findAllTokenOccurrences = (value, token) => {
 
 // Check if token at given position is properly wrapped in var()
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
-  // Calculate exact positions based on enforced format: var(--css-token, $scss-token)
-  // Format breakdown: var(-- + token-name + , $ + scss-token + )
-  // var(-- = 6 chars, token-name = cssToken.length - 2, , $ = 3 chars
-  const charactersBack = cssToken.length + 7 // 6 + (cssToken.length - 2) + 3
-  const charactersForward = token.length + 1 // token + )
+  // Find the var() expression that contains this token
+  // Look backwards to find the nearest var( before the token
+  const beforeToken = value.substring(0, tokenIndex)
+  const varStartIndex = beforeToken.lastIndexOf('var(')
 
-  const startIndex = tokenIndex - charactersBack
-  const endIndex = tokenIndex + charactersForward
-
-  // Check bounds
-  if (startIndex < 0 || endIndex > value.length) {
+  if (varStartIndex === -1) {
     return false
   }
 
-  // Extract the substring that should match the pattern
-  const substring = value.substring(startIndex, endIndex)
+  // Find the matching closing parenthesis starting from var(
+  let parenCount = 0
+  let searchIndex = varStartIndex
+  let varEndIndex = -1
 
-  // Check if it matches the expected pattern: var(--css-token, $scss-token)
+  while (searchIndex < value.length) {
+    const char = value[searchIndex]
+    if (char === '(') {
+      parenCount++
+    } else if (char === ')') {
+      parenCount--
+      if (parenCount === 0) {
+        varEndIndex = searchIndex
+        break
+      }
+    }
+    searchIndex++
+  }
+
+  if (varEndIndex === -1) {
+    return false
+  }
+
+  // Verify the token is actually inside this var() expression
+  const tokenEndIndex = tokenIndex + token.length
+  if (tokenIndex < varStartIndex || tokenEndIndex > varEndIndex) {
+    return false
+  }
+
+  // Extract the full var() expression and check if it matches the pattern
+  const varExpression = value.substring(varStartIndex, varEndIndex + 1)
   const expectedPattern = new RegExp(`^var\\(\\s*${cssToken}\\s*,\\s*${token}\\s*\\)$`)
-  return expectedPattern.test(substring)
+  return expectedPattern.test(varExpression)
 }
 
 const ruleFunction = () => {
