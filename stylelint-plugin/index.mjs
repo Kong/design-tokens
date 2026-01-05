@@ -1,4 +1,4 @@
 import useProperToken from './rules/use-proper-token/index.mjs'
-import useCssToken from './rules/use-css-token/index.mjs'
+import tokenVarUsage from './rules/token-var-usage/index.mjs'
 
-export default [useProperToken, useCssToken]
+export default [useProperToken, tokenVarUsage]
