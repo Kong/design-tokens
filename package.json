@@ -132,7 +132,7 @@
     "pnpm": ">=9.14.4 || >=10.1.0"
   },
   "volta": {
-    "node": "24.12.0"
+    "node": "24.13.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
