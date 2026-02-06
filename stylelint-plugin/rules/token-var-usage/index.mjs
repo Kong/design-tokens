@@ -32,6 +32,65 @@ const findAllTokenOccurrences = (value, token) => {
   return occurrences
 }
 
+// Check if token is inside standalone interpolation (#{$token}) without var() wrapper
+const isTokenInStandaloneInterpolation = (value, tokenIndex, token) => {
+  // Check if token is inside #{...}
+  const beforeToken = value.substring(0, tokenIndex)
+  const afterTokenStart = tokenIndex + token.length
+
+  // Look for #{ before the token
+  const interpolationStartIndex = beforeToken.lastIndexOf('#{')
+  if (interpolationStartIndex === -1) {
+    return false
+  }
+
+  // Check if there's anything between #{ and the token (should be nothing or whitespace)
+  const betweenInterpolationAndToken = value.substring(interpolationStartIndex + 2, tokenIndex)
+  if (betweenInterpolationAndToken.trim() !== '') {
+    return false
+  }
+
+  // Look for } after the token
+  const afterToken = value.substring(afterTokenStart)
+  const interpolationEndMatch = afterToken.match(/^\s*}/)
+  if (!interpolationEndMatch) {
+    return false
+  }
+
+  // Now check if this #{$token} is inside a var() function
+  // If it is, it's not "standalone" interpolation
+  const fullBeforeToken = value.substring(0, interpolationStartIndex)
+  const varStartIndex = fullBeforeToken.lastIndexOf('var(')
+
+  if (varStartIndex !== -1) {
+    // Check if the var() contains this interpolation
+    // Find the closing paren of the var()
+    let parenCount = 0
+    let searchIndex = varStartIndex
+
+    while (searchIndex < value.length) {
+      const char = value[searchIndex]
+      if (char === '(') {
+        parenCount++
+      } else if (char === ')') {
+        parenCount--
+        if (parenCount === 0) {
+          // Found the closing paren
+          // Check if our token is inside this var()
+          if (tokenIndex < searchIndex) {
+            // Token is inside the var(), so this is NOT standalone interpolation
+            return false
+          }
+          break
+        }
+      }
+      searchIndex++
+    }
+  }
+
+  return true
+}
+
 // Check if token at given position is properly wrapped in var()
 // Accepts both formats:
 // - var(--token, $token) with exactly one space before comma
@@ -126,6 +185,12 @@ const ruleFunction = () => {
             tokenOccurrences.forEach((tokenIndex) => {
               // Check if this occurrence is in proper format
               if (!isTokenProperlyWrapped(fixedValue, tokenIndex, scssToken, cssToken)) {
+                // Skip auto-fix for tokens in standalone interpolation (e.g., #{$token})
+                // Let the developer decide the appropriate fix
+                if (isTokenInStandaloneInterpolation(fixedValue, tokenIndex, scssToken)) {
+                  return
+                }
+
                 // Find the var() expression containing this token to replace the whole thing
                 const beforeToken = fixedValue.substring(0, tokenIndex)
                 const varStartIndex = beforeToken.lastIndexOf('var(')

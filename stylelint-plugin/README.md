@@ -82,6 +82,12 @@ This approach provides progressive enhancement: browsers use the CSS custom prop
   // Extra spaces
   color: var(--kui-color-text-primary,  $kui-color-text-primary);
 }
+
+.qux {
+  // Standalone interpolation without var() - no auto-fix provided
+  // Developer must determine correct usage based on context
+  color: #{$kui-color-text-primary};
+}
 ```
 
 #### :green_circle: Correct usage
