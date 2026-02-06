@@ -4,7 +4,7 @@ import { KONG_TOKEN_PREFIX, RULE_NAME_PREFIX } from '../../utilities/index.mjs'
 const { ruleMessages, validateOptions, report } = stylelint.utils
 const ruleName = `${RULE_NAME_PREFIX}/token-var-usage`
 const messages = ruleMessages(ruleName, {
-  expected: 'SCSS tokens must be used as fallback values in CSS custom properties. Use format: var(--kui-design-token, $kui-design-token) with exactly one space before the comma and no other spaces.',
+  expected: 'SCSS tokens must be used as fallback values in CSS custom properties. Use format: var(--kui-design-token, $kui-design-token) or var(--kui-design-token, #{$kui-design-token}) for interpolation, with exactly one space before the comma and no other spaces.',
 })
 const meta = {
   url: 'https://github.com/Kong/design-tokens/blob/main/stylelint-plugin/README.md',
@@ -33,23 +33,37 @@ const findAllTokenOccurrences = (value, token) => {
 }
 
 // Check if token at given position is properly wrapped in var()
-// Enforces exact format: var(--token, $token) with exactly one space before comma
+// Accepts both formats:
+// - var(--token, $token) with exactly one space before comma
+// - var(--token, #{$token}) with exactly one space before comma (interpolated)
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
-  // Use regex to find all var(--token, $token) patterns
+  // Use regex to find all var(--token, $token) or var(--token, #{$token}) patterns
   // Escape regex metacharacters in token so it is treated literally in the pattern
   const escapedToken = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const pattern = new RegExp(`var\\(${cssToken}, ${escapedToken}\\)`, 'g')
 
-  // Find all matches
-  let match
-  while ((match = pattern.exec(value)) !== null) {
-    const matchStart = match.index
-    const matchEnd = matchStart + match[0].length
+  // Pattern 1: var(--token, $token)
+  const pattern1 = new RegExp(`var\\(${cssToken}, ${escapedToken}\\)`, 'g')
 
-    // Check if our token at tokenIndex is inside this match
-    const tokenEndIndex = tokenIndex + token.length
-    if (tokenIndex >= matchStart && tokenEndIndex <= matchEnd) {
-      return true
+  // Pattern 2: var(--token, #{$token})
+  const pattern2 = new RegExp(`var\\(${cssToken}, #{${escapedToken}}\\)`, 'g')
+
+  // Check both patterns
+  const patterns = [pattern1, pattern2]
+
+  for (const pattern of patterns) {
+    // Reset lastIndex for each pattern
+    pattern.lastIndex = 0
+
+    let match
+    while ((match = pattern.exec(value)) !== null) {
+      const matchStart = match.index
+      const matchEnd = matchStart + match[0].length
+
+      // Check if our token at tokenIndex is inside this match
+      const tokenEndIndex = tokenIndex + token.length
+      if (tokenIndex >= matchStart && tokenEndIndex <= matchEnd) {
+        return true
+      }
     }
   }
 
