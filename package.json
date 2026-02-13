@@ -53,10 +53,10 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.3.1",
-    "@commitlint/config-conventional": "^20.3.1",
+    "@commitlint/cli": "^20.4.1",
+    "@commitlint/config-conventional": "^20.4.1",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
-    "@evilmartians/lefthook": "^2.0.16",
+    "@evilmartians/lefthook": "^2.1.0",
     "@kong/eslint-config-kong-ui": "^1.6.1",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -126,7 +126,7 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.29.2",
   "engines": {
     "node": ">=20.19.5",
     "pnpm": ">=10.28.2"
