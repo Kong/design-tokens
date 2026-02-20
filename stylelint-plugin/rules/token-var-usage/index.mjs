@@ -93,8 +93,8 @@ const isTokenInStandaloneInterpolation = (value, tokenIndex, token) => {
 
 // Check if token at given position is properly wrapped in var()
 // Accepts both formats:
-// - var(--token, $token) with exactly one space before comma
-// - var(--token, #{$token}) with exactly one space before comma (interpolated)
+// - var(--token, $token) with exactly one space after comma
+// - var(--token, #{$token}) with exactly one space after comma (interpolated)
 const isTokenProperlyWrapped = (value, tokenIndex, token, cssToken) => {
   // Use regex to find all var(--token, $token) or var(--token, #{$token}) patterns
   // Escape regex metacharacters in token so it is treated literally in the pattern
@@ -179,20 +179,20 @@ const ruleFunction = () => {
           // First, identify all positions that need to be replaced
           improperlyUsedTokens.forEach((scssToken) => {
             const cssToken = getCssToken(scssToken)
-            const tokenOccurrences = findAllTokenOccurrences(fixedValue, scssToken)
+            const tokenOccurrences = findAllTokenOccurrences(declValue, scssToken)
             const properFormat = `var(${cssToken}, ${scssToken})`
 
             tokenOccurrences.forEach((tokenIndex) => {
               // Check if this occurrence is in proper format
-              if (!isTokenProperlyWrapped(fixedValue, tokenIndex, scssToken, cssToken)) {
+              if (!isTokenProperlyWrapped(declValue, tokenIndex, scssToken, cssToken)) {
                 // Skip auto-fix for tokens in standalone interpolation (e.g., #{$token})
                 // Let the developer decide the appropriate fix
-                if (isTokenInStandaloneInterpolation(fixedValue, tokenIndex, scssToken)) {
+                if (isTokenInStandaloneInterpolation(declValue, tokenIndex, scssToken)) {
                   return
                 }
 
                 // Find the var() expression containing this token to replace the whole thing
-                const beforeToken = fixedValue.substring(0, tokenIndex)
+                const beforeToken = declValue.substring(0, tokenIndex)
                 const varStartIndex = beforeToken.lastIndexOf('var(')
 
                 if (varStartIndex === -1) {
@@ -210,8 +210,8 @@ const ruleFunction = () => {
                 let searchIndex = varStartIndex
                 let varEndIndex = -1
 
-                while (searchIndex < fixedValue.length) {
-                  const char = fixedValue[searchIndex]
+                while (searchIndex < declValue.length) {
+                  const char = declValue[searchIndex]
                   if (char === '(') {
                     parenCount++
                   } else if (char === ')') {
