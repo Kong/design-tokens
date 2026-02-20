@@ -4,7 +4,7 @@ import { KONG_TOKEN_PREFIX, RULE_NAME_PREFIX } from '../../utilities/index.mjs'
 const { ruleMessages, validateOptions, report } = stylelint.utils
 const ruleName = `${RULE_NAME_PREFIX}/token-var-usage`
 const messages = ruleMessages(ruleName, {
-  expected: 'SCSS tokens must be used as fallback values in CSS custom properties. Use format: var(--kui-design-token, $kui-design-token) or var(--kui-design-token, #{$kui-design-token}) for interpolation, with exactly one space before the comma and no other spaces.',
+  expected: 'SCSS tokens must be used as fallback values in CSS custom properties. Use format: var(--kui-design-token, $kui-design-token) or var(--kui-design-token, #{$kui-design-token}) for interpolation, with exactly one space after the comma and no other spaces.',
 })
 const meta = {
   url: 'https://github.com/Kong/design-tokens/blob/main/stylelint-plugin/README.md',
