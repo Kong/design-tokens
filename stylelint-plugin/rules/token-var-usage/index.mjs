@@ -191,7 +191,7 @@ const ruleFunction = () => {
                   return
                 }
 
-                // Find the var() expression containing this token to replace the whole thing
+                // Find the var() expression containing this token
                 const beforeToken = declValue.substring(0, tokenIndex)
                 const varStartIndex = beforeToken.lastIndexOf('var(')
 
@@ -225,7 +225,69 @@ const ruleFunction = () => {
                 }
 
                 if (varEndIndex !== -1) {
-                  // Replace the entire var() expression
+                  // Extract the var() content
+                  const varContent = declValue.substring(varStartIndex + 4, varEndIndex) // +4 to skip 'var('
+
+                  // Check if there's a comma (indicating primary property + fallback)
+                  const commaIndex = varContent.indexOf(',')
+
+                  if (commaIndex !== -1) {
+                    // Extract primary property and fallback
+                    const primaryProperty = varContent.substring(0, commaIndex).trim()
+                    const fallbackValue = varContent.substring(commaIndex + 1).trim()
+
+                    // Check if primary property is a CSS custom property (not a kui- token reference)
+                    // and if the token is in the fallback part
+                    const fallbackStartInOriginal = varStartIndex + 4 + commaIndex + 1
+
+                    if (tokenIndex >= fallbackStartInOriginal && primaryProperty.startsWith('--')) {
+                      // Token is in fallback position and there's a valid CSS property
+                      // Replace all $kui- tokens in the fallback with var(--kui-token)
+                      let newFallback = fallbackValue
+
+                      // Find all $kui- tokens in the fallback
+                      const fallbackTokenRegex = new RegExp(`\\$${KONG_TOKEN_PREFIX}[a-z0-9-]+`, 'g')
+                      const fallbackTokens = fallbackValue.match(fallbackTokenRegex)
+
+                      if (fallbackTokens) {
+                        // Replace each token with var() wrapper, from end to start to avoid offset issues
+                        const fallbackReplacements = []
+                        fallbackTokens.forEach((fbToken) => {
+                          const fbCssToken = getCssToken(fbToken)
+                          const fbTokenOccurrences = findAllTokenOccurrences(fallbackValue, fbToken)
+
+                          fbTokenOccurrences.forEach((fbTokenIndex) => {
+                            fallbackReplacements.push({
+                              start: fbTokenIndex,
+                              end: fbTokenIndex + fbToken.length,
+                              token: fbToken,
+                              cssToken: fbCssToken,
+                            })
+                          })
+                        })
+
+                        // Sort by position descending
+                        fallbackReplacements.sort((a, b) => b.start - a.start)
+
+                        // Apply replacements
+                        fallbackReplacements.forEach(({ start, end, token, cssToken }) => {
+                          newFallback = newFallback.substring(0, start) + `var(${cssToken}, ${token})` + newFallback.substring(end)
+                        })
+                      }
+
+                      // Construct the new var() with preserved primary property
+                      const newVarExpression = `var(${primaryProperty}, ${newFallback})`
+
+                      replacements.push({
+                        start: varStartIndex,
+                        end: varEndIndex + 1,
+                        replacement: newVarExpression,
+                      })
+                      return
+                    }
+                  }
+
+                  // Default case: replace the entire var() expression with proper format
                   replacements.push({
                     start: varStartIndex,
                     end: varEndIndex + 1,
