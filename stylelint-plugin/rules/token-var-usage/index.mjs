@@ -251,12 +251,16 @@ const ruleFunction = () => {
 
                       if (fallbackTokens) {
                         // Replace each token with var() wrapper, from end to start to avoid offset issues
+                        // Skip tokens that are already properly wrapped as var(--kui-token, $kui-token)
                         const fallbackReplacements = []
                         fallbackTokens.forEach((fbToken) => {
                           const fbCssToken = getCssToken(fbToken)
                           const fbTokenOccurrences = findAllTokenOccurrences(fallbackValue, fbToken)
 
                           fbTokenOccurrences.forEach((fbTokenIndex) => {
+                            if (isTokenProperlyWrapped(fallbackValue, fbTokenIndex, fbToken, fbCssToken)) {
+                              return
+                            }
                             fallbackReplacements.push({
                               start: fbTokenIndex,
                               end: fbTokenIndex + fbToken.length,
