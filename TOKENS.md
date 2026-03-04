@@ -552,6 +552,26 @@ $kui-status-color-300s: #ffc400;
 $kui-status-color-400s: #FF723C;
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 $kui-status-color-500s: #ff3954;
+/* Background color for http status 100 elements (blue.10). */
+$kui-status-color-background-100: #eefaff;
+/* Background color for http status 200 elements (green.10). */
+$kui-status-color-background-200: #ecfffb;
+/* Background color for http status 300 elements (yellow.10). */
+$kui-status-color-background-300: #fffce0;
+/* Background color for http status 400 elements (orange.10). */
+$kui-status-color-background-400: #FFF1EF;
+/* Background color for http status 500 elements (red.10). */
+$kui-status-color-background-500: #ffe5e5;
+/* Text color for http status 100 elements (blue.60). */
+$kui-status-color-text-100: #0044f4;
+/* Text color for http status 200 elements (green.60). */
+$kui-status-color-text-200: #007d60;
+/* Text color for http status 300 elements (yellow.60). */
+$kui-status-color-text-300: #995c00;
+/* Text color for http status 400 elements (orange.60). */
+$kui-status-color-text-400: #D13500;
+/* Text color for http status 500 elements (red.60). */
+$kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
@@ -1208,6 +1228,26 @@ $tokens-map: (
   'kui-status-color-400s': #FF723C;
   /* Color for a group of response status codes in the 500-599 range (red.40). */
   'kui-status-color-500s': #ff3954;
+  /* Background color for http status 100 elements (blue.10). */
+  'kui-status-color-background-100': #eefaff;
+  /* Background color for http status 200 elements (green.10). */
+  'kui-status-color-background-200': #ecfffb;
+  /* Background color for http status 300 elements (yellow.10). */
+  'kui-status-color-background-300': #fffce0;
+  /* Background color for http status 400 elements (orange.10). */
+  'kui-status-color-background-400': #FFF1EF;
+  /* Background color for http status 500 elements (red.10). */
+  'kui-status-color-background-500': #ffe5e5;
+  /* Text color for http status 100 elements (blue.60). */
+  'kui-status-color-text-100': #0044f4;
+  /* Text color for http status 200 elements (green.60). */
+  'kui-status-color-text-200': #007d60;
+  /* Text color for http status 300 elements (yellow.60). */
+  'kui-status-color-text-300': #995c00;
+  /* Text color for http status 400 elements (orange.60). */
+  'kui-status-color-text-400': #D13500;
+  /* Text color for http status 500 elements (red.60). */
+  'kui-status-color-text-500': #d60027;
   /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
   /* The standard heading text font family. */
@@ -1866,6 +1906,26 @@ $tokens-map: (
 @kui-status-color-400s: #FF723C;
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 @kui-status-color-500s: #ff3954;
+/* Background color for http status 100 elements (blue.10). */
+@kui-status-color-background-100: #eefaff;
+/* Background color for http status 200 elements (green.10). */
+@kui-status-color-background-200: #ecfffb;
+/* Background color for http status 300 elements (yellow.10). */
+@kui-status-color-background-300: #fffce0;
+/* Background color for http status 400 elements (orange.10). */
+@kui-status-color-background-400: #FFF1EF;
+/* Background color for http status 500 elements (red.10). */
+@kui-status-color-background-500: #ffe5e5;
+/* Text color for http status 100 elements (blue.60). */
+@kui-status-color-text-100: #0044f4;
+/* Text color for http status 200 elements (green.60). */
+@kui-status-color-text-200: #007d60;
+/* Text color for http status 300 elements (yellow.60). */
+@kui-status-color-text-300: #995c00;
+/* Text color for http status 400 elements (orange.60). */
+@kui-status-color-text-400: #D13500;
+/* Text color for http status 500 elements (red.60). */
+@kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
@@ -2525,6 +2585,26 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-status-color-400s: #FF723C;
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 --kui-status-color-500s: #ff3954;
+/* Background color for http status 100 elements (blue.10). */
+--kui-status-color-background-100: #eefaff;
+/* Background color for http status 200 elements (green.10). */
+--kui-status-color-background-200: #ecfffb;
+/* Background color for http status 300 elements (yellow.10). */
+--kui-status-color-background-300: #fffce0;
+/* Background color for http status 400 elements (orange.10). */
+--kui-status-color-background-400: #FFF1EF;
+/* Background color for http status 500 elements (red.10). */
+--kui-status-color-background-500: #ffe5e5;
+/* Text color for http status 100 elements (blue.60). */
+--kui-status-color-text-100: #0044f4;
+/* Text color for http status 200 elements (green.60). */
+--kui-status-color-text-200: #007d60;
+/* Text color for http status 300 elements (yellow.60). */
+--kui-status-color-text-300: #995c00;
+/* Text color for http status 400 elements (orange.60). */
+--kui-status-color-text-400: #D13500;
+/* Text color for http status 500 elements (red.60). */
+--kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
@@ -3182,6 +3262,26 @@ export const KUI_STATUS_COLOR_300S = "#ffc400";
 export const KUI_STATUS_COLOR_400S = "#FF723C";
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 export const KUI_STATUS_COLOR_500S = "#ff3954";
+/* Background color for http status 100 elements (blue.10). */
+export const KUI_STATUS_COLOR_BACKGROUND_100 = "#eefaff";
+/* Background color for http status 200 elements (green.10). */
+export const KUI_STATUS_COLOR_BACKGROUND_200 = "#ecfffb";
+/* Background color for http status 300 elements (yellow.10). */
+export const KUI_STATUS_COLOR_BACKGROUND_300 = "#fffce0";
+/* Background color for http status 400 elements (orange.10). */
+export const KUI_STATUS_COLOR_BACKGROUND_400 = "#FFF1EF";
+/* Background color for http status 500 elements (red.10). */
+export const KUI_STATUS_COLOR_BACKGROUND_500 = "#ffe5e5";
+/* Text color for http status 100 elements (blue.60). */
+export const KUI_STATUS_COLOR_TEXT_100 = "#0044f4";
+/* Text color for http status 200 elements (green.60). */
+export const KUI_STATUS_COLOR_TEXT_200 = "#007d60";
+/* Text color for http status 300 elements (yellow.60). */
+export const KUI_STATUS_COLOR_TEXT_300 = "#995c00";
+/* Text color for http status 400 elements (orange.60). */
+export const KUI_STATUS_COLOR_TEXT_400 = "#D13500";
+/* Text color for http status 500 elements (red.60). */
+export const KUI_STATUS_COLOR_TEXT_500 = "#d60027";
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
 /* The standard heading text font family. */
@@ -3571,6 +3671,16 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_300s": "#ffc400",
   "kui_status_color_400s": "#FF723C",
   "kui_status_color_500s": "#ff3954",
+  "kui_status_color_background_100": "#eefaff",
+  "kui_status_color_background_200": "#ecfffb",
+  "kui_status_color_background_300": "#fffce0",
+  "kui_status_color_background_400": "#FFF1EF",
+  "kui_status_color_background_500": "#ffe5e5",
+  "kui_status_color_text_100": "#0044f4",
+  "kui_status_color_text_200": "#007d60",
+  "kui_status_color_text_300": "#995c00",
+  "kui_status_color_text_400": "#D13500",
+  "kui_status_color_text_500": "#d60027",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
   "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",

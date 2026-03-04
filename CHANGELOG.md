@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/Kong/design-tokens/compare/v1.18.2...v1.19.0) (2026-03-04)
+
+
+### Features
+
+* add status color background and text tokens ([#632](https://github.com/Kong/design-tokens/issues/632)) ([483de55](https://github.com/Kong/design-tokens/commit/483de552680c3ac01e21784071ea6de831a3027e))
+
 ## [1.18.2](https://github.com/Kong/design-tokens/compare/v1.18.1...v1.18.2) (2025-11-25)
 
 
