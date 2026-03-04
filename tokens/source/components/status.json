@@ -42,7 +42,6 @@
         "comment": "Color representing response status code 103 (blue.50).",
         "value": "{color.alias.blue.50.value}"
       },
-
       "200": {
         "comment": "Color representing response status code 200 (green.20).",
         "value": "{color.alias.green.20.value}"
@@ -293,6 +292,50 @@
       "511": {
         "comment": "Color representing response status code 511 (red.60).",
         "value": "{color.alias.red.60.value}"
+      },
+      "background": {
+        "100": {
+          "comment": "Background color for http status 100 elements (blue.10).",
+          "value": "{color.alias.blue.10.value}"
+        },
+        "200": {
+          "comment": "Background color for http status 200 elements (green.10).",
+          "value": "{color.alias.green.10.value}"
+        },
+        "300": {
+          "comment": "Background color for http status 300 elements (yellow.10).",
+          "value": "{color.alias.yellow.10.value}"
+        },
+        "400": {
+          "comment": "Background color for http status 400 elements (orange.10).",
+          "value": "{color.alias.orange.10.value}"
+        },
+        "500": {
+          "comment": "Background color for http status 500 elements (red.10).",
+          "value": "{color.alias.red.10.value}"
+        }
+      },
+      "text": {
+        "100": {
+          "comment": "Text color for http status 100 elements (blue.60).",
+          "value": "{color.alias.blue.60.value}"
+        },
+        "200": {
+          "comment": "Text color for http status 200 elements (green.60).",
+          "value": "{color.alias.green.60.value}"
+        },
+        "300": {
+          "comment": "Text color for http status 300 elements (yellow.60).",
+          "value": "{color.alias.yellow.60.value}"
+        },
+        "400": {
+          "comment": "Text color for http status 400 elements (orange.60).",
+          "value": "{color.alias.orange.60.value}"
+        },
+        "500": {
+          "comment": "Text color for http status 500 elements (red.60).",
+          "value": "{color.alias.red.60.value}"
+        }
       }
     }
   }
