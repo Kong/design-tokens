@@ -59,7 +59,7 @@ For example, the `kui-color-text-primary` token **should** be used as a value fo
 
 Rule that ensures SCSS design tokens are properly used as fallback values in CSS custom properties.
 
-SCSS tokens (e.g., `$kui-color-text-primary`) **must** be wrapped in the `var()` function with the corresponding CSS custom property as the first argument and the SCSS token as the fallback. The format must be exact: `var(--kui-token-name, $kui-token-name)` with exactly one space before the comma and no other spaces.
+SCSS tokens (e.g., `$kui-color-text-primary`) **must** be wrapped in the `var()` function with the corresponding CSS custom property as the first argument and the SCSS token as the fallback. The format must be exact: `var(--kui-token-name, $kui-token-name)` with exactly one space after the comma and no other spaces.
 
 For cases where SCSS interpolation is needed (e.g., when defining CSS custom properties), the interpolated format is also valid: `var(--kui-token-name, #{$kui-token-name})`.
 
@@ -74,7 +74,7 @@ This approach provides progressive enhancement: browsers use the CSS custom prop
 }
 
 .bar {
-  // Missing space before comma
+  // Missing space after the comma
   color: var(--kui-color-text-primary,$kui-color-text-primary);
 }
 
