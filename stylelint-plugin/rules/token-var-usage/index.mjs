@@ -194,9 +194,11 @@ const ruleFunction = () => {
                 // Find the var() expression containing this token
                 const beforeToken = declValue.substring(0, tokenIndex)
                 const varStartIndex = beforeToken.lastIndexOf('var(')
+                const lastClosingParenBeforeToken = beforeToken.lastIndexOf(')')
 
-                if (varStartIndex === -1) {
-                  // No var( found, just replace the token with proper format
+                if (varStartIndex === -1 || lastClosingParenBeforeToken > varStartIndex) {
+                  // No enclosing var( found for this token (either no var( at all, or the nearest
+                  // var( was already closed before the token, e.g. `var(--x) $kui-space-40`)
                   replacements.push({
                     start: tokenIndex,
                     end: tokenIndex + scssToken.length,
