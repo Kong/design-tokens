@@ -42,7 +42,6 @@
         "comment": "Color representing response status code 103 (blue.50).",
         "value": "{color.alias.blue.50.value}"
       },
-      
       "200": {
         "comment": "Color representing response status code 200 (green.20).",
         "value": "{color.alias.green.20.value}"
