@@ -103,3 +103,24 @@ This approach provides progressive enhancement: browsers use the CSS custom prop
   --vc-white: var(--kui-color-text-inverse, #{$kui-color-text-inverse});
 }
 ```
+
+#### Limitations
+
+The `token-var-usage` rule has some known limitations:
+
+1. **Multi-line `var()` declarations**: The rule currently does not handle `var()` function calls that span multiple lines. To ensure proper linting and auto-fixing, keep your `var()` declarations on a single line:
+
+   ```scss
+   // ❌ May produce unexpected behavior
+   font-size: var(
+     --kui-font-size-40,
+     $kui-font-size-40
+   );
+
+   // ✅ Works correctly
+   font-size: var(--kui-font-size-40, $kui-font-size-40);
+   ```
+
+2. **Standalone interpolation**: SCSS tokens wrapped only in interpolation syntax (e.g., `#{$kui-color-text-primary}`) without `var()` cannot be auto-fixed. The rule will flag these cases, but you must manually determine the correct usage based on your context—whether to use the standard `var()` format or the interpolated `var()` format.
+
+3. **Complex SCSS expressions**: The rule is designed to work with direct token references. Complex SCSS expressions involving tokens (e.g., calculations, functions) may not be properly detected or auto-fixed.
