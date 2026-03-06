@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/Kong/design-tokens/compare/v1.19.0...v1.20.0) (2026-03-06)
+
+
+### Features
+
+* **stylelint-plugin:** token-var-usage rule ([#613](https://github.com/Kong/design-tokens/issues/613)) ([7a2c19b](https://github.com/Kong/design-tokens/commit/7a2c19b4988382431a8c4088c71758662f71449a))
+
 # [1.19.0](https://github.com/Kong/design-tokens/compare/v1.18.2...v1.19.0) (2026-03-04)
 
 
