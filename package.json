@@ -71,7 +71,7 @@
     "semantic-release": "^25.0.3",
     "shx": "^0.4.0",
     "style-dictionary": "^4.4.0",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.2",
     "vite": "^8.0.0",
     "vite-plugin-restart": "^2.0.0",
     "vite-plugin-vue-devtools": "^8.0.7",
