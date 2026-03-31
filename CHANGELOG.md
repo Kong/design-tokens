@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/Kong/design-tokens/compare/v1.20.0...v1.20.1) (2026-03-31)
+
+
+### Bug Fixes
+
+* **pnpm:** enforce vulnerability protections ([#639](https://github.com/Kong/design-tokens/issues/639)) ([fae0408](https://github.com/Kong/design-tokens/commit/fae0408b542a074a5317c4498746f2387d1637e5))
+
 # [1.20.0](https://github.com/Kong/design-tokens/compare/v1.19.0...v1.20.0) (2026-03-06)
 
 
