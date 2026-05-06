@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/Kong/design-tokens/compare/v1.20.1...v1.21.0) (2026-05-06)
+
+
+### Features
+
+* upgrade style-dictionary to v5 ([#643](https://github.com/Kong/design-tokens/issues/643)) ([20b91cb](https://github.com/Kong/design-tokens/commit/20b91cb9f6dae04abf8ad406164110dabd4e53ff))
+
 ## [1.20.1](https://github.com/Kong/design-tokens/compare/v1.20.0...v1.20.1) (2026-03-31)
 
 
