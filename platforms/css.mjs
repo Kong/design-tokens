@@ -22,8 +22,8 @@ StyleDictionary.registerFormat({
     '*/\n' +
     ':root {\n' +
       dictionary.allTokens.map(token => {
-        const value = unquoteString(JSON.stringify(token.value))
-        const comment = unquoteString(JSON.stringify(token.comment))
+        const value = unquoteString(JSON.stringify(token.$value))
+        const comment = unquoteString(JSON.stringify(token.$description))
 
         // Set the value of the variable to `initial` to initialize as essentially an empty value
         let tokenOutput = `  /* ${comment ? comment.replace(/([^.])$/, '$1.') : ''} Default value: \`${value}\` */\n`

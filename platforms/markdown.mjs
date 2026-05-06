@@ -7,8 +7,8 @@ StyleDictionary.registerFormat({
   format: async function({ dictionary, file, options }) {
     // Generate the SCSS variable tokens
     const scssTokens = dictionary.allTokens.map(token => {
-      const value = unquoteString(JSON.stringify(token.value))
-      const comment = unquoteString(JSON.stringify(token.comment))
+      const value = unquoteString(JSON.stringify(token.$value))
+      const comment = unquoteString(JSON.stringify(token.$description))
 
       let tokenOutput = ''
       if (comment) {
@@ -20,8 +20,8 @@ StyleDictionary.registerFormat({
 
     // Generate the SCSS variable tokens
     const scssMap = dictionary.allTokens.map(token => {
-      const value = unquoteString(JSON.stringify(token.value))
-      const comment = unquoteString(JSON.stringify(token.comment))
+      const value = unquoteString(JSON.stringify(token.$value))
+      const comment = unquoteString(JSON.stringify(token.$description))
 
       let tokenOutput = ''
       if (comment) {
@@ -33,8 +33,8 @@ StyleDictionary.registerFormat({
 
     // Generate the LESS variable tokens
     const lessTokens = dictionary.allTokens.map(token => {
-      const value = unquoteString(JSON.stringify(token.value))
-      const comment = unquoteString(JSON.stringify(token.comment))
+      const value = unquoteString(JSON.stringify(token.$value))
+      const comment = unquoteString(JSON.stringify(token.$description))
 
       let tokenOutput = ''
       if (comment) {
@@ -46,8 +46,8 @@ StyleDictionary.registerFormat({
 
     // Generate the CSS custom properties
     const cssTokens = dictionary.allTokens.map(token => {
-      const value = unquoteString(JSON.stringify(token.value))
-      const comment = unquoteString(JSON.stringify(token.comment))
+      const value = unquoteString(JSON.stringify(token.$value))
+      const comment = unquoteString(JSON.stringify(token.$description))
 
       let tokenOutput = ''
       if (comment) {
@@ -59,8 +59,8 @@ StyleDictionary.registerFormat({
 
     // Generate the JavaScript variable tokens
     const javascriptTokens = dictionary.allTokens.map(token => {
-      const value = JSON.stringify(token.value)
-      const comment = unquoteString(JSON.stringify(token.comment))
+      const value = JSON.stringify(token.$value)
+      const comment = unquoteString(JSON.stringify(token.$description))
 
       let tokenOutput = ''
       if (comment) {
@@ -72,7 +72,7 @@ StyleDictionary.registerFormat({
 
     // Generate the JavaScript variable tokens
     const jsonTokens = dictionary.allTokens.map((token, idx) => {
-      const value = JSON.stringify(token.value)
+      const value = JSON.stringify(token.$value)
 
       let tokenOutput = `  "${token.name.replace(/-/g, '_').toLowerCase()}": ${value},`
       if ((idx + 1) === dictionary.allTokens.length) {
