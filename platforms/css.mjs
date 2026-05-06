@@ -4,7 +4,7 @@ import { fileHeader } from 'style-dictionary/utils'
 
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/initial-values',
-  format: async function({ dictionary, file, options }) {
+  format: async function({ dictionary, file }) {
     return (await fileHeader({ file })) +
     '/**\n' +
     ' * IMPORTANT: You should **not** import this file in your host project.\n' +

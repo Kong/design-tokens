@@ -4,7 +4,7 @@ import { fileHeader } from 'style-dictionary/utils'
 
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/markdown',
-  format: async function({ dictionary, file, options }) {
+  format: async function({ dictionary, file }) {
     // Generate the SCSS variable tokens
     const scssTokens = dictionary.allTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.$value))
