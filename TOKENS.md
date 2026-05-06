@@ -18,670 +18,343 @@ This document outlines the majority of the available tokens.
 <summary>Click to view the list of SCSS variables</summary>
 
 ```scss
-/* Default background color for containers (white). */
-$kui-color-background: #ffffff;
-/* Background color for danger actions or messages (red.60). */
-$kui-color-background-danger: #d60027;
-/* Strong background color for danger actions or messages (red.70). */
-$kui-color-background-danger-strong: #ad000e;
-/* Stronger background color for danger actions or messages (red.80). */
-$kui-color-background-danger-stronger: #850000;
-/* Strongest background color for danger actions or messages (red.90). */
-$kui-color-background-danger-strongest: #5c0000;
-/* Weak background color for danger actions or messages (red.40). */
-$kui-color-background-danger-weak: #ff3954;
-/* Weaker background color for danger actions or messages (red.20). */
-$kui-color-background-danger-weaker: #ffabab;
-/* Weakest background color for danger actions or messages (red.10). */
-$kui-color-background-danger-weakest: #ffe5e5;
-/* Weakest background color for decorative purposes (aqua.10). */
-$kui-color-background-decorative-aqua-weakest: #ecfcff;
-/* Background color for decorative purposes (purple.60). */
-$kui-color-background-decorative-purple: #6f28ff;
-/* Weakest background color for decorative purposes (purple.10). */
-$kui-color-background-decorative-purple-weakest: #f1f0ff;
-/* Background color for disabled elements (gray.20). */
-$kui-color-background-disabled: #e0e4ea;
-/* Background color for info elements (blue.60). */
-$kui-color-background-info: #0044f4;
-/* Strong background color for info elements (blue.70). */
-$kui-color-background-info-strong: #0030cc;
-/* Stronger background color for info elements (blue.80). */
-$kui-color-background-info-stronger: #002099;
-/* Strongest background color for info elements (blue.90). */
-$kui-color-background-info-strongest: #001466;
-/* Weak background color for info elements (blue.40). */
-$kui-color-background-info-weak: #5f9aff;
-/* Weaker background color for info elements (blue.20). */
-$kui-color-background-info-weaker: #bee2ff;
-/* Weakest background color for info elements (blue.10). */
-$kui-color-background-info-weakest: #eefaff;
-/* Inverse background color for containers (blue.100) */
-$kui-color-background-inverse: #000933;
-/* Background color for neutral elements (gray.60). */
-$kui-color-background-neutral: #6c7489;
-/* Strong background color for neutral elements (gray.70). */
-$kui-color-background-neutral-strong: #52596e;
-/* Stronger background color for neutral elements (gray.80). */
-$kui-color-background-neutral-stronger: #3a3f51;
-/* Strongest background color for neutral elements (gray.90). */
-$kui-color-background-neutral-strongest: #232633;
-/* Weak background color for neutral elements (gray.40). */
-$kui-color-background-neutral-weak: #afb7c5;
-/* Weaker background color for neutral elements (gray.20). */
-$kui-color-background-neutral-weaker: #e0e4ea;
-/* Weakest background color for neutral elements (gray.10). */
-$kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(blue.100, 0.6)) */
-$kui-color-background-overlay: rgba(0, 9, 51, 0.6);
-/* Background color for primary actions or messages (blue.60). */
-$kui-color-background-primary: #0044f4;
-/* Strong background color for primary actions or messages (blue.70). */
-$kui-color-background-primary-strong: #0030cc;
-/* Stronger background color for primary actions or messages (blue.80). */
-$kui-color-background-primary-stronger: #002099;
-/* Strongest background color for primary actions or messages (blue.90). */
-$kui-color-background-primary-strongest: #001466;
-/* Weak background color for primary actions or messages (blue.40). */
-$kui-color-background-primary-weak: #5f9aff;
-/* Weaker background color for primary actions or messages (blue.20). */
-$kui-color-background-primary-weaker: #bee2ff;
-/* Weakest background color for primary actions or messages (blue.10) */
-$kui-color-background-primary-weakest: #eefaff;
-/* Background color for success elements (green.60). */
-$kui-color-background-success: #007d60;
-/* Strong background color for success elements (green.70). */
-$kui-color-background-success-strong: #005944;
-/* Stronger background color for success elements (green.80). */
-$kui-color-background-success-stronger: #004737;
-/* Strongest background color for success elements (green.90). */
-$kui-color-background-success-strongest: #003629;
-/* Weak background color for success elements (green.40). */
-$kui-color-background-success-weak: #00d6a4;
-/* Weaker background color for success elements (green.20). */
-$kui-color-background-success-weaker: #b5ffee;
-/* Weakest background color for success elements (green.10). */
-$kui-color-background-success-weakest: #ecfffb;
-/* Transparent background color (transparent). */
-$kui-color-background-transparent: transparent;
-/* Background color for warning elements (yellow.60). */
-$kui-color-background-warning: #995c00;
-/* Strong background color for warning elements (yellow.70). */
-$kui-color-background-warning-strong: #804400;
-/* Stronger background color for warning elements (yellow.80). */
-$kui-color-background-warning-stronger: #662d00;
-/* Strongest background color for warning elements (yellow.90). */
-$kui-color-background-warning-strongest: #4d1b00;
-/* Weak background color for warning elements (yellow.40). */
-$kui-color-background-warning-weak: #ffc400;
-/* Weaker background color for warning elements (yellow.20). */
-$kui-color-background-warning-weaker: #fff296;
-/* Weakest background color for warning elements (yellow.10). */
-$kui-color-background-warning-weakest: #fffce0;
-/* Default border color for containers (gray.20). */
-$kui-color-border: #e0e4ea;
-/* Border color for danger actions or messages (red.60). */
-$kui-color-border-danger: #d60027;
-/* Strong border color for danger actions or messages (red.70). */
-$kui-color-border-danger-strong: #ad000e;
-/* Stronger border color for danger actions or messages (red.80). */
-$kui-color-border-danger-stronger: #850000;
-/* Strongest border color for danger actions or messages (red.90). */
-$kui-color-border-danger-strongest: #5c0000;
-/* Weak border color for danger actions or messages (red.40). */
-$kui-color-border-danger-weak: #ff3954;
-/* Weaker border color for danger actions or messages (red.20). */
-$kui-color-border-danger-weaker: #ffabab;
-/* Weakest border color for danger actions or messages (red.10). */
-$kui-color-border-danger-weakest: #ffe5e5;
-/* Border color for decorative purposes (purple.60). */
-$kui-color-border-decorative-purple: #6f28ff;
-/* Border color for disabled elements (gray.20). */
-$kui-color-border-disabled: #e0e4ea;
-/* Inverse border color (rgba(white, 0.2)). */
-$kui-color-border-inverse: rgba(255, 255, 255, 0.2);
-/* Border color for neutral elements (gray.60) */
-$kui-color-border-neutral: #6c7489;
-/* Strong border color for neutral elements (gray.70) */
-$kui-color-border-neutral-strong: #52596e;
-/* Stronger border color for neutral elements (gray.80) */
-$kui-color-border-neutral-stronger: #3a3f51;
-/* Strongest border color for neutral elements (gray.90) */
-$kui-color-border-neutral-strongest: #232633;
-/* Weak border color for neutral elements (gray.40) */
-$kui-color-border-neutral-weak: #afb7c5;
-/* Weaker border color for neutral elements (gray.20) */
-$kui-color-border-neutral-weaker: #e0e4ea;
-/* Weakest border color for neutral elements (gray.10) */
-$kui-color-border-neutral-weakest: #f9fafb;
-/* Border color for primary actions or messages (blue.60). */
-$kui-color-border-primary: #0044f4;
-/* Strong border color for primary actions or messages (blue.70). */
-$kui-color-border-primary-strong: #0030cc;
-/* Stronger border color for primary actions or messages (blue.80). */
-$kui-color-border-primary-stronger: #002099;
-/* Strongest border color for primary actions or messages (blue.90). */
-$kui-color-border-primary-strongest: #001466;
-/* Weak border color for primary actions or messages (blue.40). */
-$kui-color-border-primary-weak: #5f9aff;
-/* Weaker border color for primary actions or messages (blue.20). */
-$kui-color-border-primary-weaker: #bee2ff;
-/* Weakest border color for primary actions or messages (blue.10). */
-$kui-color-border-primary-weakest: #eefaff;
-/* Transparent border color (transparent). */
-$kui-color-border-transparent: transparent;
-/* Default text color (blue.100). */
-$kui-color-text: #000933;
-/* Text color for danger actions or messages (red.60). */
-$kui-color-text-danger: #d60027;
-/* Strong text color for danger actions or messages (red.70). */
-$kui-color-text-danger-strong: #ad000e;
-/* Stronger text color for danger actions or messages (red.80). */
-$kui-color-text-danger-stronger: #850000;
-/* Strongest text color for danger actions or messages (red.90). */
-$kui-color-text-danger-strongest: #5c0000;
-/* Weak text color for danger actions or messages (red.40). */
-$kui-color-text-danger-weak: #ff3954;
-/* Weaker text color for danger actions or messages (red.20). */
-$kui-color-text-danger-weaker: #ffabab;
-/* Weakest text color for danger actions or messages (red.10). */
-$kui-color-text-danger-weakest: #ffe5e5;
-/* Text color for decorative purposes (aqua.50). */
-$kui-color-text-decorative-aqua: #00abd2;
-/* Text color for decorative purposes (pink.60). */
-$kui-color-text-decorative-pink: #d60067;
-/* Text color for decorative purposes (purple.60). */
-$kui-color-text-decorative-purple: #6f28ff;
-/* Strong text color for decorative purposes (purple.70). */
-$kui-color-text-decorative-purple-strong: #5e00f5;
-/* Text color for disabled elements (gray.40). */
-$kui-color-text-disabled: #afb7c5;
-/* Text color for info elements (blue.60). */
-$kui-color-text-info: #0044f4;
-/* Strong text color for info elements (blue.70). */
-$kui-color-text-info-strong: #0030cc;
-/* Stronger text color for info elements (blue.80). */
-$kui-color-text-info-stronger: #002099;
-/* Strongest text color for info elements (blue.90). */
-$kui-color-text-info-strongest: #001466;
-/* Weak text color for info elements (blue.40). */
-$kui-color-text-info-weak: #5f9aff;
-/* Weaker text color for info elements (blue.20). */
-$kui-color-text-info-weaker: #bee2ff;
-/* Weakest text color for info elements (blue.10). */
-$kui-color-text-info-weakest: #eefaff;
-/* Inverse text color (white). */
-$kui-color-text-inverse: #ffffff;
-/* Text color for neutral elements (gray.60). */
-$kui-color-text-neutral: #6c7489;
-/* Strong text color for neutral elements (gray.70). */
-$kui-color-text-neutral-strong: #52596e;
-/* Stronger text color for neutral elements (gray.80). */
-$kui-color-text-neutral-stronger: #3a3f51;
-/* Strongest text color for neutral elements (gray.90). */
-$kui-color-text-neutral-strongest: #232633;
-/* Weak text color for neutral elements (gray.40). */
-$kui-color-text-neutral-weak: #afb7c5;
-/* Weaker text color for neutral elements (gray.20). */
-$kui-color-text-neutral-weaker: #e0e4ea;
-/* Weakest text color for neutral elements (gray.10). */
-$kui-color-text-neutral-weakest: #f9fafb;
-/* Text color for primary actions or messages (blue.60). */
-$kui-color-text-primary: #0044f4;
-/* Strong text color for primary actions or messages (blue.70). */
-$kui-color-text-primary-strong: #0030cc;
-/* Stronger text color for primary actions or messages (blue.80). */
-$kui-color-text-primary-stronger: #002099;
-/* Strongest text color for primary actions or messages (blue.90). */
-$kui-color-text-primary-strongest: #001466;
-/* Weak text color for primary actions or messages (blue.40). */
-$kui-color-text-primary-weak: #5f9aff;
-/* Weaker text color for primary actions or messages (blue.20). */
-$kui-color-text-primary-weaker: #bee2ff;
-/* Weakest text color for primary actions or messages (blue.10). */
-$kui-color-text-primary-weakest: #eefaff;
-/* Text color for success elements (green.60). */
-$kui-color-text-success: #007d60;
-/* Strong text color for success elements (green.70). */
-$kui-color-text-success-strong: #005944;
-/* Stronger text color for success elements (green.80). */
-$kui-color-text-success-stronger: #004737;
-/* Stronger text color for success elements (green.90). */
-$kui-color-text-success-strongest: #003629;
-/* Weak text color for success elements (green.40). */
-$kui-color-text-success-weak: #00d6a4;
-/* Weaker text color for success elements (green.20). */
-$kui-color-text-success-weaker: #b5ffee;
-/* Weakest text color for success elements (green.10). */
-$kui-color-text-success-weakest: #ecfffb;
-/* Text color for warning elements (yellow.60). */
-$kui-color-text-warning: #995c00;
-/* Strong text color for warning elements (yellow.70). */
-$kui-color-text-warning-strong: #804400;
-/* Stronger text color for warning elements (yellow.80). */
-$kui-color-text-warning-stronger: #662d00;
-/* Strongest text color for warning elements (yellow.90). */
-$kui-color-text-warning-strongest: #4d1b00;
-/* Weak text color for warning elements (yellow.40). */
-$kui-color-text-warning-weak: #ffc400;
-/* Weaker text color for warning elements (yellow.20). */
-$kui-color-text-warning-weaker: #fff296;
-/* Weakest text color for warning elements (yellow.10). */
-$kui-color-text-warning-weakest: #fffce0;
-/* Default transition timing */
-$kui-animation-duration-20: 0.2s;
-/* 0px border radius. */
-$kui-border-radius-0: 0px;
-/* 2px border radius. */
-$kui-border-radius-10: 2px;
-/* 4px border radius. */
-$kui-border-radius-20: 4px;
-/* 6px border radius. */
-$kui-border-radius-30: 6px;
-/* 8px border radius. */
-$kui-border-radius-40: 8px;
-/* 10px border radius. */
-$kui-border-radius-50: 10px;
-/* 50% border radius used to create circles. */
-$kui-border-radius-circle: 50%;
-/* 100px border radius used to create pill shapes. */
-$kui-border-radius-round: 100px;
-/* 0px border width. */
-$kui-border-width-0: 0px;
-/* 1px border width. */
-$kui-border-width-10: 1px;
-/* 2px border width. */
-$kui-border-width-20: 2px;
-/* 4px border width. */
-$kui-border-width-30: 4px;
-/* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
-$kui-breakpoint-mobile: 640px;
-/* Used for tablet screens. */
-$kui-breakpoint-phablet: 768px;
-/* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
-$kui-breakpoint-tablet: 1024px;
-/* Used for standard desktop screens. */
-$kui-breakpoint-laptop: 1280px;
-/* Used for larger desktop screens. */
-$kui-breakpoint-desktop: 1536px;
-/* Danger color for icons. */
-$kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
-$kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
-$kui-icon-color-primary: #306fff;
-/* Success color for icons. */
-$kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
-$kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
-$kui-icon-size-10: 10px;
-/* 12px icon size. */
-$kui-icon-size-20: 12px;
-/* 16px icon size. */
-$kui-icon-size-30: 16px;
-/* 20px icon size. */
-$kui-icon-size-40: 20px;
-/* 24px icon size (default). */
-$kui-icon-size-50: 24px;
-/* 32px icon size. */
-$kui-icon-size-60: 32px;
-/* 40px icon size. */
-$kui-icon-size-70: 40px;
-/* 48px icon size. */
-$kui-icon-size-80: 48px;
-/* Background color for the CONNECT method (purple.10). */
-$kui-method-color-background-connect: #f1f0ff;
-/* Background color for the DELETE method (red.10). */
-$kui-method-color-background-delete: #ffe5e5;
-/* Background color for the GET method (blue.10). */
-$kui-method-color-background-get: #eefaff;
-/* Background color for the HEAD method (gray.70). */
-$kui-method-color-background-head: #52596e;
-/* Background color for the OPTIONS method (gray.20). */
-$kui-method-color-background-options: #e0e4ea;
-/* Background color for the PATCH method (aqua.10). */
-$kui-method-color-background-patch: #ecfcff;
-/* Background color for the POST method (green.10). */
-$kui-method-color-background-post: #ecfffb;
-/* Background color for the PUT method (yellow.10). */
-$kui-method-color-background-put: #fffce0;
-/* Background color for the TRACE method (pink.10). */
-$kui-method-color-background-trace: #fff0f7;
-/* Text color for the CONNECT method (purple.60). */
-$kui-method-color-text-connect: #6f28ff;
-/* Strong text color for the CONNECT method (purple.70). */
-$kui-method-color-text-connect-strong: #5e00f5;
-/* Text color for the DELETE method (red.60). */
-$kui-method-color-text-delete: #d60027;
-/* Strong text color for the DELETE method (red.70). */
-$kui-method-color-text-delete-strong: #ad000e;
-/* Text color for the GET method (blue.60). */
-$kui-method-color-text-get: #0044f4;
-/* Strong text color for the GET method (blue.70). */
-$kui-method-color-text-get-strong: #0030cc;
-/* Text color for the HEAD method (gray.20). */
-$kui-method-color-text-head: #e0e4ea;
-/* Strong text color for the HEAD method (gray.40). */
-$kui-method-color-text-head-strong: #afb7c5;
-/* Text color for the OPTIONS method (gray.70). */
-$kui-method-color-text-options: #52596e;
-/* Strong text color for the OPTIONS method (gray.80). */
-$kui-method-color-text-options-strong: #3a3f51;
-/* Text color for the PATCH method (aqua.60). */
-$kui-method-color-text-patch: #00819d;
-/* Strong text color for the PATCH method (aqua.70). */
-$kui-method-color-text-patch-strong: #00647a;
-/* Text color for the POST method (green.60). */
-$kui-method-color-text-post: #007d60;
-/* Strong text color for the POST method (green.70). */
-$kui-method-color-text-post-strong: #005944;
-/* Text color for the PUT method (yellow.60). */
-$kui-method-color-text-put: #995c00;
-/* Strong text color for the PUT method (yellow.70). */
-$kui-method-color-text-put-strong: #804400;
-/* Text color for the TRACE method (pink.60). */
-$kui-method-color-text-trace: #d60067;
-/* Strong text color for the TRACE method (pink.70). */
-$kui-method-color-text-trace-strong: #ad0053;
-/* blue.100 */
-$kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
-$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(white, 0.12) */
-$kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
-$kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
-$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
-$kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
-$kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
-$kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
-$kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
-$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
-$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
-$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* Color representing response status code 100 (blue.20). */
-$kui-status-color-100: #bee2ff;
-/* Color representing response status code 101 (blue.30). */
-$kui-status-color-101: #8fc1ff;
-/* Color representing response status code 102 (blue.40). */
-$kui-status-color-102: #5f9aff;
-/* Color representing response status code 103 (blue.50). */
-$kui-status-color-103: #306fff;
-/* Color representing response status code 200 (green.20). */
-$kui-status-color-200: #b5ffee;
-/* Color representing response status code 201 (green.30). */
-$kui-status-color-201: #00fabe;
-/* Color representing response status code 202 (green.40). */
-$kui-status-color-202: #00d6a4;
-/* Color representing response status code 203 (green.50). */
-$kui-status-color-203: #00a17b;
-/* Color representing response status code 204 (green.60). */
-$kui-status-color-204: #007d60;
-/* Color representing response status code 205 (green.70). */
-$kui-status-color-205: #005944;
-/* Color representing response status code 206 (green.20). */
-$kui-status-color-206: #b5ffee;
-/* Color representing response status code 207 (green.30). */
-$kui-status-color-207: #00fabe;
-/* Color representing response status code 208 (green.40). */
-$kui-status-color-208: #b5ffee;
-/* Color representing response status code 226 (green.50). */
-$kui-status-color-226: #00a17b;
-/* Color representing response status code 100 (yellow.20). */
-$kui-status-color-300: #fff296;
-/* Color representing response status code 101 (yellow.30). */
-$kui-status-color-301: #ffe04b;
-/* Color representing response status code 102 (yellow.40). */
-$kui-status-color-302: #ffc400;
-/* Color representing response status code 103 (yellow.50). */
-$kui-status-color-303: #b37600;
-/* Color representing response status code 103 (yellow.60). */
-$kui-status-color-304: #995c00;
-/* Color representing response status code 103 (yellow.70). */
-$kui-status-color-305: #804400;
-/* Color representing response status code 103 (yellow.20). */
-$kui-status-color-307: #fff296;
-/* Color representing response status code 103 (yellow.30). */
-$kui-status-color-308: #ffe04b;
-/* Color representing response status code 400 (orange.20). */
-$kui-status-color-400: #FFC2B3;
-/* Color representing response status code 401 (orange.30). */
-$kui-status-color-401: #FF9877;
-/* Color representing response status code 402 (orange.40). */
-$kui-status-color-402: #FF723C;
-/* Color representing response status code 403 (orange.50). */
-$kui-status-color-403: #F75008;
-/* Color representing response status code 404 (orange.60). */
-$kui-status-color-404: #D13500;
-/* Color representing response status code 405 (orange.70). */
-$kui-status-color-405: #A31F00;
-/* Color representing response status code 406 (orange.20). */
-$kui-status-color-406: #FFC2B3;
-/* Color representing response status code 407 (orange.30). */
-$kui-status-color-407: #FF9877;
-/* Color representing response status code 408 (orange.40). */
-$kui-status-color-408: #FF723C;
-/* Color representing response status code 409 (orange.50). */
-$kui-status-color-409: #F75008;
-/* Color representing response status code 410 (orange.60). */
-$kui-status-color-410: #D13500;
-/* Color representing response status code 411 (orange.70). */
-$kui-status-color-411: #A31F00;
-/* Color representing response status code 412 (orange.20). */
-$kui-status-color-412: #FFC2B3;
-/* Color representing response status code 413 (orange.30). */
-$kui-status-color-413: #FF9877;
-/* Color representing response status code 414 (orange.40). */
-$kui-status-color-414: #FF723C;
-/* Color representing response status code 415 (orange.50). */
-$kui-status-color-415: #F75008;
-/* Color representing response status code 416 (orange.60). */
-$kui-status-color-416: #D13500;
-/* Color representing response status code 417 (orange.70). */
-$kui-status-color-417: #A31F00;
-/* Color representing response status code 418 (orange.20). */
-$kui-status-color-418: #FFC2B3;
-/* Color representing response status code 421 (orange.30). */
-$kui-status-color-421: #FF9877;
-/* Color representing response status code 422 (orange.40). */
-$kui-status-color-422: #FF723C;
-/* Color representing response status code 423 (orange.50). */
-$kui-status-color-423: #F75008;
-/* Color representing response status code 424 (orange.60). */
-$kui-status-color-424: #D13500;
-/* Color representing response status code 425 (orange.70). */
-$kui-status-color-425: #A31F00;
-/* Color representing response status code 426 (orange.20). */
-$kui-status-color-426: #FFC2B3;
-/* Color representing response status code 428 (orange.30). */
-$kui-status-color-428: #FF9877;
-/* Color representing response status code 429 (orange.40). */
-$kui-status-color-429: #FF723C;
-/* Color representing response status code 431 (orange.50). */
-$kui-status-color-431: #F75008;
-/* Color representing response status code 451 (orange.60). */
-$kui-status-color-451: #D13500;
-/* Color representing response status code 500 (red.20). */
-$kui-status-color-500: #ffabab;
-/* Color representing response status code 501 (red.30). */
-$kui-status-color-501: #ff7272;
-/* Color representing response status code 502 (red.40). */
-$kui-status-color-502: #ff3954;
-/* Color representing response status code 503 (red.50). */
-$kui-status-color-503: #f50045;
-/* Color representing response status code 504 (red.60). */
-$kui-status-color-504: #d60027;
-/* Color representing response status code 505 (red.70). */
-$kui-status-color-505: #ad000e;
-/* Color representing response status code 506 (red.20). */
-$kui-status-color-506: #ffabab;
-/* Color representing response status code 507 (red.30). */
-$kui-status-color-507: #ff7272;
-/* Color representing response status code 508 (red.40). */
-$kui-status-color-508: #ff3954;
-/* Color representing response status code 510 (red.50). */
-$kui-status-color-510: #f50045;
-/* Color representing response status code 511 (red.60). */
-$kui-status-color-511: #d60027;
-/* Color for unknown response status codes in the 100-199 range (blue.10). */
-$kui-status-color-1na: #eefaff;
-/* Color for unknown response status codes in the 200-299 range (green.10). */
-$kui-status-color-2na: #ecfffb;
-/* Color for unknown response status codes in the 300-399 range (yellow.10). */
-$kui-status-color-3na: #fffce0;
-/* Color for unknown response status codes in the 400-499 range (orange.10). */
-$kui-status-color-4na: #FFF1EF;
-/* Color for unknown response status codes in the 500-599 range (red.10). */
-$kui-status-color-5na: #ffe5e5;
-/* Color for a group of response status codes in the 100-199 range (blue.40). */
-$kui-status-color-100s: #5f9aff;
-/* Color for a group of response status codes in the 200-299 range (green.40). */
-$kui-status-color-200s: #00d6a4;
-/* Color for a group of response status codes in the 300-399 range (yellow.40). */
-$kui-status-color-300s: #ffc400;
-/* Color for a group of response status codes in the 400-499 range (orange.40). */
-$kui-status-color-400s: #FF723C;
-/* Color for a group of response status codes in the 500-599 range (red.40). */
-$kui-status-color-500s: #ff3954;
-/* Background color for http status 100 elements (blue.10). */
-$kui-status-color-background-100: #eefaff;
-/* Background color for http status 200 elements (green.10). */
-$kui-status-color-background-200: #ecfffb;
-/* Background color for http status 300 elements (yellow.10). */
-$kui-status-color-background-300: #fffce0;
-/* Background color for http status 400 elements (orange.10). */
-$kui-status-color-background-400: #FFF1EF;
-/* Background color for http status 500 elements (red.10). */
-$kui-status-color-background-500: #ffe5e5;
-/* Text color for http status 100 elements (blue.60). */
-$kui-status-color-text-100: #0044f4;
-/* Text color for http status 200 elements (green.60). */
-$kui-status-color-text-200: #007d60;
-/* Text color for http status 300 elements (yellow.60). */
-$kui-status-color-text-300: #995c00;
-/* Text color for http status 400 elements (orange.60). */
-$kui-status-color-text-400: #D13500;
-/* Text color for http status 500 elements (red.60). */
-$kui-status-color-text-500: #d60027;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-$kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
-/* The standard heading text font family. */
-$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
-/* The standard text font family. */
-$kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
-$kui-font-size-10: 10px;
-$kui-font-size-20: 12px;
-$kui-font-size-30: 14px;
-$kui-font-size-40: 16px;
-$kui-font-size-50: 18px;
-$kui-font-size-60: 20px;
-$kui-font-size-70: 24px;
-$kui-font-size-80: 32px;
-$kui-font-size-90: 40px;
-$kui-font-size-100: 48px;
-/* 700: The bold font weight. */
-$kui-font-weight-bold: 700;
-/* 500: The medium font weight. */
-$kui-font-weight-medium: 500;
-/* 400: The normal font weight. */
-$kui-font-weight-regular: 400;
-/* 600: The semibold font weight. */
-$kui-font-weight-semibold: 600;
-/* Alias for letter-spacing-normal */
-$kui-letter-spacing-0: normal;
-/* -0.12px */
-$kui-letter-spacing-minus-10: -0.12px;
-/* -0.24px */
-$kui-letter-spacing-minus-20: -0.24px;
-/* -0.32px */
-$kui-letter-spacing-minus-30: -0.32px;
-/* -0.4px */
-$kui-letter-spacing-minus-40: -0.4px;
-/* -0.48px */
-$kui-letter-spacing-minus-50: -0.48px;
-/* normal */
-$kui-letter-spacing-normal: normal;
-/* 12px */
-$kui-line-height-10: 12px;
-/* 16px */
-$kui-line-height-20: 16px;
-/* 20px */
-$kui-line-height-30: 20px;
-/* 24px */
-$kui-line-height-40: 24px;
-/* 28px */
-$kui-line-height-50: 28px;
-/* 32px */
-$kui-line-height-60: 32px;
-/* 36px */
-$kui-line-height-70: 36px;
-/* 40px */
-$kui-line-height-80: 40px;
-/* 48px */
-$kui-line-height-90: 48px;
-/* 56px */
-$kui-line-height-100: 56px;
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-$kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-/* 0px 0px 0px 1px gray.20 inset */
-$kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px red.60 inset */
-$kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
-/* 0px 0px 0px 1px red.70 inset */
-$kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
-/* 0px 0px 0px 1px gray.20 inset */
-$kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px blue.60 inset */
-$kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
-/* 0px 0px 0px 1px blue.90 inset */
-$kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
-/* 0px 0px 0px 1px blue.40 inset */
-$kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-$kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px value for gaps, margin, or padding. */
-$kui-space-0: 0px;
-/* 2px value for gaps, margin, or padding. */
-$kui-space-10: 2px;
-/* 4px value for gaps, margin, or padding. */
-$kui-space-20: 4px;
-/* 6px value for gaps, margin, or padding. */
-$kui-space-30: 6px;
-/* 8px value for gaps, margin, or padding. */
-$kui-space-40: 8px;
-/* 12px value for gaps, margin, or padding. */
-$kui-space-50: 12px;
-/* 16px value for gaps, margin, or padding. */
-$kui-space-60: 16px;
-/* 20px value for gaps, margin, or padding. */
-$kui-space-70: 20px;
-/* 24px value for gaps, margin, or padding. */
-$kui-space-80: 24px;
-/* 32px value for gaps, margin, or padding. */
-$kui-space-90: 32px;
-/* 40px value for gaps, margin, or padding. */
-$kui-space-100: 40px;
-/* 48px value for gaps, margin, or padding. */
-$kui-space-110: 48px;
-/* 56px value for gaps, margin, or padding. */
-$kui-space-120: 56px;
-/* 64px value for gaps, margin, or padding. */
-$kui-space-130: 64px;
-/* 80px value for gaps, margin, or padding. */
-$kui-space-140: 80px;
-/* 96px value for gaps, margin, or padding. */
-$kui-space-150: 96px;
-/* auto */
-$kui-space-auto: auto;
+$kui-color-background: ;
+$kui-color-background-danger: ;
+$kui-color-background-danger-strong: ;
+$kui-color-background-danger-stronger: ;
+$kui-color-background-danger-strongest: ;
+$kui-color-background-danger-weak: ;
+$kui-color-background-danger-weaker: ;
+$kui-color-background-danger-weakest: ;
+$kui-color-background-decorative-aqua-weakest: ;
+$kui-color-background-decorative-purple: ;
+$kui-color-background-decorative-purple-weakest: ;
+$kui-color-background-disabled: ;
+$kui-color-background-info: ;
+$kui-color-background-info-strong: ;
+$kui-color-background-info-stronger: ;
+$kui-color-background-info-strongest: ;
+$kui-color-background-info-weak: ;
+$kui-color-background-info-weaker: ;
+$kui-color-background-info-weakest: ;
+$kui-color-background-inverse: ;
+$kui-color-background-neutral: ;
+$kui-color-background-neutral-strong: ;
+$kui-color-background-neutral-stronger: ;
+$kui-color-background-neutral-strongest: ;
+$kui-color-background-neutral-weak: ;
+$kui-color-background-neutral-weaker: ;
+$kui-color-background-neutral-weakest: ;
+$kui-color-background-overlay: ;
+$kui-color-background-primary: ;
+$kui-color-background-primary-strong: ;
+$kui-color-background-primary-stronger: ;
+$kui-color-background-primary-strongest: ;
+$kui-color-background-primary-weak: ;
+$kui-color-background-primary-weaker: ;
+$kui-color-background-primary-weakest: ;
+$kui-color-background-success: ;
+$kui-color-background-success-strong: ;
+$kui-color-background-success-stronger: ;
+$kui-color-background-success-strongest: ;
+$kui-color-background-success-weak: ;
+$kui-color-background-success-weaker: ;
+$kui-color-background-success-weakest: ;
+$kui-color-background-transparent: ;
+$kui-color-background-warning: ;
+$kui-color-background-warning-strong: ;
+$kui-color-background-warning-stronger: ;
+$kui-color-background-warning-strongest: ;
+$kui-color-background-warning-weak: ;
+$kui-color-background-warning-weaker: ;
+$kui-color-background-warning-weakest: ;
+$kui-color-border: ;
+$kui-color-border-danger: ;
+$kui-color-border-danger-strong: ;
+$kui-color-border-danger-stronger: ;
+$kui-color-border-danger-strongest: ;
+$kui-color-border-danger-weak: ;
+$kui-color-border-danger-weaker: ;
+$kui-color-border-danger-weakest: ;
+$kui-color-border-decorative-purple: ;
+$kui-color-border-disabled: ;
+$kui-color-border-inverse: ;
+$kui-color-border-neutral: ;
+$kui-color-border-neutral-strong: ;
+$kui-color-border-neutral-stronger: ;
+$kui-color-border-neutral-strongest: ;
+$kui-color-border-neutral-weak: ;
+$kui-color-border-neutral-weaker: ;
+$kui-color-border-neutral-weakest: ;
+$kui-color-border-primary: ;
+$kui-color-border-primary-strong: ;
+$kui-color-border-primary-stronger: ;
+$kui-color-border-primary-strongest: ;
+$kui-color-border-primary-weak: ;
+$kui-color-border-primary-weaker: ;
+$kui-color-border-primary-weakest: ;
+$kui-color-border-transparent: ;
+$kui-color-text: ;
+$kui-color-text-danger: ;
+$kui-color-text-danger-strong: ;
+$kui-color-text-danger-stronger: ;
+$kui-color-text-danger-strongest: ;
+$kui-color-text-danger-weak: ;
+$kui-color-text-danger-weaker: ;
+$kui-color-text-danger-weakest: ;
+$kui-color-text-decorative-aqua: ;
+$kui-color-text-decorative-pink: ;
+$kui-color-text-decorative-purple: ;
+$kui-color-text-decorative-purple-strong: ;
+$kui-color-text-disabled: ;
+$kui-color-text-info: ;
+$kui-color-text-info-strong: ;
+$kui-color-text-info-stronger: ;
+$kui-color-text-info-strongest: ;
+$kui-color-text-info-weak: ;
+$kui-color-text-info-weaker: ;
+$kui-color-text-info-weakest: ;
+$kui-color-text-inverse: ;
+$kui-color-text-neutral: ;
+$kui-color-text-neutral-strong: ;
+$kui-color-text-neutral-stronger: ;
+$kui-color-text-neutral-strongest: ;
+$kui-color-text-neutral-weak: ;
+$kui-color-text-neutral-weaker: ;
+$kui-color-text-neutral-weakest: ;
+$kui-color-text-primary: ;
+$kui-color-text-primary-strong: ;
+$kui-color-text-primary-stronger: ;
+$kui-color-text-primary-strongest: ;
+$kui-color-text-primary-weak: ;
+$kui-color-text-primary-weaker: ;
+$kui-color-text-primary-weakest: ;
+$kui-color-text-success: ;
+$kui-color-text-success-strong: ;
+$kui-color-text-success-stronger: ;
+$kui-color-text-success-strongest: ;
+$kui-color-text-success-weak: ;
+$kui-color-text-success-weaker: ;
+$kui-color-text-success-weakest: ;
+$kui-color-text-warning: ;
+$kui-color-text-warning-strong: ;
+$kui-color-text-warning-stronger: ;
+$kui-color-text-warning-strongest: ;
+$kui-color-text-warning-weak: ;
+$kui-color-text-warning-weaker: ;
+$kui-color-text-warning-weakest: ;
+$kui-animation-duration-20: ;
+$kui-border-radius-0: ;
+$kui-border-radius-10: ;
+$kui-border-radius-20: ;
+$kui-border-radius-30: ;
+$kui-border-radius-40: ;
+$kui-border-radius-50: ;
+$kui-border-radius-circle: ;
+$kui-border-radius-round: ;
+$kui-border-width-0: ;
+$kui-border-width-10: ;
+$kui-border-width-20: ;
+$kui-border-width-30: ;
+$kui-breakpoint-mobile: ;
+$kui-breakpoint-phablet: ;
+$kui-breakpoint-tablet: ;
+$kui-breakpoint-laptop: ;
+$kui-breakpoint-desktop: ;
+$kui-icon-color-danger: ;
+$kui-icon-color-neutral: ;
+$kui-icon-color-primary: ;
+$kui-icon-color-success: ;
+$kui-icon-color-warning: ;
+$kui-icon-size-10: ;
+$kui-icon-size-20: ;
+$kui-icon-size-30: ;
+$kui-icon-size-40: ;
+$kui-icon-size-50: ;
+$kui-icon-size-60: ;
+$kui-icon-size-70: ;
+$kui-icon-size-80: ;
+$kui-method-color-background-connect: ;
+$kui-method-color-background-delete: ;
+$kui-method-color-background-get: ;
+$kui-method-color-background-head: ;
+$kui-method-color-background-options: ;
+$kui-method-color-background-patch: ;
+$kui-method-color-background-post: ;
+$kui-method-color-background-put: ;
+$kui-method-color-background-trace: ;
+$kui-method-color-text-connect: ;
+$kui-method-color-text-connect-strong: ;
+$kui-method-color-text-delete: ;
+$kui-method-color-text-delete-strong: ;
+$kui-method-color-text-get: ;
+$kui-method-color-text-get-strong: ;
+$kui-method-color-text-head: ;
+$kui-method-color-text-head-strong: ;
+$kui-method-color-text-options: ;
+$kui-method-color-text-options-strong: ;
+$kui-method-color-text-patch: ;
+$kui-method-color-text-patch-strong: ;
+$kui-method-color-text-post: ;
+$kui-method-color-text-post-strong: ;
+$kui-method-color-text-put: ;
+$kui-method-color-text-put-strong: ;
+$kui-method-color-text-trace: ;
+$kui-method-color-text-trace-strong: ;
+$kui-navigation-color-background: ;
+$kui-navigation-color-background-selected: ;
+$kui-navigation-color-border: ;
+$kui-navigation-color-border-child: ;
+$kui-navigation-color-border-divider: ;
+$kui-navigation-color-text: ;
+$kui-navigation-color-text-focus: ;
+$kui-navigation-color-text-hover: ;
+$kui-navigation-color-text-selected: ;
+$kui-navigation-shadow-border: ;
+$kui-navigation-shadow-border-child: ;
+$kui-navigation-shadow-focus: ;
+$kui-status-color-100: ;
+$kui-status-color-101: ;
+$kui-status-color-102: ;
+$kui-status-color-103: ;
+$kui-status-color-200: ;
+$kui-status-color-201: ;
+$kui-status-color-202: ;
+$kui-status-color-203: ;
+$kui-status-color-204: ;
+$kui-status-color-205: ;
+$kui-status-color-206: ;
+$kui-status-color-207: ;
+$kui-status-color-208: ;
+$kui-status-color-226: ;
+$kui-status-color-300: ;
+$kui-status-color-301: ;
+$kui-status-color-302: ;
+$kui-status-color-303: ;
+$kui-status-color-304: ;
+$kui-status-color-305: ;
+$kui-status-color-307: ;
+$kui-status-color-308: ;
+$kui-status-color-400: ;
+$kui-status-color-401: ;
+$kui-status-color-402: ;
+$kui-status-color-403: ;
+$kui-status-color-404: ;
+$kui-status-color-405: ;
+$kui-status-color-406: ;
+$kui-status-color-407: ;
+$kui-status-color-408: ;
+$kui-status-color-409: ;
+$kui-status-color-410: ;
+$kui-status-color-411: ;
+$kui-status-color-412: ;
+$kui-status-color-413: ;
+$kui-status-color-414: ;
+$kui-status-color-415: ;
+$kui-status-color-416: ;
+$kui-status-color-417: ;
+$kui-status-color-418: ;
+$kui-status-color-421: ;
+$kui-status-color-422: ;
+$kui-status-color-423: ;
+$kui-status-color-424: ;
+$kui-status-color-425: ;
+$kui-status-color-426: ;
+$kui-status-color-428: ;
+$kui-status-color-429: ;
+$kui-status-color-431: ;
+$kui-status-color-451: ;
+$kui-status-color-500: ;
+$kui-status-color-501: ;
+$kui-status-color-502: ;
+$kui-status-color-503: ;
+$kui-status-color-504: ;
+$kui-status-color-505: ;
+$kui-status-color-506: ;
+$kui-status-color-507: ;
+$kui-status-color-508: ;
+$kui-status-color-510: ;
+$kui-status-color-511: ;
+$kui-status-color-1na: ;
+$kui-status-color-2na: ;
+$kui-status-color-3na: ;
+$kui-status-color-4na: ;
+$kui-status-color-5na: ;
+$kui-status-color-100s: ;
+$kui-status-color-200s: ;
+$kui-status-color-300s: ;
+$kui-status-color-400s: ;
+$kui-status-color-500s: ;
+$kui-status-color-background-100: ;
+$kui-status-color-background-200: ;
+$kui-status-color-background-300: ;
+$kui-status-color-background-400: ;
+$kui-status-color-background-500: ;
+$kui-status-color-text-100: ;
+$kui-status-color-text-200: ;
+$kui-status-color-text-300: ;
+$kui-status-color-text-400: ;
+$kui-status-color-text-500: ;
+$kui-font-family-code: ;
+$kui-font-family-heading: ;
+$kui-font-family-text: ;
+$kui-font-size-10: ;
+$kui-font-size-20: ;
+$kui-font-size-30: ;
+$kui-font-size-40: ;
+$kui-font-size-50: ;
+$kui-font-size-60: ;
+$kui-font-size-70: ;
+$kui-font-size-80: ;
+$kui-font-size-90: ;
+$kui-font-size-100: ;
+$kui-font-weight-bold: ;
+$kui-font-weight-medium: ;
+$kui-font-weight-regular: ;
+$kui-font-weight-semibold: ;
+$kui-letter-spacing-0: ;
+$kui-letter-spacing-minus-10: ;
+$kui-letter-spacing-minus-20: ;
+$kui-letter-spacing-minus-30: ;
+$kui-letter-spacing-minus-40: ;
+$kui-letter-spacing-minus-50: ;
+$kui-letter-spacing-normal: ;
+$kui-line-height-10: ;
+$kui-line-height-20: ;
+$kui-line-height-30: ;
+$kui-line-height-40: ;
+$kui-line-height-50: ;
+$kui-line-height-60: ;
+$kui-line-height-70: ;
+$kui-line-height-80: ;
+$kui-line-height-90: ;
+$kui-line-height-100: ;
+$kui-shadow: ;
+$kui-shadow-border: ;
+$kui-shadow-border-danger: ;
+$kui-shadow-border-danger-strong: ;
+$kui-shadow-border-disabled: ;
+$kui-shadow-border-primary: ;
+$kui-shadow-border-primary-strongest: ;
+$kui-shadow-border-primary-weak: ;
+$kui-shadow-focus: ;
+$kui-space-0: ;
+$kui-space-10: ;
+$kui-space-20: ;
+$kui-space-30: ;
+$kui-space-40: ;
+$kui-space-50: ;
+$kui-space-60: ;
+$kui-space-70: ;
+$kui-space-80: ;
+$kui-space-90: ;
+$kui-space-100: ;
+$kui-space-110: ;
+$kui-space-120: ;
+$kui-space-130: ;
+$kui-space-140: ;
+$kui-space-150: ;
+$kui-space-auto: ;
 ```
 
 </details>
@@ -694,670 +367,343 @@ $kui-space-auto: auto;
 
 ```scss
 $tokens-map: (
-  /* Default background color for containers (white). */
-  'kui-color-background': #ffffff;
-  /* Background color for danger actions or messages (red.60). */
-  'kui-color-background-danger': #d60027;
-  /* Strong background color for danger actions or messages (red.70). */
-  'kui-color-background-danger-strong': #ad000e;
-  /* Stronger background color for danger actions or messages (red.80). */
-  'kui-color-background-danger-stronger': #850000;
-  /* Strongest background color for danger actions or messages (red.90). */
-  'kui-color-background-danger-strongest': #5c0000;
-  /* Weak background color for danger actions or messages (red.40). */
-  'kui-color-background-danger-weak': #ff3954;
-  /* Weaker background color for danger actions or messages (red.20). */
-  'kui-color-background-danger-weaker': #ffabab;
-  /* Weakest background color for danger actions or messages (red.10). */
-  'kui-color-background-danger-weakest': #ffe5e5;
-  /* Weakest background color for decorative purposes (aqua.10). */
-  'kui-color-background-decorative-aqua-weakest': #ecfcff;
-  /* Background color for decorative purposes (purple.60). */
-  'kui-color-background-decorative-purple': #6f28ff;
-  /* Weakest background color for decorative purposes (purple.10). */
-  'kui-color-background-decorative-purple-weakest': #f1f0ff;
-  /* Background color for disabled elements (gray.20). */
-  'kui-color-background-disabled': #e0e4ea;
-  /* Background color for info elements (blue.60). */
-  'kui-color-background-info': #0044f4;
-  /* Strong background color for info elements (blue.70). */
-  'kui-color-background-info-strong': #0030cc;
-  /* Stronger background color for info elements (blue.80). */
-  'kui-color-background-info-stronger': #002099;
-  /* Strongest background color for info elements (blue.90). */
-  'kui-color-background-info-strongest': #001466;
-  /* Weak background color for info elements (blue.40). */
-  'kui-color-background-info-weak': #5f9aff;
-  /* Weaker background color for info elements (blue.20). */
-  'kui-color-background-info-weaker': #bee2ff;
-  /* Weakest background color for info elements (blue.10). */
-  'kui-color-background-info-weakest': #eefaff;
-  /* Inverse background color for containers (blue.100) */
-  'kui-color-background-inverse': #000933;
-  /* Background color for neutral elements (gray.60). */
-  'kui-color-background-neutral': #6c7489;
-  /* Strong background color for neutral elements (gray.70). */
-  'kui-color-background-neutral-strong': #52596e;
-  /* Stronger background color for neutral elements (gray.80). */
-  'kui-color-background-neutral-stronger': #3a3f51;
-  /* Strongest background color for neutral elements (gray.90). */
-  'kui-color-background-neutral-strongest': #232633;
-  /* Weak background color for neutral elements (gray.40). */
-  'kui-color-background-neutral-weak': #afb7c5;
-  /* Weaker background color for neutral elements (gray.20). */
-  'kui-color-background-neutral-weaker': #e0e4ea;
-  /* Weakest background color for neutral elements (gray.10). */
-  'kui-color-background-neutral-weakest': #f9fafb;
-  /* Overlay background color (rgba(blue.100, 0.6)) */
-  'kui-color-background-overlay': rgba(0, 9, 51, 0.6);
-  /* Background color for primary actions or messages (blue.60). */
-  'kui-color-background-primary': #0044f4;
-  /* Strong background color for primary actions or messages (blue.70). */
-  'kui-color-background-primary-strong': #0030cc;
-  /* Stronger background color for primary actions or messages (blue.80). */
-  'kui-color-background-primary-stronger': #002099;
-  /* Strongest background color for primary actions or messages (blue.90). */
-  'kui-color-background-primary-strongest': #001466;
-  /* Weak background color for primary actions or messages (blue.40). */
-  'kui-color-background-primary-weak': #5f9aff;
-  /* Weaker background color for primary actions or messages (blue.20). */
-  'kui-color-background-primary-weaker': #bee2ff;
-  /* Weakest background color for primary actions or messages (blue.10) */
-  'kui-color-background-primary-weakest': #eefaff;
-  /* Background color for success elements (green.60). */
-  'kui-color-background-success': #007d60;
-  /* Strong background color for success elements (green.70). */
-  'kui-color-background-success-strong': #005944;
-  /* Stronger background color for success elements (green.80). */
-  'kui-color-background-success-stronger': #004737;
-  /* Strongest background color for success elements (green.90). */
-  'kui-color-background-success-strongest': #003629;
-  /* Weak background color for success elements (green.40). */
-  'kui-color-background-success-weak': #00d6a4;
-  /* Weaker background color for success elements (green.20). */
-  'kui-color-background-success-weaker': #b5ffee;
-  /* Weakest background color for success elements (green.10). */
-  'kui-color-background-success-weakest': #ecfffb;
-  /* Transparent background color (transparent). */
-  'kui-color-background-transparent': transparent;
-  /* Background color for warning elements (yellow.60). */
-  'kui-color-background-warning': #995c00;
-  /* Strong background color for warning elements (yellow.70). */
-  'kui-color-background-warning-strong': #804400;
-  /* Stronger background color for warning elements (yellow.80). */
-  'kui-color-background-warning-stronger': #662d00;
-  /* Strongest background color for warning elements (yellow.90). */
-  'kui-color-background-warning-strongest': #4d1b00;
-  /* Weak background color for warning elements (yellow.40). */
-  'kui-color-background-warning-weak': #ffc400;
-  /* Weaker background color for warning elements (yellow.20). */
-  'kui-color-background-warning-weaker': #fff296;
-  /* Weakest background color for warning elements (yellow.10). */
-  'kui-color-background-warning-weakest': #fffce0;
-  /* Default border color for containers (gray.20). */
-  'kui-color-border': #e0e4ea;
-  /* Border color for danger actions or messages (red.60). */
-  'kui-color-border-danger': #d60027;
-  /* Strong border color for danger actions or messages (red.70). */
-  'kui-color-border-danger-strong': #ad000e;
-  /* Stronger border color for danger actions or messages (red.80). */
-  'kui-color-border-danger-stronger': #850000;
-  /* Strongest border color for danger actions or messages (red.90). */
-  'kui-color-border-danger-strongest': #5c0000;
-  /* Weak border color for danger actions or messages (red.40). */
-  'kui-color-border-danger-weak': #ff3954;
-  /* Weaker border color for danger actions or messages (red.20). */
-  'kui-color-border-danger-weaker': #ffabab;
-  /* Weakest border color for danger actions or messages (red.10). */
-  'kui-color-border-danger-weakest': #ffe5e5;
-  /* Border color for decorative purposes (purple.60). */
-  'kui-color-border-decorative-purple': #6f28ff;
-  /* Border color for disabled elements (gray.20). */
-  'kui-color-border-disabled': #e0e4ea;
-  /* Inverse border color (rgba(white, 0.2)). */
-  'kui-color-border-inverse': rgba(255, 255, 255, 0.2);
-  /* Border color for neutral elements (gray.60) */
-  'kui-color-border-neutral': #6c7489;
-  /* Strong border color for neutral elements (gray.70) */
-  'kui-color-border-neutral-strong': #52596e;
-  /* Stronger border color for neutral elements (gray.80) */
-  'kui-color-border-neutral-stronger': #3a3f51;
-  /* Strongest border color for neutral elements (gray.90) */
-  'kui-color-border-neutral-strongest': #232633;
-  /* Weak border color for neutral elements (gray.40) */
-  'kui-color-border-neutral-weak': #afb7c5;
-  /* Weaker border color for neutral elements (gray.20) */
-  'kui-color-border-neutral-weaker': #e0e4ea;
-  /* Weakest border color for neutral elements (gray.10) */
-  'kui-color-border-neutral-weakest': #f9fafb;
-  /* Border color for primary actions or messages (blue.60). */
-  'kui-color-border-primary': #0044f4;
-  /* Strong border color for primary actions or messages (blue.70). */
-  'kui-color-border-primary-strong': #0030cc;
-  /* Stronger border color for primary actions or messages (blue.80). */
-  'kui-color-border-primary-stronger': #002099;
-  /* Strongest border color for primary actions or messages (blue.90). */
-  'kui-color-border-primary-strongest': #001466;
-  /* Weak border color for primary actions or messages (blue.40). */
-  'kui-color-border-primary-weak': #5f9aff;
-  /* Weaker border color for primary actions or messages (blue.20). */
-  'kui-color-border-primary-weaker': #bee2ff;
-  /* Weakest border color for primary actions or messages (blue.10). */
-  'kui-color-border-primary-weakest': #eefaff;
-  /* Transparent border color (transparent). */
-  'kui-color-border-transparent': transparent;
-  /* Default text color (blue.100). */
-  'kui-color-text': #000933;
-  /* Text color for danger actions or messages (red.60). */
-  'kui-color-text-danger': #d60027;
-  /* Strong text color for danger actions or messages (red.70). */
-  'kui-color-text-danger-strong': #ad000e;
-  /* Stronger text color for danger actions or messages (red.80). */
-  'kui-color-text-danger-stronger': #850000;
-  /* Strongest text color for danger actions or messages (red.90). */
-  'kui-color-text-danger-strongest': #5c0000;
-  /* Weak text color for danger actions or messages (red.40). */
-  'kui-color-text-danger-weak': #ff3954;
-  /* Weaker text color for danger actions or messages (red.20). */
-  'kui-color-text-danger-weaker': #ffabab;
-  /* Weakest text color for danger actions or messages (red.10). */
-  'kui-color-text-danger-weakest': #ffe5e5;
-  /* Text color for decorative purposes (aqua.50). */
-  'kui-color-text-decorative-aqua': #00abd2;
-  /* Text color for decorative purposes (pink.60). */
-  'kui-color-text-decorative-pink': #d60067;
-  /* Text color for decorative purposes (purple.60). */
-  'kui-color-text-decorative-purple': #6f28ff;
-  /* Strong text color for decorative purposes (purple.70). */
-  'kui-color-text-decorative-purple-strong': #5e00f5;
-  /* Text color for disabled elements (gray.40). */
-  'kui-color-text-disabled': #afb7c5;
-  /* Text color for info elements (blue.60). */
-  'kui-color-text-info': #0044f4;
-  /* Strong text color for info elements (blue.70). */
-  'kui-color-text-info-strong': #0030cc;
-  /* Stronger text color for info elements (blue.80). */
-  'kui-color-text-info-stronger': #002099;
-  /* Strongest text color for info elements (blue.90). */
-  'kui-color-text-info-strongest': #001466;
-  /* Weak text color for info elements (blue.40). */
-  'kui-color-text-info-weak': #5f9aff;
-  /* Weaker text color for info elements (blue.20). */
-  'kui-color-text-info-weaker': #bee2ff;
-  /* Weakest text color for info elements (blue.10). */
-  'kui-color-text-info-weakest': #eefaff;
-  /* Inverse text color (white). */
-  'kui-color-text-inverse': #ffffff;
-  /* Text color for neutral elements (gray.60). */
-  'kui-color-text-neutral': #6c7489;
-  /* Strong text color for neutral elements (gray.70). */
-  'kui-color-text-neutral-strong': #52596e;
-  /* Stronger text color for neutral elements (gray.80). */
-  'kui-color-text-neutral-stronger': #3a3f51;
-  /* Strongest text color for neutral elements (gray.90). */
-  'kui-color-text-neutral-strongest': #232633;
-  /* Weak text color for neutral elements (gray.40). */
-  'kui-color-text-neutral-weak': #afb7c5;
-  /* Weaker text color for neutral elements (gray.20). */
-  'kui-color-text-neutral-weaker': #e0e4ea;
-  /* Weakest text color for neutral elements (gray.10). */
-  'kui-color-text-neutral-weakest': #f9fafb;
-  /* Text color for primary actions or messages (blue.60). */
-  'kui-color-text-primary': #0044f4;
-  /* Strong text color for primary actions or messages (blue.70). */
-  'kui-color-text-primary-strong': #0030cc;
-  /* Stronger text color for primary actions or messages (blue.80). */
-  'kui-color-text-primary-stronger': #002099;
-  /* Strongest text color for primary actions or messages (blue.90). */
-  'kui-color-text-primary-strongest': #001466;
-  /* Weak text color for primary actions or messages (blue.40). */
-  'kui-color-text-primary-weak': #5f9aff;
-  /* Weaker text color for primary actions or messages (blue.20). */
-  'kui-color-text-primary-weaker': #bee2ff;
-  /* Weakest text color for primary actions or messages (blue.10). */
-  'kui-color-text-primary-weakest': #eefaff;
-  /* Text color for success elements (green.60). */
-  'kui-color-text-success': #007d60;
-  /* Strong text color for success elements (green.70). */
-  'kui-color-text-success-strong': #005944;
-  /* Stronger text color for success elements (green.80). */
-  'kui-color-text-success-stronger': #004737;
-  /* Stronger text color for success elements (green.90). */
-  'kui-color-text-success-strongest': #003629;
-  /* Weak text color for success elements (green.40). */
-  'kui-color-text-success-weak': #00d6a4;
-  /* Weaker text color for success elements (green.20). */
-  'kui-color-text-success-weaker': #b5ffee;
-  /* Weakest text color for success elements (green.10). */
-  'kui-color-text-success-weakest': #ecfffb;
-  /* Text color for warning elements (yellow.60). */
-  'kui-color-text-warning': #995c00;
-  /* Strong text color for warning elements (yellow.70). */
-  'kui-color-text-warning-strong': #804400;
-  /* Stronger text color for warning elements (yellow.80). */
-  'kui-color-text-warning-stronger': #662d00;
-  /* Strongest text color for warning elements (yellow.90). */
-  'kui-color-text-warning-strongest': #4d1b00;
-  /* Weak text color for warning elements (yellow.40). */
-  'kui-color-text-warning-weak': #ffc400;
-  /* Weaker text color for warning elements (yellow.20). */
-  'kui-color-text-warning-weaker': #fff296;
-  /* Weakest text color for warning elements (yellow.10). */
-  'kui-color-text-warning-weakest': #fffce0;
-  /* Default transition timing */
-  'kui-animation-duration-20': 0.2s;
-  /* 0px border radius. */
-  'kui-border-radius-0': 0px;
-  /* 2px border radius. */
-  'kui-border-radius-10': 2px;
-  /* 4px border radius. */
-  'kui-border-radius-20': 4px;
-  /* 6px border radius. */
-  'kui-border-radius-30': 6px;
-  /* 8px border radius. */
-  'kui-border-radius-40': 8px;
-  /* 10px border radius. */
-  'kui-border-radius-50': 10px;
-  /* 50% border radius used to create circles. */
-  'kui-border-radius-circle': 50%;
-  /* 100px border radius used to create pill shapes. */
-  'kui-border-radius-round': 100px;
-  /* 0px border width. */
-  'kui-border-width-0': 0px;
-  /* 1px border width. */
-  'kui-border-width-10': 1px;
-  /* 2px border width. */
-  'kui-border-width-20': 2px;
-  /* 4px border width. */
-  'kui-border-width-30': 4px;
-  /* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
-  'kui-breakpoint-mobile': 640px;
-  /* Used for tablet screens. */
-  'kui-breakpoint-phablet': 768px;
-  /* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
-  'kui-breakpoint-tablet': 1024px;
-  /* Used for standard desktop screens. */
-  'kui-breakpoint-laptop': 1280px;
-  /* Used for larger desktop screens. */
-  'kui-breakpoint-desktop': 1536px;
-  /* Danger color for icons. */
-  'kui-icon-color-danger': #f50045;
-  /* Neutral color for icons. */
-  'kui-icon-color-neutral': #828a9e;
-  /* Primary color for icons. */
-  'kui-icon-color-primary': #306fff;
-  /* Success color for icons. */
-  'kui-icon-color-success': #00a17b;
-  /* Warning color for icons. */
-  'kui-icon-color-warning': #ffc400;
-  /* 10px icon size. */
-  'kui-icon-size-10': 10px;
-  /* 12px icon size. */
-  'kui-icon-size-20': 12px;
-  /* 16px icon size. */
-  'kui-icon-size-30': 16px;
-  /* 20px icon size. */
-  'kui-icon-size-40': 20px;
-  /* 24px icon size (default). */
-  'kui-icon-size-50': 24px;
-  /* 32px icon size. */
-  'kui-icon-size-60': 32px;
-  /* 40px icon size. */
-  'kui-icon-size-70': 40px;
-  /* 48px icon size. */
-  'kui-icon-size-80': 48px;
-  /* Background color for the CONNECT method (purple.10). */
-  'kui-method-color-background-connect': #f1f0ff;
-  /* Background color for the DELETE method (red.10). */
-  'kui-method-color-background-delete': #ffe5e5;
-  /* Background color for the GET method (blue.10). */
-  'kui-method-color-background-get': #eefaff;
-  /* Background color for the HEAD method (gray.70). */
-  'kui-method-color-background-head': #52596e;
-  /* Background color for the OPTIONS method (gray.20). */
-  'kui-method-color-background-options': #e0e4ea;
-  /* Background color for the PATCH method (aqua.10). */
-  'kui-method-color-background-patch': #ecfcff;
-  /* Background color for the POST method (green.10). */
-  'kui-method-color-background-post': #ecfffb;
-  /* Background color for the PUT method (yellow.10). */
-  'kui-method-color-background-put': #fffce0;
-  /* Background color for the TRACE method (pink.10). */
-  'kui-method-color-background-trace': #fff0f7;
-  /* Text color for the CONNECT method (purple.60). */
-  'kui-method-color-text-connect': #6f28ff;
-  /* Strong text color for the CONNECT method (purple.70). */
-  'kui-method-color-text-connect-strong': #5e00f5;
-  /* Text color for the DELETE method (red.60). */
-  'kui-method-color-text-delete': #d60027;
-  /* Strong text color for the DELETE method (red.70). */
-  'kui-method-color-text-delete-strong': #ad000e;
-  /* Text color for the GET method (blue.60). */
-  'kui-method-color-text-get': #0044f4;
-  /* Strong text color for the GET method (blue.70). */
-  'kui-method-color-text-get-strong': #0030cc;
-  /* Text color for the HEAD method (gray.20). */
-  'kui-method-color-text-head': #e0e4ea;
-  /* Strong text color for the HEAD method (gray.40). */
-  'kui-method-color-text-head-strong': #afb7c5;
-  /* Text color for the OPTIONS method (gray.70). */
-  'kui-method-color-text-options': #52596e;
-  /* Strong text color for the OPTIONS method (gray.80). */
-  'kui-method-color-text-options-strong': #3a3f51;
-  /* Text color for the PATCH method (aqua.60). */
-  'kui-method-color-text-patch': #00819d;
-  /* Strong text color for the PATCH method (aqua.70). */
-  'kui-method-color-text-patch-strong': #00647a;
-  /* Text color for the POST method (green.60). */
-  'kui-method-color-text-post': #007d60;
-  /* Strong text color for the POST method (green.70). */
-  'kui-method-color-text-post-strong': #005944;
-  /* Text color for the PUT method (yellow.60). */
-  'kui-method-color-text-put': #995c00;
-  /* Strong text color for the PUT method (yellow.70). */
-  'kui-method-color-text-put-strong': #804400;
-  /* Text color for the TRACE method (pink.60). */
-  'kui-method-color-text-trace': #d60067;
-  /* Strong text color for the TRACE method (pink.70). */
-  'kui-method-color-text-trace-strong': #ad0053;
-  /* blue.100 */
-  'kui-navigation-color-background': #000933;
-  /* The background color of a selected navigation item. */
-  'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12);
-  /* rgba(white, 0.12) */
-  'kui-navigation-color-border': rgba(255, 255, 255, 0.12);
-  /* The border color for a selected child navigation item. */
-  'kui-navigation-color-border-child': #00fabe;
-  /* The color of the navigation section divider. */
-  'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24);
-  /* Navigation link and icon color. */
-  'kui-navigation-color-text': #bee2ff;
-  /* Navigation link and icon focus-visible color. */
-  'kui-navigation-color-text-focus': #ffffff;
-  /* Navigation link and icon hover color. */
-  'kui-navigation-color-text-hover': #eefaff;
-  /* Navigation link and icon selected color. */
-  'kui-navigation-color-text-selected': #00fabe;
-  /* The box-shadow for a focus-visible navigation link. */
-  'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-  /* The left box-shadow for an active child navigation link. */
-  'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset;
-  /* Navigation link focus-visible box-shadow. */
-  'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-  /* Color representing response status code 100 (blue.20). */
-  'kui-status-color-100': #bee2ff;
-  /* Color representing response status code 101 (blue.30). */
-  'kui-status-color-101': #8fc1ff;
-  /* Color representing response status code 102 (blue.40). */
-  'kui-status-color-102': #5f9aff;
-  /* Color representing response status code 103 (blue.50). */
-  'kui-status-color-103': #306fff;
-  /* Color representing response status code 200 (green.20). */
-  'kui-status-color-200': #b5ffee;
-  /* Color representing response status code 201 (green.30). */
-  'kui-status-color-201': #00fabe;
-  /* Color representing response status code 202 (green.40). */
-  'kui-status-color-202': #00d6a4;
-  /* Color representing response status code 203 (green.50). */
-  'kui-status-color-203': #00a17b;
-  /* Color representing response status code 204 (green.60). */
-  'kui-status-color-204': #007d60;
-  /* Color representing response status code 205 (green.70). */
-  'kui-status-color-205': #005944;
-  /* Color representing response status code 206 (green.20). */
-  'kui-status-color-206': #b5ffee;
-  /* Color representing response status code 207 (green.30). */
-  'kui-status-color-207': #00fabe;
-  /* Color representing response status code 208 (green.40). */
-  'kui-status-color-208': #b5ffee;
-  /* Color representing response status code 226 (green.50). */
-  'kui-status-color-226': #00a17b;
-  /* Color representing response status code 100 (yellow.20). */
-  'kui-status-color-300': #fff296;
-  /* Color representing response status code 101 (yellow.30). */
-  'kui-status-color-301': #ffe04b;
-  /* Color representing response status code 102 (yellow.40). */
-  'kui-status-color-302': #ffc400;
-  /* Color representing response status code 103 (yellow.50). */
-  'kui-status-color-303': #b37600;
-  /* Color representing response status code 103 (yellow.60). */
-  'kui-status-color-304': #995c00;
-  /* Color representing response status code 103 (yellow.70). */
-  'kui-status-color-305': #804400;
-  /* Color representing response status code 103 (yellow.20). */
-  'kui-status-color-307': #fff296;
-  /* Color representing response status code 103 (yellow.30). */
-  'kui-status-color-308': #ffe04b;
-  /* Color representing response status code 400 (orange.20). */
-  'kui-status-color-400': #FFC2B3;
-  /* Color representing response status code 401 (orange.30). */
-  'kui-status-color-401': #FF9877;
-  /* Color representing response status code 402 (orange.40). */
-  'kui-status-color-402': #FF723C;
-  /* Color representing response status code 403 (orange.50). */
-  'kui-status-color-403': #F75008;
-  /* Color representing response status code 404 (orange.60). */
-  'kui-status-color-404': #D13500;
-  /* Color representing response status code 405 (orange.70). */
-  'kui-status-color-405': #A31F00;
-  /* Color representing response status code 406 (orange.20). */
-  'kui-status-color-406': #FFC2B3;
-  /* Color representing response status code 407 (orange.30). */
-  'kui-status-color-407': #FF9877;
-  /* Color representing response status code 408 (orange.40). */
-  'kui-status-color-408': #FF723C;
-  /* Color representing response status code 409 (orange.50). */
-  'kui-status-color-409': #F75008;
-  /* Color representing response status code 410 (orange.60). */
-  'kui-status-color-410': #D13500;
-  /* Color representing response status code 411 (orange.70). */
-  'kui-status-color-411': #A31F00;
-  /* Color representing response status code 412 (orange.20). */
-  'kui-status-color-412': #FFC2B3;
-  /* Color representing response status code 413 (orange.30). */
-  'kui-status-color-413': #FF9877;
-  /* Color representing response status code 414 (orange.40). */
-  'kui-status-color-414': #FF723C;
-  /* Color representing response status code 415 (orange.50). */
-  'kui-status-color-415': #F75008;
-  /* Color representing response status code 416 (orange.60). */
-  'kui-status-color-416': #D13500;
-  /* Color representing response status code 417 (orange.70). */
-  'kui-status-color-417': #A31F00;
-  /* Color representing response status code 418 (orange.20). */
-  'kui-status-color-418': #FFC2B3;
-  /* Color representing response status code 421 (orange.30). */
-  'kui-status-color-421': #FF9877;
-  /* Color representing response status code 422 (orange.40). */
-  'kui-status-color-422': #FF723C;
-  /* Color representing response status code 423 (orange.50). */
-  'kui-status-color-423': #F75008;
-  /* Color representing response status code 424 (orange.60). */
-  'kui-status-color-424': #D13500;
-  /* Color representing response status code 425 (orange.70). */
-  'kui-status-color-425': #A31F00;
-  /* Color representing response status code 426 (orange.20). */
-  'kui-status-color-426': #FFC2B3;
-  /* Color representing response status code 428 (orange.30). */
-  'kui-status-color-428': #FF9877;
-  /* Color representing response status code 429 (orange.40). */
-  'kui-status-color-429': #FF723C;
-  /* Color representing response status code 431 (orange.50). */
-  'kui-status-color-431': #F75008;
-  /* Color representing response status code 451 (orange.60). */
-  'kui-status-color-451': #D13500;
-  /* Color representing response status code 500 (red.20). */
-  'kui-status-color-500': #ffabab;
-  /* Color representing response status code 501 (red.30). */
-  'kui-status-color-501': #ff7272;
-  /* Color representing response status code 502 (red.40). */
-  'kui-status-color-502': #ff3954;
-  /* Color representing response status code 503 (red.50). */
-  'kui-status-color-503': #f50045;
-  /* Color representing response status code 504 (red.60). */
-  'kui-status-color-504': #d60027;
-  /* Color representing response status code 505 (red.70). */
-  'kui-status-color-505': #ad000e;
-  /* Color representing response status code 506 (red.20). */
-  'kui-status-color-506': #ffabab;
-  /* Color representing response status code 507 (red.30). */
-  'kui-status-color-507': #ff7272;
-  /* Color representing response status code 508 (red.40). */
-  'kui-status-color-508': #ff3954;
-  /* Color representing response status code 510 (red.50). */
-  'kui-status-color-510': #f50045;
-  /* Color representing response status code 511 (red.60). */
-  'kui-status-color-511': #d60027;
-  /* Color for unknown response status codes in the 100-199 range (blue.10). */
-  'kui-status-color-1na': #eefaff;
-  /* Color for unknown response status codes in the 200-299 range (green.10). */
-  'kui-status-color-2na': #ecfffb;
-  /* Color for unknown response status codes in the 300-399 range (yellow.10). */
-  'kui-status-color-3na': #fffce0;
-  /* Color for unknown response status codes in the 400-499 range (orange.10). */
-  'kui-status-color-4na': #FFF1EF;
-  /* Color for unknown response status codes in the 500-599 range (red.10). */
-  'kui-status-color-5na': #ffe5e5;
-  /* Color for a group of response status codes in the 100-199 range (blue.40). */
-  'kui-status-color-100s': #5f9aff;
-  /* Color for a group of response status codes in the 200-299 range (green.40). */
-  'kui-status-color-200s': #00d6a4;
-  /* Color for a group of response status codes in the 300-399 range (yellow.40). */
-  'kui-status-color-300s': #ffc400;
-  /* Color for a group of response status codes in the 400-499 range (orange.40). */
-  'kui-status-color-400s': #FF723C;
-  /* Color for a group of response status codes in the 500-599 range (red.40). */
-  'kui-status-color-500s': #ff3954;
-  /* Background color for http status 100 elements (blue.10). */
-  'kui-status-color-background-100': #eefaff;
-  /* Background color for http status 200 elements (green.10). */
-  'kui-status-color-background-200': #ecfffb;
-  /* Background color for http status 300 elements (yellow.10). */
-  'kui-status-color-background-300': #fffce0;
-  /* Background color for http status 400 elements (orange.10). */
-  'kui-status-color-background-400': #FFF1EF;
-  /* Background color for http status 500 elements (red.10). */
-  'kui-status-color-background-500': #ffe5e5;
-  /* Text color for http status 100 elements (blue.60). */
-  'kui-status-color-text-100': #0044f4;
-  /* Text color for http status 200 elements (green.60). */
-  'kui-status-color-text-200': #007d60;
-  /* Text color for http status 300 elements (yellow.60). */
-  'kui-status-color-text-300': #995c00;
-  /* Text color for http status 400 elements (orange.60). */
-  'kui-status-color-text-400': #D13500;
-  /* Text color for http status 500 elements (red.60). */
-  'kui-status-color-text-500': #d60027;
-  /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-  'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
-  /* The standard heading text font family. */
-  'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif;
-  /* The standard text font family. */
-  'kui-font-family-text': 'Inter', Roboto, Helvetica, sans-serif;
-  'kui-font-size-10': 10px;
-  'kui-font-size-20': 12px;
-  'kui-font-size-30': 14px;
-  'kui-font-size-40': 16px;
-  'kui-font-size-50': 18px;
-  'kui-font-size-60': 20px;
-  'kui-font-size-70': 24px;
-  'kui-font-size-80': 32px;
-  'kui-font-size-90': 40px;
-  'kui-font-size-100': 48px;
-  /* 700: The bold font weight. */
-  'kui-font-weight-bold': 700;
-  /* 500: The medium font weight. */
-  'kui-font-weight-medium': 500;
-  /* 400: The normal font weight. */
-  'kui-font-weight-regular': 400;
-  /* 600: The semibold font weight. */
-  'kui-font-weight-semibold': 600;
-  /* Alias for letter-spacing-normal */
-  'kui-letter-spacing-0': normal;
-  /* -0.12px */
-  'kui-letter-spacing-minus-10': -0.12px;
-  /* -0.24px */
-  'kui-letter-spacing-minus-20': -0.24px;
-  /* -0.32px */
-  'kui-letter-spacing-minus-30': -0.32px;
-  /* -0.4px */
-  'kui-letter-spacing-minus-40': -0.4px;
-  /* -0.48px */
-  'kui-letter-spacing-minus-50': -0.48px;
-  /* normal */
-  'kui-letter-spacing-normal': normal;
-  /* 12px */
-  'kui-line-height-10': 12px;
-  /* 16px */
-  'kui-line-height-20': 16px;
-  /* 20px */
-  'kui-line-height-30': 20px;
-  /* 24px */
-  'kui-line-height-40': 24px;
-  /* 28px */
-  'kui-line-height-50': 28px;
-  /* 32px */
-  'kui-line-height-60': 32px;
-  /* 36px */
-  'kui-line-height-70': 36px;
-  /* 40px */
-  'kui-line-height-80': 40px;
-  /* 48px */
-  'kui-line-height-90': 48px;
-  /* 56px */
-  'kui-line-height-100': 56px;
-  /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-  'kui-shadow': 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-  /* 0px 0px 0px 1px gray.20 inset */
-  'kui-shadow-border': 0px 0px 0px 1px #e0e4ea inset;
-  /* 0px 0px 0px 1px red.60 inset */
-  'kui-shadow-border-danger': 0px 0px 0px 1px #d60027 inset;
-  /* 0px 0px 0px 1px red.70 inset */
-  'kui-shadow-border-danger-strong': 0px 0px 0px 1px #ad000e inset;
-  /* 0px 0px 0px 1px gray.20 inset */
-  'kui-shadow-border-disabled': 0px 0px 0px 1px #e0e4ea inset;
-  /* 0px 0px 0px 1px blue.60 inset */
-  'kui-shadow-border-primary': 0px 0px 0px 1px #0044f4 inset;
-  /* 0px 0px 0px 1px blue.90 inset */
-  'kui-shadow-border-primary-strongest': 0px 0px 0px 1px #001466 inset;
-  /* 0px 0px 0px 1px blue.40 inset */
-  'kui-shadow-border-primary-weak': 0px 0px 0px 1px #5f9aff inset;
-  /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-  'kui-shadow-focus': 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-  /* 0px value for gaps, margin, or padding. */
-  'kui-space-0': 0px;
-  /* 2px value for gaps, margin, or padding. */
-  'kui-space-10': 2px;
-  /* 4px value for gaps, margin, or padding. */
-  'kui-space-20': 4px;
-  /* 6px value for gaps, margin, or padding. */
-  'kui-space-30': 6px;
-  /* 8px value for gaps, margin, or padding. */
-  'kui-space-40': 8px;
-  /* 12px value for gaps, margin, or padding. */
-  'kui-space-50': 12px;
-  /* 16px value for gaps, margin, or padding. */
-  'kui-space-60': 16px;
-  /* 20px value for gaps, margin, or padding. */
-  'kui-space-70': 20px;
-  /* 24px value for gaps, margin, or padding. */
-  'kui-space-80': 24px;
-  /* 32px value for gaps, margin, or padding. */
-  'kui-space-90': 32px;
-  /* 40px value for gaps, margin, or padding. */
-  'kui-space-100': 40px;
-  /* 48px value for gaps, margin, or padding. */
-  'kui-space-110': 48px;
-  /* 56px value for gaps, margin, or padding. */
-  'kui-space-120': 56px;
-  /* 64px value for gaps, margin, or padding. */
-  'kui-space-130': 64px;
-  /* 80px value for gaps, margin, or padding. */
-  'kui-space-140': 80px;
-  /* 96px value for gaps, margin, or padding. */
-  'kui-space-150': 96px;
-  /* auto */
-  'kui-space-auto': auto;
+  'kui-color-background': ;
+  'kui-color-background-danger': ;
+  'kui-color-background-danger-strong': ;
+  'kui-color-background-danger-stronger': ;
+  'kui-color-background-danger-strongest': ;
+  'kui-color-background-danger-weak': ;
+  'kui-color-background-danger-weaker': ;
+  'kui-color-background-danger-weakest': ;
+  'kui-color-background-decorative-aqua-weakest': ;
+  'kui-color-background-decorative-purple': ;
+  'kui-color-background-decorative-purple-weakest': ;
+  'kui-color-background-disabled': ;
+  'kui-color-background-info': ;
+  'kui-color-background-info-strong': ;
+  'kui-color-background-info-stronger': ;
+  'kui-color-background-info-strongest': ;
+  'kui-color-background-info-weak': ;
+  'kui-color-background-info-weaker': ;
+  'kui-color-background-info-weakest': ;
+  'kui-color-background-inverse': ;
+  'kui-color-background-neutral': ;
+  'kui-color-background-neutral-strong': ;
+  'kui-color-background-neutral-stronger': ;
+  'kui-color-background-neutral-strongest': ;
+  'kui-color-background-neutral-weak': ;
+  'kui-color-background-neutral-weaker': ;
+  'kui-color-background-neutral-weakest': ;
+  'kui-color-background-overlay': ;
+  'kui-color-background-primary': ;
+  'kui-color-background-primary-strong': ;
+  'kui-color-background-primary-stronger': ;
+  'kui-color-background-primary-strongest': ;
+  'kui-color-background-primary-weak': ;
+  'kui-color-background-primary-weaker': ;
+  'kui-color-background-primary-weakest': ;
+  'kui-color-background-success': ;
+  'kui-color-background-success-strong': ;
+  'kui-color-background-success-stronger': ;
+  'kui-color-background-success-strongest': ;
+  'kui-color-background-success-weak': ;
+  'kui-color-background-success-weaker': ;
+  'kui-color-background-success-weakest': ;
+  'kui-color-background-transparent': ;
+  'kui-color-background-warning': ;
+  'kui-color-background-warning-strong': ;
+  'kui-color-background-warning-stronger': ;
+  'kui-color-background-warning-strongest': ;
+  'kui-color-background-warning-weak': ;
+  'kui-color-background-warning-weaker': ;
+  'kui-color-background-warning-weakest': ;
+  'kui-color-border': ;
+  'kui-color-border-danger': ;
+  'kui-color-border-danger-strong': ;
+  'kui-color-border-danger-stronger': ;
+  'kui-color-border-danger-strongest': ;
+  'kui-color-border-danger-weak': ;
+  'kui-color-border-danger-weaker': ;
+  'kui-color-border-danger-weakest': ;
+  'kui-color-border-decorative-purple': ;
+  'kui-color-border-disabled': ;
+  'kui-color-border-inverse': ;
+  'kui-color-border-neutral': ;
+  'kui-color-border-neutral-strong': ;
+  'kui-color-border-neutral-stronger': ;
+  'kui-color-border-neutral-strongest': ;
+  'kui-color-border-neutral-weak': ;
+  'kui-color-border-neutral-weaker': ;
+  'kui-color-border-neutral-weakest': ;
+  'kui-color-border-primary': ;
+  'kui-color-border-primary-strong': ;
+  'kui-color-border-primary-stronger': ;
+  'kui-color-border-primary-strongest': ;
+  'kui-color-border-primary-weak': ;
+  'kui-color-border-primary-weaker': ;
+  'kui-color-border-primary-weakest': ;
+  'kui-color-border-transparent': ;
+  'kui-color-text': ;
+  'kui-color-text-danger': ;
+  'kui-color-text-danger-strong': ;
+  'kui-color-text-danger-stronger': ;
+  'kui-color-text-danger-strongest': ;
+  'kui-color-text-danger-weak': ;
+  'kui-color-text-danger-weaker': ;
+  'kui-color-text-danger-weakest': ;
+  'kui-color-text-decorative-aqua': ;
+  'kui-color-text-decorative-pink': ;
+  'kui-color-text-decorative-purple': ;
+  'kui-color-text-decorative-purple-strong': ;
+  'kui-color-text-disabled': ;
+  'kui-color-text-info': ;
+  'kui-color-text-info-strong': ;
+  'kui-color-text-info-stronger': ;
+  'kui-color-text-info-strongest': ;
+  'kui-color-text-info-weak': ;
+  'kui-color-text-info-weaker': ;
+  'kui-color-text-info-weakest': ;
+  'kui-color-text-inverse': ;
+  'kui-color-text-neutral': ;
+  'kui-color-text-neutral-strong': ;
+  'kui-color-text-neutral-stronger': ;
+  'kui-color-text-neutral-strongest': ;
+  'kui-color-text-neutral-weak': ;
+  'kui-color-text-neutral-weaker': ;
+  'kui-color-text-neutral-weakest': ;
+  'kui-color-text-primary': ;
+  'kui-color-text-primary-strong': ;
+  'kui-color-text-primary-stronger': ;
+  'kui-color-text-primary-strongest': ;
+  'kui-color-text-primary-weak': ;
+  'kui-color-text-primary-weaker': ;
+  'kui-color-text-primary-weakest': ;
+  'kui-color-text-success': ;
+  'kui-color-text-success-strong': ;
+  'kui-color-text-success-stronger': ;
+  'kui-color-text-success-strongest': ;
+  'kui-color-text-success-weak': ;
+  'kui-color-text-success-weaker': ;
+  'kui-color-text-success-weakest': ;
+  'kui-color-text-warning': ;
+  'kui-color-text-warning-strong': ;
+  'kui-color-text-warning-stronger': ;
+  'kui-color-text-warning-strongest': ;
+  'kui-color-text-warning-weak': ;
+  'kui-color-text-warning-weaker': ;
+  'kui-color-text-warning-weakest': ;
+  'kui-animation-duration-20': ;
+  'kui-border-radius-0': ;
+  'kui-border-radius-10': ;
+  'kui-border-radius-20': ;
+  'kui-border-radius-30': ;
+  'kui-border-radius-40': ;
+  'kui-border-radius-50': ;
+  'kui-border-radius-circle': ;
+  'kui-border-radius-round': ;
+  'kui-border-width-0': ;
+  'kui-border-width-10': ;
+  'kui-border-width-20': ;
+  'kui-border-width-30': ;
+  'kui-breakpoint-mobile': ;
+  'kui-breakpoint-phablet': ;
+  'kui-breakpoint-tablet': ;
+  'kui-breakpoint-laptop': ;
+  'kui-breakpoint-desktop': ;
+  'kui-icon-color-danger': ;
+  'kui-icon-color-neutral': ;
+  'kui-icon-color-primary': ;
+  'kui-icon-color-success': ;
+  'kui-icon-color-warning': ;
+  'kui-icon-size-10': ;
+  'kui-icon-size-20': ;
+  'kui-icon-size-30': ;
+  'kui-icon-size-40': ;
+  'kui-icon-size-50': ;
+  'kui-icon-size-60': ;
+  'kui-icon-size-70': ;
+  'kui-icon-size-80': ;
+  'kui-method-color-background-connect': ;
+  'kui-method-color-background-delete': ;
+  'kui-method-color-background-get': ;
+  'kui-method-color-background-head': ;
+  'kui-method-color-background-options': ;
+  'kui-method-color-background-patch': ;
+  'kui-method-color-background-post': ;
+  'kui-method-color-background-put': ;
+  'kui-method-color-background-trace': ;
+  'kui-method-color-text-connect': ;
+  'kui-method-color-text-connect-strong': ;
+  'kui-method-color-text-delete': ;
+  'kui-method-color-text-delete-strong': ;
+  'kui-method-color-text-get': ;
+  'kui-method-color-text-get-strong': ;
+  'kui-method-color-text-head': ;
+  'kui-method-color-text-head-strong': ;
+  'kui-method-color-text-options': ;
+  'kui-method-color-text-options-strong': ;
+  'kui-method-color-text-patch': ;
+  'kui-method-color-text-patch-strong': ;
+  'kui-method-color-text-post': ;
+  'kui-method-color-text-post-strong': ;
+  'kui-method-color-text-put': ;
+  'kui-method-color-text-put-strong': ;
+  'kui-method-color-text-trace': ;
+  'kui-method-color-text-trace-strong': ;
+  'kui-navigation-color-background': ;
+  'kui-navigation-color-background-selected': ;
+  'kui-navigation-color-border': ;
+  'kui-navigation-color-border-child': ;
+  'kui-navigation-color-border-divider': ;
+  'kui-navigation-color-text': ;
+  'kui-navigation-color-text-focus': ;
+  'kui-navigation-color-text-hover': ;
+  'kui-navigation-color-text-selected': ;
+  'kui-navigation-shadow-border': ;
+  'kui-navigation-shadow-border-child': ;
+  'kui-navigation-shadow-focus': ;
+  'kui-status-color-100': ;
+  'kui-status-color-101': ;
+  'kui-status-color-102': ;
+  'kui-status-color-103': ;
+  'kui-status-color-200': ;
+  'kui-status-color-201': ;
+  'kui-status-color-202': ;
+  'kui-status-color-203': ;
+  'kui-status-color-204': ;
+  'kui-status-color-205': ;
+  'kui-status-color-206': ;
+  'kui-status-color-207': ;
+  'kui-status-color-208': ;
+  'kui-status-color-226': ;
+  'kui-status-color-300': ;
+  'kui-status-color-301': ;
+  'kui-status-color-302': ;
+  'kui-status-color-303': ;
+  'kui-status-color-304': ;
+  'kui-status-color-305': ;
+  'kui-status-color-307': ;
+  'kui-status-color-308': ;
+  'kui-status-color-400': ;
+  'kui-status-color-401': ;
+  'kui-status-color-402': ;
+  'kui-status-color-403': ;
+  'kui-status-color-404': ;
+  'kui-status-color-405': ;
+  'kui-status-color-406': ;
+  'kui-status-color-407': ;
+  'kui-status-color-408': ;
+  'kui-status-color-409': ;
+  'kui-status-color-410': ;
+  'kui-status-color-411': ;
+  'kui-status-color-412': ;
+  'kui-status-color-413': ;
+  'kui-status-color-414': ;
+  'kui-status-color-415': ;
+  'kui-status-color-416': ;
+  'kui-status-color-417': ;
+  'kui-status-color-418': ;
+  'kui-status-color-421': ;
+  'kui-status-color-422': ;
+  'kui-status-color-423': ;
+  'kui-status-color-424': ;
+  'kui-status-color-425': ;
+  'kui-status-color-426': ;
+  'kui-status-color-428': ;
+  'kui-status-color-429': ;
+  'kui-status-color-431': ;
+  'kui-status-color-451': ;
+  'kui-status-color-500': ;
+  'kui-status-color-501': ;
+  'kui-status-color-502': ;
+  'kui-status-color-503': ;
+  'kui-status-color-504': ;
+  'kui-status-color-505': ;
+  'kui-status-color-506': ;
+  'kui-status-color-507': ;
+  'kui-status-color-508': ;
+  'kui-status-color-510': ;
+  'kui-status-color-511': ;
+  'kui-status-color-1na': ;
+  'kui-status-color-2na': ;
+  'kui-status-color-3na': ;
+  'kui-status-color-4na': ;
+  'kui-status-color-5na': ;
+  'kui-status-color-100s': ;
+  'kui-status-color-200s': ;
+  'kui-status-color-300s': ;
+  'kui-status-color-400s': ;
+  'kui-status-color-500s': ;
+  'kui-status-color-background-100': ;
+  'kui-status-color-background-200': ;
+  'kui-status-color-background-300': ;
+  'kui-status-color-background-400': ;
+  'kui-status-color-background-500': ;
+  'kui-status-color-text-100': ;
+  'kui-status-color-text-200': ;
+  'kui-status-color-text-300': ;
+  'kui-status-color-text-400': ;
+  'kui-status-color-text-500': ;
+  'kui-font-family-code': ;
+  'kui-font-family-heading': ;
+  'kui-font-family-text': ;
+  'kui-font-size-10': ;
+  'kui-font-size-20': ;
+  'kui-font-size-30': ;
+  'kui-font-size-40': ;
+  'kui-font-size-50': ;
+  'kui-font-size-60': ;
+  'kui-font-size-70': ;
+  'kui-font-size-80': ;
+  'kui-font-size-90': ;
+  'kui-font-size-100': ;
+  'kui-font-weight-bold': ;
+  'kui-font-weight-medium': ;
+  'kui-font-weight-regular': ;
+  'kui-font-weight-semibold': ;
+  'kui-letter-spacing-0': ;
+  'kui-letter-spacing-minus-10': ;
+  'kui-letter-spacing-minus-20': ;
+  'kui-letter-spacing-minus-30': ;
+  'kui-letter-spacing-minus-40': ;
+  'kui-letter-spacing-minus-50': ;
+  'kui-letter-spacing-normal': ;
+  'kui-line-height-10': ;
+  'kui-line-height-20': ;
+  'kui-line-height-30': ;
+  'kui-line-height-40': ;
+  'kui-line-height-50': ;
+  'kui-line-height-60': ;
+  'kui-line-height-70': ;
+  'kui-line-height-80': ;
+  'kui-line-height-90': ;
+  'kui-line-height-100': ;
+  'kui-shadow': ;
+  'kui-shadow-border': ;
+  'kui-shadow-border-danger': ;
+  'kui-shadow-border-danger-strong': ;
+  'kui-shadow-border-disabled': ;
+  'kui-shadow-border-primary': ;
+  'kui-shadow-border-primary-strongest': ;
+  'kui-shadow-border-primary-weak': ;
+  'kui-shadow-focus': ;
+  'kui-space-0': ;
+  'kui-space-10': ;
+  'kui-space-20': ;
+  'kui-space-30': ;
+  'kui-space-40': ;
+  'kui-space-50': ;
+  'kui-space-60': ;
+  'kui-space-70': ;
+  'kui-space-80': ;
+  'kui-space-90': ;
+  'kui-space-100': ;
+  'kui-space-110': ;
+  'kui-space-120': ;
+  'kui-space-130': ;
+  'kui-space-140': ;
+  'kui-space-150': ;
+  'kui-space-auto': ;
 );
 ```
 
@@ -1372,670 +718,343 @@ $tokens-map: (
 <summary>Click to view the list of LESS variables</summary>
 
 ```less
-/* Default background color for containers (white). */
-@kui-color-background: #ffffff;
-/* Background color for danger actions or messages (red.60). */
-@kui-color-background-danger: #d60027;
-/* Strong background color for danger actions or messages (red.70). */
-@kui-color-background-danger-strong: #ad000e;
-/* Stronger background color for danger actions or messages (red.80). */
-@kui-color-background-danger-stronger: #850000;
-/* Strongest background color for danger actions or messages (red.90). */
-@kui-color-background-danger-strongest: #5c0000;
-/* Weak background color for danger actions or messages (red.40). */
-@kui-color-background-danger-weak: #ff3954;
-/* Weaker background color for danger actions or messages (red.20). */
-@kui-color-background-danger-weaker: #ffabab;
-/* Weakest background color for danger actions or messages (red.10). */
-@kui-color-background-danger-weakest: #ffe5e5;
-/* Weakest background color for decorative purposes (aqua.10). */
-@kui-color-background-decorative-aqua-weakest: #ecfcff;
-/* Background color for decorative purposes (purple.60). */
-@kui-color-background-decorative-purple: #6f28ff;
-/* Weakest background color for decorative purposes (purple.10). */
-@kui-color-background-decorative-purple-weakest: #f1f0ff;
-/* Background color for disabled elements (gray.20). */
-@kui-color-background-disabled: #e0e4ea;
-/* Background color for info elements (blue.60). */
-@kui-color-background-info: #0044f4;
-/* Strong background color for info elements (blue.70). */
-@kui-color-background-info-strong: #0030cc;
-/* Stronger background color for info elements (blue.80). */
-@kui-color-background-info-stronger: #002099;
-/* Strongest background color for info elements (blue.90). */
-@kui-color-background-info-strongest: #001466;
-/* Weak background color for info elements (blue.40). */
-@kui-color-background-info-weak: #5f9aff;
-/* Weaker background color for info elements (blue.20). */
-@kui-color-background-info-weaker: #bee2ff;
-/* Weakest background color for info elements (blue.10). */
-@kui-color-background-info-weakest: #eefaff;
-/* Inverse background color for containers (blue.100) */
-@kui-color-background-inverse: #000933;
-/* Background color for neutral elements (gray.60). */
-@kui-color-background-neutral: #6c7489;
-/* Strong background color for neutral elements (gray.70). */
-@kui-color-background-neutral-strong: #52596e;
-/* Stronger background color for neutral elements (gray.80). */
-@kui-color-background-neutral-stronger: #3a3f51;
-/* Strongest background color for neutral elements (gray.90). */
-@kui-color-background-neutral-strongest: #232633;
-/* Weak background color for neutral elements (gray.40). */
-@kui-color-background-neutral-weak: #afb7c5;
-/* Weaker background color for neutral elements (gray.20). */
-@kui-color-background-neutral-weaker: #e0e4ea;
-/* Weakest background color for neutral elements (gray.10). */
-@kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(blue.100, 0.6)) */
-@kui-color-background-overlay: rgba(0, 9, 51, 0.6);
-/* Background color for primary actions or messages (blue.60). */
-@kui-color-background-primary: #0044f4;
-/* Strong background color for primary actions or messages (blue.70). */
-@kui-color-background-primary-strong: #0030cc;
-/* Stronger background color for primary actions or messages (blue.80). */
-@kui-color-background-primary-stronger: #002099;
-/* Strongest background color for primary actions or messages (blue.90). */
-@kui-color-background-primary-strongest: #001466;
-/* Weak background color for primary actions or messages (blue.40). */
-@kui-color-background-primary-weak: #5f9aff;
-/* Weaker background color for primary actions or messages (blue.20). */
-@kui-color-background-primary-weaker: #bee2ff;
-/* Weakest background color for primary actions or messages (blue.10) */
-@kui-color-background-primary-weakest: #eefaff;
-/* Background color for success elements (green.60). */
-@kui-color-background-success: #007d60;
-/* Strong background color for success elements (green.70). */
-@kui-color-background-success-strong: #005944;
-/* Stronger background color for success elements (green.80). */
-@kui-color-background-success-stronger: #004737;
-/* Strongest background color for success elements (green.90). */
-@kui-color-background-success-strongest: #003629;
-/* Weak background color for success elements (green.40). */
-@kui-color-background-success-weak: #00d6a4;
-/* Weaker background color for success elements (green.20). */
-@kui-color-background-success-weaker: #b5ffee;
-/* Weakest background color for success elements (green.10). */
-@kui-color-background-success-weakest: #ecfffb;
-/* Transparent background color (transparent). */
-@kui-color-background-transparent: transparent;
-/* Background color for warning elements (yellow.60). */
-@kui-color-background-warning: #995c00;
-/* Strong background color for warning elements (yellow.70). */
-@kui-color-background-warning-strong: #804400;
-/* Stronger background color for warning elements (yellow.80). */
-@kui-color-background-warning-stronger: #662d00;
-/* Strongest background color for warning elements (yellow.90). */
-@kui-color-background-warning-strongest: #4d1b00;
-/* Weak background color for warning elements (yellow.40). */
-@kui-color-background-warning-weak: #ffc400;
-/* Weaker background color for warning elements (yellow.20). */
-@kui-color-background-warning-weaker: #fff296;
-/* Weakest background color for warning elements (yellow.10). */
-@kui-color-background-warning-weakest: #fffce0;
-/* Default border color for containers (gray.20). */
-@kui-color-border: #e0e4ea;
-/* Border color for danger actions or messages (red.60). */
-@kui-color-border-danger: #d60027;
-/* Strong border color for danger actions or messages (red.70). */
-@kui-color-border-danger-strong: #ad000e;
-/* Stronger border color for danger actions or messages (red.80). */
-@kui-color-border-danger-stronger: #850000;
-/* Strongest border color for danger actions or messages (red.90). */
-@kui-color-border-danger-strongest: #5c0000;
-/* Weak border color for danger actions or messages (red.40). */
-@kui-color-border-danger-weak: #ff3954;
-/* Weaker border color for danger actions or messages (red.20). */
-@kui-color-border-danger-weaker: #ffabab;
-/* Weakest border color for danger actions or messages (red.10). */
-@kui-color-border-danger-weakest: #ffe5e5;
-/* Border color for decorative purposes (purple.60). */
-@kui-color-border-decorative-purple: #6f28ff;
-/* Border color for disabled elements (gray.20). */
-@kui-color-border-disabled: #e0e4ea;
-/* Inverse border color (rgba(white, 0.2)). */
-@kui-color-border-inverse: rgba(255, 255, 255, 0.2);
-/* Border color for neutral elements (gray.60) */
-@kui-color-border-neutral: #6c7489;
-/* Strong border color for neutral elements (gray.70) */
-@kui-color-border-neutral-strong: #52596e;
-/* Stronger border color for neutral elements (gray.80) */
-@kui-color-border-neutral-stronger: #3a3f51;
-/* Strongest border color for neutral elements (gray.90) */
-@kui-color-border-neutral-strongest: #232633;
-/* Weak border color for neutral elements (gray.40) */
-@kui-color-border-neutral-weak: #afb7c5;
-/* Weaker border color for neutral elements (gray.20) */
-@kui-color-border-neutral-weaker: #e0e4ea;
-/* Weakest border color for neutral elements (gray.10) */
-@kui-color-border-neutral-weakest: #f9fafb;
-/* Border color for primary actions or messages (blue.60). */
-@kui-color-border-primary: #0044f4;
-/* Strong border color for primary actions or messages (blue.70). */
-@kui-color-border-primary-strong: #0030cc;
-/* Stronger border color for primary actions or messages (blue.80). */
-@kui-color-border-primary-stronger: #002099;
-/* Strongest border color for primary actions or messages (blue.90). */
-@kui-color-border-primary-strongest: #001466;
-/* Weak border color for primary actions or messages (blue.40). */
-@kui-color-border-primary-weak: #5f9aff;
-/* Weaker border color for primary actions or messages (blue.20). */
-@kui-color-border-primary-weaker: #bee2ff;
-/* Weakest border color for primary actions or messages (blue.10). */
-@kui-color-border-primary-weakest: #eefaff;
-/* Transparent border color (transparent). */
-@kui-color-border-transparent: transparent;
-/* Default text color (blue.100). */
-@kui-color-text: #000933;
-/* Text color for danger actions or messages (red.60). */
-@kui-color-text-danger: #d60027;
-/* Strong text color for danger actions or messages (red.70). */
-@kui-color-text-danger-strong: #ad000e;
-/* Stronger text color for danger actions or messages (red.80). */
-@kui-color-text-danger-stronger: #850000;
-/* Strongest text color for danger actions or messages (red.90). */
-@kui-color-text-danger-strongest: #5c0000;
-/* Weak text color for danger actions or messages (red.40). */
-@kui-color-text-danger-weak: #ff3954;
-/* Weaker text color for danger actions or messages (red.20). */
-@kui-color-text-danger-weaker: #ffabab;
-/* Weakest text color for danger actions or messages (red.10). */
-@kui-color-text-danger-weakest: #ffe5e5;
-/* Text color for decorative purposes (aqua.50). */
-@kui-color-text-decorative-aqua: #00abd2;
-/* Text color for decorative purposes (pink.60). */
-@kui-color-text-decorative-pink: #d60067;
-/* Text color for decorative purposes (purple.60). */
-@kui-color-text-decorative-purple: #6f28ff;
-/* Strong text color for decorative purposes (purple.70). */
-@kui-color-text-decorative-purple-strong: #5e00f5;
-/* Text color for disabled elements (gray.40). */
-@kui-color-text-disabled: #afb7c5;
-/* Text color for info elements (blue.60). */
-@kui-color-text-info: #0044f4;
-/* Strong text color for info elements (blue.70). */
-@kui-color-text-info-strong: #0030cc;
-/* Stronger text color for info elements (blue.80). */
-@kui-color-text-info-stronger: #002099;
-/* Strongest text color for info elements (blue.90). */
-@kui-color-text-info-strongest: #001466;
-/* Weak text color for info elements (blue.40). */
-@kui-color-text-info-weak: #5f9aff;
-/* Weaker text color for info elements (blue.20). */
-@kui-color-text-info-weaker: #bee2ff;
-/* Weakest text color for info elements (blue.10). */
-@kui-color-text-info-weakest: #eefaff;
-/* Inverse text color (white). */
-@kui-color-text-inverse: #ffffff;
-/* Text color for neutral elements (gray.60). */
-@kui-color-text-neutral: #6c7489;
-/* Strong text color for neutral elements (gray.70). */
-@kui-color-text-neutral-strong: #52596e;
-/* Stronger text color for neutral elements (gray.80). */
-@kui-color-text-neutral-stronger: #3a3f51;
-/* Strongest text color for neutral elements (gray.90). */
-@kui-color-text-neutral-strongest: #232633;
-/* Weak text color for neutral elements (gray.40). */
-@kui-color-text-neutral-weak: #afb7c5;
-/* Weaker text color for neutral elements (gray.20). */
-@kui-color-text-neutral-weaker: #e0e4ea;
-/* Weakest text color for neutral elements (gray.10). */
-@kui-color-text-neutral-weakest: #f9fafb;
-/* Text color for primary actions or messages (blue.60). */
-@kui-color-text-primary: #0044f4;
-/* Strong text color for primary actions or messages (blue.70). */
-@kui-color-text-primary-strong: #0030cc;
-/* Stronger text color for primary actions or messages (blue.80). */
-@kui-color-text-primary-stronger: #002099;
-/* Strongest text color for primary actions or messages (blue.90). */
-@kui-color-text-primary-strongest: #001466;
-/* Weak text color for primary actions or messages (blue.40). */
-@kui-color-text-primary-weak: #5f9aff;
-/* Weaker text color for primary actions or messages (blue.20). */
-@kui-color-text-primary-weaker: #bee2ff;
-/* Weakest text color for primary actions or messages (blue.10). */
-@kui-color-text-primary-weakest: #eefaff;
-/* Text color for success elements (green.60). */
-@kui-color-text-success: #007d60;
-/* Strong text color for success elements (green.70). */
-@kui-color-text-success-strong: #005944;
-/* Stronger text color for success elements (green.80). */
-@kui-color-text-success-stronger: #004737;
-/* Stronger text color for success elements (green.90). */
-@kui-color-text-success-strongest: #003629;
-/* Weak text color for success elements (green.40). */
-@kui-color-text-success-weak: #00d6a4;
-/* Weaker text color for success elements (green.20). */
-@kui-color-text-success-weaker: #b5ffee;
-/* Weakest text color for success elements (green.10). */
-@kui-color-text-success-weakest: #ecfffb;
-/* Text color for warning elements (yellow.60). */
-@kui-color-text-warning: #995c00;
-/* Strong text color for warning elements (yellow.70). */
-@kui-color-text-warning-strong: #804400;
-/* Stronger text color for warning elements (yellow.80). */
-@kui-color-text-warning-stronger: #662d00;
-/* Strongest text color for warning elements (yellow.90). */
-@kui-color-text-warning-strongest: #4d1b00;
-/* Weak text color for warning elements (yellow.40). */
-@kui-color-text-warning-weak: #ffc400;
-/* Weaker text color for warning elements (yellow.20). */
-@kui-color-text-warning-weaker: #fff296;
-/* Weakest text color for warning elements (yellow.10). */
-@kui-color-text-warning-weakest: #fffce0;
-/* Default transition timing */
-@kui-animation-duration-20: 0.2s;
-/* 0px border radius. */
-@kui-border-radius-0: 0px;
-/* 2px border radius. */
-@kui-border-radius-10: 2px;
-/* 4px border radius. */
-@kui-border-radius-20: 4px;
-/* 6px border radius. */
-@kui-border-radius-30: 6px;
-/* 8px border radius. */
-@kui-border-radius-40: 8px;
-/* 10px border radius. */
-@kui-border-radius-50: 10px;
-/* 50% border radius used to create circles. */
-@kui-border-radius-circle: 50%;
-/* 100px border radius used to create pill shapes. */
-@kui-border-radius-round: 100px;
-/* 0px border width. */
-@kui-border-width-0: 0px;
-/* 1px border width. */
-@kui-border-width-10: 1px;
-/* 2px border width. */
-@kui-border-width-20: 2px;
-/* 4px border width. */
-@kui-border-width-30: 4px;
-/* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
-@kui-breakpoint-mobile: 640px;
-/* Used for tablet screens. */
-@kui-breakpoint-phablet: 768px;
-/* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
-@kui-breakpoint-tablet: 1024px;
-/* Used for standard desktop screens. */
-@kui-breakpoint-laptop: 1280px;
-/* Used for larger desktop screens. */
-@kui-breakpoint-desktop: 1536px;
-/* Danger color for icons. */
-@kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
-@kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
-@kui-icon-color-primary: #306fff;
-/* Success color for icons. */
-@kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
-@kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
-@kui-icon-size-10: 10px;
-/* 12px icon size. */
-@kui-icon-size-20: 12px;
-/* 16px icon size. */
-@kui-icon-size-30: 16px;
-/* 20px icon size. */
-@kui-icon-size-40: 20px;
-/* 24px icon size (default). */
-@kui-icon-size-50: 24px;
-/* 32px icon size. */
-@kui-icon-size-60: 32px;
-/* 40px icon size. */
-@kui-icon-size-70: 40px;
-/* 48px icon size. */
-@kui-icon-size-80: 48px;
-/* Background color for the CONNECT method (purple.10). */
-@kui-method-color-background-connect: #f1f0ff;
-/* Background color for the DELETE method (red.10). */
-@kui-method-color-background-delete: #ffe5e5;
-/* Background color for the GET method (blue.10). */
-@kui-method-color-background-get: #eefaff;
-/* Background color for the HEAD method (gray.70). */
-@kui-method-color-background-head: #52596e;
-/* Background color for the OPTIONS method (gray.20). */
-@kui-method-color-background-options: #e0e4ea;
-/* Background color for the PATCH method (aqua.10). */
-@kui-method-color-background-patch: #ecfcff;
-/* Background color for the POST method (green.10). */
-@kui-method-color-background-post: #ecfffb;
-/* Background color for the PUT method (yellow.10). */
-@kui-method-color-background-put: #fffce0;
-/* Background color for the TRACE method (pink.10). */
-@kui-method-color-background-trace: #fff0f7;
-/* Text color for the CONNECT method (purple.60). */
-@kui-method-color-text-connect: #6f28ff;
-/* Strong text color for the CONNECT method (purple.70). */
-@kui-method-color-text-connect-strong: #5e00f5;
-/* Text color for the DELETE method (red.60). */
-@kui-method-color-text-delete: #d60027;
-/* Strong text color for the DELETE method (red.70). */
-@kui-method-color-text-delete-strong: #ad000e;
-/* Text color for the GET method (blue.60). */
-@kui-method-color-text-get: #0044f4;
-/* Strong text color for the GET method (blue.70). */
-@kui-method-color-text-get-strong: #0030cc;
-/* Text color for the HEAD method (gray.20). */
-@kui-method-color-text-head: #e0e4ea;
-/* Strong text color for the HEAD method (gray.40). */
-@kui-method-color-text-head-strong: #afb7c5;
-/* Text color for the OPTIONS method (gray.70). */
-@kui-method-color-text-options: #52596e;
-/* Strong text color for the OPTIONS method (gray.80). */
-@kui-method-color-text-options-strong: #3a3f51;
-/* Text color for the PATCH method (aqua.60). */
-@kui-method-color-text-patch: #00819d;
-/* Strong text color for the PATCH method (aqua.70). */
-@kui-method-color-text-patch-strong: #00647a;
-/* Text color for the POST method (green.60). */
-@kui-method-color-text-post: #007d60;
-/* Strong text color for the POST method (green.70). */
-@kui-method-color-text-post-strong: #005944;
-/* Text color for the PUT method (yellow.60). */
-@kui-method-color-text-put: #995c00;
-/* Strong text color for the PUT method (yellow.70). */
-@kui-method-color-text-put-strong: #804400;
-/* Text color for the TRACE method (pink.60). */
-@kui-method-color-text-trace: #d60067;
-/* Strong text color for the TRACE method (pink.70). */
-@kui-method-color-text-trace-strong: #ad0053;
-/* blue.100 */
-@kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
-@kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(white, 0.12) */
-@kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
-@kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
-@kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
-@kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
-@kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
-@kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
-@kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
-@kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
-@kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
-@kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* Color representing response status code 100 (blue.20). */
-@kui-status-color-100: #bee2ff;
-/* Color representing response status code 101 (blue.30). */
-@kui-status-color-101: #8fc1ff;
-/* Color representing response status code 102 (blue.40). */
-@kui-status-color-102: #5f9aff;
-/* Color representing response status code 103 (blue.50). */
-@kui-status-color-103: #306fff;
-/* Color representing response status code 200 (green.20). */
-@kui-status-color-200: #b5ffee;
-/* Color representing response status code 201 (green.30). */
-@kui-status-color-201: #00fabe;
-/* Color representing response status code 202 (green.40). */
-@kui-status-color-202: #00d6a4;
-/* Color representing response status code 203 (green.50). */
-@kui-status-color-203: #00a17b;
-/* Color representing response status code 204 (green.60). */
-@kui-status-color-204: #007d60;
-/* Color representing response status code 205 (green.70). */
-@kui-status-color-205: #005944;
-/* Color representing response status code 206 (green.20). */
-@kui-status-color-206: #b5ffee;
-/* Color representing response status code 207 (green.30). */
-@kui-status-color-207: #00fabe;
-/* Color representing response status code 208 (green.40). */
-@kui-status-color-208: #b5ffee;
-/* Color representing response status code 226 (green.50). */
-@kui-status-color-226: #00a17b;
-/* Color representing response status code 100 (yellow.20). */
-@kui-status-color-300: #fff296;
-/* Color representing response status code 101 (yellow.30). */
-@kui-status-color-301: #ffe04b;
-/* Color representing response status code 102 (yellow.40). */
-@kui-status-color-302: #ffc400;
-/* Color representing response status code 103 (yellow.50). */
-@kui-status-color-303: #b37600;
-/* Color representing response status code 103 (yellow.60). */
-@kui-status-color-304: #995c00;
-/* Color representing response status code 103 (yellow.70). */
-@kui-status-color-305: #804400;
-/* Color representing response status code 103 (yellow.20). */
-@kui-status-color-307: #fff296;
-/* Color representing response status code 103 (yellow.30). */
-@kui-status-color-308: #ffe04b;
-/* Color representing response status code 400 (orange.20). */
-@kui-status-color-400: #FFC2B3;
-/* Color representing response status code 401 (orange.30). */
-@kui-status-color-401: #FF9877;
-/* Color representing response status code 402 (orange.40). */
-@kui-status-color-402: #FF723C;
-/* Color representing response status code 403 (orange.50). */
-@kui-status-color-403: #F75008;
-/* Color representing response status code 404 (orange.60). */
-@kui-status-color-404: #D13500;
-/* Color representing response status code 405 (orange.70). */
-@kui-status-color-405: #A31F00;
-/* Color representing response status code 406 (orange.20). */
-@kui-status-color-406: #FFC2B3;
-/* Color representing response status code 407 (orange.30). */
-@kui-status-color-407: #FF9877;
-/* Color representing response status code 408 (orange.40). */
-@kui-status-color-408: #FF723C;
-/* Color representing response status code 409 (orange.50). */
-@kui-status-color-409: #F75008;
-/* Color representing response status code 410 (orange.60). */
-@kui-status-color-410: #D13500;
-/* Color representing response status code 411 (orange.70). */
-@kui-status-color-411: #A31F00;
-/* Color representing response status code 412 (orange.20). */
-@kui-status-color-412: #FFC2B3;
-/* Color representing response status code 413 (orange.30). */
-@kui-status-color-413: #FF9877;
-/* Color representing response status code 414 (orange.40). */
-@kui-status-color-414: #FF723C;
-/* Color representing response status code 415 (orange.50). */
-@kui-status-color-415: #F75008;
-/* Color representing response status code 416 (orange.60). */
-@kui-status-color-416: #D13500;
-/* Color representing response status code 417 (orange.70). */
-@kui-status-color-417: #A31F00;
-/* Color representing response status code 418 (orange.20). */
-@kui-status-color-418: #FFC2B3;
-/* Color representing response status code 421 (orange.30). */
-@kui-status-color-421: #FF9877;
-/* Color representing response status code 422 (orange.40). */
-@kui-status-color-422: #FF723C;
-/* Color representing response status code 423 (orange.50). */
-@kui-status-color-423: #F75008;
-/* Color representing response status code 424 (orange.60). */
-@kui-status-color-424: #D13500;
-/* Color representing response status code 425 (orange.70). */
-@kui-status-color-425: #A31F00;
-/* Color representing response status code 426 (orange.20). */
-@kui-status-color-426: #FFC2B3;
-/* Color representing response status code 428 (orange.30). */
-@kui-status-color-428: #FF9877;
-/* Color representing response status code 429 (orange.40). */
-@kui-status-color-429: #FF723C;
-/* Color representing response status code 431 (orange.50). */
-@kui-status-color-431: #F75008;
-/* Color representing response status code 451 (orange.60). */
-@kui-status-color-451: #D13500;
-/* Color representing response status code 500 (red.20). */
-@kui-status-color-500: #ffabab;
-/* Color representing response status code 501 (red.30). */
-@kui-status-color-501: #ff7272;
-/* Color representing response status code 502 (red.40). */
-@kui-status-color-502: #ff3954;
-/* Color representing response status code 503 (red.50). */
-@kui-status-color-503: #f50045;
-/* Color representing response status code 504 (red.60). */
-@kui-status-color-504: #d60027;
-/* Color representing response status code 505 (red.70). */
-@kui-status-color-505: #ad000e;
-/* Color representing response status code 506 (red.20). */
-@kui-status-color-506: #ffabab;
-/* Color representing response status code 507 (red.30). */
-@kui-status-color-507: #ff7272;
-/* Color representing response status code 508 (red.40). */
-@kui-status-color-508: #ff3954;
-/* Color representing response status code 510 (red.50). */
-@kui-status-color-510: #f50045;
-/* Color representing response status code 511 (red.60). */
-@kui-status-color-511: #d60027;
-/* Color for unknown response status codes in the 100-199 range (blue.10). */
-@kui-status-color-1na: #eefaff;
-/* Color for unknown response status codes in the 200-299 range (green.10). */
-@kui-status-color-2na: #ecfffb;
-/* Color for unknown response status codes in the 300-399 range (yellow.10). */
-@kui-status-color-3na: #fffce0;
-/* Color for unknown response status codes in the 400-499 range (orange.10). */
-@kui-status-color-4na: #FFF1EF;
-/* Color for unknown response status codes in the 500-599 range (red.10). */
-@kui-status-color-5na: #ffe5e5;
-/* Color for a group of response status codes in the 100-199 range (blue.40). */
-@kui-status-color-100s: #5f9aff;
-/* Color for a group of response status codes in the 200-299 range (green.40). */
-@kui-status-color-200s: #00d6a4;
-/* Color for a group of response status codes in the 300-399 range (yellow.40). */
-@kui-status-color-300s: #ffc400;
-/* Color for a group of response status codes in the 400-499 range (orange.40). */
-@kui-status-color-400s: #FF723C;
-/* Color for a group of response status codes in the 500-599 range (red.40). */
-@kui-status-color-500s: #ff3954;
-/* Background color for http status 100 elements (blue.10). */
-@kui-status-color-background-100: #eefaff;
-/* Background color for http status 200 elements (green.10). */
-@kui-status-color-background-200: #ecfffb;
-/* Background color for http status 300 elements (yellow.10). */
-@kui-status-color-background-300: #fffce0;
-/* Background color for http status 400 elements (orange.10). */
-@kui-status-color-background-400: #FFF1EF;
-/* Background color for http status 500 elements (red.10). */
-@kui-status-color-background-500: #ffe5e5;
-/* Text color for http status 100 elements (blue.60). */
-@kui-status-color-text-100: #0044f4;
-/* Text color for http status 200 elements (green.60). */
-@kui-status-color-text-200: #007d60;
-/* Text color for http status 300 elements (yellow.60). */
-@kui-status-color-text-300: #995c00;
-/* Text color for http status 400 elements (orange.60). */
-@kui-status-color-text-400: #D13500;
-/* Text color for http status 500 elements (red.60). */
-@kui-status-color-text-500: #d60027;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-@kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
-/* The standard heading text font family. */
-@kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
-/* The standard text font family. */
-@kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
-@kui-font-size-10: 10px;
-@kui-font-size-20: 12px;
-@kui-font-size-30: 14px;
-@kui-font-size-40: 16px;
-@kui-font-size-50: 18px;
-@kui-font-size-60: 20px;
-@kui-font-size-70: 24px;
-@kui-font-size-80: 32px;
-@kui-font-size-90: 40px;
-@kui-font-size-100: 48px;
-/* 700: The bold font weight. */
-@kui-font-weight-bold: 700;
-/* 500: The medium font weight. */
-@kui-font-weight-medium: 500;
-/* 400: The normal font weight. */
-@kui-font-weight-regular: 400;
-/* 600: The semibold font weight. */
-@kui-font-weight-semibold: 600;
-/* Alias for letter-spacing-normal */
-@kui-letter-spacing-0: normal;
-/* -0.12px */
-@kui-letter-spacing-minus-10: -0.12px;
-/* -0.24px */
-@kui-letter-spacing-minus-20: -0.24px;
-/* -0.32px */
-@kui-letter-spacing-minus-30: -0.32px;
-/* -0.4px */
-@kui-letter-spacing-minus-40: -0.4px;
-/* -0.48px */
-@kui-letter-spacing-minus-50: -0.48px;
-/* normal */
-@kui-letter-spacing-normal: normal;
-/* 12px */
-@kui-line-height-10: 12px;
-/* 16px */
-@kui-line-height-20: 16px;
-/* 20px */
-@kui-line-height-30: 20px;
-/* 24px */
-@kui-line-height-40: 24px;
-/* 28px */
-@kui-line-height-50: 28px;
-/* 32px */
-@kui-line-height-60: 32px;
-/* 36px */
-@kui-line-height-70: 36px;
-/* 40px */
-@kui-line-height-80: 40px;
-/* 48px */
-@kui-line-height-90: 48px;
-/* 56px */
-@kui-line-height-100: 56px;
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-@kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-/* 0px 0px 0px 1px gray.20 inset */
-@kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px red.60 inset */
-@kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
-/* 0px 0px 0px 1px red.70 inset */
-@kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
-/* 0px 0px 0px 1px gray.20 inset */
-@kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px blue.60 inset */
-@kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
-/* 0px 0px 0px 1px blue.90 inset */
-@kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
-/* 0px 0px 0px 1px blue.40 inset */
-@kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-@kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px value for gaps, margin, or padding. */
-@kui-space-0: 0px;
-/* 2px value for gaps, margin, or padding. */
-@kui-space-10: 2px;
-/* 4px value for gaps, margin, or padding. */
-@kui-space-20: 4px;
-/* 6px value for gaps, margin, or padding. */
-@kui-space-30: 6px;
-/* 8px value for gaps, margin, or padding. */
-@kui-space-40: 8px;
-/* 12px value for gaps, margin, or padding. */
-@kui-space-50: 12px;
-/* 16px value for gaps, margin, or padding. */
-@kui-space-60: 16px;
-/* 20px value for gaps, margin, or padding. */
-@kui-space-70: 20px;
-/* 24px value for gaps, margin, or padding. */
-@kui-space-80: 24px;
-/* 32px value for gaps, margin, or padding. */
-@kui-space-90: 32px;
-/* 40px value for gaps, margin, or padding. */
-@kui-space-100: 40px;
-/* 48px value for gaps, margin, or padding. */
-@kui-space-110: 48px;
-/* 56px value for gaps, margin, or padding. */
-@kui-space-120: 56px;
-/* 64px value for gaps, margin, or padding. */
-@kui-space-130: 64px;
-/* 80px value for gaps, margin, or padding. */
-@kui-space-140: 80px;
-/* 96px value for gaps, margin, or padding. */
-@kui-space-150: 96px;
-/* auto */
-@kui-space-auto: auto;
+@kui-color-background: ;
+@kui-color-background-danger: ;
+@kui-color-background-danger-strong: ;
+@kui-color-background-danger-stronger: ;
+@kui-color-background-danger-strongest: ;
+@kui-color-background-danger-weak: ;
+@kui-color-background-danger-weaker: ;
+@kui-color-background-danger-weakest: ;
+@kui-color-background-decorative-aqua-weakest: ;
+@kui-color-background-decorative-purple: ;
+@kui-color-background-decorative-purple-weakest: ;
+@kui-color-background-disabled: ;
+@kui-color-background-info: ;
+@kui-color-background-info-strong: ;
+@kui-color-background-info-stronger: ;
+@kui-color-background-info-strongest: ;
+@kui-color-background-info-weak: ;
+@kui-color-background-info-weaker: ;
+@kui-color-background-info-weakest: ;
+@kui-color-background-inverse: ;
+@kui-color-background-neutral: ;
+@kui-color-background-neutral-strong: ;
+@kui-color-background-neutral-stronger: ;
+@kui-color-background-neutral-strongest: ;
+@kui-color-background-neutral-weak: ;
+@kui-color-background-neutral-weaker: ;
+@kui-color-background-neutral-weakest: ;
+@kui-color-background-overlay: ;
+@kui-color-background-primary: ;
+@kui-color-background-primary-strong: ;
+@kui-color-background-primary-stronger: ;
+@kui-color-background-primary-strongest: ;
+@kui-color-background-primary-weak: ;
+@kui-color-background-primary-weaker: ;
+@kui-color-background-primary-weakest: ;
+@kui-color-background-success: ;
+@kui-color-background-success-strong: ;
+@kui-color-background-success-stronger: ;
+@kui-color-background-success-strongest: ;
+@kui-color-background-success-weak: ;
+@kui-color-background-success-weaker: ;
+@kui-color-background-success-weakest: ;
+@kui-color-background-transparent: ;
+@kui-color-background-warning: ;
+@kui-color-background-warning-strong: ;
+@kui-color-background-warning-stronger: ;
+@kui-color-background-warning-strongest: ;
+@kui-color-background-warning-weak: ;
+@kui-color-background-warning-weaker: ;
+@kui-color-background-warning-weakest: ;
+@kui-color-border: ;
+@kui-color-border-danger: ;
+@kui-color-border-danger-strong: ;
+@kui-color-border-danger-stronger: ;
+@kui-color-border-danger-strongest: ;
+@kui-color-border-danger-weak: ;
+@kui-color-border-danger-weaker: ;
+@kui-color-border-danger-weakest: ;
+@kui-color-border-decorative-purple: ;
+@kui-color-border-disabled: ;
+@kui-color-border-inverse: ;
+@kui-color-border-neutral: ;
+@kui-color-border-neutral-strong: ;
+@kui-color-border-neutral-stronger: ;
+@kui-color-border-neutral-strongest: ;
+@kui-color-border-neutral-weak: ;
+@kui-color-border-neutral-weaker: ;
+@kui-color-border-neutral-weakest: ;
+@kui-color-border-primary: ;
+@kui-color-border-primary-strong: ;
+@kui-color-border-primary-stronger: ;
+@kui-color-border-primary-strongest: ;
+@kui-color-border-primary-weak: ;
+@kui-color-border-primary-weaker: ;
+@kui-color-border-primary-weakest: ;
+@kui-color-border-transparent: ;
+@kui-color-text: ;
+@kui-color-text-danger: ;
+@kui-color-text-danger-strong: ;
+@kui-color-text-danger-stronger: ;
+@kui-color-text-danger-strongest: ;
+@kui-color-text-danger-weak: ;
+@kui-color-text-danger-weaker: ;
+@kui-color-text-danger-weakest: ;
+@kui-color-text-decorative-aqua: ;
+@kui-color-text-decorative-pink: ;
+@kui-color-text-decorative-purple: ;
+@kui-color-text-decorative-purple-strong: ;
+@kui-color-text-disabled: ;
+@kui-color-text-info: ;
+@kui-color-text-info-strong: ;
+@kui-color-text-info-stronger: ;
+@kui-color-text-info-strongest: ;
+@kui-color-text-info-weak: ;
+@kui-color-text-info-weaker: ;
+@kui-color-text-info-weakest: ;
+@kui-color-text-inverse: ;
+@kui-color-text-neutral: ;
+@kui-color-text-neutral-strong: ;
+@kui-color-text-neutral-stronger: ;
+@kui-color-text-neutral-strongest: ;
+@kui-color-text-neutral-weak: ;
+@kui-color-text-neutral-weaker: ;
+@kui-color-text-neutral-weakest: ;
+@kui-color-text-primary: ;
+@kui-color-text-primary-strong: ;
+@kui-color-text-primary-stronger: ;
+@kui-color-text-primary-strongest: ;
+@kui-color-text-primary-weak: ;
+@kui-color-text-primary-weaker: ;
+@kui-color-text-primary-weakest: ;
+@kui-color-text-success: ;
+@kui-color-text-success-strong: ;
+@kui-color-text-success-stronger: ;
+@kui-color-text-success-strongest: ;
+@kui-color-text-success-weak: ;
+@kui-color-text-success-weaker: ;
+@kui-color-text-success-weakest: ;
+@kui-color-text-warning: ;
+@kui-color-text-warning-strong: ;
+@kui-color-text-warning-stronger: ;
+@kui-color-text-warning-strongest: ;
+@kui-color-text-warning-weak: ;
+@kui-color-text-warning-weaker: ;
+@kui-color-text-warning-weakest: ;
+@kui-animation-duration-20: ;
+@kui-border-radius-0: ;
+@kui-border-radius-10: ;
+@kui-border-radius-20: ;
+@kui-border-radius-30: ;
+@kui-border-radius-40: ;
+@kui-border-radius-50: ;
+@kui-border-radius-circle: ;
+@kui-border-radius-round: ;
+@kui-border-width-0: ;
+@kui-border-width-10: ;
+@kui-border-width-20: ;
+@kui-border-width-30: ;
+@kui-breakpoint-mobile: ;
+@kui-breakpoint-phablet: ;
+@kui-breakpoint-tablet: ;
+@kui-breakpoint-laptop: ;
+@kui-breakpoint-desktop: ;
+@kui-icon-color-danger: ;
+@kui-icon-color-neutral: ;
+@kui-icon-color-primary: ;
+@kui-icon-color-success: ;
+@kui-icon-color-warning: ;
+@kui-icon-size-10: ;
+@kui-icon-size-20: ;
+@kui-icon-size-30: ;
+@kui-icon-size-40: ;
+@kui-icon-size-50: ;
+@kui-icon-size-60: ;
+@kui-icon-size-70: ;
+@kui-icon-size-80: ;
+@kui-method-color-background-connect: ;
+@kui-method-color-background-delete: ;
+@kui-method-color-background-get: ;
+@kui-method-color-background-head: ;
+@kui-method-color-background-options: ;
+@kui-method-color-background-patch: ;
+@kui-method-color-background-post: ;
+@kui-method-color-background-put: ;
+@kui-method-color-background-trace: ;
+@kui-method-color-text-connect: ;
+@kui-method-color-text-connect-strong: ;
+@kui-method-color-text-delete: ;
+@kui-method-color-text-delete-strong: ;
+@kui-method-color-text-get: ;
+@kui-method-color-text-get-strong: ;
+@kui-method-color-text-head: ;
+@kui-method-color-text-head-strong: ;
+@kui-method-color-text-options: ;
+@kui-method-color-text-options-strong: ;
+@kui-method-color-text-patch: ;
+@kui-method-color-text-patch-strong: ;
+@kui-method-color-text-post: ;
+@kui-method-color-text-post-strong: ;
+@kui-method-color-text-put: ;
+@kui-method-color-text-put-strong: ;
+@kui-method-color-text-trace: ;
+@kui-method-color-text-trace-strong: ;
+@kui-navigation-color-background: ;
+@kui-navigation-color-background-selected: ;
+@kui-navigation-color-border: ;
+@kui-navigation-color-border-child: ;
+@kui-navigation-color-border-divider: ;
+@kui-navigation-color-text: ;
+@kui-navigation-color-text-focus: ;
+@kui-navigation-color-text-hover: ;
+@kui-navigation-color-text-selected: ;
+@kui-navigation-shadow-border: ;
+@kui-navigation-shadow-border-child: ;
+@kui-navigation-shadow-focus: ;
+@kui-status-color-100: ;
+@kui-status-color-101: ;
+@kui-status-color-102: ;
+@kui-status-color-103: ;
+@kui-status-color-200: ;
+@kui-status-color-201: ;
+@kui-status-color-202: ;
+@kui-status-color-203: ;
+@kui-status-color-204: ;
+@kui-status-color-205: ;
+@kui-status-color-206: ;
+@kui-status-color-207: ;
+@kui-status-color-208: ;
+@kui-status-color-226: ;
+@kui-status-color-300: ;
+@kui-status-color-301: ;
+@kui-status-color-302: ;
+@kui-status-color-303: ;
+@kui-status-color-304: ;
+@kui-status-color-305: ;
+@kui-status-color-307: ;
+@kui-status-color-308: ;
+@kui-status-color-400: ;
+@kui-status-color-401: ;
+@kui-status-color-402: ;
+@kui-status-color-403: ;
+@kui-status-color-404: ;
+@kui-status-color-405: ;
+@kui-status-color-406: ;
+@kui-status-color-407: ;
+@kui-status-color-408: ;
+@kui-status-color-409: ;
+@kui-status-color-410: ;
+@kui-status-color-411: ;
+@kui-status-color-412: ;
+@kui-status-color-413: ;
+@kui-status-color-414: ;
+@kui-status-color-415: ;
+@kui-status-color-416: ;
+@kui-status-color-417: ;
+@kui-status-color-418: ;
+@kui-status-color-421: ;
+@kui-status-color-422: ;
+@kui-status-color-423: ;
+@kui-status-color-424: ;
+@kui-status-color-425: ;
+@kui-status-color-426: ;
+@kui-status-color-428: ;
+@kui-status-color-429: ;
+@kui-status-color-431: ;
+@kui-status-color-451: ;
+@kui-status-color-500: ;
+@kui-status-color-501: ;
+@kui-status-color-502: ;
+@kui-status-color-503: ;
+@kui-status-color-504: ;
+@kui-status-color-505: ;
+@kui-status-color-506: ;
+@kui-status-color-507: ;
+@kui-status-color-508: ;
+@kui-status-color-510: ;
+@kui-status-color-511: ;
+@kui-status-color-1na: ;
+@kui-status-color-2na: ;
+@kui-status-color-3na: ;
+@kui-status-color-4na: ;
+@kui-status-color-5na: ;
+@kui-status-color-100s: ;
+@kui-status-color-200s: ;
+@kui-status-color-300s: ;
+@kui-status-color-400s: ;
+@kui-status-color-500s: ;
+@kui-status-color-background-100: ;
+@kui-status-color-background-200: ;
+@kui-status-color-background-300: ;
+@kui-status-color-background-400: ;
+@kui-status-color-background-500: ;
+@kui-status-color-text-100: ;
+@kui-status-color-text-200: ;
+@kui-status-color-text-300: ;
+@kui-status-color-text-400: ;
+@kui-status-color-text-500: ;
+@kui-font-family-code: ;
+@kui-font-family-heading: ;
+@kui-font-family-text: ;
+@kui-font-size-10: ;
+@kui-font-size-20: ;
+@kui-font-size-30: ;
+@kui-font-size-40: ;
+@kui-font-size-50: ;
+@kui-font-size-60: ;
+@kui-font-size-70: ;
+@kui-font-size-80: ;
+@kui-font-size-90: ;
+@kui-font-size-100: ;
+@kui-font-weight-bold: ;
+@kui-font-weight-medium: ;
+@kui-font-weight-regular: ;
+@kui-font-weight-semibold: ;
+@kui-letter-spacing-0: ;
+@kui-letter-spacing-minus-10: ;
+@kui-letter-spacing-minus-20: ;
+@kui-letter-spacing-minus-30: ;
+@kui-letter-spacing-minus-40: ;
+@kui-letter-spacing-minus-50: ;
+@kui-letter-spacing-normal: ;
+@kui-line-height-10: ;
+@kui-line-height-20: ;
+@kui-line-height-30: ;
+@kui-line-height-40: ;
+@kui-line-height-50: ;
+@kui-line-height-60: ;
+@kui-line-height-70: ;
+@kui-line-height-80: ;
+@kui-line-height-90: ;
+@kui-line-height-100: ;
+@kui-shadow: ;
+@kui-shadow-border: ;
+@kui-shadow-border-danger: ;
+@kui-shadow-border-danger-strong: ;
+@kui-shadow-border-disabled: ;
+@kui-shadow-border-primary: ;
+@kui-shadow-border-primary-strongest: ;
+@kui-shadow-border-primary-weak: ;
+@kui-shadow-focus: ;
+@kui-space-0: ;
+@kui-space-10: ;
+@kui-space-20: ;
+@kui-space-30: ;
+@kui-space-40: ;
+@kui-space-50: ;
+@kui-space-60: ;
+@kui-space-70: ;
+@kui-space-80: ;
+@kui-space-90: ;
+@kui-space-100: ;
+@kui-space-110: ;
+@kui-space-120: ;
+@kui-space-130: ;
+@kui-space-140: ;
+@kui-space-150: ;
+@kui-space-auto: ;
 ```
 
 </details>
@@ -2051,670 +1070,343 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 <summary>Click to view the list of CSS custom properties</summary>
 
 ```scss
-/* Default background color for containers (white). */
---kui-color-background: #ffffff;
-/* Background color for danger actions or messages (red.60). */
---kui-color-background-danger: #d60027;
-/* Strong background color for danger actions or messages (red.70). */
---kui-color-background-danger-strong: #ad000e;
-/* Stronger background color for danger actions or messages (red.80). */
---kui-color-background-danger-stronger: #850000;
-/* Strongest background color for danger actions or messages (red.90). */
---kui-color-background-danger-strongest: #5c0000;
-/* Weak background color for danger actions or messages (red.40). */
---kui-color-background-danger-weak: #ff3954;
-/* Weaker background color for danger actions or messages (red.20). */
---kui-color-background-danger-weaker: #ffabab;
-/* Weakest background color for danger actions or messages (red.10). */
---kui-color-background-danger-weakest: #ffe5e5;
-/* Weakest background color for decorative purposes (aqua.10). */
---kui-color-background-decorative-aqua-weakest: #ecfcff;
-/* Background color for decorative purposes (purple.60). */
---kui-color-background-decorative-purple: #6f28ff;
-/* Weakest background color for decorative purposes (purple.10). */
---kui-color-background-decorative-purple-weakest: #f1f0ff;
-/* Background color for disabled elements (gray.20). */
---kui-color-background-disabled: #e0e4ea;
-/* Background color for info elements (blue.60). */
---kui-color-background-info: #0044f4;
-/* Strong background color for info elements (blue.70). */
---kui-color-background-info-strong: #0030cc;
-/* Stronger background color for info elements (blue.80). */
---kui-color-background-info-stronger: #002099;
-/* Strongest background color for info elements (blue.90). */
---kui-color-background-info-strongest: #001466;
-/* Weak background color for info elements (blue.40). */
---kui-color-background-info-weak: #5f9aff;
-/* Weaker background color for info elements (blue.20). */
---kui-color-background-info-weaker: #bee2ff;
-/* Weakest background color for info elements (blue.10). */
---kui-color-background-info-weakest: #eefaff;
-/* Inverse background color for containers (blue.100) */
---kui-color-background-inverse: #000933;
-/* Background color for neutral elements (gray.60). */
---kui-color-background-neutral: #6c7489;
-/* Strong background color for neutral elements (gray.70). */
---kui-color-background-neutral-strong: #52596e;
-/* Stronger background color for neutral elements (gray.80). */
---kui-color-background-neutral-stronger: #3a3f51;
-/* Strongest background color for neutral elements (gray.90). */
---kui-color-background-neutral-strongest: #232633;
-/* Weak background color for neutral elements (gray.40). */
---kui-color-background-neutral-weak: #afb7c5;
-/* Weaker background color for neutral elements (gray.20). */
---kui-color-background-neutral-weaker: #e0e4ea;
-/* Weakest background color for neutral elements (gray.10). */
---kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(blue.100, 0.6)) */
---kui-color-background-overlay: rgba(0, 9, 51, 0.6);
-/* Background color for primary actions or messages (blue.60). */
---kui-color-background-primary: #0044f4;
-/* Strong background color for primary actions or messages (blue.70). */
---kui-color-background-primary-strong: #0030cc;
-/* Stronger background color for primary actions or messages (blue.80). */
---kui-color-background-primary-stronger: #002099;
-/* Strongest background color for primary actions or messages (blue.90). */
---kui-color-background-primary-strongest: #001466;
-/* Weak background color for primary actions or messages (blue.40). */
---kui-color-background-primary-weak: #5f9aff;
-/* Weaker background color for primary actions or messages (blue.20). */
---kui-color-background-primary-weaker: #bee2ff;
-/* Weakest background color for primary actions or messages (blue.10) */
---kui-color-background-primary-weakest: #eefaff;
-/* Background color for success elements (green.60). */
---kui-color-background-success: #007d60;
-/* Strong background color for success elements (green.70). */
---kui-color-background-success-strong: #005944;
-/* Stronger background color for success elements (green.80). */
---kui-color-background-success-stronger: #004737;
-/* Strongest background color for success elements (green.90). */
---kui-color-background-success-strongest: #003629;
-/* Weak background color for success elements (green.40). */
---kui-color-background-success-weak: #00d6a4;
-/* Weaker background color for success elements (green.20). */
---kui-color-background-success-weaker: #b5ffee;
-/* Weakest background color for success elements (green.10). */
---kui-color-background-success-weakest: #ecfffb;
-/* Transparent background color (transparent). */
---kui-color-background-transparent: transparent;
-/* Background color for warning elements (yellow.60). */
---kui-color-background-warning: #995c00;
-/* Strong background color for warning elements (yellow.70). */
---kui-color-background-warning-strong: #804400;
-/* Stronger background color for warning elements (yellow.80). */
---kui-color-background-warning-stronger: #662d00;
-/* Strongest background color for warning elements (yellow.90). */
---kui-color-background-warning-strongest: #4d1b00;
-/* Weak background color for warning elements (yellow.40). */
---kui-color-background-warning-weak: #ffc400;
-/* Weaker background color for warning elements (yellow.20). */
---kui-color-background-warning-weaker: #fff296;
-/* Weakest background color for warning elements (yellow.10). */
---kui-color-background-warning-weakest: #fffce0;
-/* Default border color for containers (gray.20). */
---kui-color-border: #e0e4ea;
-/* Border color for danger actions or messages (red.60). */
---kui-color-border-danger: #d60027;
-/* Strong border color for danger actions or messages (red.70). */
---kui-color-border-danger-strong: #ad000e;
-/* Stronger border color for danger actions or messages (red.80). */
---kui-color-border-danger-stronger: #850000;
-/* Strongest border color for danger actions or messages (red.90). */
---kui-color-border-danger-strongest: #5c0000;
-/* Weak border color for danger actions or messages (red.40). */
---kui-color-border-danger-weak: #ff3954;
-/* Weaker border color for danger actions or messages (red.20). */
---kui-color-border-danger-weaker: #ffabab;
-/* Weakest border color for danger actions or messages (red.10). */
---kui-color-border-danger-weakest: #ffe5e5;
-/* Border color for decorative purposes (purple.60). */
---kui-color-border-decorative-purple: #6f28ff;
-/* Border color for disabled elements (gray.20). */
---kui-color-border-disabled: #e0e4ea;
-/* Inverse border color (rgba(white, 0.2)). */
---kui-color-border-inverse: rgba(255, 255, 255, 0.2);
-/* Border color for neutral elements (gray.60) */
---kui-color-border-neutral: #6c7489;
-/* Strong border color for neutral elements (gray.70) */
---kui-color-border-neutral-strong: #52596e;
-/* Stronger border color for neutral elements (gray.80) */
---kui-color-border-neutral-stronger: #3a3f51;
-/* Strongest border color for neutral elements (gray.90) */
---kui-color-border-neutral-strongest: #232633;
-/* Weak border color for neutral elements (gray.40) */
---kui-color-border-neutral-weak: #afb7c5;
-/* Weaker border color for neutral elements (gray.20) */
---kui-color-border-neutral-weaker: #e0e4ea;
-/* Weakest border color for neutral elements (gray.10) */
---kui-color-border-neutral-weakest: #f9fafb;
-/* Border color for primary actions or messages (blue.60). */
---kui-color-border-primary: #0044f4;
-/* Strong border color for primary actions or messages (blue.70). */
---kui-color-border-primary-strong: #0030cc;
-/* Stronger border color for primary actions or messages (blue.80). */
---kui-color-border-primary-stronger: #002099;
-/* Strongest border color for primary actions or messages (blue.90). */
---kui-color-border-primary-strongest: #001466;
-/* Weak border color for primary actions or messages (blue.40). */
---kui-color-border-primary-weak: #5f9aff;
-/* Weaker border color for primary actions or messages (blue.20). */
---kui-color-border-primary-weaker: #bee2ff;
-/* Weakest border color for primary actions or messages (blue.10). */
---kui-color-border-primary-weakest: #eefaff;
-/* Transparent border color (transparent). */
---kui-color-border-transparent: transparent;
-/* Default text color (blue.100). */
---kui-color-text: #000933;
-/* Text color for danger actions or messages (red.60). */
---kui-color-text-danger: #d60027;
-/* Strong text color for danger actions or messages (red.70). */
---kui-color-text-danger-strong: #ad000e;
-/* Stronger text color for danger actions or messages (red.80). */
---kui-color-text-danger-stronger: #850000;
-/* Strongest text color for danger actions or messages (red.90). */
---kui-color-text-danger-strongest: #5c0000;
-/* Weak text color for danger actions or messages (red.40). */
---kui-color-text-danger-weak: #ff3954;
-/* Weaker text color for danger actions or messages (red.20). */
---kui-color-text-danger-weaker: #ffabab;
-/* Weakest text color for danger actions or messages (red.10). */
---kui-color-text-danger-weakest: #ffe5e5;
-/* Text color for decorative purposes (aqua.50). */
---kui-color-text-decorative-aqua: #00abd2;
-/* Text color for decorative purposes (pink.60). */
---kui-color-text-decorative-pink: #d60067;
-/* Text color for decorative purposes (purple.60). */
---kui-color-text-decorative-purple: #6f28ff;
-/* Strong text color for decorative purposes (purple.70). */
---kui-color-text-decorative-purple-strong: #5e00f5;
-/* Text color for disabled elements (gray.40). */
---kui-color-text-disabled: #afb7c5;
-/* Text color for info elements (blue.60). */
---kui-color-text-info: #0044f4;
-/* Strong text color for info elements (blue.70). */
---kui-color-text-info-strong: #0030cc;
-/* Stronger text color for info elements (blue.80). */
---kui-color-text-info-stronger: #002099;
-/* Strongest text color for info elements (blue.90). */
---kui-color-text-info-strongest: #001466;
-/* Weak text color for info elements (blue.40). */
---kui-color-text-info-weak: #5f9aff;
-/* Weaker text color for info elements (blue.20). */
---kui-color-text-info-weaker: #bee2ff;
-/* Weakest text color for info elements (blue.10). */
---kui-color-text-info-weakest: #eefaff;
-/* Inverse text color (white). */
---kui-color-text-inverse: #ffffff;
-/* Text color for neutral elements (gray.60). */
---kui-color-text-neutral: #6c7489;
-/* Strong text color for neutral elements (gray.70). */
---kui-color-text-neutral-strong: #52596e;
-/* Stronger text color for neutral elements (gray.80). */
---kui-color-text-neutral-stronger: #3a3f51;
-/* Strongest text color for neutral elements (gray.90). */
---kui-color-text-neutral-strongest: #232633;
-/* Weak text color for neutral elements (gray.40). */
---kui-color-text-neutral-weak: #afb7c5;
-/* Weaker text color for neutral elements (gray.20). */
---kui-color-text-neutral-weaker: #e0e4ea;
-/* Weakest text color for neutral elements (gray.10). */
---kui-color-text-neutral-weakest: #f9fafb;
-/* Text color for primary actions or messages (blue.60). */
---kui-color-text-primary: #0044f4;
-/* Strong text color for primary actions or messages (blue.70). */
---kui-color-text-primary-strong: #0030cc;
-/* Stronger text color for primary actions or messages (blue.80). */
---kui-color-text-primary-stronger: #002099;
-/* Strongest text color for primary actions or messages (blue.90). */
---kui-color-text-primary-strongest: #001466;
-/* Weak text color for primary actions or messages (blue.40). */
---kui-color-text-primary-weak: #5f9aff;
-/* Weaker text color for primary actions or messages (blue.20). */
---kui-color-text-primary-weaker: #bee2ff;
-/* Weakest text color for primary actions or messages (blue.10). */
---kui-color-text-primary-weakest: #eefaff;
-/* Text color for success elements (green.60). */
---kui-color-text-success: #007d60;
-/* Strong text color for success elements (green.70). */
---kui-color-text-success-strong: #005944;
-/* Stronger text color for success elements (green.80). */
---kui-color-text-success-stronger: #004737;
-/* Stronger text color for success elements (green.90). */
---kui-color-text-success-strongest: #003629;
-/* Weak text color for success elements (green.40). */
---kui-color-text-success-weak: #00d6a4;
-/* Weaker text color for success elements (green.20). */
---kui-color-text-success-weaker: #b5ffee;
-/* Weakest text color for success elements (green.10). */
---kui-color-text-success-weakest: #ecfffb;
-/* Text color for warning elements (yellow.60). */
---kui-color-text-warning: #995c00;
-/* Strong text color for warning elements (yellow.70). */
---kui-color-text-warning-strong: #804400;
-/* Stronger text color for warning elements (yellow.80). */
---kui-color-text-warning-stronger: #662d00;
-/* Strongest text color for warning elements (yellow.90). */
---kui-color-text-warning-strongest: #4d1b00;
-/* Weak text color for warning elements (yellow.40). */
---kui-color-text-warning-weak: #ffc400;
-/* Weaker text color for warning elements (yellow.20). */
---kui-color-text-warning-weaker: #fff296;
-/* Weakest text color for warning elements (yellow.10). */
---kui-color-text-warning-weakest: #fffce0;
-/* Default transition timing */
---kui-animation-duration-20: 0.2s;
-/* 0px border radius. */
---kui-border-radius-0: 0px;
-/* 2px border radius. */
---kui-border-radius-10: 2px;
-/* 4px border radius. */
---kui-border-radius-20: 4px;
-/* 6px border radius. */
---kui-border-radius-30: 6px;
-/* 8px border radius. */
---kui-border-radius-40: 8px;
-/* 10px border radius. */
---kui-border-radius-50: 10px;
-/* 50% border radius used to create circles. */
---kui-border-radius-circle: 50%;
-/* 100px border radius used to create pill shapes. */
---kui-border-radius-round: 100px;
-/* 0px border width. */
---kui-border-width-0: 0px;
-/* 1px border width. */
---kui-border-width-10: 1px;
-/* 2px border width. */
---kui-border-width-20: 2px;
-/* 4px border width. */
---kui-border-width-30: 4px;
-/* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
---kui-breakpoint-mobile: 640px;
-/* Used for tablet screens. */
---kui-breakpoint-phablet: 768px;
-/* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
---kui-breakpoint-tablet: 1024px;
-/* Used for standard desktop screens. */
---kui-breakpoint-laptop: 1280px;
-/* Used for larger desktop screens. */
---kui-breakpoint-desktop: 1536px;
-/* Danger color for icons. */
---kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
---kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
---kui-icon-color-primary: #306fff;
-/* Success color for icons. */
---kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
---kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
---kui-icon-size-10: 10px;
-/* 12px icon size. */
---kui-icon-size-20: 12px;
-/* 16px icon size. */
---kui-icon-size-30: 16px;
-/* 20px icon size. */
---kui-icon-size-40: 20px;
-/* 24px icon size (default). */
---kui-icon-size-50: 24px;
-/* 32px icon size. */
---kui-icon-size-60: 32px;
-/* 40px icon size. */
---kui-icon-size-70: 40px;
-/* 48px icon size. */
---kui-icon-size-80: 48px;
-/* Background color for the CONNECT method (purple.10). */
---kui-method-color-background-connect: #f1f0ff;
-/* Background color for the DELETE method (red.10). */
---kui-method-color-background-delete: #ffe5e5;
-/* Background color for the GET method (blue.10). */
---kui-method-color-background-get: #eefaff;
-/* Background color for the HEAD method (gray.70). */
---kui-method-color-background-head: #52596e;
-/* Background color for the OPTIONS method (gray.20). */
---kui-method-color-background-options: #e0e4ea;
-/* Background color for the PATCH method (aqua.10). */
---kui-method-color-background-patch: #ecfcff;
-/* Background color for the POST method (green.10). */
---kui-method-color-background-post: #ecfffb;
-/* Background color for the PUT method (yellow.10). */
---kui-method-color-background-put: #fffce0;
-/* Background color for the TRACE method (pink.10). */
---kui-method-color-background-trace: #fff0f7;
-/* Text color for the CONNECT method (purple.60). */
---kui-method-color-text-connect: #6f28ff;
-/* Strong text color for the CONNECT method (purple.70). */
---kui-method-color-text-connect-strong: #5e00f5;
-/* Text color for the DELETE method (red.60). */
---kui-method-color-text-delete: #d60027;
-/* Strong text color for the DELETE method (red.70). */
---kui-method-color-text-delete-strong: #ad000e;
-/* Text color for the GET method (blue.60). */
---kui-method-color-text-get: #0044f4;
-/* Strong text color for the GET method (blue.70). */
---kui-method-color-text-get-strong: #0030cc;
-/* Text color for the HEAD method (gray.20). */
---kui-method-color-text-head: #e0e4ea;
-/* Strong text color for the HEAD method (gray.40). */
---kui-method-color-text-head-strong: #afb7c5;
-/* Text color for the OPTIONS method (gray.70). */
---kui-method-color-text-options: #52596e;
-/* Strong text color for the OPTIONS method (gray.80). */
---kui-method-color-text-options-strong: #3a3f51;
-/* Text color for the PATCH method (aqua.60). */
---kui-method-color-text-patch: #00819d;
-/* Strong text color for the PATCH method (aqua.70). */
---kui-method-color-text-patch-strong: #00647a;
-/* Text color for the POST method (green.60). */
---kui-method-color-text-post: #007d60;
-/* Strong text color for the POST method (green.70). */
---kui-method-color-text-post-strong: #005944;
-/* Text color for the PUT method (yellow.60). */
---kui-method-color-text-put: #995c00;
-/* Strong text color for the PUT method (yellow.70). */
---kui-method-color-text-put-strong: #804400;
-/* Text color for the TRACE method (pink.60). */
---kui-method-color-text-trace: #d60067;
-/* Strong text color for the TRACE method (pink.70). */
---kui-method-color-text-trace-strong: #ad0053;
-/* blue.100 */
---kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
---kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(white, 0.12) */
---kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
---kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
---kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
---kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
---kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
---kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
---kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
---kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
---kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
---kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* Color representing response status code 100 (blue.20). */
---kui-status-color-100: #bee2ff;
-/* Color representing response status code 101 (blue.30). */
---kui-status-color-101: #8fc1ff;
-/* Color representing response status code 102 (blue.40). */
---kui-status-color-102: #5f9aff;
-/* Color representing response status code 103 (blue.50). */
---kui-status-color-103: #306fff;
-/* Color representing response status code 200 (green.20). */
---kui-status-color-200: #b5ffee;
-/* Color representing response status code 201 (green.30). */
---kui-status-color-201: #00fabe;
-/* Color representing response status code 202 (green.40). */
---kui-status-color-202: #00d6a4;
-/* Color representing response status code 203 (green.50). */
---kui-status-color-203: #00a17b;
-/* Color representing response status code 204 (green.60). */
---kui-status-color-204: #007d60;
-/* Color representing response status code 205 (green.70). */
---kui-status-color-205: #005944;
-/* Color representing response status code 206 (green.20). */
---kui-status-color-206: #b5ffee;
-/* Color representing response status code 207 (green.30). */
---kui-status-color-207: #00fabe;
-/* Color representing response status code 208 (green.40). */
---kui-status-color-208: #b5ffee;
-/* Color representing response status code 226 (green.50). */
---kui-status-color-226: #00a17b;
-/* Color representing response status code 100 (yellow.20). */
---kui-status-color-300: #fff296;
-/* Color representing response status code 101 (yellow.30). */
---kui-status-color-301: #ffe04b;
-/* Color representing response status code 102 (yellow.40). */
---kui-status-color-302: #ffc400;
-/* Color representing response status code 103 (yellow.50). */
---kui-status-color-303: #b37600;
-/* Color representing response status code 103 (yellow.60). */
---kui-status-color-304: #995c00;
-/* Color representing response status code 103 (yellow.70). */
---kui-status-color-305: #804400;
-/* Color representing response status code 103 (yellow.20). */
---kui-status-color-307: #fff296;
-/* Color representing response status code 103 (yellow.30). */
---kui-status-color-308: #ffe04b;
-/* Color representing response status code 400 (orange.20). */
---kui-status-color-400: #FFC2B3;
-/* Color representing response status code 401 (orange.30). */
---kui-status-color-401: #FF9877;
-/* Color representing response status code 402 (orange.40). */
---kui-status-color-402: #FF723C;
-/* Color representing response status code 403 (orange.50). */
---kui-status-color-403: #F75008;
-/* Color representing response status code 404 (orange.60). */
---kui-status-color-404: #D13500;
-/* Color representing response status code 405 (orange.70). */
---kui-status-color-405: #A31F00;
-/* Color representing response status code 406 (orange.20). */
---kui-status-color-406: #FFC2B3;
-/* Color representing response status code 407 (orange.30). */
---kui-status-color-407: #FF9877;
-/* Color representing response status code 408 (orange.40). */
---kui-status-color-408: #FF723C;
-/* Color representing response status code 409 (orange.50). */
---kui-status-color-409: #F75008;
-/* Color representing response status code 410 (orange.60). */
---kui-status-color-410: #D13500;
-/* Color representing response status code 411 (orange.70). */
---kui-status-color-411: #A31F00;
-/* Color representing response status code 412 (orange.20). */
---kui-status-color-412: #FFC2B3;
-/* Color representing response status code 413 (orange.30). */
---kui-status-color-413: #FF9877;
-/* Color representing response status code 414 (orange.40). */
---kui-status-color-414: #FF723C;
-/* Color representing response status code 415 (orange.50). */
---kui-status-color-415: #F75008;
-/* Color representing response status code 416 (orange.60). */
---kui-status-color-416: #D13500;
-/* Color representing response status code 417 (orange.70). */
---kui-status-color-417: #A31F00;
-/* Color representing response status code 418 (orange.20). */
---kui-status-color-418: #FFC2B3;
-/* Color representing response status code 421 (orange.30). */
---kui-status-color-421: #FF9877;
-/* Color representing response status code 422 (orange.40). */
---kui-status-color-422: #FF723C;
-/* Color representing response status code 423 (orange.50). */
---kui-status-color-423: #F75008;
-/* Color representing response status code 424 (orange.60). */
---kui-status-color-424: #D13500;
-/* Color representing response status code 425 (orange.70). */
---kui-status-color-425: #A31F00;
-/* Color representing response status code 426 (orange.20). */
---kui-status-color-426: #FFC2B3;
-/* Color representing response status code 428 (orange.30). */
---kui-status-color-428: #FF9877;
-/* Color representing response status code 429 (orange.40). */
---kui-status-color-429: #FF723C;
-/* Color representing response status code 431 (orange.50). */
---kui-status-color-431: #F75008;
-/* Color representing response status code 451 (orange.60). */
---kui-status-color-451: #D13500;
-/* Color representing response status code 500 (red.20). */
---kui-status-color-500: #ffabab;
-/* Color representing response status code 501 (red.30). */
---kui-status-color-501: #ff7272;
-/* Color representing response status code 502 (red.40). */
---kui-status-color-502: #ff3954;
-/* Color representing response status code 503 (red.50). */
---kui-status-color-503: #f50045;
-/* Color representing response status code 504 (red.60). */
---kui-status-color-504: #d60027;
-/* Color representing response status code 505 (red.70). */
---kui-status-color-505: #ad000e;
-/* Color representing response status code 506 (red.20). */
---kui-status-color-506: #ffabab;
-/* Color representing response status code 507 (red.30). */
---kui-status-color-507: #ff7272;
-/* Color representing response status code 508 (red.40). */
---kui-status-color-508: #ff3954;
-/* Color representing response status code 510 (red.50). */
---kui-status-color-510: #f50045;
-/* Color representing response status code 511 (red.60). */
---kui-status-color-511: #d60027;
-/* Color for unknown response status codes in the 100-199 range (blue.10). */
---kui-status-color-1na: #eefaff;
-/* Color for unknown response status codes in the 200-299 range (green.10). */
---kui-status-color-2na: #ecfffb;
-/* Color for unknown response status codes in the 300-399 range (yellow.10). */
---kui-status-color-3na: #fffce0;
-/* Color for unknown response status codes in the 400-499 range (orange.10). */
---kui-status-color-4na: #FFF1EF;
-/* Color for unknown response status codes in the 500-599 range (red.10). */
---kui-status-color-5na: #ffe5e5;
-/* Color for a group of response status codes in the 100-199 range (blue.40). */
---kui-status-color-100s: #5f9aff;
-/* Color for a group of response status codes in the 200-299 range (green.40). */
---kui-status-color-200s: #00d6a4;
-/* Color for a group of response status codes in the 300-399 range (yellow.40). */
---kui-status-color-300s: #ffc400;
-/* Color for a group of response status codes in the 400-499 range (orange.40). */
---kui-status-color-400s: #FF723C;
-/* Color for a group of response status codes in the 500-599 range (red.40). */
---kui-status-color-500s: #ff3954;
-/* Background color for http status 100 elements (blue.10). */
---kui-status-color-background-100: #eefaff;
-/* Background color for http status 200 elements (green.10). */
---kui-status-color-background-200: #ecfffb;
-/* Background color for http status 300 elements (yellow.10). */
---kui-status-color-background-300: #fffce0;
-/* Background color for http status 400 elements (orange.10). */
---kui-status-color-background-400: #FFF1EF;
-/* Background color for http status 500 elements (red.10). */
---kui-status-color-background-500: #ffe5e5;
-/* Text color for http status 100 elements (blue.60). */
---kui-status-color-text-100: #0044f4;
-/* Text color for http status 200 elements (green.60). */
---kui-status-color-text-200: #007d60;
-/* Text color for http status 300 elements (yellow.60). */
---kui-status-color-text-300: #995c00;
-/* Text color for http status 400 elements (orange.60). */
---kui-status-color-text-400: #D13500;
-/* Text color for http status 500 elements (red.60). */
---kui-status-color-text-500: #d60027;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
---kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
-/* The standard heading text font family. */
---kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
-/* The standard text font family. */
---kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
---kui-font-size-10: 10px;
---kui-font-size-20: 12px;
---kui-font-size-30: 14px;
---kui-font-size-40: 16px;
---kui-font-size-50: 18px;
---kui-font-size-60: 20px;
---kui-font-size-70: 24px;
---kui-font-size-80: 32px;
---kui-font-size-90: 40px;
---kui-font-size-100: 48px;
-/* 700: The bold font weight. */
---kui-font-weight-bold: 700;
-/* 500: The medium font weight. */
---kui-font-weight-medium: 500;
-/* 400: The normal font weight. */
---kui-font-weight-regular: 400;
-/* 600: The semibold font weight. */
---kui-font-weight-semibold: 600;
-/* Alias for letter-spacing-normal */
---kui-letter-spacing-0: normal;
-/* -0.12px */
---kui-letter-spacing-minus-10: -0.12px;
-/* -0.24px */
---kui-letter-spacing-minus-20: -0.24px;
-/* -0.32px */
---kui-letter-spacing-minus-30: -0.32px;
-/* -0.4px */
---kui-letter-spacing-minus-40: -0.4px;
-/* -0.48px */
---kui-letter-spacing-minus-50: -0.48px;
-/* normal */
---kui-letter-spacing-normal: normal;
-/* 12px */
---kui-line-height-10: 12px;
-/* 16px */
---kui-line-height-20: 16px;
-/* 20px */
---kui-line-height-30: 20px;
-/* 24px */
---kui-line-height-40: 24px;
-/* 28px */
---kui-line-height-50: 28px;
-/* 32px */
---kui-line-height-60: 32px;
-/* 36px */
---kui-line-height-70: 36px;
-/* 40px */
---kui-line-height-80: 40px;
-/* 48px */
---kui-line-height-90: 48px;
-/* 56px */
---kui-line-height-100: 56px;
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
---kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-/* 0px 0px 0px 1px gray.20 inset */
---kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px red.60 inset */
---kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
-/* 0px 0px 0px 1px red.70 inset */
---kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
-/* 0px 0px 0px 1px gray.20 inset */
---kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px blue.60 inset */
---kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
-/* 0px 0px 0px 1px blue.90 inset */
---kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
-/* 0px 0px 0px 1px blue.40 inset */
---kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
---kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px value for gaps, margin, or padding. */
---kui-space-0: 0px;
-/* 2px value for gaps, margin, or padding. */
---kui-space-10: 2px;
-/* 4px value for gaps, margin, or padding. */
---kui-space-20: 4px;
-/* 6px value for gaps, margin, or padding. */
---kui-space-30: 6px;
-/* 8px value for gaps, margin, or padding. */
---kui-space-40: 8px;
-/* 12px value for gaps, margin, or padding. */
---kui-space-50: 12px;
-/* 16px value for gaps, margin, or padding. */
---kui-space-60: 16px;
-/* 20px value for gaps, margin, or padding. */
---kui-space-70: 20px;
-/* 24px value for gaps, margin, or padding. */
---kui-space-80: 24px;
-/* 32px value for gaps, margin, or padding. */
---kui-space-90: 32px;
-/* 40px value for gaps, margin, or padding. */
---kui-space-100: 40px;
-/* 48px value for gaps, margin, or padding. */
---kui-space-110: 48px;
-/* 56px value for gaps, margin, or padding. */
---kui-space-120: 56px;
-/* 64px value for gaps, margin, or padding. */
---kui-space-130: 64px;
-/* 80px value for gaps, margin, or padding. */
---kui-space-140: 80px;
-/* 96px value for gaps, margin, or padding. */
---kui-space-150: 96px;
-/* auto */
---kui-space-auto: auto;
+--kui-color-background: ;
+--kui-color-background-danger: ;
+--kui-color-background-danger-strong: ;
+--kui-color-background-danger-stronger: ;
+--kui-color-background-danger-strongest: ;
+--kui-color-background-danger-weak: ;
+--kui-color-background-danger-weaker: ;
+--kui-color-background-danger-weakest: ;
+--kui-color-background-decorative-aqua-weakest: ;
+--kui-color-background-decorative-purple: ;
+--kui-color-background-decorative-purple-weakest: ;
+--kui-color-background-disabled: ;
+--kui-color-background-info: ;
+--kui-color-background-info-strong: ;
+--kui-color-background-info-stronger: ;
+--kui-color-background-info-strongest: ;
+--kui-color-background-info-weak: ;
+--kui-color-background-info-weaker: ;
+--kui-color-background-info-weakest: ;
+--kui-color-background-inverse: ;
+--kui-color-background-neutral: ;
+--kui-color-background-neutral-strong: ;
+--kui-color-background-neutral-stronger: ;
+--kui-color-background-neutral-strongest: ;
+--kui-color-background-neutral-weak: ;
+--kui-color-background-neutral-weaker: ;
+--kui-color-background-neutral-weakest: ;
+--kui-color-background-overlay: ;
+--kui-color-background-primary: ;
+--kui-color-background-primary-strong: ;
+--kui-color-background-primary-stronger: ;
+--kui-color-background-primary-strongest: ;
+--kui-color-background-primary-weak: ;
+--kui-color-background-primary-weaker: ;
+--kui-color-background-primary-weakest: ;
+--kui-color-background-success: ;
+--kui-color-background-success-strong: ;
+--kui-color-background-success-stronger: ;
+--kui-color-background-success-strongest: ;
+--kui-color-background-success-weak: ;
+--kui-color-background-success-weaker: ;
+--kui-color-background-success-weakest: ;
+--kui-color-background-transparent: ;
+--kui-color-background-warning: ;
+--kui-color-background-warning-strong: ;
+--kui-color-background-warning-stronger: ;
+--kui-color-background-warning-strongest: ;
+--kui-color-background-warning-weak: ;
+--kui-color-background-warning-weaker: ;
+--kui-color-background-warning-weakest: ;
+--kui-color-border: ;
+--kui-color-border-danger: ;
+--kui-color-border-danger-strong: ;
+--kui-color-border-danger-stronger: ;
+--kui-color-border-danger-strongest: ;
+--kui-color-border-danger-weak: ;
+--kui-color-border-danger-weaker: ;
+--kui-color-border-danger-weakest: ;
+--kui-color-border-decorative-purple: ;
+--kui-color-border-disabled: ;
+--kui-color-border-inverse: ;
+--kui-color-border-neutral: ;
+--kui-color-border-neutral-strong: ;
+--kui-color-border-neutral-stronger: ;
+--kui-color-border-neutral-strongest: ;
+--kui-color-border-neutral-weak: ;
+--kui-color-border-neutral-weaker: ;
+--kui-color-border-neutral-weakest: ;
+--kui-color-border-primary: ;
+--kui-color-border-primary-strong: ;
+--kui-color-border-primary-stronger: ;
+--kui-color-border-primary-strongest: ;
+--kui-color-border-primary-weak: ;
+--kui-color-border-primary-weaker: ;
+--kui-color-border-primary-weakest: ;
+--kui-color-border-transparent: ;
+--kui-color-text: ;
+--kui-color-text-danger: ;
+--kui-color-text-danger-strong: ;
+--kui-color-text-danger-stronger: ;
+--kui-color-text-danger-strongest: ;
+--kui-color-text-danger-weak: ;
+--kui-color-text-danger-weaker: ;
+--kui-color-text-danger-weakest: ;
+--kui-color-text-decorative-aqua: ;
+--kui-color-text-decorative-pink: ;
+--kui-color-text-decorative-purple: ;
+--kui-color-text-decorative-purple-strong: ;
+--kui-color-text-disabled: ;
+--kui-color-text-info: ;
+--kui-color-text-info-strong: ;
+--kui-color-text-info-stronger: ;
+--kui-color-text-info-strongest: ;
+--kui-color-text-info-weak: ;
+--kui-color-text-info-weaker: ;
+--kui-color-text-info-weakest: ;
+--kui-color-text-inverse: ;
+--kui-color-text-neutral: ;
+--kui-color-text-neutral-strong: ;
+--kui-color-text-neutral-stronger: ;
+--kui-color-text-neutral-strongest: ;
+--kui-color-text-neutral-weak: ;
+--kui-color-text-neutral-weaker: ;
+--kui-color-text-neutral-weakest: ;
+--kui-color-text-primary: ;
+--kui-color-text-primary-strong: ;
+--kui-color-text-primary-stronger: ;
+--kui-color-text-primary-strongest: ;
+--kui-color-text-primary-weak: ;
+--kui-color-text-primary-weaker: ;
+--kui-color-text-primary-weakest: ;
+--kui-color-text-success: ;
+--kui-color-text-success-strong: ;
+--kui-color-text-success-stronger: ;
+--kui-color-text-success-strongest: ;
+--kui-color-text-success-weak: ;
+--kui-color-text-success-weaker: ;
+--kui-color-text-success-weakest: ;
+--kui-color-text-warning: ;
+--kui-color-text-warning-strong: ;
+--kui-color-text-warning-stronger: ;
+--kui-color-text-warning-strongest: ;
+--kui-color-text-warning-weak: ;
+--kui-color-text-warning-weaker: ;
+--kui-color-text-warning-weakest: ;
+--kui-animation-duration-20: ;
+--kui-border-radius-0: ;
+--kui-border-radius-10: ;
+--kui-border-radius-20: ;
+--kui-border-radius-30: ;
+--kui-border-radius-40: ;
+--kui-border-radius-50: ;
+--kui-border-radius-circle: ;
+--kui-border-radius-round: ;
+--kui-border-width-0: ;
+--kui-border-width-10: ;
+--kui-border-width-20: ;
+--kui-border-width-30: ;
+--kui-breakpoint-mobile: ;
+--kui-breakpoint-phablet: ;
+--kui-breakpoint-tablet: ;
+--kui-breakpoint-laptop: ;
+--kui-breakpoint-desktop: ;
+--kui-icon-color-danger: ;
+--kui-icon-color-neutral: ;
+--kui-icon-color-primary: ;
+--kui-icon-color-success: ;
+--kui-icon-color-warning: ;
+--kui-icon-size-10: ;
+--kui-icon-size-20: ;
+--kui-icon-size-30: ;
+--kui-icon-size-40: ;
+--kui-icon-size-50: ;
+--kui-icon-size-60: ;
+--kui-icon-size-70: ;
+--kui-icon-size-80: ;
+--kui-method-color-background-connect: ;
+--kui-method-color-background-delete: ;
+--kui-method-color-background-get: ;
+--kui-method-color-background-head: ;
+--kui-method-color-background-options: ;
+--kui-method-color-background-patch: ;
+--kui-method-color-background-post: ;
+--kui-method-color-background-put: ;
+--kui-method-color-background-trace: ;
+--kui-method-color-text-connect: ;
+--kui-method-color-text-connect-strong: ;
+--kui-method-color-text-delete: ;
+--kui-method-color-text-delete-strong: ;
+--kui-method-color-text-get: ;
+--kui-method-color-text-get-strong: ;
+--kui-method-color-text-head: ;
+--kui-method-color-text-head-strong: ;
+--kui-method-color-text-options: ;
+--kui-method-color-text-options-strong: ;
+--kui-method-color-text-patch: ;
+--kui-method-color-text-patch-strong: ;
+--kui-method-color-text-post: ;
+--kui-method-color-text-post-strong: ;
+--kui-method-color-text-put: ;
+--kui-method-color-text-put-strong: ;
+--kui-method-color-text-trace: ;
+--kui-method-color-text-trace-strong: ;
+--kui-navigation-color-background: ;
+--kui-navigation-color-background-selected: ;
+--kui-navigation-color-border: ;
+--kui-navigation-color-border-child: ;
+--kui-navigation-color-border-divider: ;
+--kui-navigation-color-text: ;
+--kui-navigation-color-text-focus: ;
+--kui-navigation-color-text-hover: ;
+--kui-navigation-color-text-selected: ;
+--kui-navigation-shadow-border: ;
+--kui-navigation-shadow-border-child: ;
+--kui-navigation-shadow-focus: ;
+--kui-status-color-100: ;
+--kui-status-color-101: ;
+--kui-status-color-102: ;
+--kui-status-color-103: ;
+--kui-status-color-200: ;
+--kui-status-color-201: ;
+--kui-status-color-202: ;
+--kui-status-color-203: ;
+--kui-status-color-204: ;
+--kui-status-color-205: ;
+--kui-status-color-206: ;
+--kui-status-color-207: ;
+--kui-status-color-208: ;
+--kui-status-color-226: ;
+--kui-status-color-300: ;
+--kui-status-color-301: ;
+--kui-status-color-302: ;
+--kui-status-color-303: ;
+--kui-status-color-304: ;
+--kui-status-color-305: ;
+--kui-status-color-307: ;
+--kui-status-color-308: ;
+--kui-status-color-400: ;
+--kui-status-color-401: ;
+--kui-status-color-402: ;
+--kui-status-color-403: ;
+--kui-status-color-404: ;
+--kui-status-color-405: ;
+--kui-status-color-406: ;
+--kui-status-color-407: ;
+--kui-status-color-408: ;
+--kui-status-color-409: ;
+--kui-status-color-410: ;
+--kui-status-color-411: ;
+--kui-status-color-412: ;
+--kui-status-color-413: ;
+--kui-status-color-414: ;
+--kui-status-color-415: ;
+--kui-status-color-416: ;
+--kui-status-color-417: ;
+--kui-status-color-418: ;
+--kui-status-color-421: ;
+--kui-status-color-422: ;
+--kui-status-color-423: ;
+--kui-status-color-424: ;
+--kui-status-color-425: ;
+--kui-status-color-426: ;
+--kui-status-color-428: ;
+--kui-status-color-429: ;
+--kui-status-color-431: ;
+--kui-status-color-451: ;
+--kui-status-color-500: ;
+--kui-status-color-501: ;
+--kui-status-color-502: ;
+--kui-status-color-503: ;
+--kui-status-color-504: ;
+--kui-status-color-505: ;
+--kui-status-color-506: ;
+--kui-status-color-507: ;
+--kui-status-color-508: ;
+--kui-status-color-510: ;
+--kui-status-color-511: ;
+--kui-status-color-1na: ;
+--kui-status-color-2na: ;
+--kui-status-color-3na: ;
+--kui-status-color-4na: ;
+--kui-status-color-5na: ;
+--kui-status-color-100s: ;
+--kui-status-color-200s: ;
+--kui-status-color-300s: ;
+--kui-status-color-400s: ;
+--kui-status-color-500s: ;
+--kui-status-color-background-100: ;
+--kui-status-color-background-200: ;
+--kui-status-color-background-300: ;
+--kui-status-color-background-400: ;
+--kui-status-color-background-500: ;
+--kui-status-color-text-100: ;
+--kui-status-color-text-200: ;
+--kui-status-color-text-300: ;
+--kui-status-color-text-400: ;
+--kui-status-color-text-500: ;
+--kui-font-family-code: ;
+--kui-font-family-heading: ;
+--kui-font-family-text: ;
+--kui-font-size-10: ;
+--kui-font-size-20: ;
+--kui-font-size-30: ;
+--kui-font-size-40: ;
+--kui-font-size-50: ;
+--kui-font-size-60: ;
+--kui-font-size-70: ;
+--kui-font-size-80: ;
+--kui-font-size-90: ;
+--kui-font-size-100: ;
+--kui-font-weight-bold: ;
+--kui-font-weight-medium: ;
+--kui-font-weight-regular: ;
+--kui-font-weight-semibold: ;
+--kui-letter-spacing-0: ;
+--kui-letter-spacing-minus-10: ;
+--kui-letter-spacing-minus-20: ;
+--kui-letter-spacing-minus-30: ;
+--kui-letter-spacing-minus-40: ;
+--kui-letter-spacing-minus-50: ;
+--kui-letter-spacing-normal: ;
+--kui-line-height-10: ;
+--kui-line-height-20: ;
+--kui-line-height-30: ;
+--kui-line-height-40: ;
+--kui-line-height-50: ;
+--kui-line-height-60: ;
+--kui-line-height-70: ;
+--kui-line-height-80: ;
+--kui-line-height-90: ;
+--kui-line-height-100: ;
+--kui-shadow: ;
+--kui-shadow-border: ;
+--kui-shadow-border-danger: ;
+--kui-shadow-border-danger-strong: ;
+--kui-shadow-border-disabled: ;
+--kui-shadow-border-primary: ;
+--kui-shadow-border-primary-strongest: ;
+--kui-shadow-border-primary-weak: ;
+--kui-shadow-focus: ;
+--kui-space-0: ;
+--kui-space-10: ;
+--kui-space-20: ;
+--kui-space-30: ;
+--kui-space-40: ;
+--kui-space-50: ;
+--kui-space-60: ;
+--kui-space-70: ;
+--kui-space-80: ;
+--kui-space-90: ;
+--kui-space-100: ;
+--kui-space-110: ;
+--kui-space-120: ;
+--kui-space-130: ;
+--kui-space-140: ;
+--kui-space-150: ;
+--kui-space-auto: ;
 ```
 
 </details>
@@ -2728,670 +1420,343 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 <summary>Click to view the list of JavaScript variables</summary>
 
 ```javascript
-/* Default background color for containers (white). */
-export const KUI_COLOR_BACKGROUND = "#ffffff";
-/* Background color for danger actions or messages (red.60). */
-export const KUI_COLOR_BACKGROUND_DANGER = "#d60027";
-/* Strong background color for danger actions or messages (red.70). */
-export const KUI_COLOR_BACKGROUND_DANGER_STRONG = "#ad000e";
-/* Stronger background color for danger actions or messages (red.80). */
-export const KUI_COLOR_BACKGROUND_DANGER_STRONGER = "#850000";
-/* Strongest background color for danger actions or messages (red.90). */
-export const KUI_COLOR_BACKGROUND_DANGER_STRONGEST = "#5c0000";
-/* Weak background color for danger actions or messages (red.40). */
-export const KUI_COLOR_BACKGROUND_DANGER_WEAK = "#ff3954";
-/* Weaker background color for danger actions or messages (red.20). */
-export const KUI_COLOR_BACKGROUND_DANGER_WEAKER = "#ffabab";
-/* Weakest background color for danger actions or messages (red.10). */
-export const KUI_COLOR_BACKGROUND_DANGER_WEAKEST = "#ffe5e5";
-/* Weakest background color for decorative purposes (aqua.10). */
-export const KUI_COLOR_BACKGROUND_DECORATIVE_AQUA_WEAKEST = "#ecfcff";
-/* Background color for decorative purposes (purple.60). */
-export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE = "#6f28ff";
-/* Weakest background color for decorative purposes (purple.10). */
-export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE_WEAKEST = "#f1f0ff";
-/* Background color for disabled elements (gray.20). */
-export const KUI_COLOR_BACKGROUND_DISABLED = "#e0e4ea";
-/* Background color for info elements (blue.60). */
-export const KUI_COLOR_BACKGROUND_INFO = "#0044f4";
-/* Strong background color for info elements (blue.70). */
-export const KUI_COLOR_BACKGROUND_INFO_STRONG = "#0030cc";
-/* Stronger background color for info elements (blue.80). */
-export const KUI_COLOR_BACKGROUND_INFO_STRONGER = "#002099";
-/* Strongest background color for info elements (blue.90). */
-export const KUI_COLOR_BACKGROUND_INFO_STRONGEST = "#001466";
-/* Weak background color for info elements (blue.40). */
-export const KUI_COLOR_BACKGROUND_INFO_WEAK = "#5f9aff";
-/* Weaker background color for info elements (blue.20). */
-export const KUI_COLOR_BACKGROUND_INFO_WEAKER = "#bee2ff";
-/* Weakest background color for info elements (blue.10). */
-export const KUI_COLOR_BACKGROUND_INFO_WEAKEST = "#eefaff";
-/* Inverse background color for containers (blue.100) */
-export const KUI_COLOR_BACKGROUND_INVERSE = "#000933";
-/* Background color for neutral elements (gray.60). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL = "#6c7489";
-/* Strong background color for neutral elements (gray.70). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONG = "#52596e";
-/* Stronger background color for neutral elements (gray.80). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONGER = "#3a3f51";
-/* Strongest background color for neutral elements (gray.90). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONGEST = "#232633";
-/* Weak background color for neutral elements (gray.40). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAK = "#afb7c5";
-/* Weaker background color for neutral elements (gray.20). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKER = "#e0e4ea";
-/* Weakest background color for neutral elements (gray.10). */
-export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKEST = "#f9fafb";
-/* Overlay background color (rgba(blue.100, 0.6)) */
-export const KUI_COLOR_BACKGROUND_OVERLAY = "rgba(0, 9, 51, 0.6)";
-/* Background color for primary actions or messages (blue.60). */
-export const KUI_COLOR_BACKGROUND_PRIMARY = "#0044f4";
-/* Strong background color for primary actions or messages (blue.70). */
-export const KUI_COLOR_BACKGROUND_PRIMARY_STRONG = "#0030cc";
-/* Stronger background color for primary actions or messages (blue.80). */
-export const KUI_COLOR_BACKGROUND_PRIMARY_STRONGER = "#002099";
-/* Strongest background color for primary actions or messages (blue.90). */
-export const KUI_COLOR_BACKGROUND_PRIMARY_STRONGEST = "#001466";
-/* Weak background color for primary actions or messages (blue.40). */
-export const KUI_COLOR_BACKGROUND_PRIMARY_WEAK = "#5f9aff";
-/* Weaker background color for primary actions or messages (blue.20). */
-export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKER = "#bee2ff";
-/* Weakest background color for primary actions or messages (blue.10) */
-export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKEST = "#eefaff";
-/* Background color for success elements (green.60). */
-export const KUI_COLOR_BACKGROUND_SUCCESS = "#007d60";
-/* Strong background color for success elements (green.70). */
-export const KUI_COLOR_BACKGROUND_SUCCESS_STRONG = "#005944";
-/* Stronger background color for success elements (green.80). */
-export const KUI_COLOR_BACKGROUND_SUCCESS_STRONGER = "#004737";
-/* Strongest background color for success elements (green.90). */
-export const KUI_COLOR_BACKGROUND_SUCCESS_STRONGEST = "#003629";
-/* Weak background color for success elements (green.40). */
-export const KUI_COLOR_BACKGROUND_SUCCESS_WEAK = "#00d6a4";
-/* Weaker background color for success elements (green.20). */
-export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKER = "#b5ffee";
-/* Weakest background color for success elements (green.10). */
-export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKEST = "#ecfffb";
-/* Transparent background color (transparent). */
-export const KUI_COLOR_BACKGROUND_TRANSPARENT = "transparent";
-/* Background color for warning elements (yellow.60). */
-export const KUI_COLOR_BACKGROUND_WARNING = "#995c00";
-/* Strong background color for warning elements (yellow.70). */
-export const KUI_COLOR_BACKGROUND_WARNING_STRONG = "#804400";
-/* Stronger background color for warning elements (yellow.80). */
-export const KUI_COLOR_BACKGROUND_WARNING_STRONGER = "#662d00";
-/* Strongest background color for warning elements (yellow.90). */
-export const KUI_COLOR_BACKGROUND_WARNING_STRONGEST = "#4d1b00";
-/* Weak background color for warning elements (yellow.40). */
-export const KUI_COLOR_BACKGROUND_WARNING_WEAK = "#ffc400";
-/* Weaker background color for warning elements (yellow.20). */
-export const KUI_COLOR_BACKGROUND_WARNING_WEAKER = "#fff296";
-/* Weakest background color for warning elements (yellow.10). */
-export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = "#fffce0";
-/* Default border color for containers (gray.20). */
-export const KUI_COLOR_BORDER = "#e0e4ea";
-/* Border color for danger actions or messages (red.60). */
-export const KUI_COLOR_BORDER_DANGER = "#d60027";
-/* Strong border color for danger actions or messages (red.70). */
-export const KUI_COLOR_BORDER_DANGER_STRONG = "#ad000e";
-/* Stronger border color for danger actions or messages (red.80). */
-export const KUI_COLOR_BORDER_DANGER_STRONGER = "#850000";
-/* Strongest border color for danger actions or messages (red.90). */
-export const KUI_COLOR_BORDER_DANGER_STRONGEST = "#5c0000";
-/* Weak border color for danger actions or messages (red.40). */
-export const KUI_COLOR_BORDER_DANGER_WEAK = "#ff3954";
-/* Weaker border color for danger actions or messages (red.20). */
-export const KUI_COLOR_BORDER_DANGER_WEAKER = "#ffabab";
-/* Weakest border color for danger actions or messages (red.10). */
-export const KUI_COLOR_BORDER_DANGER_WEAKEST = "#ffe5e5";
-/* Border color for decorative purposes (purple.60). */
-export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = "#6f28ff";
-/* Border color for disabled elements (gray.20). */
-export const KUI_COLOR_BORDER_DISABLED = "#e0e4ea";
-/* Inverse border color (rgba(white, 0.2)). */
-export const KUI_COLOR_BORDER_INVERSE = "rgba(255, 255, 255, 0.2)";
-/* Border color for neutral elements (gray.60) */
-export const KUI_COLOR_BORDER_NEUTRAL = "#6c7489";
-/* Strong border color for neutral elements (gray.70) */
-export const KUI_COLOR_BORDER_NEUTRAL_STRONG = "#52596e";
-/* Stronger border color for neutral elements (gray.80) */
-export const KUI_COLOR_BORDER_NEUTRAL_STRONGER = "#3a3f51";
-/* Strongest border color for neutral elements (gray.90) */
-export const KUI_COLOR_BORDER_NEUTRAL_STRONGEST = "#232633";
-/* Weak border color for neutral elements (gray.40) */
-export const KUI_COLOR_BORDER_NEUTRAL_WEAK = "#afb7c5";
-/* Weaker border color for neutral elements (gray.20) */
-export const KUI_COLOR_BORDER_NEUTRAL_WEAKER = "#e0e4ea";
-/* Weakest border color for neutral elements (gray.10) */
-export const KUI_COLOR_BORDER_NEUTRAL_WEAKEST = "#f9fafb";
-/* Border color for primary actions or messages (blue.60). */
-export const KUI_COLOR_BORDER_PRIMARY = "#0044f4";
-/* Strong border color for primary actions or messages (blue.70). */
-export const KUI_COLOR_BORDER_PRIMARY_STRONG = "#0030cc";
-/* Stronger border color for primary actions or messages (blue.80). */
-export const KUI_COLOR_BORDER_PRIMARY_STRONGER = "#002099";
-/* Strongest border color for primary actions or messages (blue.90). */
-export const KUI_COLOR_BORDER_PRIMARY_STRONGEST = "#001466";
-/* Weak border color for primary actions or messages (blue.40). */
-export const KUI_COLOR_BORDER_PRIMARY_WEAK = "#5f9aff";
-/* Weaker border color for primary actions or messages (blue.20). */
-export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#bee2ff";
-/* Weakest border color for primary actions or messages (blue.10). */
-export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff";
-/* Transparent border color (transparent). */
-export const KUI_COLOR_BORDER_TRANSPARENT = "transparent";
-/* Default text color (blue.100). */
-export const KUI_COLOR_TEXT = "#000933";
-/* Text color for danger actions or messages (red.60). */
-export const KUI_COLOR_TEXT_DANGER = "#d60027";
-/* Strong text color for danger actions or messages (red.70). */
-export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
-/* Stronger text color for danger actions or messages (red.80). */
-export const KUI_COLOR_TEXT_DANGER_STRONGER = "#850000";
-/* Strongest text color for danger actions or messages (red.90). */
-export const KUI_COLOR_TEXT_DANGER_STRONGEST = "#5c0000";
-/* Weak text color for danger actions or messages (red.40). */
-export const KUI_COLOR_TEXT_DANGER_WEAK = "#ff3954";
-/* Weaker text color for danger actions or messages (red.20). */
-export const KUI_COLOR_TEXT_DANGER_WEAKER = "#ffabab";
-/* Weakest text color for danger actions or messages (red.10). */
-export const KUI_COLOR_TEXT_DANGER_WEAKEST = "#ffe5e5";
-/* Text color for decorative purposes (aqua.50). */
-export const KUI_COLOR_TEXT_DECORATIVE_AQUA = "#00abd2";
-/* Text color for decorative purposes (pink.60). */
-export const KUI_COLOR_TEXT_DECORATIVE_PINK = "#d60067";
-/* Text color for decorative purposes (purple.60). */
-export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = "#6f28ff";
-/* Strong text color for decorative purposes (purple.70). */
-export const KUI_COLOR_TEXT_DECORATIVE_PURPLE_STRONG = "#5e00f5";
-/* Text color for disabled elements (gray.40). */
-export const KUI_COLOR_TEXT_DISABLED = "#afb7c5";
-/* Text color for info elements (blue.60). */
-export const KUI_COLOR_TEXT_INFO = "#0044f4";
-/* Strong text color for info elements (blue.70). */
-export const KUI_COLOR_TEXT_INFO_STRONG = "#0030cc";
-/* Stronger text color for info elements (blue.80). */
-export const KUI_COLOR_TEXT_INFO_STRONGER = "#002099";
-/* Strongest text color for info elements (blue.90). */
-export const KUI_COLOR_TEXT_INFO_STRONGEST = "#001466";
-/* Weak text color for info elements (blue.40). */
-export const KUI_COLOR_TEXT_INFO_WEAK = "#5f9aff";
-/* Weaker text color for info elements (blue.20). */
-export const KUI_COLOR_TEXT_INFO_WEAKER = "#bee2ff";
-/* Weakest text color for info elements (blue.10). */
-export const KUI_COLOR_TEXT_INFO_WEAKEST = "#eefaff";
-/* Inverse text color (white). */
-export const KUI_COLOR_TEXT_INVERSE = "#ffffff";
-/* Text color for neutral elements (gray.60). */
-export const KUI_COLOR_TEXT_NEUTRAL = "#6c7489";
-/* Strong text color for neutral elements (gray.70). */
-export const KUI_COLOR_TEXT_NEUTRAL_STRONG = "#52596e";
-/* Stronger text color for neutral elements (gray.80). */
-export const KUI_COLOR_TEXT_NEUTRAL_STRONGER = "#3a3f51";
-/* Strongest text color for neutral elements (gray.90). */
-export const KUI_COLOR_TEXT_NEUTRAL_STRONGEST = "#232633";
-/* Weak text color for neutral elements (gray.40). */
-export const KUI_COLOR_TEXT_NEUTRAL_WEAK = "#afb7c5";
-/* Weaker text color for neutral elements (gray.20). */
-export const KUI_COLOR_TEXT_NEUTRAL_WEAKER = "#e0e4ea";
-/* Weakest text color for neutral elements (gray.10). */
-export const KUI_COLOR_TEXT_NEUTRAL_WEAKEST = "#f9fafb";
-/* Text color for primary actions or messages (blue.60). */
-export const KUI_COLOR_TEXT_PRIMARY = "#0044f4";
-/* Strong text color for primary actions or messages (blue.70). */
-export const KUI_COLOR_TEXT_PRIMARY_STRONG = "#0030cc";
-/* Stronger text color for primary actions or messages (blue.80). */
-export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#002099";
-/* Strongest text color for primary actions or messages (blue.90). */
-export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#001466";
-/* Weak text color for primary actions or messages (blue.40). */
-export const KUI_COLOR_TEXT_PRIMARY_WEAK = "#5f9aff";
-/* Weaker text color for primary actions or messages (blue.20). */
-export const KUI_COLOR_TEXT_PRIMARY_WEAKER = "#bee2ff";
-/* Weakest text color for primary actions or messages (blue.10). */
-export const KUI_COLOR_TEXT_PRIMARY_WEAKEST = "#eefaff";
-/* Text color for success elements (green.60). */
-export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
-/* Strong text color for success elements (green.70). */
-export const KUI_COLOR_TEXT_SUCCESS_STRONG = "#005944";
-/* Stronger text color for success elements (green.80). */
-export const KUI_COLOR_TEXT_SUCCESS_STRONGER = "#004737";
-/* Stronger text color for success elements (green.90). */
-export const KUI_COLOR_TEXT_SUCCESS_STRONGEST = "#003629";
-/* Weak text color for success elements (green.40). */
-export const KUI_COLOR_TEXT_SUCCESS_WEAK = "#00d6a4";
-/* Weaker text color for success elements (green.20). */
-export const KUI_COLOR_TEXT_SUCCESS_WEAKER = "#b5ffee";
-/* Weakest text color for success elements (green.10). */
-export const KUI_COLOR_TEXT_SUCCESS_WEAKEST = "#ecfffb";
-/* Text color for warning elements (yellow.60). */
-export const KUI_COLOR_TEXT_WARNING = "#995c00";
-/* Strong text color for warning elements (yellow.70). */
-export const KUI_COLOR_TEXT_WARNING_STRONG = "#804400";
-/* Stronger text color for warning elements (yellow.80). */
-export const KUI_COLOR_TEXT_WARNING_STRONGER = "#662d00";
-/* Strongest text color for warning elements (yellow.90). */
-export const KUI_COLOR_TEXT_WARNING_STRONGEST = "#4d1b00";
-/* Weak text color for warning elements (yellow.40). */
-export const KUI_COLOR_TEXT_WARNING_WEAK = "#ffc400";
-/* Weaker text color for warning elements (yellow.20). */
-export const KUI_COLOR_TEXT_WARNING_WEAKER = "#fff296";
-/* Weakest text color for warning elements (yellow.10). */
-export const KUI_COLOR_TEXT_WARNING_WEAKEST = "#fffce0";
-/* Default transition timing */
-export const KUI_ANIMATION_DURATION_20 = "0.2s";
-/* 0px border radius. */
-export const KUI_BORDER_RADIUS_0 = "0px";
-/* 2px border radius. */
-export const KUI_BORDER_RADIUS_10 = "2px";
-/* 4px border radius. */
-export const KUI_BORDER_RADIUS_20 = "4px";
-/* 6px border radius. */
-export const KUI_BORDER_RADIUS_30 = "6px";
-/* 8px border radius. */
-export const KUI_BORDER_RADIUS_40 = "8px";
-/* 10px border radius. */
-export const KUI_BORDER_RADIUS_50 = "10px";
-/* 50% border radius used to create circles. */
-export const KUI_BORDER_RADIUS_CIRCLE = "50%";
-/* 100px border radius used to create pill shapes. */
-export const KUI_BORDER_RADIUS_ROUND = "100px";
-/* 0px border width. */
-export const KUI_BORDER_WIDTH_0 = "0px";
-/* 1px border width. */
-export const KUI_BORDER_WIDTH_10 = "1px";
-/* 2px border width. */
-export const KUI_BORDER_WIDTH_20 = "2px";
-/* 4px border width. */
-export const KUI_BORDER_WIDTH_30 = "4px";
-/* Used for larger mobile screens. Any viewport width under this value is considered mobile. */
-export const KUI_BREAKPOINT_MOBILE = "640px";
-/* Used for tablet screens. */
-export const KUI_BREAKPOINT_PHABLET = "768px";
-/* Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
-export const KUI_BREAKPOINT_TABLET = "1024px";
-/* Used for standard desktop screens. */
-export const KUI_BREAKPOINT_LAPTOP = "1280px";
-/* Used for larger desktop screens. */
-export const KUI_BREAKPOINT_DESKTOP = "1536px";
-/* Danger color for icons. */
-export const KUI_ICON_COLOR_DANGER = "#f50045";
-/* Neutral color for icons. */
-export const KUI_ICON_COLOR_NEUTRAL = "#828a9e";
-/* Primary color for icons. */
-export const KUI_ICON_COLOR_PRIMARY = "#306fff";
-/* Success color for icons. */
-export const KUI_ICON_COLOR_SUCCESS = "#00a17b";
-/* Warning color for icons. */
-export const KUI_ICON_COLOR_WARNING = "#ffc400";
-/* 10px icon size. */
-export const KUI_ICON_SIZE_10 = "10px";
-/* 12px icon size. */
-export const KUI_ICON_SIZE_20 = "12px";
-/* 16px icon size. */
-export const KUI_ICON_SIZE_30 = "16px";
-/* 20px icon size. */
-export const KUI_ICON_SIZE_40 = "20px";
-/* 24px icon size (default). */
-export const KUI_ICON_SIZE_50 = "24px";
-/* 32px icon size. */
-export const KUI_ICON_SIZE_60 = "32px";
-/* 40px icon size. */
-export const KUI_ICON_SIZE_70 = "40px";
-/* 48px icon size. */
-export const KUI_ICON_SIZE_80 = "48px";
-/* Background color for the CONNECT method (purple.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = "#f1f0ff";
-/* Background color for the DELETE method (red.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_DELETE = "#ffe5e5";
-/* Background color for the GET method (blue.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_GET = "#eefaff";
-/* Background color for the HEAD method (gray.70). */
-export const KUI_METHOD_COLOR_BACKGROUND_HEAD = "#52596e";
-/* Background color for the OPTIONS method (gray.20). */
-export const KUI_METHOD_COLOR_BACKGROUND_OPTIONS = "#e0e4ea";
-/* Background color for the PATCH method (aqua.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_PATCH = "#ecfcff";
-/* Background color for the POST method (green.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_POST = "#ecfffb";
-/* Background color for the PUT method (yellow.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_PUT = "#fffce0";
-/* Background color for the TRACE method (pink.10). */
-export const KUI_METHOD_COLOR_BACKGROUND_TRACE = "#fff0f7";
-/* Text color for the CONNECT method (purple.60). */
-export const KUI_METHOD_COLOR_TEXT_CONNECT = "#6f28ff";
-/* Strong text color for the CONNECT method (purple.70). */
-export const KUI_METHOD_COLOR_TEXT_CONNECT_STRONG = "#5e00f5";
-/* Text color for the DELETE method (red.60). */
-export const KUI_METHOD_COLOR_TEXT_DELETE = "#d60027";
-/* Strong text color for the DELETE method (red.70). */
-export const KUI_METHOD_COLOR_TEXT_DELETE_STRONG = "#ad000e";
-/* Text color for the GET method (blue.60). */
-export const KUI_METHOD_COLOR_TEXT_GET = "#0044f4";
-/* Strong text color for the GET method (blue.70). */
-export const KUI_METHOD_COLOR_TEXT_GET_STRONG = "#0030cc";
-/* Text color for the HEAD method (gray.20). */
-export const KUI_METHOD_COLOR_TEXT_HEAD = "#e0e4ea";
-/* Strong text color for the HEAD method (gray.40). */
-export const KUI_METHOD_COLOR_TEXT_HEAD_STRONG = "#afb7c5";
-/* Text color for the OPTIONS method (gray.70). */
-export const KUI_METHOD_COLOR_TEXT_OPTIONS = "#52596e";
-/* Strong text color for the OPTIONS method (gray.80). */
-export const KUI_METHOD_COLOR_TEXT_OPTIONS_STRONG = "#3a3f51";
-/* Text color for the PATCH method (aqua.60). */
-export const KUI_METHOD_COLOR_TEXT_PATCH = "#00819d";
-/* Strong text color for the PATCH method (aqua.70). */
-export const KUI_METHOD_COLOR_TEXT_PATCH_STRONG = "#00647a";
-/* Text color for the POST method (green.60). */
-export const KUI_METHOD_COLOR_TEXT_POST = "#007d60";
-/* Strong text color for the POST method (green.70). */
-export const KUI_METHOD_COLOR_TEXT_POST_STRONG = "#005944";
-/* Text color for the PUT method (yellow.60). */
-export const KUI_METHOD_COLOR_TEXT_PUT = "#995c00";
-/* Strong text color for the PUT method (yellow.70). */
-export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = "#804400";
-/* Text color for the TRACE method (pink.60). */
-export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
-/* Strong text color for the TRACE method (pink.70). */
-export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
-/* blue.100 */
-export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
-/* The background color of a selected navigation item. */
-export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
-/* rgba(white, 0.12) */
-export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
-/* The border color for a selected child navigation item. */
-export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
-/* The color of the navigation section divider. */
-export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
-/* Navigation link and icon color. */
-export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
-/* Navigation link and icon focus-visible color. */
-export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
-/* Navigation link and icon hover color. */
-export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
-/* Navigation link and icon selected color. */
-export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
-/* The box-shadow for a focus-visible navigation link. */
-export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
-/* The left box-shadow for an active child navigation link. */
-export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
-/* Navigation link focus-visible box-shadow. */
-export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
-/* Color representing response status code 100 (blue.20). */
-export const KUI_STATUS_COLOR_100 = "#bee2ff";
-/* Color representing response status code 101 (blue.30). */
-export const KUI_STATUS_COLOR_101 = "#8fc1ff";
-/* Color representing response status code 102 (blue.40). */
-export const KUI_STATUS_COLOR_102 = "#5f9aff";
-/* Color representing response status code 103 (blue.50). */
-export const KUI_STATUS_COLOR_103 = "#306fff";
-/* Color representing response status code 200 (green.20). */
-export const KUI_STATUS_COLOR_200 = "#b5ffee";
-/* Color representing response status code 201 (green.30). */
-export const KUI_STATUS_COLOR_201 = "#00fabe";
-/* Color representing response status code 202 (green.40). */
-export const KUI_STATUS_COLOR_202 = "#00d6a4";
-/* Color representing response status code 203 (green.50). */
-export const KUI_STATUS_COLOR_203 = "#00a17b";
-/* Color representing response status code 204 (green.60). */
-export const KUI_STATUS_COLOR_204 = "#007d60";
-/* Color representing response status code 205 (green.70). */
-export const KUI_STATUS_COLOR_205 = "#005944";
-/* Color representing response status code 206 (green.20). */
-export const KUI_STATUS_COLOR_206 = "#b5ffee";
-/* Color representing response status code 207 (green.30). */
-export const KUI_STATUS_COLOR_207 = "#00fabe";
-/* Color representing response status code 208 (green.40). */
-export const KUI_STATUS_COLOR_208 = "#b5ffee";
-/* Color representing response status code 226 (green.50). */
-export const KUI_STATUS_COLOR_226 = "#00a17b";
-/* Color representing response status code 100 (yellow.20). */
-export const KUI_STATUS_COLOR_300 = "#fff296";
-/* Color representing response status code 101 (yellow.30). */
-export const KUI_STATUS_COLOR_301 = "#ffe04b";
-/* Color representing response status code 102 (yellow.40). */
-export const KUI_STATUS_COLOR_302 = "#ffc400";
-/* Color representing response status code 103 (yellow.50). */
-export const KUI_STATUS_COLOR_303 = "#b37600";
-/* Color representing response status code 103 (yellow.60). */
-export const KUI_STATUS_COLOR_304 = "#995c00";
-/* Color representing response status code 103 (yellow.70). */
-export const KUI_STATUS_COLOR_305 = "#804400";
-/* Color representing response status code 103 (yellow.20). */
-export const KUI_STATUS_COLOR_307 = "#fff296";
-/* Color representing response status code 103 (yellow.30). */
-export const KUI_STATUS_COLOR_308 = "#ffe04b";
-/* Color representing response status code 400 (orange.20). */
-export const KUI_STATUS_COLOR_400 = "#FFC2B3";
-/* Color representing response status code 401 (orange.30). */
-export const KUI_STATUS_COLOR_401 = "#FF9877";
-/* Color representing response status code 402 (orange.40). */
-export const KUI_STATUS_COLOR_402 = "#FF723C";
-/* Color representing response status code 403 (orange.50). */
-export const KUI_STATUS_COLOR_403 = "#F75008";
-/* Color representing response status code 404 (orange.60). */
-export const KUI_STATUS_COLOR_404 = "#D13500";
-/* Color representing response status code 405 (orange.70). */
-export const KUI_STATUS_COLOR_405 = "#A31F00";
-/* Color representing response status code 406 (orange.20). */
-export const KUI_STATUS_COLOR_406 = "#FFC2B3";
-/* Color representing response status code 407 (orange.30). */
-export const KUI_STATUS_COLOR_407 = "#FF9877";
-/* Color representing response status code 408 (orange.40). */
-export const KUI_STATUS_COLOR_408 = "#FF723C";
-/* Color representing response status code 409 (orange.50). */
-export const KUI_STATUS_COLOR_409 = "#F75008";
-/* Color representing response status code 410 (orange.60). */
-export const KUI_STATUS_COLOR_410 = "#D13500";
-/* Color representing response status code 411 (orange.70). */
-export const KUI_STATUS_COLOR_411 = "#A31F00";
-/* Color representing response status code 412 (orange.20). */
-export const KUI_STATUS_COLOR_412 = "#FFC2B3";
-/* Color representing response status code 413 (orange.30). */
-export const KUI_STATUS_COLOR_413 = "#FF9877";
-/* Color representing response status code 414 (orange.40). */
-export const KUI_STATUS_COLOR_414 = "#FF723C";
-/* Color representing response status code 415 (orange.50). */
-export const KUI_STATUS_COLOR_415 = "#F75008";
-/* Color representing response status code 416 (orange.60). */
-export const KUI_STATUS_COLOR_416 = "#D13500";
-/* Color representing response status code 417 (orange.70). */
-export const KUI_STATUS_COLOR_417 = "#A31F00";
-/* Color representing response status code 418 (orange.20). */
-export const KUI_STATUS_COLOR_418 = "#FFC2B3";
-/* Color representing response status code 421 (orange.30). */
-export const KUI_STATUS_COLOR_421 = "#FF9877";
-/* Color representing response status code 422 (orange.40). */
-export const KUI_STATUS_COLOR_422 = "#FF723C";
-/* Color representing response status code 423 (orange.50). */
-export const KUI_STATUS_COLOR_423 = "#F75008";
-/* Color representing response status code 424 (orange.60). */
-export const KUI_STATUS_COLOR_424 = "#D13500";
-/* Color representing response status code 425 (orange.70). */
-export const KUI_STATUS_COLOR_425 = "#A31F00";
-/* Color representing response status code 426 (orange.20). */
-export const KUI_STATUS_COLOR_426 = "#FFC2B3";
-/* Color representing response status code 428 (orange.30). */
-export const KUI_STATUS_COLOR_428 = "#FF9877";
-/* Color representing response status code 429 (orange.40). */
-export const KUI_STATUS_COLOR_429 = "#FF723C";
-/* Color representing response status code 431 (orange.50). */
-export const KUI_STATUS_COLOR_431 = "#F75008";
-/* Color representing response status code 451 (orange.60). */
-export const KUI_STATUS_COLOR_451 = "#D13500";
-/* Color representing response status code 500 (red.20). */
-export const KUI_STATUS_COLOR_500 = "#ffabab";
-/* Color representing response status code 501 (red.30). */
-export const KUI_STATUS_COLOR_501 = "#ff7272";
-/* Color representing response status code 502 (red.40). */
-export const KUI_STATUS_COLOR_502 = "#ff3954";
-/* Color representing response status code 503 (red.50). */
-export const KUI_STATUS_COLOR_503 = "#f50045";
-/* Color representing response status code 504 (red.60). */
-export const KUI_STATUS_COLOR_504 = "#d60027";
-/* Color representing response status code 505 (red.70). */
-export const KUI_STATUS_COLOR_505 = "#ad000e";
-/* Color representing response status code 506 (red.20). */
-export const KUI_STATUS_COLOR_506 = "#ffabab";
-/* Color representing response status code 507 (red.30). */
-export const KUI_STATUS_COLOR_507 = "#ff7272";
-/* Color representing response status code 508 (red.40). */
-export const KUI_STATUS_COLOR_508 = "#ff3954";
-/* Color representing response status code 510 (red.50). */
-export const KUI_STATUS_COLOR_510 = "#f50045";
-/* Color representing response status code 511 (red.60). */
-export const KUI_STATUS_COLOR_511 = "#d60027";
-/* Color for unknown response status codes in the 100-199 range (blue.10). */
-export const KUI_STATUS_COLOR_1NA = "#eefaff";
-/* Color for unknown response status codes in the 200-299 range (green.10). */
-export const KUI_STATUS_COLOR_2NA = "#ecfffb";
-/* Color for unknown response status codes in the 300-399 range (yellow.10). */
-export const KUI_STATUS_COLOR_3NA = "#fffce0";
-/* Color for unknown response status codes in the 400-499 range (orange.10). */
-export const KUI_STATUS_COLOR_4NA = "#FFF1EF";
-/* Color for unknown response status codes in the 500-599 range (red.10). */
-export const KUI_STATUS_COLOR_5NA = "#ffe5e5";
-/* Color for a group of response status codes in the 100-199 range (blue.40). */
-export const KUI_STATUS_COLOR_100S = "#5f9aff";
-/* Color for a group of response status codes in the 200-299 range (green.40). */
-export const KUI_STATUS_COLOR_200S = "#00d6a4";
-/* Color for a group of response status codes in the 300-399 range (yellow.40). */
-export const KUI_STATUS_COLOR_300S = "#ffc400";
-/* Color for a group of response status codes in the 400-499 range (orange.40). */
-export const KUI_STATUS_COLOR_400S = "#FF723C";
-/* Color for a group of response status codes in the 500-599 range (red.40). */
-export const KUI_STATUS_COLOR_500S = "#ff3954";
-/* Background color for http status 100 elements (blue.10). */
-export const KUI_STATUS_COLOR_BACKGROUND_100 = "#eefaff";
-/* Background color for http status 200 elements (green.10). */
-export const KUI_STATUS_COLOR_BACKGROUND_200 = "#ecfffb";
-/* Background color for http status 300 elements (yellow.10). */
-export const KUI_STATUS_COLOR_BACKGROUND_300 = "#fffce0";
-/* Background color for http status 400 elements (orange.10). */
-export const KUI_STATUS_COLOR_BACKGROUND_400 = "#FFF1EF";
-/* Background color for http status 500 elements (red.10). */
-export const KUI_STATUS_COLOR_BACKGROUND_500 = "#ffe5e5";
-/* Text color for http status 100 elements (blue.60). */
-export const KUI_STATUS_COLOR_TEXT_100 = "#0044f4";
-/* Text color for http status 200 elements (green.60). */
-export const KUI_STATUS_COLOR_TEXT_200 = "#007d60";
-/* Text color for http status 300 elements (yellow.60). */
-export const KUI_STATUS_COLOR_TEXT_300 = "#995c00";
-/* Text color for http status 400 elements (orange.60). */
-export const KUI_STATUS_COLOR_TEXT_400 = "#D13500";
-/* Text color for http status 500 elements (red.60). */
-export const KUI_STATUS_COLOR_TEXT_500 = "#d60027";
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
-/* The standard heading text font family. */
-export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
-/* The standard text font family. */
-export const KUI_FONT_FAMILY_TEXT = "'Inter', Roboto, Helvetica, sans-serif";
-export const KUI_FONT_SIZE_10 = "10px";
-export const KUI_FONT_SIZE_20 = "12px";
-export const KUI_FONT_SIZE_30 = "14px";
-export const KUI_FONT_SIZE_40 = "16px";
-export const KUI_FONT_SIZE_50 = "18px";
-export const KUI_FONT_SIZE_60 = "20px";
-export const KUI_FONT_SIZE_70 = "24px";
-export const KUI_FONT_SIZE_80 = "32px";
-export const KUI_FONT_SIZE_90 = "40px";
-export const KUI_FONT_SIZE_100 = "48px";
-/* 700: The bold font weight. */
-export const KUI_FONT_WEIGHT_BOLD = "700";
-/* 500: The medium font weight. */
-export const KUI_FONT_WEIGHT_MEDIUM = "500";
-/* 400: The normal font weight. */
-export const KUI_FONT_WEIGHT_REGULAR = "400";
-/* 600: The semibold font weight. */
-export const KUI_FONT_WEIGHT_SEMIBOLD = "600";
-/* Alias for letter-spacing-normal */
-export const KUI_LETTER_SPACING_0 = "normal";
-/* -0.12px */
-export const KUI_LETTER_SPACING_MINUS_10 = "-0.12px";
-/* -0.24px */
-export const KUI_LETTER_SPACING_MINUS_20 = "-0.24px";
-/* -0.32px */
-export const KUI_LETTER_SPACING_MINUS_30 = "-0.32px";
-/* -0.4px */
-export const KUI_LETTER_SPACING_MINUS_40 = "-0.4px";
-/* -0.48px */
-export const KUI_LETTER_SPACING_MINUS_50 = "-0.48px";
-/* normal */
-export const KUI_LETTER_SPACING_NORMAL = "normal";
-/* 12px */
-export const KUI_LINE_HEIGHT_10 = "12px";
-/* 16px */
-export const KUI_LINE_HEIGHT_20 = "16px";
-/* 20px */
-export const KUI_LINE_HEIGHT_30 = "20px";
-/* 24px */
-export const KUI_LINE_HEIGHT_40 = "24px";
-/* 28px */
-export const KUI_LINE_HEIGHT_50 = "28px";
-/* 32px */
-export const KUI_LINE_HEIGHT_60 = "32px";
-/* 36px */
-export const KUI_LINE_HEIGHT_70 = "36px";
-/* 40px */
-export const KUI_LINE_HEIGHT_80 = "40px";
-/* 48px */
-export const KUI_LINE_HEIGHT_90 = "48px";
-/* 56px */
-export const KUI_LINE_HEIGHT_100 = "56px";
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
-/* 0px 0px 0px 1px gray.20 inset */
-export const KUI_SHADOW_BORDER = "0px 0px 0px 1px #e0e4ea inset";
-/* 0px 0px 0px 1px red.60 inset */
-export const KUI_SHADOW_BORDER_DANGER = "0px 0px 0px 1px #d60027 inset";
-/* 0px 0px 0px 1px red.70 inset */
-export const KUI_SHADOW_BORDER_DANGER_STRONG = "0px 0px 0px 1px #ad000e inset";
-/* 0px 0px 0px 1px gray.20 inset */
-export const KUI_SHADOW_BORDER_DISABLED = "0px 0px 0px 1px #e0e4ea inset";
-/* 0px 0px 0px 1px blue.60 inset */
-export const KUI_SHADOW_BORDER_PRIMARY = "0px 0px 0px 1px #0044f4 inset";
-/* 0px 0px 0px 1px blue.90 inset */
-export const KUI_SHADOW_BORDER_PRIMARY_STRONGEST = "0px 0px 0px 1px #001466 inset";
-/* 0px 0px 0px 1px blue.40 inset */
-export const KUI_SHADOW_BORDER_PRIMARY_WEAK = "0px 0px 0px 1px #5f9aff inset";
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-export const KUI_SHADOW_FOCUS = "0px 0px 0px 4px rgba(0, 68, 244, 0.2)";
-/* 0px value for gaps, margin, or padding. */
-export const KUI_SPACE_0 = "0px";
-/* 2px value for gaps, margin, or padding. */
-export const KUI_SPACE_10 = "2px";
-/* 4px value for gaps, margin, or padding. */
-export const KUI_SPACE_20 = "4px";
-/* 6px value for gaps, margin, or padding. */
-export const KUI_SPACE_30 = "6px";
-/* 8px value for gaps, margin, or padding. */
-export const KUI_SPACE_40 = "8px";
-/* 12px value for gaps, margin, or padding. */
-export const KUI_SPACE_50 = "12px";
-/* 16px value for gaps, margin, or padding. */
-export const KUI_SPACE_60 = "16px";
-/* 20px value for gaps, margin, or padding. */
-export const KUI_SPACE_70 = "20px";
-/* 24px value for gaps, margin, or padding. */
-export const KUI_SPACE_80 = "24px";
-/* 32px value for gaps, margin, or padding. */
-export const KUI_SPACE_90 = "32px";
-/* 40px value for gaps, margin, or padding. */
-export const KUI_SPACE_100 = "40px";
-/* 48px value for gaps, margin, or padding. */
-export const KUI_SPACE_110 = "48px";
-/* 56px value for gaps, margin, or padding. */
-export const KUI_SPACE_120 = "56px";
-/* 64px value for gaps, margin, or padding. */
-export const KUI_SPACE_130 = "64px";
-/* 80px value for gaps, margin, or padding. */
-export const KUI_SPACE_140 = "80px";
-/* 96px value for gaps, margin, or padding. */
-export const KUI_SPACE_150 = "96px";
-/* auto */
-export const KUI_SPACE_AUTO = "auto";
+export const KUI_COLOR_BACKGROUND = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER_STRONG = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER_STRONGER = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER_STRONGEST = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER_WEAK = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER_WEAKER = undefined;
+export const KUI_COLOR_BACKGROUND_DANGER_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_DECORATIVE_AQUA_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE = undefined;
+export const KUI_COLOR_BACKGROUND_DECORATIVE_PURPLE_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_DISABLED = undefined;
+export const KUI_COLOR_BACKGROUND_INFO = undefined;
+export const KUI_COLOR_BACKGROUND_INFO_STRONG = undefined;
+export const KUI_COLOR_BACKGROUND_INFO_STRONGER = undefined;
+export const KUI_COLOR_BACKGROUND_INFO_STRONGEST = undefined;
+export const KUI_COLOR_BACKGROUND_INFO_WEAK = undefined;
+export const KUI_COLOR_BACKGROUND_INFO_WEAKER = undefined;
+export const KUI_COLOR_BACKGROUND_INFO_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_INVERSE = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONG = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONGER = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL_STRONGEST = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAK = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKER = undefined;
+export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_OVERLAY = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY_STRONG = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY_STRONGER = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY_STRONGEST = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY_WEAK = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKER = undefined;
+export const KUI_COLOR_BACKGROUND_PRIMARY_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS_STRONG = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS_STRONGER = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS_STRONGEST = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS_WEAK = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKER = undefined;
+export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKEST = undefined;
+export const KUI_COLOR_BACKGROUND_TRANSPARENT = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING_STRONG = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING_STRONGER = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING_STRONGEST = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING_WEAK = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING_WEAKER = undefined;
+export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = undefined;
+export const KUI_COLOR_BORDER = undefined;
+export const KUI_COLOR_BORDER_DANGER = undefined;
+export const KUI_COLOR_BORDER_DANGER_STRONG = undefined;
+export const KUI_COLOR_BORDER_DANGER_STRONGER = undefined;
+export const KUI_COLOR_BORDER_DANGER_STRONGEST = undefined;
+export const KUI_COLOR_BORDER_DANGER_WEAK = undefined;
+export const KUI_COLOR_BORDER_DANGER_WEAKER = undefined;
+export const KUI_COLOR_BORDER_DANGER_WEAKEST = undefined;
+export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = undefined;
+export const KUI_COLOR_BORDER_DISABLED = undefined;
+export const KUI_COLOR_BORDER_INVERSE = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL_STRONG = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL_STRONGER = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL_STRONGEST = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL_WEAK = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL_WEAKER = undefined;
+export const KUI_COLOR_BORDER_NEUTRAL_WEAKEST = undefined;
+export const KUI_COLOR_BORDER_PRIMARY = undefined;
+export const KUI_COLOR_BORDER_PRIMARY_STRONG = undefined;
+export const KUI_COLOR_BORDER_PRIMARY_STRONGER = undefined;
+export const KUI_COLOR_BORDER_PRIMARY_STRONGEST = undefined;
+export const KUI_COLOR_BORDER_PRIMARY_WEAK = undefined;
+export const KUI_COLOR_BORDER_PRIMARY_WEAKER = undefined;
+export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = undefined;
+export const KUI_COLOR_BORDER_TRANSPARENT = undefined;
+export const KUI_COLOR_TEXT = undefined;
+export const KUI_COLOR_TEXT_DANGER = undefined;
+export const KUI_COLOR_TEXT_DANGER_STRONG = undefined;
+export const KUI_COLOR_TEXT_DANGER_STRONGER = undefined;
+export const KUI_COLOR_TEXT_DANGER_STRONGEST = undefined;
+export const KUI_COLOR_TEXT_DANGER_WEAK = undefined;
+export const KUI_COLOR_TEXT_DANGER_WEAKER = undefined;
+export const KUI_COLOR_TEXT_DANGER_WEAKEST = undefined;
+export const KUI_COLOR_TEXT_DECORATIVE_AQUA = undefined;
+export const KUI_COLOR_TEXT_DECORATIVE_PINK = undefined;
+export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = undefined;
+export const KUI_COLOR_TEXT_DECORATIVE_PURPLE_STRONG = undefined;
+export const KUI_COLOR_TEXT_DISABLED = undefined;
+export const KUI_COLOR_TEXT_INFO = undefined;
+export const KUI_COLOR_TEXT_INFO_STRONG = undefined;
+export const KUI_COLOR_TEXT_INFO_STRONGER = undefined;
+export const KUI_COLOR_TEXT_INFO_STRONGEST = undefined;
+export const KUI_COLOR_TEXT_INFO_WEAK = undefined;
+export const KUI_COLOR_TEXT_INFO_WEAKER = undefined;
+export const KUI_COLOR_TEXT_INFO_WEAKEST = undefined;
+export const KUI_COLOR_TEXT_INVERSE = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL_STRONG = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL_STRONGER = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL_STRONGEST = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL_WEAK = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL_WEAKER = undefined;
+export const KUI_COLOR_TEXT_NEUTRAL_WEAKEST = undefined;
+export const KUI_COLOR_TEXT_PRIMARY = undefined;
+export const KUI_COLOR_TEXT_PRIMARY_STRONG = undefined;
+export const KUI_COLOR_TEXT_PRIMARY_STRONGER = undefined;
+export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = undefined;
+export const KUI_COLOR_TEXT_PRIMARY_WEAK = undefined;
+export const KUI_COLOR_TEXT_PRIMARY_WEAKER = undefined;
+export const KUI_COLOR_TEXT_PRIMARY_WEAKEST = undefined;
+export const KUI_COLOR_TEXT_SUCCESS = undefined;
+export const KUI_COLOR_TEXT_SUCCESS_STRONG = undefined;
+export const KUI_COLOR_TEXT_SUCCESS_STRONGER = undefined;
+export const KUI_COLOR_TEXT_SUCCESS_STRONGEST = undefined;
+export const KUI_COLOR_TEXT_SUCCESS_WEAK = undefined;
+export const KUI_COLOR_TEXT_SUCCESS_WEAKER = undefined;
+export const KUI_COLOR_TEXT_SUCCESS_WEAKEST = undefined;
+export const KUI_COLOR_TEXT_WARNING = undefined;
+export const KUI_COLOR_TEXT_WARNING_STRONG = undefined;
+export const KUI_COLOR_TEXT_WARNING_STRONGER = undefined;
+export const KUI_COLOR_TEXT_WARNING_STRONGEST = undefined;
+export const KUI_COLOR_TEXT_WARNING_WEAK = undefined;
+export const KUI_COLOR_TEXT_WARNING_WEAKER = undefined;
+export const KUI_COLOR_TEXT_WARNING_WEAKEST = undefined;
+export const KUI_ANIMATION_DURATION_20 = undefined;
+export const KUI_BORDER_RADIUS_0 = undefined;
+export const KUI_BORDER_RADIUS_10 = undefined;
+export const KUI_BORDER_RADIUS_20 = undefined;
+export const KUI_BORDER_RADIUS_30 = undefined;
+export const KUI_BORDER_RADIUS_40 = undefined;
+export const KUI_BORDER_RADIUS_50 = undefined;
+export const KUI_BORDER_RADIUS_CIRCLE = undefined;
+export const KUI_BORDER_RADIUS_ROUND = undefined;
+export const KUI_BORDER_WIDTH_0 = undefined;
+export const KUI_BORDER_WIDTH_10 = undefined;
+export const KUI_BORDER_WIDTH_20 = undefined;
+export const KUI_BORDER_WIDTH_30 = undefined;
+export const KUI_BREAKPOINT_MOBILE = undefined;
+export const KUI_BREAKPOINT_PHABLET = undefined;
+export const KUI_BREAKPOINT_TABLET = undefined;
+export const KUI_BREAKPOINT_LAPTOP = undefined;
+export const KUI_BREAKPOINT_DESKTOP = undefined;
+export const KUI_ICON_COLOR_DANGER = undefined;
+export const KUI_ICON_COLOR_NEUTRAL = undefined;
+export const KUI_ICON_COLOR_PRIMARY = undefined;
+export const KUI_ICON_COLOR_SUCCESS = undefined;
+export const KUI_ICON_COLOR_WARNING = undefined;
+export const KUI_ICON_SIZE_10 = undefined;
+export const KUI_ICON_SIZE_20 = undefined;
+export const KUI_ICON_SIZE_30 = undefined;
+export const KUI_ICON_SIZE_40 = undefined;
+export const KUI_ICON_SIZE_50 = undefined;
+export const KUI_ICON_SIZE_60 = undefined;
+export const KUI_ICON_SIZE_70 = undefined;
+export const KUI_ICON_SIZE_80 = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_DELETE = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_GET = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_HEAD = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_OPTIONS = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_PATCH = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_POST = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_PUT = undefined;
+export const KUI_METHOD_COLOR_BACKGROUND_TRACE = undefined;
+export const KUI_METHOD_COLOR_TEXT_CONNECT = undefined;
+export const KUI_METHOD_COLOR_TEXT_CONNECT_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_DELETE = undefined;
+export const KUI_METHOD_COLOR_TEXT_DELETE_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_GET = undefined;
+export const KUI_METHOD_COLOR_TEXT_GET_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_HEAD = undefined;
+export const KUI_METHOD_COLOR_TEXT_HEAD_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_OPTIONS = undefined;
+export const KUI_METHOD_COLOR_TEXT_OPTIONS_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_PATCH = undefined;
+export const KUI_METHOD_COLOR_TEXT_PATCH_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_POST = undefined;
+export const KUI_METHOD_COLOR_TEXT_POST_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_PUT = undefined;
+export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = undefined;
+export const KUI_METHOD_COLOR_TEXT_TRACE = undefined;
+export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = undefined;
+export const KUI_NAVIGATION_COLOR_BACKGROUND = undefined;
+export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = undefined;
+export const KUI_NAVIGATION_COLOR_BORDER = undefined;
+export const KUI_NAVIGATION_COLOR_BORDER_CHILD = undefined;
+export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = undefined;
+export const KUI_NAVIGATION_COLOR_TEXT = undefined;
+export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = undefined;
+export const KUI_NAVIGATION_COLOR_TEXT_HOVER = undefined;
+export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = undefined;
+export const KUI_NAVIGATION_SHADOW_BORDER = undefined;
+export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = undefined;
+export const KUI_NAVIGATION_SHADOW_FOCUS = undefined;
+export const KUI_STATUS_COLOR_100 = undefined;
+export const KUI_STATUS_COLOR_101 = undefined;
+export const KUI_STATUS_COLOR_102 = undefined;
+export const KUI_STATUS_COLOR_103 = undefined;
+export const KUI_STATUS_COLOR_200 = undefined;
+export const KUI_STATUS_COLOR_201 = undefined;
+export const KUI_STATUS_COLOR_202 = undefined;
+export const KUI_STATUS_COLOR_203 = undefined;
+export const KUI_STATUS_COLOR_204 = undefined;
+export const KUI_STATUS_COLOR_205 = undefined;
+export const KUI_STATUS_COLOR_206 = undefined;
+export const KUI_STATUS_COLOR_207 = undefined;
+export const KUI_STATUS_COLOR_208 = undefined;
+export const KUI_STATUS_COLOR_226 = undefined;
+export const KUI_STATUS_COLOR_300 = undefined;
+export const KUI_STATUS_COLOR_301 = undefined;
+export const KUI_STATUS_COLOR_302 = undefined;
+export const KUI_STATUS_COLOR_303 = undefined;
+export const KUI_STATUS_COLOR_304 = undefined;
+export const KUI_STATUS_COLOR_305 = undefined;
+export const KUI_STATUS_COLOR_307 = undefined;
+export const KUI_STATUS_COLOR_308 = undefined;
+export const KUI_STATUS_COLOR_400 = undefined;
+export const KUI_STATUS_COLOR_401 = undefined;
+export const KUI_STATUS_COLOR_402 = undefined;
+export const KUI_STATUS_COLOR_403 = undefined;
+export const KUI_STATUS_COLOR_404 = undefined;
+export const KUI_STATUS_COLOR_405 = undefined;
+export const KUI_STATUS_COLOR_406 = undefined;
+export const KUI_STATUS_COLOR_407 = undefined;
+export const KUI_STATUS_COLOR_408 = undefined;
+export const KUI_STATUS_COLOR_409 = undefined;
+export const KUI_STATUS_COLOR_410 = undefined;
+export const KUI_STATUS_COLOR_411 = undefined;
+export const KUI_STATUS_COLOR_412 = undefined;
+export const KUI_STATUS_COLOR_413 = undefined;
+export const KUI_STATUS_COLOR_414 = undefined;
+export const KUI_STATUS_COLOR_415 = undefined;
+export const KUI_STATUS_COLOR_416 = undefined;
+export const KUI_STATUS_COLOR_417 = undefined;
+export const KUI_STATUS_COLOR_418 = undefined;
+export const KUI_STATUS_COLOR_421 = undefined;
+export const KUI_STATUS_COLOR_422 = undefined;
+export const KUI_STATUS_COLOR_423 = undefined;
+export const KUI_STATUS_COLOR_424 = undefined;
+export const KUI_STATUS_COLOR_425 = undefined;
+export const KUI_STATUS_COLOR_426 = undefined;
+export const KUI_STATUS_COLOR_428 = undefined;
+export const KUI_STATUS_COLOR_429 = undefined;
+export const KUI_STATUS_COLOR_431 = undefined;
+export const KUI_STATUS_COLOR_451 = undefined;
+export const KUI_STATUS_COLOR_500 = undefined;
+export const KUI_STATUS_COLOR_501 = undefined;
+export const KUI_STATUS_COLOR_502 = undefined;
+export const KUI_STATUS_COLOR_503 = undefined;
+export const KUI_STATUS_COLOR_504 = undefined;
+export const KUI_STATUS_COLOR_505 = undefined;
+export const KUI_STATUS_COLOR_506 = undefined;
+export const KUI_STATUS_COLOR_507 = undefined;
+export const KUI_STATUS_COLOR_508 = undefined;
+export const KUI_STATUS_COLOR_510 = undefined;
+export const KUI_STATUS_COLOR_511 = undefined;
+export const KUI_STATUS_COLOR_1NA = undefined;
+export const KUI_STATUS_COLOR_2NA = undefined;
+export const KUI_STATUS_COLOR_3NA = undefined;
+export const KUI_STATUS_COLOR_4NA = undefined;
+export const KUI_STATUS_COLOR_5NA = undefined;
+export const KUI_STATUS_COLOR_100S = undefined;
+export const KUI_STATUS_COLOR_200S = undefined;
+export const KUI_STATUS_COLOR_300S = undefined;
+export const KUI_STATUS_COLOR_400S = undefined;
+export const KUI_STATUS_COLOR_500S = undefined;
+export const KUI_STATUS_COLOR_BACKGROUND_100 = undefined;
+export const KUI_STATUS_COLOR_BACKGROUND_200 = undefined;
+export const KUI_STATUS_COLOR_BACKGROUND_300 = undefined;
+export const KUI_STATUS_COLOR_BACKGROUND_400 = undefined;
+export const KUI_STATUS_COLOR_BACKGROUND_500 = undefined;
+export const KUI_STATUS_COLOR_TEXT_100 = undefined;
+export const KUI_STATUS_COLOR_TEXT_200 = undefined;
+export const KUI_STATUS_COLOR_TEXT_300 = undefined;
+export const KUI_STATUS_COLOR_TEXT_400 = undefined;
+export const KUI_STATUS_COLOR_TEXT_500 = undefined;
+export const KUI_FONT_FAMILY_CODE = undefined;
+export const KUI_FONT_FAMILY_HEADING = undefined;
+export const KUI_FONT_FAMILY_TEXT = undefined;
+export const KUI_FONT_SIZE_10 = undefined;
+export const KUI_FONT_SIZE_20 = undefined;
+export const KUI_FONT_SIZE_30 = undefined;
+export const KUI_FONT_SIZE_40 = undefined;
+export const KUI_FONT_SIZE_50 = undefined;
+export const KUI_FONT_SIZE_60 = undefined;
+export const KUI_FONT_SIZE_70 = undefined;
+export const KUI_FONT_SIZE_80 = undefined;
+export const KUI_FONT_SIZE_90 = undefined;
+export const KUI_FONT_SIZE_100 = undefined;
+export const KUI_FONT_WEIGHT_BOLD = undefined;
+export const KUI_FONT_WEIGHT_MEDIUM = undefined;
+export const KUI_FONT_WEIGHT_REGULAR = undefined;
+export const KUI_FONT_WEIGHT_SEMIBOLD = undefined;
+export const KUI_LETTER_SPACING_0 = undefined;
+export const KUI_LETTER_SPACING_MINUS_10 = undefined;
+export const KUI_LETTER_SPACING_MINUS_20 = undefined;
+export const KUI_LETTER_SPACING_MINUS_30 = undefined;
+export const KUI_LETTER_SPACING_MINUS_40 = undefined;
+export const KUI_LETTER_SPACING_MINUS_50 = undefined;
+export const KUI_LETTER_SPACING_NORMAL = undefined;
+export const KUI_LINE_HEIGHT_10 = undefined;
+export const KUI_LINE_HEIGHT_20 = undefined;
+export const KUI_LINE_HEIGHT_30 = undefined;
+export const KUI_LINE_HEIGHT_40 = undefined;
+export const KUI_LINE_HEIGHT_50 = undefined;
+export const KUI_LINE_HEIGHT_60 = undefined;
+export const KUI_LINE_HEIGHT_70 = undefined;
+export const KUI_LINE_HEIGHT_80 = undefined;
+export const KUI_LINE_HEIGHT_90 = undefined;
+export const KUI_LINE_HEIGHT_100 = undefined;
+export const KUI_SHADOW = undefined;
+export const KUI_SHADOW_BORDER = undefined;
+export const KUI_SHADOW_BORDER_DANGER = undefined;
+export const KUI_SHADOW_BORDER_DANGER_STRONG = undefined;
+export const KUI_SHADOW_BORDER_DISABLED = undefined;
+export const KUI_SHADOW_BORDER_PRIMARY = undefined;
+export const KUI_SHADOW_BORDER_PRIMARY_STRONGEST = undefined;
+export const KUI_SHADOW_BORDER_PRIMARY_WEAK = undefined;
+export const KUI_SHADOW_FOCUS = undefined;
+export const KUI_SPACE_0 = undefined;
+export const KUI_SPACE_10 = undefined;
+export const KUI_SPACE_20 = undefined;
+export const KUI_SPACE_30 = undefined;
+export const KUI_SPACE_40 = undefined;
+export const KUI_SPACE_50 = undefined;
+export const KUI_SPACE_60 = undefined;
+export const KUI_SPACE_70 = undefined;
+export const KUI_SPACE_80 = undefined;
+export const KUI_SPACE_90 = undefined;
+export const KUI_SPACE_100 = undefined;
+export const KUI_SPACE_110 = undefined;
+export const KUI_SPACE_120 = undefined;
+export const KUI_SPACE_130 = undefined;
+export const KUI_SPACE_140 = undefined;
+export const KUI_SPACE_150 = undefined;
+export const KUI_SPACE_AUTO = undefined;
 ```
 
 </details>
@@ -3404,343 +1769,343 @@ export const KUI_SPACE_AUTO = "auto";
 
 ```json
 {
-  "kui_color_background": "#ffffff",
-  "kui_color_background_danger": "#d60027",
-  "kui_color_background_danger_strong": "#ad000e",
-  "kui_color_background_danger_stronger": "#850000",
-  "kui_color_background_danger_strongest": "#5c0000",
-  "kui_color_background_danger_weak": "#ff3954",
-  "kui_color_background_danger_weaker": "#ffabab",
-  "kui_color_background_danger_weakest": "#ffe5e5",
-  "kui_color_background_decorative_aqua_weakest": "#ecfcff",
-  "kui_color_background_decorative_purple": "#6f28ff",
-  "kui_color_background_decorative_purple_weakest": "#f1f0ff",
-  "kui_color_background_disabled": "#e0e4ea",
-  "kui_color_background_info": "#0044f4",
-  "kui_color_background_info_strong": "#0030cc",
-  "kui_color_background_info_stronger": "#002099",
-  "kui_color_background_info_strongest": "#001466",
-  "kui_color_background_info_weak": "#5f9aff",
-  "kui_color_background_info_weaker": "#bee2ff",
-  "kui_color_background_info_weakest": "#eefaff",
-  "kui_color_background_inverse": "#000933",
-  "kui_color_background_neutral": "#6c7489",
-  "kui_color_background_neutral_strong": "#52596e",
-  "kui_color_background_neutral_stronger": "#3a3f51",
-  "kui_color_background_neutral_strongest": "#232633",
-  "kui_color_background_neutral_weak": "#afb7c5",
-  "kui_color_background_neutral_weaker": "#e0e4ea",
-  "kui_color_background_neutral_weakest": "#f9fafb",
-  "kui_color_background_overlay": "rgba(0, 9, 51, 0.6)",
-  "kui_color_background_primary": "#0044f4",
-  "kui_color_background_primary_strong": "#0030cc",
-  "kui_color_background_primary_stronger": "#002099",
-  "kui_color_background_primary_strongest": "#001466",
-  "kui_color_background_primary_weak": "#5f9aff",
-  "kui_color_background_primary_weaker": "#bee2ff",
-  "kui_color_background_primary_weakest": "#eefaff",
-  "kui_color_background_success": "#007d60",
-  "kui_color_background_success_strong": "#005944",
-  "kui_color_background_success_stronger": "#004737",
-  "kui_color_background_success_strongest": "#003629",
-  "kui_color_background_success_weak": "#00d6a4",
-  "kui_color_background_success_weaker": "#b5ffee",
-  "kui_color_background_success_weakest": "#ecfffb",
-  "kui_color_background_transparent": "transparent",
-  "kui_color_background_warning": "#995c00",
-  "kui_color_background_warning_strong": "#804400",
-  "kui_color_background_warning_stronger": "#662d00",
-  "kui_color_background_warning_strongest": "#4d1b00",
-  "kui_color_background_warning_weak": "#ffc400",
-  "kui_color_background_warning_weaker": "#fff296",
-  "kui_color_background_warning_weakest": "#fffce0",
-  "kui_color_border": "#e0e4ea",
-  "kui_color_border_danger": "#d60027",
-  "kui_color_border_danger_strong": "#ad000e",
-  "kui_color_border_danger_stronger": "#850000",
-  "kui_color_border_danger_strongest": "#5c0000",
-  "kui_color_border_danger_weak": "#ff3954",
-  "kui_color_border_danger_weaker": "#ffabab",
-  "kui_color_border_danger_weakest": "#ffe5e5",
-  "kui_color_border_decorative_purple": "#6f28ff",
-  "kui_color_border_disabled": "#e0e4ea",
-  "kui_color_border_inverse": "rgba(255, 255, 255, 0.2)",
-  "kui_color_border_neutral": "#6c7489",
-  "kui_color_border_neutral_strong": "#52596e",
-  "kui_color_border_neutral_stronger": "#3a3f51",
-  "kui_color_border_neutral_strongest": "#232633",
-  "kui_color_border_neutral_weak": "#afb7c5",
-  "kui_color_border_neutral_weaker": "#e0e4ea",
-  "kui_color_border_neutral_weakest": "#f9fafb",
-  "kui_color_border_primary": "#0044f4",
-  "kui_color_border_primary_strong": "#0030cc",
-  "kui_color_border_primary_stronger": "#002099",
-  "kui_color_border_primary_strongest": "#001466",
-  "kui_color_border_primary_weak": "#5f9aff",
-  "kui_color_border_primary_weaker": "#bee2ff",
-  "kui_color_border_primary_weakest": "#eefaff",
-  "kui_color_border_transparent": "transparent",
-  "kui_color_text": "#000933",
-  "kui_color_text_danger": "#d60027",
-  "kui_color_text_danger_strong": "#ad000e",
-  "kui_color_text_danger_stronger": "#850000",
-  "kui_color_text_danger_strongest": "#5c0000",
-  "kui_color_text_danger_weak": "#ff3954",
-  "kui_color_text_danger_weaker": "#ffabab",
-  "kui_color_text_danger_weakest": "#ffe5e5",
-  "kui_color_text_decorative_aqua": "#00abd2",
-  "kui_color_text_decorative_pink": "#d60067",
-  "kui_color_text_decorative_purple": "#6f28ff",
-  "kui_color_text_decorative_purple_strong": "#5e00f5",
-  "kui_color_text_disabled": "#afb7c5",
-  "kui_color_text_info": "#0044f4",
-  "kui_color_text_info_strong": "#0030cc",
-  "kui_color_text_info_stronger": "#002099",
-  "kui_color_text_info_strongest": "#001466",
-  "kui_color_text_info_weak": "#5f9aff",
-  "kui_color_text_info_weaker": "#bee2ff",
-  "kui_color_text_info_weakest": "#eefaff",
-  "kui_color_text_inverse": "#ffffff",
-  "kui_color_text_neutral": "#6c7489",
-  "kui_color_text_neutral_strong": "#52596e",
-  "kui_color_text_neutral_stronger": "#3a3f51",
-  "kui_color_text_neutral_strongest": "#232633",
-  "kui_color_text_neutral_weak": "#afb7c5",
-  "kui_color_text_neutral_weaker": "#e0e4ea",
-  "kui_color_text_neutral_weakest": "#f9fafb",
-  "kui_color_text_primary": "#0044f4",
-  "kui_color_text_primary_strong": "#0030cc",
-  "kui_color_text_primary_stronger": "#002099",
-  "kui_color_text_primary_strongest": "#001466",
-  "kui_color_text_primary_weak": "#5f9aff",
-  "kui_color_text_primary_weaker": "#bee2ff",
-  "kui_color_text_primary_weakest": "#eefaff",
-  "kui_color_text_success": "#007d60",
-  "kui_color_text_success_strong": "#005944",
-  "kui_color_text_success_stronger": "#004737",
-  "kui_color_text_success_strongest": "#003629",
-  "kui_color_text_success_weak": "#00d6a4",
-  "kui_color_text_success_weaker": "#b5ffee",
-  "kui_color_text_success_weakest": "#ecfffb",
-  "kui_color_text_warning": "#995c00",
-  "kui_color_text_warning_strong": "#804400",
-  "kui_color_text_warning_stronger": "#662d00",
-  "kui_color_text_warning_strongest": "#4d1b00",
-  "kui_color_text_warning_weak": "#ffc400",
-  "kui_color_text_warning_weaker": "#fff296",
-  "kui_color_text_warning_weakest": "#fffce0",
-  "kui_animation_duration_20": "0.2s",
-  "kui_border_radius_0": "0px",
-  "kui_border_radius_10": "2px",
-  "kui_border_radius_20": "4px",
-  "kui_border_radius_30": "6px",
-  "kui_border_radius_40": "8px",
-  "kui_border_radius_50": "10px",
-  "kui_border_radius_circle": "50%",
-  "kui_border_radius_round": "100px",
-  "kui_border_width_0": "0px",
-  "kui_border_width_10": "1px",
-  "kui_border_width_20": "2px",
-  "kui_border_width_30": "4px",
-  "kui_breakpoint_mobile": "640px",
-  "kui_breakpoint_phablet": "768px",
-  "kui_breakpoint_tablet": "1024px",
-  "kui_breakpoint_laptop": "1280px",
-  "kui_breakpoint_desktop": "1536px",
-  "kui_icon_color_danger": "#f50045",
-  "kui_icon_color_neutral": "#828a9e",
-  "kui_icon_color_primary": "#306fff",
-  "kui_icon_color_success": "#00a17b",
-  "kui_icon_color_warning": "#ffc400",
-  "kui_icon_size_10": "10px",
-  "kui_icon_size_20": "12px",
-  "kui_icon_size_30": "16px",
-  "kui_icon_size_40": "20px",
-  "kui_icon_size_50": "24px",
-  "kui_icon_size_60": "32px",
-  "kui_icon_size_70": "40px",
-  "kui_icon_size_80": "48px",
-  "kui_method_color_background_connect": "#f1f0ff",
-  "kui_method_color_background_delete": "#ffe5e5",
-  "kui_method_color_background_get": "#eefaff",
-  "kui_method_color_background_head": "#52596e",
-  "kui_method_color_background_options": "#e0e4ea",
-  "kui_method_color_background_patch": "#ecfcff",
-  "kui_method_color_background_post": "#ecfffb",
-  "kui_method_color_background_put": "#fffce0",
-  "kui_method_color_background_trace": "#fff0f7",
-  "kui_method_color_text_connect": "#6f28ff",
-  "kui_method_color_text_connect_strong": "#5e00f5",
-  "kui_method_color_text_delete": "#d60027",
-  "kui_method_color_text_delete_strong": "#ad000e",
-  "kui_method_color_text_get": "#0044f4",
-  "kui_method_color_text_get_strong": "#0030cc",
-  "kui_method_color_text_head": "#e0e4ea",
-  "kui_method_color_text_head_strong": "#afb7c5",
-  "kui_method_color_text_options": "#52596e",
-  "kui_method_color_text_options_strong": "#3a3f51",
-  "kui_method_color_text_patch": "#00819d",
-  "kui_method_color_text_patch_strong": "#00647a",
-  "kui_method_color_text_post": "#007d60",
-  "kui_method_color_text_post_strong": "#005944",
-  "kui_method_color_text_put": "#995c00",
-  "kui_method_color_text_put_strong": "#804400",
-  "kui_method_color_text_trace": "#d60067",
-  "kui_method_color_text_trace_strong": "#ad0053",
-  "kui_navigation_color_background": "#000933",
-  "kui_navigation_color_background_selected": "rgba(255, 255, 255, 0.12)",
-  "kui_navigation_color_border": "rgba(255, 255, 255, 0.12)",
-  "kui_navigation_color_border_child": "#00fabe",
-  "kui_navigation_color_border_divider": "rgba(255, 255, 255, 0.24)",
-  "kui_navigation_color_text": "#bee2ff",
-  "kui_navigation_color_text_focus": "#ffffff",
-  "kui_navigation_color_text_hover": "#eefaff",
-  "kui_navigation_color_text_selected": "#00fabe",
-  "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
-  "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
-  "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
-  "kui_status_color_100": "#bee2ff",
-  "kui_status_color_101": "#8fc1ff",
-  "kui_status_color_102": "#5f9aff",
-  "kui_status_color_103": "#306fff",
-  "kui_status_color_200": "#b5ffee",
-  "kui_status_color_201": "#00fabe",
-  "kui_status_color_202": "#00d6a4",
-  "kui_status_color_203": "#00a17b",
-  "kui_status_color_204": "#007d60",
-  "kui_status_color_205": "#005944",
-  "kui_status_color_206": "#b5ffee",
-  "kui_status_color_207": "#00fabe",
-  "kui_status_color_208": "#b5ffee",
-  "kui_status_color_226": "#00a17b",
-  "kui_status_color_300": "#fff296",
-  "kui_status_color_301": "#ffe04b",
-  "kui_status_color_302": "#ffc400",
-  "kui_status_color_303": "#b37600",
-  "kui_status_color_304": "#995c00",
-  "kui_status_color_305": "#804400",
-  "kui_status_color_307": "#fff296",
-  "kui_status_color_308": "#ffe04b",
-  "kui_status_color_400": "#FFC2B3",
-  "kui_status_color_401": "#FF9877",
-  "kui_status_color_402": "#FF723C",
-  "kui_status_color_403": "#F75008",
-  "kui_status_color_404": "#D13500",
-  "kui_status_color_405": "#A31F00",
-  "kui_status_color_406": "#FFC2B3",
-  "kui_status_color_407": "#FF9877",
-  "kui_status_color_408": "#FF723C",
-  "kui_status_color_409": "#F75008",
-  "kui_status_color_410": "#D13500",
-  "kui_status_color_411": "#A31F00",
-  "kui_status_color_412": "#FFC2B3",
-  "kui_status_color_413": "#FF9877",
-  "kui_status_color_414": "#FF723C",
-  "kui_status_color_415": "#F75008",
-  "kui_status_color_416": "#D13500",
-  "kui_status_color_417": "#A31F00",
-  "kui_status_color_418": "#FFC2B3",
-  "kui_status_color_421": "#FF9877",
-  "kui_status_color_422": "#FF723C",
-  "kui_status_color_423": "#F75008",
-  "kui_status_color_424": "#D13500",
-  "kui_status_color_425": "#A31F00",
-  "kui_status_color_426": "#FFC2B3",
-  "kui_status_color_428": "#FF9877",
-  "kui_status_color_429": "#FF723C",
-  "kui_status_color_431": "#F75008",
-  "kui_status_color_451": "#D13500",
-  "kui_status_color_500": "#ffabab",
-  "kui_status_color_501": "#ff7272",
-  "kui_status_color_502": "#ff3954",
-  "kui_status_color_503": "#f50045",
-  "kui_status_color_504": "#d60027",
-  "kui_status_color_505": "#ad000e",
-  "kui_status_color_506": "#ffabab",
-  "kui_status_color_507": "#ff7272",
-  "kui_status_color_508": "#ff3954",
-  "kui_status_color_510": "#f50045",
-  "kui_status_color_511": "#d60027",
-  "kui_status_color_1na": "#eefaff",
-  "kui_status_color_2na": "#ecfffb",
-  "kui_status_color_3na": "#fffce0",
-  "kui_status_color_4na": "#FFF1EF",
-  "kui_status_color_5na": "#ffe5e5",
-  "kui_status_color_100s": "#5f9aff",
-  "kui_status_color_200s": "#00d6a4",
-  "kui_status_color_300s": "#ffc400",
-  "kui_status_color_400s": "#FF723C",
-  "kui_status_color_500s": "#ff3954",
-  "kui_status_color_background_100": "#eefaff",
-  "kui_status_color_background_200": "#ecfffb",
-  "kui_status_color_background_300": "#fffce0",
-  "kui_status_color_background_400": "#FFF1EF",
-  "kui_status_color_background_500": "#ffe5e5",
-  "kui_status_color_text_100": "#0044f4",
-  "kui_status_color_text_200": "#007d60",
-  "kui_status_color_text_300": "#995c00",
-  "kui_status_color_text_400": "#D13500",
-  "kui_status_color_text_500": "#d60027",
-  "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
-  "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
-  "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
-  "kui_font_size_10": "10px",
-  "kui_font_size_20": "12px",
-  "kui_font_size_30": "14px",
-  "kui_font_size_40": "16px",
-  "kui_font_size_50": "18px",
-  "kui_font_size_60": "20px",
-  "kui_font_size_70": "24px",
-  "kui_font_size_80": "32px",
-  "kui_font_size_90": "40px",
-  "kui_font_size_100": "48px",
-  "kui_font_weight_bold": "700",
-  "kui_font_weight_medium": "500",
-  "kui_font_weight_regular": "400",
-  "kui_font_weight_semibold": "600",
-  "kui_letter_spacing_0": "normal",
-  "kui_letter_spacing_minus_10": "-0.12px",
-  "kui_letter_spacing_minus_20": "-0.24px",
-  "kui_letter_spacing_minus_30": "-0.32px",
-  "kui_letter_spacing_minus_40": "-0.4px",
-  "kui_letter_spacing_minus_50": "-0.48px",
-  "kui_letter_spacing_normal": "normal",
-  "kui_line_height_10": "12px",
-  "kui_line_height_20": "16px",
-  "kui_line_height_30": "20px",
-  "kui_line_height_40": "24px",
-  "kui_line_height_50": "28px",
-  "kui_line_height_60": "32px",
-  "kui_line_height_70": "36px",
-  "kui_line_height_80": "40px",
-  "kui_line_height_90": "48px",
-  "kui_line_height_100": "56px",
-  "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
-  "kui_shadow_border": "0px 0px 0px 1px #e0e4ea inset",
-  "kui_shadow_border_danger": "0px 0px 0px 1px #d60027 inset",
-  "kui_shadow_border_danger_strong": "0px 0px 0px 1px #ad000e inset",
-  "kui_shadow_border_disabled": "0px 0px 0px 1px #e0e4ea inset",
-  "kui_shadow_border_primary": "0px 0px 0px 1px #0044f4 inset",
-  "kui_shadow_border_primary_strongest": "0px 0px 0px 1px #001466 inset",
-  "kui_shadow_border_primary_weak": "0px 0px 0px 1px #5f9aff inset",
-  "kui_shadow_focus": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
-  "kui_space_0": "0px",
-  "kui_space_10": "2px",
-  "kui_space_20": "4px",
-  "kui_space_30": "6px",
-  "kui_space_40": "8px",
-  "kui_space_50": "12px",
-  "kui_space_60": "16px",
-  "kui_space_70": "20px",
-  "kui_space_80": "24px",
-  "kui_space_90": "32px",
-  "kui_space_100": "40px",
-  "kui_space_110": "48px",
-  "kui_space_120": "56px",
-  "kui_space_130": "64px",
-  "kui_space_140": "80px",
-  "kui_space_150": "96px",
-  "kui_space_auto": "auto"
+  "kui_color_background": undefined,
+  "kui_color_background_danger": undefined,
+  "kui_color_background_danger_strong": undefined,
+  "kui_color_background_danger_stronger": undefined,
+  "kui_color_background_danger_strongest": undefined,
+  "kui_color_background_danger_weak": undefined,
+  "kui_color_background_danger_weaker": undefined,
+  "kui_color_background_danger_weakest": undefined,
+  "kui_color_background_decorative_aqua_weakest": undefined,
+  "kui_color_background_decorative_purple": undefined,
+  "kui_color_background_decorative_purple_weakest": undefined,
+  "kui_color_background_disabled": undefined,
+  "kui_color_background_info": undefined,
+  "kui_color_background_info_strong": undefined,
+  "kui_color_background_info_stronger": undefined,
+  "kui_color_background_info_strongest": undefined,
+  "kui_color_background_info_weak": undefined,
+  "kui_color_background_info_weaker": undefined,
+  "kui_color_background_info_weakest": undefined,
+  "kui_color_background_inverse": undefined,
+  "kui_color_background_neutral": undefined,
+  "kui_color_background_neutral_strong": undefined,
+  "kui_color_background_neutral_stronger": undefined,
+  "kui_color_background_neutral_strongest": undefined,
+  "kui_color_background_neutral_weak": undefined,
+  "kui_color_background_neutral_weaker": undefined,
+  "kui_color_background_neutral_weakest": undefined,
+  "kui_color_background_overlay": undefined,
+  "kui_color_background_primary": undefined,
+  "kui_color_background_primary_strong": undefined,
+  "kui_color_background_primary_stronger": undefined,
+  "kui_color_background_primary_strongest": undefined,
+  "kui_color_background_primary_weak": undefined,
+  "kui_color_background_primary_weaker": undefined,
+  "kui_color_background_primary_weakest": undefined,
+  "kui_color_background_success": undefined,
+  "kui_color_background_success_strong": undefined,
+  "kui_color_background_success_stronger": undefined,
+  "kui_color_background_success_strongest": undefined,
+  "kui_color_background_success_weak": undefined,
+  "kui_color_background_success_weaker": undefined,
+  "kui_color_background_success_weakest": undefined,
+  "kui_color_background_transparent": undefined,
+  "kui_color_background_warning": undefined,
+  "kui_color_background_warning_strong": undefined,
+  "kui_color_background_warning_stronger": undefined,
+  "kui_color_background_warning_strongest": undefined,
+  "kui_color_background_warning_weak": undefined,
+  "kui_color_background_warning_weaker": undefined,
+  "kui_color_background_warning_weakest": undefined,
+  "kui_color_border": undefined,
+  "kui_color_border_danger": undefined,
+  "kui_color_border_danger_strong": undefined,
+  "kui_color_border_danger_stronger": undefined,
+  "kui_color_border_danger_strongest": undefined,
+  "kui_color_border_danger_weak": undefined,
+  "kui_color_border_danger_weaker": undefined,
+  "kui_color_border_danger_weakest": undefined,
+  "kui_color_border_decorative_purple": undefined,
+  "kui_color_border_disabled": undefined,
+  "kui_color_border_inverse": undefined,
+  "kui_color_border_neutral": undefined,
+  "kui_color_border_neutral_strong": undefined,
+  "kui_color_border_neutral_stronger": undefined,
+  "kui_color_border_neutral_strongest": undefined,
+  "kui_color_border_neutral_weak": undefined,
+  "kui_color_border_neutral_weaker": undefined,
+  "kui_color_border_neutral_weakest": undefined,
+  "kui_color_border_primary": undefined,
+  "kui_color_border_primary_strong": undefined,
+  "kui_color_border_primary_stronger": undefined,
+  "kui_color_border_primary_strongest": undefined,
+  "kui_color_border_primary_weak": undefined,
+  "kui_color_border_primary_weaker": undefined,
+  "kui_color_border_primary_weakest": undefined,
+  "kui_color_border_transparent": undefined,
+  "kui_color_text": undefined,
+  "kui_color_text_danger": undefined,
+  "kui_color_text_danger_strong": undefined,
+  "kui_color_text_danger_stronger": undefined,
+  "kui_color_text_danger_strongest": undefined,
+  "kui_color_text_danger_weak": undefined,
+  "kui_color_text_danger_weaker": undefined,
+  "kui_color_text_danger_weakest": undefined,
+  "kui_color_text_decorative_aqua": undefined,
+  "kui_color_text_decorative_pink": undefined,
+  "kui_color_text_decorative_purple": undefined,
+  "kui_color_text_decorative_purple_strong": undefined,
+  "kui_color_text_disabled": undefined,
+  "kui_color_text_info": undefined,
+  "kui_color_text_info_strong": undefined,
+  "kui_color_text_info_stronger": undefined,
+  "kui_color_text_info_strongest": undefined,
+  "kui_color_text_info_weak": undefined,
+  "kui_color_text_info_weaker": undefined,
+  "kui_color_text_info_weakest": undefined,
+  "kui_color_text_inverse": undefined,
+  "kui_color_text_neutral": undefined,
+  "kui_color_text_neutral_strong": undefined,
+  "kui_color_text_neutral_stronger": undefined,
+  "kui_color_text_neutral_strongest": undefined,
+  "kui_color_text_neutral_weak": undefined,
+  "kui_color_text_neutral_weaker": undefined,
+  "kui_color_text_neutral_weakest": undefined,
+  "kui_color_text_primary": undefined,
+  "kui_color_text_primary_strong": undefined,
+  "kui_color_text_primary_stronger": undefined,
+  "kui_color_text_primary_strongest": undefined,
+  "kui_color_text_primary_weak": undefined,
+  "kui_color_text_primary_weaker": undefined,
+  "kui_color_text_primary_weakest": undefined,
+  "kui_color_text_success": undefined,
+  "kui_color_text_success_strong": undefined,
+  "kui_color_text_success_stronger": undefined,
+  "kui_color_text_success_strongest": undefined,
+  "kui_color_text_success_weak": undefined,
+  "kui_color_text_success_weaker": undefined,
+  "kui_color_text_success_weakest": undefined,
+  "kui_color_text_warning": undefined,
+  "kui_color_text_warning_strong": undefined,
+  "kui_color_text_warning_stronger": undefined,
+  "kui_color_text_warning_strongest": undefined,
+  "kui_color_text_warning_weak": undefined,
+  "kui_color_text_warning_weaker": undefined,
+  "kui_color_text_warning_weakest": undefined,
+  "kui_animation_duration_20": undefined,
+  "kui_border_radius_0": undefined,
+  "kui_border_radius_10": undefined,
+  "kui_border_radius_20": undefined,
+  "kui_border_radius_30": undefined,
+  "kui_border_radius_40": undefined,
+  "kui_border_radius_50": undefined,
+  "kui_border_radius_circle": undefined,
+  "kui_border_radius_round": undefined,
+  "kui_border_width_0": undefined,
+  "kui_border_width_10": undefined,
+  "kui_border_width_20": undefined,
+  "kui_border_width_30": undefined,
+  "kui_breakpoint_mobile": undefined,
+  "kui_breakpoint_phablet": undefined,
+  "kui_breakpoint_tablet": undefined,
+  "kui_breakpoint_laptop": undefined,
+  "kui_breakpoint_desktop": undefined,
+  "kui_icon_color_danger": undefined,
+  "kui_icon_color_neutral": undefined,
+  "kui_icon_color_primary": undefined,
+  "kui_icon_color_success": undefined,
+  "kui_icon_color_warning": undefined,
+  "kui_icon_size_10": undefined,
+  "kui_icon_size_20": undefined,
+  "kui_icon_size_30": undefined,
+  "kui_icon_size_40": undefined,
+  "kui_icon_size_50": undefined,
+  "kui_icon_size_60": undefined,
+  "kui_icon_size_70": undefined,
+  "kui_icon_size_80": undefined,
+  "kui_method_color_background_connect": undefined,
+  "kui_method_color_background_delete": undefined,
+  "kui_method_color_background_get": undefined,
+  "kui_method_color_background_head": undefined,
+  "kui_method_color_background_options": undefined,
+  "kui_method_color_background_patch": undefined,
+  "kui_method_color_background_post": undefined,
+  "kui_method_color_background_put": undefined,
+  "kui_method_color_background_trace": undefined,
+  "kui_method_color_text_connect": undefined,
+  "kui_method_color_text_connect_strong": undefined,
+  "kui_method_color_text_delete": undefined,
+  "kui_method_color_text_delete_strong": undefined,
+  "kui_method_color_text_get": undefined,
+  "kui_method_color_text_get_strong": undefined,
+  "kui_method_color_text_head": undefined,
+  "kui_method_color_text_head_strong": undefined,
+  "kui_method_color_text_options": undefined,
+  "kui_method_color_text_options_strong": undefined,
+  "kui_method_color_text_patch": undefined,
+  "kui_method_color_text_patch_strong": undefined,
+  "kui_method_color_text_post": undefined,
+  "kui_method_color_text_post_strong": undefined,
+  "kui_method_color_text_put": undefined,
+  "kui_method_color_text_put_strong": undefined,
+  "kui_method_color_text_trace": undefined,
+  "kui_method_color_text_trace_strong": undefined,
+  "kui_navigation_color_background": undefined,
+  "kui_navigation_color_background_selected": undefined,
+  "kui_navigation_color_border": undefined,
+  "kui_navigation_color_border_child": undefined,
+  "kui_navigation_color_border_divider": undefined,
+  "kui_navigation_color_text": undefined,
+  "kui_navigation_color_text_focus": undefined,
+  "kui_navigation_color_text_hover": undefined,
+  "kui_navigation_color_text_selected": undefined,
+  "kui_navigation_shadow_border": undefined,
+  "kui_navigation_shadow_border_child": undefined,
+  "kui_navigation_shadow_focus": undefined,
+  "kui_status_color_100": undefined,
+  "kui_status_color_101": undefined,
+  "kui_status_color_102": undefined,
+  "kui_status_color_103": undefined,
+  "kui_status_color_200": undefined,
+  "kui_status_color_201": undefined,
+  "kui_status_color_202": undefined,
+  "kui_status_color_203": undefined,
+  "kui_status_color_204": undefined,
+  "kui_status_color_205": undefined,
+  "kui_status_color_206": undefined,
+  "kui_status_color_207": undefined,
+  "kui_status_color_208": undefined,
+  "kui_status_color_226": undefined,
+  "kui_status_color_300": undefined,
+  "kui_status_color_301": undefined,
+  "kui_status_color_302": undefined,
+  "kui_status_color_303": undefined,
+  "kui_status_color_304": undefined,
+  "kui_status_color_305": undefined,
+  "kui_status_color_307": undefined,
+  "kui_status_color_308": undefined,
+  "kui_status_color_400": undefined,
+  "kui_status_color_401": undefined,
+  "kui_status_color_402": undefined,
+  "kui_status_color_403": undefined,
+  "kui_status_color_404": undefined,
+  "kui_status_color_405": undefined,
+  "kui_status_color_406": undefined,
+  "kui_status_color_407": undefined,
+  "kui_status_color_408": undefined,
+  "kui_status_color_409": undefined,
+  "kui_status_color_410": undefined,
+  "kui_status_color_411": undefined,
+  "kui_status_color_412": undefined,
+  "kui_status_color_413": undefined,
+  "kui_status_color_414": undefined,
+  "kui_status_color_415": undefined,
+  "kui_status_color_416": undefined,
+  "kui_status_color_417": undefined,
+  "kui_status_color_418": undefined,
+  "kui_status_color_421": undefined,
+  "kui_status_color_422": undefined,
+  "kui_status_color_423": undefined,
+  "kui_status_color_424": undefined,
+  "kui_status_color_425": undefined,
+  "kui_status_color_426": undefined,
+  "kui_status_color_428": undefined,
+  "kui_status_color_429": undefined,
+  "kui_status_color_431": undefined,
+  "kui_status_color_451": undefined,
+  "kui_status_color_500": undefined,
+  "kui_status_color_501": undefined,
+  "kui_status_color_502": undefined,
+  "kui_status_color_503": undefined,
+  "kui_status_color_504": undefined,
+  "kui_status_color_505": undefined,
+  "kui_status_color_506": undefined,
+  "kui_status_color_507": undefined,
+  "kui_status_color_508": undefined,
+  "kui_status_color_510": undefined,
+  "kui_status_color_511": undefined,
+  "kui_status_color_1na": undefined,
+  "kui_status_color_2na": undefined,
+  "kui_status_color_3na": undefined,
+  "kui_status_color_4na": undefined,
+  "kui_status_color_5na": undefined,
+  "kui_status_color_100s": undefined,
+  "kui_status_color_200s": undefined,
+  "kui_status_color_300s": undefined,
+  "kui_status_color_400s": undefined,
+  "kui_status_color_500s": undefined,
+  "kui_status_color_background_100": undefined,
+  "kui_status_color_background_200": undefined,
+  "kui_status_color_background_300": undefined,
+  "kui_status_color_background_400": undefined,
+  "kui_status_color_background_500": undefined,
+  "kui_status_color_text_100": undefined,
+  "kui_status_color_text_200": undefined,
+  "kui_status_color_text_300": undefined,
+  "kui_status_color_text_400": undefined,
+  "kui_status_color_text_500": undefined,
+  "kui_font_family_code": undefined,
+  "kui_font_family_heading": undefined,
+  "kui_font_family_text": undefined,
+  "kui_font_size_10": undefined,
+  "kui_font_size_20": undefined,
+  "kui_font_size_30": undefined,
+  "kui_font_size_40": undefined,
+  "kui_font_size_50": undefined,
+  "kui_font_size_60": undefined,
+  "kui_font_size_70": undefined,
+  "kui_font_size_80": undefined,
+  "kui_font_size_90": undefined,
+  "kui_font_size_100": undefined,
+  "kui_font_weight_bold": undefined,
+  "kui_font_weight_medium": undefined,
+  "kui_font_weight_regular": undefined,
+  "kui_font_weight_semibold": undefined,
+  "kui_letter_spacing_0": undefined,
+  "kui_letter_spacing_minus_10": undefined,
+  "kui_letter_spacing_minus_20": undefined,
+  "kui_letter_spacing_minus_30": undefined,
+  "kui_letter_spacing_minus_40": undefined,
+  "kui_letter_spacing_minus_50": undefined,
+  "kui_letter_spacing_normal": undefined,
+  "kui_line_height_10": undefined,
+  "kui_line_height_20": undefined,
+  "kui_line_height_30": undefined,
+  "kui_line_height_40": undefined,
+  "kui_line_height_50": undefined,
+  "kui_line_height_60": undefined,
+  "kui_line_height_70": undefined,
+  "kui_line_height_80": undefined,
+  "kui_line_height_90": undefined,
+  "kui_line_height_100": undefined,
+  "kui_shadow": undefined,
+  "kui_shadow_border": undefined,
+  "kui_shadow_border_danger": undefined,
+  "kui_shadow_border_danger_strong": undefined,
+  "kui_shadow_border_disabled": undefined,
+  "kui_shadow_border_primary": undefined,
+  "kui_shadow_border_primary_strongest": undefined,
+  "kui_shadow_border_primary_weak": undefined,
+  "kui_shadow_focus": undefined,
+  "kui_space_0": undefined,
+  "kui_space_10": undefined,
+  "kui_space_20": undefined,
+  "kui_space_30": undefined,
+  "kui_space_40": undefined,
+  "kui_space_50": undefined,
+  "kui_space_60": undefined,
+  "kui_space_70": undefined,
+  "kui_space_80": undefined,
+  "kui_space_90": undefined,
+  "kui_space_100": undefined,
+  "kui_space_110": undefined,
+  "kui_space_120": undefined,
+  "kui_space_130": undefined,
+  "kui_space_140": undefined,
+  "kui_space_150": undefined,
+  "kui_space_auto": undefined
 }
 ```
 

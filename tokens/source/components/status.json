@@ -2,339 +2,339 @@
   "status": {
     "color": {
       "1na": {
-        "comment": "Color for unknown response status codes in the 100-199 range (blue.10).",
-        "value": "{color.alias.blue.10.value}"
+        "$description": "Color for unknown response status codes in the 100-199 range (blue.10).",
+        "$value": "{color.alias.blue.10}"
       },
       "2na": {
-        "comment": "Color for unknown response status codes in the 200-299 range (green.10).",
-        "value": "{color.alias.green.10.value}"
+        "$description": "Color for unknown response status codes in the 200-299 range (green.10).",
+        "$value": "{color.alias.green.10}"
       },
       "3na": {
-        "comment": "Color for unknown response status codes in the 300-399 range (yellow.10).",
-        "value": "{color.alias.yellow.10.value}"
+        "$description": "Color for unknown response status codes in the 300-399 range (yellow.10).",
+        "$value": "{color.alias.yellow.10}"
       },
       "4na": {
-        "comment": "Color for unknown response status codes in the 400-499 range (orange.10).",
-        "value": "{color.alias.orange.10.value}"
+        "$description": "Color for unknown response status codes in the 400-499 range (orange.10).",
+        "$value": "{color.alias.orange.10}"
       },
       "5na": {
-        "comment": "Color for unknown response status codes in the 500-599 range (red.10).",
-        "value": "{color.alias.red.10.value}"
+        "$description": "Color for unknown response status codes in the 500-599 range (red.10).",
+        "$value": "{color.alias.red.10}"
       },
 
       "100": {
-        "comment": "Color representing response status code 100 (blue.20).",
-        "value": "{color.alias.blue.20.value}"
+        "$description": "Color representing response status code 100 (blue.20).",
+        "$value": "{color.alias.blue.20}"
       },
       "100s": {
-        "comment": "Color for a group of response status codes in the 100-199 range (blue.40).",
-        "value": "{color.alias.blue.40.value}"
+        "$description": "Color for a group of response status codes in the 100-199 range (blue.40).",
+        "$value": "{color.alias.blue.40}"
       },
       "101": {
-        "comment": "Color representing response status code 101 (blue.30).",
-        "value": "{color.alias.blue.30.value}"
+        "$description": "Color representing response status code 101 (blue.30).",
+        "$value": "{color.alias.blue.30}"
       },
       "102": {
-        "comment": "Color representing response status code 102 (blue.40).",
-        "value": "{color.alias.blue.40.value}"
+        "$description": "Color representing response status code 102 (blue.40).",
+        "$value": "{color.alias.blue.40}"
       },
       "103": {
-        "comment": "Color representing response status code 103 (blue.50).",
-        "value": "{color.alias.blue.50.value}"
+        "$description": "Color representing response status code 103 (blue.50).",
+        "$value": "{color.alias.blue.50}"
       },
       "200": {
-        "comment": "Color representing response status code 200 (green.20).",
-        "value": "{color.alias.green.20.value}"
+        "$description": "Color representing response status code 200 (green.20).",
+        "$value": "{color.alias.green.20}"
       },
       "200s": {
-        "comment": "Color for a group of response status codes in the 200-299 range (green.40).",
-        "value": "{color.alias.green.40.value}"
+        "$description": "Color for a group of response status codes in the 200-299 range (green.40).",
+        "$value": "{color.alias.green.40}"
       },
       "201": {
-        "comment": "Color representing response status code 201 (green.30).",
-        "value": "{color.alias.green.30.value}"
+        "$description": "Color representing response status code 201 (green.30).",
+        "$value": "{color.alias.green.30}"
       },
       "202": {
-        "comment": "Color representing response status code 202 (green.40).",
-        "value": "{color.alias.green.40.value}"
+        "$description": "Color representing response status code 202 (green.40).",
+        "$value": "{color.alias.green.40}"
       },
       "203": {
-        "comment": "Color representing response status code 203 (green.50).",
-        "value": "{color.alias.green.50.value}"
+        "$description": "Color representing response status code 203 (green.50).",
+        "$value": "{color.alias.green.50}"
       },
       "204": {
-        "comment": "Color representing response status code 204 (green.60).",
-        "value": "{color.alias.green.60.value}"
+        "$description": "Color representing response status code 204 (green.60).",
+        "$value": "{color.alias.green.60}"
       },
       "205": {
-        "comment": "Color representing response status code 205 (green.70).",
-        "value": "{color.alias.green.70.value}"
+        "$description": "Color representing response status code 205 (green.70).",
+        "$value": "{color.alias.green.70}"
       },
       "206": {
-        "comment": "Color representing response status code 206 (green.20).",
-        "value": "{color.alias.green.20.value}"
+        "$description": "Color representing response status code 206 (green.20).",
+        "$value": "{color.alias.green.20}"
       },
       "207": {
-        "comment": "Color representing response status code 207 (green.30).",
-        "value": "{color.alias.green.30.value}"
+        "$description": "Color representing response status code 207 (green.30).",
+        "$value": "{color.alias.green.30}"
       },
       "208": {
-        "comment": "Color representing response status code 208 (green.40).",
-        "value": "{color.alias.green.20.value}"
+        "$description": "Color representing response status code 208 (green.40).",
+        "$value": "{color.alias.green.20}"
       },
       "226": {
-        "comment": "Color representing response status code 226 (green.50).",
-        "value": "{color.alias.green.50.value}"
+        "$description": "Color representing response status code 226 (green.50).",
+        "$value": "{color.alias.green.50}"
       },
 
       "300": {
-        "comment": "Color representing response status code 100 (yellow.20).",
-        "value": "{color.alias.yellow.20.value}"
+        "$description": "Color representing response status code 100 (yellow.20).",
+        "$value": "{color.alias.yellow.20}"
       },
       "300s": {
-        "comment": "Color for a group of response status codes in the 300-399 range (yellow.40).",
-        "value": "{color.alias.yellow.40.value}"
+        "$description": "Color for a group of response status codes in the 300-399 range (yellow.40).",
+        "$value": "{color.alias.yellow.40}"
       },
       "301": {
-        "comment": "Color representing response status code 101 (yellow.30).",
-        "value": "{color.alias.yellow.30.value}"
+        "$description": "Color representing response status code 101 (yellow.30).",
+        "$value": "{color.alias.yellow.30}"
       },
       "302": {
-        "comment": "Color representing response status code 102 (yellow.40).",
-        "value": "{color.alias.yellow.40.value}"
+        "$description": "Color representing response status code 102 (yellow.40).",
+        "$value": "{color.alias.yellow.40}"
       },
       "303": {
-        "comment": "Color representing response status code 103 (yellow.50).",
-        "value": "{color.alias.yellow.50.value}"
+        "$description": "Color representing response status code 103 (yellow.50).",
+        "$value": "{color.alias.yellow.50}"
       },
       "304": {
-        "comment": "Color representing response status code 103 (yellow.60).",
-        "value": "{color.alias.yellow.60.value}"
+        "$description": "Color representing response status code 103 (yellow.60).",
+        "$value": "{color.alias.yellow.60}"
       },
       "305": {
-        "comment": "Color representing response status code 103 (yellow.70).",
-        "value": "{color.alias.yellow.70.value}"
+        "$description": "Color representing response status code 103 (yellow.70).",
+        "$value": "{color.alias.yellow.70}"
       },
       "307": {
-        "comment": "Color representing response status code 103 (yellow.20).",
-        "value": "{color.alias.yellow.20.value}"
+        "$description": "Color representing response status code 103 (yellow.20).",
+        "$value": "{color.alias.yellow.20}"
       },
       "308": {
-        "comment": "Color representing response status code 103 (yellow.30).",
-        "value": "{color.alias.yellow.30.value}"
+        "$description": "Color representing response status code 103 (yellow.30).",
+        "$value": "{color.alias.yellow.30}"
       },
 
       "400": {
-        "comment": "Color representing response status code 400 (orange.20).",
-        "value": "{color.alias.orange.20.value}"
+        "$description": "Color representing response status code 400 (orange.20).",
+        "$value": "{color.alias.orange.20}"
       },
       "400s": {
-        "comment": "Color for a group of response status codes in the 400-499 range (orange.40).",
-        "value": "{color.alias.orange.40.value}"
+        "$description": "Color for a group of response status codes in the 400-499 range (orange.40).",
+        "$value": "{color.alias.orange.40}"
       },
       "401": {
-        "comment": "Color representing response status code 401 (orange.30).",
-        "value": "{color.alias.orange.30.value}"
+        "$description": "Color representing response status code 401 (orange.30).",
+        "$value": "{color.alias.orange.30}"
       },
       "402": {
-        "comment": "Color representing response status code 402 (orange.40).",
-        "value": "{color.alias.orange.40.value}"
+        "$description": "Color representing response status code 402 (orange.40).",
+        "$value": "{color.alias.orange.40}"
       },
       "403": {
-        "comment": "Color representing response status code 403 (orange.50).",
-        "value": "{color.alias.orange.50.value}"
+        "$description": "Color representing response status code 403 (orange.50).",
+        "$value": "{color.alias.orange.50}"
       },
       "404": {
-        "comment": "Color representing response status code 404 (orange.60).",
-        "value": "{color.alias.orange.60.value}"
+        "$description": "Color representing response status code 404 (orange.60).",
+        "$value": "{color.alias.orange.60}"
       },
       "405": {
-        "comment": "Color representing response status code 405 (orange.70).",
-        "value": "{color.alias.orange.70.value}"
+        "$description": "Color representing response status code 405 (orange.70).",
+        "$value": "{color.alias.orange.70}"
       },
       "406": {
-        "comment": "Color representing response status code 406 (orange.20).",
-        "value": "{color.alias.orange.20.value}"
+        "$description": "Color representing response status code 406 (orange.20).",
+        "$value": "{color.alias.orange.20}"
       },
       "407": {
-        "comment": "Color representing response status code 407 (orange.30).",
-        "value": "{color.alias.orange.30.value}"
+        "$description": "Color representing response status code 407 (orange.30).",
+        "$value": "{color.alias.orange.30}"
       },
       "408": {
-        "comment": "Color representing response status code 408 (orange.40).",
-        "value": "{color.alias.orange.40.value}"
+        "$description": "Color representing response status code 408 (orange.40).",
+        "$value": "{color.alias.orange.40}"
       },
       "409": {
-        "comment": "Color representing response status code 409 (orange.50).",
-        "value": "{color.alias.orange.50.value}"
+        "$description": "Color representing response status code 409 (orange.50).",
+        "$value": "{color.alias.orange.50}"
       },
       "410": {
-        "comment": "Color representing response status code 410 (orange.60).",
-        "value": "{color.alias.orange.60.value}"
+        "$description": "Color representing response status code 410 (orange.60).",
+        "$value": "{color.alias.orange.60}"
       },
       "411": {
-        "comment": "Color representing response status code 411 (orange.70).",
-        "value": "{color.alias.orange.70.value}"
+        "$description": "Color representing response status code 411 (orange.70).",
+        "$value": "{color.alias.orange.70}"
       },
       "412": {
-        "comment": "Color representing response status code 412 (orange.20).",
-        "value": "{color.alias.orange.20.value}"
+        "$description": "Color representing response status code 412 (orange.20).",
+        "$value": "{color.alias.orange.20}"
       },
       "413": {
-        "comment": "Color representing response status code 413 (orange.30).",
-        "value": "{color.alias.orange.30.value}"
+        "$description": "Color representing response status code 413 (orange.30).",
+        "$value": "{color.alias.orange.30}"
       },
       "414": {
-        "comment": "Color representing response status code 414 (orange.40).",
-        "value": "{color.alias.orange.40.value}"
+        "$description": "Color representing response status code 414 (orange.40).",
+        "$value": "{color.alias.orange.40}"
       },
       "415": {
-        "comment": "Color representing response status code 415 (orange.50).",
-        "value": "{color.alias.orange.50.value}"
+        "$description": "Color representing response status code 415 (orange.50).",
+        "$value": "{color.alias.orange.50}"
       },
       "416": {
-        "comment": "Color representing response status code 416 (orange.60).",
-        "value": "{color.alias.orange.60.value}"
+        "$description": "Color representing response status code 416 (orange.60).",
+        "$value": "{color.alias.orange.60}"
       },
       "417": {
-        "comment": "Color representing response status code 417 (orange.70).",
-        "value": "{color.alias.orange.70.value}"
+        "$description": "Color representing response status code 417 (orange.70).",
+        "$value": "{color.alias.orange.70}"
       },
       "418": {
-        "comment": "Color representing response status code 418 (orange.20).",
-        "value": "{color.alias.orange.20.value}"
+        "$description": "Color representing response status code 418 (orange.20).",
+        "$value": "{color.alias.orange.20}"
       },
       "421": {
-        "comment": "Color representing response status code 421 (orange.30).",
-        "value": "{color.alias.orange.30.value}"
+        "$description": "Color representing response status code 421 (orange.30).",
+        "$value": "{color.alias.orange.30}"
       },
       "422": {
-        "comment": "Color representing response status code 422 (orange.40).",
-        "value": "{color.alias.orange.40.value}"
+        "$description": "Color representing response status code 422 (orange.40).",
+        "$value": "{color.alias.orange.40}"
       },
       "423": {
-        "comment": "Color representing response status code 423 (orange.50).",
-        "value": "{color.alias.orange.50.value}"
+        "$description": "Color representing response status code 423 (orange.50).",
+        "$value": "{color.alias.orange.50}"
       },
       "424": {
-        "comment": "Color representing response status code 424 (orange.60).",
-        "value": "{color.alias.orange.60.value}"
+        "$description": "Color representing response status code 424 (orange.60).",
+        "$value": "{color.alias.orange.60}"
       },
       "425": {
-        "comment": "Color representing response status code 425 (orange.70).",
-        "value": "{color.alias.orange.70.value}"
+        "$description": "Color representing response status code 425 (orange.70).",
+        "$value": "{color.alias.orange.70}"
       },
       "426": {
-        "comment": "Color representing response status code 426 (orange.20).",
-        "value": "{color.alias.orange.20.value}"
+        "$description": "Color representing response status code 426 (orange.20).",
+        "$value": "{color.alias.orange.20}"
       },
       "428": {
-        "comment": "Color representing response status code 428 (orange.30).",
-        "value": "{color.alias.orange.30.value}"
+        "$description": "Color representing response status code 428 (orange.30).",
+        "$value": "{color.alias.orange.30}"
       },
       "429": {
-        "comment": "Color representing response status code 429 (orange.40).",
-        "value": "{color.alias.orange.40.value}"
+        "$description": "Color representing response status code 429 (orange.40).",
+        "$value": "{color.alias.orange.40}"
       },
       "431": {
-        "comment": "Color representing response status code 431 (orange.50).",
-        "value": "{color.alias.orange.50.value}"
+        "$description": "Color representing response status code 431 (orange.50).",
+        "$value": "{color.alias.orange.50}"
       },
       "451": {
-        "comment": "Color representing response status code 451 (orange.60).",
-        "value": "{color.alias.orange.60.value}"
+        "$description": "Color representing response status code 451 (orange.60).",
+        "$value": "{color.alias.orange.60}"
       },
 
       "500": {
-        "comment": "Color representing response status code 500 (red.20).",
-        "value": "{color.alias.red.20.value}"
+        "$description": "Color representing response status code 500 (red.20).",
+        "$value": "{color.alias.red.20}"
       },
       "500s": {
-        "comment": "Color for a group of response status codes in the 500-599 range (red.40).",
-        "value": "{color.alias.red.40.value}"
+        "$description": "Color for a group of response status codes in the 500-599 range (red.40).",
+        "$value": "{color.alias.red.40}"
       },
       "501": {
-        "comment": "Color representing response status code 501 (red.30).",
-        "value": "{color.alias.red.30.value}"
+        "$description": "Color representing response status code 501 (red.30).",
+        "$value": "{color.alias.red.30}"
       },
       "502": {
-        "comment": "Color representing response status code 502 (red.40).",
-        "value": "{color.alias.red.40.value}"
+        "$description": "Color representing response status code 502 (red.40).",
+        "$value": "{color.alias.red.40}"
       },
       "503": {
-        "comment": "Color representing response status code 503 (red.50).",
-        "value": "{color.alias.red.50.value}"
+        "$description": "Color representing response status code 503 (red.50).",
+        "$value": "{color.alias.red.50}"
       },
       "504": {
-        "comment": "Color representing response status code 504 (red.60).",
-        "value": "{color.alias.red.60.value}"
+        "$description": "Color representing response status code 504 (red.60).",
+        "$value": "{color.alias.red.60}"
       },
       "505": {
-        "comment": "Color representing response status code 505 (red.70).",
-        "value": "{color.alias.red.70.value}"
+        "$description": "Color representing response status code 505 (red.70).",
+        "$value": "{color.alias.red.70}"
       },
       "506": {
-        "comment": "Color representing response status code 506 (red.20).",
-        "value": "{color.alias.red.20.value}"
+        "$description": "Color representing response status code 506 (red.20).",
+        "$value": "{color.alias.red.20}"
       },
       "507": {
-        "comment": "Color representing response status code 507 (red.30).",
-        "value": "{color.alias.red.30.value}"
+        "$description": "Color representing response status code 507 (red.30).",
+        "$value": "{color.alias.red.30}"
       },
       "508": {
-        "comment": "Color representing response status code 508 (red.40).",
-        "value": "{color.alias.red.40.value}"
+        "$description": "Color representing response status code 508 (red.40).",
+        "$value": "{color.alias.red.40}"
       },
       "510": {
-        "comment": "Color representing response status code 510 (red.50).",
-        "value": "{color.alias.red.50.value}"
+        "$description": "Color representing response status code 510 (red.50).",
+        "$value": "{color.alias.red.50}"
       },
       "511": {
-        "comment": "Color representing response status code 511 (red.60).",
-        "value": "{color.alias.red.60.value}"
+        "$description": "Color representing response status code 511 (red.60).",
+        "$value": "{color.alias.red.60}"
       },
       "background": {
         "100": {
-          "comment": "Background color for http status 100 elements (blue.10).",
-          "value": "{color.alias.blue.10.value}"
+          "$description": "Background color for http status 100 elements (blue.10).",
+          "$value": "{color.alias.blue.10}"
         },
         "200": {
-          "comment": "Background color for http status 200 elements (green.10).",
-          "value": "{color.alias.green.10.value}"
+          "$description": "Background color for http status 200 elements (green.10).",
+          "$value": "{color.alias.green.10}"
         },
         "300": {
-          "comment": "Background color for http status 300 elements (yellow.10).",
-          "value": "{color.alias.yellow.10.value}"
+          "$description": "Background color for http status 300 elements (yellow.10).",
+          "$value": "{color.alias.yellow.10}"
         },
         "400": {
-          "comment": "Background color for http status 400 elements (orange.10).",
-          "value": "{color.alias.orange.10.value}"
+          "$description": "Background color for http status 400 elements (orange.10).",
+          "$value": "{color.alias.orange.10}"
         },
         "500": {
-          "comment": "Background color for http status 500 elements (red.10).",
-          "value": "{color.alias.red.10.value}"
+          "$description": "Background color for http status 500 elements (red.10).",
+          "$value": "{color.alias.red.10}"
         }
       },
       "text": {
         "100": {
-          "comment": "Text color for http status 100 elements (blue.60).",
-          "value": "{color.alias.blue.60.value}"
+          "$description": "Text color for http status 100 elements (blue.60).",
+          "$value": "{color.alias.blue.60}"
         },
         "200": {
-          "comment": "Text color for http status 200 elements (green.60).",
-          "value": "{color.alias.green.60.value}"
+          "$description": "Text color for http status 200 elements (green.60).",
+          "$value": "{color.alias.green.60}"
         },
         "300": {
-          "comment": "Text color for http status 300 elements (yellow.60).",
-          "value": "{color.alias.yellow.60.value}"
+          "$description": "Text color for http status 300 elements (yellow.60).",
+          "$value": "{color.alias.yellow.60}"
         },
         "400": {
-          "comment": "Text color for http status 400 elements (orange.60).",
-          "value": "{color.alias.orange.60.value}"
+          "$description": "Text color for http status 400 elements (orange.60).",
+          "$value": "{color.alias.orange.60}"
         },
         "500": {
-          "comment": "Text color for http status 500 elements (red.60).",
-          "value": "{color.alias.red.60.value}"
+          "$description": "Text color for http status 500 elements (red.60).",
+          "$value": "{color.alias.red.60}"
         }
       }
     }

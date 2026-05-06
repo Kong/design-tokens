@@ -2,8 +2,8 @@
   "animation": {
     "duration": {
       "20": {
-        "comment": "Default transition timing",
-        "value": "0.2s"
+        "$description": "Default transition timing",
+        "$value": "0.2s"
       }
     }
   }
