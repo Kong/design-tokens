@@ -2,24 +2,24 @@
   "font": {
     "weight": {
       "bold": {
-        "comment": "700: The bold font weight.",
-        "type": "font",
-        "value": "700"
+        "$description": "700: The bold font weight.",
+        "$type": "font",
+        "$value": "700"
       },
       "medium": {
-        "comment": "500: The medium font weight.",
-        "type": "font",
-        "value": "500"
+        "$description": "500: The medium font weight.",
+        "$type": "font",
+        "$value": "500"
       },
       "regular": {
-        "comment": "400: The normal font weight.",
-        "type": "font",
-        "value": "400"
+        "$description": "400: The normal font weight.",
+        "$type": "font",
+        "$value": "400"
       },
       "semibold": {
-        "comment": "600: The semibold font weight.",
-        "type": "font",
-        "value": "600"
+        "$description": "600: The semibold font weight.",
+        "$type": "font",
+        "$value": "600"
       }
     }
   }

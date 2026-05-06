@@ -72,7 +72,7 @@ $kui-color-background-neutral-weak: #afb7c5;
 $kui-color-background-neutral-weaker: #e0e4ea;
 /* Weakest background color for neutral elements (gray.10). */
 $kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(blue.100, 0.6)) */
+/* Overlay background color (rgba(0, 9, 51, 0.6)) */
 $kui-color-background-overlay: rgba(0, 9, 51, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 $kui-color-background-primary: #0044f4;
@@ -138,7 +138,7 @@ $kui-color-border-danger-weakest: #ffe5e5;
 $kui-color-border-decorative-purple: #6f28ff;
 /* Border color for disabled elements (gray.20). */
 $kui-color-border-disabled: #e0e4ea;
-/* Inverse border color (rgba(white, 0.2)). */
+/* Inverse border color (rgba(255, 255, 255, 0.2)). */
 $kui-color-border-inverse: rgba(255, 255, 255, 0.2);
 /* Border color for neutral elements (gray.60) */
 $kui-color-border-neutral: #6c7489;
@@ -388,7 +388,7 @@ $kui-method-color-text-trace-strong: #ad0053;
 $kui-navigation-color-background: #000933;
 /* The background color of a selected navigation item. */
 $kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(white, 0.12) */
+/* rgba(255, 255, 255, 0.12) */
 $kui-navigation-color-border: rgba(255, 255, 255, 0.12);
 /* The border color for a selected child navigation item. */
 $kui-navigation-color-border-child: #00fabe;
@@ -748,7 +748,7 @@ $tokens-map: (
   'kui-color-background-neutral-weaker': #e0e4ea;
   /* Weakest background color for neutral elements (gray.10). */
   'kui-color-background-neutral-weakest': #f9fafb;
-  /* Overlay background color (rgba(blue.100, 0.6)) */
+  /* Overlay background color (rgba(0, 9, 51, 0.6)) */
   'kui-color-background-overlay': rgba(0, 9, 51, 0.6);
   /* Background color for primary actions or messages (blue.60). */
   'kui-color-background-primary': #0044f4;
@@ -814,7 +814,7 @@ $tokens-map: (
   'kui-color-border-decorative-purple': #6f28ff;
   /* Border color for disabled elements (gray.20). */
   'kui-color-border-disabled': #e0e4ea;
-  /* Inverse border color (rgba(white, 0.2)). */
+  /* Inverse border color (rgba(255, 255, 255, 0.2)). */
   'kui-color-border-inverse': rgba(255, 255, 255, 0.2);
   /* Border color for neutral elements (gray.60) */
   'kui-color-border-neutral': #6c7489;
@@ -1064,7 +1064,7 @@ $tokens-map: (
   'kui-navigation-color-background': #000933;
   /* The background color of a selected navigation item. */
   'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12);
-  /* rgba(white, 0.12) */
+  /* rgba(255, 255, 255, 0.12) */
   'kui-navigation-color-border': rgba(255, 255, 255, 0.12);
   /* The border color for a selected child navigation item. */
   'kui-navigation-color-border-child': #00fabe;
@@ -1426,7 +1426,7 @@ $tokens-map: (
 @kui-color-background-neutral-weaker: #e0e4ea;
 /* Weakest background color for neutral elements (gray.10). */
 @kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(blue.100, 0.6)) */
+/* Overlay background color (rgba(0, 9, 51, 0.6)) */
 @kui-color-background-overlay: rgba(0, 9, 51, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 @kui-color-background-primary: #0044f4;
@@ -1492,7 +1492,7 @@ $tokens-map: (
 @kui-color-border-decorative-purple: #6f28ff;
 /* Border color for disabled elements (gray.20). */
 @kui-color-border-disabled: #e0e4ea;
-/* Inverse border color (rgba(white, 0.2)). */
+/* Inverse border color (rgba(255, 255, 255, 0.2)). */
 @kui-color-border-inverse: rgba(255, 255, 255, 0.2);
 /* Border color for neutral elements (gray.60) */
 @kui-color-border-neutral: #6c7489;
@@ -1742,7 +1742,7 @@ $tokens-map: (
 @kui-navigation-color-background: #000933;
 /* The background color of a selected navigation item. */
 @kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(white, 0.12) */
+/* rgba(255, 255, 255, 0.12) */
 @kui-navigation-color-border: rgba(255, 255, 255, 0.12);
 /* The border color for a selected child navigation item. */
 @kui-navigation-color-border-child: #00fabe;
@@ -2105,7 +2105,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-neutral-weaker: #e0e4ea;
 /* Weakest background color for neutral elements (gray.10). */
 --kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(blue.100, 0.6)) */
+/* Overlay background color (rgba(0, 9, 51, 0.6)) */
 --kui-color-background-overlay: rgba(0, 9, 51, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 --kui-color-background-primary: #0044f4;
@@ -2171,7 +2171,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-border-decorative-purple: #6f28ff;
 /* Border color for disabled elements (gray.20). */
 --kui-color-border-disabled: #e0e4ea;
-/* Inverse border color (rgba(white, 0.2)). */
+/* Inverse border color (rgba(255, 255, 255, 0.2)). */
 --kui-color-border-inverse: rgba(255, 255, 255, 0.2);
 /* Border color for neutral elements (gray.60) */
 --kui-color-border-neutral: #6c7489;
@@ -2421,7 +2421,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-navigation-color-background: #000933;
 /* The background color of a selected navigation item. */
 --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(white, 0.12) */
+/* rgba(255, 255, 255, 0.12) */
 --kui-navigation-color-border: rgba(255, 255, 255, 0.12);
 /* The border color for a selected child navigation item. */
 --kui-navigation-color-border-child: #00fabe;
@@ -2782,7 +2782,7 @@ export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAK = "#afb7c5";
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKER = "#e0e4ea";
 /* Weakest background color for neutral elements (gray.10). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKEST = "#f9fafb";
-/* Overlay background color (rgba(blue.100, 0.6)) */
+/* Overlay background color (rgba(0, 9, 51, 0.6)) */
 export const KUI_COLOR_BACKGROUND_OVERLAY = "rgba(0, 9, 51, 0.6)";
 /* Background color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BACKGROUND_PRIMARY = "#0044f4";
@@ -2848,7 +2848,7 @@ export const KUI_COLOR_BORDER_DANGER_WEAKEST = "#ffe5e5";
 export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = "#6f28ff";
 /* Border color for disabled elements (gray.20). */
 export const KUI_COLOR_BORDER_DISABLED = "#e0e4ea";
-/* Inverse border color (rgba(white, 0.2)). */
+/* Inverse border color (rgba(255, 255, 255, 0.2)). */
 export const KUI_COLOR_BORDER_INVERSE = "rgba(255, 255, 255, 0.2)";
 /* Border color for neutral elements (gray.60) */
 export const KUI_COLOR_BORDER_NEUTRAL = "#6c7489";
@@ -3098,7 +3098,7 @@ export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
 export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
 /* The background color of a selected navigation item. */
 export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
-/* rgba(white, 0.12) */
+/* rgba(255, 255, 255, 0.12) */
 export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
 /* The border color for a selected child navigation item. */
 export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";

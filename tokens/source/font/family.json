@@ -2,19 +2,19 @@
   "font": {
     "family": {
       "code": {
-        "comment": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.",
-        "type": "font",
-        "value": "'JetBrains Mono', Consolas, monospace"
+        "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.",
+        "$type": "font",
+        "$value": "'JetBrains Mono', Consolas, monospace"
       },
       "heading": {
-        "comment": "The standard heading text font family.",
-        "type": "font",
-        "value": "{font.family.text.value}"
+        "$description": "The standard heading text font family.",
+        "$type": "font",
+        "$value": "{font.family.text}"
       },
       "text": {
-        "comment": "The standard text font family.",
-        "type": "font",
-        "value": "'Inter', Roboto, Helvetica, sans-serif"
+        "$description": "The standard text font family.",
+        "$type": "font",
+        "$value": "'Inter', Roboto, Helvetica, sans-serif"
       }
     }
   }

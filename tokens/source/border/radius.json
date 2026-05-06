@@ -2,36 +2,36 @@
   "border": {
     "radius": {
       "0": {
-        "comment": "0px border radius.",
-        "value": "0px"
+        "$description": "0px border radius.",
+        "$value": "0px"
       },
       "10": {
-        "comment": "2px border radius.",
-        "value": "2px"
+        "$description": "2px border radius.",
+        "$value": "2px"
       },
       "20": {
-        "comment": "4px border radius.",
-        "value": "4px"
+        "$description": "4px border radius.",
+        "$value": "4px"
       },
       "30": {
-        "comment": "6px border radius.",
-        "value": "6px"
+        "$description": "6px border radius.",
+        "$value": "6px"
       },
       "40": {
-        "comment": "8px border radius.",
-        "value": "8px"
+        "$description": "8px border radius.",
+        "$value": "8px"
       },
       "50": {
-        "comment": "10px border radius.",
-        "value": "10px"
+        "$description": "10px border radius.",
+        "$value": "10px"
       },
       "circle": {
-        "comment": "50% border radius used to create circles.",
-        "value": "50%"
+        "$description": "50% border radius used to create circles.",
+        "$value": "50%"
       },
       "round": {
-        "comment": "100px border radius used to create pill shapes.",
-        "value": "100px"
+        "$description": "100px border radius used to create pill shapes.",
+        "$value": "100px"
       }
     }
   }
