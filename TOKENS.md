@@ -304,6 +304,64 @@ $kui-breakpoint-tablet: 1024px;
 $kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 $kui-breakpoint-desktop: 1536px;
+/* The border radius of the button. */
+$kui-button-border-radius: 100px;
+/* The border width of the button. */
+$kui-button-border-width: 1px;
+$kui-button-color-background-danger: ;
+$kui-button-color-background-danger-active: ;
+$kui-button-color-background-danger-disabled: ;
+$kui-button-color-background-danger-hover: ;
+$kui-button-color-background-primary: ;
+$kui-button-color-background-primary-active: ;
+$kui-button-color-background-primary-disabled: ;
+$kui-button-color-background-primary-hover: ;
+$kui-button-color-background-secondary: ;
+$kui-button-color-background-secondary-active: ;
+$kui-button-color-background-secondary-disabled: ;
+$kui-button-color-background-secondary-hover: ;
+$kui-button-color-background-tertiary: ;
+$kui-button-color-background-tertiary-active: ;
+$kui-button-color-background-tertiary-disabled: ;
+$kui-button-color-background-tertiary-hover: ;
+$kui-button-color-border-danger: ;
+$kui-button-color-border-danger-active: ;
+$kui-button-color-border-danger-disabled: ;
+$kui-button-color-border-danger-hover: ;
+$kui-button-color-border-primary: ;
+$kui-button-color-border-primary-active: ;
+$kui-button-color-border-primary-disabled: ;
+$kui-button-color-border-primary-hover: ;
+$kui-button-color-border-secondary: ;
+$kui-button-color-border-secondary-active: ;
+$kui-button-color-border-secondary-disabled: ;
+$kui-button-color-border-secondary-hover: ;
+$kui-button-color-border-tertiary: ;
+$kui-button-color-border-tertiary-active: ;
+$kui-button-color-border-tertiary-disabled: ;
+$kui-button-color-border-tertiary-hover: ;
+$kui-button-color-text-danger: ;
+$kui-button-color-text-danger-active: ;
+$kui-button-color-text-danger-disabled: ;
+$kui-button-color-text-danger-hover: ;
+$kui-button-color-text-primary: ;
+$kui-button-color-text-primary-active: ;
+$kui-button-color-text-primary-disabled: ;
+$kui-button-color-text-primary-hover: ;
+$kui-button-color-text-secondary: ;
+$kui-button-color-text-secondary-active: ;
+$kui-button-color-text-secondary-disabled: ;
+$kui-button-color-text-secondary-hover: ;
+$kui-button-color-text-tertiary: ;
+$kui-button-color-text-tertiary-active: ;
+$kui-button-color-text-tertiary-disabled: ;
+$kui-button-color-text-tertiary-hover: ;
+/* The padding for large buttons. */
+$kui-button-padding-large: 6px 12px;
+/* The padding for medium (default) buttons. */
+$kui-button-padding-medium: 4px 12px;
+/* The padding for small buttons. */
+$kui-button-padding-small: 2px 12px;
 /* Danger color for icons. */
 $kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -980,6 +1038,64 @@ $tokens-map: (
   'kui-breakpoint-laptop': 1280px;
   /* Used for larger desktop screens. */
   'kui-breakpoint-desktop': 1536px;
+  /* The border radius of the button. */
+  'kui-button-border-radius': 100px;
+  /* The border width of the button. */
+  'kui-button-border-width': 1px;
+  'kui-button-color-background-danger': ;
+  'kui-button-color-background-danger-active': ;
+  'kui-button-color-background-danger-disabled': ;
+  'kui-button-color-background-danger-hover': ;
+  'kui-button-color-background-primary': ;
+  'kui-button-color-background-primary-active': ;
+  'kui-button-color-background-primary-disabled': ;
+  'kui-button-color-background-primary-hover': ;
+  'kui-button-color-background-secondary': ;
+  'kui-button-color-background-secondary-active': ;
+  'kui-button-color-background-secondary-disabled': ;
+  'kui-button-color-background-secondary-hover': ;
+  'kui-button-color-background-tertiary': ;
+  'kui-button-color-background-tertiary-active': ;
+  'kui-button-color-background-tertiary-disabled': ;
+  'kui-button-color-background-tertiary-hover': ;
+  'kui-button-color-border-danger': ;
+  'kui-button-color-border-danger-active': ;
+  'kui-button-color-border-danger-disabled': ;
+  'kui-button-color-border-danger-hover': ;
+  'kui-button-color-border-primary': ;
+  'kui-button-color-border-primary-active': ;
+  'kui-button-color-border-primary-disabled': ;
+  'kui-button-color-border-primary-hover': ;
+  'kui-button-color-border-secondary': ;
+  'kui-button-color-border-secondary-active': ;
+  'kui-button-color-border-secondary-disabled': ;
+  'kui-button-color-border-secondary-hover': ;
+  'kui-button-color-border-tertiary': ;
+  'kui-button-color-border-tertiary-active': ;
+  'kui-button-color-border-tertiary-disabled': ;
+  'kui-button-color-border-tertiary-hover': ;
+  'kui-button-color-text-danger': ;
+  'kui-button-color-text-danger-active': ;
+  'kui-button-color-text-danger-disabled': ;
+  'kui-button-color-text-danger-hover': ;
+  'kui-button-color-text-primary': ;
+  'kui-button-color-text-primary-active': ;
+  'kui-button-color-text-primary-disabled': ;
+  'kui-button-color-text-primary-hover': ;
+  'kui-button-color-text-secondary': ;
+  'kui-button-color-text-secondary-active': ;
+  'kui-button-color-text-secondary-disabled': ;
+  'kui-button-color-text-secondary-hover': ;
+  'kui-button-color-text-tertiary': ;
+  'kui-button-color-text-tertiary-active': ;
+  'kui-button-color-text-tertiary-disabled': ;
+  'kui-button-color-text-tertiary-hover': ;
+  /* The padding for large buttons. */
+  'kui-button-padding-large': 6px 12px;
+  /* The padding for medium (default) buttons. */
+  'kui-button-padding-medium': 4px 12px;
+  /* The padding for small buttons. */
+  'kui-button-padding-small': 2px 12px;
   /* Danger color for icons. */
   'kui-icon-color-danger': #f50045;
   /* Neutral color for icons. */
@@ -1658,6 +1774,64 @@ $tokens-map: (
 @kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 @kui-breakpoint-desktop: 1536px;
+/* The border radius of the button. */
+@kui-button-border-radius: 100px;
+/* The border width of the button. */
+@kui-button-border-width: 1px;
+@kui-button-color-background-danger: ;
+@kui-button-color-background-danger-active: ;
+@kui-button-color-background-danger-disabled: ;
+@kui-button-color-background-danger-hover: ;
+@kui-button-color-background-primary: ;
+@kui-button-color-background-primary-active: ;
+@kui-button-color-background-primary-disabled: ;
+@kui-button-color-background-primary-hover: ;
+@kui-button-color-background-secondary: ;
+@kui-button-color-background-secondary-active: ;
+@kui-button-color-background-secondary-disabled: ;
+@kui-button-color-background-secondary-hover: ;
+@kui-button-color-background-tertiary: ;
+@kui-button-color-background-tertiary-active: ;
+@kui-button-color-background-tertiary-disabled: ;
+@kui-button-color-background-tertiary-hover: ;
+@kui-button-color-border-danger: ;
+@kui-button-color-border-danger-active: ;
+@kui-button-color-border-danger-disabled: ;
+@kui-button-color-border-danger-hover: ;
+@kui-button-color-border-primary: ;
+@kui-button-color-border-primary-active: ;
+@kui-button-color-border-primary-disabled: ;
+@kui-button-color-border-primary-hover: ;
+@kui-button-color-border-secondary: ;
+@kui-button-color-border-secondary-active: ;
+@kui-button-color-border-secondary-disabled: ;
+@kui-button-color-border-secondary-hover: ;
+@kui-button-color-border-tertiary: ;
+@kui-button-color-border-tertiary-active: ;
+@kui-button-color-border-tertiary-disabled: ;
+@kui-button-color-border-tertiary-hover: ;
+@kui-button-color-text-danger: ;
+@kui-button-color-text-danger-active: ;
+@kui-button-color-text-danger-disabled: ;
+@kui-button-color-text-danger-hover: ;
+@kui-button-color-text-primary: ;
+@kui-button-color-text-primary-active: ;
+@kui-button-color-text-primary-disabled: ;
+@kui-button-color-text-primary-hover: ;
+@kui-button-color-text-secondary: ;
+@kui-button-color-text-secondary-active: ;
+@kui-button-color-text-secondary-disabled: ;
+@kui-button-color-text-secondary-hover: ;
+@kui-button-color-text-tertiary: ;
+@kui-button-color-text-tertiary-active: ;
+@kui-button-color-text-tertiary-disabled: ;
+@kui-button-color-text-tertiary-hover: ;
+/* The padding for large buttons. */
+@kui-button-padding-large: 6px 12px;
+/* The padding for medium (default) buttons. */
+@kui-button-padding-medium: 4px 12px;
+/* The padding for small buttons. */
+@kui-button-padding-small: 2px 12px;
 /* Danger color for icons. */
 @kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -2337,6 +2511,64 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 --kui-breakpoint-desktop: 1536px;
+/* The border radius of the button. */
+--kui-button-border-radius: 100px;
+/* The border width of the button. */
+--kui-button-border-width: 1px;
+--kui-button-color-background-danger: ;
+--kui-button-color-background-danger-active: ;
+--kui-button-color-background-danger-disabled: ;
+--kui-button-color-background-danger-hover: ;
+--kui-button-color-background-primary: ;
+--kui-button-color-background-primary-active: ;
+--kui-button-color-background-primary-disabled: ;
+--kui-button-color-background-primary-hover: ;
+--kui-button-color-background-secondary: ;
+--kui-button-color-background-secondary-active: ;
+--kui-button-color-background-secondary-disabled: ;
+--kui-button-color-background-secondary-hover: ;
+--kui-button-color-background-tertiary: ;
+--kui-button-color-background-tertiary-active: ;
+--kui-button-color-background-tertiary-disabled: ;
+--kui-button-color-background-tertiary-hover: ;
+--kui-button-color-border-danger: ;
+--kui-button-color-border-danger-active: ;
+--kui-button-color-border-danger-disabled: ;
+--kui-button-color-border-danger-hover: ;
+--kui-button-color-border-primary: ;
+--kui-button-color-border-primary-active: ;
+--kui-button-color-border-primary-disabled: ;
+--kui-button-color-border-primary-hover: ;
+--kui-button-color-border-secondary: ;
+--kui-button-color-border-secondary-active: ;
+--kui-button-color-border-secondary-disabled: ;
+--kui-button-color-border-secondary-hover: ;
+--kui-button-color-border-tertiary: ;
+--kui-button-color-border-tertiary-active: ;
+--kui-button-color-border-tertiary-disabled: ;
+--kui-button-color-border-tertiary-hover: ;
+--kui-button-color-text-danger: ;
+--kui-button-color-text-danger-active: ;
+--kui-button-color-text-danger-disabled: ;
+--kui-button-color-text-danger-hover: ;
+--kui-button-color-text-primary: ;
+--kui-button-color-text-primary-active: ;
+--kui-button-color-text-primary-disabled: ;
+--kui-button-color-text-primary-hover: ;
+--kui-button-color-text-secondary: ;
+--kui-button-color-text-secondary-active: ;
+--kui-button-color-text-secondary-disabled: ;
+--kui-button-color-text-secondary-hover: ;
+--kui-button-color-text-tertiary: ;
+--kui-button-color-text-tertiary-active: ;
+--kui-button-color-text-tertiary-disabled: ;
+--kui-button-color-text-tertiary-hover: ;
+/* The padding for large buttons. */
+--kui-button-padding-large: 6px 12px;
+/* The padding for medium (default) buttons. */
+--kui-button-padding-medium: 4px 12px;
+/* The padding for small buttons. */
+--kui-button-padding-small: 2px 12px;
 /* Danger color for icons. */
 --kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -3014,6 +3246,64 @@ export const KUI_BREAKPOINT_TABLET = "1024px";
 export const KUI_BREAKPOINT_LAPTOP = "1280px";
 /* Used for larger desktop screens. */
 export const KUI_BREAKPOINT_DESKTOP = "1536px";
+/* The border radius of the button. */
+export const KUI_BUTTON_BORDER_RADIUS = "100px";
+/* The border width of the button. */
+export const KUI_BUTTON_BORDER_WIDTH = "1px";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_DISABLED = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_HOVER = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_HOVER = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_HOVER = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_HOVER = "";
+export const KUI_BUTTON_COLOR_BORDER_DANGER = "";
+export const KUI_BUTTON_COLOR_BORDER_DANGER_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BORDER_DANGER_DISABLED = "";
+export const KUI_BUTTON_COLOR_BORDER_DANGER_HOVER = "";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY = "";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY_HOVER = "";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY = "";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY_HOVER = "";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY = "";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY_HOVER = "";
+export const KUI_BUTTON_COLOR_TEXT_DANGER = "";
+export const KUI_BUTTON_COLOR_TEXT_DANGER_ACTIVE = "";
+export const KUI_BUTTON_COLOR_TEXT_DANGER_DISABLED = "";
+export const KUI_BUTTON_COLOR_TEXT_DANGER_HOVER = "";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY = "";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY_HOVER = "";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY = "";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY_HOVER = "";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY = "";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY_ACTIVE = "";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY_DISABLED = "";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY_HOVER = "";
+/* The padding for large buttons. */
+export const KUI_BUTTON_PADDING_LARGE = "6px 12px";
+/* The padding for medium (default) buttons. */
+export const KUI_BUTTON_PADDING_MEDIUM = "4px 12px";
+/* The padding for small buttons. */
+export const KUI_BUTTON_PADDING_SMALL = "2px 12px";
 /* Danger color for icons. */
 export const KUI_ICON_COLOR_DANGER = "#f50045";
 /* Neutral color for icons. */
@@ -3547,6 +3837,59 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_breakpoint_tablet": "1024px",
   "kui_breakpoint_laptop": "1280px",
   "kui_breakpoint_desktop": "1536px",
+  "kui_button_border_radius": "100px",
+  "kui_button_border_width": "1px",
+  "kui_button_color_background_danger": "",
+  "kui_button_color_background_danger_active": "",
+  "kui_button_color_background_danger_disabled": "",
+  "kui_button_color_background_danger_hover": "",
+  "kui_button_color_background_primary": "",
+  "kui_button_color_background_primary_active": "",
+  "kui_button_color_background_primary_disabled": "",
+  "kui_button_color_background_primary_hover": "",
+  "kui_button_color_background_secondary": "",
+  "kui_button_color_background_secondary_active": "",
+  "kui_button_color_background_secondary_disabled": "",
+  "kui_button_color_background_secondary_hover": "",
+  "kui_button_color_background_tertiary": "",
+  "kui_button_color_background_tertiary_active": "",
+  "kui_button_color_background_tertiary_disabled": "",
+  "kui_button_color_background_tertiary_hover": "",
+  "kui_button_color_border_danger": "",
+  "kui_button_color_border_danger_active": "",
+  "kui_button_color_border_danger_disabled": "",
+  "kui_button_color_border_danger_hover": "",
+  "kui_button_color_border_primary": "",
+  "kui_button_color_border_primary_active": "",
+  "kui_button_color_border_primary_disabled": "",
+  "kui_button_color_border_primary_hover": "",
+  "kui_button_color_border_secondary": "",
+  "kui_button_color_border_secondary_active": "",
+  "kui_button_color_border_secondary_disabled": "",
+  "kui_button_color_border_secondary_hover": "",
+  "kui_button_color_border_tertiary": "",
+  "kui_button_color_border_tertiary_active": "",
+  "kui_button_color_border_tertiary_disabled": "",
+  "kui_button_color_border_tertiary_hover": "",
+  "kui_button_color_text_danger": "",
+  "kui_button_color_text_danger_active": "",
+  "kui_button_color_text_danger_disabled": "",
+  "kui_button_color_text_danger_hover": "",
+  "kui_button_color_text_primary": "",
+  "kui_button_color_text_primary_active": "",
+  "kui_button_color_text_primary_disabled": "",
+  "kui_button_color_text_primary_hover": "",
+  "kui_button_color_text_secondary": "",
+  "kui_button_color_text_secondary_active": "",
+  "kui_button_color_text_secondary_disabled": "",
+  "kui_button_color_text_secondary_hover": "",
+  "kui_button_color_text_tertiary": "",
+  "kui_button_color_text_tertiary_active": "",
+  "kui_button_color_text_tertiary_disabled": "",
+  "kui_button_color_text_tertiary_hover": "",
+  "kui_button_padding_large": "6px 12px",
+  "kui_button_padding_medium": "4px 12px",
+  "kui_button_padding_small": "2px 12px",
   "kui_icon_color_danger": "#f50045",
   "kui_icon_color_neutral": "#828a9e",
   "kui_icon_color_primary": "#306fff",
