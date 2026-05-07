@@ -416,12 +416,18 @@ $kui-button-line-height-large: 24px;
 $kui-button-line-height-medium: 20px;
 /* The line-height for small buttons. */
 $kui-button-line-height-small: 16px;
-/* The padding for large buttons. */
-$kui-button-padding-large: 6px 12px;
-/* The padding for medium (default) buttons. */
-$kui-button-padding-medium: 4px 12px;
-/* The padding for small buttons. */
-$kui-button-padding-small: 2px 12px;
+/* The left and right padding for large buttons. */
+$kui-button-padding-large-x: 12px;
+/* The top and bottom padding for large buttons. */
+$kui-button-padding-large-y: 6px;
+/* The left and right padding for medium (default) buttons. */
+$kui-button-padding-medium-x: 12px;
+/* The top and bottom padding for medium (default) buttons. */
+$kui-button-padding-medium-y: 4px;
+/* The left and right padding for small buttons. */
+$kui-button-padding-small-x: 12px;
+/* The top and bottom padding for small buttons. */
+$kui-button-padding-small-y: 2px;
 /* Danger color for icons. */
 $kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -1210,12 +1216,18 @@ $tokens-map: (
   'kui-button-line-height-medium': 20px;
   /* The line-height for small buttons. */
   'kui-button-line-height-small': 16px;
-  /* The padding for large buttons. */
-  'kui-button-padding-large': 6px 12px;
-  /* The padding for medium (default) buttons. */
-  'kui-button-padding-medium': 4px 12px;
-  /* The padding for small buttons. */
-  'kui-button-padding-small': 2px 12px;
+  /* The left and right padding for large buttons. */
+  'kui-button-padding-large-x': 12px;
+  /* The top and bottom padding for large buttons. */
+  'kui-button-padding-large-y': 6px;
+  /* The left and right padding for medium (default) buttons. */
+  'kui-button-padding-medium-x': 12px;
+  /* The top and bottom padding for medium (default) buttons. */
+  'kui-button-padding-medium-y': 4px;
+  /* The left and right padding for small buttons. */
+  'kui-button-padding-small-x': 12px;
+  /* The top and bottom padding for small buttons. */
+  'kui-button-padding-small-y': 2px;
   /* Danger color for icons. */
   'kui-icon-color-danger': #f50045;
   /* Neutral color for icons. */
@@ -2006,12 +2018,18 @@ $tokens-map: (
 @kui-button-line-height-medium: 20px;
 /* The line-height for small buttons. */
 @kui-button-line-height-small: 16px;
-/* The padding for large buttons. */
-@kui-button-padding-large: 6px 12px;
-/* The padding for medium (default) buttons. */
-@kui-button-padding-medium: 4px 12px;
-/* The padding for small buttons. */
-@kui-button-padding-small: 2px 12px;
+/* The left and right padding for large buttons. */
+@kui-button-padding-large-x: 12px;
+/* The top and bottom padding for large buttons. */
+@kui-button-padding-large-y: 6px;
+/* The left and right padding for medium (default) buttons. */
+@kui-button-padding-medium-x: 12px;
+/* The top and bottom padding for medium (default) buttons. */
+@kui-button-padding-medium-y: 4px;
+/* The left and right padding for small buttons. */
+@kui-button-padding-small-x: 12px;
+/* The top and bottom padding for small buttons. */
+@kui-button-padding-small-y: 2px;
 /* Danger color for icons. */
 @kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -2803,12 +2821,18 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-button-line-height-medium: 20px;
 /* The line-height for small buttons. */
 --kui-button-line-height-small: 16px;
-/* The padding for large buttons. */
---kui-button-padding-large: 6px 12px;
-/* The padding for medium (default) buttons. */
---kui-button-padding-medium: 4px 12px;
-/* The padding for small buttons. */
---kui-button-padding-small: 2px 12px;
+/* The left and right padding for large buttons. */
+--kui-button-padding-large-x: 12px;
+/* The top and bottom padding for large buttons. */
+--kui-button-padding-large-y: 6px;
+/* The left and right padding for medium (default) buttons. */
+--kui-button-padding-medium-x: 12px;
+/* The top and bottom padding for medium (default) buttons. */
+--kui-button-padding-medium-y: 4px;
+/* The left and right padding for small buttons. */
+--kui-button-padding-small-x: 12px;
+/* The top and bottom padding for small buttons. */
+--kui-button-padding-small-y: 2px;
 /* Danger color for icons. */
 --kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -3598,12 +3622,18 @@ export const KUI_BUTTON_LINE_HEIGHT_LARGE = "24px";
 export const KUI_BUTTON_LINE_HEIGHT_MEDIUM = "20px";
 /* The line-height for small buttons. */
 export const KUI_BUTTON_LINE_HEIGHT_SMALL = "16px";
-/* The padding for large buttons. */
-export const KUI_BUTTON_PADDING_LARGE = "6px 12px";
-/* The padding for medium (default) buttons. */
-export const KUI_BUTTON_PADDING_MEDIUM = "4px 12px";
-/* The padding for small buttons. */
-export const KUI_BUTTON_PADDING_SMALL = "2px 12px";
+/* The left and right padding for large buttons. */
+export const KUI_BUTTON_PADDING_LARGE_X = "12px";
+/* The top and bottom padding for large buttons. */
+export const KUI_BUTTON_PADDING_LARGE_Y = "6px";
+/* The left and right padding for medium (default) buttons. */
+export const KUI_BUTTON_PADDING_MEDIUM_X = "12px";
+/* The top and bottom padding for medium (default) buttons. */
+export const KUI_BUTTON_PADDING_MEDIUM_Y = "4px";
+/* The left and right padding for small buttons. */
+export const KUI_BUTTON_PADDING_SMALL_X = "12px";
+/* The top and bottom padding for small buttons. */
+export const KUI_BUTTON_PADDING_SMALL_Y = "2px";
 /* Danger color for icons. */
 export const KUI_ICON_COLOR_DANGER = "#f50045";
 /* Neutral color for icons. */
@@ -4193,9 +4223,12 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_button_line_height_large": "24px",
   "kui_button_line_height_medium": "20px",
   "kui_button_line_height_small": "16px",
-  "kui_button_padding_large": "6px 12px",
-  "kui_button_padding_medium": "4px 12px",
-  "kui_button_padding_small": "2px 12px",
+  "kui_button_padding_large_x": "12px",
+  "kui_button_padding_large_y": "6px",
+  "kui_button_padding_medium_x": "12px",
+  "kui_button_padding_medium_y": "4px",
+  "kui_button_padding_small_x": "12px",
+  "kui_button_padding_small_y": "2px",
   "kui_icon_color_danger": "#f50045",
   "kui_icon_color_neutral": "#828a9e",
   "kui_icon_color_primary": "#306fff",
