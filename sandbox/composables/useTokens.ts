@@ -42,7 +42,16 @@ const COMPONENT_SUBCATS = new Set(['ICON', 'METHOD', 'NAVIGATION', 'STATUS'])
  * Categories that are subdivided into named sections within their tab.
  * The section name is derived from the second key segment after dropping `KUI`.
  */
-const SECTIONED_CATEGORIES = new Set<TokenCategory>(['color', 'font', 'border', 'shadow'])
+export const SECTIONED_CATEGORIES = new Set<TokenCategory>(['color', 'font', 'border', 'shadow'])
+
+/**
+ * Normalizes a search string for separator-agnostic matching.
+ * Strips hyphens, underscores, and spaces so `kui-color-bg`, `kui_color_bg`,
+ * and `kui color bg` all resolve to the same normalized form.
+ */
+export function normalize(s: string): string {
+  return s.toLowerCase().replace(/[-_\s]+/g, '')
+}
 
 /**
  * Derives the category and optional subcategory from a screaming-snake-case token key.
@@ -134,7 +143,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
  * @example `KUI_COLOR_BACKGROUND_DANGER` → `'background'`
  * @example `KUI_FONT_SIZE_30` → `'size'`
  */
-function getTokenSection(entry: TokenEntry): string | null {
+export function getTokenSection(entry: TokenEntry): string | null {
   if (!SECTIONED_CATEGORIES.has(entry.category)) return null
   const parts = entry.key.split('_').slice(1) // drop 'KUI'
   return parts[1]?.toLowerCase() ?? null
@@ -144,7 +153,7 @@ function getTokenSection(entry: TokenEntry): string | null {
  * Groups an array of entries into named sections.
  * Returns null when the category has only one section (flat display preferred).
  */
-function buildSections(entries: TokenEntry[]): TokenSection[] | null {
+export function buildSections(entries: TokenEntry[]): TokenSection[] | null {
   const map = new Map<string, TokenEntry[]>()
   for (const entry of entries) {
     const s = getTokenSection(entry) ?? '__flat__'
@@ -222,15 +231,21 @@ export function useTokens() {
    * Cross-category search results, grouped by category.
    * Returns `null` when the search query is empty (normal tab-browse mode).
    * Returns an empty array when the query is non-empty but nothing matches.
+   *
+   * Matching is separator-agnostic: `kui-color-bg`, `kui_color_bg`, and `kui color bg`
+   * all match the same tokens (hyphens, underscores, and spaces are stripped before comparison).
    */
   const globalSearchResults = computed(() => {
-    const q = search.value.toLowerCase().trim()
+    const q = normalize(search.value.trim())
     if (!q) return null
 
     const results: Array<{ category: TokenCategory, entries: TokenEntry[] }> = []
     for (const cat of categories.value) {
       const matches = (byCategory.value.get(cat) ?? []).filter(
-        (e) => e.key.toLowerCase().includes(q) || e.value.toLowerCase().includes(q),
+        (e) =>
+          normalize(e.key).includes(q) ||
+          normalize(e.cssVar).includes(q) ||
+          normalize(e.value).includes(q),
       )
       if (matches.length > 0) results.push({ category: cat, entries: matches })
     }

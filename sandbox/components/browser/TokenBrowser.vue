@@ -12,9 +12,9 @@
           type="button"
           @click="handleLogoClick"
         >
-          <span class="brand-logo">KONG</span>
-          <span class="brand-title">Design Tokens</span>
+          <span class="brand-title">Kong Design Tokens</span>
         </button>
+        <span class="brand-version">v{{ appVersion }}</span>
       </div>
       <div class="browser-controls">
         <div class="search-wrap">
@@ -35,7 +35,8 @@
             /><path d="m21 21-4.35-4.35" />
           </svg>
           <input
-            v-model="search"
+            ref="searchInputEl"
+            v-model="localSearch"
             aria-label="Search tokens"
             class="search-input"
             placeholder="Search all tokens or values…"
@@ -85,7 +86,7 @@
       <div class="search-results">
         <template v-if="globalSearchResults.length === 0">
           <div class="empty-state">
-            No tokens match <em>"{{ search }}"</em>
+            No tokens match <em>"{{ localSearch }}"</em>
           </div>
         </template>
         <template v-else>
@@ -115,7 +116,9 @@
 
     <!-- Normal tab-browse mode -->
     <template v-else>
-      <!-- Gradient-masked nav signals horizontal scroll on mobile without a visible scrollbar -->
+      <!-- Gradient-masked nav signals horizontal scroll on mobile without a visible scrollbar.
+           Uses ::after pseudo-element instead of mask-image so the background stays opaque
+           and scrolling content can't bleed through the fade zone on narrow screens. -->
       <div class="category-tabs-wrap">
         <nav
           aria-label="Token categories"
@@ -141,7 +144,8 @@
           class="token-section"
         >
           <div class="token-section-header">
-            {{ subcat }}
+            <span class="token-section-name">{{ subcat }}</span>
+            <span class="token-section-count">{{ componentsBySubcat[subcat]?.length ?? 0 }}</span>
           </div>
           <div class="token-grid token-grid--components">
             <TokenCard
@@ -164,7 +168,8 @@
           class="token-section"
         >
           <div class="token-section-header">
-            {{ section.section }}
+            <span class="token-section-name">{{ section.section }}</span>
+            <span class="token-section-count">{{ section.entries.length }}</span>
           </div>
           <div :class="['token-grid', `token-grid--${activeCategory}`]">
             <TokenCard
@@ -211,7 +216,11 @@ import { useRoute, useRouter } from 'vue-router'
 import { useTokens, CATEGORY_LABELS, type TokenCategory } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
+import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import TokenCard from './TokenCard.vue'
+import pkg from '../../../package.json'
+
+const appVersion = pkg.version
 
 const route = useRoute()
 const router = useRouter()
@@ -235,23 +244,34 @@ const copyFormat = ref<'css' | 'sass' | 'js'>('css')
 const headerEl = ref<HTMLElement | null>(null)
 useHeaderHeight(headerEl)
 
-/** Initialize search from URL on first load so refresh and shared links preserve query. */
+const searchInputEl = ref<HTMLInputElement | null>(null)
+useSearchShortcut(searchInputEl)
+
+// Decouple input display from filtering: localSearch updates immediately on keystroke;
+// search (which drives filtering and URL) updates after 300ms so the UI stays snappy
+// while heavier filter computation is deferred.
+const localSearch = ref('')
+let searchDebounce: ReturnType<typeof setTimeout>
+
 onMounted(() => {
   const q = route.query.q
-  if (typeof q === 'string' && q) search.value = q
+  if (typeof q === 'string' && q) {
+    localSearch.value = q
+    search.value = q
+  }
 })
 
-/** Debounced sync of the search input to the URL query string. */
-let searchDebounceTimer: ReturnType<typeof setTimeout>
-watch(search, (val) => {
-  clearTimeout(searchDebounceTimer)
-  searchDebounceTimer = setTimeout(() => {
+watch(localSearch, (val) => {
+  clearTimeout(searchDebounce)
+  searchDebounce = setTimeout(() => {
+    search.value = val
     router.replace({ query: val ? { q: val } : {} })
   }, 300)
 })
 
 /** Resets search and active tab, navigating back to the default browse view. */
 function handleLogoClick() {
+  localSearch.value = ''
   search.value = ''
   activeCategory.value = 'color'
   router.push('/')
@@ -297,6 +317,7 @@ function handleCopy(key: string, text: string) {
 .browser-brand {
   display: flex;
   align-items: baseline;
+  gap: 8px;
   flex-shrink: 0;
 
   @media (max-width: 639px) { width: 100%; }
@@ -318,21 +339,20 @@ function handleCopy(key: string, text: string) {
   }
 }
 
-.brand-logo {
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: 0.15em;
-  color: $tb-accent;
-  text-transform: uppercase;
-}
-
 .brand-title {
   font-weight: 600;
   font-size: 17px;
   letter-spacing: -0.01em;
   color: $tb-text;
-  margin: 0;
   line-height: 1;
+}
+
+.brand-version {
+  font-size: 11px;
+  color: $tb-text-muted;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-family: $tb-mono;
 }
 
 // Controls always lay out as a row (search + toggle + link side-by-side)
@@ -423,24 +443,33 @@ function handleCopy(key: string, text: string) {
   border-radius: 3px;
 
   &:hover { text-decoration: underline; }
-  &:focus-visible {
-    outline: 2px solid $tb-accent;
-    outline-offset: 3px;
-  }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 3px; }
 }
 
 // ─── Category tabs ────────────────────────────────────────────────────────────
-// Wrapper provides the right-side fade that signals overflow on mobile
 .category-tabs-wrap {
   position: sticky;
-  // Positioned below the sticky header; height is tracked by useHeaderHeight
   top: var(--header-h, 57px);
   z-index: 10;
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
-  // Fade masks the tab overflow to hint horizontal scrollability
-  mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, black calc(100% - 40px), transparent 100%);
+  // Overflow must be visible so the ::after pseudo-element can overlay content outside the border
+  overflow: visible;
+
+  // Overlay gradient using ::after instead of mask-image so the background stays fully opaque.
+  // mask-image makes the background itself transparent, letting scroll content bleed through
+  // the fade zone on narrow screens.
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 48px;
+    background: linear-gradient(to right, transparent, $tb-surface);
+    pointer-events: none;
+    z-index: 1;
+  }
 }
 
 .category-tabs {
@@ -503,12 +532,40 @@ function handleCopy(key: string, text: string) {
 }
 
 .token-section-header {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
-  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 12px;
+
+  // Accent bar on the left for visual anchoring
+  &::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 14px;
+    background: $tb-accent;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+}
+
+.token-section-name {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $tb-text-dim;
+}
+
+.token-section-count {
+  font-size: 11px;
+  font-weight: 500;
   color: $tb-text-muted;
-  padding-bottom: 10px;
+  background: $tb-surface-2;
+  border-radius: 10px;
+  padding: 1px 7px;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 // ─── Token grid ───────────────────────────────────────────────────────────────
@@ -516,15 +573,18 @@ function handleCopy(key: string, text: string) {
   padding: 20px;
   display: grid;
   gap: 12px;
-  // Default stretch so all cards in the same row share the same height
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  // Two-row bands per card: preview row (1fr) + info row (auto).
+  // With CSS subgrid on each card, all cards in the same row band share
+  // equal preview height AND equal info height regardless of content length.
+  grid-auto-rows: 1fr auto;
 
   &--color { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 
   &--shadow,
   &--border { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
 
-  // Components and sectioned grids use padding from the section wrapper, not the grid
+  // Sectioned and component grids inherit padding from the section wrapper
   .token-section & { padding: 0; }
 }
 

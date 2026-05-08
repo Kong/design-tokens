@@ -86,8 +86,11 @@ function handleCopy() {
   overflow: hidden;
   cursor: pointer;
   transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s;
-  display: flex;
-  flex-direction: column;
+  // Subgrid: card spans 2 parent tracks (preview row + info row) and passes them
+  // through to its children so every card in a row has identical preview/info heights.
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
 
   &:hover {
     border-color: $tb-border-active;

@@ -173,7 +173,6 @@ const breakpointBarWidth = computed(() => {
 @use '@/assets/tb-vars' as *;
 
 .token-preview {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;

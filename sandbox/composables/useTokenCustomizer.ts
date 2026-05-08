@@ -1,5 +1,5 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
-import { ALL_ENTRIES, CATEGORY_LABELS, CATEGORY_ORDER } from './useTokens'
+import { ALL_ENTRIES, CATEGORY_LABELS, CATEGORY_ORDER, normalize } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
 
 /**
@@ -45,29 +45,47 @@ export interface CustGroup {
 const KNOWN_CSS_VARS = new Set(ALL_ENTRIES.map((e) => e.cssVar))
 
 /**
- * Encodes the current overrides object into a URL-safe base64 string.
+ * Encodes the overrides map as URL-safe base64 (RFC 4648 §5).
+ *
+ * Uses index-based keys instead of full CSS var names to keep the URL short —
+ * a full 337-token override encodes to ~8 KB instead of ~24 KB with named keys.
+ * The index maps to the position in the stable `ALL_ENTRIES` array.
+ *
  * Returns an empty string when there are no overrides.
  */
 function encodeOverrides(map: Record<string, string>): string {
   const entries = Object.entries(map)
   if (!entries.length) return ''
-  return btoa(JSON.stringify(map))
+  const compact = entries
+    .map(([cssVar, val]) => [ALL_ENTRIES.findIndex((e) => e.cssVar === cssVar), val])
+    .filter(([idx]) => (idx as number) !== -1)
+  const json = JSON.stringify(compact)
+  // URL-safe base64: replace + → -, / → _, strip padding = so the hash stays clean
+  return btoa(json).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
 }
 
 /**
- * Decodes a base64 override string back into a plain object.
- * Returns an empty object on any parse failure so stale/corrupt links degrade gracefully.
+ * Decodes a URL-safe base64 override string produced by `encodeOverrides`.
+ * Returns an empty object on any parse failure so stale/corrupt share links degrade gracefully.
+ * Entries whose index no longer exists in ALL_ENTRIES are silently ignored.
  */
 function decodeOverrides(encoded: string): Record<string, string> {
   try {
-    const parsed = JSON.parse(atob(encoded))
-    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) return {}
-    // Filter to only CSS vars that exist in the current token set — survives token renames/removals
-    return Object.fromEntries(
-      Object.entries(parsed as Record<string, unknown>)
-        .filter(([k, v]) => KNOWN_CSS_VARS.has(k) && typeof v === 'string')
-        .map(([k, v]) => [k, v as string]),
-    )
+    // Re-pad and convert back from URL-safe base64 before atob
+    const padded = encoded.replace(/-/g, '+').replace(/_/g, '/')
+      + '='.repeat((4 - (encoded.length % 4)) % 4)
+    const parsed = JSON.parse(atob(padded))
+    if (!Array.isArray(parsed)) return {}
+    const result: Record<string, string> = {}
+    for (const item of parsed) {
+      if (!Array.isArray(item) || item.length !== 2) continue
+      const [idx, val] = item
+      if (typeof idx !== 'number' || typeof val !== 'string') continue
+      const entry = ALL_ENTRIES[idx]
+      if (!entry || !KNOWN_CSS_VARS.has(entry.cssVar)) continue
+      result[entry.cssVar] = val
+    }
+    return result
   } catch {
     return {}
   }
@@ -82,10 +100,23 @@ export function useTokenCustomizer() {
   const filterQuery = ref('')
   const collapsed = reactive<Record<string, boolean>>({})
 
-  /** Toggles the collapsed state of a category accordion group. */
+  /** Toggles the collapsed state of a single category accordion group. */
   function toggleGroup(cat: string) {
     collapsed[cat] = !collapsed[cat]
   }
+
+  /** Collapses every visible group at once. */
+  function collapseAll() {
+    for (const g of visibleGroups.value) collapsed[g.category] = true
+  }
+
+  /** Expands every visible group at once. */
+  function expandAll() {
+    for (const g of visibleGroups.value) collapsed[g.category] = false
+  }
+
+  /** `true` when every visible group is currently collapsed. */
+  const allCollapsed = computed(() => visibleGroups.value.every((g) => !!collapsed[g.category]))
 
   /**
    * All category groups filtered by the editor search query, with per-group override counts.
@@ -101,7 +132,7 @@ export function useTokenCustomizer() {
     return [...order, ...extra]
       .map((cat) => {
         let entries = ALL_ENTRIES.filter((e) => e.category === cat)
-        if (q) entries = entries.filter((e) => e.cssVar.includes(q) || e.value.includes(q))
+        if (q) entries = entries.filter((e) => normalize(e.cssVar).includes(normalize(q)) || normalize(e.value).includes(normalize(q)))
         const overrideCount = entries.filter((e) => overrides[e.cssVar]).length
         return { category: cat, entries, overrideCount }
       })
@@ -118,10 +149,12 @@ export function useTokenCustomizer() {
    */
   function setOverride(cssVar: string, value: string, defaultValue: string) {
     const trimmed = value.trim()
-    if (!trimmed || trimmed === defaultValue) {
+    // Normalize hex to uppercase so overrides are stored consistently (#FF5733 not #ff5733)
+    const normalized = /^#[0-9a-f]{3,8}$/i.test(trimmed) ? trimmed.toUpperCase() : trimmed
+    if (!normalized || normalized === defaultValue) {
       delete overrides[cssVar]
     } else {
-      overrides[cssVar] = trimmed
+      overrides[cssVar] = normalized
     }
   }
 
@@ -154,14 +187,17 @@ export function useTokenCustomizer() {
 
   /**
    * Returns the current page URL with active overrides encoded in the hash fragment.
-   * Format: `<origin>/customize#o=<base64(JSON)>`
-   * Returns the base URL (no hash) when there are no overrides.
+   * Format: `<origin>/customize#o=<url-safe-base64>`
+   * Returns the plain `/customize` URL when there are no overrides so the link is always shareable.
    */
   function getShareUrl(): string {
     const base = `${window.location.origin}/customize`
     const encoded = encodeOverrides(overrides)
     return encoded ? `${base}#o=${encoded}` : base
   }
+
+  /** Reactive share URL — updates automatically as overrides change. */
+  const shareUrl = computed(() => getShareUrl())
 
   /**
    * Reads the `#o=` hash fragment on mount and applies any valid overrides found there.
@@ -204,12 +240,15 @@ export function useTokenCustomizer() {
     hasOverrides,
     filterQuery,
     collapsed,
+    allCollapsed,
     visibleGroups,
     toggleGroup,
+    collapseAll,
+    expandAll,
     setOverride,
     resetAll,
     overridesCss,
     fullExportCss,
-    getShareUrl,
+    shareUrl,
   }
 }

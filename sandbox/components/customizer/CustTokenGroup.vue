@@ -4,10 +4,19 @@
       class="cust-group-header"
       @click="emit('toggle', group.category)"
     >
-      <span
-        class="group-chevron"
-        :class="{ 'group-chevron--open': !isCollapsed }"
-      >▸</span>
+      <svg
+        :class="['group-chevron', { 'group-chevron--open': !isCollapsed }]"
+        fill="none"
+        height="14"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2.5"
+        viewBox="0 0 24 24"
+        width="14"
+      >
+        <polyline points="9 18 15 12 9 6" />
+      </svg>
       <span class="group-label">{{ CATEGORY_LABELS[group.category] ?? group.category }}</span>
       <span class="group-count">{{ group.entries.length }}</span>
       <span
@@ -20,24 +29,47 @@
       v-show="!isCollapsed"
       class="cust-group-body"
     >
-      <CustTokenRow
-        v-for="entry in group.entries"
-        :key="entry.cssVar"
-        :entry="entry"
-        :overridden-value="overrides[entry.cssVar]"
-        @change="(cssVar, value, defaultValue) => emit('change', cssVar, value, defaultValue)"
-        @reset="(cssVar, defaultValue) => emit('reset', cssVar, defaultValue)"
-      />
+      <!-- Sub-sectioned categories (color, font, border, shadow) show section headers -->
+      <template v-if="sections">
+        <div
+          v-for="section in sections"
+          :key="section.section"
+          class="cust-subsection"
+        >
+          <div class="cust-subsection-header">
+            {{ section.section }}
+          </div>
+          <CustTokenRow
+            v-for="entry in section.entries"
+            :key="entry.cssVar"
+            :entry="entry"
+            :overridden-value="overrides[entry.cssVar]"
+            @change="(cssVar, value, defaultValue) => emit('change', cssVar, value, defaultValue)"
+            @reset="(cssVar, defaultValue) => emit('reset', cssVar, defaultValue)"
+          />
+        </div>
+      </template>
+      <template v-else>
+        <CustTokenRow
+          v-for="entry in group.entries"
+          :key="entry.cssVar"
+          :entry="entry"
+          :overridden-value="overrides[entry.cssVar]"
+          @change="(cssVar, value, defaultValue) => emit('change', cssVar, value, defaultValue)"
+          @reset="(cssVar, defaultValue) => emit('reset', cssVar, defaultValue)"
+        />
+      </template>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { CATEGORY_LABELS } from '@/composables/useTokens'
+import { computed } from 'vue'
+import { CATEGORY_LABELS, SECTIONED_CATEGORIES, buildSections } from '@/composables/useTokens'
 import type { CustGroup } from '@/composables/useTokenCustomizer'
 import CustTokenRow from './CustTokenRow.vue'
 
-defineProps<{
+const props = defineProps<{
   group: CustGroup
   isCollapsed: boolean
   /** The full overrides map — passed through so each row knows its current state. */
@@ -49,6 +81,11 @@ const emit = defineEmits<{
   change: [cssVar: string, value: string, defaultValue: string]
   reset: [cssVar: string, defaultValue: string]
 }>()
+
+/** Sub-sections for sectionable categories; null means render as a flat list. */
+const sections = computed(() =>
+  SECTIONED_CATEGORIES.has(props.group.category) ? buildSections(props.group.entries) : null,
+)
 </script>
 
 <style lang="scss" scoped>
@@ -78,9 +115,9 @@ const emit = defineEmits<{
 }
 
 .group-chevron {
-  display: inline-block;
+  flex-shrink: 0;
   transition: transform 0.15s;
-  font-size: 10px;
+  color: $tb-text-muted;
 
   &--open { transform: rotate(90deg); }
 }
@@ -102,4 +139,18 @@ const emit = defineEmits<{
 }
 
 .cust-group-body { background: $tb-surface; }
+
+// Sub-sections within a group (color → background/border/text, font → family/size/weight)
+.cust-subsection { border-top: 1px solid $tb-border; }
+
+.cust-subsection-header {
+  padding: 5px 16px 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: $tb-text-muted;
+  background: $tb-surface-2;
+  border-bottom: 1px solid $tb-border;
+}
 </style>
