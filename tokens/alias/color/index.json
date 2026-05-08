@@ -110,6 +110,63 @@
           "$value": "#000933"
         }
       },
+      "electric_lime": {
+        "05": {
+          "$description": "Alias for #FEFFF8.",
+          "$type": "color",
+          "$value": "#FEFFF8"
+        },
+        "10": {
+          "$description": "Alias for #FCFFEE.",
+          "$type": "color",
+          "$value": "#FCFFEE"
+        },
+        "20": {
+          "$description": "Alias for #F2FFBE.",
+          "$type": "color",
+          "$value": "#F2FFBE"
+        },
+        "30": {
+          "$description": "Alias for #E9FF8F.",
+          "$type": "color",
+          "$value": "#E9FF8F"
+        },
+        "40": {
+          "$description": "Alias for #DFFF5F.",
+          "$type": "color",
+          "$value": "#DFFF5F"
+        },
+        "50": {
+          "$description": "Alias for #D6FF30.",
+          "$type": "color",
+          "$value": "#D6FF30"
+        },
+        "60": {
+          "$description": "Alias for #CCFF00.",
+          "$type": "color",
+          "$value": "#CCFF00"
+        },
+        "70": {
+          "$description": "Alias for #A3CC00.",
+          "$type": "color",
+          "$value": "#A3CC00"
+        },
+        "80": {
+          "$description": "Alias for #7A9900.",
+          "$type": "color",
+          "$value": "#7A9900"
+        },
+        "90": {
+          "$description": "Alias for #526600.",
+          "$type": "color",
+          "$value": "#526600"
+        },
+        "100": {
+          "$description": "Alias for #293300.",
+          "$type": "color",
+          "$value": "#293300"
+        }
+      },
       "gray": {
         "10": {
           "$description": "Alias for #F9FAFB.",
