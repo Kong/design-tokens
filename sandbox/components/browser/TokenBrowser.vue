@@ -282,6 +282,7 @@ function selectCategory(cat: TokenCategory) {
   activeCategory.value = cat
 }
 
+/** Forwards a copy event from TokenCard to the clipboard composable. */
 function handleCopy(key: string, text: string) {
   copyText(text, key)
 }
@@ -535,22 +536,15 @@ function handleCopy(key: string, text: string) {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-bottom: 12px;
-
-  // Accent bar on the left for visual anchoring
-  &::before {
-    content: '';
-    display: block;
-    width: 3px;
-    height: 14px;
-    background: $tb-accent;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
+  // Escape the parent section's padding to span the full width, then add padding back
+  margin: -16px -20px 16px;
+  padding: 9px 20px;
+  background: $tb-surface-2;
+  border-bottom: 1px solid $tb-border;
 }
 
 .token-section-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -561,7 +555,8 @@ function handleCopy(key: string, text: string) {
   font-size: 11px;
   font-weight: 500;
   color: $tb-text-muted;
-  background: $tb-surface-2;
+  background: $tb-surface;
+  border: 1px solid $tb-border;
   border-radius: 10px;
   padding: 1px 7px;
   letter-spacing: 0;

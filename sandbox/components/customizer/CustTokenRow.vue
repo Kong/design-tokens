@@ -144,10 +144,10 @@ function handleColorInput(value: string) {
   height: 24px;
   flex-shrink: 0;
 
-  // Hover effect for the clickable color picker swatch
+  // Grow + shadow on hover signals the swatch is clickable (like the token cards)
   &:hover .cust-swatch:not(.cust-swatch--no-pick) {
-    border-color: $tb-accent;
-    box-shadow: 0 0 0 2px $tb-accent-subtle;
+    transform: scale(1.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -169,7 +169,7 @@ function handleColorInput(value: string) {
   border-radius: 4px;
   border: 1px solid $tb-border-active;
   pointer-events: none;
-  transition: border-color 0.12s, box-shadow 0.12s;
+  transition: transform 0.12s, box-shadow 0.12s;
 
   // Read-only color display (non-hex colors like rgba/hsl don't open a picker)
   &--no-pick { cursor: default; }
