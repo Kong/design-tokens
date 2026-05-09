@@ -1,6 +1,7 @@
 <template>
   <div class="cust-group">
     <button
+      :aria-expanded="!isCollapsed"
       class="cust-group-header"
       @click="emit('toggle', group.category)"
     >

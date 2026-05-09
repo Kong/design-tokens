@@ -44,46 +44,125 @@ export interface CustGroup {
 /** Known CSS variable names in the current token set, for filtering stale share-link overrides. */
 const KNOWN_CSS_VARS = new Set(ALL_ENTRIES.map((e) => e.cssVar))
 
+// ─── Share-link encoding/decoding ─────────────────────────────────────────────
+
 /**
- * Encodes the overrides map as URL-safe base64 (RFC 4648 §5).
- *
- * Uses index-based keys instead of full CSS var names to keep the URL short —
- * a full 337-token override encodes to ~8 KB instead of ~24 KB with named keys.
- * The index maps to the position in the stable `ALL_ENTRIES` array.
- *
- * Returns an empty string when there are no overrides.
+ * Compresses a byte array using the browser-native DeflateRaw algorithm.
+ * Falls back to the uncompressed input on browsers that lack CompressionStream.
  */
-function encodeOverrides(map: Record<string, string>): string {
-  const entries = Object.entries(map)
-  if (!entries.length) return ''
-  const compact = entries
-    .map(([cssVar, val]) => [ALL_ENTRIES.findIndex((e) => e.cssVar === cssVar), val])
-    .filter(([idx]) => (idx as number) !== -1)
-  const json = JSON.stringify(compact)
-  // URL-safe base64: replace + → -, / → _, strip padding = so the hash stays clean
-  return btoa(json).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+async function deflate(input: Uint8Array): Promise<Uint8Array> {
+  if (typeof CompressionStream === 'undefined') return input
+  const cs = new CompressionStream('deflate-raw')
+  const writer = cs.writable.getWriter()
+  const reader = cs.readable.getReader()
+  writer.write(new Uint8Array(input))
+  writer.close()
+  const chunks: Uint8Array[] = []
+  let done = false
+  while (!done) {
+    const result = await reader.read()
+    if (result.value) chunks.push(result.value)
+    done = result.done
+  }
+  const out = new Uint8Array(chunks.reduce((n, c) => n + c.length, 0))
+  let offset = 0
+  for (const c of chunks) { out.set(c, offset); offset += c.length }
+  return out
 }
 
 /**
- * Decodes a URL-safe base64 override string produced by `encodeOverrides`.
- * Returns an empty object on any parse failure so stale/corrupt share links degrade gracefully.
- * Entries whose index no longer exists in ALL_ENTRIES are silently ignored.
+ * Decompresses a DeflateRaw-compressed byte array.
+ * Falls back to the uncompressed input on browsers that lack DecompressionStream.
  */
-function decodeOverrides(encoded: string): Record<string, string> {
+async function inflate(input: Uint8Array): Promise<Uint8Array> {
+  if (typeof DecompressionStream === 'undefined') return input
+  const ds = new DecompressionStream('deflate-raw')
+  const writer = ds.writable.getWriter()
+  const reader = ds.readable.getReader()
+  writer.write(new Uint8Array(input))
+  writer.close()
+  const chunks: Uint8Array[] = []
+  let done = false
+  while (!done) {
+    const result = await reader.read()
+    if (result.value) chunks.push(result.value)
+    done = result.done
+  }
+  const out = new Uint8Array(chunks.reduce((n, c) => n + c.length, 0))
+  let offset = 0
+  for (const c of chunks) { out.set(c, offset); offset += c.length }
+  return out
+}
+
+/** Converts a byte array to URL-safe base64 (RFC 4648 §5, no padding). */
+function toBase64Url(bytes: Uint8Array): string {
+  return btoa(String.fromCharCode(...bytes))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
+}
+
+/** Converts URL-safe base64 back to a byte array. */
+function fromBase64Url(s: string): Uint8Array {
+  const padded = s.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (s.length % 4)) % 4)
+  return Uint8Array.from(atob(padded), (c) => c.charCodeAt(0))
+}
+
+/**
+ * Encodes the overrides map as a compressed, URL-safe base64 string.
+ *
+ * Format: `c1:<url-safe-base64-of-deflate-raw-compressed-json>`
+ * The `c1:` prefix identifies the encoding version so future decoders can switch
+ * strategies without silently corrupting existing share links.
+ *
+ * Falls back gracefully to uncompressed base64 (no prefix) when CompressionStream
+ * is unavailable (e.g. older browsers, Node.js environments).
+ *
+ * Returns an empty string when there are no overrides.
+ */
+async function encodeOverrides(map: Record<string, string>): Promise<string> {
+  const entries = Object.entries(map)
+  if (!entries.length) return ''
+  // Strip the common '--kui-' prefix to reduce payload size
+  const compact = entries.map(([cssVar, val]) => [cssVar.slice(6), val])
+  const json = JSON.stringify(compact)
+  const raw = new TextEncoder().encode(json)
   try {
-    // Re-pad and convert back from URL-safe base64 before atob
-    const padded = encoded.replace(/-/g, '+').replace(/_/g, '/')
-      + '='.repeat((4 - (encoded.length % 4)) % 4)
-    const parsed = JSON.parse(atob(padded))
+    const compressed = await deflate(raw)
+    // Only use compressed form if it's actually smaller
+    if (compressed.length < raw.length) {
+      return 'c1:' + toBase64Url(compressed)
+    }
+  } catch {
+    // fall through to uncompressed
+  }
+  return toBase64Url(raw)
+}
+
+/**
+ * Decodes a share-link string produced by `encodeOverrides`.
+ * Handles both `c1:` (compressed) and legacy uncompressed formats.
+ * Returns an empty object on any parse or decompression failure.
+ * Entries whose CSS var is not in the current token set are silently ignored.
+ */
+async function decodeOverrides(encoded: string): Promise<Record<string, string>> {
+  try {
+    let json: string
+    if (encoded.startsWith('c1:')) {
+      const bytes = fromBase64Url(encoded.slice(3))
+      const decompressed = await inflate(bytes)
+      json = new TextDecoder().decode(decompressed)
+    } else {
+      json = new TextDecoder().decode(fromBase64Url(encoded))
+    }
+    const parsed = JSON.parse(json)
     if (!Array.isArray(parsed)) return {}
     const result: Record<string, string> = {}
     for (const item of parsed) {
       if (!Array.isArray(item) || item.length !== 2) continue
-      const [idx, val] = item
-      if (typeof idx !== 'number' || typeof val !== 'string') continue
-      const entry = ALL_ENTRIES[idx]
-      if (!entry || !KNOWN_CSS_VARS.has(entry.cssVar)) continue
-      result[entry.cssVar] = val
+      const [name, val] = item
+      if (typeof name !== 'string' || typeof val !== 'string') continue
+      const cssVar = `--kui-${name}`
+      if (!KNOWN_CSS_VARS.has(cssVar)) continue
+      result[cssVar] = val
     }
     return result
   } catch {
@@ -99,6 +178,8 @@ function decodeOverrides(encoded: string): Record<string, string> {
 export function useTokenCustomizer() {
   const filterQuery = ref('')
   const collapsed = reactive<Record<string, boolean>>({})
+  /** When true, the editor shows only tokens that have active overrides. */
+  const showOnlyModified = ref(false)
 
   /** Toggles the collapsed state of a single category accordion group. */
   function toggleGroup(cat: string) {
@@ -119,11 +200,12 @@ export function useTokenCustomizer() {
   const allCollapsed = computed(() => visibleGroups.value.every((g) => !!collapsed[g.category]))
 
   /**
-   * All category groups filtered by the editor search query, with per-group override counts.
-   * Categories with no matching entries are excluded from the list.
+   * All category groups filtered by the editor search query and/or "only modified" toggle,
+   * with per-group override counts. Categories with no matching entries are excluded.
    */
   const visibleGroups = computed((): CustGroup[] => {
     const q = filterQuery.value.toLowerCase().trim()
+    const onlyModified = showOnlyModified.value
     const order = [...CATEGORY_ORDER]
     const extra = ([...new Set(ALL_ENTRIES.map((e) => e.category))] as TokenCategory[]).filter(
       (c) => !order.includes(c),
@@ -133,6 +215,7 @@ export function useTokenCustomizer() {
       .map((cat) => {
         let entries = ALL_ENTRIES.filter((e) => e.category === cat)
         if (q) entries = entries.filter((e) => normalize(e.cssVar).includes(normalize(q)) || normalize(e.value).includes(normalize(q)))
+        if (onlyModified) entries = entries.filter((e) => !!overrides[e.cssVar])
         const overrideCount = entries.filter((e) => overrides[e.cssVar]).length
         return { category: cat, entries, overrideCount }
       })
@@ -142,14 +225,9 @@ export function useTokenCustomizer() {
   /**
    * Sets or clears a single token override.
    * Clears when the new value is empty or matches the original default.
-   *
-   * @param cssVar - The CSS custom property name, e.g. `--kui-color-background`
-   * @param value - The new value entered by the user
-   * @param defaultValue - The original token value to compare against
    */
   function setOverride(cssVar: string, value: string, defaultValue: string) {
     const trimmed = value.trim()
-    // Normalize hex to uppercase so overrides are stored consistently (#FF5733 not #ff5733)
     const normalized = /^#[0-9a-f]{3,8}$/i.test(trimmed) ? trimmed.toUpperCase() : trimmed
     if (!normalized || normalized === defaultValue) {
       delete overrides[cssVar]
@@ -186,28 +264,33 @@ export function useTokenCustomizer() {
   const fullExportCss = computed(() => buildCss(ALL_ENTRIES, overrides))
 
   /**
-   * Returns the current page URL with active overrides encoded in the hash fragment.
-   * Format: `<origin>/customize#o=<url-safe-base64>`
-   * Returns the plain `/customize` URL when there are no overrides so the link is always shareable.
+   * Reactive share URL — updates asynchronously as overrides change.
+   * Uses deflate-raw compression so the URL stays short even with many overrides.
+   * Initialized with the plain /customize URL; updated after the first encode.
    */
-  function getShareUrl(): string {
-    const base = `${window.location.origin}/customize`
-    const encoded = encodeOverrides(overrides)
-    return encoded ? `${base}#o=${encoded}` : base
-  }
+  const shareUrl = ref(typeof window !== 'undefined' ? `${window.location.origin}/customize` : '/customize')
 
-  /** Reactive share URL — updates automatically as overrides change. */
-  const shareUrl = computed(() => getShareUrl())
+  // Keep shareUrl and the address bar query param in sync whenever overrides change.
+  watch(
+    overrides,
+    async () => {
+      const encoded = await encodeOverrides(overrides)
+      const base = `${window.location.origin}/customize`
+      shareUrl.value = encoded ? `${base}?o=${encoded}` : base
+      const url = encoded ? `${window.location.pathname}?o=${encoded}` : window.location.pathname
+      history.replaceState(null, '', url)
+    },
+    { deep: true },
+  )
 
   /**
-   * Reads the `#o=` hash fragment on mount and applies any valid overrides found there.
+   * Reads the `?o=` query param on mount and applies any valid overrides found there.
    * Stale/renamed token vars are silently ignored so share links survive token changes.
    */
-  onMounted(() => {
-    const hash = window.location.hash
-    if (!hash.startsWith('#o=')) return
-    const encoded = hash.slice(3)
-    const decoded = decodeOverrides(encoded)
+  onMounted(async () => {
+    const encoded = new URLSearchParams(window.location.search).get('o')
+    if (!encoded) return
+    const decoded = await decodeOverrides(encoded)
     for (const [cssVar, value] of Object.entries(decoded)) {
       overrides[cssVar] = value
     }
@@ -239,6 +322,7 @@ export function useTokenCustomizer() {
     overrideCount,
     hasOverrides,
     filterQuery,
+    showOnlyModified,
     collapsed,
     allCollapsed,
     visibleGroups,

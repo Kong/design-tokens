@@ -8,6 +8,7 @@
       <!-- Hex tokens get a native color picker overlaid on the visible swatch -->
       <input
         v-if="isHex"
+        :aria-label="`Pick color for ${entry.cssVar}`"
         class="cust-color-input"
         :title="`Pick color for ${entry.cssVar}`"
         type="color"
@@ -26,6 +27,7 @@
     >{{ entry.cssVar }}</span>
 
     <input
+      :aria-label="`Value for ${entry.cssVar}`"
       class="cust-value-input"
       :class="{ 'cust-value-input--invalid': showInvalid }"
       :placeholder="entry.value"
@@ -193,7 +195,7 @@ function handleColorInput(value: string) {
   border: 1px solid $tb-border;
   border-radius: 4px;
   padding: 3px 7px;
-  width: 120px;
+  width: 96px;
 
   &:focus-visible { border-color: $tb-accent; outline: none; }
   &--invalid { border-color: #e53e3e; }

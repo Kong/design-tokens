@@ -42,6 +42,25 @@
             placeholder="Search all tokens or values…"
             type="search"
           >
+          <button
+            v-if="localSearch"
+            aria-label="Clear search"
+            class="search-clear"
+            type="button"
+            @click="localSearch = ''"
+          >
+            <svg
+              fill="none"
+              height="12"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+              width="12"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
         </div>
         <div class="controls-row">
           <div
@@ -50,6 +69,7 @@
             role="group"
           >
             <button
+              :aria-pressed="copyFormat === 'css'"
               :class="['format-btn', { 'format-btn--active': copyFormat === 'css' }]"
               title="CSS custom property: var(--kui-…)"
               @click="copyFormat = 'css'"
@@ -57,6 +77,7 @@
               CSS
             </button>
             <button
+              :aria-pressed="copyFormat === 'sass'"
               :class="['format-btn', { 'format-btn--active': copyFormat === 'sass' }]"
               title="Sass variable: $kui-…"
               @click="copyFormat = 'sass'"
@@ -64,6 +85,7 @@
               Sass
             </button>
             <button
+              :aria-pressed="copyFormat === 'js'"
               :class="['format-btn', { 'format-btn--active': copyFormat === 'js' }]"
               title="JS constant: KUI_…"
               @click="copyFormat = 'js'"
@@ -127,6 +149,7 @@
           <button
             v-for="cat in categories"
             :key="cat"
+            :aria-current="activeCategory === cat ? 'true' : undefined"
             :class="['tab-btn', { 'tab-btn--active': activeCategory === cat }]"
             @click="selectCategory(cat)"
           >
@@ -167,11 +190,39 @@
           :key="section.section"
           class="token-section"
         >
-          <div class="token-section-header">
-            <span class="token-section-name">{{ section.section }}</span>
-            <span class="token-section-count">{{ section.entries.length }}</span>
-          </div>
-          <div :class="['token-grid', `token-grid--${activeCategory}`]">
+          <!-- Flat tokens (no sub-category) render without a header or collapse control -->
+          <template v-if="section.section !== '__flat__'">
+            <div
+              class="token-section-header token-section-header--collapsible"
+              @click="toggleSection(`${activeCategory}:${section.section}`)"
+            >
+              <button
+                :aria-expanded="!collapsedSections.has(`${activeCategory}:${section.section}`)"
+                class="section-collapse-btn"
+                type="button"
+              >
+                <svg
+                  :style="{ transform: collapsedSections.has(`${activeCategory}:${section.section}`) ? 'rotate(-90deg)' : 'rotate(0deg)' }"
+                  fill="none"
+                  height="12"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  width="12"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <span class="token-section-name">{{ section.section }}</span>
+              <span class="token-section-count">{{ section.entries.length }}</span>
+            </div>
+          </template>
+          <div
+            v-show="section.section === '__flat__' || !collapsedSections.has(`${activeCategory}:${section.section}`)"
+            :class="['token-grid', `token-grid--${activeCategory}`]"
+          >
             <TokenCard
               v-for="token in section.entries"
               :key="token.key"
@@ -211,7 +262,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTokens, CATEGORY_LABELS, type TokenCategory } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
@@ -240,6 +291,18 @@ const {
 const { copiedKey, copyText } = useClipboard()
 
 const copyFormat = ref<'css' | 'sass' | 'js'>('css')
+
+/** Tracks which section keys (`${category}:${section}`) are currently collapsed. */
+const collapsedSections = reactive(new Set<string>())
+
+/** Toggles collapse state for a section by its composite key. */
+function toggleSection(key: string) {
+  if (collapsedSections.has(key)) {
+    collapsedSections.delete(key)
+  } else {
+    collapsedSections.add(key)
+  }
+}
 
 const headerEl = ref<HTMLElement | null>(null)
 useHeaderHeight(headerEl)
@@ -386,7 +449,7 @@ function handleCopy(key: string, text: string) {
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 6px;
-  padding: 7px 12px 7px 32px;
+  padding: 7px 32px 7px 32px;
   font-family: inherit;
   font-size: 13px;
   color: $tb-text;
@@ -399,7 +462,28 @@ function handleCopy(key: string, text: string) {
     border-color: $tb-accent;
     box-shadow: 0 0 0 3px $tb-accent-subtle;
   }
-  &::-webkit-search-cancel-button { cursor: pointer; }
+  // Hide the browser-native clear button — we use our own
+  &::-webkit-search-cancel-button { display: none; }
+}
+
+.search-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 4px;
+  color: $tb-text-muted;
+  cursor: pointer;
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  transition: background 0.1s, color 0.1s;
+
+  &:hover { background: $tb-border; color: $tb-text; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
 }
 
 .controls-row {
@@ -541,6 +625,26 @@ function handleCopy(key: string, text: string) {
   padding: 9px 20px;
   background: $tb-surface-2;
   border-bottom: 1px solid $tb-border;
+
+  &--collapsible {
+    cursor: pointer;
+    user-select: none;
+    &:hover { background: $tb-border; }
+  }
+}
+
+.section-collapse-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  color: $tb-text-muted;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  svg { transition: transform 0.15s; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; border-radius: 3px; }
 }
 
 .token-section-name {

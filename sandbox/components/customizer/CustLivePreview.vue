@@ -112,9 +112,8 @@
 </template>
 
 <script setup lang="ts">
-// Load the KUI CSS custom properties so --kui-* vars resolve in preview elements.
-// Placed here so this component is self-sufficient; the browse page never needs these vars.
-import '@tokens/css/custom-properties.css'
+// No token CSS import: --kui-* vars resolve via the live override style tag injected
+// by useTokenCustomizer. Fallback values in each var() handle the no-override state.
 </script>
 
 <style lang="scss">

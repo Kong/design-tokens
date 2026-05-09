@@ -48,68 +48,153 @@
       </div>
     </header>
 
-    <div class="cust-layout">
-      <!-- Left: searchable, collapsible token editor -->
-      <div class="cust-editor">
-        <div class="cust-search-wrap">
-          <svg
-            aria-hidden="true"
-            fill="none"
-            height="13"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="13"
-          >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
-            /><path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            ref="filterInputEl"
-            v-model="localFilter"
-            aria-label="Filter tokens"
-            class="cust-search"
-            placeholder="Filter tokens…"
-            type="search"
-          >
-        </div>
-
-        <!-- Collapse/expand toggle — only rendered when multiple groups are visible -->
-        <div
-          v-if="visibleGroups.length > 1"
-          class="cust-collapse-bar"
-        >
+    <div :class="['cust-layout', isDevMode && 'cust-layout--with-preview', isDevMode && !editorOpen && 'cust-layout--editor-collapsed']">
+      <!-- Left: collapsible token editor panel (slideout) -->
+      <div :class="['cust-editor', { 'cust-editor--collapsed': !editorOpen }]">
+        <!-- Collapse toggle strip — always visible even when panel is closed -->
+        <div class="editor-toggle-strip">
           <button
-            class="cust-collapse-btn"
-            @click="allCollapsed ? expandAll() : collapseAll()"
+            :aria-expanded="editorOpen"
+            :aria-label="editorOpen ? 'Collapse token editor' : 'Expand token editor'"
+            class="editor-toggle-btn"
+            :title="editorOpen ? 'Collapse panel' : 'Expand token editor'"
+            @click="editorOpen = !editorOpen"
           >
-            {{ allCollapsed ? '▸ Expand all' : '▾ Collapse all' }}
+            <!-- Double chevron: >> when collapsed (expand), << when open (collapse) -->
+            <svg
+              fill="none"
+              height="14"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.5"
+              viewBox="0 0 24 24"
+              width="14"
+              :style="{ transform: editorOpen ? 'rotate(180deg)' : 'none' }"
+            >
+              <polyline points="5 18 11 12 5 6" />
+              <polyline points="12 18 18 12 12 6" />
+            </svg>
           </button>
+          <span
+            v-if="!editorOpen"
+            aria-hidden="true"
+            class="editor-collapsed-label"
+          >Tokens</span>
         </div>
 
-        <CustTokenGroup
-          v-for="group in visibleGroups"
-          :key="group.category"
-          :group="group"
-          :is-collapsed="!!collapsed[group.category]"
-          :overrides="overrides"
-          @change="(cssVar, value, defaultValue) => setOverride(cssVar, value, defaultValue)"
-          @reset="(cssVar, defaultValue) => setOverride(cssVar, '', defaultValue)"
-          @toggle="toggleGroup"
-        />
-
+        <!-- Editor content — hidden when panel is collapsed -->
         <div
-          v-if="visibleGroups.length === 0"
-          class="cust-empty"
+          v-show="editorOpen"
+          class="cust-editor-content"
         >
-          No tokens match "{{ localFilter }}"
+          <div class="cust-search-wrap">
+            <svg
+              aria-hidden="true"
+              class="cust-search-icon"
+              fill="none"
+              height="13"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="13"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              ref="filterInputEl"
+              v-model="localFilter"
+              aria-label="Filter tokens"
+              class="cust-search"
+              placeholder="Filter tokens…"
+              type="search"
+            >
+            <button
+              v-if="localFilter"
+              aria-label="Clear search"
+              class="cust-search-clear"
+              type="button"
+              @click="localFilter = ''"
+            >
+              <svg
+                fill="none"
+                height="12"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="12"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Filter bar: section collapse/expand + show-only-modified toggle -->
+          <div class="cust-collapse-bar">
+            <button
+              v-if="visibleGroups.length > 1 || allCollapsed"
+              class="cust-collapse-btn"
+              @click="allCollapsed ? expandAll() : collapseAll()"
+            >
+              <!-- Same chevron SVG + size as section headers -->
+              <svg
+                :class="['group-chevron', { 'group-chevron--open': !allCollapsed }]"
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="14"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+              {{ allCollapsed ? 'Expand all' : 'Collapse all' }}
+            </button>
+            <button
+              :aria-pressed="showOnlyModified"
+              :class="['cust-modified-btn', { 'cust-modified-btn--active': showOnlyModified }]"
+              :disabled="!hasOverrides && !showOnlyModified"
+              :title="showOnlyModified ? 'Show all tokens' : 'Show only modified tokens'"
+              @click="showOnlyModified = !showOnlyModified"
+            >
+              {{ showOnlyModified ? `✕ Modified only (${overrideCount})` : `Show modified (${overrideCount})` }}
+            </button>
+          </div>
+
+          <CustTokenGroup
+            v-for="group in visibleGroups"
+            :key="group.category"
+            :group="group"
+            :is-collapsed="!!collapsed[group.category]"
+            :overrides="overrides"
+            @change="(cssVar, value, defaultValue) => setOverride(cssVar, value, defaultValue)"
+            @reset="(cssVar, defaultValue) => setOverride(cssVar, '', defaultValue)"
+            @toggle="toggleGroup"
+          />
+
+          <div
+            v-if="visibleGroups.length === 0"
+            class="cust-empty"
+          >
+            No tokens match "{{ localFilter }}"
+          </div>
         </div>
       </div>
 
-      <!-- Right: share link + overrides CSS output + live preview -->
+      <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet popup) -->
+      <div class="cust-preview-column">
+        <CustPreviewPanel :overrides-css="overridesCss" />
+      </div>
+
+      <!-- Right: share link + override CSS output. Live preview removed in dev mode
+           since the center iframe already shows the effect of token changes. -->
       <aside class="cust-aside">
         <!-- Share link: always visible, updates live as overrides change -->
         <div class="cust-share-panel">
@@ -213,6 +298,8 @@
           </p>
         </div>
 
+        <!-- Live preview: always shown so token changes are immediately visible
+             regardless of whether an iframe URL is loaded. -->
         <CustLivePreview />
       </aside>
     </div>
@@ -220,19 +307,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import { useTokenCustomizer } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustLivePreview from './CustLivePreview.vue'
+import CustPreviewPanel from './CustPreviewPanel.vue'
+
+const isDevMode = import.meta.env.DEV
+
+/** Controls whether the token editor panel is expanded (true) or collapsed to a narrow strip. */
+const editorOpen = ref(true)
 
 const {
   overrides,
   overrideCount,
   hasOverrides,
   filterQuery,
+  showOnlyModified,
   collapsed,
   allCollapsed,
   visibleGroups,
@@ -308,6 +403,22 @@ function handleResetAll() {
 }
 
 const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your overrides here */\n}'
+
+// Warn before in-app navigation (Vue Router)
+onBeforeRouteLeave(() => {
+  if (hasOverrides.value && !window.confirm('You have unsaved token overrides. Leave and lose them?')) {
+    return false
+  }
+})
+
+// Warn before browser refresh / tab close
+function handleBeforeUnload(e: BeforeUnloadEvent) {
+  if (!hasOverrides.value) return
+  e.preventDefault()
+  e.returnValue = ''
+}
+onMounted(() => window.addEventListener('beforeunload', handleBeforeUnload))
+onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload))
 </script>
 
 <style lang="scss" scoped>
@@ -406,38 +517,128 @@ const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your 
   }
 }
 
-// ─── Two-column layout ────────────────────────────────────────────────────────
+// ─── Layout ───────────────────────────────────────────────────────────────────
 .cust-layout {
   display: grid;
   grid-template-columns: 1fr;
 
   @media (min-width: 900px) {
-    grid-template-columns: 1fr 340px;
+    // Two-column default: editor | aside
+    grid-template-columns: 1fr 320px;
     align-items: start;
+    .cust-preview-column { display: none; }
+  }
+
+  // Three-column mode: editor open — kicks in at 1080px so it works on standard laptops
+  &--with-preview {
+    @media (min-width: 1080px) {
+      grid-template-columns: 320px 1fr 320px;
+      align-items: stretch;
+      transition: grid-template-columns 0.2s ease;
+      .cust-preview-column { display: flex; }
+    }
+  }
+
+  // Three-column mode: editor collapsed (narrow strip)
+  &--with-preview.cust-layout--editor-collapsed {
+    @media (min-width: 1080px) {
+      grid-template-columns: 40px 1fr 320px;
+    }
   }
 }
 
-// ─── Editor panel ──────────────────────────────────────────────────────────────
+// ─── Preview column ───────────────────────────────────────────────────────────
+.cust-preview-column {
+  display: none;
+  flex-direction: column;
+  border-right: 1px solid $tb-border;
+  position: sticky;
+  top: var(--header-h, 57px);
+  max-height: calc(100vh - var(--header-h, 57px));
+  overflow: hidden;
+}
+
+// ─── Editor panel ─────────────────────────────────────────────────────────────
 .cust-editor {
   border-right: 1px solid $tb-border;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+  overflow: hidden;
+
+  &--collapsed {
+    // In collapsed state the grid column is 40px; hide all content except the strip
+    .cust-editor-content { display: none; }
+  }
+}
+
+// Narrow strip containing the toggle button (always visible regardless of open/closed)
+.editor-toggle-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0 0;
+  flex-shrink: 0;
+  width: 40px;
+  border-right: 1px solid $tb-border;
+  background: $tb-surface;
+}
+
+.editor-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  color: $tb-text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+
+  svg { transition: transform 0.2s ease; }
+  &:hover { background: $tb-surface-2; color: $tb-text-dim; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+}
+
+.editor-collapsed-label {
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: $tb-text-muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  user-select: none;
+}
+
+// Scrollable content within the editor strip
+.cust-editor-content {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .cust-search-wrap {
   position: sticky;
-  top: var(--header-h, 57px);
+  top: 0;
   z-index: 10;
   background: $tb-surface;
   padding: 12px 16px;
   border-bottom: 1px solid $tb-border;
+}
 
-  svg {
-    position: absolute;
-    left: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: $tb-text-muted;
-    pointer-events: none;
-  }
+.cust-search-icon {
+  position: absolute;
+  left: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $tb-text-muted;
+  pointer-events: none;
 }
 
 .cust-search {
@@ -445,7 +646,7 @@ const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your 
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 5px;
-  padding: 6px 10px 6px 28px;
+  padding: 6px 28px 6px 28px;
   font-family: inherit;
   font-size: 13px;
   color: $tb-text;
@@ -454,6 +655,27 @@ const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your 
 
   &::placeholder { color: $tb-text-muted; }
   &:focus-visible { border-color: $tb-accent; }
+  // Hide the browser-native clear button — we use our own
+  &::-webkit-search-cancel-button { display: none; }
+}
+
+.cust-search-clear {
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 3px;
+  color: $tb-text-muted;
+  cursor: pointer;
+  padding: 2px 3px;
+  display: flex;
+  align-items: center;
+  line-height: 1;
+
+  &:hover { background: $tb-border; color: $tb-text; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
 }
 
 .cust-empty {
@@ -463,7 +685,7 @@ const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your 
   font-size: 14px;
 }
 
-// ─── Aside: share + output + live preview ─────────────────────────────────────
+// ─── Aside: share + output (+ live preview in hosted mode) ───────────────────
 .cust-aside {
   display: flex;
   flex-direction: column;
@@ -539,24 +761,67 @@ const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your 
 
 // ─── Collapse bar ─────────────────────────────────────────────────────────────
 .cust-collapse-bar {
-  padding: 6px 16px;
+  padding: 5px 16px;
   border-bottom: 1px solid $tb-border;
   background: $tb-surface;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 32px;
 }
 
 .cust-collapse-btn {
   background: none;
   border: none;
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 600;
   color: $tb-text-muted;
   cursor: pointer;
   padding: 2px 6px;
   border-radius: 3px;
-  font-family: $tb-mono;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 
   &:hover { color: $tb-text-dim; background: $tb-surface-2; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+}
+
+// Reuse the same chevron animation as CustTokenGroup section headers
+.group-chevron {
+  flex-shrink: 0;
+  transition: transform 0.15s;
+  color: $tb-text-muted;
+
+  &--open { transform: rotate(90deg); }
+}
+
+.cust-modified-btn {
+  background: none;
+  border: 1px solid $tb-border;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  cursor: pointer;
+  padding: 2px 8px;
+  font-family: inherit;
+  white-space: nowrap;
+  margin-left: auto;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+
+  &:disabled { opacity: 0.35; cursor: default; }
+  &:hover:not(:disabled):not(.cust-modified-btn--active) { color: $tb-text-dim; border-color: $tb-border-active; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+  &--active {
+    background: $tb-accent-subtle;
+    color: $tb-accent;
+    border-color: rgba(0, 68, 244, 0.25);
+  }
 }
 
 // ─── Output panel ─────────────────────────────────────────────────────────────

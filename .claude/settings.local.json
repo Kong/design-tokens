@@ -3,7 +3,20 @@
     "allow": [
       "Bash(rtk read *)",
       "Bash(rtk ls *)",
-      "Bash(rtk wc *)"
+      "Bash(rtk wc *)",
+      "Bash(pnpm typecheck *)",
+      "Bash(pnpm sandbox *)",
+      "Bash(rtk curl *)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_snapshot",
+      "mcp__plugin_playwright_playwright__browser_resize",
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "mcp__plugin_playwright_playwright__browser_type",
+      "mcp__plugin_playwright_playwright__browser_click",
+      "mcp__plugin_playwright_playwright__browser_fill_form",
+      "mcp__plugin_playwright_playwright__browser_press_key",
+      "mcp__plugin_playwright_playwright__browser_wait_for"
     ]
   }
 }

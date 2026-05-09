@@ -1,7 +1,8 @@
 <template>
-  <div
+  <button
     :class="['token-card', `token-card--${token.category}`, { 'token-card--copied': isCopied }]"
     :title="copyHint"
+    type="button"
     @click="handleCopy"
   >
     <!-- Low-opacity bleed of the token color into the card background (color tokens only) -->
@@ -19,7 +20,7 @@
       <span class="card-token-value">{{ token.value }}</span>
     </div>
 
-    <div
+    <span
       aria-hidden="true"
       class="card-copy-indicator"
     >
@@ -42,8 +43,8 @@
         />
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
       </svg>
-    </div>
-  </div>
+    </span>
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -62,14 +63,17 @@ const emit = defineEmits<{
   copy: [key: string, text: string]
 }>()
 
+/** Token text to copy, formatted per the active copyFormat. */
 const copyText = computed(() => {
   if (props.copyFormat === 'sass') return toSassVar(props.token.cssVar)
   if (props.copyFormat === 'js') return props.token.key
   return `var(${props.token.cssVar})`
 })
 
+/** Tooltip text shown on hover describing the copy action. */
 const copyHint = computed(() => `Click to copy: ${copyText.value}`)
 
+/** Emits the copy event with the token key and formatted text. */
 function handleCopy() {
   emit('copy', props.token.key, copyText.value)
 }
@@ -80,6 +84,11 @@ function handleCopy() {
 
 .token-card {
   position: relative;
+  // Button reset: override UA defaults so the card looks identical to the old div
+  appearance: none;
+  padding: 0;
+  text-align: left;
+  font: inherit;
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 8px;

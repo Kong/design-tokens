@@ -3,11 +3,13 @@ import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
 import viteRestart from 'vite-plugin-restart'
+import { previewProxyPlugin } from './vite-preview-proxy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    previewProxyPlugin(),
     viteRestart({
       reload: [
         // Reload the Vite sandbox when any of the `/dist/*` files are changed
