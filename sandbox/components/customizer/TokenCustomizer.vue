@@ -425,7 +425,10 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
 @use '@/assets/tb-vars' as *;
 
 .customizer {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: $tb-bg;
   color: $tb-text;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -433,8 +436,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
 
 // ─── Header ───────────────────────────────────────────────────────────────────
 .cust-header {
-  position: sticky;
-  top: 0;
+  flex-shrink: 0;
   z-index: 20;
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
@@ -521,19 +523,19 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
 .cust-layout {
   display: grid;
   grid-template-columns: 1fr;
+  flex: 1;
+  min-height: 0; // allow flex child to shrink below content height
 
   @media (min-width: 900px) {
     // Two-column default: editor | aside
-    grid-template-columns: 1fr 320px;
-    align-items: start;
+    grid-template-columns: 1fr minmax(360px, 360px);
     .cust-preview-column { display: none; }
   }
 
-  // Three-column mode: editor open — kicks in at 1080px so it works on standard laptops
+  // Three-column mode: editor open
   &--with-preview {
     @media (min-width: 1080px) {
-      grid-template-columns: 320px 1fr 320px;
-      align-items: stretch;
+      grid-template-columns: minmax(540px, 540px) 1fr minmax(360px, 360px);
       transition: grid-template-columns 0.2s ease;
       .cust-preview-column { display: flex; }
     }
@@ -542,8 +544,15 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   // Three-column mode: editor collapsed (narrow strip)
   &--with-preview.cust-layout--editor-collapsed {
     @media (min-width: 1080px) {
-      grid-template-columns: 40px 1fr 320px;
+      grid-template-columns: 40px 1fr minmax(360px, 360px);
     }
+  }
+
+  // All direct column children fill the row height and scroll independently
+  > * {
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
   }
 }
 
@@ -552,10 +561,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   display: none;
   flex-direction: column;
   border-right: 1px solid $tb-border;
-  position: sticky;
-  top: var(--header-h, 57px);
-  max-height: calc(100vh - var(--header-h, 57px));
-  overflow: hidden;
+  overflow: hidden; // preview panel manages its own scroll
 }
 
 // ─── Editor panel ─────────────────────────────────────────────────────────────
@@ -564,7 +570,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   display: flex;
   flex-direction: row;
   min-width: 0;
-  overflow: hidden;
+  overflow: hidden !important; // inner .cust-editor-content handles its own scroll
 
   &--collapsed {
     // In collapsed state the grid column is 40px; hide all content except the strip
@@ -689,13 +695,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
 .cust-aside {
   display: flex;
   flex-direction: column;
-
-  @media (min-width: 900px) {
-    position: sticky;
-    top: var(--header-h, 57px);
-    max-height: calc(100vh - var(--header-h, 57px));
-    overflow-y: auto;
-  }
+  // Height and overflow-y: auto come from the .cust-layout > * rule above
 }
 
 // ─── Share panel ──────────────────────────────────────────────────────────────

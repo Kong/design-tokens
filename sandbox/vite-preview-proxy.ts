@@ -125,9 +125,18 @@ export function previewProxyPlugin(): Plugin {
             css = rewriteCssResources(css, pageUrl, proxyBase)
             res.setHeader('content-type', contentType.includes('charset') ? contentType : `${contentType}; charset=utf-8`)
             res.end(css)
+          } else if (contentType.includes('javascript') || contentType.includes('ecmascript') || /\.[cm]?js(\?|$)/.test(urlParam)) {
+            // Rewrite ES module import/export specifiers so module scripts can be
+            // served same-origin. Without this, `import './chunk.js'` inside a proxied
+            // module would resolve against the proxy URL (localhost) instead of the
+            // target origin, breaking the entire module graph.
+            let js = await upstream.text()
+            js = rewriteJsImports(js, pageUrl, proxyBase)
+            const ct = contentType || 'application/javascript'
+            res.setHeader('content-type', ct.includes('charset') ? ct : `${ct}; charset=utf-8`)
+            res.end(js)
           } else {
-            // JS, images, fonts, etc.: stream unchanged.
-            // JS fetch() / dynamic imports will still hit CORS but those can't be rewritten.
+            // Images, fonts, binary assets: stream unchanged.
             const buffer = await upstream.arrayBuffer()
             res.end(Buffer.from(buffer))
           }
@@ -171,13 +180,9 @@ function toProxiedUrl(url: string, base: string, proxyBase: string): string {
  * Rewrites resource URLs in HTML so assets load through the proxy.
  *
  * - `<link href>`: always proxied (stylesheets, preload, prefetch).
- * - `<script src>` without `type="module"`: proxied so classic scripts aren't
- *   blocked by CORS. Safe because classic scripts don't use ES module relative
- *   imports that would mis-resolve against the proxy URL.
- * - `<script type="module" src>`: NOT proxied — ES modules use relative imports
- *   that would resolve against the proxy URL instead of the original origin,
- *   breaking the module graph. Module scripts that fail CORS still render the
- *   SSR HTML, which is sufficient for token preview.
+ * - `<script src>` (classic and module): proxied so scripts aren't CORS-blocked.
+ *   Module scripts are also proxied because `rewriteJsImports` rewrites the
+ *   import specifiers inside them, fixing the module graph.
  * - `<a href>`: NOT rewritten — the click interceptor handles link navigation.
  */
 function rewriteHtmlResources(html: string, pageUrl: string, proxyBase: string): string {
@@ -193,13 +198,10 @@ function rewriteHtmlResources(html: string, pageUrl: string, proxyBase: string):
     },
   )
 
-  // Rewrite src= on classic <script> tags (no type="module")
+  // Rewrite src= on all <script> tags (classic and module)
   html = html.replace(
     /<script([^>]*)>/gi,
     (match, attrs: string) => {
-      // Skip module scripts — their relative imports would break if proxied
-      if (/\btype\s*=\s*["']module["']/i.test(attrs)) return match
-      // Only rewrite if there's an src attribute
       const rewritten = attrs.replace(
         /(\ssrc)(\s*=\s*)("([^"]*?)"|'([^']*?)')/i,
         (_, attr, eq, _quoted, dq, sq) => {
@@ -213,6 +215,36 @@ function rewriteHtmlResources(html: string, pageUrl: string, proxyBase: string):
   )
 
   return html
+}
+
+/**
+ * Rewrites ES module import/export specifiers in JavaScript so the module
+ * graph resolves through the proxy rather than the original origin.
+ *
+ * Handles:
+ *  - `import 'url'` / `import x from 'url'` / `export x from 'url'`
+ *  - `export * from 'url'` / `export { x } from 'url'`
+ *  - `import('url')` dynamic imports
+ *
+ * Only rewrites string literals that follow `from`, bare `import`, or dynamic
+ * `import(`. Does not attempt to parse comments or template literals.
+ */
+function rewriteJsImports(js: string, jsUrl: string, proxyBase: string): string {
+  const proxy = (url: string) => toProxiedUrl(url, jsUrl, proxyBase)
+
+  // Static: `from "url"`, `import "url"` (side-effect), `export ... from "url"`
+  js = js.replace(
+    /\b(from|import)\s+(["'])([^"'\n\\]+)\2/g,
+    (_, keyword, q, url) => `${keyword} ${q}${proxy(url)}${q}`,
+  )
+
+  // Dynamic: `import("url")` or `import('url')`
+  js = js.replace(
+    /\bimport\s*\(\s*(["'])([^"'\n\\]+)\1\s*\)/g,
+    (_, q, url) => `import(${q}${proxy(url)}${q})`,
+  )
+
+  return js
 }
 
 /**
