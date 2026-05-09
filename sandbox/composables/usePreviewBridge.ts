@@ -48,8 +48,10 @@ const PRESET_HEIGHTS: Record<string, number | undefined> = {
  * @param overridesCss - Reactive string containing the full `:root { … }` override block.
  */
 export function usePreviewBridge(overridesCss: Ref<string>) {
-  // Compile-time constant: DEV → iframe proxy, production → bookmarklet popup
-  const mode: PreviewMode = import.meta.env.DEV ? 'iframe-proxy' : 'bookmarklet-popup'
+  // DEV → iframe proxy; production → bookmarklet popup.
+  // ?preview=bookmarklet forces bookmarklet mode on dev for local testing.
+  const forceBookmarklet = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('preview') === 'bookmarklet'
+  const mode: PreviewMode = (!import.meta.env.DEV || forceBookmarklet) ? 'bookmarklet-popup' : 'iframe-proxy'
 
   const previewUrl = ref('')
   const loadedUrl = ref('')
@@ -211,7 +213,6 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     breakpointPresets,
     loadProxyUrl,
     openPopup,
-    sendToPopup,
     onIframeLoad,
     proxyUrl,
   }

@@ -228,6 +228,7 @@ export function useTokenCustomizer() {
    */
   function setOverride(cssVar: string, value: string, defaultValue: string) {
     const trimmed = value.trim()
+    // Normalise hex to uppercase so #fff and #FFF are treated as the same value
     const normalized = /^#[0-9a-f]{3,8}$/i.test(trimmed) ? trimmed.toUpperCase() : trimmed
     if (!normalized || normalized === defaultValue) {
       delete overrides[cssVar]
@@ -271,6 +272,7 @@ export function useTokenCustomizer() {
   const shareUrl = ref(typeof window !== 'undefined' ? `${window.location.origin}/customize` : '/customize')
 
   // Keep shareUrl and the address bar query param in sync whenever overrides change.
+  // deep: true required — reactive plain objects don't trigger watchers on property add/delete otherwise.
   watch(
     overrides,
     async () => {

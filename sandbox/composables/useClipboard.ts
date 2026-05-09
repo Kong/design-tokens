@@ -1,6 +1,10 @@
 import { ref } from 'vue'
 
-/** Tracks the most recently copied key; auto-resets after 1.5s for ✓ feedback. */
+/**
+ * Clipboard helper with a 1.5s visual confirmation state.
+ * Falls back to the deprecated `execCommand('copy')` when the Clipboard API
+ * is unavailable (e.g. on the Vite HTTP dev server, which is not HTTPS).
+ */
 export function useClipboard() {
   const copiedKey = ref<string | null>(null)
   let resetTimer: ReturnType<typeof setTimeout>

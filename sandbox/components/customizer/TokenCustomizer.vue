@@ -23,13 +23,6 @@
         </span>
       </div>
       <div class="cust-header-right">
-        <button
-          v-if="hasOverrides"
-          class="cust-btn cust-btn--ghost"
-          @click="handleResetAll"
-        >
-          Reset all
-        </button>
         <!-- "Download full" includes all tokens — useful as a standalone stylesheet -->
         <button
           class="cust-btn cust-btn--secondary"
@@ -166,6 +159,14 @@
             >
               {{ showOnlyModified ? `✕ Modified only (${overrideCount})` : `Show modified (${overrideCount})` }}
             </button>
+            <button
+              v-if="hasOverrides"
+              class="cust-reset-btn"
+              title="Clear all overrides"
+              @click="handleResetAll"
+            >
+              Reset all
+            </button>
           </div>
 
           <CustTokenGroup
@@ -298,9 +299,6 @@
           </p>
         </div>
 
-        <!-- Live preview: always shown so token changes are immediately visible
-             regardless of whether an iframe URL is loaded. -->
-        <CustLivePreview />
       </aside>
     </div>
   </div>
@@ -314,7 +312,6 @@ import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import CustTokenGroup from './CustTokenGroup.vue'
-import CustLivePreview from './CustLivePreview.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
 
 const isDevMode = import.meta.env.DEV
@@ -505,12 +502,6 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   &:disabled { opacity: 0.4; cursor: default; }
   &:hover:not(:disabled) { opacity: 0.85; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-
-  &--ghost {
-    background: transparent;
-    color: $tb-text-dim;
-    border-color: $tb-border-active;
-  }
 
   &--secondary {
     background: $tb-surface;
@@ -822,6 +813,23 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
     color: $tb-accent;
     border-color: rgba(0, 68, 244, 0.25);
   }
+}
+
+.cust-reset-btn {
+  background: none;
+  border: 1px solid $tb-border;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 2px 8px;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s;
+
+  &:hover { background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.35); }
+  &:focus-visible { outline: 2px solid #ef4444; outline-offset: 2px; }
 }
 
 // ─── Output panel ─────────────────────────────────────────────────────────────

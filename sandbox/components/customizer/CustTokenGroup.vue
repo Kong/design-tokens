@@ -78,8 +78,11 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
+  /** Emitted when the group header is clicked; payload is the category key used as collapse map key. */
   toggle: [category: string]
+  /** Emitted when a token row value changes; forwarded directly to useTokenCustomizer.setOverride. */
   change: [cssVar: string, value: string, defaultValue: string]
+  /** Emitted when a token row reset button is clicked; clears the override for the given var. */
   reset: [cssVar: string, defaultValue: string]
 }>()
 

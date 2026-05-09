@@ -32,6 +32,7 @@ export interface TokenEntry {
 export interface TokenSection {
   /** Display label for the section header (capitalized) */
   section: string
+  /** Token entries belonging to this section. */
   entries: TokenEntry[]
 }
 
@@ -143,7 +144,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
  * @example `KUI_COLOR_BACKGROUND_DANGER` → `'background'`
  * @example `KUI_FONT_SIZE_30` → `'size'`
  */
-export function getTokenSection(entry: TokenEntry): string | null {
+function getTokenSection(entry: TokenEntry): string | null {
   if (!SECTIONED_CATEGORIES.has(entry.category)) return null
   const parts = entry.key.split('_').slice(1) // drop 'KUI'
   return parts[1]?.toLowerCase() ?? null

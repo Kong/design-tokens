@@ -28,11 +28,17 @@
         @keydown.enter="handleLoad"
       >
       <button
-        class="url-btn"
-        :disabled="!bridge.previewUrl.value"
+        :class="['url-btn', { 'url-btn--loading': bridge.status.value === 'loading' }]"
+        :disabled="!bridge.previewUrl.value || bridge.status.value === 'loading'"
         @click="handleLoad"
       >
-        {{ isDevMode ? 'Load' : 'Open →' }}
+        <template v-if="bridge.status.value === 'loading'">
+          <svg class="url-btn-spinner" fill="none" height="12" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="12">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+          </svg>
+          Loading…
+        </template>
+        <template v-else>{{ isDevMode ? 'Load' : 'Open →' }}</template>
       </button>
     </div>
 
@@ -218,7 +224,7 @@ onMounted(() => {
   containerObserver = new ResizeObserver((entries) => {
     const w = entries[0]?.contentRect?.width ?? 0
     if (w > 0) {
-      containerWidth.value = Math.floor(w - 24)
+      containerWidth.value = Math.floor(w - 24) // subtract 24px horizontal padding (12px each side)
       // Default to full desktop width on first measurement
       if (!hasSetInitialWidth) {
         bridge.viewportWidth.value = containerWidth.value
@@ -321,10 +327,23 @@ function handleLoad() {
   white-space: nowrap;
   transition: opacity 0.12s;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 
   &:disabled { opacity: 0.4; cursor: default; }
   &:hover:not(:disabled) { opacity: 0.85; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+  &--loading { cursor: wait; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.url-btn-spinner {
+  animation: spin 0.75s linear infinite;
+  flex-shrink: 0;
 }
 
 // ─── Viewport controls ────────────────────────────────────────────────────────
@@ -438,20 +457,6 @@ function handleLoad() {
   &--close { background: #ff5f57; }
   &--min   { background: #ffbd2e; }
   &--max   { background: #28c840; }
-}
-
-.chrome-addr {
-  flex: 1;
-  font-family: $tb-mono;
-  font-size: 11px;
-  color: $tb-text-muted;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  background: $tb-surface;
-  border: 1px solid $tb-border;
-  border-radius: 4px;
-  padding: 2px 8px;
 }
 
 .preview-iframe {

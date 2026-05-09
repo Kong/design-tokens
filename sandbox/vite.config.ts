@@ -5,7 +5,6 @@ import path from 'path'
 import viteRestart from 'vite-plugin-restart'
 import { previewProxyPlugin } from './vite-preview-proxy'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
@@ -41,7 +40,7 @@ export default defineConfig({
       'vue',
     ],
   },
-  // Serve files from the `../dist` directory at the localHost root
+  // Serve the monorepo root as publicDir so built /dist/* assets are accessible at the dev-server root
   publicDir: path.resolve(__dirname, '../'),
   server: {
     fs: {

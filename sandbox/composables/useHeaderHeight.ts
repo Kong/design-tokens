@@ -11,7 +11,7 @@ export function useHeaderHeight(headerEl: Ref<HTMLElement | null>) {
   onMounted(() => {
     if (!headerEl.value) return
     observer = new ResizeObserver((entries) => {
-      const h = Math.ceil(entries[0]?.borderBoxSize?.[0]?.blockSize ?? 57)
+      const h = Math.ceil(entries[0]?.borderBoxSize?.[0]?.blockSize ?? 57) // 57px = header natural height at default font size
       document.documentElement.style.setProperty('--header-h', `${h}px`)
     })
     observer.observe(headerEl.value)
