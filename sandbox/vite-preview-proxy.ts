@@ -189,6 +189,20 @@ export function previewProxyPlugin(): Plugin {
   XMLHttpRequest.prototype.open=function(m,u){
     var a=Array.prototype.slice.call(arguments);a[1]=typeof u==='string'?_p(u):u;return _x.apply(this,a);
   };
+  // Strip SRI integrity checks at the DOM level so that dynamically-created
+  // <script> and <link> elements (e.g. Nuxt/Next route-chunk loading) do not
+  // block because the proxy rewrites JS content, changing the hash.
+  var _sa=Element.prototype.setAttribute;
+  Element.prototype.setAttribute=function(n,v){
+    if(n.toLowerCase()==='integrity')return;
+    return _sa.call(this,n,v);
+  };
+  try{
+    var _noop=function(){};
+    var _empty=function(){return '';};
+    Object.defineProperty(HTMLScriptElement.prototype,'integrity',{set:_noop,get:_empty,configurable:true});
+    Object.defineProperty(HTMLLinkElement.prototype,'integrity',{set:_noop,get:_empty,configurable:true});
+  }catch(e){}
 })();</script>`
 
             // Inject <base> + importmap + the network override at the start of <head>.
@@ -311,34 +325,66 @@ function toProxiedUrl(url: string, base: string, proxyBase: string): string {
 function rewriteHtmlResources(html: string, pageUrl: string, proxyBase: string): string {
   const proxy = (url: string) => toProxiedUrl(url, pageUrl, proxyBase)
 
-  // Rewrite href= on <link> elements (stylesheets, preload, prefetch, modulepreload)
+  // Rewrite href= on <link> elements (stylesheets, preload, prefetch, modulepreload).
+  // Also strip integrity= attributes: the proxy rewrites JS/CSS content, invalidating
+  // any SRI hash the upstream page set.
   html = html.replace(
-    /(<link[^>]*?\s)(href)(\s*=\s*)("([^"]*?)"|'([^']*?)')/gi,
-    (_, before, attr, eq, _quoted, dq, sq) => {
-      const val = dq ?? sq ?? ''
-      const q = dq !== undefined ? '"' : "'"
-      return `${before}${attr}${eq}${q}${proxy(val)}${q}`
-    },
-  )
-
-  // Rewrite src= on all <script> tags (classic and module), and rewrite import specifiers
-  // inside inline <script type="module"> blocks so relative imports resolve through the proxy.
-  html = html.replace(
-    /<script([^>]*)>([\s\S]*?)<\/script>/gi,
-    (match, attrs: string, body: string) => {
-      // Rewrite external src= attribute
-      const rewrittenAttrs = attrs.replace(
-        /(\ssrc)(\s*=\s*)("([^"]*?)"|'([^']*?)')/i,
+    /(<link)([^>]*?)(>)/gi,
+    (match, open: string, attrs: string, close: string) => {
+      const hasHref = /\shref\s*=\s*["'][^"']*["']/i.test(attrs)
+      if (!hasHref) return match
+      let a = attrs.replace(
+        /(\shref)(\s*=\s*)("([^"]*?)"|'([^']*?)')/i,
         (_, attr, eq, _quoted, dq, sq) => {
           const val = dq ?? sq ?? ''
           const q = dq !== undefined ? '"' : "'"
           return `${attr}${eq}${q}${proxy(val)}${q}`
         },
       )
+      // Strip integrity= — SRI hashes no longer match after proxy content rewriting
+      a = a.replace(/\s+integrity\s*=\s*(?:"[^"]*"|'[^']*')/gi, '')
+      return `${open}${a}${close}`
+    },
+  )
+
+  // Rewrite src= on all <script> tags (classic and module), rewrite import specifiers
+  // inside inline <script type="module"> blocks, and rewrite inline <style> bodies.
+  // Also strip integrity= from <script> tags whose src we rewrite.
+  html = html.replace(
+    /<script([^>]*)>([\s\S]*?)<\/script>/gi,
+    (match, attrs: string, body: string) => {
+      const hasSrc = /\ssrc\s*=\s*["'][^"']*["']/i.test(attrs)
+      let rewrittenAttrs = attrs
+      if (hasSrc) {
+        rewrittenAttrs = attrs.replace(
+          /(\ssrc)(\s*=\s*)("([^"]*?)"|'([^']*?)')/i,
+          (_, attr, eq, _quoted, dq, sq) => {
+            const val = dq ?? sq ?? ''
+            const q = dq !== undefined ? '"' : "'"
+            return `${attr}${eq}${q}${proxy(val)}${q}`
+          },
+        )
+        // Strip integrity= — SRI hash no longer matches after proxy rewriting
+        rewrittenAttrs = rewrittenAttrs.replace(/\s+integrity\s*=\s*(?:"[^"]*"|'[^']*')/gi, '')
+      }
       // Rewrite import specifiers inside inline module scripts
       const isModule = /\btype\s*=\s*["']module["']/i.test(attrs)
       const rewrittenBody = isModule && body.trim() ? rewriteJsImports(body, pageUrl, proxyBase) : body
       return `<script${rewrittenAttrs}>${rewrittenBody}</script>`
+    },
+  )
+
+  // Rewrite url() and @import inside inline <style> blocks.
+  // Nuxt/Next font optimization injects @font-face rules with url(/_fonts/…) in inline
+  // <style> tags — these are never loaded through the proxy's CSS rewriter, so without
+  // this pass the browser fetches fonts directly from the target origin and hits CORS.
+  html = html.replace(
+    /<style([^>]*)>([\s\S]*?)<\/style>/gi,
+    (_, attrs: string, body: string) => {
+      // Skip importmap / application/* types — they are not CSS
+      if (/\btype\s*=\s*["'](?!text\/css)[^"']*["']/i.test(attrs)) return _
+      const rewritten = rewriteCssResources(body, pageUrl, proxyBase)
+      return `<style${attrs}>${rewritten}</style>`
     },
   )
 
