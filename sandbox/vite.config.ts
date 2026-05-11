@@ -26,6 +26,8 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
+  // If deploying to GitHub pages, enable this line
+  base: process.env.BUILD_SANDBOX ? '/markdown/' : '/',
   build: {
     minify: true,
     sourcemap: true,
@@ -49,4 +51,7 @@ export default defineConfig({
     },
     open: true,
   },
+  // Change the root when utilizing the sandbox via USE_SANDBOX=true to use the `/sandbox/*` files
+  // During the build process, the `/sandbox/*` files are not used and we should default to the package root.
+  root: process.env.BUILD_SANDBOX ? './sandbox' : process.cwd(),
 })
