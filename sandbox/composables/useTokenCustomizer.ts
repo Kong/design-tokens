@@ -1,5 +1,5 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
-import { ALL_ENTRIES, CATEGORY_LABELS, CATEGORY_ORDER, normalize } from './useTokens'
+import { ALL_ENTRIES, categoryLabel, normalize } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
 
 /**
@@ -14,17 +14,19 @@ const overrides = reactive<Record<string, string>>({})
  */
 function buildCss(entries: typeof ALL_ENTRIES, overrideMap: Record<string, string>): string {
   const linesByCat: Record<string, string[]> = {}
+  const catOrder: string[] = []
 
   for (const entry of entries) {
     const value = overrideMap[entry.cssVar] ?? entry.value
-    const label = CATEGORY_LABELS[entry.category] ?? entry.category
-    if (!linesByCat[label]) linesByCat[label] = []
+    const label = categoryLabel(entry.category)
+    if (!linesByCat[label]) {
+      linesByCat[label] = []
+      catOrder.push(label)
+    }
     linesByCat[label].push(`  ${entry.cssVar}: ${value};`)
   }
 
-  const sections = [...CATEGORY_ORDER]
-    .map((cat) => CATEGORY_LABELS[cat] ?? cat)
-    .filter((label) => linesByCat[label])
+  const sections = catOrder
     .map((label) => `  /* ${label} */\n${linesByCat[label].join('\n')}`)
     .join('\n\n')
 
@@ -210,12 +212,9 @@ export function useTokenCustomizer() {
   const visibleGroups = computed((): CustGroup[] => {
     const q = filterQuery.value.toLowerCase().trim()
     const onlyModified = showOnlyModified.value
-    const order = [...CATEGORY_ORDER]
-    const extra = ([...new Set(ALL_ENTRIES.map((e) => e.category))] as TokenCategory[]).filter(
-      (c) => !order.includes(c),
-    )
+    const catOrder = [...new Set(ALL_ENTRIES.map((e) => e.category))]
 
-    return [...order, ...extra]
+    return catOrder
       .map((cat) => {
         let entries = ALL_ENTRIES.filter((e) => e.category === cat)
         if (q) entries = entries.filter((e) => normalize(e.cssVar).includes(normalize(q)) || normalize(e.value).includes(normalize(q)))

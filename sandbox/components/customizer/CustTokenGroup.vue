@@ -18,7 +18,7 @@
       >
         <polyline points="9 18 15 12 9 6" />
       </svg>
-      <span class="group-label">{{ CATEGORY_LABELS[group.category] ?? group.category }}</span>
+      <span class="group-label">{{ categoryLabel(group.category) }}</span>
       <span class="group-count">{{ group.entries.length }}</span>
       <span
         v-if="group.overrideCount > 0"
@@ -66,7 +66,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { CATEGORY_LABELS, SECTIONED_CATEGORIES, buildSections } from '@/composables/useTokens'
+import { SECTIONED_CATEGORIES, buildSections, categoryLabel } from '@/composables/useTokens'
 import type { CustGroup } from '@/composables/useTokenCustomizer'
 import CustTokenRow from './CustTokenRow.vue'
 

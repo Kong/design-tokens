@@ -1,18 +1,13 @@
 import { computed, ref } from 'vue'
 import * as rawTokens from '@tokens/js'
 
-/** All possible token categories derived from the KUI_ key prefix patterns. */
-export type TokenCategory =
-  | 'color'
-  | 'space'
-  | 'font'
-  | 'border'
-  | 'shadow'
-  | 'animation'
-  | 'breakpoint'
-  | 'letter-spacing'
-  | 'line-height'
-  | 'components'
+/**
+ * Token category string. Known values: color, space, font, border, shadow,
+ * animation, breakpoint, letter-spacing, line-height, components.
+ * Kept as `string` so new token categories surface automatically without requiring
+ * code changes — see `CATEGORY_ORDER` and `categoryLabel` for display handling.
+ */
+export type TokenCategory = string
 
 /** A single resolved design token with its derived metadata. */
 export interface TokenEntry {
@@ -67,7 +62,7 @@ function parseCategory(key: string): { category: TokenCategory, subcategory?: st
   if (COMPONENT_SUBCATS.has(parts[0])) {
     return { category: 'components', subcategory: parts[0].toLowerCase() }
   }
-  return { category: parts[0].toLowerCase() as TokenCategory }
+  return { category: parts[0].toLowerCase() }
 }
 
 /** Converts a screaming-snake-case token key to its CSS custom property name. */
@@ -105,36 +100,13 @@ export const ALL_ENTRIES: TokenEntry[] = Object.entries(rawTokens as Record<stri
   })
   .sort((a, b) => a.key.localeCompare(b.key, undefined, { numeric: true }))
 
-/**
- * Known categories in the desired display order.
- * Any category not listed here is appended automatically, so new token sets
- * are always visible even before they're explicitly handled.
- */
-export const CATEGORY_ORDER: TokenCategory[] = [
-  'color',
-  'space',
-  'font',
-  'border',
-  'shadow',
-  'animation',
-  'breakpoint',
-  'letter-spacing',
-  'line-height',
-  'components',
-]
 
-/** Human-readable labels for each token category, used in tabs and search section headers. */
-export const CATEGORY_LABELS: Record<string, string> = {
-  'color': 'Color',
-  'space': 'Space',
-  'font': 'Font',
-  'border': 'Border',
-  'shadow': 'Shadow',
-  'animation': 'Animation',
-  'breakpoint': 'Breakpoint',
-  'letter-spacing': 'Letter Spacing',
-  'line-height': 'Line Height',
-  'components': 'Components',
+/**
+ * Returns a human-readable label for any category, derived directly from its key.
+ * @example `"letter-spacing"` → `"Letter Spacing"`
+ */
+export function categoryLabel(cat: string): string {
+  return cat.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
 
 /**
@@ -186,17 +158,8 @@ export function useTokens() {
     return map
   })
 
-  /**
-   * Ordered known categories first, then any new/unknown categories appended automatically.
-   * This ensures newly added token sets surface in the browser without code changes.
-   */
-  const categories = computed((): TokenCategory[] => {
-    const known = CATEGORY_ORDER.filter((cat) => byCategory.value.has(cat))
-    const unknown = ([...byCategory.value.keys()] as TokenCategory[]).filter(
-      (cat) => !(CATEGORY_ORDER as string[]).includes(cat),
-    )
-    return [...known, ...unknown]
-  })
+  /** Categories in the order they first appear in the sorted token set. */
+  const categories = computed((): TokenCategory[] => [...byCategory.value.keys()])
 
   /** Unique component sub-category names, in the order they appear in ALL_ENTRIES. */
   const componentSubcategories = computed(() => {

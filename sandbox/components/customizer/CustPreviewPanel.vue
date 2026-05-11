@@ -695,6 +695,7 @@ function handleLoad() {
 .preview-frame-outer {
   flex: 1;
   overflow: auto;
+  scrollbar-gutter: stable;
   padding: 12px;
   background: $tb-surface-2;
   display: flex;

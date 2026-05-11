@@ -118,7 +118,7 @@
             class="search-section"
           >
             <div class="search-section-header">
-              <span>{{ CATEGORY_LABELS[group.category] ?? group.category }}</span>
+              <span>{{ categoryLabel(group.category) }}</span>
               <span class="search-section-count">{{ group.entries.length }}</span>
             </div>
             <div :class="['token-grid', `token-grid--${group.category}`]">
@@ -153,7 +153,7 @@
             :class="['tab-btn', { 'tab-btn--active': activeCategory === cat }]"
             @click="selectCategory(cat)"
           >
-            {{ CATEGORY_LABELS[cat] ?? cat }}
+            {{ categoryLabel(cat) }}
             <span class="tab-count">{{ countByCategory[cat] }}</span>
           </button>
         </nav>
@@ -238,7 +238,7 @@
       <!-- All other categories: flat grid -->
       <template v-else>
         <main
-          :aria-label="`${CATEGORY_LABELS[activeCategory] ?? activeCategory} tokens`"
+          :aria-label="`${categoryLabel(activeCategory)} tokens`"
           :class="['token-grid', `token-grid--${activeCategory}`]"
         >
           <TokenCard
@@ -264,7 +264,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useTokens, CATEGORY_LABELS, type TokenCategory } from '@/composables/useTokens'
+import { useTokens, categoryLabel, type TokenCategory } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'

@@ -616,7 +616,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
 .cust-editor-content {
   flex: 1;
   min-width: 0;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -688,6 +688,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
 .cust-aside {
   display: flex;
   flex-direction: column;
+  scrollbar-gutter: stable;
   // Height and overflow-y: auto come from the .cust-layout > * rule above
 }
 
@@ -881,6 +882,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   overflow-x: auto;
   max-height: 220px;
   overflow-y: auto;
+  scrollbar-gutter: stable;
   white-space: pre;
   line-height: 1.6;
 }
