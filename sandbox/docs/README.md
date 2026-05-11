@@ -19,19 +19,6 @@ Opens at `http://localhost:5173`.
 
 Browse all 337 design tokens organized into categories:
 
-| Tab | What's inside |
-|-----|--------------|
-| Color | Background, border, and text color tokens |
-| Space | Spacing scale |
-| Font | Family, size, and weight |
-| Border | Radius and width |
-| Shadow | Box shadow values |
-| Animation | Duration/easing |
-| Breakpoint | Responsive breakpoints |
-| Letter Spacing | Letter spacing scale |
-| Line Height | Line height scale |
-| Components | Icon, method, navigation, and status tokens |
-
 ### Copying tokens
 
 Use the **CSS / Sass / JS** toggle in the header to select the copy format:
@@ -60,7 +47,7 @@ Override token values to experiment with themes. Changes apply live via a `<styl
 
 1. Browse or filter the left-hand token list
 2. Click any color swatch to open a native color picker, or type directly into the value input
-3. Modified tokens are highlighted in blue; a count badge in the header tracks how many are overridden
+3. Modified tokens are highlighted; a count badge in the header tracks how many are overridden
 4. Click **✕** on any row to reset that token, or **Reset all** to clear everything
 
 ### Exporting
@@ -74,9 +61,9 @@ Override token values to experiment with themes. Changes apply live via a `<styl
 
 Click **Copy share link** to copy a URL with your overrides encoded in the hash fragment (e.g. `…/customize#o=W1si…`).
 
-- The hash encodes override values by CSS variable name — share links remain valid even as new tokens are added
+- The URL param encodes override values by CSS variable name — share links remain valid even as new tokens are added
 - Opening the link restores exactly the overrides that were active when it was copied
-- Unknown token names in the hash are silently ignored (backwards-compatible with renamed tokens)
+- Unknown token names in the hash are silently ignored
 
 ---
 
@@ -93,7 +80,6 @@ Available when running `pnpm sandbox`.
 3. The page renders inside an iframe via the local dev proxy — your token overrides are injected live as you edit them
 
 **Limitations:**
-- Pages that require authentication will load in their logged-out state (the proxy is unauthenticated)
 - Some sites may fail to load if they use strict referrer policies or heavily depend on cookies/session
 
 **How it works:** The Vite dev server proxies the request through Node.js (no browser CORS limits), rewrites the HTML to inject a `<style id="tb-token-overrides">` tag and a `<base>` tag for relative-URL resolution, then strips `Content-Security-Policy` headers so inline styles are allowed. The iframe is same-origin with our app, so the customizer can update the style tag directly.
@@ -122,15 +108,7 @@ Available on the hosted site (or any non-dev build).
 
 **Viewport controls (both modes):**
 
-The row of buttons above the preview shows the actual breakpoint token values from your token set:
-
-```
-[xs] [sm] [md] [lg] [xl]   📱  💻  🖥   1280 px
-```
-
-- Click a breakpoint label to set the preview to that exact width
-- Use **📱 / 💻 / 🖥** as semantic Mobile / Tablet / Desktop shortcuts
-- Type a number in the `px` field for arbitrary widths (320–3840)
+The row of buttons above the preview shows the actual breakpoint token values from your token set, or you may set to an arbitrary width with the `px` input. This resizes the preview iframe or popup window to help you test responsive styles.
 
 ---
 
