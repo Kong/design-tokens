@@ -66,7 +66,9 @@ async function deflate(input: Uint8Array): Promise<Uint8Array> {
   }
   const out = new Uint8Array(chunks.reduce((n, c) => n + c.length, 0))
   let offset = 0
-  for (const c of chunks) { out.set(c, offset); offset += c.length }
+  for (const c of chunks) {
+    out.set(c, offset); offset += c.length
+  }
   return out
 }
 
@@ -90,7 +92,9 @@ async function inflate(input: Uint8Array): Promise<Uint8Array> {
   }
   const out = new Uint8Array(chunks.reduce((n, c) => n + c.length, 0))
   let offset = 0
-  for (const c of chunks) { out.set(c, offset); offset += c.length }
+  for (const c of chunks) {
+    out.set(c, offset); offset += c.length
+  }
   return out
 }
 

@@ -33,12 +33,22 @@
         @click="handleLoad"
       >
         <template v-if="bridge.status.value === 'loading'">
-          <svg class="url-btn-spinner" fill="none" height="12" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" width="12">
+          <svg
+            class="url-btn-spinner"
+            fill="none"
+            height="12"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            width="12"
+          >
             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
           </svg>
           Loading…
         </template>
-        <template v-else>{{ isDevMode ? 'Load' : 'Open →' }}</template>
+        <template v-else>
+          {{ isDevMode ? 'Load' : 'Open →' }}
+        </template>
       </button>
     </div>
 
@@ -59,13 +69,13 @@
       <!-- Custom width: inline with the preset group -->
       <div class="vp-custom">
         <input
-          :value="bridge.viewportWidth.value || containerWidth"
           aria-label="Viewport width in pixels"
           class="vp-input"
           max="3840"
           min="320"
           step="1"
           type="number"
+          :value="bridge.viewportWidth.value || containerWidth"
           @change="(e) => { bridge.viewportWidth.value = Number((e.target as HTMLInputElement).value); bridge.viewportHeight.value = undefined }"
         >
         <span class="vp-unit">px</span>
@@ -95,7 +105,9 @@
         <label
           class="inject-selector-label"
           for="inject-selector"
-        >Selector</label>
+        >
+          Selector
+        </label>
         <input
           id="inject-selector"
           v-model="customSelector"
@@ -142,7 +154,7 @@
           class="preview-frame-chrome"
           :style="{
             width: (bridge.viewportWidth.value || containerWidth) + 'px',
-            ...(bridge.viewportHeight.value ? { height: bridge.viewportHeight.value + 'px' } : {})
+            ...(bridge.viewportHeight.value ? { height: bridge.viewportHeight.value + 'px' } : {}),
           }"
         >
           <!-- Traffic-light dots only — URL shown in the input bar above -->

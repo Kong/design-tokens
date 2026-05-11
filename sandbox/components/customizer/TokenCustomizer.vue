@@ -61,9 +61,9 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2.5"
+              :style="{ transform: editorOpen ? 'rotate(180deg)' : 'none' }"
               viewBox="0 0 24 24"
               width="14"
-              :style="{ transform: editorOpen ? 'rotate(180deg)' : 'none' }"
             >
               <polyline points="5 18 11 12 5 6" />
               <polyline points="12 18 18 12 12 6" />
@@ -191,7 +191,10 @@
 
       <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet popup) -->
       <div class="cust-preview-column">
-        <CustPreviewPanel :overrides-css="overridesCss" :all-tokens-css="fullExportCss" />
+        <CustPreviewPanel
+          :all-tokens-css="fullExportCss"
+          :overrides-css="overridesCss"
+        />
       </div>
 
       <!-- Right: share link + override CSS output. Live preview removed in dev mode
@@ -298,7 +301,6 @@
             Paste this into your app CSS to override the default tokens.
           </p>
         </div>
-
       </aside>
     </div>
   </div>

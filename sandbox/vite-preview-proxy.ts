@@ -457,7 +457,7 @@ function rewriteJsImports(js: string, jsUrl: string, proxyBase: string): string 
   // arrays). This avoids accidentally rewriting data strings like grammar rules
   // or locale files that happen to end in .js.
   js = js.replace(
-    /(?<=[\[,(])\s*(["'])(\.\.?\/[^"'\n\\]*\.(?:[cm]?js))\1/g,
+    /(?<=[[,(])\s*(["'])(\.\.?\/[^"'\n\\]*\.(?:[cm]?js))\1/g,
     (match, q: string, url: string) => match.replace(`${q}${url}${q}`, `${q}${proxy(url)}${q}`),
   )
 
@@ -466,8 +466,8 @@ function rewriteJsImports(js: string, jsUrl: string, proxyBase: string): string 
    * Recomputed before each keyword pass so expanded proxy URLs don't shift
    * the guard's understanding of where string literals end.
    */
-  function computeStringRanges(src: string): [number, number][] {
-    const ranges: [number, number][] = []
+  function computeStringRanges(src: string): Array<[number, number]> {
+    const ranges: Array<[number, number]> = []
     const LITERAL_RE = /"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`/g
     for (const m of src.matchAll(LITERAL_RE)) {
       ranges.push([m.index!, m.index! + m[0].length])
@@ -476,7 +476,7 @@ function rewriteJsImports(js: string, jsUrl: string, proxyBase: string): string 
   }
 
   /** True when `pos` falls inside a known string literal range (binary search). */
-  function inString(pos: number, ranges: [number, number][]): boolean {
+  function inString(pos: number, ranges: Array<[number, number]>): boolean {
     let lo = 0
     let hi = ranges.length - 1
     while (lo <= hi) {
@@ -538,10 +538,14 @@ function parseSrcset(val: string): string[] {
       // Consume the data: URI (including its base64 commas) up to the optional
       // descriptor, then the separating comma or end-of-string.
       const m = rest.match(/^(\s*data:[^\s,]+(?:,[^\s,]+)*(?:\s+\d+(?:\.\d+)?[wx])?)\s*(?:,|$)/i)
-      if (m) { parts.push(m[1]); rest = rest.slice(m[0].length); continue }
+      if (m) {
+        parts.push(m[1]); rest = rest.slice(m[0].length); continue
+      }
     }
     const comma = rest.indexOf(',')
-    if (comma === -1) { parts.push(rest); break }
+    if (comma === -1) {
+      parts.push(rest); break
+    }
     parts.push(rest.slice(0, comma))
     rest = rest.slice(comma + 1)
   }

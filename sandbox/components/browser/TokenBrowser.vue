@@ -202,13 +202,13 @@
                 type="button"
               >
                 <svg
-                  :style="{ transform: collapsedSections.has(`${activeCategory}:${section.section}`) ? 'rotate(-90deg)' : 'rotate(0deg)' }"
                   fill="none"
                   height="12"
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2.5"
+                  :style="{ transform: collapsedSections.has(`${activeCategory}:${section.section}`) ? 'rotate(-90deg)' : 'rotate(0deg)' }"
                   viewBox="0 0 24 24"
                   width="12"
                 >
