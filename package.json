@@ -10,7 +10,7 @@
     "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "typecheck": "vue-tsc --project ./sandbox/tsconfig.json --noEmit --skipLibCheck",
+    "typecheck": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
     "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
     "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
