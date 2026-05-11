@@ -191,7 +191,7 @@
 
       <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet popup) -->
       <div class="cust-preview-column">
-        <CustPreviewPanel :overrides-css="overridesCss" />
+        <CustPreviewPanel :overrides-css="overridesCss" :all-tokens-css="fullExportCss" />
       </div>
 
       <!-- Right: share link + override CSS output. Live preview removed in dev mode

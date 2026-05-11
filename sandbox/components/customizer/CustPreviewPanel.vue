@@ -72,6 +72,64 @@
       </div>
     </div>
 
+    <!-- ─── Inject settings ───────────────────────────────────────────── -->
+    <div class="inject-settings">
+      <!-- Mode toggle: overrides only (default) vs. all tokens -->
+      <div class="inject-mode-group">
+        <button
+          :class="['inject-mode-btn', { 'inject-mode-btn--active': !injectAllTokens }]"
+          @click="injectAllTokens = false"
+        >
+          Overrides only
+        </button>
+        <button
+          :class="['inject-mode-btn', { 'inject-mode-btn--active': injectAllTokens }]"
+          @click="injectAllTokens = true"
+        >
+          All tokens
+        </button>
+      </div>
+
+      <!-- Custom selector input -->
+      <div class="inject-selector-wrap">
+        <label
+          class="inject-selector-label"
+          for="inject-selector"
+        >Selector</label>
+        <input
+          id="inject-selector"
+          v-model="customSelector"
+          class="inject-selector-input"
+          placeholder=":root"
+          spellcheck="false"
+          type="text"
+        >
+        <!-- CSS-only tooltip -->
+        <span class="inject-tip-wrap">
+          <span
+            aria-label="About selector"
+            class="inject-tip-icon"
+            tabindex="0"
+          >?</span>
+          <span
+            class="inject-tip-body"
+            role="tooltip"
+          >
+            <strong>Selector</strong> — Override which CSS selector receives the token variables. Useful when the target page already scopes its custom properties to a specific element.<br><br>
+            Examples:<br>
+            <code>[data-portal-theme="ocean"]</code><br>
+            <code>html[data-color-mode="light"]</code>
+          </span>
+        </span>
+      </div>
+
+      <!-- Mode description: shown when "all tokens" is active -->
+      <span
+        v-if="injectAllTokens"
+        class="inject-mode-note"
+      >All {{ allTokensCount }} tokens injected</span>
+    </div>
+
     <!-- ─── Mode A: iframe preview (dev only) ─────────────────────────── -->
     <template v-if="isDevMode">
       <!-- Persistent container measured by ResizeObserver for "full width" shortcut -->
@@ -201,14 +259,51 @@ import { usePreviewBridge } from '@/composables/usePreviewBridge'
 import { BOOKMARKLET_HREF } from '@/lib/preview-bookmarklet'
 
 const props = defineProps<{
-  /** The full :root { … } CSS block of active overrides, passed from the parent customizer. */
+  /** Minimal `:root { … }` block containing only changed tokens. */
   overridesCss: string
+  /** Complete `:root { … }` block with all tokens (overrides applied). */
+  allTokensCss: string
 }>()
 
-// Convert prop to a computed ref so usePreviewBridge can watch it reactively
-const overridesCssRef = computed(() => props.overridesCss)
+/** Whether to inject all tokens or only the overridden ones (default). */
+const injectAllTokens = ref(false)
 
-const bridge = usePreviewBridge(overridesCssRef)
+/**
+ * CSS selector to use in place of `:root`.
+ * Empty string = use `:root` (the default).
+ * Example: `[data-portal-theme="ocean"]`
+ */
+const customSelector = ref('')
+
+/** Total token count derived from the full export CSS line count (for the badge). */
+const allTokensCount = computed(() => {
+  const m = props.allTokensCss.match(/^\s+--/gm)
+  return m ? m.length : 0
+})
+
+/**
+ * Applies a custom selector to a `:root { … }` CSS block.
+ * Returns the original CSS unchanged when the selector is empty or is `:root`.
+ */
+function applySelector(css: string, sel: string): string {
+  const s = sel.trim()
+  if (!css || !s || s === ':root') return css
+  return css.replace(/^:root\b/m, s)
+}
+
+/**
+ * The CSS actually injected into the iframe.
+ * Source: overrides-only (default) or all tokens.
+ * Selector: `:root` (default) or the user-supplied custom selector.
+ */
+const effectiveCss = computed(() =>
+  applySelector(
+    injectAllTokens.value ? props.allTokensCss : props.overridesCss,
+    customSelector.value,
+  ),
+)
+
+const bridge = usePreviewBridge(effectiveCss)
 const isDevMode = import.meta.env.DEV
 
 /** Ref to the outer scrollable frame container — used to measure available width. */
@@ -411,6 +506,151 @@ function handleLoad() {
 .vp-unit {
   font-size: 11px;
   color: $tb-text-muted;
+}
+
+// ─── Inject settings ─────────────────────────────────────────────────────────
+.inject-settings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  flex-wrap: wrap;
+}
+
+.inject-mode-group {
+  display: flex;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.inject-mode-btn {
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+
+  &:hover:not(.inject-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+  &--active { background: $tb-accent; color: #fff; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
+}
+
+.inject-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.inject-selector-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.inject-selector-input {
+  flex: 1;
+  min-width: 80px;
+  max-width: 220px;
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-family: $tb-mono;
+  font-size: 11px;
+  color: $tb-text;
+  outline: none;
+
+  &::placeholder { color: $tb-text-muted; }
+  &:focus-visible { border-color: $tb-accent; }
+}
+
+// CSS-only tooltip
+.inject-tip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.inject-tip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  font-size: 10px;
+  font-weight: 700;
+  color: $tb-text-muted;
+  cursor: default;
+  user-select: none;
+
+  &:hover, &:focus-visible { background: $tb-border; color: $tb-text-dim; outline: none; }
+}
+
+.inject-tip-body {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  background: $tb-text;
+  color: $tb-bg;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  line-height: 1.55;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  // Arrow
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: $tb-text;
+  }
+
+  code {
+    display: block;
+    font-family: $tb-mono;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 2px;
+  }
+
+  strong { color: #fff; }
+}
+
+.inject-tip-wrap:hover .inject-tip-body,
+.inject-tip-icon:focus-visible + .inject-tip-body { display: block; }
+
+.inject-mode-note {
+  font-size: 11px;
+  color: $tb-text-muted;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 // ─── Iframe frame area ────────────────────────────────────────────────────────
