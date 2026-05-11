@@ -1,0 +1,17 @@
+// Shared palette for the token browser sandbox.
+// Hard-coded values (not --kui-* tokens) so the browser chrome survives a rebrand.
+// Import this file in any component that needs these values.
+
+$tb-bg:            #f3f4f8;
+$tb-surface:       #ffffff;
+$tb-surface-2:     #e8eaf0;
+$tb-border:        rgba(0, 10, 60, 0.1);
+$tb-border-active: rgba(0, 10, 60, 0.28);
+$tb-text:          #0f172a;
+$tb-text-dim:      #475569;
+$tb-text-muted:    #64748b;
+$tb-accent:        #0044f4;
+$tb-accent-subtle: rgba(0, 68, 244, 0.08);
+$tb-success:       #059669;
+$tb-sans:          'Inter', system-ui, -apple-system, sans-serif;
+$tb-mono:          'JetBrains Mono', monospace;

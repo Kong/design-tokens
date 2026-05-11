@@ -3,11 +3,12 @@ import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import path from 'path'
 import viteRestart from 'vite-plugin-restart'
+import { previewProxyPlugin } from './vite-preview-proxy'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    previewProxyPlugin(),
     viteRestart({
       reload: [
         // Reload the Vite sandbox when any of the `/dist/*` files are changed
@@ -25,6 +26,8 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
+  // If deploying to GitHub pages, enable this line
+  base: process.env.BUILD_SANDBOX ? '/design-tokens/' : '/',
   build: {
     minify: true,
     sourcemap: true,
@@ -39,8 +42,6 @@ export default defineConfig({
       'vue',
     ],
   },
-  // Serve files from the `../dist` directory at the localHost root
-  publicDir: path.resolve(__dirname, '../'),
   server: {
     fs: {
       // Allow serving files from one level up from the package root - IMPORTANT - to support the sandbox
@@ -48,4 +49,7 @@ export default defineConfig({
     },
     open: true,
   },
+  // Change the root when utilizing the sandbox via BUILD_SANDBOX=true to use the `/sandbox/*` files
+  // During the build process, the `/sandbox/*` files are not used and we should default to the package root.
+  root: process.env.BUILD_SANDBOX ? './sandbox' : process.cwd(),
 })
