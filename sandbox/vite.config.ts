@@ -51,7 +51,7 @@ export default defineConfig({
     },
     open: true,
   },
-  // Change the root when utilizing the sandbox via USE_SANDBOX=true to use the `/sandbox/*` files
+  // Change the root when utilizing the sandbox via BUILD_SANDBOX=true to use the `/sandbox/*` files
   // During the build process, the `/sandbox/*` files are not used and we should default to the package root.
   root: process.env.BUILD_SANDBOX ? './sandbox' : process.cwd(),
 })

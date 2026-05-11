@@ -122,7 +122,7 @@ jobs:
 
   deploy-github-pages:
     name: Deploy GitHub Pages
-    #if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: [publish]
     environment:
       name: github-pages
@@ -151,7 +151,7 @@ jobs:
       - name: Build Sandbox
         env:
           # Tell the script to use the sandbox directory
-          USE_SANDBOX: true
+          BUILD_SANDBOX: true
         run: pnpm run sandbox:build
 
       - name: Setup Pages
