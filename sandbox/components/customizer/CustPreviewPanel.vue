@@ -271,9 +271,10 @@ const injectAllTokens = ref(false)
 /**
  * CSS selector to use in place of `:root`.
  * Empty string = use `:root` (the default).
+ * Persisted to / restored from the `?selector=` URL param.
  * Example: `[data-portal-theme="ocean"]`
  */
-const customSelector = ref('')
+const customSelector = ref(new URLSearchParams(window.location.search).get('selector') ?? '')
 
 /** Total token count derived from the full export CSS line count (for the badge). */
 const allTokensCount = computed(() => {
@@ -306,6 +307,20 @@ const effectiveCss = computed(() =>
 const bridge = usePreviewBridge(effectiveCss)
 const isDevMode = import.meta.env.DEV
 
+/** Writes `selector` and `url` params to the address bar, removing them when at default values. */
+function syncUrlParams() {
+  const u = new URL(window.location.href)
+  const sel = customSelector.value.trim()
+  if (sel && sel !== ':root') u.searchParams.set('selector', sel)
+  else u.searchParams.delete('selector')
+  if (bridge.loadedUrl.value) u.searchParams.set('url', bridge.loadedUrl.value)
+  else u.searchParams.delete('url')
+  history.replaceState(null, '', u.toString())
+}
+
+watch(customSelector, syncUrlParams)
+watch(bridge.loadedUrl, syncUrlParams)
+
 /** Ref to the outer scrollable frame container — used to measure available width. */
 const frameOuterEl = ref<HTMLDivElement | null>(null)
 /** Measured usable width of the frame container (updated by ResizeObserver). */
@@ -315,6 +330,14 @@ let containerObserver: ResizeObserver | undefined
 let hasSetInitialWidth = false
 
 onMounted(() => {
+  // Restore preview URL from the ?url= param and auto-load it in dev (iframe proxy) mode.
+  // In hosted (bookmarklet) mode we only pre-fill the input — the popup requires a user gesture.
+  const savedUrl = new URLSearchParams(window.location.search).get('url')
+  if (savedUrl) {
+    bridge.previewUrl.value = savedUrl
+    if (isDevMode) bridge.loadProxyUrl()
+  }
+
   if (!frameOuterEl.value) return
   containerObserver = new ResizeObserver((entries) => {
     const w = entries[0]?.contentRect?.width ?? 0

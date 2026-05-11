@@ -277,10 +277,12 @@ export function useTokenCustomizer() {
     overrides,
     async () => {
       const encoded = await encodeOverrides(overrides)
-      const base = `${window.location.origin}/customize`
-      shareUrl.value = encoded ? `${base}?o=${encoded}` : base
-      const url = encoded ? `${window.location.pathname}?o=${encoded}` : window.location.pathname
-      history.replaceState(null, '', url)
+      // Preserve other params (e.g. ?url=, ?selector=) that are managed by CustPreviewPanel.
+      const u = new URL(window.location.href)
+      if (encoded) u.searchParams.set('o', encoded)
+      else u.searchParams.delete('o')
+      shareUrl.value = u.toString()
+      history.replaceState(null, '', u.toString())
     },
     { deep: true },
   )
