@@ -307,7 +307,7 @@ function rewriteHtmlResources(html: string, pageUrl: string, proxyBase: string):
   )
 
   html = html.replace(
-    /<script([^>]*)>([\s\S]*?)<\/script\s*>/gi,
+    /<script([^>]*)>([\s\S]*?)<\/script[^>]*>/gi,
     (match, attrs: string, body: string) => {
       const hasSrc = /\ssrc\s*=\s*["'][^"']*["']/i.test(attrs)
       let rewrittenAttrs = attrs
