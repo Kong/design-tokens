@@ -1,8 +1,8 @@
 <template>
-  <div :class="['cust-row', { 'cust-row--modified': isOverridden, 'cust-row--no-swatch': !isAnyColor }]">
-    <!-- Color swatch: only rendered for color-valued tokens -->
+  <div :class="['cust-row', { 'cust-row--modified': isOverridden && !showInvalid, 'cust-row--invalid': showInvalid, 'cust-row--no-swatch': !isColorEntry }]">
+    <!-- Color swatch: rendered for all color-valued tokens (based on entry default, not current input) -->
     <div
-      v-if="isAnyColor"
+      v-if="isColorEntry"
       class="cust-swatch-wrap"
     >
       <!-- Hex tokens get a native color picker overlaid on the visible swatch -->
@@ -12,12 +12,13 @@
         class="cust-color-input"
         :title="`Pick color for ${entry.cssVar}`"
         type="color"
-        :value="localValue"
+        :value="isValidColor ? localValue : entry.value"
         @input="(e) => handleColorInput((e.target as HTMLInputElement).value)"
       >
+      <!-- Show default value in swatch when current input is invalid -->
       <div
         :class="['cust-swatch', { 'cust-swatch--no-pick': !isHex }]"
-        :style="{ background: localValue }"
+        :style="{ background: isValidColor ? localValue : entry.value }"
       />
     </div>
 
@@ -26,23 +27,54 @@
       :title="entry.cssVar"
     >{{ entry.cssVar }}</span>
 
-    <input
-      :id="entry.cssVar.slice(2)"
-      :aria-label="`Value for ${entry.cssVar}`"
-      class="cust-value-input"
-      :class="{ 'cust-value-input--invalid': showInvalid }"
-      :placeholder="entry.value"
-      type="text"
-      :value="localValue"
-      @input="(e) => handleInput((e.target as HTMLInputElement).value)"
-    >
+    <div class="cust-value-wrap">
+      <input
+        :id="entry.cssVar.slice(2)"
+        :aria-label="`Value for ${entry.cssVar}`"
+        class="cust-value-input"
+        :class="{ 'cust-value-input--invalid': showInvalid }"
+        :placeholder="entry.value"
+        type="text"
+        :value="localValue"
+        @input="(e) => handleInput((e.target as HTMLInputElement).value)"
+      >
+      <span
+        v-if="showInvalid"
+        class="cust-error-icon"
+        :title="`Invalid value — default &quot;${entry.value}&quot; is used until fixed`"
+      >
+        <svg
+          fill="none"
+          height="13"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-width="1.5"
+          viewBox="0 0 16 16"
+          width="13"
+        >
+          <circle
+            cx="8"
+            cy="8"
+            r="6.5"
+          />
+          <path d="M8 4.5v4" />
+          <circle
+            cx="8"
+            cy="11.5"
+            fill="currentColor"
+            r="0.75"
+            stroke="none"
+          />
+        </svg>
+      </span>
+    </div>
 
-    <!-- Space is always reserved to prevent layout shift when override is added/removed -->
+    <!-- Space always reserved to prevent layout shift when override is added/removed -->
     <button
       class="cust-reset-btn"
-      :style="{ visibility: isOverridden ? 'visible' : 'hidden' }"
+      :style="{ visibility: isOverridden || localValue !== entry.value ? 'visible' : 'hidden' }"
       :title="`Reset to ${entry.value}`"
-      @click="emit('reset', entry.cssVar, entry.value)"
+      @click="handleReset"
     >
       ✕
     </button>
@@ -75,37 +107,72 @@ function toUpperHex(val: string): string {
 const localValue = ref(toUpperHex(props.overriddenValue ?? props.entry.value))
 
 /**
+ * Debounced copy of localValue — updated in the debounce callback alongside emit.
+ * showInvalid uses this so the error state doesn't flicker while the user is typing.
+ */
+const validatedValue = ref(localValue.value)
+
+/**
  * Syncs the local display value when the override is cleared externally,
  * e.g. when "Reset all" is triggered from the header.
  */
 watch(() => props.overriddenValue, (val) => {
-  localValue.value = toUpperHex(val ?? props.entry.value)
+  const resolved = toUpperHex(val ?? props.entry.value)
+  localValue.value = resolved
+  validatedValue.value = resolved
 })
 
 const isOverridden = computed(() => props.overriddenValue !== undefined)
 
-/** Marks the input invalid when the field is empty while an override is active (unsetting path). */
-const showInvalid = computed(() => localValue.value.trim() === '' && isOverridden.value)
+/** True when the token's default value is a CSS color — determines swatch visibility and validation. */
+const isColorEntry = computed(() => /^(#|rgb|rgba|hsl)/i.test(props.entry.value))
+
+/**
+ * True when the current input is a valid CSS color, using browser-native validation.
+ * Always true for non-color tokens (no validation applied).
+ * Empty input is considered valid here — emptiness is handled separately by showInvalid.
+ */
+const isValidColor = computed(() => {
+  if (!isColorEntry.value) return true
+  const v = localValue.value.trim()
+  if (!v) return true
+  return CSS.supports('color', v)
+})
+
+/**
+ * Show the error state when:
+ *  - the field is empty while an override is active (user is trying to clear)
+ *  - the token is a color and the current value is not a valid CSS color
+ * Uses validatedValue (debounced) so the error doesn't appear while the user is mid-type.
+ */
+const showInvalid = computed(() => {
+  const v = validatedValue.value.trim()
+  return (v === '' && isOverridden.value) ||
+    (isColorEntry.value && v !== '' && !CSS.supports('color', v))
+})
 
 /** True when the current value is a 3/4/6/8-digit hex color, enabling the native color picker. */
 const isHex = computed(() =>
   /^#([0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(localValue.value),
 )
-/** True for any CSS color syntax; used to decide whether to render the swatch column. */
-const isAnyColor = computed(() => /^(#|rgb|rgba|hsl)/.test(localValue.value))
 
 let debounceTimer: ReturnType<typeof setTimeout>
 onUnmounted(() => clearTimeout(debounceTimer))
 
 /**
  * Handles text input with a 300ms debounce.
- * Empty values propagate so the parent's `setOverride` can clear the override.
+ * For color tokens, emits an empty string when the value is not a valid CSS color so that
+ * `setOverride` clears the override and the live preview falls back to the token default.
+ * The invalid value stays visible in the input so the user can see and fix it.
  */
 function handleInput(value: string) {
   localValue.value = value
   clearTimeout(debounceTimer)
   debounceTimer = setTimeout(() => {
-    emit('change', props.entry.cssVar, value, props.entry.value)
+    validatedValue.value = value
+    const v = value.trim()
+    const emitValue = isColorEntry.value && v && !CSS.supports('color', v) ? '' : value
+    emit('change', props.entry.cssVar, emitValue, props.entry.value)
   }, 300)
 }
 
@@ -119,8 +186,17 @@ function handleColorInput(value: string) {
   localValue.value = upper
   clearTimeout(debounceTimer)
   debounceTimer = setTimeout(() => {
+    validatedValue.value = upper
     emit('change', props.entry.cssVar, upper, props.entry.value)
   }, 80)
+}
+
+/** Resets local state immediately and notifies the parent. */
+function handleReset() {
+  clearTimeout(debounceTimer)
+  localValue.value = toUpperHex(props.entry.value)
+  validatedValue.value = localValue.value
+  emit('reset', props.entry.cssVar, props.entry.value)
 }
 </script>
 
@@ -138,6 +214,7 @@ function handleColorInput(value: string) {
 
   &:last-child { border-bottom: none; }
   &--modified { background: $tb-accent-subtle; }
+  &--invalid { background: rgba(239, 68, 68, 0.07); }
   // Non-color tokens skip the swatch column
   &--no-swatch { grid-template-columns: 1fr auto auto; }
 }
@@ -198,11 +275,27 @@ function handleColorInput(value: string) {
   border-radius: 4px;
   padding: 3px 7px;
   width: 96px;
+  box-sizing: border-box;
 
   &:focus-visible { border-color: $tb-accent; outline: none; }
-  &--invalid { border-color: #e53e3e; }
+  &--invalid { border-color: #e53e3e; padding-right: 24px; }
 
   @media (max-width: 640px) { width: 80px; }
+}
+
+.cust-value-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cust-error-icon {
+  position: absolute;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  color: #e53e3e;
+  cursor: default;
 }
 
 .cust-reset-btn {

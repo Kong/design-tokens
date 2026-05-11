@@ -127,10 +127,7 @@
             class="inject-tip-body"
             role="tooltip"
           >
-            <strong>Selector</strong> — Override which CSS selector receives the token variables. Useful when the target page already scopes its custom properties to a specific element.<br><br>
-            Examples:<br>
-            <code>[data-portal-theme="ocean"]</code><br>
-            <code>html[data-color-mode="light"]</code>
+            Override which CSS selector receives the token variables. Example: <br><code>:root[data-portal-color-mode="light"]</code>
           </span>
         </span>
       </div>
@@ -277,8 +274,11 @@ const props = defineProps<{
   allTokensCss: string
 }>()
 
-/** Whether to inject all tokens or only the overridden ones (default). */
-const injectAllTokens = ref(false)
+/**
+ * Whether to inject all tokens or only the overridden ones (default).
+ * Persisted to / restored from the `?inject=all` URL param.
+ */
+const injectAllTokens = ref(new URLSearchParams(window.location.search).get('inject') === 'all')
 
 /**
  * CSS selector to use in place of `:root`.
@@ -319,7 +319,7 @@ const effectiveCss = computed(() =>
 const bridge = usePreviewBridge(effectiveCss)
 const isDevMode = import.meta.env.DEV
 
-/** Writes `selector` and `url` params to the address bar, removing them when at default values. */
+/** Writes `selector`, `url`, and `inject` params to the address bar, removing them at defaults. */
 function syncUrlParams() {
   const u = new URL(window.location.href)
   const sel = customSelector.value.trim()
@@ -327,11 +327,14 @@ function syncUrlParams() {
   else u.searchParams.delete('selector')
   if (bridge.loadedUrl.value) u.searchParams.set('url', bridge.loadedUrl.value)
   else u.searchParams.delete('url')
+  if (injectAllTokens.value) u.searchParams.set('inject', 'all')
+  else u.searchParams.delete('inject')
   history.replaceState(null, '', u.toString())
 }
 
 watch(customSelector, syncUrlParams)
 watch(bridge.loadedUrl, syncUrlParams)
+watch(injectAllTokens, syncUrlParams)
 
 /** Ref to the outer scrollable frame container — used to measure available width. */
 const frameOuterEl = ref<HTMLDivElement | null>(null)
