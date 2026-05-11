@@ -27,7 +27,7 @@ export default defineConfig({
     devSourcemap: true,
   },
   // If deploying to GitHub pages, enable this line
-  base: process.env.BUILD_SANDBOX ? '/markdown/' : '/',
+  base: process.env.BUILD_SANDBOX ? '/design-tokens/' : '/',
   build: {
     minify: true,
     sourcemap: true,
@@ -42,8 +42,6 @@ export default defineConfig({
       'vue',
     ],
   },
-  // Serve the monorepo root as publicDir so built /dist/* assets are accessible at the dev-server root
-  publicDir: path.resolve(__dirname, '../'),
   server: {
     fs: {
       // Allow serving files from one level up from the package root - IMPORTANT - to support the sandbox

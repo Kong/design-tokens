@@ -14,7 +14,7 @@
     "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
     "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
-    "sandbox:build": "BUILD_SANDBOX=true vite build -m production",
+    "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
     "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
