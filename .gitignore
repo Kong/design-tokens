@@ -86,3 +86,5 @@ xcuserdata/
 # Temporary build output directory for unit tests
 __tests__/__output
 .playwright-mcp/
+
+.claude/
