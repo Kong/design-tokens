@@ -50,11 +50,10 @@ jobs:
       - name: Setup PNPM with Dependencies
         uses: ./.github/actions/setup-pnpm-with-dependencies/
 
-      - name: Build
-        run: pnpm build
-
-      - name: Typecheck
-        run: pnpm typecheck
+      - name: Download tokens package
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
+        with:
+          name: tokens-package
 
       - name: Prepare git
         run: |
@@ -148,11 +147,10 @@ jobs:
         with:
           force-install: true
 
-      - name: Build Sandbox
-        env:
-          # Tell the script to use the sandbox directory
-          BUILD_SANDBOX: true
-        run: pnpm run sandbox:build
+      - name: Download sandbox
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
+        with:
+          name: sandbox
 
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6

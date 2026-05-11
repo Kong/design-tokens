@@ -24,4 +24,29 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Build tokens package
+        run: pnpm build
 
+      # Must build before the typecheck since the files are needed for the sandbox
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build sandbox
+        env:
+          # Tell the script to use the sandbox directory
+          BUILD_SANDBOX: true
+        run: pnpm build:build
+
+      - name: Upload tokens package
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: tokens-package
+          path: dist/
+          retention-days: 1
+
+      - name: Upload sandbox
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sandbox
+          path: sandbox/dist/
+          retention-days: 1
