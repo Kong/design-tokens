@@ -125,9 +125,18 @@ export function previewProxyPlugin(): Plugin {
             const spaPath = `${proxyBase}${escapeForJsString(originalPath)}`
             const safeOriginJs = escapeForJsString(origin)
             const networkOverrideScript = `<script>(function(){
+  // Restore original path so SPA routers (Vue Router, React Router…) see the correct route.
+  // Must be an absolute same-origin URL; relative URLs resolve against <base> → SecurityError.
   try{history.replaceState(null,'','${spaPath}');}catch(e){}
-  var _b='${proxyBase}';
-  var _o='${safeOriginJs}';
+
+  var _b='${proxyBase}';    // proxy base, e.g. http://localhost:5173
+  var _o='${safeOriginJs}'; // target origin, e.g. https://example.com
+
+  // Rewrites any URL to a proxy URL. Three input forms are handled:
+  //   absolute cross-origin  https://other.com/… → /preview-proxy?url=…
+  //   protocol-relative      //other.com/…       → /preview-proxy?url=https://other.com/…
+  //   root-relative          /path               → /preview-proxy?url=<origin>/path
+  // Same-origin and non-string values are returned unchanged.
   function _p(u){
     if(typeof u!=='string')return u;
     if(/^https?:\\/\\//i.test(u)&&u.indexOf(_b)!==0)return _b+'/preview-proxy?url='+encodeURIComponent(u);
@@ -135,6 +144,8 @@ export function previewProxyPlugin(): Plugin {
     if(u.charAt(0)==='/')return _b+'/preview-proxy?url='+encodeURIComponent(_o+u);
     return u;
   }
+
+  // Intercept window.fetch — handles string URLs, URL objects, and Request objects.
   var _f=window.fetch;
   window.fetch=function(input,init){
     if(typeof input==='string')return _f(_p(input),init);
@@ -142,11 +153,18 @@ export function previewProxyPlugin(): Plugin {
     if(input&&typeof input.url==='string'){var pu=_p(input.url);if(pu!==input.url)return _f(new Request(pu,input),init);}
     return _f(input,init);
   };
+
+  // Intercept XMLHttpRequest.open — rewrites the URL (argument index 1) in-place.
   var _x=XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open=function(m,u){
     var a=Array.prototype.slice.call(arguments);a[1]=typeof u==='string'?_p(u):u;return _x.apply(this,a);
   };
-  // Strip SRI at the DOM level: proxy rewrites JS content, changing hashes for dynamically-created elements
+
+  // Strip SRI integrity at the DOM level. The proxy rewrites JS/CSS content which changes
+  // their hashes, causing integrity checks to fail on dynamically-created elements
+  // (e.g. Nuxt/Next route-chunk <script> tags built from a manifest at runtime).
+  // Two layers: setAttribute intercept (covers .setAttribute('integrity',…)) and
+  // prototype property override (covers direct .integrity = '…' assignments).
   var _sa=Element.prototype.setAttribute;
   Element.prototype.setAttribute=function(n,v){
     if(n.toLowerCase()==='integrity')return;
@@ -182,14 +200,17 @@ export function previewProxyPlugin(): Plugin {
 })();</script>`
             html = html.replace(/<\/head>/i, `  <style id="tb-token-overrides"></style>\n  ${headScript}\n</head>`)
 
-            // Intercept link clicks so in-frame navigation stays proxied
+            // Intercept link clicks so in-frame navigation stays proxied.
+            // Uses capture phase (true) so it runs before any page-level click handlers.
             const interceptScript = `<script>(function(){
   document.addEventListener('click',function(e){
     var a=e.target&&e.target.closest?e.target.closest('a'):null;
     if(!a||!a.href)return;
     var abs=a.href;
     if(!abs.match(/^https?:\\/\\//))return;
+    // Let the browser handle new-tab, Ctrl/Cmd/Shift clicks natively
     if(a.target==='_blank'||e.ctrlKey||e.metaKey||e.shiftKey)return;
+    // Same-page hash navigation — let the browser handle it (no full reload needed)
     var frag=abs.indexOf('#');
     if(frag!==-1&&abs.slice(0,frag)===location.href.split('#')[0])return;
     e.preventDefault();
