@@ -19,7 +19,8 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  // Pass the base URL from the Vite config to ensure the router works correctly when the sandbox is deployed to a subdirectory (e.g. GitHub pages)
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
 

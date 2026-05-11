@@ -37,6 +37,9 @@ export default defineConfig({
       },
     },
   },
+  preview: {
+    open: true,
+  },
   optimizeDeps: {
     include: [
       'vue',

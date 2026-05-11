@@ -32,9 +32,6 @@ jobs:
         run: pnpm typecheck
 
       - name: Build sandbox
-        env:
-          # Tell the script to use the sandbox directory
-          BUILD_SANDBOX: true
         run: pnpm sandbox:build
 
       - name: Upload tokens package
