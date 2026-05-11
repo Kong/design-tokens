@@ -27,6 +27,7 @@
     >{{ entry.cssVar }}</span>
 
     <input
+      :id="entry.cssVar.slice(2)"
       :aria-label="`Value for ${entry.cssVar}`"
       class="cust-value-input"
       :class="{ 'cust-value-input--invalid': showInvalid }"
@@ -49,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import type { TokenEntry } from '@/composables/useTokens'
 
 const props = defineProps<{
@@ -94,6 +95,7 @@ const isHex = computed(() =>
 const isAnyColor = computed(() => /^(#|rgb|rgba|hsl)/.test(localValue.value))
 
 let debounceTimer: ReturnType<typeof setTimeout>
+onUnmounted(() => clearTimeout(debounceTimer))
 
 /**
  * Handles text input with a 300ms debounce.
