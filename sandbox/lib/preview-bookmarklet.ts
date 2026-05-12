@@ -8,7 +8,7 @@
  *  2. Shows a loading overlay, then injects a 560px fixed sidebar `<iframe>` pointing
  *     to the customizer (`/#/customize?embedded=1`). The loading overlay is removed on
  *     first CSS message; times out to an error state after 8 s.
- *  3. Persists the last-used customizer URL (with encoded overrides) in sessionStorage
+ *  3. Persists the last-used customizer URL (with encoded overrides) in localStorage
  *     keyed by the target page's hostname, so re-clicking after navigation restores state.
  *  4. Re-clicking the bookmarklet toggles the sidebar. A `▶` / `◀` tab stays visible
  *     at the right edge so the user can always restore it.
