@@ -1,7 +1,10 @@
 <template>
   <div class="preview-panel">
-    <!-- ─── URL bar ─────────────────────────────────────────────────────── -->
-    <div class="preview-url-bar">
+    <!-- ─── URL bar (iframe-proxy / dev only) ───────────────────────────── -->
+    <div
+      v-if="bridge.mode === 'iframe-proxy'"
+      class="preview-url-bar"
+    >
       <svg
         aria-hidden="true"
         class="url-icon"
@@ -52,8 +55,11 @@
       </button>
     </div>
 
-    <!-- ─── Viewport controls ──────────────────────────────────────────── -->
-    <div class="preview-controls">
+    <!-- ─── Viewport controls (iframe-proxy / dev only) ────────────────── -->
+    <div
+      v-if="bridge.mode === 'iframe-proxy'"
+      class="preview-controls"
+    >
       <div class="bp-group">
         <button
           v-for="preset in bridge.breakpointPresets.value"
@@ -259,7 +265,7 @@
           :href="bookmarkletHref"
           @click.prevent
         >
-          🔖 Drag to bookmarks bar
+          🔖 Design Token Customizer
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
@@ -548,7 +554,6 @@ function handleLoad() {
   outline: none;
 
   &:focus-visible { border-color: $tb-accent; }
-  // Remove browser spin buttons for cleaner look
   &::-webkit-outer-spin-button,
   &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
   &[type=number] { -moz-appearance: textfield; }
@@ -629,7 +634,6 @@ function handleLoad() {
   &:focus-visible { border-color: $tb-accent; }
 }
 
-// CSS-only tooltip
 .inject-tip-wrap {
   position: relative;
   display: inline-flex;

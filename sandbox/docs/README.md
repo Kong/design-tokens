@@ -91,7 +91,7 @@ Available on the hosted site (or any non-dev build).
 **One-time setup:**
 
 1. Open the customizer's preview panel
-2. Drag the **🔖 Drag to bookmarks bar** link to your browser's bookmarks bar
+2. Drag the **🔖 Design Token Customizer** link to your browser's bookmarks bar
 
 **Per-session usage:**
 

@@ -56,6 +56,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     frame.style.display=open?'none':'block';
     tab.style.right=open?'0':WIDTH;
     tab.textContent=open?'\\u25C0':'\\u25B6'; // ◀ when hidden (open), ▶ when visible (close)
+    var ov=document.getElementById(OVERLAY_ID);if(ov)ov.style.display=open?'none':'flex';
     return;
   }
 
@@ -94,7 +95,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     errTitle.textContent='Failed to load';
     var errHint=document.createElement('span');
     errHint.style.cssText='font-size:11px;color:#999;text-align:center;max-width:300px;padding:0 24px';
-    errHint.textContent='Check your connection, or drag the bookmarklet again to get a fresh URL.';
+    errHint.textContent='The customizer may be blocked by mixed content (HTTP vs HTTPS), X-Frame-Options, or a network issue. Try re-dragging the bookmarklet from the deployed site.';
     ov.appendChild(errIcon);
     ov.appendChild(errTitle);
     ov.appendChild(errHint);
@@ -110,7 +111,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   // Persistent toggle tab: ▶ = sidebar visible (click to close), ◀ = hidden (click to open)
   tab=document.createElement('button');
   tab.id=TAB_ID;
-  tab.title='Toggle Kong design token customizer';
+  tab.title='Toggle Kong Design Token Customizer';
   tab.textContent='\\u25B6';
   tab.style.cssText='position:fixed;top:16px;right:'+WIDTH+';z-index:2147483647;background:#0044f4;color:#fff;border:none;border-radius:4px 0 0 4px;width:20px;padding:12px 0;cursor:pointer;font-size:11px;box-shadow:-2px 0 8px rgba(0,0,0,0.15)';
   tab.onclick=function(){
@@ -118,6 +119,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     frame.style.display=open?'none':'block';
     tab.style.right=open?'0':WIDTH;
     tab.textContent=open?'\\u25C0':'\\u25B6'; // ◀ when hidden, ▶ when visible
+    var ov=document.getElementById(OVERLAY_ID);if(ov)ov.style.display=open?'none':'flex';
   };
   document.body.appendChild(tab);
 })()`

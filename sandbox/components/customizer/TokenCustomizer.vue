@@ -14,7 +14,7 @@
           ← Browse
         </router-link>
         <h1 class="cust-title">
-          Token Customizer
+          Design Token Customizer
         </h1>
         <span
           v-if="hasOverrides"
@@ -24,21 +24,6 @@
         </span>
       </div>
       <div class="cust-header-right">
-        <!-- "Download full" includes all tokens — useful as a standalone stylesheet -->
-        <button
-          class="cust-btn cust-btn--secondary"
-          @click="downloadFull"
-        >
-          ↓ Download
-        </button>
-        <!-- "Copy patch" copies only overrides — paste into existing app CSS -->
-        <button
-          class="cust-btn"
-          :disabled="!hasOverrides"
-          @click="copyOverrides"
-        >
-          {{ copiedOverrides ? '✓ Copied' : 'Copy CSS' }}
-        </button>
         <!-- Close button: only shown when running as an embedded sidebar on the target page -->
         <button
           v-if="isEmbedded"
@@ -98,7 +83,7 @@
           <!-- Embedded toolbar: share link + inject settings, shown above the token list -->
           <template v-if="isEmbedded">
             <div class="embed-toolbar">
-              <!-- Row 1: inject mode toggle + share link button -->
+              <!-- Row 1: inject mode toggle -->
               <div class="embed-toolbar-row">
                 <div class="embed-mode-group">
                   <button
@@ -116,13 +101,6 @@
                     All tokens
                   </button>
                 </div>
-                <button
-                  class="embed-share-btn"
-                  :class="{ 'embed-share-btn--copied': copiedShareLink }"
-                  @click="copyShareLink"
-                >
-                  {{ copiedShareLink ? '✓ Link copied!' : 'Copy share link' }}
-                </button>
               </div>
               <!-- Row 2: CSS selector -->
               <div class="embed-toolbar-row">
@@ -360,22 +338,33 @@
           </p>
         </div>
 
-        <!-- CSS output: shows only the override patch, with inline copy -->
+        <!-- CSS output: override patch (or all tokens in embedded mode), with copy + download -->
         <div class="cust-output-panel">
           <div class="cust-output-header">
-            <span class="cust-output-label">{{ hasOverrides ? 'Override patch CSS' : 'No overrides yet' }}</span>
-            <button
-              v-if="hasOverrides"
-              class="cust-copy-icon"
-              :title="copiedOverrides ? 'Copied!' : 'Copy CSS'"
-              @click="copyOverrides"
+            <span class="cust-output-label">{{ outputLabel }}</span>
+            <div
+              v-if="displayCss"
+              class="cust-output-actions"
             >
-              {{ copiedOverrides ? '✓' : '⎘' }}
-            </button>
+              <button
+                class="cust-output-btn"
+                title="Download CSS file"
+                @click="downloadFull"
+              >
+                ↓ Download
+              </button>
+              <button
+                class="cust-output-btn"
+                :title="copiedOverrides ? 'Copied!' : 'Copy CSS'"
+                @click="copyOverrides"
+              >
+                {{ copiedOverrides ? '✓ Copied' : '⎘ Copy' }}
+              </button>
+            </div>
           </div>
-          <pre class="cust-output-code"><code>{{ hasOverrides ? overridesCss : placeholderCss }}</code></pre>
+          <pre class="cust-output-code"><code>{{ displayCss || placeholderCss }}</code></pre>
           <p
-            v-if="hasOverrides"
+            v-if="displayCss"
             class="cust-output-hint"
           >
             Paste this into your app CSS to override the default tokens.
@@ -387,8 +376,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
-import { onBeforeRouteLeave } from 'vue-router'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useTokenCustomizer } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
@@ -415,6 +403,15 @@ function applySelector(css: string, sel: string): string {
 const embeddedEffectiveCss = computed(() => {
   const base = embeddedInjectAll.value ? fullExportCss.value : overridesCss.value
   return applySelector(base, embeddedSelector.value)
+})
+
+/** CSS shown in the output panel and used by the copy/download actions. */
+const displayCss = computed(() => isEmbedded ? embeddedEffectiveCss.value : overridesCss.value)
+
+/** Label for the output panel reflecting what CSS is displayed. */
+const outputLabel = computed(() => {
+  if (isEmbedded && embeddedInjectAll.value) return 'All tokens CSS'
+  return displayCss.value ? 'Override patch CSS' : 'No overrides yet'
 })
 
 /** Controls whether the token editor panel is expanded (true) or collapsed to a narrow strip. */
@@ -492,10 +489,10 @@ const copiedShareLink = ref(false)
 let resetOverridesTimer: ReturnType<typeof setTimeout>
 let resetShareTimer: ReturnType<typeof setTimeout>
 
-/** Copies the override-patch CSS to the clipboard and shows a 1.5s confirmation state. */
+/** Copies the displayed CSS to the clipboard and shows a 1.5s confirmation state. */
 async function copyOverrides() {
-  if (!hasOverrides.value) return
-  await copyText(overridesCss.value, 'overrides-patch')
+  if (!displayCss.value) return
+  await copyText(displayCss.value, 'overrides-patch')
   copiedOverrides.value = true
   clearTimeout(resetOverridesTimer)
   resetOverridesTimer = setTimeout(() => {
@@ -503,9 +500,22 @@ async function copyOverrides() {
   }, 1500)
 }
 
-/** Copies the reactive share URL (with encoded overrides) to the clipboard. */
+/** Copies the share URL to the clipboard, always as a non-embedded standalone link. */
 async function copyShareLink() {
-  await copyText(shareUrl.value, 'share-link')
+  let url = shareUrl.value
+  if (isEmbedded) {
+    // Build a clean standalone URL: preserve o/selector/inject, drop embedded=1
+    const params = new URLSearchParams()
+    const encoded = getHashParam('o')
+    const selector = getHashParam('selector')
+    const inject = getHashParam('inject')
+    if (encoded) params.set('o', encoded)
+    if (selector) params.set('selector', selector)
+    if (inject) params.set('inject', inject)
+    const qs = params.toString()
+    url = window.location.origin + window.location.pathname + '#/customize' + (qs ? '?' + qs : '')
+  }
+  await copyText(url, 'share-link')
   copiedShareLink.value = true
   clearTimeout(resetShareTimer)
   resetShareTimer = setTimeout(() => {
@@ -530,25 +540,8 @@ function handleResetAll() {
   resetAll()
 }
 
-const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your overrides here */\n}'
+const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to see your overrides here.\n   */\n}'
 
-// Warn before in-app navigation (Vue Router)
-onBeforeRouteLeave(() => {
-  if (hasOverrides.value && !window.confirm('You have unsaved token overrides. Leave and lose them?')) {
-    return false
-  }
-})
-
-// Warn before browser refresh / tab close (suppressed in embedded sidebar mode)
-function handleBeforeUnload(e: BeforeUnloadEvent) {
-  if (!hasOverrides.value) return
-  e.preventDefault()
-  e.returnValue = ''
-}
-if (!isEmbedded) {
-  onMounted(() => window.addEventListener('beforeunload', handleBeforeUnload))
-  onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload))
-}
 </script>
 
 <style lang="scss" scoped>
@@ -866,25 +859,6 @@ if (!isEmbedded) {
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
-.embed-share-btn {
-  margin-left: auto;
-  background: $tb-accent;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 4px 10px;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.12s, background 0.15s;
-  flex-shrink: 0;
-
-  &:hover { opacity: 0.85; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-  &--copied { background: $tb-success; }
-}
 
 .embed-selector-label {
   font-size: 11px;
@@ -938,7 +912,7 @@ if (!isEmbedded) {
 .embed-tip-body {
   display: none;
   position: absolute;
-  bottom: calc(100% + 6px);
+  top: calc(100% + 6px);
   right: 0;
   width: 240px;
   background: $tb-text;
@@ -954,10 +928,10 @@ if (!isEmbedded) {
   &::after {
     content: '';
     position: absolute;
-    top: 100%;
+    bottom: 100%;
     right: 4px;
     border: 5px solid transparent;
-    border-top-color: $tb-text;
+    border-bottom-color: $tb-text;
   }
 
   code {
@@ -983,6 +957,7 @@ if (!isEmbedded) {
 // ─── Share panel ──────────────────────────────────────────────────────────────
 .cust-share-panel {
   background: $tb-surface;
+  border-top: 1px solid $tb-border;
   border-bottom: 1px solid $tb-border;
   padding: 12px 16px;
 }
@@ -1145,18 +1120,28 @@ if (!isEmbedded) {
   color: $tb-text-muted;
 }
 
-.cust-copy-icon {
+
+.cust-output-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cust-output-btn {
   background: none;
   border: 1px solid $tb-border;
   border-radius: 3px;
   color: $tb-text-dim;
   cursor: pointer;
-  font-size: 12px;
-  padding: 1px 6px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 7px;
+  white-space: nowrap;
   line-height: 1.5;
-  transition: color 0.1s, border-color 0.1s;
+  transition: color 0.1s, border-color 0.1s, background 0.1s;
 
-  &:hover { color: $tb-accent; border-color: $tb-accent; }
+  &:hover { color: $tb-accent; border-color: $tb-accent; background: $tb-accent-subtle; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 

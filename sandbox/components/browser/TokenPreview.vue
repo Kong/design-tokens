@@ -7,7 +7,6 @@
       />
     </template>
 
-    <!-- Space: bar scaled to px value; 96px = KUI_SPACE_150 (current max) -->
     <template v-else-if="token.category === 'space'">
       <div class="preview-bar-wrap">
         <div

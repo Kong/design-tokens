@@ -56,7 +56,6 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
 
   const previewUrl = ref('')
   const loadedUrl = ref('')
-  const connectedOrigin = ref<string | null>(null)
   const status = ref<ConnectionStatus>('idle')
   /** Current simulated viewport width; 0 = not yet measured (set by CustPreviewPanel). */
   const viewportWidth = ref(0)
@@ -155,7 +154,6 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     if (!previewUrl.value) return
     window.open(previewUrl.value, 'kui-preview-target')
     loadedUrl.value = previewUrl.value
-    connectedOrigin.value = null
     status.value = 'idle'
   }
 
@@ -192,7 +190,6 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     mode,
     previewUrl,
     loadedUrl,
-    connectedOrigin,
     status,
     viewportWidth,
     viewportHeight,

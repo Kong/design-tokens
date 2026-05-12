@@ -231,10 +231,9 @@ export function useTokenCustomizer() {
    * Clears when the new value is empty or matches the original default.
    */
   function setOverride(cssVar: string, value: string, defaultValue: string) {
-    const trimmed = value.trim()
-    // Normalise hex to uppercase so #fff and #FFF are treated as the same value
-    const normalized = /^#[0-9a-f]{3,8}$/i.test(trimmed) ? trimmed.toUpperCase() : trimmed
-    if (!normalized || normalized === defaultValue) {
+    const normalizeVal = (v: string) => /^#[0-9a-f]{3,8}$/i.test(v.trim()) ? v.trim().toUpperCase() : v.trim()
+    const normalized = normalizeVal(value)
+    if (!normalized || normalized === normalizeVal(defaultValue)) {
       delete overrides[cssVar]
     } else {
       overrides[cssVar] = normalized

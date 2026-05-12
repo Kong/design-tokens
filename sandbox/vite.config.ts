@@ -26,7 +26,6 @@ export default defineConfig({
   css: {
     devSourcemap: true,
   },
-  // If deploying to GitHub pages, enable this line
   base: process.env.BUILD_SANDBOX ? '/design-tokens/' : '/',
   build: {
     minify: true,
