@@ -860,6 +860,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
 // Aside: share + output
 .cust-aside {
+  border-top: 1px solid $tb-border;
   display: flex;
   flex-direction: column;
   scrollbar-gutter: stable;
