@@ -78,7 +78,7 @@ export interface CustGroup {
 /** Shape returned by `customPropsGroup` — the user-defined custom CSS properties group. */
 export interface CustomPropsGroup {
   /** Filtered entries matching the current search query. */
-  entries: Array<{ cssVar: string; value: string }>
+  entries: Array<{ cssVar: string, value: string }>
   /** Total number of custom properties (unfiltered). */
   totalCount: number
 }
