@@ -72,9 +72,18 @@
       </svg>
       {{ copied ? '✓ Link copied!' : 'Copy share link' }}
     </button>
+    <button
+      v-if="stateCode"
+      class="cust-share-code-btn"
+      :class="{ 'cust-share-code-btn--copied': copiedCode }"
+      title="Copy the portable state code — paste it into Import on any hostname"
+      @click="emit('copyCode')"
+    >
+      {{ copiedCode ? '✓ Code copied!' : '⎘ Copy state code' }}
+    </button>
     <p class="cust-share-hint">
       Your token overrides are encoded directly in the URL. Bookmark or paste the link
-      anywhere. Opening it later restores your exact customizations.
+      anywhere — or use "Copy state code" to transfer your customizations to a different site.
     </p>
   </div>
 </template>
@@ -85,11 +94,17 @@ defineProps<{
   overrideCount: number
   /** Whether the share link was just copied (shows confirmation for 1.5s). */
   copied: boolean
+  /** The bare encoded state code (`o=` value); when non-empty the "Copy state code" button is shown. */
+  stateCode: string
+  /** Whether the state code was just copied (shows confirmation for 1.5s). */
+  copiedCode: boolean
 }>()
 
 const emit = defineEmits<{
-  /** Emitted when the user clicks the copy button. */
+  /** Emitted when the user clicks Copy share link. */
   copy: []
+  /** Emitted when the user clicks Copy state code. */
+  copyCode: []
 }>()
 </script>
 
@@ -147,6 +162,30 @@ const emit = defineEmits<{
   &:hover { opacity: 0.85; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
   &--copied { background: $tb-success; }
+}
+
+.cust-share-code-btn {
+  width: 100%;
+  margin-top: 6px;
+  background: $tb-surface-2;
+  color: $tb-text-dim;
+  border: 1px solid $tb-border-active;
+  border-radius: 5px;
+  padding: 6px 16px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  white-space: nowrap;
+
+  &:hover { background: $tb-border; color: $tb-text; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+  &--copied { background: $tb-success; color: #fff; border-color: $tb-success; }
 }
 
 .cust-share-hint {

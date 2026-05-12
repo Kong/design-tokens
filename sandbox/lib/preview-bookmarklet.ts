@@ -36,7 +36,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
       if(e.data.type==='kui-token-override'){
         var el=document.getElementById(STYLE_ID);
         if(el)el.textContent=e.data.css||'';
-        if(e.data.src)try{sessionStorage.setItem(STORAGE_KEY,e.data.src);}catch(x){}
+        if(e.data.src)try{localStorage.setItem(STORAGE_KEY,e.data.src);}catch(x){}
         // First postMessage confirms the sidebar loaded — remove the loading overlay
         var ov=document.getElementById(OVERLAY_ID);if(ov)ov.remove();
       }
@@ -62,7 +62,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
 
   // Restore URL from last session for this hostname, else use the baked-in default
   var src='__CUSTOMIZER_URL__';
-  try{var saved=sessionStorage.getItem(STORAGE_KEY);if(saved)src=saved;}catch(x){}
+  try{var saved=localStorage.getItem(STORAGE_KEY);if(saved)src=saved;}catch(x){}
 
   // Inject animation keyframes for the loading spinner
   var spinStyle=document.createElement('style');
