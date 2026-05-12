@@ -10,6 +10,35 @@ import { getHashParam, setHashParams } from '../lib/hashRouteQuery'
 const overrides = reactive<Record<string, string>>({})
 
 /**
+ * Module-level reactive map of arbitrary CSS custom property overrides.
+ * Keys are full CSS var names (e.g. `--kui-button-color-background-primary`).
+ * Kept separate from `overrides` because these are user-defined, not from the token set.
+ */
+const customProps = reactive<Record<string, string>>({})
+
+/**
+ * Sets or updates a custom CSS property value.
+ * Removes the entry if `value` is empty.
+ * @param cssVar - Full CSS variable name (e.g. `--my-custom-var`).
+ * @param value - The new value, or empty string to remove.
+ */
+export function setCustomProp(cssVar: string, value: string) {
+  if (!value.trim()) {
+    delete customProps[cssVar]
+  } else {
+    customProps[cssVar] = value.trim()
+  }
+}
+
+/**
+ * Removes a custom CSS property.
+ * @param cssVar - Full CSS variable name to remove.
+ */
+export function removeCustomProp(cssVar: string) {
+  delete customProps[cssVar]
+}
+
+/**
  * Builds a complete `:root { ... }` CSS block from all token entries,
  * substituting any overridden values. Used for the "full export" feature.
  * @param entries - The full list of token entries to render.
@@ -45,6 +74,17 @@ export interface CustGroup {
   /** How many entries in this group have active overrides */
   overrideCount: number
 }
+
+/** Shape returned by `customPropsGroup` — the user-defined custom CSS properties group. */
+export interface CustomPropsGroup {
+  /** Filtered entries matching the current search query. */
+  entries: Array<{ cssVar: string; value: string }>
+  /** Total number of custom properties (unfiltered). */
+  totalCount: number
+}
+
+/** Sentinel key used in the `collapsed` map for the custom properties group. */
+export const CUSTOM_GROUP_KEY = '__custom'
 
 /** Known CSS variable names in the current token set, for filtering stale share-link overrides. */
 const KNOWN_CSS_VARS = new Set(ALL_ENTRIES.map((e) => e.cssVar))
@@ -132,8 +172,12 @@ function fromBase64Url(s: string): Uint8Array {
 export async function encodeOverrides(map: Record<string, string>): Promise<string> {
   const entries = Object.entries(map)
   if (!entries.length) return ''
-  // Strip the common '--kui-' prefix to reduce payload size
-  const compact = entries.map(([cssVar, val]) => [cssVar.slice(6), val])
+  // Known KUI tokens: strip '--kui-' prefix to reduce payload size.
+  // Custom props (including those starting with '--kui-' that aren't in the known set): keep full name.
+  const compact = entries.map(([cssVar, val]) => [
+    (cssVar.startsWith('--kui-') && KNOWN_CSS_VARS.has(cssVar)) ? cssVar.slice(6) : cssVar,
+    val,
+  ])
   const json = JSON.stringify(compact)
   const raw = new TextEncoder().encode(json)
   try {
@@ -148,13 +192,21 @@ export async function encodeOverrides(map: Record<string, string>): Promise<stri
   return toBase64Url(raw)
 }
 
+/** Decoded result from `decodeOverrides`. */
+interface DecodedOverrides {
+  /** KUI token overrides keyed by full CSS var name (e.g. `--kui-color-background`). */
+  overrides: Record<string, string>
+  /** Arbitrary custom property overrides keyed by full CSS var name. */
+  customProps: Record<string, string>
+}
+
 /**
  * Decodes a share-link string produced by `encodeOverrides`.
  * Handles both `c1:` (compressed) and legacy uncompressed formats.
- * Returns an empty object on any parse or decompression failure.
- * Entries whose CSS var is not in the current token set are silently ignored.
+ * Returns empty maps on any parse or decompression failure.
+ * Unknown KUI token names are silently ignored; custom props (starting with `--`) are kept as-is.
  */
-async function decodeOverrides(encoded: string): Promise<Record<string, string>> {
+async function decodeOverrides(encoded: string): Promise<DecodedOverrides> {
   try {
     let json: string
     if (encoded.startsWith('c1:')) {
@@ -165,19 +217,25 @@ async function decodeOverrides(encoded: string): Promise<Record<string, string>>
       json = new TextDecoder().decode(fromBase64Url(encoded))
     }
     const parsed = JSON.parse(json)
-    if (!Array.isArray(parsed)) return {}
+    if (!Array.isArray(parsed)) return { overrides: {}, customProps: {} }
     const result: Record<string, string> = {}
+    const custom: Record<string, string> = {}
     for (const item of parsed) {
       if (!Array.isArray(item) || item.length !== 2) continue
       const [name, val] = item
       if (typeof name !== 'string' || typeof val !== 'string') continue
-      const cssVar = `--kui-${name}`
-      if (!KNOWN_CSS_VARS.has(cssVar)) continue
-      result[cssVar] = val
+      if (name.startsWith('--')) {
+        // Full custom prop name preserved as-is
+        custom[name] = val
+      } else {
+        const cssVar = `--kui-${name}`
+        if (!KNOWN_CSS_VARS.has(cssVar)) continue
+        result[cssVar] = val
+      }
     }
-    return result
+    return { overrides: result, customProps: custom }
   } catch {
-    return {}
+    return { overrides: {}, customProps: {} }
   }
 }
 
@@ -196,19 +254,6 @@ export function useTokenCustomizer() {
   function toggleGroup(cat: string) {
     collapsed[cat] = !collapsed[cat]
   }
-
-  /** Collapses every visible group at once. */
-  function collapseAll() {
-    for (const g of visibleGroups.value) collapsed[g.category] = true
-  }
-
-  /** Expands every visible group at once. */
-  function expandAll() {
-    for (const g of visibleGroups.value) collapsed[g.category] = false
-  }
-
-  /** `true` when every visible group is currently collapsed. */
-  const allCollapsed = computed(() => visibleGroups.value.every((g) => !!collapsed[g.category]))
 
   /**
    * All category groups filtered by the editor search query and/or "only modified" toggle,
@@ -231,6 +276,49 @@ export function useTokenCustomizer() {
   })
 
   /**
+   * The custom properties group, filtered by the current search query.
+   * Returns `null` when nothing should be shown (search miss or showOnlyModified with no entries).
+   * All custom props are always "modified" (user-defined), so they satisfy showOnlyModified.
+   */
+  const customPropsGroup = computed((): CustomPropsGroup | null => {
+    const q = filterQuery.value.toLowerCase().trim()
+    const allEntries = Object.entries(customProps).map(([cssVar, value]) => ({ cssVar, value }))
+
+    if (showOnlyModified.value && allEntries.length === 0) return null
+
+    const filtered = q
+      ? allEntries.filter(({ cssVar }) => normalize(cssVar).includes(normalize(q)))
+      : allEntries
+
+    // When searching and nothing matches, hide the group
+    if (q && filtered.length === 0) return null
+
+    return { entries: filtered, totalCount: allEntries.length }
+  })
+
+  /** Collapses every visible group at once, including the custom props group. */
+  function collapseAll() {
+    for (const g of visibleGroups.value) collapsed[g.category] = true
+    if (customPropsGroup.value) collapsed[CUSTOM_GROUP_KEY] = true
+  }
+
+  /** Expands every visible group at once, including the custom props group. */
+  function expandAll() {
+    for (const g of visibleGroups.value) collapsed[g.category] = false
+    if (customPropsGroup.value) collapsed[CUSTOM_GROUP_KEY] = false
+  }
+
+  /** `true` when every visible group (including the custom props group) is currently collapsed. */
+  const allCollapsed = computed(() => {
+    const groups = visibleGroups.value
+    const customGroup = customPropsGroup.value
+    if (!groups.length && !customGroup) return false
+    const standardCollapsed = groups.every((g) => !!collapsed[g.category])
+    const customCollapsed = !customGroup || !!collapsed[CUSTOM_GROUP_KEY]
+    return standardCollapsed && customCollapsed
+  })
+
+  /**
    * Sets or clears a single token override.
    * Clears when the new value is empty or matches the original default.
    */
@@ -244,32 +332,41 @@ export function useTokenCustomizer() {
     }
   }
 
-  /** Clears all active overrides, restoring every token to its default value. */
+  /** Clears all active overrides and custom properties. */
   function resetAll() {
     for (const key in overrides) delete overrides[key]
+    for (const key in customProps) delete customProps[key]
   }
 
-  /** Number of tokens currently overridden. */
-  const overrideCount = computed(() => Object.keys(overrides).length)
+  /** Number of tokens and custom properties currently overridden. */
+  const overrideCount = computed(() => Object.keys(overrides).length + Object.keys(customProps).length)
 
-  /** `true` when at least one token has been overridden. */
+  /** `true` when at least one token or custom property has been overridden. */
   const hasOverrides = computed(() => overrideCount.value > 0)
 
   /**
-   * Minimal `:root { ... }` block containing only the changed tokens.
+   * Minimal `:root { ... }` block containing only the changed tokens and custom properties.
    * Suitable for dropping into a site's existing CSS without replacing defaults.
    */
   const overridesCss = computed(() => {
-    if (!hasOverrides.value) return ''
-    const lines = Object.entries(overrides).map(([k, v]) => `  ${k}: ${v};`)
+    const lines = [
+      ...Object.entries(overrides).map(([k, v]) => `  ${k}: ${v};`),
+      ...Object.entries(customProps).map(([k, v]) => `  ${k}: ${v};`),
+    ]
+    if (!lines.length) return ''
     return `:root {\n${lines.join('\n')}\n}`
   })
 
   /**
-   * Complete `:root { ... }` block with all tokens, overrides applied.
+   * Complete `:root { ... }` block with all tokens, overrides applied, and custom properties appended.
    * Suitable as a standalone stylesheet for sites that don't already load KUI tokens.
    */
-  const fullExportCss = computed(() => buildCss(ALL_ENTRIES, overrides))
+  const fullExportCss = computed(() => {
+    const base = buildCss(ALL_ENTRIES, overrides)
+    const extraLines = Object.entries(customProps).map(([k, v]) => `  ${k}: ${v};`)
+    if (!extraLines.length) return base
+    return base + `\n\n/* Custom properties */\n:root {\n${extraLines.join('\n')}\n}`
+  })
 
   /**
    * Reactive share URL — updates asynchronously as overrides change.
@@ -279,9 +376,9 @@ export function useTokenCustomizer() {
 
   // deep: true required — reactive plain objects don't trigger on property add/delete otherwise.
   watch(
-    overrides,
+    [overrides, customProps],
     async () => {
-      const encoded = await encodeOverrides(overrides)
+      const encoded = await encodeOverrides({ ...overrides, ...customProps })
       // setHashParams preserves other hash query params (e.g. ?url=, ?selector=) managed by CustPreviewPanel.
       shareUrl.value = setHashParams({ o: encoded || null })
     },
@@ -296,17 +393,20 @@ export function useTokenCustomizer() {
     const encoded = getHashParam('o')
     if (!encoded) return
     const decoded = await decodeOverrides(encoded)
-    for (const [cssVar, value] of Object.entries(decoded)) {
+    for (const [cssVar, value] of Object.entries(decoded.overrides)) {
       overrides[cssVar] = value
+    }
+    for (const [cssVar, value] of Object.entries(decoded.customProps)) {
+      customProps[cssVar] = value
     }
   })
 
   /**
    * Injects live override values into a `<style id="tb-live-overrides">` tag
-   * so any element that uses `--kui-*` vars updates immediately.
+   * so any element that uses CSS custom properties updates immediately.
    */
   watch(
-    overrides,
+    [overrides, customProps],
     () => {
       let el = document.getElementById('tb-live-overrides') as HTMLStyleElement | null
       if (!el) {
@@ -314,9 +414,10 @@ export function useTokenCustomizer() {
         el.id = 'tb-live-overrides'
         document.head.appendChild(el)
       }
-      const rules = Object.entries(overrides)
-        .map(([k, v]) => `  ${k}: ${v};`)
-        .join('\n')
+      const rules = [
+        ...Object.entries(overrides).map(([k, v]) => `  ${k}: ${v};`),
+        ...Object.entries(customProps).map(([k, v]) => `  ${k}: ${v};`),
+      ].join('\n')
       el.textContent = rules ? `:root {\n${rules}\n}` : ''
     },
     { deep: true },
@@ -324,6 +425,7 @@ export function useTokenCustomizer() {
 
   return {
     overrides,
+    customProps,
     overrideCount,
     hasOverrides,
     filterQuery,
@@ -331,6 +433,7 @@ export function useTokenCustomizer() {
     collapsed,
     allCollapsed,
     visibleGroups,
+    customPropsGroup,
     toggleGroup,
     collapseAll,
     expandAll,

@@ -280,8 +280,15 @@
             @toggle="toggleGroup"
           />
 
+          <CustCustomPropsGroup
+            v-if="customPropsGroup"
+            :group="customPropsGroup"
+            :is-collapsed="!!collapsed[CUSTOM_GROUP_KEY]"
+            @toggle="collapsed[CUSTOM_GROUP_KEY] = !collapsed[CUSTOM_GROUP_KEY]"
+          />
+
           <div
-            v-if="visibleGroups.length === 0"
+            v-if="visibleGroups.length === 0 && !customPropsGroup"
             class="cust-empty"
           >
             No tokens match "{{ localFilter }}"
@@ -324,13 +331,14 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { useTokenCustomizer, encodeOverrides } from '@/composables/useTokenCustomizer'
+import { useTokenCustomizer, encodeOverrides, CUSTOM_GROUP_KEY } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
 import { applySelector } from '@/lib/cssUtils'
 import CustTokenGroup from './CustTokenGroup.vue'
+import CustCustomPropsGroup from './CustCustomPropsGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
 import CustSharePanel from './CustSharePanel.vue'
 import CustOutputPanel from './CustOutputPanel.vue'
@@ -376,6 +384,7 @@ const editorOpen = ref(true)
 
 const {
   overrides,
+  customProps,
   overrideCount,
   hasOverrides,
   filterQuery,
@@ -383,6 +392,7 @@ const {
   collapsed,
   allCollapsed,
   visibleGroups,
+  customPropsGroup,
   toggleGroup,
   collapseAll,
   expandAll,
@@ -398,7 +408,7 @@ const {
 // async `encodeOverrides` hasn't settled before we read `window.location.href`).
 async function postEmbeddedCss() {
   await nextTick()
-  const encoded = isEmbedded ? await encodeOverrides(overrides) : ''
+  const encoded = isEmbedded ? await encodeOverrides({ ...overrides, ...customProps }) : ''
   const sel = embeddedSelector.value.trim()
   const src = setHashParams({
     o: encoded || null,
