@@ -240,6 +240,72 @@ async function decodeOverrides(encoded: string): Promise<DecodedOverrides> {
 }
 
 /**
+ * Applies overrides from a share URL or bare state code, replacing the current session.
+ * Accepts a full share URL (extracts `?o=`), a hash fragment, or a bare encoded string.
+ * Returns `true` when at least one valid override was decoded.
+ * @param raw - Share URL, hash fragment, or bare encoded `o=` value.
+ */
+export async function importFromCode(raw: string): Promise<boolean> {
+  const trimmed = raw.trim()
+  if (!trimmed) return false
+
+  let encoded = trimmed
+  // Try extracting `o=` from a URL or query string
+  const oParam = (() => {
+    try {
+      const url = new URL(trimmed)
+      const qi = url.hash.indexOf('?')
+      if (qi >= 0) return new URLSearchParams(url.hash.slice(qi + 1)).get('o')
+    } catch { /* not a full URL */ }
+    const qi = trimmed.indexOf('?')
+    if (qi >= 0) return new URLSearchParams(trimmed.slice(qi + 1)).get('o')
+    return null
+  })()
+
+  if (oParam !== null) encoded = oParam
+  if (!encoded) return false
+
+  const decoded = await decodeOverrides(encoded)
+  const hasAny = Object.keys(decoded.overrides).length > 0 || Object.keys(decoded.customProps).length > 0
+  if (!hasAny) return false
+
+  for (const key in overrides) delete overrides[key]
+  for (const key in customProps) delete customProps[key]
+  Object.assign(overrides, decoded.overrides)
+  Object.assign(customProps, decoded.customProps)
+  return true
+}
+
+/**
+ * Applies overrides parsed from raw CSS text (e.g. a downloaded `:root { ... }` block).
+ * Recognizes any `--var-name: value` declarations regardless of selector.
+ * Known KUI tokens land in `overrides`; everything else lands in `customProps`.
+ * Replaces the current session entirely.
+ * Returns `true` when at least one declaration was found.
+ * @param css - Raw CSS text to parse.
+ */
+export function importFromCss(css: string): boolean {
+  const found: Record<string, string> = {}
+  for (const m of css.matchAll(/(--[\w-]+)\s*:\s*([^;{}]+)/g)) {
+    const varName = m[1].trim()
+    const value = m[2].trim()
+    if (varName && value) found[varName] = value
+  }
+  if (!Object.keys(found).length) return false
+
+  for (const key in overrides) delete overrides[key]
+  for (const key in customProps) delete customProps[key]
+  for (const [cssVar, value] of Object.entries(found)) {
+    if (KNOWN_CSS_VARS.has(cssVar)) {
+      overrides[cssVar] = value
+    } else {
+      customProps[cssVar] = value
+    }
+  }
+  return true
+}
+
+/**
  * Composable for the token customizer page.
  * Manages per-token value overrides, editor filter/collapse state, CSS export strings,
  * and injects live overrides into the document so preview elements update in real time.

@@ -311,11 +311,16 @@
 
       <!-- Right: share link + override CSS output -->
       <aside class="cust-aside">
+        <CustImportPanel v-if="isEmbedded" />
         <CustSharePanel
           :copied="copiedShareLink"
+          :copied-code="copiedStateCode"
           :override-count="overrideCount"
+          :state-code="stateCode"
           @copy="copyShareLink"
+          @copy-code="copyStateCode"
         />
+        <CustImportPanel v-if="!isEmbedded" />
         <CustOutputPanel
           :copied="copiedOverrides"
           :css="displayCss"
@@ -342,6 +347,7 @@ import CustCustomPropsGroup from './CustCustomPropsGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
 import CustSharePanel from './CustSharePanel.vue'
 import CustOutputPanel from './CustOutputPanel.vue'
+import CustImportPanel from './CustImportPanel.vue'
 
 /** True when the customizer is loaded as an embedded sidebar by the bookmarklet. */
 const isEmbedded = getHashParam('embedded') === '1'
@@ -451,10 +457,23 @@ watch(localFilter, (val) => {
   }, 300)
 })
 
+/** The bare encoded state code — the `o=` value from the current share URL. */
+const stateCode = computed(() => {
+  const url = shareUrl.value
+  const hashIdx = url.indexOf('#')
+  if (hashIdx < 0) return ''
+  const hash = url.slice(hashIdx)
+  const qi = hash.indexOf('?')
+  if (qi < 0) return ''
+  return new URLSearchParams(hash.slice(qi + 1)).get('o') ?? ''
+})
+
 const copiedOverrides = ref(false)
 const copiedShareLink = ref(false)
+const copiedStateCode = ref(false)
 let resetOverridesTimer: ReturnType<typeof setTimeout>
 let resetShareTimer: ReturnType<typeof setTimeout>
+let resetStateCodeTimer: ReturnType<typeof setTimeout>
 
 /** Copies the displayed CSS to the clipboard and shows a 1.5s confirmation state. */
 async function copyOverrides() {
@@ -487,6 +506,18 @@ async function copyShareLink() {
   clearTimeout(resetShareTimer)
   resetShareTimer = setTimeout(() => {
     copiedShareLink.value = false
+  }, 1500)
+}
+
+/** Copies just the encoded state code for cross-hostname import via the Import panel. */
+async function copyStateCode() {
+  const code = stateCode.value
+  if (!code) return
+  await copyText(code, 'state-code')
+  copiedStateCode.value = true
+  clearTimeout(resetStateCodeTimer)
+  resetStateCodeTimer = setTimeout(() => {
+    copiedStateCode.value = false
   }, 1500)
 }
 
