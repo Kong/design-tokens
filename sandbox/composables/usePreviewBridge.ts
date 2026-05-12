@@ -76,6 +76,11 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
       })
       .filter((p) => !isNaN(p.width))
       .sort((a, b) => a.width - b.width)
+      .map((p) => PRESET_HEIGHTS[p.label] === undefined
+        // Desktop-class presets (no height) use width=0, meaning "fill available width"
+        ? { ...p, width: 0 }
+        : p,
+      )
 
     return [{ label: 'phone', width: 390, height: 844 }, ...tokenPresets]
   })

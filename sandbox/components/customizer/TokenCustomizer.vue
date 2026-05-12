@@ -279,7 +279,7 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { useTokenCustomizer } from '@/composables/useTokenCustomizer'
+import { useTokenCustomizer, encodeOverrides } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
@@ -348,21 +348,22 @@ const {
   shareUrl,
 } = useTokenCustomizer()
 
-// useTokenCustomizer's overrides watcher writes `?o=` asynchronously; without nextTick
-// the first postEmbeddedCss call reads a stale href that's missing the override param.
+// Encode overrides and write all URL params atomically so `src` in the postMessage
+// always reflects the current state (avoids the race where the overrides watcher's
+// async `encodeOverrides` hasn't settled before we read `window.location.href`).
 async function postEmbeddedCss() {
   await nextTick()
-  if (isEmbedded) {
-    setHashParams({
-      selector: (embeddedSelector.value.trim() && embeddedSelector.value.trim() !== ':root')
-        ? embeddedSelector.value.trim() : null,
-      inject: embeddedInjectAll.value ? 'all' : null,
-    })
-  }
+  const encoded = isEmbedded ? await encodeOverrides(overrides) : ''
+  const sel = embeddedSelector.value.trim()
+  const src = setHashParams({
+    o: encoded || null,
+    selector: (sel && sel !== ':root') ? sel : null,
+    inject: embeddedInjectAll.value ? 'all' : null,
+  })
   window.parent.postMessage({
     type: 'kui-token-override',
     css: embeddedEffectiveCss.value,
-    src: window.location.href,
+    src,
   }, '*')
 }
 

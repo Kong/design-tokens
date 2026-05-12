@@ -127,7 +127,7 @@ function fromBase64Url(s: string): Uint8Array {
  *
  * Returns an empty string when there are no overrides.
  */
-async function encodeOverrides(map: Record<string, string>): Promise<string> {
+export async function encodeOverrides(map: Record<string, string>): Promise<string> {
   const entries = Object.entries(map)
   if (!entries.length) return ''
   // Strip the common '--kui-' prefix to reduce payload size
