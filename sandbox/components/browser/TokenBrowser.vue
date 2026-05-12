@@ -381,7 +381,7 @@ function handleCopy(key: string, text: string) {
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-// ─── Root ────────────────────────────────────────────────────────────────────
+// Root
 .token-browser {
   min-height: 100vh;
   background: $tb-bg;
@@ -389,7 +389,7 @@ function handleCopy(key: string, text: string) {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-// ─── Header ──────────────────────────────────────────────────────────────────
+// Header
 .browser-header {
   position: sticky;
   top: 0;
@@ -565,7 +565,7 @@ function handleCopy(key: string, text: string) {
   }
 }
 
-// ─── Category tabs ────────────────────────────────────────────────────────────
+// Category tabs─
 .category-tabs-wrap {
   position: sticky;
   top: var(--header-h, 57px);
@@ -642,7 +642,7 @@ function handleCopy(key: string, text: string) {
   }
 }
 
-// ─── Token sections ───────────────────────────────────────────────────────────
+// Token sections─
 .token-section {
   padding: 16px 20px;
   border-bottom: 1px solid $tb-border;
@@ -701,7 +701,7 @@ function handleCopy(key: string, text: string) {
   text-transform: none;
 }
 
-// ─── Token grid ───────────────────────────────────────────────────────────────
+// Token grid─
 .token-grid {
   padding: 20px;
   display: grid;
@@ -721,7 +721,7 @@ function handleCopy(key: string, text: string) {
   .token-section & { padding: 0; }
 }
 
-// ─── Global search results ────────────────────────────────────────────────────
+// Global search results─
 .search-results {
   padding: 20px;
 }

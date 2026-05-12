@@ -49,7 +49,7 @@ export interface CustGroup {
 /** Known CSS variable names in the current token set, for filtering stale share-link overrides. */
 const KNOWN_CSS_VARS = new Set(ALL_ENTRIES.map((e) => e.cssVar))
 
-// ─── Share-link encoding/decoding ─────────────────────────────────────────────
+// Share-link encoding/decoding
 
 /**
  * Compresses a byte array using the browser-native DeflateRaw algorithm.
@@ -126,6 +126,8 @@ function fromBase64Url(s: string): Uint8Array {
  * is unavailable (e.g. older browsers, Node.js environments).
  *
  * Returns an empty string when there are no overrides.
+ * @param map - The override map to encode.
+ * @returns A URL-safe encoded string, or empty string if the map is empty.
  */
 export async function encodeOverrides(map: Record<string, string>): Promise<string> {
   const entries = Object.entries(map)

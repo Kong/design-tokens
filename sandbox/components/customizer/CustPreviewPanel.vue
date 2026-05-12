@@ -1,6 +1,6 @@
 <template>
   <div class="preview-panel">
-    <!-- ─── URL bar (iframe-proxy / dev only) ───────────────────────────── -->
+    <!-- URL bar (iframe-proxy / dev only) -->
     <div
       v-if="bridge.mode === 'iframe-proxy'"
       class="preview-url-bar"
@@ -55,7 +55,7 @@
       </button>
     </div>
 
-    <!-- ─── Viewport controls (iframe-proxy / dev only) ────────────────── -->
+    <!-- Viewport controls (iframe-proxy / dev only) -->
     <div
       v-if="bridge.mode === 'iframe-proxy'"
       class="preview-controls"
@@ -74,7 +74,7 @@
       </div>
     </div>
 
-    <!-- ─── Inject settings ───────────────────────────────────────────── -->
+    <!-- Inject settings -->
     <div class="inject-settings">
       <!-- Mode toggle: overrides only (default) vs. all tokens -->
       <div class="inject-mode-group">
@@ -133,7 +133,7 @@
       >All {{ allTokensCount }} tokens injected</span>
     </div>
 
-    <!-- ─── Mode A: iframe preview (dev only) ─────────────────────────── -->
+    <!-- Mode A: iframe preview (dev only) -->
     <template v-if="bridge.mode === 'iframe-proxy'">
       <!-- Persistent container measured by ResizeObserver for "full width" shortcut -->
       <div
@@ -239,7 +239,7 @@
       </div>
     </template>
 
-    <!-- ─── Mode B: bookmarklet sidebar (hosted) ────────────────────────── -->
+    <!-- Mode B: bookmarklet sidebar (hosted) -->
     <template v-else>
       <div class="bookmarklet-card">
         <p class="bookmarklet-heading">
@@ -411,7 +411,7 @@ function handleLoad() {
   background: $tb-bg;
 }
 
-// ─── URL bar ──────────────────────────────────────────────────────────────────
+// URL bar────
 .preview-url-bar {
   display: flex;
   align-items: center;
@@ -477,7 +477,7 @@ function handleLoad() {
   flex-shrink: 0;
 }
 
-// ─── Viewport controls ────────────────────────────────────────────────────────
+// Viewport controls────
 .preview-controls {
   display: flex;
   align-items: center;
@@ -513,7 +513,7 @@ function handleLoad() {
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
-// ─── Inject settings ─────────────────────────────────────────────────────────
+// Inject settings───
 .inject-settings {
   display: flex;
   align-items: center;
@@ -655,7 +655,7 @@ function handleLoad() {
   white-space: nowrap;
 }
 
-// ─── Iframe frame area ────────────────────────────────────────────────────────
+// Iframe frame area────
 .preview-frame-outer {
   flex: 1;
   overflow: auto;
@@ -708,7 +708,7 @@ function handleLoad() {
   width: 100%;
 }
 
-// ─── Empty state ──────────────────────────────────────────────────────────────
+// Empty state────
 .preview-empty {
   flex: 1;
   display: flex;
@@ -730,7 +730,7 @@ function handleLoad() {
   opacity: 0.7;
 }
 
-// ─── Status bar ───────────────────────────────────────────────────────────────
+// Status bar────
 .preview-status {
   display: flex;
   align-items: center;
@@ -757,7 +757,7 @@ function handleLoad() {
 .status-label { color: $tb-text-dim; font-weight: 500; }
 .status-note  { color: $tb-text-muted; margin-left: auto; }
 
-// ─── Bookmarklet setup card ────────────────────────────────────────────────────
+// Bookmarklet setup card─────
 .bookmarklet-card {
   margin: 16px 12px;
   padding: 16px;

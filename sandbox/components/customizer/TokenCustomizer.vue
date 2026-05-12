@@ -469,7 +469,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-// ─── Header ───────────────────────────────────────────────────────────────────
+// Header────
 .cust-header {
   flex-shrink: 0;
   z-index: 20;
@@ -557,7 +557,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   }
 }
 
-// ─── Layout ───────────────────────────────────────────────────────────────────
+// Layout────
 .cust-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -594,7 +594,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   }
 }
 
-// ─── Preview column ───────────────────────────────────────────────────────────
+// Preview column────
 .cust-preview-column {
   display: none;
   flex-direction: column;
@@ -602,7 +602,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   overflow: hidden; // preview panel manages its own scroll
 }
 
-// ─── Editor panel ─────────────────────────────────────────────────────────────
+// Editor panel────
 .cust-editor {
   border-right: 1px solid $tb-border;
   display: flex;
@@ -729,7 +729,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   font-size: 14px;
 }
 
-// ─── Embedded toolbar (share + inject settings) ───────────────────────────────
+// Embedded toolbar (share + inject settings)────
 .embed-toolbar {
   background: $tb-surface;
   border-bottom: 2px solid $tb-border;
@@ -858,7 +858,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 .embed-tip-wrap:hover .embed-tip-body,
 .embed-tip-icon:focus-visible + .embed-tip-body { display: block; }
 
-// ─── Aside: share + output (+ live preview in hosted mode) ───────────────────
+// Aside: share + output
 .cust-aside {
   display: flex;
   flex-direction: column;
@@ -866,7 +866,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   // Height and overflow-y: auto come from the .cust-layout > * rule above
 }
 
-// ─── Collapse bar ─────────────────────────────────────────────────────────────
+// Collapse bar
 .cust-collapse-bar {
   padding: 5px 16px;
   border-bottom: 1px solid $tb-border;

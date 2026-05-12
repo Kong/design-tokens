@@ -85,7 +85,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     return [{ label: 'phone', width: 390, height: 844 }, ...tokenPresets]
   })
 
-  // ─── Path A helpers (iframe-proxy) ────────────────────────────────────────
+  // Path A helpers (iframe-proxy)
 
   /** Builds the Vite same-origin proxy URL for a given target. */
   function proxyUrl(target: string): string {
@@ -148,7 +148,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     }
   }
 
-  // ─── Path B helpers (bookmarklet-popup) ────────────────────────────────────
+  // Path B helpers (bookmarklet-popup)
 
   /**
    * Opens the target URL in a named tab so repeat clicks re-focus rather than open new tabs.
@@ -164,7 +164,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
   /**
    * Message handler for the iframe-proxy channel only.
    * `kui-frame-ready` is fired by the proxied page script on every page load.
-   * Bookmarklet-popup connection is handled exclusively via BroadcastChannel.
+   * Bookmarklet-popup mode handles its own injection via the sidebar iframe.
    */
   function onMessage(e: MessageEvent) {
     if (e.data?.type !== 'kui-frame-ready') return
