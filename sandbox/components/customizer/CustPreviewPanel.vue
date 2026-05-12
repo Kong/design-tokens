@@ -47,7 +47,7 @@
           Loading…
         </template>
         <template v-else>
-          {{ isDevMode ? 'Load' : 'Open →' }}
+          {{ bridge.mode === 'iframe-proxy' ? 'Load' : 'Open →' }}
         </template>
       </button>
     </div>
@@ -88,12 +88,14 @@
       <div class="inject-mode-group">
         <button
           :class="['inject-mode-btn', { 'inject-mode-btn--active': !injectAllTokens }]"
+          title="Inject only your changed values; the site uses its own defaults for everything else"
           @click="injectAllTokens = false"
         >
           Overrides only
         </button>
         <button
           :class="['inject-mode-btn', { 'inject-mode-btn--active': injectAllTokens }]"
+          title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
           @click="injectAllTokens = true"
         >
           All tokens
@@ -140,7 +142,7 @@
     </div>
 
     <!-- ─── Mode A: iframe preview (dev only) ─────────────────────────── -->
-    <template v-if="isDevMode">
+    <template v-if="bridge.mode === 'iframe-proxy'">
       <!-- Persistent container measured by ResizeObserver for "full width" shortcut -->
       <div
         ref="frameOuterEl"
@@ -177,21 +179,55 @@
         >
           <svg
             fill="none"
-            height="32"
-            opacity="0.3"
+            height="52"
             stroke="currentColor"
-            stroke-width="1"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.25"
             viewBox="0 0 24 24"
-            width="32"
+            width="52"
           >
+            <!-- browser frame -->
             <rect
-              height="16"
+              height="18"
               rx="2"
-              width="20"
-              x="2"
-              y="4"
+              width="22"
+              x="1"
+              y="3"
             />
-            <path d="M8 20h8M12 16v4" />
+            <!-- toolbar divider -->
+            <line
+              x1="1"
+              x2="23"
+              y1="8"
+              y2="8"
+            />
+            <!-- url bar placeholder -->
+            <rect
+              fill="currentColor"
+              fill-opacity="0.2"
+              height="2.5"
+              rx="1.25"
+              stroke="none"
+              width="10"
+              x="7"
+              y="4.75"
+            />
+            <!-- back/forward button dots -->
+            <circle
+              cx="3.5"
+              cy="5.5"
+              fill="currentColor"
+              r="0.7"
+              stroke="none"
+            />
+            <circle
+              cx="5.5"
+              cy="5.5"
+              fill="currentColor"
+              r="0.7"
+              stroke="none"
+            />
           </svg>
           <p>Enter a URL above to preview your tokens live</p>
           <p class="preview-empty-note">
@@ -211,52 +247,31 @@
       </div>
     </template>
 
-    <!-- ─── Mode B: bookmarklet + popup (hosted) ───────────────────────── -->
+    <!-- ─── Mode B: bookmarklet sidebar (hosted) ────────────────────────── -->
     <template v-else>
-      <!-- Connected badge -->
-      <div
-        v-if="bridge.status.value === 'connected'"
-        class="connected-badge"
-      >
-        <span class="status-dot status-dot--connected" />
-        Connected to <strong>{{ bridge.connectedOrigin.value }}</strong>
-        <span class="auth-note">Your session applies — auth'd pages work</span>
-      </div>
-
-      <!-- Setup card (shown until connected) -->
-      <div
-        v-else
-        class="bookmarklet-card"
-      >
+      <div class="bookmarklet-card">
         <p class="bookmarklet-heading">
           One-time setup
         </p>
         <!-- Drag-to-bookmark link — @click.prevent stops in-page navigation -->
         <a
           class="bookmarklet-link"
-          :href="BOOKMARKLET_HREF"
+          :href="bookmarkletHref"
           @click.prevent
         >
           🔖 Drag to bookmarks bar
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
-          <li>Click <strong>Open →</strong> to launch your target URL</li>
-          <li>In that tab, click the bookmarklet — done!</li>
+          <li>Navigate to your target page (use <strong>Open →</strong> above)</li>
+          <li>Click the bookmarklet — a token editor sidebar opens on that page</li>
         </ol>
         <p class="bookmarklet-note">
-          Token overrides are sent over
-          <code>postMessage</code> — no changes to your app required.
+          The sidebar injects a customizer directly on the target page.
+          Token overrides apply live via <code>postMessage</code> — no app changes needed.
+          Your browser session is preserved, so auth'd pages work as-is.
         </p>
       </div>
-
-      <!-- Viewport note for popup mode -->
-      <p
-        v-if="bridge.status.value === 'connected'"
-        class="popup-vp-note"
-      >
-        Viewport resize is best-effort — some browsers restrict popup resizing.
-      </p>
     </template>
   </div>
 </template>
@@ -265,7 +280,8 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
-import { BOOKMARKLET_HREF } from '@/lib/preview-bookmarklet'
+import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
+import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
 
 const props = defineProps<{
   /** Minimal `:root { … }` block containing only changed tokens. */
@@ -278,7 +294,7 @@ const props = defineProps<{
  * Whether to inject all tokens or only the overridden ones (default).
  * Persisted to / restored from the `?inject=all` URL param.
  */
-const injectAllTokens = ref(new URLSearchParams(window.location.search).get('inject') === 'all')
+const injectAllTokens = ref(getHashParam('inject') === 'all')
 
 /**
  * CSS selector to use in place of `:root`.
@@ -286,7 +302,7 @@ const injectAllTokens = ref(new URLSearchParams(window.location.search).get('inj
  * Persisted to / restored from the `?selector=` URL param.
  * Example: `[data-portal-theme="ocean"]`
  */
-const customSelector = ref(new URLSearchParams(window.location.search).get('selector') ?? '')
+const customSelector = ref(getHashParam('selector') ?? '')
 
 /** Total token count derived from the full export CSS line count (for the badge). */
 const allTokensCount = computed(() => {
@@ -317,19 +333,23 @@ const effectiveCss = computed(() =>
 )
 
 const bridge = usePreviewBridge(effectiveCss)
-const isDevMode = import.meta.env.DEV
+/**
+ * Bookmarklet href computed at runtime so `__CUSTOMIZER_URL__` resolves to the actual
+ * deployment origin (works for both localhost dev and GitHub Pages).
+ */
+const bookmarkletHref = (() => {
+  const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+})()
 
 /** Writes `selector`, `url`, and `inject` params to the address bar, removing them at defaults. */
 function syncUrlParams() {
-  const u = new URL(window.location.href)
   const sel = customSelector.value.trim()
-  if (sel && sel !== ':root') u.searchParams.set('selector', sel)
-  else u.searchParams.delete('selector')
-  if (bridge.loadedUrl.value) u.searchParams.set('url', bridge.loadedUrl.value)
-  else u.searchParams.delete('url')
-  if (injectAllTokens.value) u.searchParams.set('inject', 'all')
-  else u.searchParams.delete('inject')
-  history.replaceState(null, '', u.toString())
+  setHashParams({
+    selector: (sel && sel !== ':root') ? sel : null,
+    url: bridge.loadedUrl.value || null,
+    inject: injectAllTokens.value ? 'all' : null,
+  })
 }
 
 watch(customSelector, syncUrlParams)
@@ -347,10 +367,10 @@ let hasSetInitialWidth = false
 onMounted(() => {
   // Restore preview URL from the ?url= param and auto-load it in dev (iframe proxy) mode.
   // In hosted (bookmarklet) mode we only pre-fill the input — the popup requires a user gesture.
-  const savedUrl = new URLSearchParams(window.location.search).get('url')
+  const savedUrl = getHashParam('url')
   if (savedUrl) {
     bridge.previewUrl.value = savedUrl
-    if (isDevMode) bridge.loadProxyUrl()
+    if (bridge.mode === 'iframe-proxy') bridge.loadProxyUrl()
   }
 
   if (!frameOuterEl.value) return
@@ -376,13 +396,6 @@ function setIframeRef(el: Element | ComponentPublicInstance | null) {
   bridge.iframeEl.value = el as HTMLIFrameElement | null
 }
 
-// Resize popup when viewportWidth changes (best-effort — browsers may block this)
-watch(bridge.viewportWidth, (w) => {
-  if (!isDevMode && bridge.popupWin.value) {
-    const h = bridge.viewportHeight.value ?? Math.round(window.screen.height * 0.85)
-    bridge.popupWin.value.resizeTo(w, h)
-  }
-})
 
 const statusLabel = computed(() => {
   switch (bridge.status.value) {
@@ -395,7 +408,7 @@ const statusLabel = computed(() => {
 
 /** Dispatches to the correct load strategy based on the current preview mode. */
 function handleLoad() {
-  if (isDevMode) {
+  if (bridge.mode === 'iframe-proxy') {
     bridge.loadProxyUrl()
   } else {
     bridge.openPopup()
@@ -793,26 +806,6 @@ function handleLoad() {
 .status-label { color: $tb-text-dim; font-weight: 500; }
 .status-note  { color: $tb-text-muted; margin-left: auto; }
 
-// ─── Connected badge (hosted mode) ────────────────────────────────────────────
-.connected-badge {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
-  background: rgba(5, 150, 105, 0.07);
-  border-bottom: 1px solid rgba(5, 150, 105, 0.2);
-  font-size: 12px;
-  color: $tb-text-dim;
-
-  strong { color: $tb-text; }
-}
-
-.auth-note {
-  font-size: 11px;
-  color: $tb-text-muted;
-  margin-left: auto;
-}
-
 // ─── Bookmarklet setup card ────────────────────────────────────────────────────
 .bookmarklet-card {
   margin: 16px 12px;
@@ -874,10 +867,4 @@ function handleLoad() {
   }
 }
 
-.popup-vp-note {
-  font-size: 11px;
-  color: $tb-text-muted;
-  padding: 8px 12px;
-  margin: 0;
-}
 </style>

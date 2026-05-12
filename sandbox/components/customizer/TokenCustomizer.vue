@@ -7,6 +7,7 @@
     >
       <div class="cust-header-left">
         <router-link
+          v-if="!isEmbedded"
           class="back-link"
           to="/"
         >
@@ -38,14 +39,27 @@
         >
           {{ copiedOverrides ? '✓ Copied' : 'Copy CSS' }}
         </button>
+        <!-- Close button: only shown when running as an embedded sidebar on the target page -->
+        <button
+          v-if="isEmbedded"
+          aria-label="Close sidebar"
+          class="cust-btn cust-btn--close"
+          title="Close sidebar"
+          @click="closeEmbedded"
+        >
+          ✕
+        </button>
       </div>
     </header>
 
-    <div :class="['cust-layout', isDevMode && 'cust-layout--with-preview', isDevMode && !editorOpen && 'cust-layout--editor-collapsed']">
+    <div :class="['cust-layout', !isEmbedded && 'cust-layout--with-preview', !editorOpen && 'cust-layout--editor-collapsed']">
       <!-- Left: collapsible token editor panel (slideout) -->
       <div :class="['cust-editor', { 'cust-editor--collapsed': !editorOpen }]">
-        <!-- Collapse toggle strip — always visible even when panel is closed -->
-        <div class="editor-toggle-strip">
+        <!-- Collapse toggle strip — hidden in embedded sidebar mode -->
+        <div
+          v-if="!isEmbedded"
+          class="editor-toggle-strip"
+        >
           <button
             :aria-expanded="editorOpen"
             :aria-label="editorOpen ? 'Collapse token editor' : 'Expand token editor'"
@@ -81,6 +95,69 @@
           v-show="editorOpen"
           class="cust-editor-content"
         >
+          <!-- Embedded toolbar: share link + inject settings, shown above the token list -->
+          <template v-if="isEmbedded">
+            <div class="embed-toolbar">
+              <!-- Row 1: inject mode toggle + share link button -->
+              <div class="embed-toolbar-row">
+                <div class="embed-mode-group">
+                  <button
+                    :class="['embed-mode-btn', { 'embed-mode-btn--active': !embeddedInjectAll }]"
+                    title="Inject only your changed values; the site uses its own defaults for everything else"
+                    @click="embeddedInjectAll = false"
+                  >
+                    Overrides only
+                  </button>
+                  <button
+                    :class="['embed-mode-btn', { 'embed-mode-btn--active': embeddedInjectAll }]"
+                    title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
+                    @click="embeddedInjectAll = true"
+                  >
+                    All tokens
+                  </button>
+                </div>
+                <button
+                  class="embed-share-btn"
+                  :class="{ 'embed-share-btn--copied': copiedShareLink }"
+                  @click="copyShareLink"
+                >
+                  {{ copiedShareLink ? '✓ Link copied!' : 'Copy share link' }}
+                </button>
+              </div>
+              <!-- Row 2: CSS selector -->
+              <div class="embed-toolbar-row">
+                <label
+                  class="embed-selector-label"
+                  for="embed-selector"
+                >
+                  Selector
+                </label>
+                <input
+                  id="embed-selector"
+                  v-model="embeddedSelector"
+                  class="embed-selector-input"
+                  placeholder=":root"
+                  spellcheck="false"
+                  type="text"
+                >
+                <span class="embed-tip-wrap">
+                  <span
+                    aria-label="About selector"
+                    class="embed-tip-icon"
+                    tabindex="0"
+                  >?</span>
+                  <span
+                    class="embed-tip-body"
+                    role="tooltip"
+                  >
+                    Override which CSS selector receives the token variables. Example:
+                    <br><code>:root[data-portal-color-mode="light"]</code>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </template>
+
           <div class="cust-search-wrap">
             <svg
               aria-hidden="true"
@@ -189,8 +266,11 @@
         </div>
       </div>
 
-      <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet popup) -->
-      <div class="cust-preview-column">
+      <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet sidebar) -->
+      <div
+        v-if="!isEmbedded"
+        class="cust-preview-column"
+      >
         <CustPreviewPanel
           :all-tokens-css="fullExportCss"
           :overrides-css="overridesCss"
@@ -307,16 +387,35 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { onBeforeRouteLeave } from 'vue-router'
 import { useTokenCustomizer } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
+import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
 
-const isDevMode = import.meta.env.DEV
+/** True when the customizer is loaded as an embedded sidebar by the bookmarklet. */
+const isEmbedded = getHashParam('embedded') === '1'
+
+/** Whether to inject all tokens or only overrides. Only active in embedded mode. */
+const embeddedInjectAll = ref(getHashParam('inject') === 'all')
+/** CSS selector to use in place of `:root`. Only active in embedded mode. */
+const embeddedSelector = ref(getHashParam('selector') ?? '')
+
+function applySelector(css: string, sel: string): string {
+  const s = sel.trim()
+  if (!css || !s || s === ':root') return css
+  return css.replace(/^:root\b/m, s)
+}
+
+/** Effective CSS posted to the parent page in embedded mode. */
+const embeddedEffectiveCss = computed(() => {
+  const base = embeddedInjectAll.value ? fullExportCss.value : overridesCss.value
+  return applySelector(base, embeddedSelector.value)
+})
 
 /** Controls whether the token editor panel is expanded (true) or collapsed to a narrow strip. */
 const editorOpen = ref(true)
@@ -339,6 +438,36 @@ const {
   fullExportCss,
   shareUrl,
 } = useTokenCustomizer()
+
+// nextTick ensures all pending Vue watchers (including useTokenCustomizer's `overrides`
+// watcher that writes the `?o=` param) have flushed before we read window.location.href.
+// Without this, the first push after mount sends a src URL that's missing `?o=`.
+async function postEmbeddedCss() {
+  await nextTick()
+  if (isEmbedded) {
+    setHashParams({
+      selector: (embeddedSelector.value.trim() && embeddedSelector.value.trim() !== ':root')
+        ? embeddedSelector.value.trim() : null,
+      inject: embeddedInjectAll.value ? 'all' : null,
+    })
+  }
+  window.parent.postMessage({
+    type: 'kui-token-override',
+    css: embeddedEffectiveCss.value,
+    src: window.location.href,
+  }, '*')
+}
+
+if (isEmbedded) {
+  onMounted(postEmbeddedCss)
+  watch(embeddedEffectiveCss, postEmbeddedCss)
+}
+
+/** Tells the bookmarklet on the target page to remove the sidebar iframe. */
+async function closeEmbedded() {
+  await postEmbeddedCss() // flush latest state to sessionStorage before iframe is removed
+  window.parent.postMessage({ type: 'kui-close' }, '*')
+}
 
 const headerEl = ref<HTMLElement | null>(null)
 useHeaderHeight(headerEl)
@@ -410,14 +539,16 @@ onBeforeRouteLeave(() => {
   }
 })
 
-// Warn before browser refresh / tab close
+// Warn before browser refresh / tab close (suppressed in embedded sidebar mode)
 function handleBeforeUnload(e: BeforeUnloadEvent) {
   if (!hasOverrides.value) return
   e.preventDefault()
   e.returnValue = ''
 }
-onMounted(() => window.addEventListener('beforeunload', handleBeforeUnload))
-onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload))
+if (!isEmbedded) {
+  onMounted(() => window.addEventListener('beforeunload', handleBeforeUnload))
+  onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload))
+}
 </script>
 
 <style lang="scss" scoped>
@@ -509,6 +640,15 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
     background: $tb-surface;
     color: $tb-text-dim;
     border-color: $tb-border-active;
+  }
+
+  &--close {
+    background: $tb-surface;
+    color: $tb-text-muted;
+    border-color: $tb-border-active;
+    padding: 5px 9px;
+
+    &:hover:not(:disabled) { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-color: rgba(239, 68, 68, 0.3); opacity: 1; }
   }
 }
 
@@ -683,6 +823,154 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   color: $tb-text-muted;
   font-size: 14px;
 }
+
+// ─── Embedded toolbar (share + inject settings) ───────────────────────────────
+.embed-toolbar {
+  background: $tb-surface;
+  border-bottom: 2px solid $tb-border;
+}
+
+.embed-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-bottom: 1px solid $tb-border;
+
+  &:last-child { border-bottom: none; }
+}
+
+.embed-mode-group {
+  display: flex;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.embed-mode-btn {
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+
+  &:hover:not(.embed-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+  &--active { background: $tb-accent; color: #fff; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
+}
+
+.embed-share-btn {
+  margin-left: auto;
+  background: $tb-accent;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.12s, background 0.15s;
+  flex-shrink: 0;
+
+  &:hover { opacity: 0.85; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+  &--copied { background: $tb-success; }
+}
+
+.embed-selector-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.embed-selector-input {
+  flex: 1;
+  min-width: 80px;
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-family: $tb-mono;
+  font-size: 11px;
+  color: $tb-text;
+  outline: none;
+
+  &::placeholder { color: $tb-text-muted; }
+  &:focus-visible { border-color: $tb-accent; }
+}
+
+.embed-tip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.embed-tip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  font-size: 10px;
+  font-weight: 700;
+  color: $tb-text-muted;
+  cursor: default;
+  user-select: none;
+
+  &:hover, &:focus-visible { background: $tb-border; color: $tb-text-dim; outline: none; }
+}
+
+.embed-tip-body {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  width: 240px;
+  background: $tb-text;
+  color: $tb-bg;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  line-height: 1.55;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 4px;
+    border: 5px solid transparent;
+    border-top-color: $tb-text;
+  }
+
+  code {
+    display: block;
+    font-family: $tb-mono;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 2px;
+  }
+}
+
+.embed-tip-wrap:hover .embed-tip-body,
+.embed-tip-icon:focus-visible + .embed-tip-body { display: block; }
 
 // ─── Aside: share + output (+ live preview in hosted mode) ───────────────────
 .cust-aside {

@@ -1,6 +1,7 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { ALL_ENTRIES, categoryLabel, normalize } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
+import { getHashParam, setHashParams } from '../lib/hashRouteQuery'
 
 /**
  * Module-level reactive map of CSS variable overrides.
@@ -270,9 +271,8 @@ export function useTokenCustomizer() {
   /**
    * Reactive share URL — updates asynchronously as overrides change.
    * Uses deflate-raw compression so the URL stays short even with many overrides.
-   * Initialized with the plain /customize URL; updated after the first encode.
    */
-  const shareUrl = ref(typeof window !== 'undefined' ? `${window.location.origin}/customize` : '/customize')
+  const shareUrl = ref(typeof window !== 'undefined' ? window.location.href : '/#/customize')
 
   // Keep shareUrl and the address bar query param in sync whenever overrides change.
   // deep: true required — reactive plain objects don't trigger watchers on property add/delete otherwise.
@@ -280,12 +280,8 @@ export function useTokenCustomizer() {
     overrides,
     async () => {
       const encoded = await encodeOverrides(overrides)
-      // Preserve other params (e.g. ?url=, ?selector=) that are managed by CustPreviewPanel.
-      const u = new URL(window.location.href)
-      if (encoded) u.searchParams.set('o', encoded)
-      else u.searchParams.delete('o')
-      shareUrl.value = u.toString()
-      history.replaceState(null, '', u.toString())
+      // setHashParams preserves other hash query params (e.g. ?url=, ?selector=) managed by CustPreviewPanel.
+      shareUrl.value = setHashParams({ o: encoded || null })
     },
     { deep: true },
   )
@@ -295,7 +291,7 @@ export function useTokenCustomizer() {
    * Stale/renamed token vars are silently ignored so share links survive token changes.
    */
   onMounted(async () => {
-    const encoded = new URLSearchParams(window.location.search).get('o')
+    const encoded = getHashParam('o')
     if (!encoded) return
     const decoded = await decodeOverrides(encoded)
     for (const [cssVar, value] of Object.entries(decoded)) {

@@ -59,7 +59,7 @@ Override token values to experiment with themes. Changes apply live via a `<styl
 
 ### Sharing overrides
 
-Click **Copy share link** to copy a URL with your overrides encoded in the hash fragment (e.g. `…/customize#o=W1si…`).
+Click **Copy share link** to copy a URL with your overrides encoded as a query param (e.g. `…/#/customize?o=W1si…`).
 
 - The URL param encodes override values by CSS variable name — share links remain valid even as new tokens are added
 - Opening the link restores exactly the overrides that were active when it was copied

@@ -193,8 +193,8 @@ export function previewProxyPlugin(): Plugin {
   window.parent.postMessage({type:'kui-frame-ready'},'*');
   window.addEventListener('message',function(e){
     if(!e.data||e.data.type!=='kui-inject-css')return;
-    var s=document.getElementById('tb-token-overrides');
-    if(!s){s=document.createElement('style');s.id='tb-token-overrides';(document.head||document.documentElement).appendChild(s);}
+    var s=document.getElementById('kong-design-token-overrides');
+    if(!s){s=document.createElement('style');s.id='kong-design-token-overrides';(document.head||document.documentElement).appendChild(s);}
     s.textContent=e.data.css||'';
   });
 })();</script>`

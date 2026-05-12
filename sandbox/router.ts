@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import HomeView from './pages/HomeView.vue'
 import CustomizerView from './pages/CustomizerView.vue'
@@ -19,8 +19,9 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  // Pass the base URL from the Vite config to ensure the router works correctly when the sandbox is deployed to a subdirectory (e.g. GitHub pages)
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // Hash routing ensures direct navigation and refresh work on GitHub Pages (static hosting)
+  // without a server-side fallback. All routing state lives after the `#`.
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes,
 })
 

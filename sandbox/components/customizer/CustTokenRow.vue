@@ -72,7 +72,7 @@
     <!-- Space always reserved to prevent layout shift when override is added/removed -->
     <button
       class="cust-reset-btn"
-      :style="{ visibility: isOverridden || localValue !== entry.value ? 'visible' : 'hidden' }"
+      :style="{ visibility: isOverridden || localValue !== toUpperHex(entry.value) ? 'visible' : 'hidden' }"
       :title="`Reset to ${entry.value}`"
       @click="handleReset"
     >
