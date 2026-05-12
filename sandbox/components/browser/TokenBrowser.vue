@@ -130,16 +130,45 @@
               <span>{{ categoryLabel(group.category) }}</span>
               <span class="search-section-count">{{ group.entries.length }}</span>
             </div>
-            <div :class="['token-grid', `token-grid--${group.category}`]">
-              <TokenCard
-                v-for="token in group.entries"
-                :key="token.key"
-                :copy-format="copyFormat"
-                :is-copied="copiedKey === token.key"
-                :token="token"
-                @copy="handleCopy"
-              />
-            </div>
+            <!-- Render sub-sections when the category supports them and has multiple in the results -->
+            <template v-if="buildSections(group.entries)">
+              <div
+                v-for="section in buildSections(group.entries)!"
+                :key="section.section"
+                class="token-section"
+              >
+                <div
+                  v-if="section.section !== '__flat__'"
+                  class="token-section-header"
+                >
+                  <span class="token-section-name">{{ section.section }}</span>
+                  <span class="token-section-count">{{ section.entries.length }}</span>
+                </div>
+                <div :class="['token-grid', `token-grid--${group.category}`]">
+                  <TokenCard
+                    v-for="token in section.entries"
+                    :key="token.key"
+                    :copy-format="copyFormat"
+                    :is-copied="copiedKey === token.key"
+                    :token="token"
+                    @copy="handleCopy"
+                  />
+                </div>
+              </div>
+            </template>
+            <!-- Single-section categories: flat grid -->
+            <template v-else>
+              <div :class="['token-grid', `token-grid--${group.category}`]">
+                <TokenCard
+                  v-for="token in group.entries"
+                  :key="token.key"
+                  :copy-format="copyFormat"
+                  :is-copied="copiedKey === token.key"
+                  :token="token"
+                  @copy="handleCopy"
+                />
+              </div>
+            </template>
           </section>
         </template>
       </div>
@@ -277,7 +306,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useTokens, categoryLabel, type TokenCategory } from '@/composables/useTokens'
+import { useTokens, categoryLabel, buildSections, type TokenCategory } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
