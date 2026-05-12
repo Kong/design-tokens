@@ -250,6 +250,8 @@
         class="cust-preview-column"
       >
         <CustPreviewPanel
+          v-model:custom-selector="customSelector"
+          v-model:inject-all-tokens="injectAllTokens"
           :all-tokens-css="fullExportCss"
           :overrides-css="overridesCss"
         />
@@ -291,23 +293,36 @@ import CustOutputPanel from './CustOutputPanel.vue'
 /** True when the customizer is loaded as an embedded sidebar by the bookmarklet. */
 const isEmbedded = getHashParam('embedded') === '1'
 
-/** Whether to inject all tokens or only overrides. Only active in embedded mode. */
-const embeddedInjectAll = ref(getHashParam('inject') === 'all')
-/** CSS selector to use in place of `:root`. Only active in embedded mode. */
-const embeddedSelector = ref(getHashParam('selector') ?? '')
+/**
+ * Whether to inject all tokens or only overrides.
+ * In embedded mode: controls what is posted to the parent page.
+ * In normal mode: controls what the preview panel injects and what the output panel shows.
+ */
+const injectAllTokens = ref(getHashParam('inject') === 'all')
 
-/** Effective CSS posted to the parent page in embedded mode. */
+/**
+ * CSS selector to use in place of `:root` (e.g. `[data-theme="dark"]`).
+ * In embedded mode: scopes the CSS posted to the parent page.
+ * In normal mode: scopes what the preview panel injects and what the output panel shows.
+ */
+const customSelector = ref(getHashParam('selector') ?? '')
+
+// Alias used only in embedded mode for clarity.
+const embeddedInjectAll = injectAllTokens
+const embeddedSelector = customSelector
+
+/** Effective CSS to display/post: applies selector and inject-all choice. */
 const embeddedEffectiveCss = computed(() => {
-  const base = embeddedInjectAll.value ? fullExportCss.value : overridesCss.value
-  return applySelector(base, embeddedSelector.value)
+  const base = injectAllTokens.value ? fullExportCss.value : overridesCss.value
+  return applySelector(base, customSelector.value)
 })
 
 /** CSS shown in the output panel and used by the copy/download actions. */
-const displayCss = computed(() => isEmbedded ? embeddedEffectiveCss.value : overridesCss.value)
+const displayCss = computed(() => embeddedEffectiveCss.value)
 
 /** Label for the output panel reflecting what CSS is displayed. */
 const outputLabel = computed(() => {
-  if (isEmbedded && embeddedInjectAll.value) return 'All tokens CSS'
+  if (injectAllTokens.value) return 'All tokens CSS'
   return displayCss.value ? 'Override patch CSS' : 'No overrides yet'
 })
 
@@ -419,9 +434,9 @@ async function copyShareLink() {
   }, 1500)
 }
 
-/** Triggers a browser download of the full token CSS with all overrides applied. */
+/** Downloads the currently displayed CSS (respects the overrides-only / all-tokens setting and custom selector). */
 function downloadFull() {
-  const blob = new Blob([fullExportCss.value], { type: 'text/css' })
+  const blob = new Blob([displayCss.value], { type: 'text/css' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url

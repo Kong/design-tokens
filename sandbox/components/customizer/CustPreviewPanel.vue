@@ -295,21 +295,29 @@ const props = defineProps<{
   overridesCss: string
   /** Complete `:root { … }` block with all tokens (overrides applied). */
   allTokensCss: string
+  /** Whether to inject all tokens or only overrides. Owned by parent; synced to `?inject=` URL param here. */
+  injectAllTokens: boolean
+  /**
+   * CSS selector to scope token injection (e.g. `[data-theme="dark"]`).
+   * Empty string means `:root`. Owned by parent; synced to `?selector=` URL param here.
+   */
+  customSelector: string
 }>()
 
-/**
- * Whether to inject all tokens or only the overridden ones (default).
- * Persisted to / restored from the `?inject=all` URL param.
- */
-const injectAllTokens = ref(getHashParam('inject') === 'all')
+const emit = defineEmits<{
+  'update:injectAllTokens': [value: boolean]
+  'update:customSelector': [value: string]
+}>()
 
-/**
- * CSS selector to use in place of `:root`.
- * Empty string = use `:root` (the default).
- * Persisted to / restored from the `?selector=` URL param.
- * Example: `[data-portal-theme="ocean"]`
- */
-const customSelector = ref(getHashParam('selector') ?? '')
+// Local writable aliases so template v-model bindings work without prop mutation.
+const injectAllTokens = computed({
+  get: () => props.injectAllTokens,
+  set: (v) => emit('update:injectAllTokens', v),
+})
+const customSelector = computed({
+  get: () => props.customSelector,
+  set: (v) => emit('update:customSelector', v),
+})
 
 /** Total token count derived from the full export CSS line count (for the badge). */
 const allTokensCount = computed(() => {

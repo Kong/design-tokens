@@ -146,9 +146,8 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
   // ─── Path B helpers (bookmarklet-popup) ────────────────────────────────────
 
   /**
-   * Opens the target URL in a named tab so repeat clicks re-focus rather than
-   * open new tabs. Connection is established separately when the user clicks the
-   * bookmarklet on that page, which injects bridge.html as a relay iframe.
+   * Opens the target URL in a named tab so repeat clicks re-focus rather than open new tabs.
+   * Connection is established separately when the user clicks the bookmarklet on that page.
    */
   function openPopup() {
     if (!previewUrl.value) return
