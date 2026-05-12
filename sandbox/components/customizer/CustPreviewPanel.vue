@@ -245,6 +245,14 @@
         <p class="bookmarklet-heading">
           One-time setup
         </p>
+        <div
+          v-if="isLocalhost"
+          class="bookmarklet-localhost-warning"
+        >
+          <strong>Local build detected.</strong> This bookmarklet is baked with
+          <code>{{ currentOrigin }}</code> and will only work on this machine.
+          Deploy to a public URL to get a sharable bookmarklet.
+        </div>
         <!-- Drag-to-bookmark link — @click.prevent stops in-page navigation -->
         <a
           class="bookmarklet-link"
@@ -332,6 +340,10 @@ const bookmarkletHref = (() => {
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
   return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
 })()
+
+/** True when serving from localhost — bookmarklet baked with a local URL won't work on external sites. */
+const isLocalhost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+const currentOrigin = window.location.origin
 
 /** Writes `selector`, `url`, and `inject` params to the address bar, removing them at defaults. */
 function syncUrlParams() {
@@ -764,6 +776,20 @@ function handleLoad() {
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 8px;
+}
+
+.bookmarklet-localhost-warning {
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #92400e;
+  margin-bottom: 12px;
+  line-height: 1.5;
+
+  strong { font-weight: 600; }
+  code { font-family: $tb-mono; background: rgba(0,0,0,0.06); border-radius: 2px; padding: 0 3px; }
 }
 
 .bookmarklet-heading {
