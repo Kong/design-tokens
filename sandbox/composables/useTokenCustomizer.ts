@@ -12,6 +12,8 @@ const overrides = reactive<Record<string, string>>({})
 /**
  * Builds a complete `:root { ... }` CSS block from all token entries,
  * substituting any overridden values. Used for the "full export" feature.
+ * @param entries - The full list of token entries to render.
+ * @param overrideMap - Map of CSS var name to overridden value.
  */
 function buildCss(entries: typeof ALL_ENTRIES, overrideMap: Record<string, string>): string {
   const linesByCat: Record<string, string[]> = {}
@@ -273,8 +275,7 @@ export function useTokenCustomizer() {
    */
   const shareUrl = ref(typeof window !== 'undefined' ? window.location.href : '/#/customize')
 
-  // Keep shareUrl and the address bar query param in sync whenever overrides change.
-  // deep: true required — reactive plain objects don't trigger watchers on property add/delete otherwise.
+  // deep: true required — reactive plain objects don't trigger on property add/delete otherwise.
   watch(
     overrides,
     async () => {

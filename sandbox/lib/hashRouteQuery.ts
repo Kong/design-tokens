@@ -1,6 +1,8 @@
 /**
  * Read a query param from the hash-mode URL (e.g. `/#/customize?o=abc`).
  * In hash routing, `window.location.search` is empty — params live inside the hash.
+ * @param key - The query parameter name to look up.
+ * @returns The decoded value, or `null` if the key is absent or not in a browser context.
  */
 export function getHashParam(key: string): string | null {
   if (typeof window === 'undefined') return null
@@ -11,8 +13,8 @@ export function getHashParam(key: string): string | null {
 
 /**
  * Set/delete query params inside the hash fragment and call `history.replaceState`.
- * Returns the full new URL (origin + pathname + new hash) for use as a share link.
- * Pass `null` as a value to delete that param.
+ * @param updates - Key/value pairs to set; pass `null` as a value to delete that param.
+ * @returns The full new URL (origin + pathname + new hash) for use as a share link.
  */
 export function setHashParams(updates: Record<string, string | null>): string {
   const h = window.location.hash // "#/customize" or "#/customize?old=x"

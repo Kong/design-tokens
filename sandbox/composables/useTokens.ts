@@ -133,7 +133,7 @@ export function buildSections(entries: TokenEntry[]): TokenSection[] | null {
     if (!map.has(s)) map.set(s, [])
     map.get(s)!.push(entry)
   }
-  if (map.size <= 1) return null // single group = no headers needed
+  if (map.size <= 1) return null
   return [...map.entries()].map(([section, sectionEntries]) => ({
     section,
     entries: sectionEntries,

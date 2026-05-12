@@ -37,7 +37,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
         var el=document.getElementById(STYLE_ID);
         if(el)el.textContent=e.data.css||'';
         if(e.data.src)try{sessionStorage.setItem(STORAGE_KEY,e.data.src);}catch(x){}
-        // Remove loading overlay on first successful message from the sidebar
+        // First postMessage confirms the sidebar loaded — remove the loading overlay
         var ov=document.getElementById(OVERLAY_ID);if(ov)ov.remove();
       }
       if(e.data.type==='kui-close'){
@@ -55,7 +55,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     var open=frame.style.display!=='none';
     frame.style.display=open?'none':'block';
     tab.style.right=open?'0':WIDTH;
-    tab.textContent=open?'\\u25C0':'\\u25B6'; // ◀ when hidden (open), ▶ when visible (close)
+    tab.textContent=open?'\\u25C0':'\\u25B6'; // ◀ = click to show; ▶ = click to hide
     var ov=document.getElementById(OVERLAY_ID);if(ov)ov.style.display=open?'none':'flex';
     return;
   }
@@ -118,7 +118,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     var open=frame.style.display!=='none';
     frame.style.display=open?'none':'block';
     tab.style.right=open?'0':WIDTH;
-    tab.textContent=open?'\\u25C0':'\\u25B6'; // ◀ when hidden, ▶ when visible
+    tab.textContent=open?'\\u25C0':'\\u25B6'; // ◀ = click to show; ▶ = click to hide
     var ov=document.getElementById(OVERLAY_ID);if(ov)ov.style.display=open?'none':'flex';
   };
   document.body.appendChild(tab);

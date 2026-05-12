@@ -288,6 +288,7 @@ import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
 import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
 import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
+import { applySelector } from '@/lib/cssUtils'
 
 const props = defineProps<{
   /** Minimal `:root { … }` block containing only changed tokens. */
@@ -315,16 +316,6 @@ const allTokensCount = computed(() => {
   const m = props.allTokensCss.match(/^\s+--/gm)
   return m ? m.length : 0
 })
-
-/**
- * Applies a custom selector to a `:root { … }` CSS block.
- * Returns the original CSS unchanged when the selector is empty or is `:root`.
- */
-function applySelector(css: string, sel: string): string {
-  const s = sel.trim()
-  if (!css || !s || s === ':root') return css
-  return css.replace(/^:root\b/m, s)
-}
 
 /**
  * The CSS actually injected into the iframe.
@@ -403,6 +394,7 @@ function setIframeRef(el: Element | ComponentPublicInstance | null) {
 }
 
 
+/** Human-readable status string shown in the preview toolbar. */
 const statusLabel = computed(() => {
   switch (bridge.status.value) {
     case 'loading': return 'Loading…'

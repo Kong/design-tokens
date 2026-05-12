@@ -255,121 +255,21 @@
         />
       </div>
 
-      <!-- Right: share link + override CSS output. Live preview removed in dev mode
-           since the center iframe already shows the effect of token changes. -->
+      <!-- Right: share link + override CSS output -->
       <aside class="cust-aside">
-        <!-- Share link: always visible, updates live as overrides change -->
-        <div class="cust-share-panel">
-          <div class="cust-share-label">
-            <svg
-              fill="none"
-              height="13"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="13"
-            >
-              <circle
-                cx="18"
-                cy="5"
-                r="3"
-              />
-              <circle
-                cx="6"
-                cy="12"
-                r="3"
-              />
-              <circle
-                cx="18"
-                cy="19"
-                r="3"
-              />
-              <line
-                x1="8.59"
-                x2="15.42"
-                y1="13.51"
-                y2="17.49"
-              />
-              <line
-                x1="15.41"
-                x2="8.59"
-                y1="6.51"
-                y2="10.49"
-              />
-            </svg>
-            <span>Share customized tokens</span>
-            <span
-              v-if="hasOverrides"
-              class="share-badge"
-            >{{ overrideCount }} token{{ overrideCount === 1 ? '' : 's' }}</span>
-          </div>
-          <button
-            class="cust-share-copy-btn"
-            :class="{ 'cust-share-copy-btn--copied': copiedShareLink }"
-            :title="copiedShareLink ? 'Copied!' : 'Copy share link'"
-            @click="copyShareLink"
-          >
-            <svg
-              fill="none"
-              height="13"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2.5"
-              viewBox="0 0 24 24"
-              width="13"
-            >
-              <rect
-                height="13"
-                rx="2"
-                width="13"
-                x="9"
-                y="9"
-              />
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-            </svg>
-            {{ copiedShareLink ? '✓ Link copied!' : 'Copy share link' }}
-          </button>
-          <p class="cust-share-hint">
-            Your token overrides are encoded directly in the URL. Bookmark or paste the link
-            anywhere. Opening it later restores your exact customizations.
-          </p>
-        </div>
-
-        <!-- CSS output: override patch (or all tokens in embedded mode), with copy + download -->
-        <div class="cust-output-panel">
-          <div class="cust-output-header">
-            <span class="cust-output-label">{{ outputLabel }}</span>
-            <div
-              v-if="displayCss"
-              class="cust-output-actions"
-            >
-              <button
-                class="cust-output-btn"
-                title="Download CSS file"
-                @click="downloadFull"
-              >
-                ↓ Download
-              </button>
-              <button
-                class="cust-output-btn"
-                :title="copiedOverrides ? 'Copied!' : 'Copy CSS'"
-                @click="copyOverrides"
-              >
-                {{ copiedOverrides ? '✓ Copied' : '⎘ Copy' }}
-              </button>
-            </div>
-          </div>
-          <pre class="cust-output-code"><code>{{ displayCss || placeholderCss }}</code></pre>
-          <p
-            v-if="displayCss"
-            class="cust-output-hint"
-          >
-            Paste this into your app CSS to override the default tokens.
-          </p>
-        </div>
+        <CustSharePanel
+          :copied="copiedShareLink"
+          :override-count="overrideCount"
+          @copy="copyShareLink"
+        />
+        <CustOutputPanel
+          :copied="copiedOverrides"
+          :css="displayCss"
+          :label="outputLabel"
+          :placeholder="placeholderCss"
+          @copy="copyOverrides"
+          @download="downloadFull"
+        />
       </aside>
     </div>
   </div>
@@ -382,8 +282,11 @@ import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
+import { applySelector } from '@/lib/cssUtils'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
+import CustSharePanel from './CustSharePanel.vue'
+import CustOutputPanel from './CustOutputPanel.vue'
 
 /** True when the customizer is loaded as an embedded sidebar by the bookmarklet. */
 const isEmbedded = getHashParam('embedded') === '1'
@@ -392,12 +295,6 @@ const isEmbedded = getHashParam('embedded') === '1'
 const embeddedInjectAll = ref(getHashParam('inject') === 'all')
 /** CSS selector to use in place of `:root`. Only active in embedded mode. */
 const embeddedSelector = ref(getHashParam('selector') ?? '')
-
-function applySelector(css: string, sel: string): string {
-  const s = sel.trim()
-  if (!css || !s || s === ':root') return css
-  return css.replace(/^:root\b/m, s)
-}
 
 /** Effective CSS posted to the parent page in embedded mode. */
 const embeddedEffectiveCss = computed(() => {
@@ -436,9 +333,8 @@ const {
   shareUrl,
 } = useTokenCustomizer()
 
-// nextTick ensures all pending Vue watchers (including useTokenCustomizer's `overrides`
-// watcher that writes the `?o=` param) have flushed before we read window.location.href.
-// Without this, the first push after mount sends a src URL that's missing `?o=`.
+// useTokenCustomizer's overrides watcher writes `?o=` asynchronously; without nextTick
+// the first postEmbeddedCss call reads a stale href that's missing the override param.
 async function postEmbeddedCss() {
   await nextTick()
   if (isEmbedded) {
@@ -474,7 +370,7 @@ useSearchShortcut(filterInputEl)
 
 const { copyText } = useClipboard()
 
-// Debounced filter: localFilter drives the input display; filterQuery drives the computed list
+// Debounce avoids recomputing visibleGroups on every keystroke
 const localFilter = ref('')
 let filterDebounce: ReturnType<typeof setTimeout>
 watch(localFilter, (val) => {
@@ -954,68 +850,6 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   // Height and overflow-y: auto come from the .cust-layout > * rule above
 }
 
-// ─── Share panel ──────────────────────────────────────────────────────────────
-.cust-share-panel {
-  background: $tb-surface;
-  border-top: 1px solid $tb-border;
-  border-bottom: 1px solid $tb-border;
-  padding: 12px 16px;
-}
-
-.cust-share-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: $tb-text-muted;
-  margin-bottom: 8px;
-
-  svg { flex-shrink: 0; }
-}
-
-.share-badge {
-  background: $tb-accent-subtle;
-  color: $tb-accent;
-  border-radius: 8px;
-  padding: 1px 6px;
-  font-weight: 600;
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-.cust-share-copy-btn {
-  width: 100%;
-  background: $tb-accent;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 16px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  transition: opacity 0.12s, background 0.15s;
-  white-space: nowrap;
-
-  &:hover { opacity: 0.85; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-  &--copied { background: $tb-success; }
-}
-
-.cust-share-hint {
-  font-size: 12px;
-  color: $tb-text-muted;
-  margin: 8px 0 0;
-  line-height: 1.55;
-}
-
 // ─── Collapse bar ─────────────────────────────────────────────────────────────
 .cust-collapse-bar {
   padding: 5px 16px;
@@ -1098,73 +932,4 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   &:focus-visible { outline: 2px solid #ef4444; outline-offset: 2px; }
 }
 
-// ─── Output panel ─────────────────────────────────────────────────────────────
-.cust-output-panel {
-  background: $tb-surface;
-  border-bottom: 1px solid $tb-border;
-}
-
-.cust-output-header {
-  padding: 10px 16px 8px;
-  border-bottom: 1px solid $tb-border;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cust-output-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: $tb-text-muted;
-}
-
-
-.cust-output-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.cust-output-btn {
-  background: none;
-  border: 1px solid $tb-border;
-  border-radius: 3px;
-  color: $tb-text-dim;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 2px 7px;
-  white-space: nowrap;
-  line-height: 1.5;
-  transition: color 0.1s, border-color 0.1s, background 0.1s;
-
-  &:hover { color: $tb-accent; border-color: $tb-accent; background: $tb-accent-subtle; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-}
-
-.cust-output-code {
-  font-family: $tb-mono;
-  font-size: 11px;
-  background: #1e1e2e;
-  color: #cdd6f4;
-  margin: 0;
-  padding: 12px 16px;
-  overflow-x: auto;
-  max-height: 220px;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  white-space: pre;
-  line-height: 1.6;
-}
-
-.cust-output-hint {
-  font-size: 12px;
-  color: $tb-text-muted;
-  margin: 0;
-  padding: 8px 16px;
-  line-height: 1.5;
-}
 </style>

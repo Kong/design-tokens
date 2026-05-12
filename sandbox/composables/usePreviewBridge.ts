@@ -178,7 +178,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     window.removeEventListener('message', onMessage)
   })
 
-  // Re-push whenever overrides change and a target is active (iframe-proxy only)
+  // iframe-proxy only — bookmarklet mode pushes on postMessage receipt in useEmbeddedBridge
   watch(overridesCss, () => {
     if (mode === 'iframe-proxy' && loadedUrl.value) {
       sendCssToFrame()
