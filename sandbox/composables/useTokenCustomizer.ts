@@ -1,6 +1,7 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { ALL_ENTRIES, categoryLabel, normalize } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
+import { getHashParam, setHashParams } from '../lib/hashRouteQuery'
 
 /**
  * Module-level reactive map of CSS variable overrides.
@@ -11,6 +12,8 @@ const overrides = reactive<Record<string, string>>({})
 /**
  * Builds a complete `:root { ... }` CSS block from all token entries,
  * substituting any overridden values. Used for the "full export" feature.
+ * @param entries - The full list of token entries to render.
+ * @param overrideMap - Map of CSS var name to overridden value.
  */
 function buildCss(entries: typeof ALL_ENTRIES, overrideMap: Record<string, string>): string {
   const linesByCat: Record<string, string[]> = {}
@@ -46,7 +49,7 @@ export interface CustGroup {
 /** Known CSS variable names in the current token set, for filtering stale share-link overrides. */
 const KNOWN_CSS_VARS = new Set(ALL_ENTRIES.map((e) => e.cssVar))
 
-// ─── Share-link encoding/decoding ─────────────────────────────────────────────
+// Share-link encoding/decoding
 
 /**
  * Compresses a byte array using the browser-native DeflateRaw algorithm.
@@ -123,8 +126,10 @@ function fromBase64Url(s: string): Uint8Array {
  * is unavailable (e.g. older browsers, Node.js environments).
  *
  * Returns an empty string when there are no overrides.
+ * @param map - The override map to encode.
+ * @returns A URL-safe encoded string, or empty string if the map is empty.
  */
-async function encodeOverrides(map: Record<string, string>): Promise<string> {
+export async function encodeOverrides(map: Record<string, string>): Promise<string> {
   const entries = Object.entries(map)
   if (!entries.length) return ''
   // Strip the common '--kui-' prefix to reduce payload size
@@ -230,10 +235,9 @@ export function useTokenCustomizer() {
    * Clears when the new value is empty or matches the original default.
    */
   function setOverride(cssVar: string, value: string, defaultValue: string) {
-    const trimmed = value.trim()
-    // Normalise hex to uppercase so #fff and #FFF are treated as the same value
-    const normalized = /^#[0-9a-f]{3,8}$/i.test(trimmed) ? trimmed.toUpperCase() : trimmed
-    if (!normalized || normalized === defaultValue) {
+    const normalizeVal = (v: string) => /^#[0-9a-f]{3,8}$/i.test(v.trim()) ? v.trim().toUpperCase() : v.trim()
+    const normalized = normalizeVal(value)
+    if (!normalized || normalized === normalizeVal(defaultValue)) {
       delete overrides[cssVar]
     } else {
       overrides[cssVar] = normalized
@@ -270,22 +274,16 @@ export function useTokenCustomizer() {
   /**
    * Reactive share URL — updates asynchronously as overrides change.
    * Uses deflate-raw compression so the URL stays short even with many overrides.
-   * Initialized with the plain /customize URL; updated after the first encode.
    */
-  const shareUrl = ref(typeof window !== 'undefined' ? `${window.location.origin}/customize` : '/customize')
+  const shareUrl = ref(typeof window !== 'undefined' ? window.location.href : '/#/customize')
 
-  // Keep shareUrl and the address bar query param in sync whenever overrides change.
-  // deep: true required — reactive plain objects don't trigger watchers on property add/delete otherwise.
+  // deep: true required — reactive plain objects don't trigger on property add/delete otherwise.
   watch(
     overrides,
     async () => {
       const encoded = await encodeOverrides(overrides)
-      // Preserve other params (e.g. ?url=, ?selector=) that are managed by CustPreviewPanel.
-      const u = new URL(window.location.href)
-      if (encoded) u.searchParams.set('o', encoded)
-      else u.searchParams.delete('o')
-      shareUrl.value = u.toString()
-      history.replaceState(null, '', u.toString())
+      // setHashParams preserves other hash query params (e.g. ?url=, ?selector=) managed by CustPreviewPanel.
+      shareUrl.value = setHashParams({ o: encoded || null })
     },
     { deep: true },
   )
@@ -295,7 +293,7 @@ export function useTokenCustomizer() {
    * Stale/renamed token vars are silently ignored so share links survive token changes.
    */
   onMounted(async () => {
-    const encoded = new URLSearchParams(window.location.search).get('o')
+    const encoded = getHashParam('o')
     if (!encoded) return
     const decoded = await decodeOverrides(encoded)
     for (const [cssVar, value] of Object.entries(decoded)) {

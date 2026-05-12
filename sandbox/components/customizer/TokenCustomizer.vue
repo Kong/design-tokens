@@ -7,13 +7,14 @@
     >
       <div class="cust-header-left">
         <router-link
+          v-if="!isEmbedded"
           class="back-link"
           to="/"
         >
           ← Browse
         </router-link>
         <h1 class="cust-title">
-          Token Customizer
+          Design Token Customizer
         </h1>
         <span
           v-if="hasOverrides"
@@ -23,29 +24,27 @@
         </span>
       </div>
       <div class="cust-header-right">
-        <!-- "Download full" includes all tokens — useful as a standalone stylesheet -->
+        <!-- Close button: only shown when running as an embedded sidebar on the target page -->
         <button
-          class="cust-btn cust-btn--secondary"
-          @click="downloadFull"
+          v-if="isEmbedded"
+          aria-label="Close sidebar"
+          class="cust-btn cust-btn--close"
+          title="Close sidebar"
+          @click="closeEmbedded"
         >
-          ↓ Download
-        </button>
-        <!-- "Copy patch" copies only overrides — paste into existing app CSS -->
-        <button
-          class="cust-btn"
-          :disabled="!hasOverrides"
-          @click="copyOverrides"
-        >
-          {{ copiedOverrides ? '✓ Copied' : 'Copy CSS' }}
+          ✕
         </button>
       </div>
     </header>
 
-    <div :class="['cust-layout', isDevMode && 'cust-layout--with-preview', isDevMode && !editorOpen && 'cust-layout--editor-collapsed']">
+    <div :class="['cust-layout', !isEmbedded && 'cust-layout--with-preview', !editorOpen && 'cust-layout--editor-collapsed']">
       <!-- Left: collapsible token editor panel (slideout) -->
       <div :class="['cust-editor', { 'cust-editor--collapsed': !editorOpen }]">
-        <!-- Collapse toggle strip — always visible even when panel is closed -->
-        <div class="editor-toggle-strip">
+        <!-- Collapse toggle strip — hidden in embedded sidebar mode -->
+        <div
+          v-if="!isEmbedded"
+          class="editor-toggle-strip"
+        >
           <button
             :aria-expanded="editorOpen"
             :aria-label="editorOpen ? 'Collapse token editor' : 'Expand token editor'"
@@ -81,6 +80,62 @@
           v-show="editorOpen"
           class="cust-editor-content"
         >
+          <!-- Embedded toolbar: share link + inject settings, shown above the token list -->
+          <template v-if="isEmbedded">
+            <div class="embed-toolbar">
+              <!-- Row 1: inject mode toggle -->
+              <div class="embed-toolbar-row">
+                <div class="embed-mode-group">
+                  <button
+                    :class="['embed-mode-btn', { 'embed-mode-btn--active': !embeddedInjectAll }]"
+                    title="Inject only your changed values; the site uses its own defaults for everything else"
+                    @click="embeddedInjectAll = false"
+                  >
+                    Overrides only
+                  </button>
+                  <button
+                    :class="['embed-mode-btn', { 'embed-mode-btn--active': embeddedInjectAll }]"
+                    title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
+                    @click="embeddedInjectAll = true"
+                  >
+                    All tokens
+                  </button>
+                </div>
+              </div>
+              <!-- Row 2: CSS selector -->
+              <div class="embed-toolbar-row">
+                <label
+                  class="embed-selector-label"
+                  for="embed-selector"
+                >
+                  Selector
+                </label>
+                <input
+                  id="embed-selector"
+                  v-model="embeddedSelector"
+                  class="embed-selector-input"
+                  placeholder=":root"
+                  spellcheck="false"
+                  type="text"
+                >
+                <span class="embed-tip-wrap">
+                  <span
+                    aria-label="About selector"
+                    class="embed-tip-icon"
+                    tabindex="0"
+                  >?</span>
+                  <span
+                    class="embed-tip-body"
+                    role="tooltip"
+                  >
+                    Override which CSS selector receives the token variables. Example:
+                    <br><code>:root[data-portal-color-mode="light"]</code>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </template>
+
           <div class="cust-search-wrap">
             <svg
               aria-hidden="true"
@@ -189,134 +244,87 @@
         </div>
       </div>
 
-      <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet popup) -->
-      <div class="cust-preview-column">
+      <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet sidebar) -->
+      <div
+        v-if="!isEmbedded"
+        class="cust-preview-column"
+      >
         <CustPreviewPanel
+          v-model:custom-selector="customSelector"
+          v-model:inject-all-tokens="injectAllTokens"
           :all-tokens-css="fullExportCss"
           :overrides-css="overridesCss"
         />
       </div>
 
-      <!-- Right: share link + override CSS output. Live preview removed in dev mode
-           since the center iframe already shows the effect of token changes. -->
+      <!-- Right: share link + override CSS output -->
       <aside class="cust-aside">
-        <!-- Share link: always visible, updates live as overrides change -->
-        <div class="cust-share-panel">
-          <div class="cust-share-label">
-            <svg
-              fill="none"
-              height="13"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-              width="13"
-            >
-              <circle
-                cx="18"
-                cy="5"
-                r="3"
-              />
-              <circle
-                cx="6"
-                cy="12"
-                r="3"
-              />
-              <circle
-                cx="18"
-                cy="19"
-                r="3"
-              />
-              <line
-                x1="8.59"
-                x2="15.42"
-                y1="13.51"
-                y2="17.49"
-              />
-              <line
-                x1="15.41"
-                x2="8.59"
-                y1="6.51"
-                y2="10.49"
-              />
-            </svg>
-            <span>Share customized tokens</span>
-            <span
-              v-if="hasOverrides"
-              class="share-badge"
-            >{{ overrideCount }} token{{ overrideCount === 1 ? '' : 's' }}</span>
-          </div>
-          <button
-            class="cust-share-copy-btn"
-            :class="{ 'cust-share-copy-btn--copied': copiedShareLink }"
-            :title="copiedShareLink ? 'Copied!' : 'Copy share link'"
-            @click="copyShareLink"
-          >
-            <svg
-              fill="none"
-              height="13"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2.5"
-              viewBox="0 0 24 24"
-              width="13"
-            >
-              <rect
-                height="13"
-                rx="2"
-                width="13"
-                x="9"
-                y="9"
-              />
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-            </svg>
-            {{ copiedShareLink ? '✓ Link copied!' : 'Copy share link' }}
-          </button>
-          <p class="cust-share-hint">
-            Your token overrides are encoded directly in the URL. Bookmark or paste the link
-            anywhere. Opening it later restores your exact customizations.
-          </p>
-        </div>
-
-        <!-- CSS output: shows only the override patch, with inline copy -->
-        <div class="cust-output-panel">
-          <div class="cust-output-header">
-            <span class="cust-output-label">{{ hasOverrides ? 'Override patch CSS' : 'No overrides yet' }}</span>
-            <button
-              v-if="hasOverrides"
-              class="cust-copy-icon"
-              :title="copiedOverrides ? 'Copied!' : 'Copy CSS'"
-              @click="copyOverrides"
-            >
-              {{ copiedOverrides ? '✓' : '⎘' }}
-            </button>
-          </div>
-          <pre class="cust-output-code"><code>{{ hasOverrides ? overridesCss : placeholderCss }}</code></pre>
-          <p
-            v-if="hasOverrides"
-            class="cust-output-hint"
-          >
-            Paste this into your app CSS to override the default tokens.
-          </p>
-        </div>
+        <CustSharePanel
+          :copied="copiedShareLink"
+          :override-count="overrideCount"
+          @copy="copyShareLink"
+        />
+        <CustOutputPanel
+          :copied="copiedOverrides"
+          :css="displayCss"
+          :label="outputLabel"
+          :placeholder="placeholderCss"
+          @copy="copyOverrides"
+          @download="downloadFull"
+        />
       </aside>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from 'vue'
-import { onBeforeRouteLeave } from 'vue-router'
-import { useTokenCustomizer } from '@/composables/useTokenCustomizer'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { useTokenCustomizer, encodeOverrides } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
+import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
+import { applySelector } from '@/lib/cssUtils'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
+import CustSharePanel from './CustSharePanel.vue'
+import CustOutputPanel from './CustOutputPanel.vue'
 
-const isDevMode = import.meta.env.DEV
+/** True when the customizer is loaded as an embedded sidebar by the bookmarklet. */
+const isEmbedded = getHashParam('embedded') === '1'
+
+/**
+ * Whether to inject all tokens or only overrides.
+ * In embedded mode: controls what is posted to the parent page.
+ * In normal mode: controls what the preview panel injects and what the output panel shows.
+ */
+const injectAllTokens = ref(getHashParam('inject') === 'all')
+
+/**
+ * CSS selector to use in place of `:root` (e.g. `[data-theme="dark"]`).
+ * In embedded mode: scopes the CSS posted to the parent page.
+ * In normal mode: scopes what the preview panel injects and what the output panel shows.
+ */
+const customSelector = ref(getHashParam('selector') ?? '')
+
+// Alias used only in embedded mode for clarity.
+const embeddedInjectAll = injectAllTokens
+const embeddedSelector = customSelector
+
+/** Effective CSS to display/post: applies selector and inject-all choice. */
+const embeddedEffectiveCss = computed(() => {
+  const base = injectAllTokens.value ? fullExportCss.value : overridesCss.value
+  return applySelector(base, customSelector.value)
+})
+
+/** CSS shown in the output panel and used by the copy/download actions. */
+const displayCss = computed(() => embeddedEffectiveCss.value)
+
+/** Label for the output panel reflecting what CSS is displayed. */
+const outputLabel = computed(() => {
+  if (injectAllTokens.value) return 'All tokens CSS'
+  return displayCss.value ? 'Override patch CSS' : 'No overrides yet'
+})
 
 /** Controls whether the token editor panel is expanded (true) or collapsed to a narrow strip. */
 const editorOpen = ref(true)
@@ -340,6 +348,36 @@ const {
   shareUrl,
 } = useTokenCustomizer()
 
+// Encode overrides and write all URL params atomically so `src` in the postMessage
+// always reflects the current state (avoids the race where the overrides watcher's
+// async `encodeOverrides` hasn't settled before we read `window.location.href`).
+async function postEmbeddedCss() {
+  await nextTick()
+  const encoded = isEmbedded ? await encodeOverrides(overrides) : ''
+  const sel = embeddedSelector.value.trim()
+  const src = setHashParams({
+    o: encoded || null,
+    selector: (sel && sel !== ':root') ? sel : null,
+    inject: embeddedInjectAll.value ? 'all' : null,
+  })
+  window.parent.postMessage({
+    type: 'kui-token-override',
+    css: embeddedEffectiveCss.value,
+    src,
+  }, '*')
+}
+
+if (isEmbedded) {
+  onMounted(postEmbeddedCss)
+  watch(embeddedEffectiveCss, postEmbeddedCss)
+}
+
+/** Tells the bookmarklet on the target page to remove the sidebar iframe. */
+async function closeEmbedded() {
+  await postEmbeddedCss() // flush latest state to sessionStorage before iframe is removed
+  window.parent.postMessage({ type: 'kui-close' }, '*')
+}
+
 const headerEl = ref<HTMLElement | null>(null)
 useHeaderHeight(headerEl)
 
@@ -348,7 +386,7 @@ useSearchShortcut(filterInputEl)
 
 const { copyText } = useClipboard()
 
-// Debounced filter: localFilter drives the input display; filterQuery drives the computed list
+// Debounce avoids recomputing visibleGroups on every keystroke
 const localFilter = ref('')
 let filterDebounce: ReturnType<typeof setTimeout>
 watch(localFilter, (val) => {
@@ -363,10 +401,10 @@ const copiedShareLink = ref(false)
 let resetOverridesTimer: ReturnType<typeof setTimeout>
 let resetShareTimer: ReturnType<typeof setTimeout>
 
-/** Copies the override-patch CSS to the clipboard and shows a 1.5s confirmation state. */
+/** Copies the displayed CSS to the clipboard and shows a 1.5s confirmation state. */
 async function copyOverrides() {
-  if (!hasOverrides.value) return
-  await copyText(overridesCss.value, 'overrides-patch')
+  if (!displayCss.value) return
+  await copyText(displayCss.value, 'overrides-patch')
   copiedOverrides.value = true
   clearTimeout(resetOverridesTimer)
   resetOverridesTimer = setTimeout(() => {
@@ -374,9 +412,22 @@ async function copyOverrides() {
   }, 1500)
 }
 
-/** Copies the reactive share URL (with encoded overrides) to the clipboard. */
+/** Copies the share URL to the clipboard, always as a non-embedded standalone link. */
 async function copyShareLink() {
-  await copyText(shareUrl.value, 'share-link')
+  let url = shareUrl.value
+  if (isEmbedded) {
+    // Build a clean standalone URL: preserve o/selector/inject, drop embedded=1
+    const params = new URLSearchParams()
+    const encoded = getHashParam('o')
+    const selector = getHashParam('selector')
+    const inject = getHashParam('inject')
+    if (encoded) params.set('o', encoded)
+    if (selector) params.set('selector', selector)
+    if (inject) params.set('inject', inject)
+    const qs = params.toString()
+    url = window.location.origin + window.location.pathname + '#/customize' + (qs ? '?' + qs : '')
+  }
+  await copyText(url, 'share-link')
   copiedShareLink.value = true
   clearTimeout(resetShareTimer)
   resetShareTimer = setTimeout(() => {
@@ -384,9 +435,9 @@ async function copyShareLink() {
   }, 1500)
 }
 
-/** Triggers a browser download of the full token CSS with all overrides applied. */
+/** Downloads the currently displayed CSS (respects the overrides-only / all-tokens setting and custom selector). */
 function downloadFull() {
-  const blob = new Blob([fullExportCss.value], { type: 'text/css' })
+  const blob = new Blob([displayCss.value], { type: 'text/css' })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
@@ -401,23 +452,8 @@ function handleResetAll() {
   resetAll()
 }
 
-const placeholderCss = ':root {\n  /* Edit tokens on the left\n     to see your overrides here */\n}'
+const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to see your overrides here.\n   */\n}'
 
-// Warn before in-app navigation (Vue Router)
-onBeforeRouteLeave(() => {
-  if (hasOverrides.value && !window.confirm('You have unsaved token overrides. Leave and lose them?')) {
-    return false
-  }
-})
-
-// Warn before browser refresh / tab close
-function handleBeforeUnload(e: BeforeUnloadEvent) {
-  if (!hasOverrides.value) return
-  e.preventDefault()
-  e.returnValue = ''
-}
-onMounted(() => window.addEventListener('beforeunload', handleBeforeUnload))
-onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload))
 </script>
 
 <style lang="scss" scoped>
@@ -433,7 +469,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-// ─── Header ───────────────────────────────────────────────────────────────────
+// Header────
 .cust-header {
   flex-shrink: 0;
   z-index: 20;
@@ -510,9 +546,18 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
     color: $tb-text-dim;
     border-color: $tb-border-active;
   }
+
+  &--close {
+    background: $tb-surface;
+    color: $tb-text-muted;
+    border-color: $tb-border-active;
+    padding: 5px 9px;
+
+    &:hover:not(:disabled) { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-color: rgba(239, 68, 68, 0.3); opacity: 1; }
+  }
 }
 
-// ─── Layout ───────────────────────────────────────────────────────────────────
+// Layout────
 .cust-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -549,7 +594,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   }
 }
 
-// ─── Preview column ───────────────────────────────────────────────────────────
+// Preview column────
 .cust-preview-column {
   display: none;
   flex-direction: column;
@@ -557,7 +602,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   overflow: hidden; // preview panel manages its own scroll
 }
 
-// ─── Editor panel ─────────────────────────────────────────────────────────────
+// Editor panel────
 .cust-editor {
   border-right: 1px solid $tb-border;
   display: flex;
@@ -684,7 +729,136 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   font-size: 14px;
 }
 
-// ─── Aside: share + output (+ live preview in hosted mode) ───────────────────
+// Embedded toolbar (share + inject settings)────
+.embed-toolbar {
+  background: $tb-surface;
+  border-bottom: 2px solid $tb-border;
+}
+
+.embed-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-bottom: 1px solid $tb-border;
+
+  &:last-child { border-bottom: none; }
+}
+
+.embed-mode-group {
+  display: flex;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.embed-mode-btn {
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+
+  &:hover:not(.embed-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+  &--active { background: $tb-accent; color: #fff; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
+}
+
+
+.embed-selector-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.embed-selector-input {
+  flex: 1;
+  min-width: 80px;
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-family: $tb-mono;
+  font-size: 11px;
+  color: $tb-text;
+  outline: none;
+
+  &::placeholder { color: $tb-text-muted; }
+  &:focus-visible { border-color: $tb-accent; }
+}
+
+.embed-tip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.embed-tip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  font-size: 10px;
+  font-weight: 700;
+  color: $tb-text-muted;
+  cursor: default;
+  user-select: none;
+
+  &:hover, &:focus-visible { background: $tb-border; color: $tb-text-dim; outline: none; }
+}
+
+.embed-tip-body {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 240px;
+  background: $tb-text;
+  color: $tb-bg;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  line-height: 1.55;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 4px;
+    border: 5px solid transparent;
+    border-bottom-color: $tb-text;
+  }
+
+  code {
+    display: block;
+    font-family: $tb-mono;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 2px;
+  }
+}
+
+.embed-tip-wrap:hover .embed-tip-body,
+.embed-tip-icon:focus-visible + .embed-tip-body { display: block; }
+
+// Aside: share + output
 .cust-aside {
   display: flex;
   flex-direction: column;
@@ -692,68 +866,7 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   // Height and overflow-y: auto come from the .cust-layout > * rule above
 }
 
-// ─── Share panel ──────────────────────────────────────────────────────────────
-.cust-share-panel {
-  background: $tb-surface;
-  border-bottom: 1px solid $tb-border;
-  padding: 12px 16px;
-}
-
-.cust-share-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: $tb-text-muted;
-  margin-bottom: 8px;
-
-  svg { flex-shrink: 0; }
-}
-
-.share-badge {
-  background: $tb-accent-subtle;
-  color: $tb-accent;
-  border-radius: 8px;
-  padding: 1px 6px;
-  font-weight: 600;
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-.cust-share-copy-btn {
-  width: 100%;
-  background: $tb-accent;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 8px 16px;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  transition: opacity 0.12s, background 0.15s;
-  white-space: nowrap;
-
-  &:hover { opacity: 0.85; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-  &--copied { background: $tb-success; }
-}
-
-.cust-share-hint {
-  font-size: 12px;
-  color: $tb-text-muted;
-  margin: 8px 0 0;
-  line-height: 1.55;
-}
-
-// ─── Collapse bar ─────────────────────────────────────────────────────────────
+// Collapse bar
 .cust-collapse-bar {
   padding: 5px 16px;
   border-bottom: 1px solid $tb-border;
@@ -835,63 +948,4 @@ onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload)
   &:focus-visible { outline: 2px solid #ef4444; outline-offset: 2px; }
 }
 
-// ─── Output panel ─────────────────────────────────────────────────────────────
-.cust-output-panel {
-  background: $tb-surface;
-  border-bottom: 1px solid $tb-border;
-}
-
-.cust-output-header {
-  padding: 10px 16px 8px;
-  border-bottom: 1px solid $tb-border;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cust-output-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: $tb-text-muted;
-}
-
-.cust-copy-icon {
-  background: none;
-  border: 1px solid $tb-border;
-  border-radius: 3px;
-  color: $tb-text-dim;
-  cursor: pointer;
-  font-size: 12px;
-  padding: 1px 6px;
-  line-height: 1.5;
-  transition: color 0.1s, border-color 0.1s;
-
-  &:hover { color: $tb-accent; border-color: $tb-accent; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-}
-
-.cust-output-code {
-  font-family: $tb-mono;
-  font-size: 11px;
-  background: #1e1e2e;
-  color: #cdd6f4;
-  margin: 0;
-  padding: 12px 16px;
-  overflow-x: auto;
-  max-height: 220px;
-  overflow-y: auto;
-  scrollbar-gutter: stable;
-  white-space: pre;
-  line-height: 1.6;
-}
-
-.cust-output-hint {
-  font-size: 12px;
-  color: $tb-text-muted;
-  margin: 0;
-  padding: 8px 16px;
-  line-height: 1.5;
-}
 </style>

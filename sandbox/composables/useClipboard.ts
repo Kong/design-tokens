@@ -11,7 +11,9 @@ export function useClipboard() {
 
   /**
    * Copies `text` to the clipboard and marks `key` as copied for 1.5s.
-   * `key` can be any string used to identify which element was copied.
+   * @param text - The string to write to the clipboard.
+   * @param key - Identifier for the copied element; drives the confirmation state.
+   * @returns A promise that resolves once the text is written and the state is updated.
    */
   async function copyText(text: string, key: string = '__default__') {
     try {

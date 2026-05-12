@@ -8,16 +8,16 @@ Interactive browser and customizer for all Kong UI design tokens.
 
 ```bash
 # From the repo root
-pnpm sandbox
+pnpm sandbox          # dev server at http://localhost:5173
+pnpm sandbox:build    # production build into sandbox/dist/
+pnpm sandbox:preview  # serve sandbox/dist/ locally
 ```
-
-Opens at `http://localhost:5173`.
 
 ---
 
 ## Token Browser (`/`)
 
-Browse all 337 design tokens organized into categories:
+Browse all design tokens organized by category (Color, Font, Space, etc.).
 
 ### Copying tokens
 
@@ -33,96 +33,128 @@ Click any token card to copy it in the selected format.
 
 ### Searching
 
-- **Search bar**: type to filter across all tokens and values
+- **Search bar**: filter across all token names and values
 - **Cmd/Ctrl+F**: jumps focus to the search input (overrides browser find)
-- Results are grouped by category with match counts
+- Results are grouped by category with per-group match counts
+
+### Bookmarklet quick-start
+
+A **Kong Design Token Customizer** button on the homepage opens a modal with the bookmarklet drag link and setup instructions. See [Bookmarklet](#bookmarklet) for full details.
 
 ---
 
-## Token Customizer (`/customize`)
+## Token Customizer (`/#/customize`)
 
-Override token values to experiment with themes. Changes apply live via a `<style>` tag injected in the document — no rebuild needed.
+Override token values to experiment with themes. Changes apply live to preview elements on the page — no rebuild needed.
 
 ### Editing tokens
 
 1. Browse or filter the left-hand token list
-2. Click any color swatch to open a native color picker, or type directly into the value input
-3. Modified tokens are highlighted; a count badge in the header tracks how many are overridden
+2. Click any color swatch to open a native color picker, or type a value directly
+3. Modified tokens are highlighted; the header badge tracks how many are overridden
 4. Click **✕** on any row to reset that token, or **Reset all** to clear everything
 
-### Exporting
+### Collapsing groups
 
-| Button | What it does |
-|--------|-------------|
-| **Copy CSS** | Copies a minimal `:root { … }` block with only your changed tokens — paste into your app CSS |
-| **↓ Download** | Downloads a complete CSS file with all 337 tokens, overrides applied — use as a standalone stylesheet |
+- Use the **Collapse all / Expand all** toggle above the token list
+- Click any group header to collapse/expand individually
+- Enable **Only modified** to hide all unmodified tokens
+
+### CSS output panel
+
+The right-hand panel shows the CSS to copy or download:
+
+| State | Label | Contents |
+|-------|-------|----------|
+| No overrides | *No overrides yet* | — placeholder — |
+| Overrides active | **Override patch CSS** | Only changed tokens |
+| "All tokens" enabled | **All tokens CSS** | All 337 tokens (overrides applied) |
+
+Use the **Inject all tokens** toggle (in the preview panel settings) to switch between the two export modes.
+
+**⎘ Copy** copies the displayed CSS to the clipboard.
+**↓ Download** downloads the full-tokens CSS as a `.css` file (always includes all tokens, overrides applied).
+
+### Custom selector
+
+By default the exported CSS uses `:root { … }`. Enter a custom selector (e.g. `[data-theme="dark"]`) in the **Selector** field to scope the output to a different element. The same selector is applied to overrides injected via the bookmarklet.
 
 ### Sharing overrides
 
-Click **Copy share link** to copy a URL with your overrides encoded in the hash fragment (e.g. `…/customize#o=W1si…`).
+Click **Copy share link** in the share panel to copy a URL with your overrides encoded in the hash:
 
-- The URL param encodes override values by CSS variable name — share links remain valid even as new tokens are added
-- Opening the link restores exactly the overrides that were active when it was copied
-- Unknown token names in the hash are silently ignored
+```
+https://kongponents.konghq.com/design-tokens/#/customize?o=W1si…
+```
+
+- Overrides are encoded by CSS variable name — links remain valid as new tokens are added
+- Opening the link restores the exact overrides that were active when it was copied
+- Unknown token names in the hash are silently ignored (forward-compatible)
+- Share links **do not** include `embedded=1` — they always open the full customizer
 
 ---
 
-## Live Preview
+## Bookmarklet
 
-Test your token overrides against a real application. Two modes are available depending on whether you're running locally or using the hosted site.
+The bookmarklet lets you test your token overrides live on any site — including authenticated pages — directly in your browser.
 
-### Mode A — Local dev (iframe proxy)
+### One-time setup
 
-Available when running `pnpm sandbox`.
+1. Open the **Kong Design Token Customizer** modal on the homepage (or navigate to `/#/customize` and find the bookmarklet card in the preview panel)
+2. **Drag the 🔖 link** to your browser's bookmarks bar
 
-1. In the customizer, find the **preview panel** in the center column (visible on screens ≥ 1200px wide)
-2. Paste any URL into the address bar and click **Load**
-3. The page renders inside an iframe via the local dev proxy — your token overrides are injected live as you edit them
+### Per-page usage
 
-**Limitations:**
-- Some sites may fail to load if they use strict referrer policies or heavily depend on cookies/session
+1. Navigate to any page you want to preview (your existing browser session applies — auth works)
+2. Click the bookmarklet in your bookmarks bar
+3. A fixed-position customizer sidebar slides in from the right edge of the page
 
-**How it works:** The Vite dev server proxies the request through Node.js (no browser CORS limits), rewrites the HTML to inject a `<style id="tb-token-overrides">` tag and a `<base>` tag for relative-URL resolution, then strips `Content-Security-Policy` headers so inline styles are allowed. The iframe is same-origin with our app, so the customizer can update the style tag directly.
+The sidebar is the token customizer running in an `iframe` in embedded mode (`?embedded=1`). Token overrides are sent from the iframe to the host page via `window.parent.postMessage` — no same-origin requirement.
 
-### Mode B — Hosted / GitHub Pages (bookmarklet)
+### Persistence across navigation
 
-Available on the hosted site (or any non-dev build).
+The bookmarklet saves the full customizer URL (including your `?o=` overrides) to `sessionStorage` keyed by hostname. If you navigate to another page on the same site, click the bookmarklet again — it restores your exact overrides automatically.
 
-**One-time setup:**
+### Toggling the sidebar
 
-1. Open the customizer's preview panel
-2. Drag the **🔖 Drag to bookmarks bar** link to your browser's bookmarks bar
+Click the **◀ / ▶** tab on the right edge of the page to show or hide the sidebar without losing your overrides.
 
-**Per-session usage:**
+### Sharing from the bookmarklet
 
-1. Paste your target URL in the preview panel and click **Open →** — the page opens in a new window
-2. Navigate to that window and click the bookmarklet in your bookmarks bar
-3. The customizer shows **"Connected to \<origin\>"** and starts sending overrides immediately
-4. Edit any token — changes appear in the target window in real time
+Use **Copy share link** inside the embedded sidebar to copy a clean share URL (no `embedded=1`). Pasting this URL opens the full customizer with your overrides pre-loaded.
 
-**Advantages over the proxy:**
-- Your existing browser session applies — authenticated pages work as-is
-- No proxy needed — tokens are injected via `postMessage`
+---
 
-**How it works:** The bookmarklet injects a `<style>` tag into the target page and registers a `message` event listener. When you edit tokens in the customizer, it sends `{ type: 'kui-token-override', css: '…' }` to the popup window via `postMessage`. The bookmarklet's listener writes the CSS to the injected style tag.
+## Live Preview (dev mode only)
 
-**Viewport controls (both modes):**
+When running `pnpm sandbox`, the center column shows an iframe preview panel.
 
-The row of buttons above the preview shows the actual breakpoint token values from your token set, or you may set to an arbitrary width with the `px` input. This resizes the preview iframe or popup window to help you test responsive styles.
+1. Paste any URL into the address bar and click **Load**
+2. The page renders inside an iframe via the Vite proxy — token overrides are injected live as you edit them
+3. Use the breakpoint preset buttons or the `px` input to resize the preview viewport
+
+**How it works:** The Vite dev server proxies the request server-side (no CORS limits), rewrites the HTML to inject a `<style id="tb-token-overrides">` tag and a `<base>` tag for relative-URL resolution, and strips `Content-Security-Policy` and `X-Frame-Options` headers. The iframe is same-origin with the customizer, so overrides update the style tag directly on every change.
+
+The iframe preview is **not** available on the hosted GitHub Pages build — use the bookmarklet instead.
 
 ---
 
 ## Troubleshooting
 
-**Preview iframe shows a blank page or error**
-- Check the URL is valid and publicly reachable
-- Some sites block embedding with `X-Frame-Options` — the proxy strips this header, but some may still fail
-- Try the bookmarklet method instead (Mode B)
+**Bookmarklet sidebar doesn't appear**
+- Some pages block all injected scripts; try a different page or disable browser extensions that may interfere
 
-**Share link doesn't restore my overrides**
-- Links created before an encoding format change (from index-based to name-based keys) are not backwards-compatible — this was a one-time migration
-- If a token was renamed since the link was created, that override is silently dropped
+**Bookmarklet shows a loading error**
+- Check the site is reachable and your network is connected
+- The error appears after 8 seconds; re-clicking the bookmarklet retries
 
-**Bookmarklet says "Connected" but nothing changes**
-- Make sure you clicked **Open →** first (the customizer needs to hold a window reference before the bookmarklet ping arrives)
-- If you navigated the popup window to a new URL, click the bookmarklet again to re-establish the listener
+**Preview iframe (dev mode) shows blank or error**
+- Some pages may still fail even through the proxy (auth-gated pages, strict CORS on API calls within the page)
+- Use the bookmarklet for pages that require your session
+
+**Share link doesn't restore overrides**
+- Links created with the old index-based encoding (before the name-based migration) are not backward-compatible — this was a one-time change
+- If a token was renamed since the link was created, that override is silently skipped
+
+**Overrides not appearing in the CSS output**
+- Make sure the **Inject all tokens** toggle is set to the mode you want — "Override patch CSS" only shows when at least one token is changed

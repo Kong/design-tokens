@@ -1,6 +1,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 import { ALL_ENTRIES } from './useTokens'
+import { getHashParam } from '../lib/hashRouteQuery'
 
 /**
  * One entry in the breakpoint preset list.
@@ -50,19 +51,17 @@ const PRESET_HEIGHTS: Record<string, number | undefined> = {
 export function usePreviewBridge(overridesCss: Ref<string>) {
   // DEV → iframe proxy; production → bookmarklet popup.
   // ?preview=bookmarklet forces bookmarklet mode on dev for local testing.
-  const forceBookmarklet = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('preview') === 'bookmarklet'
+  const forceBookmarklet = typeof window !== 'undefined' && getHashParam('preview') === 'bookmarklet'
   const mode: PreviewMode = (!import.meta.env.DEV || forceBookmarklet) ? 'bookmarklet-popup' : 'iframe-proxy'
 
   const previewUrl = ref('')
   const loadedUrl = ref('')
-  const connectedOrigin = ref<string | null>(null)
   const status = ref<ConnectionStatus>('idle')
   /** Current simulated viewport width; 0 = not yet measured (set by CustPreviewPanel). */
   const viewportWidth = ref(0)
   /** Simulated viewport height; undefined = fill panel height (desktop default). */
   const viewportHeight = ref<number | undefined>(undefined)
   const iframeEl = ref<HTMLIFrameElement | null>(null)
-  const popupWin = ref<Window | null>(null)
 
   /**
    * Breakpoint presets: "phone" (390 px) prepended before token-derived breakpoints.
@@ -77,11 +76,16 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
       })
       .filter((p) => !isNaN(p.width))
       .sort((a, b) => a.width - b.width)
+      .map((p) => PRESET_HEIGHTS[p.label] === undefined
+        // Desktop-class presets (no height) use width=0, meaning "fill available width"
+        ? { ...p, width: 0 }
+        : p,
+      )
 
     return [{ label: 'phone', width: 390, height: 844 }, ...tokenPresets]
   })
 
-  // ─── Path A helpers (iframe-proxy) ────────────────────────────────────────
+  // Path A helpers (iframe-proxy)
 
   /** Builds the Vite same-origin proxy URL for a given target. */
   function proxyUrl(target: string): string {
@@ -98,7 +102,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
   /**
    * Pushes the current override CSS into the proxied iframe via `postMessage`.
    * The proxied page's injected script listens for `kui-inject-css` and writes it to
-   * the `<style id="tb-token-overrides">` tag. Preferred over direct `contentDocument`
+   * the `<style id="kong-design-token-overrides">` tag. Preferred over direct `contentDocument`
    * access because it works reliably across all navigation events.
    */
   function sendCssToFrame() {
@@ -117,10 +121,10 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     try {
       const doc = iframeEl.value?.contentDocument
       if (!doc) return false
-      let s = doc.getElementById('tb-token-overrides') as HTMLStyleElement | null
+      let s = doc.getElementById('kong-design-token-overrides') as HTMLStyleElement | null
       if (!s) {
         s = doc.createElement('style')
-        s.id = 'tb-token-overrides'
+        s.id = 'kong-design-token-overrides'
         ;(doc.head ?? doc.documentElement).appendChild(s)
       }
       s.textContent = overridesCss.value
@@ -144,72 +148,56 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
     }
   }
 
-  // ─── Path B helpers (bookmarklet-popup) ────────────────────────────────────
+  // Path B helpers (bookmarklet-popup)
 
   /**
-   * Opens the target URL in a named popup window.
-   * After the designer clicks the bookmarklet on that page, `onMessage` establishes
-   * the two-way postMessage channel.
+   * Opens the target URL in a named tab so repeat clicks re-focus rather than open new tabs.
+   * Connection is established separately when the user clicks the bookmarklet on that page.
    */
   function openPopup() {
     if (!previewUrl.value) return
-    // Named window so repeat clicks re-focus rather than open a new tab
-    const win = window.open(previewUrl.value, 'kui-preview-target')
-    popupWin.value = win
-    status.value = 'loading'
-  }
-
-  /** Sends the current override CSS to the popup window via postMessage. */
-  function sendToPopup() {
-    if (!popupWin.value) return
-    popupWin.value.postMessage({ type: 'kui-token-override', css: overridesCss.value }, '*')
+    window.open(previewUrl.value, 'kui-preview-target')
+    loadedUrl.value = previewUrl.value
+    status.value = 'idle'
   }
 
   /**
-   * Central message handler for both proxy-iframe and bookmarklet-popup channels.
-   *
-   * - `kui-frame-ready`: fired by the proxied page script on every page load (including
-   *   after in-frame navigation). Triggers CSS injection via both postMessage and direct
-   *   DOM so overrides survive navigation.
-   * - `kui-preview-ready`: bookmarklet ping — establishes the popup channel.
+   * Message handler for the iframe-proxy channel only.
+   * `kui-frame-ready` is fired by the proxied page script on every page load.
+   * Bookmarklet-popup mode handles its own injection via the sidebar iframe.
    */
   function onMessage(e: MessageEvent) {
-    if (e.data?.type === 'kui-frame-ready') {
-      if (mode !== 'iframe-proxy') return
-      status.value = 'connected'
-      sendCssToFrame()
-      injectIntoIframe() // belt-and-suspenders; error sets status to 'error' if cross-origin
-      return
-    }
-    if (e.data?.type !== 'kui-preview-ready') return
-    popupWin.value = e.source as Window
-    connectedOrigin.value = (e.data.origin as string) ?? null
+    if (e.data?.type !== 'kui-frame-ready') return
+    if (mode !== 'iframe-proxy') return
     status.value = 'connected'
-    sendToPopup()
+    sendCssToFrame()
+    injectIntoIframe()
   }
 
-  onMounted(() => window.addEventListener('message', onMessage))
-  onUnmounted(() => window.removeEventListener('message', onMessage))
+  onMounted(() => {
+    window.addEventListener('message', onMessage)
+  })
 
-  // Re-push whenever overrides change and a target is loaded
+  onUnmounted(() => {
+    window.removeEventListener('message', onMessage)
+  })
+
+  // iframe-proxy only — bookmarklet mode pushes on postMessage receipt in useEmbeddedBridge
   watch(overridesCss, () => {
     if (mode === 'iframe-proxy' && loadedUrl.value) {
       sendCssToFrame()
       injectIntoIframe()
     }
-    if (mode === 'bookmarklet-popup' && popupWin.value) sendToPopup()
   })
 
   return {
     mode,
     previewUrl,
     loadedUrl,
-    connectedOrigin,
     status,
     viewportWidth,
     viewportHeight,
     iframeEl,
-    popupWin,
     breakpointPresets,
     loadProxyUrl,
     openPopup,

@@ -94,11 +94,20 @@
             </button>
           </div>
           <router-link
+            v-if="isDevMode"
             class="nav-link"
             to="/customize"
           >
             Customize →
           </router-link>
+          <button
+            v-else
+            class="nav-link nav-link--btn"
+            type="button"
+            @click="showBookmarkletModal = true"
+          >
+            Customize →
+          </button>
         </div>
       </div>
     </header>
@@ -258,6 +267,10 @@
         </main>
       </template>
     </template>
+    <BookmarkletModal
+      v-model="showBookmarkletModal"
+      :bookmarklet-href="bookmarkletHref"
+    />
   </div>
 </template>
 
@@ -268,8 +281,22 @@ import { useTokens, categoryLabel, type TokenCategory } from '@/composables/useT
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
+import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
 import TokenCard from './TokenCard.vue'
+import BookmarkletModal from './BookmarkletModal.vue'
 import pkg from '../../../package.json'
+
+const isDevMode = import.meta.env.DEV
+
+/** Controls the bookmarklet setup modal (production only). */
+const showBookmarkletModal = ref(false)
+
+/** Bookmarklet href computed at runtime so `__CUSTOMIZER_URL__` resolves to the actual origin. */
+const bookmarkletHref = (() => {
+  if (typeof window === 'undefined') return '#'
+  const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+})()
 
 const appVersion = pkg.version
 
@@ -354,7 +381,7 @@ function handleCopy(key: string, text: string) {
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-// ─── Root ────────────────────────────────────────────────────────────────────
+// Root
 .token-browser {
   min-height: 100vh;
   background: $tb-bg;
@@ -362,7 +389,7 @@ function handleCopy(key: string, text: string) {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-// ─── Header ──────────────────────────────────────────────────────────────────
+// Header
 .browser-header {
   position: sticky;
   top: 0;
@@ -529,9 +556,16 @@ function handleCopy(key: string, text: string) {
 
   &:hover { text-decoration: underline; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 3px; }
+
+  &--btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
 }
 
-// ─── Category tabs ────────────────────────────────────────────────────────────
+// Category tabs─
 .category-tabs-wrap {
   position: sticky;
   top: var(--header-h, 57px);
@@ -608,7 +642,7 @@ function handleCopy(key: string, text: string) {
   }
 }
 
-// ─── Token sections ───────────────────────────────────────────────────────────
+// Token sections─
 .token-section {
   padding: 16px 20px;
   border-bottom: 1px solid $tb-border;
@@ -667,7 +701,7 @@ function handleCopy(key: string, text: string) {
   text-transform: none;
 }
 
-// ─── Token grid ───────────────────────────────────────────────────────────────
+// Token grid─
 .token-grid {
   padding: 20px;
   display: grid;
@@ -687,7 +721,7 @@ function handleCopy(key: string, text: string) {
   .token-section & { padding: 0; }
 }
 
-// ─── Global search results ────────────────────────────────────────────────────
+// Global search results─
 .search-results {
   padding: 20px;
 }
@@ -730,4 +764,5 @@ function handleCopy(key: string, text: string) {
 
   em { font-style: normal; color: $tb-text-dim; }
 }
+
 </style>
