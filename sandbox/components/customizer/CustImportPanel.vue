@@ -81,7 +81,9 @@ function showFeedback(msg: string, type: 'success' | 'error') {
   feedback.value = msg
   feedbackType.value = type
   clearTimeout(feedbackTimer)
-  feedbackTimer = setTimeout(() => { feedback.value = '' }, 3000)
+  feedbackTimer = setTimeout(() => {
+    feedback.value = ''
+  }, 3000)
 }
 
 async function applyFromInput() {
