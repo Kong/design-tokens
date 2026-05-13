@@ -1,0 +1,847 @@
+<template>
+  <div class="preview-panel">
+    <!-- URL bar (iframe-proxy / dev only) -->
+    <div
+      v-if="bridge.mode === 'iframe-proxy'"
+      class="preview-url-bar"
+    >
+      <svg
+        aria-hidden="true"
+        class="url-icon"
+        fill="none"
+        height="13"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="13"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="10"
+        />
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+      </svg>
+      <input
+        v-model="bridge.previewUrl.value"
+        aria-label="Preview URL"
+        class="url-input"
+        placeholder="https://your-app.com"
+        type="url"
+        @keydown.enter="handleLoad"
+      >
+      <button
+        :class="['url-btn', { 'url-btn--loading': bridge.status.value === 'loading' }]"
+        :disabled="!bridge.previewUrl.value || bridge.status.value === 'loading'"
+        @click="handleLoad"
+      >
+        <template v-if="bridge.status.value === 'loading'">
+          <svg
+            class="url-btn-spinner"
+            fill="none"
+            height="12"
+            stroke="currentColor"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            width="12"
+          >
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+          </svg>
+          Loading…
+        </template>
+        <template v-else>
+          {{ bridge.mode === 'iframe-proxy' ? 'Load' : 'Open →' }}
+        </template>
+      </button>
+    </div>
+
+    <!-- Viewport controls (iframe-proxy / dev only) -->
+    <div
+      v-if="bridge.mode === 'iframe-proxy'"
+      class="preview-controls"
+    >
+      <div class="bp-group">
+        <button
+          v-for="preset in bridge.breakpointPresets.value"
+          :key="preset.label"
+          :aria-pressed="bridge.viewportWidth.value === preset.width"
+          :class="['bp-btn', { 'bp-btn--active': bridge.viewportWidth.value === preset.width }]"
+          :title="preset.width === 0 ? 'Full available width' : preset.height ? `${preset.width}×${preset.height}px` : `${preset.width}px`"
+          @click="() => { bridge.viewportWidth.value = preset.width; bridge.viewportHeight.value = preset.height }"
+        >
+          {{ preset.label }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Inject settings -->
+    <div class="inject-settings">
+      <!-- Mode toggle: overrides only (default) vs. all tokens -->
+      <div class="inject-mode-group">
+        <button
+          :class="['inject-mode-btn', { 'inject-mode-btn--active': !injectAllTokens }]"
+          title="Inject only your changed values; the site uses its own defaults for everything else"
+          @click="injectAllTokens = false"
+        >
+          Overrides only
+        </button>
+        <button
+          :class="['inject-mode-btn', { 'inject-mode-btn--active': injectAllTokens }]"
+          title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
+          @click="injectAllTokens = true"
+        >
+          All tokens
+        </button>
+      </div>
+
+      <!-- Custom selector input -->
+      <div class="inject-selector-wrap">
+        <label
+          class="inject-selector-label"
+          for="inject-selector"
+        >
+          Selector
+        </label>
+        <input
+          id="inject-selector"
+          v-model="customSelector"
+          class="inject-selector-input"
+          placeholder=":root"
+          spellcheck="false"
+          type="text"
+        >
+        <!-- CSS-only tooltip -->
+        <span class="inject-tip-wrap">
+          <span
+            aria-label="About selector"
+            class="inject-tip-icon"
+            tabindex="0"
+          >?</span>
+          <span
+            class="inject-tip-body"
+            role="tooltip"
+          >
+            Override which CSS selector receives the token variables. Example: <br><code>:root[data-portal-color-mode="light"]</code>
+          </span>
+        </span>
+      </div>
+
+      <!-- Mode description: shown when "all tokens" is active -->
+      <span
+        v-if="injectAllTokens"
+        class="inject-mode-note"
+      >All {{ allTokensCount }} tokens injected</span>
+    </div>
+
+    <!-- Mode A: iframe preview (dev only) -->
+    <template v-if="bridge.mode === 'iframe-proxy'">
+      <!-- Persistent container measured by ResizeObserver for "full width" shortcut -->
+      <div
+        ref="frameOuterEl"
+        class="preview-frame-outer"
+      >
+        <div
+          v-if="bridge.loadedUrl.value"
+          class="preview-frame-chrome"
+          :style="{
+            width: (bridge.viewportWidth.value || containerWidth) + 'px',
+            ...(bridge.viewportHeight.value ? { height: bridge.viewportHeight.value + 'px' } : {}),
+          }"
+        >
+          <!-- Traffic-light dots only — URL shown in the input bar above -->
+          <div class="chrome-bar">
+            <span class="chrome-dot chrome-dot--close" />
+            <span class="chrome-dot chrome-dot--min" />
+            <span class="chrome-dot chrome-dot--max" />
+          </div>
+          <iframe
+            :ref="setIframeRef"
+            class="preview-iframe"
+            referrerpolicy="no-referrer"
+            :src="bridge.proxyUrl(bridge.loadedUrl.value)"
+            title="Token preview"
+            @load="bridge.onIframeLoad()"
+          />
+        </div>
+
+        <!-- Empty state before a URL is entered -->
+        <div
+          v-else
+          class="preview-empty"
+        >
+          <svg
+            fill="none"
+            height="52"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.25"
+            viewBox="0 0 24 24"
+            width="52"
+          >
+            <!-- browser frame -->
+            <rect
+              height="18"
+              rx="2"
+              width="22"
+              x="1"
+              y="3"
+            />
+            <!-- toolbar divider -->
+            <line
+              x1="1"
+              x2="23"
+              y1="8"
+              y2="8"
+            />
+            <!-- url bar placeholder -->
+            <rect
+              fill="currentColor"
+              fill-opacity="0.2"
+              height="2.5"
+              rx="1.25"
+              stroke="none"
+              width="10"
+              x="7"
+              y="4.75"
+            />
+            <!-- back/forward button dots -->
+            <circle
+              cx="3.5"
+              cy="5.5"
+              fill="currentColor"
+              r="0.7"
+              stroke="none"
+            />
+            <circle
+              cx="5.5"
+              cy="5.5"
+              fill="currentColor"
+              r="0.7"
+              stroke="none"
+            />
+          </svg>
+          <p>Enter a URL above to preview your tokens live</p>
+          <p class="preview-empty-note">
+            Rendered through the dev proxy — pages load unauthenticated
+          </p>
+        </div>
+      </div>
+
+      <!-- Status bar -->
+      <div
+        v-if="bridge.loadedUrl.value"
+        class="preview-status"
+      >
+        <span :class="['status-dot', `status-dot--${bridge.status.value}`]" />
+        <span class="status-label">{{ statusLabel }}</span>
+        <span class="status-note">via dev proxy · unauthenticated</span>
+      </div>
+    </template>
+
+    <!-- Mode B: bookmarklet sidebar (hosted) -->
+    <template v-else>
+      <div class="bookmarklet-card">
+        <p class="bookmarklet-heading">
+          One-time setup
+        </p>
+        <div
+          v-if="isLocalhost"
+          class="bookmarklet-localhost-warning"
+        >
+          <strong>Local build detected.</strong> This bookmarklet is baked with
+          <code>{{ currentOrigin }}</code> and will only work on this machine.
+          Deploy to a public URL to get a sharable bookmarklet.
+        </div>
+        <!-- Drag-to-bookmark link — @click.prevent stops in-page navigation -->
+        <a
+          class="bookmarklet-link"
+          :href="bookmarkletHref"
+          @click.prevent
+        >
+          🔖 Design Token Customizer
+        </a>
+        <ol class="bookmarklet-steps">
+          <li>Drag the link above to your browser's bookmarks bar</li>
+          <li>(You no longer need this page open in your browser)</li>
+          <li>Navigate to your target page</li>
+          <li>Click the bookmarklet while visiting the target page — a token editor sidebar opens on that page</li>
+        </ol>
+        <p class="bookmarklet-note">
+          The sidebar injects a customizer directly on the target page.
+          Token overrides apply live — no app changes needed.
+        </p>
+      </div>
+    </template>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
+import { usePreviewBridge } from '@/composables/usePreviewBridge'
+import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
+import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
+import { applySelector } from '@/lib/cssUtils'
+
+const props = defineProps<{
+  /** Minimal `:root { … }` block containing only changed tokens. */
+  overridesCss: string
+  /** Complete `:root { … }` block with all tokens (overrides applied). */
+  allTokensCss: string
+  /** Whether to inject all tokens or only overrides. Owned by parent; synced to `?inject=` URL param here. */
+  injectAllTokens: boolean
+  /**
+   * CSS selector to scope token injection (e.g. `[data-theme="dark"]`).
+   * Empty string means `:root`. Owned by parent; synced to `?selector=` URL param here.
+   */
+  customSelector: string
+}>()
+
+const emit = defineEmits<{
+  'update:injectAllTokens': [value: boolean]
+  'update:customSelector': [value: string]
+}>()
+
+// Local writable aliases so template v-model bindings work without prop mutation.
+const injectAllTokens = computed({
+  get: () => props.injectAllTokens,
+  set: (v) => emit('update:injectAllTokens', v),
+})
+const customSelector = computed({
+  get: () => props.customSelector,
+  set: (v) => emit('update:customSelector', v),
+})
+
+/** Total token count derived from the full export CSS line count (for the badge). */
+const allTokensCount = computed(() => {
+  const m = props.allTokensCss.match(/^\s+--/gm)
+  return m ? m.length : 0
+})
+
+/**
+ * The CSS actually injected into the iframe.
+ * Source: overrides-only (default) or all tokens.
+ * Selector: `:root` (default) or the user-supplied custom selector.
+ */
+const effectiveCss = computed(() =>
+  applySelector(
+    injectAllTokens.value ? props.allTokensCss : props.overridesCss,
+    customSelector.value,
+  ),
+)
+
+const bridge = usePreviewBridge(effectiveCss)
+/**
+ * Bookmarklet href computed at runtime so `__CUSTOMIZER_URL__` resolves to the actual
+ * deployment origin (works for both localhost dev and GitHub Pages).
+ */
+const bookmarkletHref = (() => {
+  const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+})()
+
+/** True when serving from localhost — bookmarklet baked with a local URL won't work on external sites. */
+const isLocalhost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
+const currentOrigin = window.location.origin
+
+/** Writes `selector`, `url`, and `inject` params to the address bar, removing them at defaults. */
+function syncUrlParams() {
+  const sel = customSelector.value.trim()
+  setHashParams({
+    selector: (sel && sel !== ':root') ? sel : null,
+    url: bridge.loadedUrl.value || null,
+    inject: injectAllTokens.value ? 'all' : null,
+  })
+}
+
+watch(customSelector, syncUrlParams)
+watch(bridge.loadedUrl, syncUrlParams)
+watch(injectAllTokens, syncUrlParams)
+
+/** Ref to the outer scrollable frame container — used to measure available width. */
+const frameOuterEl = ref<HTMLDivElement | null>(null)
+/** Measured usable width of the frame container (updated by ResizeObserver). */
+const containerWidth = ref(1280)
+
+let containerObserver: ResizeObserver | undefined
+
+onMounted(() => {
+  // Restore preview URL from the ?url= param and auto-load it in dev (iframe proxy) mode.
+  // In hosted (bookmarklet) mode we only pre-fill the input — the popup requires a user gesture.
+  const savedUrl = getHashParam('url')
+  if (savedUrl) {
+    bridge.previewUrl.value = savedUrl
+    if (bridge.mode === 'iframe-proxy') bridge.loadProxyUrl()
+  }
+
+  if (!frameOuterEl.value) return
+  containerObserver = new ResizeObserver((entries) => {
+    const w = entries[0]?.contentRect?.width ?? 0
+    if (w > 0) {
+      containerWidth.value = Math.floor(w - 24) // subtract 24px horizontal padding (12px each side)
+    }
+  })
+  containerObserver.observe(frameOuterEl.value)
+})
+
+onUnmounted(() => containerObserver?.disconnect())
+
+/** Function ref: wires the iframe DOM element directly into the bridge. */
+function setIframeRef(el: Element | ComponentPublicInstance | null) {
+  bridge.iframeEl.value = el as HTMLIFrameElement | null
+}
+
+
+/** Human-readable status string shown in the preview toolbar. */
+const statusLabel = computed(() => {
+  switch (bridge.status.value) {
+    case 'loading': return 'Loading…'
+    case 'connected': return 'Loaded'
+    case 'error': return 'Failed — page may require auth or block framing'
+    default: return ''
+  }
+})
+
+/** Dispatches to the correct load strategy based on the current preview mode. */
+function handleLoad() {
+  if (bridge.mode === 'iframe-proxy') {
+    bridge.loadProxyUrl()
+  } else {
+    bridge.openPopup()
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@use '@/assets/tb-vars' as *;
+
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: $tb-bg;
+}
+
+// URL bar────
+.preview-url-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
+  .url-icon {
+    flex-shrink: 0;
+    color: $tb-text-muted;
+  }
+}
+
+.url-input {
+  flex: 1;
+  min-width: 0;
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: $tb-mono;
+  font-size: 12px;
+  color: $tb-text;
+  outline: none;
+
+  &::placeholder { color: $tb-text-muted; }
+  &:focus-visible { border-color: $tb-accent; }
+}
+
+.url-btn {
+  background: $tb-accent;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.12s;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  &:disabled { opacity: 0.4; cursor: default; }
+  &:hover:not(:disabled) { opacity: 0.85; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+  &--loading { cursor: wait; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.url-btn-spinner {
+  animation: spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+// Viewport controls────
+.preview-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  flex-wrap: wrap;
+}
+
+.bp-group {
+  display: flex;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bp-btn {
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-family: $tb-mono;
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+
+  &:hover:not(.bp-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+  &--active { background: $tb-accent; color: #fff; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
+}
+
+// Inject settings───
+.inject-settings {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  flex-wrap: wrap;
+}
+
+.inject-mode-group {
+  display: flex;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.inject-mode-btn {
+  background: none;
+  border: none;
+  padding: 3px 8px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+
+  &:hover:not(.inject-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+  &--active { background: $tb-accent; color: #fff; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
+}
+
+.inject-selector-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.inject-selector-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.inject-selector-input {
+  flex: 1;
+  min-width: 80px;
+  max-width: 220px;
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-family: $tb-mono;
+  font-size: 11px;
+  color: $tb-text;
+  outline: none;
+
+  &::placeholder { color: $tb-text-muted; }
+  &:focus-visible { border-color: $tb-accent; }
+}
+
+.inject-tip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.inject-tip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  font-size: 10px;
+  font-weight: 700;
+  color: $tb-text-muted;
+  cursor: default;
+  user-select: none;
+
+  &:hover, &:focus-visible { background: $tb-border; color: $tb-text-dim; outline: none; }
+}
+
+.inject-tip-body {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  width: 240px;
+  background: $tb-text;
+  color: $tb-bg;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  line-height: 1.55;
+  z-index: 100;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  // Arrow pointing up toward the icon
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 4px;
+    border: 5px solid transparent;
+    border-bottom-color: $tb-text;
+  }
+
+  code {
+    display: block;
+    font-family: $tb-mono;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 2px;
+  }
+
+  strong { color: #fff; }
+}
+
+.inject-tip-wrap:hover .inject-tip-body,
+.inject-tip-icon:focus-visible + .inject-tip-body { display: block; }
+
+.inject-mode-note {
+  font-size: 11px;
+  color: $tb-text-muted;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+// Iframe frame area────
+.preview-frame-outer {
+  flex: 1;
+  overflow: auto;
+  scrollbar-gutter: stable;
+  padding: 12px;
+  background: $tb-surface-2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.preview-frame-chrome {
+  // Width set dynamically via :style
+  min-width: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px $tb-border-active;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  // Height: fill the outer container minus padding
+  height: calc(100vh - var(--header-h, 57px) - 120px);
+  min-height: 400px;
+}
+
+.chrome-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: $tb-surface-2;
+  border-bottom: 1px solid $tb-border;
+  flex-shrink: 0;
+}
+
+.chrome-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &--close { background: #ff5f57; }
+  &--min   { background: #ffbd2e; }
+  &--max   { background: #28c840; }
+}
+
+.preview-iframe {
+  flex: 1;
+  border: none;
+  width: 100%;
+}
+
+// Empty state────
+.preview-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 32px 20px;
+  text-align: center;
+  color: $tb-text-muted;
+  font-size: 13px;
+
+  svg { margin-bottom: 4px; }
+}
+
+.preview-empty-note {
+  font-size: 11px;
+  color: $tb-text-muted;
+  opacity: 0.7;
+}
+
+// Status bar────
+.preview-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: $tb-surface;
+  border-top: 1px solid $tb-border;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &--idle    { background: $tb-border-active; }
+  &--loading { background: #f59e0b; }
+  &--connected { background: $tb-success; }
+  &--error   { background: #ef4444; }
+}
+
+.status-label { color: $tb-text-dim; font-weight: 500; }
+.status-note  { color: $tb-text-muted; margin-left: auto; }
+
+// Bookmarklet setup card─────
+.bookmarklet-card {
+  margin: 16px 12px;
+  padding: 16px;
+  background: $tb-surface;
+  border: 1px solid $tb-border;
+  border-radius: 8px;
+}
+
+.bookmarklet-localhost-warning {
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #92400e;
+  margin-bottom: 12px;
+  line-height: 1.5;
+
+  strong { font-weight: 600; }
+  code { font-family: $tb-mono; background: rgba(0,0,0,0.06); border-radius: 2px; padding: 0 3px; }
+}
+
+.bookmarklet-heading {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $tb-text-dim;
+  margin: 0 0 12px;
+}
+
+.bookmarklet-link {
+  display: inline-block;
+  background: $tb-accent-subtle;
+  color: $tb-accent;
+  border: 1px solid rgba(0, 68, 244, 0.2);
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: grab;
+  user-select: none;
+  margin-bottom: 14px;
+
+  &:active { cursor: grabbing; }
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+}
+
+.bookmarklet-steps {
+  margin: 0 0 12px;
+  padding-left: 20px;
+  font-size: 12px;
+  color: $tb-text-dim;
+  line-height: 1.8;
+
+  strong { color: $tb-text; }
+}
+
+.bookmarklet-note {
+  font-size: 11px;
+  color: $tb-text-muted;
+  margin: 0;
+  line-height: 1.55;
+
+  code {
+    background: $tb-surface-2;
+    border-radius: 3px;
+    padding: 1px 4px;
+    font-family: $tb-mono;
+    font-size: 10px;
+  }
+}
+
+</style>
