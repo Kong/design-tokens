@@ -404,11 +404,13 @@ $kui-button-color-text-tertiary-active: #001466;
 $kui-button-color-text-tertiary-disabled: #afb7c5;
 /* The text color of the tertiary button in its hover state. */
 $kui-button-color-text-tertiary-hover: #0030cc;
-/* The font-size for large buttons. */
+/* The font family for all buttons. */
+$kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+/* The font size for large buttons. */
 $kui-button-font-size-large: 16px;
-/* The font-size for medium (default) buttons. */
+/* The font size for medium (default) buttons. */
 $kui-button-font-size-medium: 14px;
-/* The font-size for small buttons. */
+/* The font size for small buttons. */
 $kui-button-font-size-small: 12px;
 /* The line-height for large buttons. */
 $kui-button-line-height-large: 24px;
@@ -1204,11 +1206,13 @@ $tokens-map: (
   'kui-button-color-text-tertiary-disabled': #afb7c5;
   /* The text color of the tertiary button in its hover state. */
   'kui-button-color-text-tertiary-hover': #0030cc;
-  /* The font-size for large buttons. */
+  /* The font family for all buttons. */
+  'kui-button-font-family': 'Inter', Roboto, Helvetica, sans-serif;
+  /* The font size for large buttons. */
   'kui-button-font-size-large': 16px;
-  /* The font-size for medium (default) buttons. */
+  /* The font size for medium (default) buttons. */
   'kui-button-font-size-medium': 14px;
-  /* The font-size for small buttons. */
+  /* The font size for small buttons. */
   'kui-button-font-size-small': 12px;
   /* The line-height for large buttons. */
   'kui-button-line-height-large': 24px;
@@ -2006,11 +2010,13 @@ $tokens-map: (
 @kui-button-color-text-tertiary-disabled: #afb7c5;
 /* The text color of the tertiary button in its hover state. */
 @kui-button-color-text-tertiary-hover: #0030cc;
-/* The font-size for large buttons. */
+/* The font family for all buttons. */
+@kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+/* The font size for large buttons. */
 @kui-button-font-size-large: 16px;
-/* The font-size for medium (default) buttons. */
+/* The font size for medium (default) buttons. */
 @kui-button-font-size-medium: 14px;
-/* The font-size for small buttons. */
+/* The font size for small buttons. */
 @kui-button-font-size-small: 12px;
 /* The line-height for large buttons. */
 @kui-button-line-height-large: 24px;
@@ -2809,11 +2815,13 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-button-color-text-tertiary-disabled: #afb7c5;
 /* The text color of the tertiary button in its hover state. */
 --kui-button-color-text-tertiary-hover: #0030cc;
-/* The font-size for large buttons. */
+/* The font family for all buttons. */
+--kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+/* The font size for large buttons. */
 --kui-button-font-size-large: 16px;
-/* The font-size for medium (default) buttons. */
+/* The font size for medium (default) buttons. */
 --kui-button-font-size-medium: 14px;
-/* The font-size for small buttons. */
+/* The font size for small buttons. */
 --kui-button-font-size-small: 12px;
 /* The line-height for large buttons. */
 --kui-button-line-height-large: 24px;
@@ -3610,11 +3618,13 @@ export const KUI_BUTTON_COLOR_TEXT_TERTIARY_ACTIVE = "#001466";
 export const KUI_BUTTON_COLOR_TEXT_TERTIARY_DISABLED = "#afb7c5";
 /* The text color of the tertiary button in its hover state. */
 export const KUI_BUTTON_COLOR_TEXT_TERTIARY_HOVER = "#0030cc";
-/* The font-size for large buttons. */
+/* The font family for all buttons. */
+export const KUI_BUTTON_FONT_FAMILY = "'Inter', Roboto, Helvetica, sans-serif";
+/* The font size for large buttons. */
 export const KUI_BUTTON_FONT_SIZE_LARGE = "16px";
-/* The font-size for medium (default) buttons. */
+/* The font size for medium (default) buttons. */
 export const KUI_BUTTON_FONT_SIZE_MEDIUM = "14px";
-/* The font-size for small buttons. */
+/* The font size for small buttons. */
 export const KUI_BUTTON_FONT_SIZE_SMALL = "12px";
 /* The line-height for large buttons. */
 export const KUI_BUTTON_LINE_HEIGHT_LARGE = "24px";
@@ -4217,6 +4227,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_button_color_text_tertiary_active": "#001466",
   "kui_button_color_text_tertiary_disabled": "#afb7c5",
   "kui_button_color_text_tertiary_hover": "#0030cc",
+  "kui_button_font_family": "'Inter', Roboto, Helvetica, sans-serif",
   "kui_button_font_size_large": "16px",
   "kui_button_font_size_medium": "14px",
   "kui_button_font_size_small": "12px",

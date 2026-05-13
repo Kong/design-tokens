@@ -235,17 +235,22 @@
       }
     },
     "font": {
+      "family": {
+        "$description": "The font family for all buttons.",
+        "$type": "font",
+        "$value": "{font.family.text}"
+      },
       "size": {
         "large": {
-          "$description": "The font-size for large buttons.",
+          "$description": "The font size for large buttons.",
           "$value": "{font.size.40}"
         },
         "medium": {
-          "$description": "The font-size for medium (default) buttons.",
+          "$description": "The font size for medium (default) buttons.",
           "$value": "{font.size.30}"
         },
         "small": {
-          "$description": "The font-size for small buttons.",
+          "$description": "The font size for small buttons.",
           "$value": "{font.size.20}"
         }
       }
