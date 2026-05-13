@@ -253,6 +253,11 @@
           "$description": "The font size for small buttons.",
           "$value": "{font.size.20}"
         }
+      },
+      "weight": {
+        "$description": "The font weight for all buttons.",
+        "$type": "font",
+        "$value": "{font.weight.semibold}"
       }
     },
     "line_height": {
