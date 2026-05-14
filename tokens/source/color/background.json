@@ -2,43 +2,80 @@
   "color": {
     "background": {
       "_": {
-        "$description": "Default background color for containers (white).",
+        "$description": "Default background color for containers.",
         "$type": "color",
         "$value": "{color.alias.white}"
       },
+      "brand": {
+        "_": {
+          "$description": "Background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.60}"
+        },
+        "strong": {
+          "$description": "Strong background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.70}"
+        },
+        "stronger": {
+          "$description": "Stronger background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.80}"
+        },
+        "strongest": {
+          "$description": "Strongest background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.90}"
+        },
+        "weak": {
+          "$description": "Weak background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.40}"
+        },
+        "weaker": {
+          "$description": "Weaker background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.20}"
+        },
+        "weakest": {
+          "$description": "Weakest background color for brand elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.10}"
+        }
+      },
       "danger": {
         "_": {
-          "$description": "Background color for danger actions or messages (red.60).",
+          "$description": "Background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.60}"
         },
         "strong": {
-          "$description": "Strong background color for danger actions or messages (red.70).",
+          "$description": "Strong background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.70}"
         },
         "stronger": {
-          "$description": "Stronger background color for danger actions or messages (red.80).",
+          "$description": "Stronger background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.80}"
         },
         "strongest": {
-          "$description": "Strongest background color for danger actions or messages (red.90).",
+          "$description": "Strongest background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.90}"
         },
         "weak": {
-          "$description": "Weak background color for danger actions or messages (red.40).",
+          "$description": "Weak background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.40}"
         },
         "weaker": {
-          "$description": "Weaker background color for danger actions or messages (red.20).",
+          "$description": "Weaker background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.20}"
         },
         "weakest": {
-          "$description": "Weakest background color for danger actions or messages (red.10).",
+          "$description": "Weakest background color for danger actions or messages.",
           "$type": "color",
           "$value": "{color.alias.red.10}"
         }
@@ -46,225 +83,232 @@
       "decorative": {
         "aqua": {
           "weakest": {
-            "$description": "Weakest background color for decorative purposes (aqua.10).",
+            "$description": "Weakest background color for decorative purposes.",
             "$type": "color",
             "$value": "{color.alias.aqua.10}"
           }
         },
+        "pink": {
+          "weakest": {
+            "$description": "Weakest background color for decorative purposes.",
+            "$type": "color",
+            "$value": "{color.alias.pink.10}"
+          }
+        },
         "purple": {
           "_": {
-            "$description": "Background color for decorative purposes (purple.60).",
+            "$description": "Background color for decorative purposes.",
             "$type": "color",
             "$value": "{color.alias.purple.60}"
           },
           "weakest": {
-            "$description": "Weakest background color for decorative purposes (purple.10).",
+            "$description": "Weakest background color for decorative purposes.",
             "$type": "color",
             "$value": "{color.alias.purple.10}"
           }
         }
       },
       "disabled": {
-        "$description": "Background color for disabled elements (gray.20).",
+        "$description": "Background color for disabled elements.",
         "$type": "color",
         "$value": "{color.alias.gray.20}"
       },
       "info": {
         "_": {
-          "$description": "Background color for info elements (blue.60).",
+          "$description": "Background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.60}"
         },
         "strong": {
-          "$description": "Strong background color for info elements (blue.70).",
+          "$description": "Strong background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.70}"
         },
         "stronger": {
-          "$description": "Stronger background color for info elements (blue.80).",
+          "$description": "Stronger background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.80}"
         },
         "strongest": {
-          "$description": "Strongest background color for info elements (blue.90).",
+          "$description": "Strongest background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.90}"
         },
         "weak": {
-          "$description": "Weak background color for info elements (blue.40).",
+          "$description": "Weak background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.40}"
         },
         "weaker": {
-          "$description": "Weaker background color for info elements (blue.20).",
+          "$description": "Weaker background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.20}"
         },
         "weakest": {
-          "$description": "Weakest background color for info elements (blue.10).",
+          "$description": "Weakest background color for info elements.",
           "$type": "color",
           "$value": "{color.alias.blue.10}"
         }
       },
       "inverse": {
-        "$description": "Inverse background color for containers (blue.100)",
+        "$description": "Inverse background color for containers.",
         "$type": "color",
-        "$value": "{color.alias.blue.100}"
+        "$value": "{color.alias.gray.100}"
       },
       "neutral": {
         "_": {
-          "$description": "Background color for neutral elements (gray.60).",
+          "$description": "Background color for neutral elements.",
           "$type": "color",
           "$value": "{color.alias.gray.60}"
         },
         "strong": {
-          "$description": "Strong background color for neutral elements (gray.70).",
+          "$description": "Strong background color for neutral elements.",
           "$type": "color",
           "$value": "{color.alias.gray.70}"
         },
         "stronger": {
-          "$description": "Stronger background color for neutral elements (gray.80).",
+          "$description": "Stronger background color for neutral elements.",
           "$type": "color",
           "$value": "{color.alias.gray.80}"
         },
         "strongest": {
-          "$description": "Strongest background color for neutral elements (gray.90).",
+          "$description": "Strongest background color for neutral elements.",
           "$type": "color",
           "$value": "{color.alias.gray.90}"
         },
         "weak": {
-          "$description": "Weak background color for neutral elements (gray.40).",
+          "$description": "Weak background color for neutral elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.20}"
+        },
+        "weaker": {
+          "$description": "Weaker background color for neutral elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.10}"
+        },
+        "weakest": {
+          "$description": "Weakest background color for neutral elements.",
+          "$type": "color",
+          "$value": "{color.alias.gray.05}"
+        }
+      },
+      "overlay": {
+        "$description": "Overlay background color.",
+        "$type": "color",
+        "$value": "rgba(9, 13, 9, 0.6)"
+      },
+      "primary": {
+        "_": {
+          "$description": "Background color for primary actions or messages.",
+          "$type": "color",
+          "$value": "{color.alias.gray.70}"
+        },
+        "strong": {
+          "$description": "Strong background color for primary actions or messages.",
+          "$type": "color",
+          "$value": "{color.alias.gray.80}"
+        },
+        "stronger": {
+          "$description": "Stronger background color for primary actions or messages.",
+          "$type": "color",
+          "$value": "{color.alias.gray.90}"
+        },
+        "strongest": {
+          "$description": "Strongest background color for primary actions or messages.",
+          "$type": "color",
+          "$value": "{color.alias.gray.100}"
+        },
+        "weak": {
+          "$description": "Weak background color for primary actions or messages.",
           "$type": "color",
           "$value": "{color.alias.gray.40}"
         },
         "weaker": {
-          "$description": "Weaker background color for neutral elements (gray.20).",
+          "$description": "Weaker background color for primary actions or messages.",
           "$type": "color",
           "$value": "{color.alias.gray.20}"
         },
         "weakest": {
-          "$description": "Weakest background color for neutral elements (gray.10).",
+          "$description": "Weakest background color for primary actions or messages.",
           "$type": "color",
           "$value": "{color.alias.gray.10}"
         }
       },
-      "overlay": {
-        "$description": "Overlay background color (rgba(0, 9, 51, 0.6))",
-        "$type": "color",
-        "$value": "rgba(0, 9, 51, 0.6)"
-      },
-      "primary": {
-        "_": {
-          "$description": "Background color for primary actions or messages (blue.60).",
-          "$type": "color",
-          "$value": "{color.alias.blue.60}"
-        },
-        "strong": {
-          "$description": "Strong background color for primary actions or messages (blue.70).",
-          "$type": "color",
-          "$value": "{color.alias.blue.70}"
-        },
-        "stronger": {
-          "$description": "Stronger background color for primary actions or messages (blue.80).",
-          "$type": "color",
-          "$value": "{color.alias.blue.80}"
-        },
-        "strongest": {
-          "$description": "Strongest background color for primary actions or messages (blue.90).",
-          "$type": "color",
-          "$value": "{color.alias.blue.90}"
-        },
-        "weak": {
-          "$description": "Weak background color for primary actions or messages (blue.40).",
-          "$type": "color",
-          "$value": "{color.alias.blue.40}"
-        },
-        "weaker": {
-          "$description": "Weaker background color for primary actions or messages (blue.20).",
-          "$type": "color",
-          "$value": "{color.alias.blue.20}"
-        },
-        "weakest": {
-          "$description": "Weakest background color for primary actions or messages (blue.10)",
-          "$type": "color",
-          "$value": "{color.alias.blue.10}"
-        }
-      },
       "success": {
         "_": {
-          "$description": "Background color for success elements (green.60).",
+          "$description": "Background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.60}"
         },
         "strong": {
-          "$description": "Strong background color for success elements (green.70).",
+          "$description": "Strong background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.70}"
         },
         "stronger": {
-          "$description": "Stronger background color for success elements (green.80).",
+          "$description": "Stronger background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.80}"
         },
         "strongest": {
-          "$description": "Strongest background color for success elements (green.90).",
+          "$description": "Strongest background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.90}"
         },
         "weak": {
-          "$description": "Weak background color for success elements (green.40).",
+          "$description": "Weak background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.40}"
         },
         "weaker": {
-          "$description": "Weaker background color for success elements (green.20).",
+          "$description": "Weaker background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.20}"
         },
         "weakest": {
-          "$description": "Weakest background color for success elements (green.10).",
+          "$description": "Weakest background color for success elements.",
           "$type": "color",
           "$value": "{color.alias.green.10}"
         }
       },
       "transparent": {
-        "$description": "Transparent background color (transparent).",
+        "$description": "Transparent background color.",
         "$type": "color",
         "$value": "{color.alias.transparent}"
       },
       "warning": {
         "_": {
-          "$description": "Background color for warning elements (yellow.60).",
+          "$description": "Background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.60}"
         },
         "strong": {
-          "$description": "Strong background color for warning elements (yellow.70).",
+          "$description": "Strong background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.70}"
         },
         "stronger": {
-          "$description": "Stronger background color for warning elements (yellow.80).",
+          "$description": "Stronger background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.80}"
         },
         "strongest": {
-          "$description": "Strongest background color for warning elements (yellow.90).",
+          "$description": "Strongest background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.90}"
         },
         "weak": {
-          "$description": "Weak background color for warning elements (yellow.40).",
+          "$description": "Weak background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.40}"
         },
         "weaker": {
-          "$description": "Weaker background color for warning elements (yellow.20).",
+          "$description": "Weaker background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.20}"
         },
         "weakest": {
-          "$description": "Weakest background color for warning elements (yellow.10).",
+          "$description": "Weakest background color for warning elements.",
           "$type": "color",
           "$value": "{color.alias.yellow.10}"
         }
