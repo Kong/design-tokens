@@ -4,7 +4,7 @@
   "description": "Kong UI Design Tokens and style dictionary",
   "type": "module",
   "scripts": {
-    "build": "pnpm build:clean && style-dictionary build --config ./config.mjs && pnpm copy:tokens-doc && pnpm copy:stylelint-plugin",
+    "build": "pnpm build:clean && style-dictionary build --verbose --config ./config.mjs && pnpm copy:tokens-doc && pnpm copy:stylelint-plugin",
     "build:clean": "rimraf ./dist",
     "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
     "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",

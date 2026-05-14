@@ -14,7 +14,7 @@
       "text": {
         "$description": "The standard text font family.",
         "$type": "font",
-        "$value": "'Inter', Roboto, Helvetica, sans-serif"
+        "$value": "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif"
       }
     }
   }

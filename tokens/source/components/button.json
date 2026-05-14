@@ -15,37 +15,37 @@
         "danger": {
           "_": {
             "$description": "The background color of the danger button in its default state.",
-            "$value": "{color.alias.red.60}"
+            "$value": "{color.alias.red.32}"
           },
           "active": {
             "$description": "The background color of the danger button in its active state.",
-            "$value": "{color.alias.red.90}"
+            "$value": "{color.alias.red.07}"
           },
           "disabled": {
             "$description": "The background color of the danger button in its disabled state.",
-            "$value": "{color.alias.gray.20}"
+            "$value": "{color.alias.gray.72}"
           },
           "hover": {
             "$description": "The background color of the danger button in its hover state.",
-            "$value": "{color.alias.red.70}"
+            "$value": "{color.alias.red.25}"
           }
         },
         "primary": {
           "_": {
             "$description": "The background color of the primary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": "{color.alias.electric_lime.60}"
           },
           "active": {
             "$description": "The background color of the primary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": "{color.alias.electric_lime.20}"
           },
           "disabled": {
             "$description": "The background color of the primary button in its disabled state.",
-            "$value": "{color.alias.gray.20}"
+            "$value": "{color.alias.gray.72}"
           },
           "hover": {
             "$description": "The background color of the primary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": "{color.alias.electric_lime.40}"
           }
         },
         "secondary": {
@@ -73,7 +73,7 @@
           },
           "active": {
             "$description": "The background color of the tertiary button in its active state.",
-            "$value": "{color.alias.blue.20}"
+            "$value": "{color.alias.gray.70}"
           },
           "disabled": {
             "$description": "The background color of the tertiary button in its disabled state.",
@@ -81,7 +81,7 @@
           },
           "hover": {
             "$description": "The background color of the tertiary button in its hover state.",
-            "$value": "{color.alias.blue.10}"
+            "$value": "{color.alias.gray.72}"
           }
         }
       },
@@ -125,19 +125,19 @@
         "secondary": {
           "_": {
             "$description": "The border color of the secondary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": "{color.alias.gray.30}"
           },
           "active": {
             "$description": "The border color of the secondary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": "{color.alias.gray.05}"
           },
           "disabled": {
             "$description": "The border color of the secondary button in its disabled state.",
-            "$value": "{color.alias.gray.20}"
+            "$value": "{color.alias.gray.72}"
           },
           "hover": {
             "$description": "The border color of the secondary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": "{color.alias.gray.20}"
           }
         },
         "tertiary": {
@@ -163,11 +163,11 @@
         "danger": {
           "_": {
             "$description": "The text color of the danger button in its default state.",
-            "$value": "{color.alias.white}"
+            "$value": "{color.alias.gray.102}"
           },
           "active": {
             "$description": "The text color of the danger button in its active state.",
-            "$value": "{color.alias.white}"
+            "$value": "{color.alias.gray.102}"
           },
           "disabled": {
             "$description": "The text color of the danger button in its disabled state.",
@@ -175,17 +175,17 @@
           },
           "hover": {
             "$description": "The text color of the danger button in its hover state.",
-            "$value": "{color.alias.white}"
+            "$value": "{color.alias.gray.102}"
           }
         },
         "primary": {
           "_": {
             "$description": "The text color of the primary button in its default state.",
-            "$value": "{color.alias.white}"
+            "$value": "{color.alias.gray.102}"
           },
           "active": {
             "$description": "The text color of the primary button in its active state.",
-            "$value": "{color.alias.white}"
+            "$value": "{color.alias.gray.102}"
           },
           "disabled": {
             "$description": "The text color of the primary button in its disabled state.",
@@ -193,17 +193,17 @@
           },
           "hover": {
             "$description": "The text color of the primary button in its hover state.",
-            "$value": "{color.alias.white}"
+            "$value": "{color.alias.gray.102}"
           }
         },
         "secondary": {
           "_": {
             "$description": "The text color of the secondary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": "{color.alias.gray.30}"
           },
           "active": {
             "$description": "The text color of the secondary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": "{color.alias.gray.05}"
           },
           "disabled": {
             "$description": "The text color of the secondary button in its disabled state.",
@@ -211,17 +211,17 @@
           },
           "hover": {
             "$description": "The text color of the secondary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": "{color.alias.gray.20}"
           }
         },
         "tertiary": {
           "_": {
             "$description": "The text color of the tertiary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": "{color.alias.gray.30}"
           },
           "active": {
             "$description": "The text color of the tertiary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": "{color.alias.gray.05}"
           },
           "disabled": {
             "$description": "The text color of the tertiary button in its disabled state.",
@@ -229,7 +229,7 @@
           },
           "hover": {
             "$description": "The text color of the tertiary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": "{color.alias.gray.20}"
           }
         }
       }
