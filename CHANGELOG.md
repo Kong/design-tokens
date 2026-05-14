@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/Kong/design-tokens/compare/v1.21.0...v1.22.0) (2026-05-14)
+
+
+### Features
+
+* button component tokens ([#645](https://github.com/Kong/design-tokens/issues/645)) ([84652e3](https://github.com/Kong/design-tokens/commit/84652e343ab46a70663db94382ad9e76666f4714))
+
 # [1.21.0](https://github.com/Kong/design-tokens/compare/v1.20.1...v1.21.0) (2026-05-06)
 
 
