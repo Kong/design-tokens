@@ -312,7 +312,7 @@ export function importFromCss(css: string): boolean {
  */
 export function useTokenCustomizer() {
   const filterQuery = ref('')
-  const collapsed = reactive<Record<string, boolean>>({})
+  const collapsed = reactive<Record<string, boolean>>({ [CUSTOM_GROUP_KEY]: true })
   /** When true, the editor shows only tokens that have active overrides. */
   const showOnlyModified = ref(false)
 
