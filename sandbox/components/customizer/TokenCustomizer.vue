@@ -234,19 +234,63 @@
               class="cust-collapse-btn"
               @click="allCollapsed ? expandAll() : collapseAll()"
             >
-              <!-- Same chevron SVG + size as section headers -->
+              <!-- Plus-box icon: shown when all collapsed (action = expand) -->
               <svg
-                :class="['group-chevron', { 'group-chevron--open': !allCollapsed }]"
+                v-if="allCollapsed"
                 fill="none"
                 height="14"
                 stroke="currentColor"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                stroke-width="2.5"
+                stroke-width="2"
                 viewBox="0 0 24 24"
                 width="14"
               >
-                <polyline points="9 18 15 12 9 6" />
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="3"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="8"
+                  y2="16"
+                />
+                <line
+                  x1="8"
+                  x2="16"
+                  y1="12"
+                  y2="12"
+                />
+              </svg>
+              <!-- Minus-box icon: shown when not all collapsed (action = collapse) -->
+              <svg
+                v-else
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="14"
+              >
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="3"
+                />
+                <line
+                  x1="8"
+                  x2="16"
+                  y1="12"
+                  y2="12"
+                />
               </svg>
               {{ allCollapsed ? 'Expand all' : 'Collapse all' }}
             </button>
@@ -269,6 +313,13 @@
             </button>
           </div>
 
+          <CustCustomPropsGroup
+            v-if="customPropsGroup"
+            :group="customPropsGroup"
+            :is-collapsed="!!collapsed[CUSTOM_GROUP_KEY]"
+            @toggle="collapsed[CUSTOM_GROUP_KEY] = !collapsed[CUSTOM_GROUP_KEY]"
+          />
+
           <CustTokenGroup
             v-for="group in visibleGroups"
             :key="group.category"
@@ -278,13 +329,6 @@
             @change="(cssVar, value, defaultValue) => setOverride(cssVar, value, defaultValue)"
             @reset="(cssVar, defaultValue) => setOverride(cssVar, '', defaultValue)"
             @toggle="toggleGroup"
-          />
-
-          <CustCustomPropsGroup
-            v-if="customPropsGroup"
-            :group="customPropsGroup"
-            :is-collapsed="!!collapsed[CUSTOM_GROUP_KEY]"
-            @toggle="collapsed[CUSTOM_GROUP_KEY] = !collapsed[CUSTOM_GROUP_KEY]"
           />
 
           <div
@@ -979,31 +1023,22 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
 .cust-collapse-btn {
   background: none;
-  border: none;
-  font-size: 12px;
-  font-weight: 600;
+  border: 1px solid $tb-border;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
   color: $tb-text-muted;
   cursor: pointer;
-  padding: 2px 6px;
-  border-radius: 3px;
+  padding: 2px 8px;
   font-family: inherit;
   display: flex;
   align-items: center;
   gap: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
 
-  &:hover { color: $tb-text-dim; background: $tb-surface-2; }
+  &:hover { color: $tb-text-dim; border-color: $tb-border-active; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-}
-
-// Reuse the same chevron animation as CustTokenGroup section headers
-.group-chevron {
-  flex-shrink: 0;
-  transition: transform 0.15s;
-  color: $tb-text-muted;
-
-  &--open { transform: rotate(90deg); }
 }
 
 .cust-modified-btn {
