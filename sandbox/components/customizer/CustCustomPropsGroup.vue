@@ -19,7 +19,7 @@
       >
         <polyline points="9 18 15 12 9 6" />
       </svg>
-      <span class="group-label">User Custom Properties</span>
+      <span class="group-label">Add custom tokens</span>
       <span class="group-count">{{ group.totalCount }}</span>
       <span
         v-if="group.totalCount > 0"
