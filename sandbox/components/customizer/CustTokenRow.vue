@@ -5,20 +5,21 @@
       v-if="isColorEntry"
       class="cust-swatch-wrap"
     >
-      <!-- Hex tokens get a native color picker overlaid on the visible swatch -->
+      <!-- Hex or transparent tokens get a native color picker overlaid on the visible swatch -->
+      <!-- Transparent uses #000000 as the picker starting point since the native input can't hold 'transparent' -->
       <input
-        v-if="isHex"
+        v-if="isHex || isTransparent"
         :aria-label="`Pick color for ${entry.cssVar}`"
         class="cust-color-input"
         :title="`Pick color for ${entry.cssVar}`"
         type="color"
-        :value="isValidColor ? localValue : entry.value"
+        :value="isTransparent ? '#000000' : (isValidColor ? localValue : entry.value)"
         @input="(e) => handleColorInput((e.target as HTMLInputElement).value)"
       >
       <!-- Show default value in swatch when current input is invalid -->
       <div
-        :class="['cust-swatch', { 'cust-swatch--no-pick': !isHex }]"
-        :style="{ background: isValidColor ? localValue : entry.value }"
+        :class="['cust-swatch', { 'cust-swatch--no-pick': !isHex && !isTransparent, 'cust-swatch--transparent': isTransparent }]"
+        :style="isTransparent ? {} : { background: isValidColor ? localValue : entry.value }"
       />
     </div>
 
@@ -124,8 +125,17 @@ watch(() => props.overriddenValue, (val) => {
 
 const isOverridden = computed(() => props.overriddenValue !== undefined)
 
-/** True when the token's default value is a CSS color — determines swatch visibility and validation. */
-const isColorEntry = computed(() => /^(#|rgb|rgba|hsl)/i.test(props.entry.value))
+/**
+ * True when the token is a color entry — either the CSS var name contains "color"
+ * (e.g. `--kui-button-color-background`) or the default value is a CSS color literal.
+ * Name-based detection catches component color tokens whose defaults resolve to hex.
+ */
+const isColorEntry = computed(() =>
+  /color/i.test(props.entry.cssVar) || /^(#|rgb|rgba|hsl|transparent)/i.test(props.entry.value),
+)
+
+/** True when the current input value is the keyword `transparent`. */
+const isTransparent = computed(() => localValue.value.trim().toLowerCase() === 'transparent')
 
 /**
  * True when the current input is a valid CSS color, using browser-native validation.
@@ -254,6 +264,13 @@ function handleReset() {
 
   // Read-only color display (non-hex colors like rgba/hsl don't open a picker)
   &--no-pick { cursor: default; }
+
+  // Checkerboard pattern signals a transparent value
+  &--transparent {
+    background:
+      repeating-conic-gradient(#bbb 0% 25%, white 0% 50%)
+      0 0 / 8px 8px;
+  }
 }
 
 .cust-var-name {

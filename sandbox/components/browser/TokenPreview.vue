@@ -101,18 +101,32 @@
       </div>
     </template>
 
-    <!-- Components: color swatch when value looks like a color, otherwise value badge -->
+    <!-- Components: dispatch on value type inferred from key, then color, then badge -->
     <template v-else-if="token.category === 'components'">
-      <div class="preview-center">
+      <div
+        v-if="componentValueType === 'border-width'"
+        class="preview-bar-wrap"
+        style="padding: 16px;"
+      >
         <div
-          v-if="isColorValue"
+          class="border-width-demo"
+          :style="{ height: token.value }"
+        />
+      </div>
+      <div
+        v-else-if="isColorValue"
+        class="preview-center"
+      >
+        <div
           class="preview-swatch-sm"
           :style="{ background: token.value }"
         />
-        <div
-          v-else
-          class="value-badge"
-        >
+      </div>
+      <div
+        v-else
+        class="preview-center"
+      >
+        <div class="value-badge">
           {{ token.value }}
         </div>
       </div>
@@ -148,6 +162,18 @@ const fontSubtype = computed(() =>
 const borderSubtype = computed(() =>
   props.token.category === 'border' ? props.token.key.split('_')[2]?.toLowerCase() : null,
 )
+
+/**
+ * For component tokens, parse the property type from the key segments after the component name.
+ * KUI_BUTTON_BORDER_WIDTH_* → 'border-width'
+ * Returns null for non-component tokens or unrecognized property shapes.
+ */
+const componentValueType = computed((): string | null => {
+  if (props.token.category !== 'components') return null
+  const parts = props.token.key.split('_').slice(2) // drop KUI + component name
+  if (parts[0] === 'BORDER' && parts[1] === 'WIDTH') return 'border-width'
+  return null
+})
 
 // 96px = KUI_SPACE_150, the current maximum space value
 const spaceBarWidth = computed(() => {
