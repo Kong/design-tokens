@@ -40,7 +40,7 @@
         "weakest": {
           "$description": "Weakest border color for brand elements.",
           "$type": "color",
-          "$value": "{color.alias.electric-lime.20}"
+          "$value": "{color.alias.electric_lime.20}"
         }
       },
       "danger": {

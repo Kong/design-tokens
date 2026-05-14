@@ -134,57 +134,73 @@ $kui-color-background-warning-weak: #fff600;
 $kui-color-background-warning-weaker: #fffb96;
 /* Weakest background color for warning elements. */
 $kui-color-background-warning-weakest: #fffee0;
-/* Default border color for containers (gray.20). */
+/* Default border color for containers. */
 $kui-color-border: #e3e8e3;
-/* Border color for danger actions or messages (red.60). */
+/* Border color for brand elements. */
+$kui-color-border-brand: #4e594e;
+/* Strong border color for brand elements. */
+$kui-color-border-brand-strong: #3d443d;
+/* Stronger border color for brand elements. */
+$kui-color-border-brand-stronger: #242824;
+/* Strongest border color for brand elements. */
+$kui-color-border-brand-strongest: #181b18;
+/* Weak border color for brand elements. */
+$kui-color-border-brand-weak: #9da99d;
+/* Weaker border color for brand elements. */
+$kui-color-border-brand-weaker: #e3e8e3;
+/* Weakest border color for brand elements. */
+$kui-color-border-brand-weakest: #f2ffbe;
+/* Border color for danger actions or messages. */
 $kui-color-border-danger: #d60027;
-/* Strong border color for danger actions or messages (red.70). */
+/* Strong border color for danger actions or messages. */
 $kui-color-border-danger-strong: #ad000e;
-/* Stronger border color for danger actions or messages (red.80). */
+/* Stronger border color for danger actions or messages. */
 $kui-color-border-danger-stronger: #850000;
-/* Strongest border color for danger actions or messages (red.90). */
+/* Strongest border color for danger actions or messages. */
 $kui-color-border-danger-strongest: #5c0000;
-/* Weak border color for danger actions or messages (red.40). */
+/* Weak border color for danger actions or messages. */
 $kui-color-border-danger-weak: #ff3954;
-/* Weaker border color for danger actions or messages (red.20). */
+/* Weaker border color for danger actions or messages. */
 $kui-color-border-danger-weaker: #ffbdbd;
-/* Weakest border color for danger actions or messages (red.10). */
+/* Weakest border color for danger actions or messages. */
 $kui-color-border-danger-weakest: #ffe5e5;
-/* Border color for decorative purposes (purple.60). */
+/* Weaker border color for decorative purposes. */
+$kui-color-border-decorative-aqua-weaker: #b3f1ff;
+/* Border color for decorative purposes. */
 $kui-color-border-decorative-purple: #6f28ff;
-/* Border color for disabled elements (gray.20). */
+/* Border color for disabled elements. */
 $kui-color-border-disabled: #e3e8e3;
-/* Inverse border color (rgba(255, 255, 255, 0.2)). */
+/* Inverse border color. */
 $kui-color-border-inverse: rgba(255, 255, 255, 0.2);
-/* Border color for neutral elements (gray.60) */
+/* Border color for neutral elements. */
 $kui-color-border-neutral: #4e594e;
-/* Strong border color for neutral elements (gray.70) */
+/* Strong border color for neutral elements. */
 $kui-color-border-neutral-strong: #3d443d;
-/* Stronger border color for neutral elements (gray.80) */
+/* Stronger border color for neutral elements. */
 $kui-color-border-neutral-stronger: #242824;
-/* Strongest border color for neutral elements (gray.90) */
+/* Strongest border color for neutral elements. */
 $kui-color-border-neutral-strongest: #181b18;
-/* Weak border color for neutral elements (gray.40) */
+/* Weak border color for neutral elements. */
 $kui-color-border-neutral-weak: #9da99d;
-/* Weaker border color for neutral elements (gray.20) */
+/* Weaker border color for neutral elements. */
 $kui-color-border-neutral-weaker: #e3e8e3;
-/* Weakest border color for neutral elements (gray.10) */
+/* Weakest border color for neutral elements. */
 $kui-color-border-neutral-weakest: #f1f3f1;
-/* Border color for primary actions or messages (blue.60). */
-$kui-color-border-primary: #0076f4;
-/* Strong border color for primary actions or messages (blue.70). */
-$kui-color-border-primary-strong: #0063cc;
-/* Stronger border color for primary actions or messages (blue.80). */
-$kui-color-border-primary-stronger: #004a99;
-/* Strongest border color for primary actions or messages (blue.90). */
-$kui-color-border-primary-strongest: #003166;
-/* Weak border color for primary actions or messages (blue.40). */
-$kui-color-border-primary-weak: #5f9aff;
-/* Weaker border color for primary actions or messages (blue.20). */
-$kui-color-border-primary-weaker: #beddff;
-/* Weakest border color for primary actions or messages (blue.10). */
-$kui-color-border-primary-weakest: #eef6ff;
-/* Transparent border color (transparent). */
+/* Border color for primary actions or messages. */
+$kui-color-border-primary: #9da99d;
+/* Strong border color for primary actions or messages. */
+$kui-color-border-primary-strong: #242824;
+/* Stronger border color for primary actions or messages. */
+$kui-color-border-primary-stronger: #181b18;
+/* Strongest border color for primary actions or messages. */
+$kui-color-border-primary-strongest: #090d09;
+/* Weak border color for primary actions or messages. */
+$kui-color-border-primary-weak: #9da99d;
+/* Weaker border color for primary actions or messages. */
+$kui-color-border-primary-weaker: #e3e8e3;
+/* Weakest border color for primary actions or messages. */
+$kui-color-border-primary-weakest: #f1f3f1;
+/* Transparent border color. */
 $kui-color-border-transparent: transparent;
 /* Default text color. */
 $kui-color-text: #3d443d;
@@ -435,7 +451,7 @@ $kui-button-color-text-tertiary-disabled: #9da99d;
 /* The text color of the tertiary button in its hover state. */
 $kui-button-color-text-tertiary-hover: #0063cc;
 /* The font family for all buttons. */
-$kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+$kui-button-font-family: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 /* The font size for large buttons. */
 $kui-button-font-size-large: 16px;
 /* The font size for medium (default) buttons. */
@@ -733,9 +749,9 @@ $kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 $kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
-$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
+$kui-font-family-heading: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 /* The standard text font family. */
-$kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
+$kui-font-family-text: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 $kui-font-size-10: 10px;
 $kui-font-size-20: 12px;
 $kui-font-size-30: 14px;
@@ -968,57 +984,73 @@ $tokens-map: (
   'kui-color-background-warning-weaker': #fffb96;
   /* Weakest background color for warning elements. */
   'kui-color-background-warning-weakest': #fffee0;
-  /* Default border color for containers (gray.20). */
+  /* Default border color for containers. */
   'kui-color-border': #e3e8e3;
-  /* Border color for danger actions or messages (red.60). */
+  /* Border color for brand elements. */
+  'kui-color-border-brand': #4e594e;
+  /* Strong border color for brand elements. */
+  'kui-color-border-brand-strong': #3d443d;
+  /* Stronger border color for brand elements. */
+  'kui-color-border-brand-stronger': #242824;
+  /* Strongest border color for brand elements. */
+  'kui-color-border-brand-strongest': #181b18;
+  /* Weak border color for brand elements. */
+  'kui-color-border-brand-weak': #9da99d;
+  /* Weaker border color for brand elements. */
+  'kui-color-border-brand-weaker': #e3e8e3;
+  /* Weakest border color for brand elements. */
+  'kui-color-border-brand-weakest': #f2ffbe;
+  /* Border color for danger actions or messages. */
   'kui-color-border-danger': #d60027;
-  /* Strong border color for danger actions or messages (red.70). */
+  /* Strong border color for danger actions or messages. */
   'kui-color-border-danger-strong': #ad000e;
-  /* Stronger border color for danger actions or messages (red.80). */
+  /* Stronger border color for danger actions or messages. */
   'kui-color-border-danger-stronger': #850000;
-  /* Strongest border color for danger actions or messages (red.90). */
+  /* Strongest border color for danger actions or messages. */
   'kui-color-border-danger-strongest': #5c0000;
-  /* Weak border color for danger actions or messages (red.40). */
+  /* Weak border color for danger actions or messages. */
   'kui-color-border-danger-weak': #ff3954;
-  /* Weaker border color for danger actions or messages (red.20). */
+  /* Weaker border color for danger actions or messages. */
   'kui-color-border-danger-weaker': #ffbdbd;
-  /* Weakest border color for danger actions or messages (red.10). */
+  /* Weakest border color for danger actions or messages. */
   'kui-color-border-danger-weakest': #ffe5e5;
-  /* Border color for decorative purposes (purple.60). */
+  /* Weaker border color for decorative purposes. */
+  'kui-color-border-decorative-aqua-weaker': #b3f1ff;
+  /* Border color for decorative purposes. */
   'kui-color-border-decorative-purple': #6f28ff;
-  /* Border color for disabled elements (gray.20). */
+  /* Border color for disabled elements. */
   'kui-color-border-disabled': #e3e8e3;
-  /* Inverse border color (rgba(255, 255, 255, 0.2)). */
+  /* Inverse border color. */
   'kui-color-border-inverse': rgba(255, 255, 255, 0.2);
-  /* Border color for neutral elements (gray.60) */
+  /* Border color for neutral elements. */
   'kui-color-border-neutral': #4e594e;
-  /* Strong border color for neutral elements (gray.70) */
+  /* Strong border color for neutral elements. */
   'kui-color-border-neutral-strong': #3d443d;
-  /* Stronger border color for neutral elements (gray.80) */
+  /* Stronger border color for neutral elements. */
   'kui-color-border-neutral-stronger': #242824;
-  /* Strongest border color for neutral elements (gray.90) */
+  /* Strongest border color for neutral elements. */
   'kui-color-border-neutral-strongest': #181b18;
-  /* Weak border color for neutral elements (gray.40) */
+  /* Weak border color for neutral elements. */
   'kui-color-border-neutral-weak': #9da99d;
-  /* Weaker border color for neutral elements (gray.20) */
+  /* Weaker border color for neutral elements. */
   'kui-color-border-neutral-weaker': #e3e8e3;
-  /* Weakest border color for neutral elements (gray.10) */
+  /* Weakest border color for neutral elements. */
   'kui-color-border-neutral-weakest': #f1f3f1;
-  /* Border color for primary actions or messages (blue.60). */
-  'kui-color-border-primary': #0076f4;
-  /* Strong border color for primary actions or messages (blue.70). */
-  'kui-color-border-primary-strong': #0063cc;
-  /* Stronger border color for primary actions or messages (blue.80). */
-  'kui-color-border-primary-stronger': #004a99;
-  /* Strongest border color for primary actions or messages (blue.90). */
-  'kui-color-border-primary-strongest': #003166;
-  /* Weak border color for primary actions or messages (blue.40). */
-  'kui-color-border-primary-weak': #5f9aff;
-  /* Weaker border color for primary actions or messages (blue.20). */
-  'kui-color-border-primary-weaker': #beddff;
-  /* Weakest border color for primary actions or messages (blue.10). */
-  'kui-color-border-primary-weakest': #eef6ff;
-  /* Transparent border color (transparent). */
+  /* Border color for primary actions or messages. */
+  'kui-color-border-primary': #9da99d;
+  /* Strong border color for primary actions or messages. */
+  'kui-color-border-primary-strong': #242824;
+  /* Stronger border color for primary actions or messages. */
+  'kui-color-border-primary-stronger': #181b18;
+  /* Strongest border color for primary actions or messages. */
+  'kui-color-border-primary-strongest': #090d09;
+  /* Weak border color for primary actions or messages. */
+  'kui-color-border-primary-weak': #9da99d;
+  /* Weaker border color for primary actions or messages. */
+  'kui-color-border-primary-weaker': #e3e8e3;
+  /* Weakest border color for primary actions or messages. */
+  'kui-color-border-primary-weakest': #f1f3f1;
+  /* Transparent border color. */
   'kui-color-border-transparent': transparent;
   /* Default text color. */
   'kui-color-text': #3d443d;
@@ -1269,7 +1301,7 @@ $tokens-map: (
   /* The text color of the tertiary button in its hover state. */
   'kui-button-color-text-tertiary-hover': #0063cc;
   /* The font family for all buttons. */
-  'kui-button-font-family': 'Inter', Roboto, Helvetica, sans-serif;
+  'kui-button-font-family': 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
   /* The font size for large buttons. */
   'kui-button-font-size-large': 16px;
   /* The font size for medium (default) buttons. */
@@ -1567,9 +1599,9 @@ $tokens-map: (
   /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
   'kui-font-family-code': 'JetBrains Mono', Consolas, monospace;
   /* The standard heading text font family. */
-  'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif;
+  'kui-font-family-heading': 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
   /* The standard text font family. */
-  'kui-font-family-text': 'Inter', Roboto, Helvetica, sans-serif;
+  'kui-font-family-text': 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
   'kui-font-size-10': 10px;
   'kui-font-size-20': 12px;
   'kui-font-size-30': 14px;
@@ -1804,57 +1836,73 @@ $tokens-map: (
 @kui-color-background-warning-weaker: #fffb96;
 /* Weakest background color for warning elements. */
 @kui-color-background-warning-weakest: #fffee0;
-/* Default border color for containers (gray.20). */
+/* Default border color for containers. */
 @kui-color-border: #e3e8e3;
-/* Border color for danger actions or messages (red.60). */
+/* Border color for brand elements. */
+@kui-color-border-brand: #4e594e;
+/* Strong border color for brand elements. */
+@kui-color-border-brand-strong: #3d443d;
+/* Stronger border color for brand elements. */
+@kui-color-border-brand-stronger: #242824;
+/* Strongest border color for brand elements. */
+@kui-color-border-brand-strongest: #181b18;
+/* Weak border color for brand elements. */
+@kui-color-border-brand-weak: #9da99d;
+/* Weaker border color for brand elements. */
+@kui-color-border-brand-weaker: #e3e8e3;
+/* Weakest border color for brand elements. */
+@kui-color-border-brand-weakest: #f2ffbe;
+/* Border color for danger actions or messages. */
 @kui-color-border-danger: #d60027;
-/* Strong border color for danger actions or messages (red.70). */
+/* Strong border color for danger actions or messages. */
 @kui-color-border-danger-strong: #ad000e;
-/* Stronger border color for danger actions or messages (red.80). */
+/* Stronger border color for danger actions or messages. */
 @kui-color-border-danger-stronger: #850000;
-/* Strongest border color for danger actions or messages (red.90). */
+/* Strongest border color for danger actions or messages. */
 @kui-color-border-danger-strongest: #5c0000;
-/* Weak border color for danger actions or messages (red.40). */
+/* Weak border color for danger actions or messages. */
 @kui-color-border-danger-weak: #ff3954;
-/* Weaker border color for danger actions or messages (red.20). */
+/* Weaker border color for danger actions or messages. */
 @kui-color-border-danger-weaker: #ffbdbd;
-/* Weakest border color for danger actions or messages (red.10). */
+/* Weakest border color for danger actions or messages. */
 @kui-color-border-danger-weakest: #ffe5e5;
-/* Border color for decorative purposes (purple.60). */
+/* Weaker border color for decorative purposes. */
+@kui-color-border-decorative-aqua-weaker: #b3f1ff;
+/* Border color for decorative purposes. */
 @kui-color-border-decorative-purple: #6f28ff;
-/* Border color for disabled elements (gray.20). */
+/* Border color for disabled elements. */
 @kui-color-border-disabled: #e3e8e3;
-/* Inverse border color (rgba(255, 255, 255, 0.2)). */
+/* Inverse border color. */
 @kui-color-border-inverse: rgba(255, 255, 255, 0.2);
-/* Border color for neutral elements (gray.60) */
+/* Border color for neutral elements. */
 @kui-color-border-neutral: #4e594e;
-/* Strong border color for neutral elements (gray.70) */
+/* Strong border color for neutral elements. */
 @kui-color-border-neutral-strong: #3d443d;
-/* Stronger border color for neutral elements (gray.80) */
+/* Stronger border color for neutral elements. */
 @kui-color-border-neutral-stronger: #242824;
-/* Strongest border color for neutral elements (gray.90) */
+/* Strongest border color for neutral elements. */
 @kui-color-border-neutral-strongest: #181b18;
-/* Weak border color for neutral elements (gray.40) */
+/* Weak border color for neutral elements. */
 @kui-color-border-neutral-weak: #9da99d;
-/* Weaker border color for neutral elements (gray.20) */
+/* Weaker border color for neutral elements. */
 @kui-color-border-neutral-weaker: #e3e8e3;
-/* Weakest border color for neutral elements (gray.10) */
+/* Weakest border color for neutral elements. */
 @kui-color-border-neutral-weakest: #f1f3f1;
-/* Border color for primary actions or messages (blue.60). */
-@kui-color-border-primary: #0076f4;
-/* Strong border color for primary actions or messages (blue.70). */
-@kui-color-border-primary-strong: #0063cc;
-/* Stronger border color for primary actions or messages (blue.80). */
-@kui-color-border-primary-stronger: #004a99;
-/* Strongest border color for primary actions or messages (blue.90). */
-@kui-color-border-primary-strongest: #003166;
-/* Weak border color for primary actions or messages (blue.40). */
-@kui-color-border-primary-weak: #5f9aff;
-/* Weaker border color for primary actions or messages (blue.20). */
-@kui-color-border-primary-weaker: #beddff;
-/* Weakest border color for primary actions or messages (blue.10). */
-@kui-color-border-primary-weakest: #eef6ff;
-/* Transparent border color (transparent). */
+/* Border color for primary actions or messages. */
+@kui-color-border-primary: #9da99d;
+/* Strong border color for primary actions or messages. */
+@kui-color-border-primary-strong: #242824;
+/* Stronger border color for primary actions or messages. */
+@kui-color-border-primary-stronger: #181b18;
+/* Strongest border color for primary actions or messages. */
+@kui-color-border-primary-strongest: #090d09;
+/* Weak border color for primary actions or messages. */
+@kui-color-border-primary-weak: #9da99d;
+/* Weaker border color for primary actions or messages. */
+@kui-color-border-primary-weaker: #e3e8e3;
+/* Weakest border color for primary actions or messages. */
+@kui-color-border-primary-weakest: #f1f3f1;
+/* Transparent border color. */
 @kui-color-border-transparent: transparent;
 /* Default text color. */
 @kui-color-text: #3d443d;
@@ -2105,7 +2153,7 @@ $tokens-map: (
 /* The text color of the tertiary button in its hover state. */
 @kui-button-color-text-tertiary-hover: #0063cc;
 /* The font family for all buttons. */
-@kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+@kui-button-font-family: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 /* The font size for large buttons. */
 @kui-button-font-size-large: 16px;
 /* The font size for medium (default) buttons. */
@@ -2403,9 +2451,9 @@ $tokens-map: (
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 @kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
-@kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
+@kui-font-family-heading: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 /* The standard text font family. */
-@kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
+@kui-font-family-text: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 @kui-font-size-10: 10px;
 @kui-font-size-20: 12px;
 @kui-font-size-30: 14px;
@@ -2641,57 +2689,73 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-warning-weaker: #fffb96;
 /* Weakest background color for warning elements. */
 --kui-color-background-warning-weakest: #fffee0;
-/* Default border color for containers (gray.20). */
+/* Default border color for containers. */
 --kui-color-border: #e3e8e3;
-/* Border color for danger actions or messages (red.60). */
+/* Border color for brand elements. */
+--kui-color-border-brand: #4e594e;
+/* Strong border color for brand elements. */
+--kui-color-border-brand-strong: #3d443d;
+/* Stronger border color for brand elements. */
+--kui-color-border-brand-stronger: #242824;
+/* Strongest border color for brand elements. */
+--kui-color-border-brand-strongest: #181b18;
+/* Weak border color for brand elements. */
+--kui-color-border-brand-weak: #9da99d;
+/* Weaker border color for brand elements. */
+--kui-color-border-brand-weaker: #e3e8e3;
+/* Weakest border color for brand elements. */
+--kui-color-border-brand-weakest: #f2ffbe;
+/* Border color for danger actions or messages. */
 --kui-color-border-danger: #d60027;
-/* Strong border color for danger actions or messages (red.70). */
+/* Strong border color for danger actions or messages. */
 --kui-color-border-danger-strong: #ad000e;
-/* Stronger border color for danger actions or messages (red.80). */
+/* Stronger border color for danger actions or messages. */
 --kui-color-border-danger-stronger: #850000;
-/* Strongest border color for danger actions or messages (red.90). */
+/* Strongest border color for danger actions or messages. */
 --kui-color-border-danger-strongest: #5c0000;
-/* Weak border color for danger actions or messages (red.40). */
+/* Weak border color for danger actions or messages. */
 --kui-color-border-danger-weak: #ff3954;
-/* Weaker border color for danger actions or messages (red.20). */
+/* Weaker border color for danger actions or messages. */
 --kui-color-border-danger-weaker: #ffbdbd;
-/* Weakest border color for danger actions or messages (red.10). */
+/* Weakest border color for danger actions or messages. */
 --kui-color-border-danger-weakest: #ffe5e5;
-/* Border color for decorative purposes (purple.60). */
+/* Weaker border color for decorative purposes. */
+--kui-color-border-decorative-aqua-weaker: #b3f1ff;
+/* Border color for decorative purposes. */
 --kui-color-border-decorative-purple: #6f28ff;
-/* Border color for disabled elements (gray.20). */
+/* Border color for disabled elements. */
 --kui-color-border-disabled: #e3e8e3;
-/* Inverse border color (rgba(255, 255, 255, 0.2)). */
+/* Inverse border color. */
 --kui-color-border-inverse: rgba(255, 255, 255, 0.2);
-/* Border color for neutral elements (gray.60) */
+/* Border color for neutral elements. */
 --kui-color-border-neutral: #4e594e;
-/* Strong border color for neutral elements (gray.70) */
+/* Strong border color for neutral elements. */
 --kui-color-border-neutral-strong: #3d443d;
-/* Stronger border color for neutral elements (gray.80) */
+/* Stronger border color for neutral elements. */
 --kui-color-border-neutral-stronger: #242824;
-/* Strongest border color for neutral elements (gray.90) */
+/* Strongest border color for neutral elements. */
 --kui-color-border-neutral-strongest: #181b18;
-/* Weak border color for neutral elements (gray.40) */
+/* Weak border color for neutral elements. */
 --kui-color-border-neutral-weak: #9da99d;
-/* Weaker border color for neutral elements (gray.20) */
+/* Weaker border color for neutral elements. */
 --kui-color-border-neutral-weaker: #e3e8e3;
-/* Weakest border color for neutral elements (gray.10) */
+/* Weakest border color for neutral elements. */
 --kui-color-border-neutral-weakest: #f1f3f1;
-/* Border color for primary actions or messages (blue.60). */
---kui-color-border-primary: #0076f4;
-/* Strong border color for primary actions or messages (blue.70). */
---kui-color-border-primary-strong: #0063cc;
-/* Stronger border color for primary actions or messages (blue.80). */
---kui-color-border-primary-stronger: #004a99;
-/* Strongest border color for primary actions or messages (blue.90). */
---kui-color-border-primary-strongest: #003166;
-/* Weak border color for primary actions or messages (blue.40). */
---kui-color-border-primary-weak: #5f9aff;
-/* Weaker border color for primary actions or messages (blue.20). */
---kui-color-border-primary-weaker: #beddff;
-/* Weakest border color for primary actions or messages (blue.10). */
---kui-color-border-primary-weakest: #eef6ff;
-/* Transparent border color (transparent). */
+/* Border color for primary actions or messages. */
+--kui-color-border-primary: #9da99d;
+/* Strong border color for primary actions or messages. */
+--kui-color-border-primary-strong: #242824;
+/* Stronger border color for primary actions or messages. */
+--kui-color-border-primary-stronger: #181b18;
+/* Strongest border color for primary actions or messages. */
+--kui-color-border-primary-strongest: #090d09;
+/* Weak border color for primary actions or messages. */
+--kui-color-border-primary-weak: #9da99d;
+/* Weaker border color for primary actions or messages. */
+--kui-color-border-primary-weaker: #e3e8e3;
+/* Weakest border color for primary actions or messages. */
+--kui-color-border-primary-weakest: #f1f3f1;
+/* Transparent border color. */
 --kui-color-border-transparent: transparent;
 /* Default text color. */
 --kui-color-text: #3d443d;
@@ -2942,7 +3006,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* The text color of the tertiary button in its hover state. */
 --kui-button-color-text-tertiary-hover: #0063cc;
 /* The font family for all buttons. */
---kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+--kui-button-font-family: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 /* The font size for large buttons. */
 --kui-button-font-size-large: 16px;
 /* The font size for medium (default) buttons. */
@@ -3240,9 +3304,9 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 --kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
 /* The standard heading text font family. */
---kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
+--kui-font-family-heading: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 /* The standard text font family. */
---kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
+--kui-font-family-text: 'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif;
 --kui-font-size-10: 10px;
 --kui-font-size-20: 12px;
 --kui-font-size-30: 14px;
@@ -3476,57 +3540,73 @@ export const KUI_COLOR_BACKGROUND_WARNING_WEAK = "#fff600";
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKER = "#fffb96";
 /* Weakest background color for warning elements. */
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = "#fffee0";
-/* Default border color for containers (gray.20). */
+/* Default border color for containers. */
 export const KUI_COLOR_BORDER = "#e3e8e3";
-/* Border color for danger actions or messages (red.60). */
+/* Border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND = "#4e594e";
+/* Strong border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND_STRONG = "#3d443d";
+/* Stronger border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND_STRONGER = "#242824";
+/* Strongest border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND_STRONGEST = "#181b18";
+/* Weak border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND_WEAK = "#9da99d";
+/* Weaker border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND_WEAKER = "#e3e8e3";
+/* Weakest border color for brand elements. */
+export const KUI_COLOR_BORDER_BRAND_WEAKEST = "#f2ffbe";
+/* Border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER = "#d60027";
-/* Strong border color for danger actions or messages (red.70). */
+/* Strong border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER_STRONG = "#ad000e";
-/* Stronger border color for danger actions or messages (red.80). */
+/* Stronger border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER_STRONGER = "#850000";
-/* Strongest border color for danger actions or messages (red.90). */
+/* Strongest border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER_STRONGEST = "#5c0000";
-/* Weak border color for danger actions or messages (red.40). */
+/* Weak border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER_WEAK = "#ff3954";
-/* Weaker border color for danger actions or messages (red.20). */
+/* Weaker border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER_WEAKER = "#ffbdbd";
-/* Weakest border color for danger actions or messages (red.10). */
+/* Weakest border color for danger actions or messages. */
 export const KUI_COLOR_BORDER_DANGER_WEAKEST = "#ffe5e5";
-/* Border color for decorative purposes (purple.60). */
+/* Weaker border color for decorative purposes. */
+export const KUI_COLOR_BORDER_DECORATIVE_AQUA_WEAKER = "#b3f1ff";
+/* Border color for decorative purposes. */
 export const KUI_COLOR_BORDER_DECORATIVE_PURPLE = "#6f28ff";
-/* Border color for disabled elements (gray.20). */
+/* Border color for disabled elements. */
 export const KUI_COLOR_BORDER_DISABLED = "#e3e8e3";
-/* Inverse border color (rgba(255, 255, 255, 0.2)). */
+/* Inverse border color. */
 export const KUI_COLOR_BORDER_INVERSE = "rgba(255, 255, 255, 0.2)";
-/* Border color for neutral elements (gray.60) */
+/* Border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL = "#4e594e";
-/* Strong border color for neutral elements (gray.70) */
+/* Strong border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL_STRONG = "#3d443d";
-/* Stronger border color for neutral elements (gray.80) */
+/* Stronger border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL_STRONGER = "#242824";
-/* Strongest border color for neutral elements (gray.90) */
+/* Strongest border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL_STRONGEST = "#181b18";
-/* Weak border color for neutral elements (gray.40) */
+/* Weak border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAK = "#9da99d";
-/* Weaker border color for neutral elements (gray.20) */
+/* Weaker border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAKER = "#e3e8e3";
-/* Weakest border color for neutral elements (gray.10) */
+/* Weakest border color for neutral elements. */
 export const KUI_COLOR_BORDER_NEUTRAL_WEAKEST = "#f1f3f1";
-/* Border color for primary actions or messages (blue.60). */
-export const KUI_COLOR_BORDER_PRIMARY = "#0076f4";
-/* Strong border color for primary actions or messages (blue.70). */
-export const KUI_COLOR_BORDER_PRIMARY_STRONG = "#0063cc";
-/* Stronger border color for primary actions or messages (blue.80). */
-export const KUI_COLOR_BORDER_PRIMARY_STRONGER = "#004a99";
-/* Strongest border color for primary actions or messages (blue.90). */
-export const KUI_COLOR_BORDER_PRIMARY_STRONGEST = "#003166";
-/* Weak border color for primary actions or messages (blue.40). */
-export const KUI_COLOR_BORDER_PRIMARY_WEAK = "#5f9aff";
-/* Weaker border color for primary actions or messages (blue.20). */
-export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#beddff";
-/* Weakest border color for primary actions or messages (blue.10). */
-export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eef6ff";
-/* Transparent border color (transparent). */
+/* Border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY = "#9da99d";
+/* Strong border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY_STRONG = "#242824";
+/* Stronger border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY_STRONGER = "#181b18";
+/* Strongest border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY_STRONGEST = "#090d09";
+/* Weak border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY_WEAK = "#9da99d";
+/* Weaker border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#e3e8e3";
+/* Weakest border color for primary actions or messages. */
+export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#f1f3f1";
+/* Transparent border color. */
 export const KUI_COLOR_BORDER_TRANSPARENT = "transparent";
 /* Default text color. */
 export const KUI_COLOR_TEXT = "#3d443d";
@@ -3777,7 +3857,7 @@ export const KUI_BUTTON_COLOR_TEXT_TERTIARY_DISABLED = "#9da99d";
 /* The text color of the tertiary button in its hover state. */
 export const KUI_BUTTON_COLOR_TEXT_TERTIARY_HOVER = "#0063cc";
 /* The font family for all buttons. */
-export const KUI_BUTTON_FONT_FAMILY = "'Inter', Roboto, Helvetica, sans-serif";
+export const KUI_BUTTON_FONT_FAMILY = "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif";
 /* The font size for large buttons. */
 export const KUI_BUTTON_FONT_SIZE_LARGE = "16px";
 /* The font size for medium (default) buttons. */
@@ -4075,9 +4155,9 @@ export const KUI_STATUS_COLOR_TEXT_500 = "#d60027";
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
 export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
 /* The standard heading text font family. */
-export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
+export const KUI_FONT_FAMILY_HEADING = "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif";
 /* The standard text font family. */
-export const KUI_FONT_FAMILY_TEXT = "'Inter', Roboto, Helvetica, sans-serif";
+export const KUI_FONT_FAMILY_TEXT = "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif";
 export const KUI_FONT_SIZE_10 = "10px";
 export const KUI_FONT_SIZE_20 = "12px";
 export const KUI_FONT_SIZE_30 = "14px";
@@ -4253,6 +4333,13 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_warning_weaker": "#fffb96",
   "kui_color_background_warning_weakest": "#fffee0",
   "kui_color_border": "#e3e8e3",
+  "kui_color_border_brand": "#4e594e",
+  "kui_color_border_brand_strong": "#3d443d",
+  "kui_color_border_brand_stronger": "#242824",
+  "kui_color_border_brand_strongest": "#181b18",
+  "kui_color_border_brand_weak": "#9da99d",
+  "kui_color_border_brand_weaker": "#e3e8e3",
+  "kui_color_border_brand_weakest": "#f2ffbe",
   "kui_color_border_danger": "#d60027",
   "kui_color_border_danger_strong": "#ad000e",
   "kui_color_border_danger_stronger": "#850000",
@@ -4260,6 +4347,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_danger_weak": "#ff3954",
   "kui_color_border_danger_weaker": "#ffbdbd",
   "kui_color_border_danger_weakest": "#ffe5e5",
+  "kui_color_border_decorative_aqua_weaker": "#b3f1ff",
   "kui_color_border_decorative_purple": "#6f28ff",
   "kui_color_border_disabled": "#e3e8e3",
   "kui_color_border_inverse": "rgba(255, 255, 255, 0.2)",
@@ -4270,13 +4358,13 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_neutral_weak": "#9da99d",
   "kui_color_border_neutral_weaker": "#e3e8e3",
   "kui_color_border_neutral_weakest": "#f1f3f1",
-  "kui_color_border_primary": "#0076f4",
-  "kui_color_border_primary_strong": "#0063cc",
-  "kui_color_border_primary_stronger": "#004a99",
-  "kui_color_border_primary_strongest": "#003166",
-  "kui_color_border_primary_weak": "#5f9aff",
-  "kui_color_border_primary_weaker": "#beddff",
-  "kui_color_border_primary_weakest": "#eef6ff",
+  "kui_color_border_primary": "#9da99d",
+  "kui_color_border_primary_strong": "#242824",
+  "kui_color_border_primary_stronger": "#181b18",
+  "kui_color_border_primary_strongest": "#090d09",
+  "kui_color_border_primary_weak": "#9da99d",
+  "kui_color_border_primary_weaker": "#e3e8e3",
+  "kui_color_border_primary_weakest": "#f1f3f1",
   "kui_color_border_transparent": "transparent",
   "kui_color_text": "#3d443d",
   "kui_color_text_brand": "#ccff00",
@@ -4402,7 +4490,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_button_color_text_tertiary_active": "#003166",
   "kui_button_color_text_tertiary_disabled": "#9da99d",
   "kui_button_color_text_tertiary_hover": "#0063cc",
-  "kui_button_font_family": "'Inter', Roboto, Helvetica, sans-serif",
+  "kui_button_font_family": "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif",
   "kui_button_font_size_large": "16px",
   "kui_button_font_size_medium": "14px",
   "kui_button_font_size_small": "12px",
@@ -4551,8 +4639,8 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_text_400": "#d13500",
   "kui_status_color_text_500": "#d60027",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
-  "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
-  "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
+  "kui_font_family_heading": "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif",
+  "kui_font_family_text": "'Funnel Sans', 'Inter', Roboto, Helvetica, sans-serif",
   "kui_font_size_10": "10px",
   "kui_font_size_20": "12px",
   "kui_font_size_30": "14px",
