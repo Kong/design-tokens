@@ -1,3 +1,10 @@
+## [1.22.1](https://github.com/Kong/design-tokens/compare/v1.22.0...v1.22.1) (2026-05-14)
+
+
+### Bug Fixes
+
+* sandbox tokens ([#655](https://github.com/Kong/design-tokens/issues/655)) ([3748e22](https://github.com/Kong/design-tokens/commit/3748e22fc2ce2b7c0e2908b8110d35dbd6737209))
+
 # [1.22.0](https://github.com/Kong/design-tokens/compare/v1.21.0...v1.22.0) (2026-05-14)
 
 
