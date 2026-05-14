@@ -10,8 +10,12 @@
     "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "sandbox": "run-p sandbox:open watch:tokens",
+    "typecheck": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
+    "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
+    "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
+    "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
+    "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
     "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
     "semantic-release": "semantic-release",
     "prepublishOnly": "npm run build",
@@ -76,7 +80,8 @@
     "vite-plugin-restart": "^2.0.0",
     "vite-plugin-vue-devtools": "^8.0.7",
     "vue": "^3.5.29",
-    "vue-router": "^5.0.3"
+    "vue-router": "^5.0.3",
+    "vue-tsc": "^3.2.7"
   },
   "release": {
     "branches": [

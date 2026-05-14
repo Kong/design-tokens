@@ -6,5 +6,4 @@ const app = createApp(App)
 
 app.use(router)
 
-// Mount the app
 app.mount('#app')

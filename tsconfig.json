@@ -3,7 +3,7 @@
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
@@ -13,7 +13,7 @@
     "noUnusedLocals": true,
     "declaration": true,
     "declarationMap": true,
-    "baseUrl": ".",
+    "skipLibCheck": true,
     "lib": [
       "esnext",
       "dom",

@@ -1,7 +1,6 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./*"
@@ -16,6 +15,8 @@
     "**/*.vue"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "vite.config.ts",
+    "vite-preview-proxy.ts"
   ]
 }
