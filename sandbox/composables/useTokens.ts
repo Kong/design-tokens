@@ -19,7 +19,7 @@ export interface TokenEntry {
   value: string
   /** Broad category used for tab grouping and preview rendering */
   category: TokenCategory
-  /** Set only for `'components'` category tokens: `icon | method | navigation | status` */
+  /** Set only for `'components'` category tokens; value is the component name, e.g. `button` */
   subcategory?: string
 }
 
@@ -31,8 +31,15 @@ export interface TokenSection {
   entries: TokenEntry[]
 }
 
-/** Component sub-categories that map to the `components` category bucket. */
-const COMPONENT_SUBCATS = new Set(['ICON', 'METHOD', 'NAVIGATION', 'STATUS'])
+/**
+ * Component sub-categories derived from filenames in `tokens/source/components/`.
+ * Adding a new JSON file there (e.g. `tooltip.json`) automatically registers
+ * `TOOLTIP` as a component subcategory at next build — no code change required.
+ */
+const _componentModules = import.meta.glob('../../tokens/source/components/*.json', { eager: false })
+const COMPONENT_SUBCATS = new Set(
+  Object.keys(_componentModules).map((p) => p.split('/').pop()!.replace('.json', '').toUpperCase()),
+)
 
 /**
  * Categories that are subdivided into named sections within their tab.
