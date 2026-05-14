@@ -186,103 +186,117 @@ $kui-color-border-primary-weaker: #beddff;
 $kui-color-border-primary-weakest: #eef6ff;
 /* Transparent border color (transparent). */
 $kui-color-border-transparent: transparent;
-/* Default text color (blue.100). */
-$kui-color-text: #001933;
-/* Text color for danger actions or messages (red.60). */
+/* Default text color. */
+$kui-color-text: #3d443d;
+/* Text color for brand elements. */
+$kui-color-text-brand: #ccff00;
+/* Strong text color for brand elements. */
+$kui-color-text-brand-strong: #7a9900;
+/* Stronger text color for brand elements. */
+$kui-color-text-brand-stronger: #526600;
+/* Strongest text color for brand elements. */
+$kui-color-text-brand-strongest: #293300;
+/* Weak text color for brand elements. */
+$kui-color-text-brand-weak: #dfff5f;
+/* Weaker text color for brand elements. */
+$kui-color-text-brand-weaker: #f2ffbe;
+/* Weakest text color for brand elements. */
+$kui-color-text-brand-weakest: #fcffee;
+/* Text color for danger actions or messages. */
 $kui-color-text-danger: #d60027;
-/* Strong text color for danger actions or messages (red.70). */
+/* Strong text color for danger actions or messages. */
 $kui-color-text-danger-strong: #ad000e;
-/* Stronger text color for danger actions or messages (red.80). */
+/* Stronger text color for danger actions or messages. */
 $kui-color-text-danger-stronger: #850000;
-/* Strongest text color for danger actions or messages (red.90). */
+/* Strongest text color for danger actions or messages. */
 $kui-color-text-danger-strongest: #5c0000;
-/* Weak text color for danger actions or messages (red.40). */
+/* Weak text color for danger actions or messages. */
 $kui-color-text-danger-weak: #ff3954;
-/* Weaker text color for danger actions or messages (red.20). */
+/* Weaker text color for danger actions or messages. */
 $kui-color-text-danger-weaker: #ffbdbd;
-/* Weakest text color for danger actions or messages (red.10). */
+/* Weakest text color for danger actions or messages. */
 $kui-color-text-danger-weakest: #ffe5e5;
-/* Text color for decorative purposes (aqua.50). */
+/* Text color for decorative purposes. */
 $kui-color-text-decorative-aqua: #00abd2;
-/* Text color for decorative purposes (pink.60). */
+/* Text color for decorative purposes. */
 $kui-color-text-decorative-pink: #d60067;
-/* Text color for decorative purposes (purple.60). */
+/* Text color for decorative purposes. */
 $kui-color-text-decorative-purple: #6f28ff;
-/* Strong text color for decorative purposes (purple.70). */
+/* Strong text color for decorative purposes. */
 $kui-color-text-decorative-purple-strong: #5e00f5;
-/* Text color for disabled elements (gray.40). */
-$kui-color-text-disabled: #9da99d;
-/* Text color for info elements (blue.60). */
+/* Text color for disabled elements. */
+$kui-color-text-disabled: #697769;
+/* Text color for info elements. */
 $kui-color-text-info: #0076f4;
-/* Strong text color for info elements (blue.70). */
+/* Strong text color for info elements. */
 $kui-color-text-info-strong: #0063cc;
-/* Stronger text color for info elements (blue.80). */
+/* Stronger text color for info elements. */
 $kui-color-text-info-stronger: #004a99;
-/* Strongest text color for info elements (blue.90). */
+/* Strongest text color for info elements. */
 $kui-color-text-info-strongest: #003166;
-/* Weak text color for info elements (blue.40). */
+/* Weak text color for info elements. */
 $kui-color-text-info-weak: #5f9aff;
-/* Weaker text color for info elements (blue.20). */
+/* Weaker text color for info elements. */
 $kui-color-text-info-weaker: #beddff;
-/* Weakest text color for info elements (blue.10). */
+/* Weakest text color for info elements. */
 $kui-color-text-info-weakest: #eef6ff;
-/* Inverse text color (white). */
+/* Inverse text color. */
 $kui-color-text-inverse: #ffffff;
-/* Text color for neutral elements (gray.60). */
+/* Text color for neutral elements. */
 $kui-color-text-neutral: #4e594e;
-/* Strong text color for neutral elements (gray.70). */
+/* Strong text color for neutral elements. */
 $kui-color-text-neutral-strong: #3d443d;
-/* Stronger text color for neutral elements (gray.80). */
+/* Stronger text color for neutral elements. */
 $kui-color-text-neutral-stronger: #242824;
-/* Strongest text color for neutral elements (gray.90). */
+/* Strongest text color for neutral elements. */
 $kui-color-text-neutral-strongest: #181b18;
-/* Weak text color for neutral elements (gray.40). */
+/* Weak text color for neutral elements. */
 $kui-color-text-neutral-weak: #9da99d;
-/* Weaker text color for neutral elements (gray.20). */
+/* Weaker text color for neutral elements. */
 $kui-color-text-neutral-weaker: #e3e8e3;
-/* Weakest text color for neutral elements (gray.10). */
+/* Weakest text color for neutral elements. */
 $kui-color-text-neutral-weakest: #f1f3f1;
-/* Text color for primary actions or messages (blue.60). */
-$kui-color-text-primary: #0076f4;
-/* Strong text color for primary actions or messages (blue.70). */
-$kui-color-text-primary-strong: #0063cc;
-/* Stronger text color for primary actions or messages (blue.80). */
-$kui-color-text-primary-stronger: #004a99;
-/* Strongest text color for primary actions or messages (blue.90). */
-$kui-color-text-primary-strongest: #003166;
-/* Weak text color for primary actions or messages (blue.40). */
-$kui-color-text-primary-weak: #5f9aff;
-/* Weaker text color for primary actions or messages (blue.20). */
-$kui-color-text-primary-weaker: #beddff;
-/* Weakest text color for primary actions or messages (blue.10). */
-$kui-color-text-primary-weakest: #eef6ff;
-/* Text color for success elements (green.60). */
+/* Text color for primary actions or messages. */
+$kui-color-text-primary: #3d443d;
+/* Strong text color for primary actions or messages. */
+$kui-color-text-primary-strong: #242824;
+/* Stronger text color for primary actions or messages. */
+$kui-color-text-primary-stronger: #181b18;
+/* Strongest text color for primary actions or messages. */
+$kui-color-text-primary-strongest: #090d09;
+/* Weak text color for primary actions or messages. */
+$kui-color-text-primary-weak: #9da99d;
+/* Weaker text color for primary actions or messages. */
+$kui-color-text-primary-weaker: #e3e8e3;
+/* Weakest text color for primary actions or messages. */
+$kui-color-text-primary-weakest: #f1f3f1;
+/* Text color for success elements. */
 $kui-color-text-success: #007d60;
-/* Strong text color for success elements (green.70). */
+/* Strong text color for success elements. */
 $kui-color-text-success-strong: #005944;
-/* Stronger text color for success elements (green.80). */
+/* Stronger text color for success elements. */
 $kui-color-text-success-stronger: #004737;
-/* Stronger text color for success elements (green.90). */
+/* Strongest text color for success elements. */
 $kui-color-text-success-strongest: #003629;
-/* Weak text color for success elements (green.40). */
+/* Weak text color for success elements. */
 $kui-color-text-success-weak: #00d6a4;
-/* Weaker text color for success elements (green.20). */
+/* Weaker text color for success elements. */
 $kui-color-text-success-weaker: #b5ffee;
-/* Weakest text color for success elements (green.10). */
+/* Weakest text color for success elements. */
 $kui-color-text-success-weakest: #ecfffb;
-/* Text color for warning elements (yellow.60). */
-$kui-color-text-warning: #999400;
-/* Strong text color for warning elements (yellow.70). */
+/* Text color for warning elements. */
+$kui-color-text-warning: #807c00;
+/* Strong text color for warning elements. */
 $kui-color-text-warning-strong: #807c00;
-/* Stronger text color for warning elements (yellow.80). */
+/* Stronger text color for warning elements. */
 $kui-color-text-warning-stronger: #666300;
-/* Strongest text color for warning elements (yellow.90). */
+/* Strongest text color for warning elements. */
 $kui-color-text-warning-strongest: #4d4a00;
-/* Weak text color for warning elements (yellow.40). */
+/* Weak text color for warning elements. */
 $kui-color-text-warning-weak: #fff600;
-/* Weaker text color for warning elements (yellow.20). */
+/* Weaker text color for warning elements. */
 $kui-color-text-warning-weaker: #fffb96;
-/* Weakest text color for warning elements (yellow.10). */
+/* Weakest text color for warning elements. */
 $kui-color-text-warning-weakest: #fffee0;
 /* Default transition timing */
 $kui-animation-duration-20: 0.2s;
@@ -1006,103 +1020,117 @@ $tokens-map: (
   'kui-color-border-primary-weakest': #eef6ff;
   /* Transparent border color (transparent). */
   'kui-color-border-transparent': transparent;
-  /* Default text color (blue.100). */
-  'kui-color-text': #001933;
-  /* Text color for danger actions or messages (red.60). */
+  /* Default text color. */
+  'kui-color-text': #3d443d;
+  /* Text color for brand elements. */
+  'kui-color-text-brand': #ccff00;
+  /* Strong text color for brand elements. */
+  'kui-color-text-brand-strong': #7a9900;
+  /* Stronger text color for brand elements. */
+  'kui-color-text-brand-stronger': #526600;
+  /* Strongest text color for brand elements. */
+  'kui-color-text-brand-strongest': #293300;
+  /* Weak text color for brand elements. */
+  'kui-color-text-brand-weak': #dfff5f;
+  /* Weaker text color for brand elements. */
+  'kui-color-text-brand-weaker': #f2ffbe;
+  /* Weakest text color for brand elements. */
+  'kui-color-text-brand-weakest': #fcffee;
+  /* Text color for danger actions or messages. */
   'kui-color-text-danger': #d60027;
-  /* Strong text color for danger actions or messages (red.70). */
+  /* Strong text color for danger actions or messages. */
   'kui-color-text-danger-strong': #ad000e;
-  /* Stronger text color for danger actions or messages (red.80). */
+  /* Stronger text color for danger actions or messages. */
   'kui-color-text-danger-stronger': #850000;
-  /* Strongest text color for danger actions or messages (red.90). */
+  /* Strongest text color for danger actions or messages. */
   'kui-color-text-danger-strongest': #5c0000;
-  /* Weak text color for danger actions or messages (red.40). */
+  /* Weak text color for danger actions or messages. */
   'kui-color-text-danger-weak': #ff3954;
-  /* Weaker text color for danger actions or messages (red.20). */
+  /* Weaker text color for danger actions or messages. */
   'kui-color-text-danger-weaker': #ffbdbd;
-  /* Weakest text color for danger actions or messages (red.10). */
+  /* Weakest text color for danger actions or messages. */
   'kui-color-text-danger-weakest': #ffe5e5;
-  /* Text color for decorative purposes (aqua.50). */
+  /* Text color for decorative purposes. */
   'kui-color-text-decorative-aqua': #00abd2;
-  /* Text color for decorative purposes (pink.60). */
+  /* Text color for decorative purposes. */
   'kui-color-text-decorative-pink': #d60067;
-  /* Text color for decorative purposes (purple.60). */
+  /* Text color for decorative purposes. */
   'kui-color-text-decorative-purple': #6f28ff;
-  /* Strong text color for decorative purposes (purple.70). */
+  /* Strong text color for decorative purposes. */
   'kui-color-text-decorative-purple-strong': #5e00f5;
-  /* Text color for disabled elements (gray.40). */
-  'kui-color-text-disabled': #9da99d;
-  /* Text color for info elements (blue.60). */
+  /* Text color for disabled elements. */
+  'kui-color-text-disabled': #697769;
+  /* Text color for info elements. */
   'kui-color-text-info': #0076f4;
-  /* Strong text color for info elements (blue.70). */
+  /* Strong text color for info elements. */
   'kui-color-text-info-strong': #0063cc;
-  /* Stronger text color for info elements (blue.80). */
+  /* Stronger text color for info elements. */
   'kui-color-text-info-stronger': #004a99;
-  /* Strongest text color for info elements (blue.90). */
+  /* Strongest text color for info elements. */
   'kui-color-text-info-strongest': #003166;
-  /* Weak text color for info elements (blue.40). */
+  /* Weak text color for info elements. */
   'kui-color-text-info-weak': #5f9aff;
-  /* Weaker text color for info elements (blue.20). */
+  /* Weaker text color for info elements. */
   'kui-color-text-info-weaker': #beddff;
-  /* Weakest text color for info elements (blue.10). */
+  /* Weakest text color for info elements. */
   'kui-color-text-info-weakest': #eef6ff;
-  /* Inverse text color (white). */
+  /* Inverse text color. */
   'kui-color-text-inverse': #ffffff;
-  /* Text color for neutral elements (gray.60). */
+  /* Text color for neutral elements. */
   'kui-color-text-neutral': #4e594e;
-  /* Strong text color for neutral elements (gray.70). */
+  /* Strong text color for neutral elements. */
   'kui-color-text-neutral-strong': #3d443d;
-  /* Stronger text color for neutral elements (gray.80). */
+  /* Stronger text color for neutral elements. */
   'kui-color-text-neutral-stronger': #242824;
-  /* Strongest text color for neutral elements (gray.90). */
+  /* Strongest text color for neutral elements. */
   'kui-color-text-neutral-strongest': #181b18;
-  /* Weak text color for neutral elements (gray.40). */
+  /* Weak text color for neutral elements. */
   'kui-color-text-neutral-weak': #9da99d;
-  /* Weaker text color for neutral elements (gray.20). */
+  /* Weaker text color for neutral elements. */
   'kui-color-text-neutral-weaker': #e3e8e3;
-  /* Weakest text color for neutral elements (gray.10). */
+  /* Weakest text color for neutral elements. */
   'kui-color-text-neutral-weakest': #f1f3f1;
-  /* Text color for primary actions or messages (blue.60). */
-  'kui-color-text-primary': #0076f4;
-  /* Strong text color for primary actions or messages (blue.70). */
-  'kui-color-text-primary-strong': #0063cc;
-  /* Stronger text color for primary actions or messages (blue.80). */
-  'kui-color-text-primary-stronger': #004a99;
-  /* Strongest text color for primary actions or messages (blue.90). */
-  'kui-color-text-primary-strongest': #003166;
-  /* Weak text color for primary actions or messages (blue.40). */
-  'kui-color-text-primary-weak': #5f9aff;
-  /* Weaker text color for primary actions or messages (blue.20). */
-  'kui-color-text-primary-weaker': #beddff;
-  /* Weakest text color for primary actions or messages (blue.10). */
-  'kui-color-text-primary-weakest': #eef6ff;
-  /* Text color for success elements (green.60). */
+  /* Text color for primary actions or messages. */
+  'kui-color-text-primary': #3d443d;
+  /* Strong text color for primary actions or messages. */
+  'kui-color-text-primary-strong': #242824;
+  /* Stronger text color for primary actions or messages. */
+  'kui-color-text-primary-stronger': #181b18;
+  /* Strongest text color for primary actions or messages. */
+  'kui-color-text-primary-strongest': #090d09;
+  /* Weak text color for primary actions or messages. */
+  'kui-color-text-primary-weak': #9da99d;
+  /* Weaker text color for primary actions or messages. */
+  'kui-color-text-primary-weaker': #e3e8e3;
+  /* Weakest text color for primary actions or messages. */
+  'kui-color-text-primary-weakest': #f1f3f1;
+  /* Text color for success elements. */
   'kui-color-text-success': #007d60;
-  /* Strong text color for success elements (green.70). */
+  /* Strong text color for success elements. */
   'kui-color-text-success-strong': #005944;
-  /* Stronger text color for success elements (green.80). */
+  /* Stronger text color for success elements. */
   'kui-color-text-success-stronger': #004737;
-  /* Stronger text color for success elements (green.90). */
+  /* Strongest text color for success elements. */
   'kui-color-text-success-strongest': #003629;
-  /* Weak text color for success elements (green.40). */
+  /* Weak text color for success elements. */
   'kui-color-text-success-weak': #00d6a4;
-  /* Weaker text color for success elements (green.20). */
+  /* Weaker text color for success elements. */
   'kui-color-text-success-weaker': #b5ffee;
-  /* Weakest text color for success elements (green.10). */
+  /* Weakest text color for success elements. */
   'kui-color-text-success-weakest': #ecfffb;
-  /* Text color for warning elements (yellow.60). */
-  'kui-color-text-warning': #999400;
-  /* Strong text color for warning elements (yellow.70). */
+  /* Text color for warning elements. */
+  'kui-color-text-warning': #807c00;
+  /* Strong text color for warning elements. */
   'kui-color-text-warning-strong': #807c00;
-  /* Stronger text color for warning elements (yellow.80). */
+  /* Stronger text color for warning elements. */
   'kui-color-text-warning-stronger': #666300;
-  /* Strongest text color for warning elements (yellow.90). */
+  /* Strongest text color for warning elements. */
   'kui-color-text-warning-strongest': #4d4a00;
-  /* Weak text color for warning elements (yellow.40). */
+  /* Weak text color for warning elements. */
   'kui-color-text-warning-weak': #fff600;
-  /* Weaker text color for warning elements (yellow.20). */
+  /* Weaker text color for warning elements. */
   'kui-color-text-warning-weaker': #fffb96;
-  /* Weakest text color for warning elements (yellow.10). */
+  /* Weakest text color for warning elements. */
   'kui-color-text-warning-weakest': #fffee0;
   /* Default transition timing */
   'kui-animation-duration-20': 0.2s;
@@ -1828,103 +1856,117 @@ $tokens-map: (
 @kui-color-border-primary-weakest: #eef6ff;
 /* Transparent border color (transparent). */
 @kui-color-border-transparent: transparent;
-/* Default text color (blue.100). */
-@kui-color-text: #001933;
-/* Text color for danger actions or messages (red.60). */
+/* Default text color. */
+@kui-color-text: #3d443d;
+/* Text color for brand elements. */
+@kui-color-text-brand: #ccff00;
+/* Strong text color for brand elements. */
+@kui-color-text-brand-strong: #7a9900;
+/* Stronger text color for brand elements. */
+@kui-color-text-brand-stronger: #526600;
+/* Strongest text color for brand elements. */
+@kui-color-text-brand-strongest: #293300;
+/* Weak text color for brand elements. */
+@kui-color-text-brand-weak: #dfff5f;
+/* Weaker text color for brand elements. */
+@kui-color-text-brand-weaker: #f2ffbe;
+/* Weakest text color for brand elements. */
+@kui-color-text-brand-weakest: #fcffee;
+/* Text color for danger actions or messages. */
 @kui-color-text-danger: #d60027;
-/* Strong text color for danger actions or messages (red.70). */
+/* Strong text color for danger actions or messages. */
 @kui-color-text-danger-strong: #ad000e;
-/* Stronger text color for danger actions or messages (red.80). */
+/* Stronger text color for danger actions or messages. */
 @kui-color-text-danger-stronger: #850000;
-/* Strongest text color for danger actions or messages (red.90). */
+/* Strongest text color for danger actions or messages. */
 @kui-color-text-danger-strongest: #5c0000;
-/* Weak text color for danger actions or messages (red.40). */
+/* Weak text color for danger actions or messages. */
 @kui-color-text-danger-weak: #ff3954;
-/* Weaker text color for danger actions or messages (red.20). */
+/* Weaker text color for danger actions or messages. */
 @kui-color-text-danger-weaker: #ffbdbd;
-/* Weakest text color for danger actions or messages (red.10). */
+/* Weakest text color for danger actions or messages. */
 @kui-color-text-danger-weakest: #ffe5e5;
-/* Text color for decorative purposes (aqua.50). */
+/* Text color for decorative purposes. */
 @kui-color-text-decorative-aqua: #00abd2;
-/* Text color for decorative purposes (pink.60). */
+/* Text color for decorative purposes. */
 @kui-color-text-decorative-pink: #d60067;
-/* Text color for decorative purposes (purple.60). */
+/* Text color for decorative purposes. */
 @kui-color-text-decorative-purple: #6f28ff;
-/* Strong text color for decorative purposes (purple.70). */
+/* Strong text color for decorative purposes. */
 @kui-color-text-decorative-purple-strong: #5e00f5;
-/* Text color for disabled elements (gray.40). */
-@kui-color-text-disabled: #9da99d;
-/* Text color for info elements (blue.60). */
+/* Text color for disabled elements. */
+@kui-color-text-disabled: #697769;
+/* Text color for info elements. */
 @kui-color-text-info: #0076f4;
-/* Strong text color for info elements (blue.70). */
+/* Strong text color for info elements. */
 @kui-color-text-info-strong: #0063cc;
-/* Stronger text color for info elements (blue.80). */
+/* Stronger text color for info elements. */
 @kui-color-text-info-stronger: #004a99;
-/* Strongest text color for info elements (blue.90). */
+/* Strongest text color for info elements. */
 @kui-color-text-info-strongest: #003166;
-/* Weak text color for info elements (blue.40). */
+/* Weak text color for info elements. */
 @kui-color-text-info-weak: #5f9aff;
-/* Weaker text color for info elements (blue.20). */
+/* Weaker text color for info elements. */
 @kui-color-text-info-weaker: #beddff;
-/* Weakest text color for info elements (blue.10). */
+/* Weakest text color for info elements. */
 @kui-color-text-info-weakest: #eef6ff;
-/* Inverse text color (white). */
+/* Inverse text color. */
 @kui-color-text-inverse: #ffffff;
-/* Text color for neutral elements (gray.60). */
+/* Text color for neutral elements. */
 @kui-color-text-neutral: #4e594e;
-/* Strong text color for neutral elements (gray.70). */
+/* Strong text color for neutral elements. */
 @kui-color-text-neutral-strong: #3d443d;
-/* Stronger text color for neutral elements (gray.80). */
+/* Stronger text color for neutral elements. */
 @kui-color-text-neutral-stronger: #242824;
-/* Strongest text color for neutral elements (gray.90). */
+/* Strongest text color for neutral elements. */
 @kui-color-text-neutral-strongest: #181b18;
-/* Weak text color for neutral elements (gray.40). */
+/* Weak text color for neutral elements. */
 @kui-color-text-neutral-weak: #9da99d;
-/* Weaker text color for neutral elements (gray.20). */
+/* Weaker text color for neutral elements. */
 @kui-color-text-neutral-weaker: #e3e8e3;
-/* Weakest text color for neutral elements (gray.10). */
+/* Weakest text color for neutral elements. */
 @kui-color-text-neutral-weakest: #f1f3f1;
-/* Text color for primary actions or messages (blue.60). */
-@kui-color-text-primary: #0076f4;
-/* Strong text color for primary actions or messages (blue.70). */
-@kui-color-text-primary-strong: #0063cc;
-/* Stronger text color for primary actions or messages (blue.80). */
-@kui-color-text-primary-stronger: #004a99;
-/* Strongest text color for primary actions or messages (blue.90). */
-@kui-color-text-primary-strongest: #003166;
-/* Weak text color for primary actions or messages (blue.40). */
-@kui-color-text-primary-weak: #5f9aff;
-/* Weaker text color for primary actions or messages (blue.20). */
-@kui-color-text-primary-weaker: #beddff;
-/* Weakest text color for primary actions or messages (blue.10). */
-@kui-color-text-primary-weakest: #eef6ff;
-/* Text color for success elements (green.60). */
+/* Text color for primary actions or messages. */
+@kui-color-text-primary: #3d443d;
+/* Strong text color for primary actions or messages. */
+@kui-color-text-primary-strong: #242824;
+/* Stronger text color for primary actions or messages. */
+@kui-color-text-primary-stronger: #181b18;
+/* Strongest text color for primary actions or messages. */
+@kui-color-text-primary-strongest: #090d09;
+/* Weak text color for primary actions or messages. */
+@kui-color-text-primary-weak: #9da99d;
+/* Weaker text color for primary actions or messages. */
+@kui-color-text-primary-weaker: #e3e8e3;
+/* Weakest text color for primary actions or messages. */
+@kui-color-text-primary-weakest: #f1f3f1;
+/* Text color for success elements. */
 @kui-color-text-success: #007d60;
-/* Strong text color for success elements (green.70). */
+/* Strong text color for success elements. */
 @kui-color-text-success-strong: #005944;
-/* Stronger text color for success elements (green.80). */
+/* Stronger text color for success elements. */
 @kui-color-text-success-stronger: #004737;
-/* Stronger text color for success elements (green.90). */
+/* Strongest text color for success elements. */
 @kui-color-text-success-strongest: #003629;
-/* Weak text color for success elements (green.40). */
+/* Weak text color for success elements. */
 @kui-color-text-success-weak: #00d6a4;
-/* Weaker text color for success elements (green.20). */
+/* Weaker text color for success elements. */
 @kui-color-text-success-weaker: #b5ffee;
-/* Weakest text color for success elements (green.10). */
+/* Weakest text color for success elements. */
 @kui-color-text-success-weakest: #ecfffb;
-/* Text color for warning elements (yellow.60). */
-@kui-color-text-warning: #999400;
-/* Strong text color for warning elements (yellow.70). */
+/* Text color for warning elements. */
+@kui-color-text-warning: #807c00;
+/* Strong text color for warning elements. */
 @kui-color-text-warning-strong: #807c00;
-/* Stronger text color for warning elements (yellow.80). */
+/* Stronger text color for warning elements. */
 @kui-color-text-warning-stronger: #666300;
-/* Strongest text color for warning elements (yellow.90). */
+/* Strongest text color for warning elements. */
 @kui-color-text-warning-strongest: #4d4a00;
-/* Weak text color for warning elements (yellow.40). */
+/* Weak text color for warning elements. */
 @kui-color-text-warning-weak: #fff600;
-/* Weaker text color for warning elements (yellow.20). */
+/* Weaker text color for warning elements. */
 @kui-color-text-warning-weaker: #fffb96;
-/* Weakest text color for warning elements (yellow.10). */
+/* Weakest text color for warning elements. */
 @kui-color-text-warning-weakest: #fffee0;
 /* Default transition timing */
 @kui-animation-duration-20: 0.2s;
@@ -2651,103 +2693,117 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-border-primary-weakest: #eef6ff;
 /* Transparent border color (transparent). */
 --kui-color-border-transparent: transparent;
-/* Default text color (blue.100). */
---kui-color-text: #001933;
-/* Text color for danger actions or messages (red.60). */
+/* Default text color. */
+--kui-color-text: #3d443d;
+/* Text color for brand elements. */
+--kui-color-text-brand: #ccff00;
+/* Strong text color for brand elements. */
+--kui-color-text-brand-strong: #7a9900;
+/* Stronger text color for brand elements. */
+--kui-color-text-brand-stronger: #526600;
+/* Strongest text color for brand elements. */
+--kui-color-text-brand-strongest: #293300;
+/* Weak text color for brand elements. */
+--kui-color-text-brand-weak: #dfff5f;
+/* Weaker text color for brand elements. */
+--kui-color-text-brand-weaker: #f2ffbe;
+/* Weakest text color for brand elements. */
+--kui-color-text-brand-weakest: #fcffee;
+/* Text color for danger actions or messages. */
 --kui-color-text-danger: #d60027;
-/* Strong text color for danger actions or messages (red.70). */
+/* Strong text color for danger actions or messages. */
 --kui-color-text-danger-strong: #ad000e;
-/* Stronger text color for danger actions or messages (red.80). */
+/* Stronger text color for danger actions or messages. */
 --kui-color-text-danger-stronger: #850000;
-/* Strongest text color for danger actions or messages (red.90). */
+/* Strongest text color for danger actions or messages. */
 --kui-color-text-danger-strongest: #5c0000;
-/* Weak text color for danger actions or messages (red.40). */
+/* Weak text color for danger actions or messages. */
 --kui-color-text-danger-weak: #ff3954;
-/* Weaker text color for danger actions or messages (red.20). */
+/* Weaker text color for danger actions or messages. */
 --kui-color-text-danger-weaker: #ffbdbd;
-/* Weakest text color for danger actions or messages (red.10). */
+/* Weakest text color for danger actions or messages. */
 --kui-color-text-danger-weakest: #ffe5e5;
-/* Text color for decorative purposes (aqua.50). */
+/* Text color for decorative purposes. */
 --kui-color-text-decorative-aqua: #00abd2;
-/* Text color for decorative purposes (pink.60). */
+/* Text color for decorative purposes. */
 --kui-color-text-decorative-pink: #d60067;
-/* Text color for decorative purposes (purple.60). */
+/* Text color for decorative purposes. */
 --kui-color-text-decorative-purple: #6f28ff;
-/* Strong text color for decorative purposes (purple.70). */
+/* Strong text color for decorative purposes. */
 --kui-color-text-decorative-purple-strong: #5e00f5;
-/* Text color for disabled elements (gray.40). */
---kui-color-text-disabled: #9da99d;
-/* Text color for info elements (blue.60). */
+/* Text color for disabled elements. */
+--kui-color-text-disabled: #697769;
+/* Text color for info elements. */
 --kui-color-text-info: #0076f4;
-/* Strong text color for info elements (blue.70). */
+/* Strong text color for info elements. */
 --kui-color-text-info-strong: #0063cc;
-/* Stronger text color for info elements (blue.80). */
+/* Stronger text color for info elements. */
 --kui-color-text-info-stronger: #004a99;
-/* Strongest text color for info elements (blue.90). */
+/* Strongest text color for info elements. */
 --kui-color-text-info-strongest: #003166;
-/* Weak text color for info elements (blue.40). */
+/* Weak text color for info elements. */
 --kui-color-text-info-weak: #5f9aff;
-/* Weaker text color for info elements (blue.20). */
+/* Weaker text color for info elements. */
 --kui-color-text-info-weaker: #beddff;
-/* Weakest text color for info elements (blue.10). */
+/* Weakest text color for info elements. */
 --kui-color-text-info-weakest: #eef6ff;
-/* Inverse text color (white). */
+/* Inverse text color. */
 --kui-color-text-inverse: #ffffff;
-/* Text color for neutral elements (gray.60). */
+/* Text color for neutral elements. */
 --kui-color-text-neutral: #4e594e;
-/* Strong text color for neutral elements (gray.70). */
+/* Strong text color for neutral elements. */
 --kui-color-text-neutral-strong: #3d443d;
-/* Stronger text color for neutral elements (gray.80). */
+/* Stronger text color for neutral elements. */
 --kui-color-text-neutral-stronger: #242824;
-/* Strongest text color for neutral elements (gray.90). */
+/* Strongest text color for neutral elements. */
 --kui-color-text-neutral-strongest: #181b18;
-/* Weak text color for neutral elements (gray.40). */
+/* Weak text color for neutral elements. */
 --kui-color-text-neutral-weak: #9da99d;
-/* Weaker text color for neutral elements (gray.20). */
+/* Weaker text color for neutral elements. */
 --kui-color-text-neutral-weaker: #e3e8e3;
-/* Weakest text color for neutral elements (gray.10). */
+/* Weakest text color for neutral elements. */
 --kui-color-text-neutral-weakest: #f1f3f1;
-/* Text color for primary actions or messages (blue.60). */
---kui-color-text-primary: #0076f4;
-/* Strong text color for primary actions or messages (blue.70). */
---kui-color-text-primary-strong: #0063cc;
-/* Stronger text color for primary actions or messages (blue.80). */
---kui-color-text-primary-stronger: #004a99;
-/* Strongest text color for primary actions or messages (blue.90). */
---kui-color-text-primary-strongest: #003166;
-/* Weak text color for primary actions or messages (blue.40). */
---kui-color-text-primary-weak: #5f9aff;
-/* Weaker text color for primary actions or messages (blue.20). */
---kui-color-text-primary-weaker: #beddff;
-/* Weakest text color for primary actions or messages (blue.10). */
---kui-color-text-primary-weakest: #eef6ff;
-/* Text color for success elements (green.60). */
+/* Text color for primary actions or messages. */
+--kui-color-text-primary: #3d443d;
+/* Strong text color for primary actions or messages. */
+--kui-color-text-primary-strong: #242824;
+/* Stronger text color for primary actions or messages. */
+--kui-color-text-primary-stronger: #181b18;
+/* Strongest text color for primary actions or messages. */
+--kui-color-text-primary-strongest: #090d09;
+/* Weak text color for primary actions or messages. */
+--kui-color-text-primary-weak: #9da99d;
+/* Weaker text color for primary actions or messages. */
+--kui-color-text-primary-weaker: #e3e8e3;
+/* Weakest text color for primary actions or messages. */
+--kui-color-text-primary-weakest: #f1f3f1;
+/* Text color for success elements. */
 --kui-color-text-success: #007d60;
-/* Strong text color for success elements (green.70). */
+/* Strong text color for success elements. */
 --kui-color-text-success-strong: #005944;
-/* Stronger text color for success elements (green.80). */
+/* Stronger text color for success elements. */
 --kui-color-text-success-stronger: #004737;
-/* Stronger text color for success elements (green.90). */
+/* Strongest text color for success elements. */
 --kui-color-text-success-strongest: #003629;
-/* Weak text color for success elements (green.40). */
+/* Weak text color for success elements. */
 --kui-color-text-success-weak: #00d6a4;
-/* Weaker text color for success elements (green.20). */
+/* Weaker text color for success elements. */
 --kui-color-text-success-weaker: #b5ffee;
-/* Weakest text color for success elements (green.10). */
+/* Weakest text color for success elements. */
 --kui-color-text-success-weakest: #ecfffb;
-/* Text color for warning elements (yellow.60). */
---kui-color-text-warning: #999400;
-/* Strong text color for warning elements (yellow.70). */
+/* Text color for warning elements. */
+--kui-color-text-warning: #807c00;
+/* Strong text color for warning elements. */
 --kui-color-text-warning-strong: #807c00;
-/* Stronger text color for warning elements (yellow.80). */
+/* Stronger text color for warning elements. */
 --kui-color-text-warning-stronger: #666300;
-/* Strongest text color for warning elements (yellow.90). */
+/* Strongest text color for warning elements. */
 --kui-color-text-warning-strongest: #4d4a00;
-/* Weak text color for warning elements (yellow.40). */
+/* Weak text color for warning elements. */
 --kui-color-text-warning-weak: #fff600;
-/* Weaker text color for warning elements (yellow.20). */
+/* Weaker text color for warning elements. */
 --kui-color-text-warning-weaker: #fffb96;
-/* Weakest text color for warning elements (yellow.10). */
+/* Weakest text color for warning elements. */
 --kui-color-text-warning-weakest: #fffee0;
 /* Default transition timing */
 --kui-animation-duration-20: 0.2s;
@@ -3472,103 +3528,117 @@ export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#beddff";
 export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eef6ff";
 /* Transparent border color (transparent). */
 export const KUI_COLOR_BORDER_TRANSPARENT = "transparent";
-/* Default text color (blue.100). */
-export const KUI_COLOR_TEXT = "#001933";
-/* Text color for danger actions or messages (red.60). */
+/* Default text color. */
+export const KUI_COLOR_TEXT = "#3d443d";
+/* Text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND = "#ccff00";
+/* Strong text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND_STRONG = "#7a9900";
+/* Stronger text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND_STRONGER = "#526600";
+/* Strongest text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND_STRONGEST = "#293300";
+/* Weak text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND_WEAK = "#dfff5f";
+/* Weaker text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND_WEAKER = "#f2ffbe";
+/* Weakest text color for brand elements. */
+export const KUI_COLOR_TEXT_BRAND_WEAKEST = "#fcffee";
+/* Text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER = "#d60027";
-/* Strong text color for danger actions or messages (red.70). */
+/* Strong text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e";
-/* Stronger text color for danger actions or messages (red.80). */
+/* Stronger text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER_STRONGER = "#850000";
-/* Strongest text color for danger actions or messages (red.90). */
+/* Strongest text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER_STRONGEST = "#5c0000";
-/* Weak text color for danger actions or messages (red.40). */
+/* Weak text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER_WEAK = "#ff3954";
-/* Weaker text color for danger actions or messages (red.20). */
+/* Weaker text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER_WEAKER = "#ffbdbd";
-/* Weakest text color for danger actions or messages (red.10). */
+/* Weakest text color for danger actions or messages. */
 export const KUI_COLOR_TEXT_DANGER_WEAKEST = "#ffe5e5";
-/* Text color for decorative purposes (aqua.50). */
+/* Text color for decorative purposes. */
 export const KUI_COLOR_TEXT_DECORATIVE_AQUA = "#00abd2";
-/* Text color for decorative purposes (pink.60). */
+/* Text color for decorative purposes. */
 export const KUI_COLOR_TEXT_DECORATIVE_PINK = "#d60067";
-/* Text color for decorative purposes (purple.60). */
+/* Text color for decorative purposes. */
 export const KUI_COLOR_TEXT_DECORATIVE_PURPLE = "#6f28ff";
-/* Strong text color for decorative purposes (purple.70). */
+/* Strong text color for decorative purposes. */
 export const KUI_COLOR_TEXT_DECORATIVE_PURPLE_STRONG = "#5e00f5";
-/* Text color for disabled elements (gray.40). */
-export const KUI_COLOR_TEXT_DISABLED = "#9da99d";
-/* Text color for info elements (blue.60). */
+/* Text color for disabled elements. */
+export const KUI_COLOR_TEXT_DISABLED = "#697769";
+/* Text color for info elements. */
 export const KUI_COLOR_TEXT_INFO = "#0076f4";
-/* Strong text color for info elements (blue.70). */
+/* Strong text color for info elements. */
 export const KUI_COLOR_TEXT_INFO_STRONG = "#0063cc";
-/* Stronger text color for info elements (blue.80). */
+/* Stronger text color for info elements. */
 export const KUI_COLOR_TEXT_INFO_STRONGER = "#004a99";
-/* Strongest text color for info elements (blue.90). */
+/* Strongest text color for info elements. */
 export const KUI_COLOR_TEXT_INFO_STRONGEST = "#003166";
-/* Weak text color for info elements (blue.40). */
+/* Weak text color for info elements. */
 export const KUI_COLOR_TEXT_INFO_WEAK = "#5f9aff";
-/* Weaker text color for info elements (blue.20). */
+/* Weaker text color for info elements. */
 export const KUI_COLOR_TEXT_INFO_WEAKER = "#beddff";
-/* Weakest text color for info elements (blue.10). */
+/* Weakest text color for info elements. */
 export const KUI_COLOR_TEXT_INFO_WEAKEST = "#eef6ff";
-/* Inverse text color (white). */
+/* Inverse text color. */
 export const KUI_COLOR_TEXT_INVERSE = "#ffffff";
-/* Text color for neutral elements (gray.60). */
+/* Text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL = "#4e594e";
-/* Strong text color for neutral elements (gray.70). */
+/* Strong text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL_STRONG = "#3d443d";
-/* Stronger text color for neutral elements (gray.80). */
+/* Stronger text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL_STRONGER = "#242824";
-/* Strongest text color for neutral elements (gray.90). */
+/* Strongest text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL_STRONGEST = "#181b18";
-/* Weak text color for neutral elements (gray.40). */
+/* Weak text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL_WEAK = "#9da99d";
-/* Weaker text color for neutral elements (gray.20). */
+/* Weaker text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL_WEAKER = "#e3e8e3";
-/* Weakest text color for neutral elements (gray.10). */
+/* Weakest text color for neutral elements. */
 export const KUI_COLOR_TEXT_NEUTRAL_WEAKEST = "#f1f3f1";
-/* Text color for primary actions or messages (blue.60). */
-export const KUI_COLOR_TEXT_PRIMARY = "#0076f4";
-/* Strong text color for primary actions or messages (blue.70). */
-export const KUI_COLOR_TEXT_PRIMARY_STRONG = "#0063cc";
-/* Stronger text color for primary actions or messages (blue.80). */
-export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#004a99";
-/* Strongest text color for primary actions or messages (blue.90). */
-export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#003166";
-/* Weak text color for primary actions or messages (blue.40). */
-export const KUI_COLOR_TEXT_PRIMARY_WEAK = "#5f9aff";
-/* Weaker text color for primary actions or messages (blue.20). */
-export const KUI_COLOR_TEXT_PRIMARY_WEAKER = "#beddff";
-/* Weakest text color for primary actions or messages (blue.10). */
-export const KUI_COLOR_TEXT_PRIMARY_WEAKEST = "#eef6ff";
-/* Text color for success elements (green.60). */
+/* Text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY = "#3d443d";
+/* Strong text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY_STRONG = "#242824";
+/* Stronger text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY_STRONGER = "#181b18";
+/* Strongest text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY_STRONGEST = "#090d09";
+/* Weak text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY_WEAK = "#9da99d";
+/* Weaker text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY_WEAKER = "#e3e8e3";
+/* Weakest text color for primary actions or messages. */
+export const KUI_COLOR_TEXT_PRIMARY_WEAKEST = "#f1f3f1";
+/* Text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS = "#007d60";
-/* Strong text color for success elements (green.70). */
+/* Strong text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS_STRONG = "#005944";
-/* Stronger text color for success elements (green.80). */
+/* Stronger text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS_STRONGER = "#004737";
-/* Stronger text color for success elements (green.90). */
+/* Strongest text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS_STRONGEST = "#003629";
-/* Weak text color for success elements (green.40). */
+/* Weak text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS_WEAK = "#00d6a4";
-/* Weaker text color for success elements (green.20). */
+/* Weaker text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS_WEAKER = "#b5ffee";
-/* Weakest text color for success elements (green.10). */
+/* Weakest text color for success elements. */
 export const KUI_COLOR_TEXT_SUCCESS_WEAKEST = "#ecfffb";
-/* Text color for warning elements (yellow.60). */
-export const KUI_COLOR_TEXT_WARNING = "#999400";
-/* Strong text color for warning elements (yellow.70). */
+/* Text color for warning elements. */
+export const KUI_COLOR_TEXT_WARNING = "#807c00";
+/* Strong text color for warning elements. */
 export const KUI_COLOR_TEXT_WARNING_STRONG = "#807c00";
-/* Stronger text color for warning elements (yellow.80). */
+/* Stronger text color for warning elements. */
 export const KUI_COLOR_TEXT_WARNING_STRONGER = "#666300";
-/* Strongest text color for warning elements (yellow.90). */
+/* Strongest text color for warning elements. */
 export const KUI_COLOR_TEXT_WARNING_STRONGEST = "#4d4a00";
-/* Weak text color for warning elements (yellow.40). */
+/* Weak text color for warning elements. */
 export const KUI_COLOR_TEXT_WARNING_WEAK = "#fff600";
-/* Weaker text color for warning elements (yellow.20). */
+/* Weaker text color for warning elements. */
 export const KUI_COLOR_TEXT_WARNING_WEAKER = "#fffb96";
-/* Weakest text color for warning elements (yellow.10). */
+/* Weakest text color for warning elements. */
 export const KUI_COLOR_TEXT_WARNING_WEAKEST = "#fffee0";
 /* Default transition timing */
 export const KUI_ANIMATION_DURATION_20 = "0.2s";
@@ -4208,7 +4278,14 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_primary_weaker": "#beddff",
   "kui_color_border_primary_weakest": "#eef6ff",
   "kui_color_border_transparent": "transparent",
-  "kui_color_text": "#001933",
+  "kui_color_text": "#3d443d",
+  "kui_color_text_brand": "#ccff00",
+  "kui_color_text_brand_strong": "#7a9900",
+  "kui_color_text_brand_stronger": "#526600",
+  "kui_color_text_brand_strongest": "#293300",
+  "kui_color_text_brand_weak": "#dfff5f",
+  "kui_color_text_brand_weaker": "#f2ffbe",
+  "kui_color_text_brand_weakest": "#fcffee",
   "kui_color_text_danger": "#d60027",
   "kui_color_text_danger_strong": "#ad000e",
   "kui_color_text_danger_stronger": "#850000",
@@ -4220,7 +4297,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_decorative_pink": "#d60067",
   "kui_color_text_decorative_purple": "#6f28ff",
   "kui_color_text_decorative_purple_strong": "#5e00f5",
-  "kui_color_text_disabled": "#9da99d",
+  "kui_color_text_disabled": "#697769",
   "kui_color_text_info": "#0076f4",
   "kui_color_text_info_strong": "#0063cc",
   "kui_color_text_info_stronger": "#004a99",
@@ -4236,13 +4313,13 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_neutral_weak": "#9da99d",
   "kui_color_text_neutral_weaker": "#e3e8e3",
   "kui_color_text_neutral_weakest": "#f1f3f1",
-  "kui_color_text_primary": "#0076f4",
-  "kui_color_text_primary_strong": "#0063cc",
-  "kui_color_text_primary_stronger": "#004a99",
-  "kui_color_text_primary_strongest": "#003166",
-  "kui_color_text_primary_weak": "#5f9aff",
-  "kui_color_text_primary_weaker": "#beddff",
-  "kui_color_text_primary_weakest": "#eef6ff",
+  "kui_color_text_primary": "#3d443d",
+  "kui_color_text_primary_strong": "#242824",
+  "kui_color_text_primary_stronger": "#181b18",
+  "kui_color_text_primary_strongest": "#090d09",
+  "kui_color_text_primary_weak": "#9da99d",
+  "kui_color_text_primary_weaker": "#e3e8e3",
+  "kui_color_text_primary_weakest": "#f1f3f1",
   "kui_color_text_success": "#007d60",
   "kui_color_text_success_strong": "#005944",
   "kui_color_text_success_stronger": "#004737",
@@ -4250,7 +4327,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_text_success_weak": "#00d6a4",
   "kui_color_text_success_weaker": "#b5ffee",
   "kui_color_text_success_weakest": "#ecfffb",
-  "kui_color_text_warning": "#999400",
+  "kui_color_text_warning": "#807c00",
   "kui_color_text_warning_strong": "#807c00",
   "kui_color_text_warning_stronger": "#666300",
   "kui_color_text_warning_strongest": "#4d4a00",
