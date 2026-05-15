@@ -1,3 +1,15 @@
+## [1.22.2](https://github.com/Kong/design-tokens/compare/v1.22.1...v1.22.2) (2026-05-15)
+
+
+### Bug Fixes
+
+* force release ([1ae1e6e](https://github.com/Kong/design-tokens/commit/1ae1e6e08a541e37a4debc7f9fb6b012aea9923b))
+
+
+### Reverts
+
+* button component tokens ([#658](https://github.com/Kong/design-tokens/issues/658)) ([c66a774](https://github.com/Kong/design-tokens/commit/c66a7742a8c8aed09499612c634a724ee69f1ed6))
+
 ## [1.22.1](https://github.com/Kong/design-tokens/compare/v1.22.0...v1.22.1) (2026-05-14)
 
 
