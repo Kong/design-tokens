@@ -4,5 +4,7 @@ minimumReleaseAgeExclude:
   - '@kong/*'
   - '@kong-ui/*'
   - '@kong-ui-public/*'
+  # Renovate security update: vite@8.0.5
+  - vite@8.0.5
 # When set to no-downgrade, pnpm will fail if a package's trust level has decreased compared to previous releases
 trustPolicy: no-downgrade
