@@ -131,6 +131,6 @@ KUI_FONT_SIZE_30        →  --kui-font-size-30
 - **Re-exports through barrel files** in consumer code — only direct `@kong/design-tokens` imports are detected.
 - **Multi-hop script-setup flow** (`const a = KUI_X; const b = a`) — only one level of indirection is detected.
 - **Render functions / JSX** (`.tsx` SFC blocks) — template-only.
-- **`<style>` blocks** — use [`@kong/design-tokens/stylelint-plugin`](./stylelint-plugin/README.md) instead.
+- **`<style>` blocks** — use [`@kong/design-tokens/stylelint-plugin`](../stylelint-plugin/README.md) instead.
 
 > **Note**: KUI design token JS constants resolve to primitive strings (e.g. `'#1456cb'`). When wrapped in `` `var(--kui-x, ${KUI_X})` ``, the fallback is that primitive string. In production Kong apps the CSS custom properties are always loaded, so the fallback fires only if the stylesheet fails to load.
