@@ -2,8 +2,6 @@
 
 Kong Design Tokens, via [Style Dictionary](https://github.com/amzn/style-dictionary).
 
-> This package is currently for Kong internal-use only, but is published publicly in order to consume in our OSS projects.
-
 - [Tokens](#tokens)
   - [Token Formats](#token-formats)
   - [SCSS](#scss)
