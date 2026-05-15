@@ -1,0 +1,36 @@
+import tokenConstantRequiresCssVar from './rules/token-constant-requires-css-var/index.mjs'
+
+/**
+ * ESLint plugin that enforces correct usage of Kong design tokens in Vue 3
+ * template `v-bind` expressions. Tokens imported from `@kong/design-tokens`
+ * must be wrapped in a CSS custom property fallback so DOM-level theme
+ * overrides (light/dark mode) take effect.
+ */
+const plugin = {
+  meta: {
+    name: '@kong/design-tokens/eslint-plugin',
+  },
+  rules: {
+    'token-constant-requires-css-var': tokenConstantRequiresCssVar,
+  },
+  // configs is assigned below to allow self-reference inside the object
+  configs: /** @type {any} */ (undefined),
+}
+
+plugin.configs = {
+  /**
+   * Flat-config preset that registers the plugin and enables the rule as an
+   * error. Spread into your `eslint.config.mjs` inside a `files: ['**\/*.vue']`
+   * config entry.
+   */
+  recommended: {
+    plugins: {
+      '@kong/design-tokens': plugin,
+    },
+    rules: {
+      '@kong/design-tokens/token-constant-requires-css-var': 'error',
+    },
+  },
+}
+
+export default plugin

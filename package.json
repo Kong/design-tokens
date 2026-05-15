@@ -4,13 +4,18 @@
   "description": "Kong UI Design Tokens and style dictionary",
   "type": "module",
   "scripts": {
-    "build": "pnpm build:clean && style-dictionary build --config ./config.mjs && pnpm copy:tokens-doc && pnpm copy:stylelint-plugin",
+    "build": "pnpm build:clean && pnpm build:tokens && pnpm copy:tokens-doc && pnpm copy:stylelint-plugin && pnpm copy:eslint-plugin",
+    "build:tokens": "style-dictionary build --config ./config.mjs",
     "build:clean": "rimraf ./dist",
     "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
     "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",
+    "copy:eslint-plugin": "shx cp -R './eslint-plugin' './dist/eslint-plugin/'",
+    "test:eslint-plugin": "vitest run --config eslint-plugin/vitest.config.mjs",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
-    "typecheck": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
+    "typecheck": "pnpm typecheck:sandbox && pnpm typecheck:eslint-plugin",
+    "typecheck:sandbox": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
+    "typecheck:eslint-plugin": "tsc -p eslint-plugin/tsconfig.json --noEmit",
     "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
     "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
@@ -44,7 +49,17 @@
     },
     "./tokens/*": "./dist/tokens/*",
     "./stylelint-plugin": "./dist/stylelint-plugin/index.mjs",
+    "./eslint-plugin": "./dist/eslint-plugin/index.mjs",
     "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0 || ^10.0.0",
+    "vue-eslint-parser": ">=10.4.0"
+  },
+  "peerDependenciesMeta": {
+    "vue-eslint-parser": {
+      "optional": true
+    }
   },
   "repository": {
     "type": "git",
@@ -68,7 +83,8 @@
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.39.3",
+    "eslint": "^10.3.0",
+    "eslint-plugin-vue": "^10.9.0",
     "npm-run-all2": "^8.0.4",
     "rimraf": "^6.1.3",
     "sass": "^1.97.3",
@@ -79,9 +95,14 @@
     "vite": "^8.0.0",
     "vite-plugin-restart": "^2.0.0",
     "vite-plugin-vue-devtools": "^8.0.7",
+    "vitest": "^4.1.5",
     "vue": "^3.5.29",
+    "vue-eslint-parser": "^10.4.0",
     "vue-router": "^5.0.3",
     "vue-tsc": "^3.2.7"
+  },
+  "overrides": {
+    "semver": "^7.8.0"
   },
   "release": {
     "branches": [
@@ -145,6 +166,9 @@
       "@evilmartians/lefthook",
       "esbuild",
       "style-dictionary"
-    ]
+    ],
+    "overrides": {
+      "semver": "^7.6.0"
+    }
   }
 }
