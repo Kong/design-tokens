@@ -12,17 +12,45 @@ const REPORT_ONLY = 'report'
 
 /**
  * Returns `true` when the TemplateLiteral expression slot at `exprIndex` is
- * already in the form `` `var(--kui-..., ${IDENTIFIER})` ``, so we can skip
- * it on subsequent lint passes (idempotency).
+ * already in the form `` `var(<expectedCssVar>, ${IDENTIFIER})` `` for the
+ * specific token, so we can skip it on subsequent lint passes (idempotency).
+ *
+ * Requires the exact CSS var name so that a mismatched wrapper such as
+ * `` `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})` `` is NOT
+ * treated as already-wrapped and continues to be reported.
  *
  * @param {import('estree').TemplateLiteral} templateNode
  * @param {number} exprIndex - Index of the expression slot to inspect
+ * @param {string} expectedCssVar - Full CSS custom property name, e.g. `--kui-color-text-inverse`
  * @returns {boolean}
  */
-function isAlreadyWrappedSlot(templateNode, exprIndex) {
+function isAlreadyWrappedSlot(templateNode, exprIndex, expectedCssVar) {
   const priorText = templateNode.quasis[exprIndex]?.value?.cooked ?? ''
   const nextText = templateNode.quasis[exprIndex + 1]?.value?.cooked ?? ''
-  return /var\(--kui-[a-z0-9-]+,\s*$/.test(priorText) && nextText.startsWith(')')
+  const escaped = expectedCssVar.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  // nextText.startsWith(')') is intentionally permissive: trailing content such as
+  // `) !important` is valid CSS (e.g. `color: var(--x, fallback) !important`).
+  return new RegExp(`var\\(${escaped},\\s*$`).test(priorText) && nextText.startsWith(')')
+}
+
+/**
+ * If `node` is directly an Identifier — or an Identifier wrapped only in
+ * TypeScript transparent wrappers (TSAsExpression, TSNonNullExpression,
+ * TSTypeAssertion) — returns that Identifier. Otherwise returns `null`.
+ *
+ * Used to detect the case where a TemplateLiteral slot's expression is a bare
+ * token reference so the caller can supply parent-template context for the
+ * token-specific idempotency check.
+ *
+ * @param {import('estree').Node} node
+ * @returns {import('estree').Identifier | null}
+ */
+function asDirectIdentifier(node) {
+  const type = /** @type {string} */ (node.type)
+  if (type === 'TSAsExpression' || type === 'TSNonNullExpression' || type === 'TSTypeAssertion') {
+    return asDirectIdentifier(/** @type {{ expression: import('estree').Node }} */ (node).expression)
+  }
+  return node.type === 'Identifier' ? /** @type {import('estree').Identifier} */ (node) : null
 }
 
 /**
@@ -36,7 +64,7 @@ function isAlreadyWrappedSlot(templateNode, exprIndex) {
  *
  * @param {import('estree').Node | null | undefined} node - Current AST node
  * @param {string} ctx - Either `AUTOFIX` or `REPORT_ONLY`
- * @param {(id: import('estree').Identifier, ctx: string) => void} onIdentifier
+ * @param {(id: import('estree').Identifier, ctx: string, parentTemplate?: import('estree').TemplateLiteral, slotIndex?: number) => void} onIdentifier
  */
 function walkExpression(node, ctx, onIdentifier) {
   if (!node) return
@@ -92,10 +120,19 @@ function walkExpression(node, ctx, onIdentifier) {
     case 'TemplateLiteral': {
       const n = /** @type {import('estree').TemplateLiteral} */ (node)
       // Replacing an Identifier inside `${}` with another backtick string would
-      // nest backticks — not valid JS. Check idempotency first; otherwise report.
+      // nest backticks — not valid JS, so all slots are REPORT_ONLY.
+      // When the slot expression is a direct Identifier (possibly TS-wrapped),
+      // pass the template + slot index so handleIdentifier can do a token-specific
+      // idempotency check (e.g. `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`).
+      // Nested expressions (ternary, call, etc.) never get slot context — they are
+      // always reported without the idempotency escape.
       n.expressions.forEach((expr, i) => {
-        if (isAlreadyWrappedSlot(n, i)) return
-        walkExpression(expr, REPORT_ONLY, onIdentifier)
+        const directId = asDirectIdentifier(expr)
+        if (directId) {
+          onIdentifier(directId, REPORT_ONLY, n, i)
+        } else {
+          walkExpression(expr, REPORT_ONLY, onIdentifier)
+        }
       })
       break
     }
@@ -218,10 +255,17 @@ const rule = {
      * Reports a KUI token Identifier found inside a v-bind expression.
      * Issues an autofix when `ctx === AUTOFIX`; reports without fix otherwise.
      *
+     * When the identifier is the direct expression of a TemplateLiteral slot,
+     * `parentTemplate` and `slotIndex` are provided so idempotency can be
+     * verified against the specific CSS var for this token — not just any
+     * `--kui-*` variable.
+     *
      * @param {import('estree').Identifier} idNode - The token identifier node
      * @param {string} ctx - Either `AUTOFIX` or `REPORT_ONLY`
+     * @param {import('estree').TemplateLiteral} [parentTemplate] - Enclosing template literal, if the identifier is its direct expression
+     * @param {number} [slotIndex] - Expression slot index within `parentTemplate`
      */
-    function handleIdentifier(idNode, ctx) {
+    function handleIdentifier(idNode, ctx, parentTemplate, slotIndex) {
       const localName = idNode.name
 
       // Case 1: directly-imported KUI token (e.g. KUI_X or its local alias)
@@ -229,6 +273,15 @@ const rule = {
       if (importedName) {
         const cssVar = kuiIdentifierToCssVar(importedName)
         const cssVarNoPrefix = cssVar.slice(2) // strip leading '--' for the message
+
+        // Idempotency: if the identifier is the direct expression of a TemplateLiteral
+        // slot, confirm the slot is wrapped with the CORRECT CSS var for THIS token.
+        // A mismatched wrapper like `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})`
+        // does NOT satisfy idempotency and will fall through to be reported.
+        if (parentTemplate !== undefined && slotIndex !== undefined
+          && isAlreadyWrappedSlot(parentTemplate, slotIndex, cssVar)) {
+          return
+        }
 
         if (ctx === AUTOFIX) {
           context.report({

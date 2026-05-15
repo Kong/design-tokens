@@ -154,6 +154,17 @@ tester.run(RULE_NAME, rule, {
         '<div :color="cond ? `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})` : `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`" />',
       ),
     },
+
+    // Idempotency with import alias — the CSS var is derived from the canonical imported
+    // name, not the local alias, so the already-wrapped form must be recognised as valid.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var(--kui-color-text-inverse, ${myColor})`" />',
+        'myColor',
+      ),
+    },
   ],
 
   // ---------------------------------------------------------------------------
@@ -354,7 +365,7 @@ tester.run(RULE_NAME, rule, {
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="(x = KUI_COLOR_TEXT_INVERSE)" />',
       ),
-      errors: [{ messageId: 'wrapInVarNoFix' }],
+      errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
       output: null,
     },
 
@@ -472,6 +483,61 @@ tester.run(RULE_NAME, rule, {
         '<div :color="`${KUI_COLOR_TEXT_INVERSE}`" />',
       ),
       errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
+    // Mismatched CSS var: wraps the token with the WRONG custom property.
+    // `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})` must be caught
+    // because the theme override targets the wrong property and theming will not work.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})`" />',
+      ),
+      errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
+    // Mismatched CSS var with import alias — alias resolves to the canonical imported name,
+    // so the wrong var is still caught even when a local alias is used.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var(--kui-color-text-primary, ${myColor})`" />',
+        'myColor',
+      ),
+      errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'myColor', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
+    // Token nested inside a TemplateLiteral slot expression (not a direct Identifier).
+    // `asDirectIdentifier` returns null for the ConditionalExpression, so the slot
+    // context is NOT passed and idempotency is not checked — the nested token is always reported.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var(--kui-color-text-inverse, ${cond ? KUI_COLOR_TEXT_INVERSE : \'red\'})`" />',
+      ),
+      errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
+    // Script-setup var in a var() template literal — Case 2 has no idempotency because
+    // wrapping a script-setup variable still uses the JS value, not the CSS property.
+    // The correct fix is to use the import directly at the binding site.
+    {
+      filename: 'test.vue',
+      code: sfc({
+        script: [
+          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+          'const myColor = KUI_COLOR_TEXT_INVERSE',
+        ].join('\n'),
+        template: '<div :color="`var(--kui-color-text-inverse, ${myColor})`" />',
+      }),
+      errors: [{ messageId: 'wrapInVarScriptSetup', data: { imported: 'KUI_COLOR_TEXT_INVERSE', local: 'myColor', cssVar: 'kui-color-text-inverse' } }],
       output: null,
     },
 
