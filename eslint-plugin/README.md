@@ -69,41 +69,41 @@ The CSS custom property **must come first** so that DOM-level overrides (light/d
 #### :red_circle: Incorrect usage
 
 ```vue
+<template>
+  <!-- ❌ bare token constant — DOM overrides cannot work -->
+  <MyComponent :color="KUI_COLOR_TEXT_INVERSE" />
+
+  <!-- ❌ ternary branches -->
+  <MyComponent :color="isDark ? KUI_COLOR_TEXT_INVERSE : KUI_COLOR_TEXT_PRIMARY" />
+
+  <!-- ❌ object shorthand in :style -->
+  <MyComponent :style="{ color: KUI_COLOR_TEXT_INVERSE }" />
+</template>
+
 <script setup>
 import { KUI_COLOR_TEXT_INVERSE, KUI_COLOR_TEXT_PRIMARY } from '@kong/design-tokens'
 </script>
-
-<template>
-  <!-- ❌ bare token constant — DOM overrides cannot work -->
-  <KComponent :color="KUI_COLOR_TEXT_INVERSE" />
-
-  <!-- ❌ ternary branches -->
-  <KComponent :color="isDark ? KUI_COLOR_TEXT_INVERSE : KUI_COLOR_TEXT_PRIMARY" />
-
-  <!-- ❌ object shorthand in :style -->
-  <KComponent :style="{ color: KUI_COLOR_TEXT_INVERSE }" />
-</template>
 ```
 
 #### :green_circle: Correct usage (auto-fixed)
 
 ```vue
-<script setup>
-import { KUI_COLOR_TEXT_INVERSE, KUI_COLOR_TEXT_PRIMARY } from '@kong/design-tokens'
-</script>
-
 <template>
   <!-- ✅ CSS custom property first, JS constant as fallback -->
-  <KComponent :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`" />
+  <MyComponent :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`" />
 
   <!-- ✅ both ternary branches wrapped -->
-  <KComponent :color="isDark
+  <MyComponent :color="isDark
     ? `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`
     : `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_PRIMARY})`" />
 
   <!-- ✅ object property value wrapped -->
-  <KComponent :style="{ color: `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})` }" />
+  <MyComponent :style="{ color: `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})` }" />
 </template>
+
+<script setup>
+import { KUI_COLOR_TEXT_INVERSE, KUI_COLOR_TEXT_PRIMARY } from '@kong/design-tokens'
+</script>
 ```
 
 #### Report-only cases (no autofix)
