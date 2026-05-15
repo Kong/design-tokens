@@ -165,6 +165,26 @@ tester.run(RULE_NAME, rule, {
         'myColor',
       ),
     },
+
+    // KUI_BREAKPOINT_* tokens are excluded — they are viewport pixel widths, not CSS
+    // custom properties, so DOM-level theming does not apply.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_BREAKPOINT_PHABLET',
+        '<div :style="{ maxWidth: KUI_BREAKPOINT_PHABLET }" />',
+      ),
+    },
+
+    // KUI_BREAKPOINT_* with alias — exclusion covers the canonical imported name
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_BREAKPOINT_PHABLET',
+        '<div :style="{ maxWidth: bp }" />',
+        'bp',
+      ),
+    },
   ],
 
   // ---------------------------------------------------------------------------
@@ -457,20 +477,6 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // KUI_BREAKPOINT — breakpoint tokens (word-only suffix, no numbers)
-    {
-      filename: 'test.vue',
-      code: withImport(
-        'KUI_BREAKPOINT_PHABLET',
-        '<div :style="{ maxWidth: KUI_BREAKPOINT_PHABLET }" />',
-      ),
-      errors: [{ messageId: 'wrapInVar', data: { local: 'KUI_BREAKPOINT_PHABLET', cssVar: 'kui-breakpoint-phablet' } }],
-      output: withImport(
-        'KUI_BREAKPOINT_PHABLET',
-        '<div :style="{ maxWidth: `var(--kui-breakpoint-phablet, ${KUI_BREAKPOINT_PHABLET})` }" />',
-      ),
-    },
-
     // ---------------------------------------------------------------------------
     // REPORT_ONLY — no autofix because rewriting would change expression semantics
     // ---------------------------------------------------------------------------
@@ -483,6 +489,24 @@ tester.run(RULE_NAME, rule, {
         '<div :color="`${KUI_COLOR_TEXT_INVERSE}`" />',
       ),
       errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
+    // Multi-token TemplateLiteral — both tokens reported, no autofix.
+    // Adjacent slots share quasi boundaries (quasis[1] is simultaneously the suffix of
+    // slot 0 and the prefix of slot 1), so per-token replacement ranges overlap.
+    // ESLint rejects overlapping fixes; a whole-template rewrite would be needed instead.
+    // Manual fix: `:padding="'var(--kui-space-0, ' + KUI_SPACE_0 + ') var(--kui-space-70, ' + KUI_SPACE_70 + ')'"`.
+    {
+      filename: 'test.vue',
+      code: sfc({
+        script: "import { KUI_SPACE_0, KUI_SPACE_70 } from '@kong/design-tokens'",
+        template: '<div :padding="`${KUI_SPACE_0} ${KUI_SPACE_70}`" />',
+      }),
+      errors: [
+        { messageId: 'wrapInVarNoFix', data: { local: 'KUI_SPACE_0', cssVar: 'kui-space-0' } },
+        { messageId: 'wrapInVarNoFix', data: { local: 'KUI_SPACE_70', cssVar: 'kui-space-70' } },
+      ],
       output: null,
     },
 

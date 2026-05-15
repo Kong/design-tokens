@@ -11,6 +11,13 @@ const AUTOFIX = 'fix'
 const REPORT_ONLY = 'report'
 
 /**
+ * Token name prefix that is excluded from this rule.
+ * `KUI_BREAKPOINT_*` constants represent viewport breakpoints (pixel widths).
+ * CSS custom properties are not valid inside a `@media` query, so shouldn't be enforced with a var() fallback.
+ */
+const KUI_EXCLUDED_PREFIX = 'KUI_BREAKPOINT_'
+
+/**
  * Returns `true` when the TemplateLiteral expression slot at `exprIndex` is
  * already in the form `` `var(<expectedCssVar>, ${IDENTIFIER})` `` for the
  * specific token, so we can skip it on subsequent lint passes (idempotency).
@@ -351,6 +358,7 @@ const rule = {
           const localName = specifier.local.name
 
           if (!KUI_IDENTIFIER_PATTERN.test(importedName)) continue
+          if (importedName.startsWith(KUI_EXCLUDED_PREFIX)) continue
 
           trackedImports.set(localName, importedName)
         }

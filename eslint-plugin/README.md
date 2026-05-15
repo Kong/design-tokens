@@ -110,7 +110,11 @@ import { KUI_COLOR_TEXT_INVERSE, KUI_COLOR_TEXT_PRIMARY } from '@kong/design-tok
 
 The following cases are flagged but not auto-fixed because rewriting them would change semantics or be unsafe:
 
-- **Template literals**: `:color="\`${KUI_X}\`"` — nesting backtick strings requires manual rewrite.
+- **Template literals (single token)**: `:color="\`${KUI_X}\`"` — nesting backtick strings requires manual rewrite.
+- **Template literals (multi-token)**: `:padding="\`${KUI_SPACE_0} ${KUI_SPACE_70}\`"` — adjacent expression slots share quasi boundaries, so per-token fix ranges overlap and ESLint rejects them. Rewrite manually, for example:
+  ```vue
+  :padding="`var(--kui-space-0, ${KUI_SPACE_0}) var(--kui-space-70, ${KUI_SPACE_70})`"
+  ```
 - **Binary expressions**: `:color="KUI_X + '!important'"` — string concatenation.
 - **Function arguments**: `:color="darken(KUI_X)"` — the function may not accept a CSS `var()` string.
 - **Script-setup variables**: `` const c = KUI_X; `` then `:color="c"` — fixing the declaration would affect all consumers of the variable. Wrap at the template binding site instead.
@@ -123,6 +127,15 @@ The CSS custom property name is derived from the JS constant by lowercasing and 
 KUI_COLOR_TEXT_INVERSE  →  --kui-color-text-inverse
 KUI_SPACE_40            →  --kui-space-40
 KUI_FONT_SIZE_30        →  --kui-font-size-30
+```
+
+#### Excluded token families
+
+`KUI_BREAKPOINT_*` tokens (e.g. `KUI_BREAKPOINT_PHABLET`) are **excluded** from this rule. Breakpoint constants represent viewport pixel widths used in JavaScript media-query logic. CSS custom properties cannot be utilized inside CSS `@media` queries, so there is no point in enforcing a fallback value.
+
+```vue
+<!-- ✅ allowed — breakpoint tokens are not CSS custom properties -->
+<MyComponent :max-width="KUI_BREAKPOINT_PHABLET" />
 ```
 
 #### Limitations
