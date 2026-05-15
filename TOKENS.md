@@ -305,133 +305,133 @@ $kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 $kui-breakpoint-desktop: 1536px;
 /* The border radius of the button. */
-$kui-button-border-radius: 6px;
+$kui-button-border-radius: ;
 /* The border width of the button. */
-$kui-button-border-width: 2px;
+$kui-button-border-width: ;
 /* The background color of the danger button in its default state. */
-$kui-button-color-background-danger: #d60027;
+$kui-button-color-background-danger: ;
 /* The background color of the danger button in its active state. */
-$kui-button-color-background-danger-active: #5c0000;
+$kui-button-color-background-danger-active: ;
 /* The background color of the danger button in its disabled state. */
-$kui-button-color-background-danger-disabled: #e0e4ea;
+$kui-button-color-background-danger-disabled: ;
 /* The background color of the danger button in its hover state. */
-$kui-button-color-background-danger-hover: #ad000e;
+$kui-button-color-background-danger-hover: ;
 /* The background color of the primary button in its default state. */
-$kui-button-color-background-primary: #0044f4;
+$kui-button-color-background-primary: ;
 /* The background color of the primary button in its active state. */
-$kui-button-color-background-primary-active: #001466;
+$kui-button-color-background-primary-active: ;
 /* The background color of the primary button in its disabled state. */
-$kui-button-color-background-primary-disabled: #e0e4ea;
+$kui-button-color-background-primary-disabled: ;
 /* The background color of the primary button in its hover state. */
-$kui-button-color-background-primary-hover: #0030cc;
+$kui-button-color-background-primary-hover: ;
 /* The background color of the secondary button in its default state. */
-$kui-button-color-background-secondary: transparent;
+$kui-button-color-background-secondary: ;
 /* The background color of the secondary button in its active state. */
-$kui-button-color-background-secondary-active: transparent;
+$kui-button-color-background-secondary-active: ;
 /* The background color of the secondary button in its disabled state. */
-$kui-button-color-background-secondary-disabled: transparent;
+$kui-button-color-background-secondary-disabled: ;
 /* The background color of the secondary button in its hover state. */
-$kui-button-color-background-secondary-hover: transparent;
+$kui-button-color-background-secondary-hover: ;
 /* The background color of the tertiary button in its default state. */
-$kui-button-color-background-tertiary: transparent;
+$kui-button-color-background-tertiary: ;
 /* The background color of the tertiary button in its active state. */
-$kui-button-color-background-tertiary-active: #bee2ff;
+$kui-button-color-background-tertiary-active: ;
 /* The background color of the tertiary button in its disabled state. */
-$kui-button-color-background-tertiary-disabled: transparent;
+$kui-button-color-background-tertiary-disabled: ;
 /* The background color of the tertiary button in its hover state. */
-$kui-button-color-background-tertiary-hover: #eefaff;
+$kui-button-color-background-tertiary-hover: ;
 /* The border color of the danger button in its default state. */
-$kui-button-color-border-danger: transparent;
+$kui-button-color-border-danger: ;
 /* The border color of the danger button in its active state. */
-$kui-button-color-border-danger-active: transparent;
+$kui-button-color-border-danger-active: ;
 /* The border color of the danger button in its disabled state. */
-$kui-button-color-border-danger-disabled: transparent;
+$kui-button-color-border-danger-disabled: ;
 /* The border color of the danger button in its hover state. */
-$kui-button-color-border-danger-hover: transparent;
+$kui-button-color-border-danger-hover: ;
 /* The border color of the primary button in its default state. */
-$kui-button-color-border-primary: transparent;
+$kui-button-color-border-primary: ;
 /* The border color of the primary button in its active state. */
-$kui-button-color-border-primary-active: transparent;
+$kui-button-color-border-primary-active: ;
 /* The border color of the primary button in its disabled state. */
-$kui-button-color-border-primary-disabled: transparent;
+$kui-button-color-border-primary-disabled: ;
 /* The border color of the primary button in its hover state. */
-$kui-button-color-border-primary-hover: transparent;
+$kui-button-color-border-primary-hover: ;
 /* The border color of the secondary button in its default state. */
-$kui-button-color-border-secondary: #0044f4;
+$kui-button-color-border-secondary: ;
 /* The border color of the secondary button in its active state. */
-$kui-button-color-border-secondary-active: #001466;
+$kui-button-color-border-secondary-active: ;
 /* The border color of the secondary button in its disabled state. */
-$kui-button-color-border-secondary-disabled: #e0e4ea;
+$kui-button-color-border-secondary-disabled: ;
 /* The border color of the secondary button in its hover state. */
-$kui-button-color-border-secondary-hover: #0030cc;
+$kui-button-color-border-secondary-hover: ;
 /* The border color of the tertiary button in its default state. */
-$kui-button-color-border-tertiary: transparent;
+$kui-button-color-border-tertiary: ;
 /* The border color of the tertiary button in its active state. */
-$kui-button-color-border-tertiary-active: transparent;
+$kui-button-color-border-tertiary-active: ;
 /* The border color of the tertiary button in its disabled state. */
-$kui-button-color-border-tertiary-disabled: transparent;
+$kui-button-color-border-tertiary-disabled: ;
 /* The border color of the tertiary button in its hover state. */
-$kui-button-color-border-tertiary-hover: transparent;
+$kui-button-color-border-tertiary-hover: ;
 /* The text color of the danger button in its default state. */
-$kui-button-color-text-danger: #ffffff;
+$kui-button-color-text-danger: ;
 /* The text color of the danger button in its active state. */
-$kui-button-color-text-danger-active: #ffffff;
+$kui-button-color-text-danger-active: ;
 /* The text color of the danger button in its disabled state. */
-$kui-button-color-text-danger-disabled: #afb7c5;
+$kui-button-color-text-danger-disabled: ;
 /* The text color of the danger button in its hover state. */
-$kui-button-color-text-danger-hover: #ffffff;
+$kui-button-color-text-danger-hover: ;
 /* The text color of the primary button in its default state. */
-$kui-button-color-text-primary: #ffffff;
+$kui-button-color-text-primary: ;
 /* The text color of the primary button in its active state. */
-$kui-button-color-text-primary-active: #ffffff;
+$kui-button-color-text-primary-active: ;
 /* The text color of the primary button in its disabled state. */
-$kui-button-color-text-primary-disabled: #afb7c5;
+$kui-button-color-text-primary-disabled: ;
 /* The text color of the primary button in its hover state. */
-$kui-button-color-text-primary-hover: #ffffff;
+$kui-button-color-text-primary-hover: ;
 /* The text color of the secondary button in its default state. */
-$kui-button-color-text-secondary: #0044f4;
+$kui-button-color-text-secondary: ;
 /* The text color of the secondary button in its active state. */
-$kui-button-color-text-secondary-active: #001466;
+$kui-button-color-text-secondary-active: ;
 /* The text color of the secondary button in its disabled state. */
-$kui-button-color-text-secondary-disabled: #afb7c5;
+$kui-button-color-text-secondary-disabled: ;
 /* The text color of the secondary button in its hover state. */
-$kui-button-color-text-secondary-hover: #0030cc;
+$kui-button-color-text-secondary-hover: ;
 /* The text color of the tertiary button in its default state. */
-$kui-button-color-text-tertiary: #0044f4;
+$kui-button-color-text-tertiary: ;
 /* The text color of the tertiary button in its active state. */
-$kui-button-color-text-tertiary-active: #001466;
+$kui-button-color-text-tertiary-active: ;
 /* The text color of the tertiary button in its disabled state. */
-$kui-button-color-text-tertiary-disabled: #afb7c5;
+$kui-button-color-text-tertiary-disabled: ;
 /* The text color of the tertiary button in its hover state. */
-$kui-button-color-text-tertiary-hover: #0030cc;
+$kui-button-color-text-tertiary-hover: ;
 /* The font family for all buttons. */
-$kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+$kui-button-font-family: ;
 /* The font size for large buttons. */
-$kui-button-font-size-large: 16px;
+$kui-button-font-size-large: ;
 /* The font size for medium (default) buttons. */
-$kui-button-font-size-medium: 14px;
+$kui-button-font-size-medium: ;
 /* The font size for small buttons. */
-$kui-button-font-size-small: 12px;
+$kui-button-font-size-small: ;
 /* The font weight for all buttons. */
-$kui-button-font-weight: 600;
+$kui-button-font-weight: ;
 /* The line-height for large buttons. */
-$kui-button-line-height-large: 24px;
+$kui-button-line-height-large: ;
 /* The line-height for medium (default) buttons. */
-$kui-button-line-height-medium: 20px;
+$kui-button-line-height-medium: ;
 /* The line-height for small buttons. */
-$kui-button-line-height-small: 16px;
+$kui-button-line-height-small: ;
 /* The left and right padding for large buttons. */
-$kui-button-padding-large-x: 12px;
+$kui-button-padding-large-x: ;
 /* The top and bottom padding for large buttons. */
-$kui-button-padding-large-y: 6px;
+$kui-button-padding-large-y: ;
 /* The left and right padding for medium (default) buttons. */
-$kui-button-padding-medium-x: 12px;
+$kui-button-padding-medium-x: ;
 /* The top and bottom padding for medium (default) buttons. */
-$kui-button-padding-medium-y: 4px;
+$kui-button-padding-medium-y: ;
 /* The left and right padding for small buttons. */
-$kui-button-padding-small-x: 12px;
+$kui-button-padding-small-x: ;
 /* The top and bottom padding for small buttons. */
-$kui-button-padding-small-y: 2px;
+$kui-button-padding-small-y: ;
 /* Danger color for icons. */
 $kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -1109,133 +1109,133 @@ $tokens-map: (
   /* Used for larger desktop screens. */
   'kui-breakpoint-desktop': 1536px;
   /* The border radius of the button. */
-  'kui-button-border-radius': 6px;
+  'kui-button-border-radius': ;
   /* The border width of the button. */
-  'kui-button-border-width': 2px;
+  'kui-button-border-width': ;
   /* The background color of the danger button in its default state. */
-  'kui-button-color-background-danger': #d60027;
+  'kui-button-color-background-danger': ;
   /* The background color of the danger button in its active state. */
-  'kui-button-color-background-danger-active': #5c0000;
+  'kui-button-color-background-danger-active': ;
   /* The background color of the danger button in its disabled state. */
-  'kui-button-color-background-danger-disabled': #e0e4ea;
+  'kui-button-color-background-danger-disabled': ;
   /* The background color of the danger button in its hover state. */
-  'kui-button-color-background-danger-hover': #ad000e;
+  'kui-button-color-background-danger-hover': ;
   /* The background color of the primary button in its default state. */
-  'kui-button-color-background-primary': #0044f4;
+  'kui-button-color-background-primary': ;
   /* The background color of the primary button in its active state. */
-  'kui-button-color-background-primary-active': #001466;
+  'kui-button-color-background-primary-active': ;
   /* The background color of the primary button in its disabled state. */
-  'kui-button-color-background-primary-disabled': #e0e4ea;
+  'kui-button-color-background-primary-disabled': ;
   /* The background color of the primary button in its hover state. */
-  'kui-button-color-background-primary-hover': #0030cc;
+  'kui-button-color-background-primary-hover': ;
   /* The background color of the secondary button in its default state. */
-  'kui-button-color-background-secondary': transparent;
+  'kui-button-color-background-secondary': ;
   /* The background color of the secondary button in its active state. */
-  'kui-button-color-background-secondary-active': transparent;
+  'kui-button-color-background-secondary-active': ;
   /* The background color of the secondary button in its disabled state. */
-  'kui-button-color-background-secondary-disabled': transparent;
+  'kui-button-color-background-secondary-disabled': ;
   /* The background color of the secondary button in its hover state. */
-  'kui-button-color-background-secondary-hover': transparent;
+  'kui-button-color-background-secondary-hover': ;
   /* The background color of the tertiary button in its default state. */
-  'kui-button-color-background-tertiary': transparent;
+  'kui-button-color-background-tertiary': ;
   /* The background color of the tertiary button in its active state. */
-  'kui-button-color-background-tertiary-active': #bee2ff;
+  'kui-button-color-background-tertiary-active': ;
   /* The background color of the tertiary button in its disabled state. */
-  'kui-button-color-background-tertiary-disabled': transparent;
+  'kui-button-color-background-tertiary-disabled': ;
   /* The background color of the tertiary button in its hover state. */
-  'kui-button-color-background-tertiary-hover': #eefaff;
+  'kui-button-color-background-tertiary-hover': ;
   /* The border color of the danger button in its default state. */
-  'kui-button-color-border-danger': transparent;
+  'kui-button-color-border-danger': ;
   /* The border color of the danger button in its active state. */
-  'kui-button-color-border-danger-active': transparent;
+  'kui-button-color-border-danger-active': ;
   /* The border color of the danger button in its disabled state. */
-  'kui-button-color-border-danger-disabled': transparent;
+  'kui-button-color-border-danger-disabled': ;
   /* The border color of the danger button in its hover state. */
-  'kui-button-color-border-danger-hover': transparent;
+  'kui-button-color-border-danger-hover': ;
   /* The border color of the primary button in its default state. */
-  'kui-button-color-border-primary': transparent;
+  'kui-button-color-border-primary': ;
   /* The border color of the primary button in its active state. */
-  'kui-button-color-border-primary-active': transparent;
+  'kui-button-color-border-primary-active': ;
   /* The border color of the primary button in its disabled state. */
-  'kui-button-color-border-primary-disabled': transparent;
+  'kui-button-color-border-primary-disabled': ;
   /* The border color of the primary button in its hover state. */
-  'kui-button-color-border-primary-hover': transparent;
+  'kui-button-color-border-primary-hover': ;
   /* The border color of the secondary button in its default state. */
-  'kui-button-color-border-secondary': #0044f4;
+  'kui-button-color-border-secondary': ;
   /* The border color of the secondary button in its active state. */
-  'kui-button-color-border-secondary-active': #001466;
+  'kui-button-color-border-secondary-active': ;
   /* The border color of the secondary button in its disabled state. */
-  'kui-button-color-border-secondary-disabled': #e0e4ea;
+  'kui-button-color-border-secondary-disabled': ;
   /* The border color of the secondary button in its hover state. */
-  'kui-button-color-border-secondary-hover': #0030cc;
+  'kui-button-color-border-secondary-hover': ;
   /* The border color of the tertiary button in its default state. */
-  'kui-button-color-border-tertiary': transparent;
+  'kui-button-color-border-tertiary': ;
   /* The border color of the tertiary button in its active state. */
-  'kui-button-color-border-tertiary-active': transparent;
+  'kui-button-color-border-tertiary-active': ;
   /* The border color of the tertiary button in its disabled state. */
-  'kui-button-color-border-tertiary-disabled': transparent;
+  'kui-button-color-border-tertiary-disabled': ;
   /* The border color of the tertiary button in its hover state. */
-  'kui-button-color-border-tertiary-hover': transparent;
+  'kui-button-color-border-tertiary-hover': ;
   /* The text color of the danger button in its default state. */
-  'kui-button-color-text-danger': #ffffff;
+  'kui-button-color-text-danger': ;
   /* The text color of the danger button in its active state. */
-  'kui-button-color-text-danger-active': #ffffff;
+  'kui-button-color-text-danger-active': ;
   /* The text color of the danger button in its disabled state. */
-  'kui-button-color-text-danger-disabled': #afb7c5;
+  'kui-button-color-text-danger-disabled': ;
   /* The text color of the danger button in its hover state. */
-  'kui-button-color-text-danger-hover': #ffffff;
+  'kui-button-color-text-danger-hover': ;
   /* The text color of the primary button in its default state. */
-  'kui-button-color-text-primary': #ffffff;
+  'kui-button-color-text-primary': ;
   /* The text color of the primary button in its active state. */
-  'kui-button-color-text-primary-active': #ffffff;
+  'kui-button-color-text-primary-active': ;
   /* The text color of the primary button in its disabled state. */
-  'kui-button-color-text-primary-disabled': #afb7c5;
+  'kui-button-color-text-primary-disabled': ;
   /* The text color of the primary button in its hover state. */
-  'kui-button-color-text-primary-hover': #ffffff;
+  'kui-button-color-text-primary-hover': ;
   /* The text color of the secondary button in its default state. */
-  'kui-button-color-text-secondary': #0044f4;
+  'kui-button-color-text-secondary': ;
   /* The text color of the secondary button in its active state. */
-  'kui-button-color-text-secondary-active': #001466;
+  'kui-button-color-text-secondary-active': ;
   /* The text color of the secondary button in its disabled state. */
-  'kui-button-color-text-secondary-disabled': #afb7c5;
+  'kui-button-color-text-secondary-disabled': ;
   /* The text color of the secondary button in its hover state. */
-  'kui-button-color-text-secondary-hover': #0030cc;
+  'kui-button-color-text-secondary-hover': ;
   /* The text color of the tertiary button in its default state. */
-  'kui-button-color-text-tertiary': #0044f4;
+  'kui-button-color-text-tertiary': ;
   /* The text color of the tertiary button in its active state. */
-  'kui-button-color-text-tertiary-active': #001466;
+  'kui-button-color-text-tertiary-active': ;
   /* The text color of the tertiary button in its disabled state. */
-  'kui-button-color-text-tertiary-disabled': #afb7c5;
+  'kui-button-color-text-tertiary-disabled': ;
   /* The text color of the tertiary button in its hover state. */
-  'kui-button-color-text-tertiary-hover': #0030cc;
+  'kui-button-color-text-tertiary-hover': ;
   /* The font family for all buttons. */
-  'kui-button-font-family': 'Inter', Roboto, Helvetica, sans-serif;
+  'kui-button-font-family': ;
   /* The font size for large buttons. */
-  'kui-button-font-size-large': 16px;
+  'kui-button-font-size-large': ;
   /* The font size for medium (default) buttons. */
-  'kui-button-font-size-medium': 14px;
+  'kui-button-font-size-medium': ;
   /* The font size for small buttons. */
-  'kui-button-font-size-small': 12px;
+  'kui-button-font-size-small': ;
   /* The font weight for all buttons. */
-  'kui-button-font-weight': 600;
+  'kui-button-font-weight': ;
   /* The line-height for large buttons. */
-  'kui-button-line-height-large': 24px;
+  'kui-button-line-height-large': ;
   /* The line-height for medium (default) buttons. */
-  'kui-button-line-height-medium': 20px;
+  'kui-button-line-height-medium': ;
   /* The line-height for small buttons. */
-  'kui-button-line-height-small': 16px;
+  'kui-button-line-height-small': ;
   /* The left and right padding for large buttons. */
-  'kui-button-padding-large-x': 12px;
+  'kui-button-padding-large-x': ;
   /* The top and bottom padding for large buttons. */
-  'kui-button-padding-large-y': 6px;
+  'kui-button-padding-large-y': ;
   /* The left and right padding for medium (default) buttons. */
-  'kui-button-padding-medium-x': 12px;
+  'kui-button-padding-medium-x': ;
   /* The top and bottom padding for medium (default) buttons. */
-  'kui-button-padding-medium-y': 4px;
+  'kui-button-padding-medium-y': ;
   /* The left and right padding for small buttons. */
-  'kui-button-padding-small-x': 12px;
+  'kui-button-padding-small-x': ;
   /* The top and bottom padding for small buttons. */
-  'kui-button-padding-small-y': 2px;
+  'kui-button-padding-small-y': ;
   /* Danger color for icons. */
   'kui-icon-color-danger': #f50045;
   /* Neutral color for icons. */
@@ -1915,133 +1915,133 @@ $tokens-map: (
 /* Used for larger desktop screens. */
 @kui-breakpoint-desktop: 1536px;
 /* The border radius of the button. */
-@kui-button-border-radius: 6px;
+@kui-button-border-radius: ;
 /* The border width of the button. */
-@kui-button-border-width: 2px;
+@kui-button-border-width: ;
 /* The background color of the danger button in its default state. */
-@kui-button-color-background-danger: #d60027;
+@kui-button-color-background-danger: ;
 /* The background color of the danger button in its active state. */
-@kui-button-color-background-danger-active: #5c0000;
+@kui-button-color-background-danger-active: ;
 /* The background color of the danger button in its disabled state. */
-@kui-button-color-background-danger-disabled: #e0e4ea;
+@kui-button-color-background-danger-disabled: ;
 /* The background color of the danger button in its hover state. */
-@kui-button-color-background-danger-hover: #ad000e;
+@kui-button-color-background-danger-hover: ;
 /* The background color of the primary button in its default state. */
-@kui-button-color-background-primary: #0044f4;
+@kui-button-color-background-primary: ;
 /* The background color of the primary button in its active state. */
-@kui-button-color-background-primary-active: #001466;
+@kui-button-color-background-primary-active: ;
 /* The background color of the primary button in its disabled state. */
-@kui-button-color-background-primary-disabled: #e0e4ea;
+@kui-button-color-background-primary-disabled: ;
 /* The background color of the primary button in its hover state. */
-@kui-button-color-background-primary-hover: #0030cc;
+@kui-button-color-background-primary-hover: ;
 /* The background color of the secondary button in its default state. */
-@kui-button-color-background-secondary: transparent;
+@kui-button-color-background-secondary: ;
 /* The background color of the secondary button in its active state. */
-@kui-button-color-background-secondary-active: transparent;
+@kui-button-color-background-secondary-active: ;
 /* The background color of the secondary button in its disabled state. */
-@kui-button-color-background-secondary-disabled: transparent;
+@kui-button-color-background-secondary-disabled: ;
 /* The background color of the secondary button in its hover state. */
-@kui-button-color-background-secondary-hover: transparent;
+@kui-button-color-background-secondary-hover: ;
 /* The background color of the tertiary button in its default state. */
-@kui-button-color-background-tertiary: transparent;
+@kui-button-color-background-tertiary: ;
 /* The background color of the tertiary button in its active state. */
-@kui-button-color-background-tertiary-active: #bee2ff;
+@kui-button-color-background-tertiary-active: ;
 /* The background color of the tertiary button in its disabled state. */
-@kui-button-color-background-tertiary-disabled: transparent;
+@kui-button-color-background-tertiary-disabled: ;
 /* The background color of the tertiary button in its hover state. */
-@kui-button-color-background-tertiary-hover: #eefaff;
+@kui-button-color-background-tertiary-hover: ;
 /* The border color of the danger button in its default state. */
-@kui-button-color-border-danger: transparent;
+@kui-button-color-border-danger: ;
 /* The border color of the danger button in its active state. */
-@kui-button-color-border-danger-active: transparent;
+@kui-button-color-border-danger-active: ;
 /* The border color of the danger button in its disabled state. */
-@kui-button-color-border-danger-disabled: transparent;
+@kui-button-color-border-danger-disabled: ;
 /* The border color of the danger button in its hover state. */
-@kui-button-color-border-danger-hover: transparent;
+@kui-button-color-border-danger-hover: ;
 /* The border color of the primary button in its default state. */
-@kui-button-color-border-primary: transparent;
+@kui-button-color-border-primary: ;
 /* The border color of the primary button in its active state. */
-@kui-button-color-border-primary-active: transparent;
+@kui-button-color-border-primary-active: ;
 /* The border color of the primary button in its disabled state. */
-@kui-button-color-border-primary-disabled: transparent;
+@kui-button-color-border-primary-disabled: ;
 /* The border color of the primary button in its hover state. */
-@kui-button-color-border-primary-hover: transparent;
+@kui-button-color-border-primary-hover: ;
 /* The border color of the secondary button in its default state. */
-@kui-button-color-border-secondary: #0044f4;
+@kui-button-color-border-secondary: ;
 /* The border color of the secondary button in its active state. */
-@kui-button-color-border-secondary-active: #001466;
+@kui-button-color-border-secondary-active: ;
 /* The border color of the secondary button in its disabled state. */
-@kui-button-color-border-secondary-disabled: #e0e4ea;
+@kui-button-color-border-secondary-disabled: ;
 /* The border color of the secondary button in its hover state. */
-@kui-button-color-border-secondary-hover: #0030cc;
+@kui-button-color-border-secondary-hover: ;
 /* The border color of the tertiary button in its default state. */
-@kui-button-color-border-tertiary: transparent;
+@kui-button-color-border-tertiary: ;
 /* The border color of the tertiary button in its active state. */
-@kui-button-color-border-tertiary-active: transparent;
+@kui-button-color-border-tertiary-active: ;
 /* The border color of the tertiary button in its disabled state. */
-@kui-button-color-border-tertiary-disabled: transparent;
+@kui-button-color-border-tertiary-disabled: ;
 /* The border color of the tertiary button in its hover state. */
-@kui-button-color-border-tertiary-hover: transparent;
+@kui-button-color-border-tertiary-hover: ;
 /* The text color of the danger button in its default state. */
-@kui-button-color-text-danger: #ffffff;
+@kui-button-color-text-danger: ;
 /* The text color of the danger button in its active state. */
-@kui-button-color-text-danger-active: #ffffff;
+@kui-button-color-text-danger-active: ;
 /* The text color of the danger button in its disabled state. */
-@kui-button-color-text-danger-disabled: #afb7c5;
+@kui-button-color-text-danger-disabled: ;
 /* The text color of the danger button in its hover state. */
-@kui-button-color-text-danger-hover: #ffffff;
+@kui-button-color-text-danger-hover: ;
 /* The text color of the primary button in its default state. */
-@kui-button-color-text-primary: #ffffff;
+@kui-button-color-text-primary: ;
 /* The text color of the primary button in its active state. */
-@kui-button-color-text-primary-active: #ffffff;
+@kui-button-color-text-primary-active: ;
 /* The text color of the primary button in its disabled state. */
-@kui-button-color-text-primary-disabled: #afb7c5;
+@kui-button-color-text-primary-disabled: ;
 /* The text color of the primary button in its hover state. */
-@kui-button-color-text-primary-hover: #ffffff;
+@kui-button-color-text-primary-hover: ;
 /* The text color of the secondary button in its default state. */
-@kui-button-color-text-secondary: #0044f4;
+@kui-button-color-text-secondary: ;
 /* The text color of the secondary button in its active state. */
-@kui-button-color-text-secondary-active: #001466;
+@kui-button-color-text-secondary-active: ;
 /* The text color of the secondary button in its disabled state. */
-@kui-button-color-text-secondary-disabled: #afb7c5;
+@kui-button-color-text-secondary-disabled: ;
 /* The text color of the secondary button in its hover state. */
-@kui-button-color-text-secondary-hover: #0030cc;
+@kui-button-color-text-secondary-hover: ;
 /* The text color of the tertiary button in its default state. */
-@kui-button-color-text-tertiary: #0044f4;
+@kui-button-color-text-tertiary: ;
 /* The text color of the tertiary button in its active state. */
-@kui-button-color-text-tertiary-active: #001466;
+@kui-button-color-text-tertiary-active: ;
 /* The text color of the tertiary button in its disabled state. */
-@kui-button-color-text-tertiary-disabled: #afb7c5;
+@kui-button-color-text-tertiary-disabled: ;
 /* The text color of the tertiary button in its hover state. */
-@kui-button-color-text-tertiary-hover: #0030cc;
+@kui-button-color-text-tertiary-hover: ;
 /* The font family for all buttons. */
-@kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+@kui-button-font-family: ;
 /* The font size for large buttons. */
-@kui-button-font-size-large: 16px;
+@kui-button-font-size-large: ;
 /* The font size for medium (default) buttons. */
-@kui-button-font-size-medium: 14px;
+@kui-button-font-size-medium: ;
 /* The font size for small buttons. */
-@kui-button-font-size-small: 12px;
+@kui-button-font-size-small: ;
 /* The font weight for all buttons. */
-@kui-button-font-weight: 600;
+@kui-button-font-weight: ;
 /* The line-height for large buttons. */
-@kui-button-line-height-large: 24px;
+@kui-button-line-height-large: ;
 /* The line-height for medium (default) buttons. */
-@kui-button-line-height-medium: 20px;
+@kui-button-line-height-medium: ;
 /* The line-height for small buttons. */
-@kui-button-line-height-small: 16px;
+@kui-button-line-height-small: ;
 /* The left and right padding for large buttons. */
-@kui-button-padding-large-x: 12px;
+@kui-button-padding-large-x: ;
 /* The top and bottom padding for large buttons. */
-@kui-button-padding-large-y: 6px;
+@kui-button-padding-large-y: ;
 /* The left and right padding for medium (default) buttons. */
-@kui-button-padding-medium-x: 12px;
+@kui-button-padding-medium-x: ;
 /* The top and bottom padding for medium (default) buttons. */
-@kui-button-padding-medium-y: 4px;
+@kui-button-padding-medium-y: ;
 /* The left and right padding for small buttons. */
-@kui-button-padding-small-x: 12px;
+@kui-button-padding-small-x: ;
 /* The top and bottom padding for small buttons. */
-@kui-button-padding-small-y: 2px;
+@kui-button-padding-small-y: ;
 /* Danger color for icons. */
 @kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -2722,133 +2722,133 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Used for larger desktop screens. */
 --kui-breakpoint-desktop: 1536px;
 /* The border radius of the button. */
---kui-button-border-radius: 6px;
+--kui-button-border-radius: ;
 /* The border width of the button. */
---kui-button-border-width: 2px;
+--kui-button-border-width: ;
 /* The background color of the danger button in its default state. */
---kui-button-color-background-danger: #d60027;
+--kui-button-color-background-danger: ;
 /* The background color of the danger button in its active state. */
---kui-button-color-background-danger-active: #5c0000;
+--kui-button-color-background-danger-active: ;
 /* The background color of the danger button in its disabled state. */
---kui-button-color-background-danger-disabled: #e0e4ea;
+--kui-button-color-background-danger-disabled: ;
 /* The background color of the danger button in its hover state. */
---kui-button-color-background-danger-hover: #ad000e;
+--kui-button-color-background-danger-hover: ;
 /* The background color of the primary button in its default state. */
---kui-button-color-background-primary: #0044f4;
+--kui-button-color-background-primary: ;
 /* The background color of the primary button in its active state. */
---kui-button-color-background-primary-active: #001466;
+--kui-button-color-background-primary-active: ;
 /* The background color of the primary button in its disabled state. */
---kui-button-color-background-primary-disabled: #e0e4ea;
+--kui-button-color-background-primary-disabled: ;
 /* The background color of the primary button in its hover state. */
---kui-button-color-background-primary-hover: #0030cc;
+--kui-button-color-background-primary-hover: ;
 /* The background color of the secondary button in its default state. */
---kui-button-color-background-secondary: transparent;
+--kui-button-color-background-secondary: ;
 /* The background color of the secondary button in its active state. */
---kui-button-color-background-secondary-active: transparent;
+--kui-button-color-background-secondary-active: ;
 /* The background color of the secondary button in its disabled state. */
---kui-button-color-background-secondary-disabled: transparent;
+--kui-button-color-background-secondary-disabled: ;
 /* The background color of the secondary button in its hover state. */
---kui-button-color-background-secondary-hover: transparent;
+--kui-button-color-background-secondary-hover: ;
 /* The background color of the tertiary button in its default state. */
---kui-button-color-background-tertiary: transparent;
+--kui-button-color-background-tertiary: ;
 /* The background color of the tertiary button in its active state. */
---kui-button-color-background-tertiary-active: #bee2ff;
+--kui-button-color-background-tertiary-active: ;
 /* The background color of the tertiary button in its disabled state. */
---kui-button-color-background-tertiary-disabled: transparent;
+--kui-button-color-background-tertiary-disabled: ;
 /* The background color of the tertiary button in its hover state. */
---kui-button-color-background-tertiary-hover: #eefaff;
+--kui-button-color-background-tertiary-hover: ;
 /* The border color of the danger button in its default state. */
---kui-button-color-border-danger: transparent;
+--kui-button-color-border-danger: ;
 /* The border color of the danger button in its active state. */
---kui-button-color-border-danger-active: transparent;
+--kui-button-color-border-danger-active: ;
 /* The border color of the danger button in its disabled state. */
---kui-button-color-border-danger-disabled: transparent;
+--kui-button-color-border-danger-disabled: ;
 /* The border color of the danger button in its hover state. */
---kui-button-color-border-danger-hover: transparent;
+--kui-button-color-border-danger-hover: ;
 /* The border color of the primary button in its default state. */
---kui-button-color-border-primary: transparent;
+--kui-button-color-border-primary: ;
 /* The border color of the primary button in its active state. */
---kui-button-color-border-primary-active: transparent;
+--kui-button-color-border-primary-active: ;
 /* The border color of the primary button in its disabled state. */
---kui-button-color-border-primary-disabled: transparent;
+--kui-button-color-border-primary-disabled: ;
 /* The border color of the primary button in its hover state. */
---kui-button-color-border-primary-hover: transparent;
+--kui-button-color-border-primary-hover: ;
 /* The border color of the secondary button in its default state. */
---kui-button-color-border-secondary: #0044f4;
+--kui-button-color-border-secondary: ;
 /* The border color of the secondary button in its active state. */
---kui-button-color-border-secondary-active: #001466;
+--kui-button-color-border-secondary-active: ;
 /* The border color of the secondary button in its disabled state. */
---kui-button-color-border-secondary-disabled: #e0e4ea;
+--kui-button-color-border-secondary-disabled: ;
 /* The border color of the secondary button in its hover state. */
---kui-button-color-border-secondary-hover: #0030cc;
+--kui-button-color-border-secondary-hover: ;
 /* The border color of the tertiary button in its default state. */
---kui-button-color-border-tertiary: transparent;
+--kui-button-color-border-tertiary: ;
 /* The border color of the tertiary button in its active state. */
---kui-button-color-border-tertiary-active: transparent;
+--kui-button-color-border-tertiary-active: ;
 /* The border color of the tertiary button in its disabled state. */
---kui-button-color-border-tertiary-disabled: transparent;
+--kui-button-color-border-tertiary-disabled: ;
 /* The border color of the tertiary button in its hover state. */
---kui-button-color-border-tertiary-hover: transparent;
+--kui-button-color-border-tertiary-hover: ;
 /* The text color of the danger button in its default state. */
---kui-button-color-text-danger: #ffffff;
+--kui-button-color-text-danger: ;
 /* The text color of the danger button in its active state. */
---kui-button-color-text-danger-active: #ffffff;
+--kui-button-color-text-danger-active: ;
 /* The text color of the danger button in its disabled state. */
---kui-button-color-text-danger-disabled: #afb7c5;
+--kui-button-color-text-danger-disabled: ;
 /* The text color of the danger button in its hover state. */
---kui-button-color-text-danger-hover: #ffffff;
+--kui-button-color-text-danger-hover: ;
 /* The text color of the primary button in its default state. */
---kui-button-color-text-primary: #ffffff;
+--kui-button-color-text-primary: ;
 /* The text color of the primary button in its active state. */
---kui-button-color-text-primary-active: #ffffff;
+--kui-button-color-text-primary-active: ;
 /* The text color of the primary button in its disabled state. */
---kui-button-color-text-primary-disabled: #afb7c5;
+--kui-button-color-text-primary-disabled: ;
 /* The text color of the primary button in its hover state. */
---kui-button-color-text-primary-hover: #ffffff;
+--kui-button-color-text-primary-hover: ;
 /* The text color of the secondary button in its default state. */
---kui-button-color-text-secondary: #0044f4;
+--kui-button-color-text-secondary: ;
 /* The text color of the secondary button in its active state. */
---kui-button-color-text-secondary-active: #001466;
+--kui-button-color-text-secondary-active: ;
 /* The text color of the secondary button in its disabled state. */
---kui-button-color-text-secondary-disabled: #afb7c5;
+--kui-button-color-text-secondary-disabled: ;
 /* The text color of the secondary button in its hover state. */
---kui-button-color-text-secondary-hover: #0030cc;
+--kui-button-color-text-secondary-hover: ;
 /* The text color of the tertiary button in its default state. */
---kui-button-color-text-tertiary: #0044f4;
+--kui-button-color-text-tertiary: ;
 /* The text color of the tertiary button in its active state. */
---kui-button-color-text-tertiary-active: #001466;
+--kui-button-color-text-tertiary-active: ;
 /* The text color of the tertiary button in its disabled state. */
---kui-button-color-text-tertiary-disabled: #afb7c5;
+--kui-button-color-text-tertiary-disabled: ;
 /* The text color of the tertiary button in its hover state. */
---kui-button-color-text-tertiary-hover: #0030cc;
+--kui-button-color-text-tertiary-hover: ;
 /* The font family for all buttons. */
---kui-button-font-family: 'Inter', Roboto, Helvetica, sans-serif;
+--kui-button-font-family: ;
 /* The font size for large buttons. */
---kui-button-font-size-large: 16px;
+--kui-button-font-size-large: ;
 /* The font size for medium (default) buttons. */
---kui-button-font-size-medium: 14px;
+--kui-button-font-size-medium: ;
 /* The font size for small buttons. */
---kui-button-font-size-small: 12px;
+--kui-button-font-size-small: ;
 /* The font weight for all buttons. */
---kui-button-font-weight: 600;
+--kui-button-font-weight: ;
 /* The line-height for large buttons. */
---kui-button-line-height-large: 24px;
+--kui-button-line-height-large: ;
 /* The line-height for medium (default) buttons. */
---kui-button-line-height-medium: 20px;
+--kui-button-line-height-medium: ;
 /* The line-height for small buttons. */
---kui-button-line-height-small: 16px;
+--kui-button-line-height-small: ;
 /* The left and right padding for large buttons. */
---kui-button-padding-large-x: 12px;
+--kui-button-padding-large-x: ;
 /* The top and bottom padding for large buttons. */
---kui-button-padding-large-y: 6px;
+--kui-button-padding-large-y: ;
 /* The left and right padding for medium (default) buttons. */
---kui-button-padding-medium-x: 12px;
+--kui-button-padding-medium-x: ;
 /* The top and bottom padding for medium (default) buttons. */
---kui-button-padding-medium-y: 4px;
+--kui-button-padding-medium-y: ;
 /* The left and right padding for small buttons. */
---kui-button-padding-small-x: 12px;
+--kui-button-padding-small-x: ;
 /* The top and bottom padding for small buttons. */
---kui-button-padding-small-y: 2px;
+--kui-button-padding-small-y: ;
 /* Danger color for icons. */
 --kui-icon-color-danger: #f50045;
 /* Neutral color for icons. */
@@ -3527,133 +3527,133 @@ export const KUI_BREAKPOINT_LAPTOP = "1280px";
 /* Used for larger desktop screens. */
 export const KUI_BREAKPOINT_DESKTOP = "1536px";
 /* The border radius of the button. */
-export const KUI_BUTTON_BORDER_RADIUS = "6px";
+export const KUI_BUTTON_BORDER_RADIUS = "";
 /* The border width of the button. */
-export const KUI_BUTTON_BORDER_WIDTH = "2px";
+export const KUI_BUTTON_BORDER_WIDTH = "";
 /* The background color of the danger button in its default state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_DANGER = "#d60027";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER = "";
 /* The background color of the danger button in its active state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_ACTIVE = "#5c0000";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_ACTIVE = "";
 /* The background color of the danger button in its disabled state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_DISABLED = "#e0e4ea";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_DISABLED = "";
 /* The background color of the danger button in its hover state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_HOVER = "#ad000e";
+export const KUI_BUTTON_COLOR_BACKGROUND_DANGER_HOVER = "";
 /* The background color of the primary button in its default state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY = "#0044f4";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY = "";
 /* The background color of the primary button in its active state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_ACTIVE = "#001466";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_ACTIVE = "";
 /* The background color of the primary button in its disabled state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_DISABLED = "#e0e4ea";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_DISABLED = "";
 /* The background color of the primary button in its hover state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_HOVER = "#0030cc";
+export const KUI_BUTTON_COLOR_BACKGROUND_PRIMARY_HOVER = "";
 /* The background color of the secondary button in its default state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY = "transparent";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY = "";
 /* The background color of the secondary button in its active state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_ACTIVE = "transparent";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_ACTIVE = "";
 /* The background color of the secondary button in its disabled state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_DISABLED = "transparent";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_DISABLED = "";
 /* The background color of the secondary button in its hover state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_HOVER = "transparent";
+export const KUI_BUTTON_COLOR_BACKGROUND_SECONDARY_HOVER = "";
 /* The background color of the tertiary button in its default state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY = "transparent";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY = "";
 /* The background color of the tertiary button in its active state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_ACTIVE = "#bee2ff";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_ACTIVE = "";
 /* The background color of the tertiary button in its disabled state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_DISABLED = "transparent";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_DISABLED = "";
 /* The background color of the tertiary button in its hover state. */
-export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_HOVER = "#eefaff";
+export const KUI_BUTTON_COLOR_BACKGROUND_TERTIARY_HOVER = "";
 /* The border color of the danger button in its default state. */
-export const KUI_BUTTON_COLOR_BORDER_DANGER = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_DANGER = "";
 /* The border color of the danger button in its active state. */
-export const KUI_BUTTON_COLOR_BORDER_DANGER_ACTIVE = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_DANGER_ACTIVE = "";
 /* The border color of the danger button in its disabled state. */
-export const KUI_BUTTON_COLOR_BORDER_DANGER_DISABLED = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_DANGER_DISABLED = "";
 /* The border color of the danger button in its hover state. */
-export const KUI_BUTTON_COLOR_BORDER_DANGER_HOVER = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_DANGER_HOVER = "";
 /* The border color of the primary button in its default state. */
-export const KUI_BUTTON_COLOR_BORDER_PRIMARY = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY = "";
 /* The border color of the primary button in its active state. */
-export const KUI_BUTTON_COLOR_BORDER_PRIMARY_ACTIVE = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY_ACTIVE = "";
 /* The border color of the primary button in its disabled state. */
-export const KUI_BUTTON_COLOR_BORDER_PRIMARY_DISABLED = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY_DISABLED = "";
 /* The border color of the primary button in its hover state. */
-export const KUI_BUTTON_COLOR_BORDER_PRIMARY_HOVER = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_PRIMARY_HOVER = "";
 /* The border color of the secondary button in its default state. */
-export const KUI_BUTTON_COLOR_BORDER_SECONDARY = "#0044f4";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY = "";
 /* The border color of the secondary button in its active state. */
-export const KUI_BUTTON_COLOR_BORDER_SECONDARY_ACTIVE = "#001466";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY_ACTIVE = "";
 /* The border color of the secondary button in its disabled state. */
-export const KUI_BUTTON_COLOR_BORDER_SECONDARY_DISABLED = "#e0e4ea";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY_DISABLED = "";
 /* The border color of the secondary button in its hover state. */
-export const KUI_BUTTON_COLOR_BORDER_SECONDARY_HOVER = "#0030cc";
+export const KUI_BUTTON_COLOR_BORDER_SECONDARY_HOVER = "";
 /* The border color of the tertiary button in its default state. */
-export const KUI_BUTTON_COLOR_BORDER_TERTIARY = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY = "";
 /* The border color of the tertiary button in its active state. */
-export const KUI_BUTTON_COLOR_BORDER_TERTIARY_ACTIVE = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY_ACTIVE = "";
 /* The border color of the tertiary button in its disabled state. */
-export const KUI_BUTTON_COLOR_BORDER_TERTIARY_DISABLED = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY_DISABLED = "";
 /* The border color of the tertiary button in its hover state. */
-export const KUI_BUTTON_COLOR_BORDER_TERTIARY_HOVER = "transparent";
+export const KUI_BUTTON_COLOR_BORDER_TERTIARY_HOVER = "";
 /* The text color of the danger button in its default state. */
-export const KUI_BUTTON_COLOR_TEXT_DANGER = "#ffffff";
+export const KUI_BUTTON_COLOR_TEXT_DANGER = "";
 /* The text color of the danger button in its active state. */
-export const KUI_BUTTON_COLOR_TEXT_DANGER_ACTIVE = "#ffffff";
+export const KUI_BUTTON_COLOR_TEXT_DANGER_ACTIVE = "";
 /* The text color of the danger button in its disabled state. */
-export const KUI_BUTTON_COLOR_TEXT_DANGER_DISABLED = "#afb7c5";
+export const KUI_BUTTON_COLOR_TEXT_DANGER_DISABLED = "";
 /* The text color of the danger button in its hover state. */
-export const KUI_BUTTON_COLOR_TEXT_DANGER_HOVER = "#ffffff";
+export const KUI_BUTTON_COLOR_TEXT_DANGER_HOVER = "";
 /* The text color of the primary button in its default state. */
-export const KUI_BUTTON_COLOR_TEXT_PRIMARY = "#ffffff";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY = "";
 /* The text color of the primary button in its active state. */
-export const KUI_BUTTON_COLOR_TEXT_PRIMARY_ACTIVE = "#ffffff";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY_ACTIVE = "";
 /* The text color of the primary button in its disabled state. */
-export const KUI_BUTTON_COLOR_TEXT_PRIMARY_DISABLED = "#afb7c5";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY_DISABLED = "";
 /* The text color of the primary button in its hover state. */
-export const KUI_BUTTON_COLOR_TEXT_PRIMARY_HOVER = "#ffffff";
+export const KUI_BUTTON_COLOR_TEXT_PRIMARY_HOVER = "";
 /* The text color of the secondary button in its default state. */
-export const KUI_BUTTON_COLOR_TEXT_SECONDARY = "#0044f4";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY = "";
 /* The text color of the secondary button in its active state. */
-export const KUI_BUTTON_COLOR_TEXT_SECONDARY_ACTIVE = "#001466";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY_ACTIVE = "";
 /* The text color of the secondary button in its disabled state. */
-export const KUI_BUTTON_COLOR_TEXT_SECONDARY_DISABLED = "#afb7c5";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY_DISABLED = "";
 /* The text color of the secondary button in its hover state. */
-export const KUI_BUTTON_COLOR_TEXT_SECONDARY_HOVER = "#0030cc";
+export const KUI_BUTTON_COLOR_TEXT_SECONDARY_HOVER = "";
 /* The text color of the tertiary button in its default state. */
-export const KUI_BUTTON_COLOR_TEXT_TERTIARY = "#0044f4";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY = "";
 /* The text color of the tertiary button in its active state. */
-export const KUI_BUTTON_COLOR_TEXT_TERTIARY_ACTIVE = "#001466";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY_ACTIVE = "";
 /* The text color of the tertiary button in its disabled state. */
-export const KUI_BUTTON_COLOR_TEXT_TERTIARY_DISABLED = "#afb7c5";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY_DISABLED = "";
 /* The text color of the tertiary button in its hover state. */
-export const KUI_BUTTON_COLOR_TEXT_TERTIARY_HOVER = "#0030cc";
+export const KUI_BUTTON_COLOR_TEXT_TERTIARY_HOVER = "";
 /* The font family for all buttons. */
-export const KUI_BUTTON_FONT_FAMILY = "'Inter', Roboto, Helvetica, sans-serif";
+export const KUI_BUTTON_FONT_FAMILY = "";
 /* The font size for large buttons. */
-export const KUI_BUTTON_FONT_SIZE_LARGE = "16px";
+export const KUI_BUTTON_FONT_SIZE_LARGE = "";
 /* The font size for medium (default) buttons. */
-export const KUI_BUTTON_FONT_SIZE_MEDIUM = "14px";
+export const KUI_BUTTON_FONT_SIZE_MEDIUM = "";
 /* The font size for small buttons. */
-export const KUI_BUTTON_FONT_SIZE_SMALL = "12px";
+export const KUI_BUTTON_FONT_SIZE_SMALL = "";
 /* The font weight for all buttons. */
-export const KUI_BUTTON_FONT_WEIGHT = "600";
+export const KUI_BUTTON_FONT_WEIGHT = "";
 /* The line-height for large buttons. */
-export const KUI_BUTTON_LINE_HEIGHT_LARGE = "24px";
+export const KUI_BUTTON_LINE_HEIGHT_LARGE = "";
 /* The line-height for medium (default) buttons. */
-export const KUI_BUTTON_LINE_HEIGHT_MEDIUM = "20px";
+export const KUI_BUTTON_LINE_HEIGHT_MEDIUM = "";
 /* The line-height for small buttons. */
-export const KUI_BUTTON_LINE_HEIGHT_SMALL = "16px";
+export const KUI_BUTTON_LINE_HEIGHT_SMALL = "";
 /* The left and right padding for large buttons. */
-export const KUI_BUTTON_PADDING_LARGE_X = "12px";
+export const KUI_BUTTON_PADDING_LARGE_X = "";
 /* The top and bottom padding for large buttons. */
-export const KUI_BUTTON_PADDING_LARGE_Y = "6px";
+export const KUI_BUTTON_PADDING_LARGE_Y = "";
 /* The left and right padding for medium (default) buttons. */
-export const KUI_BUTTON_PADDING_MEDIUM_X = "12px";
+export const KUI_BUTTON_PADDING_MEDIUM_X = "";
 /* The top and bottom padding for medium (default) buttons. */
-export const KUI_BUTTON_PADDING_MEDIUM_Y = "4px";
+export const KUI_BUTTON_PADDING_MEDIUM_Y = "";
 /* The left and right padding for small buttons. */
-export const KUI_BUTTON_PADDING_SMALL_X = "12px";
+export const KUI_BUTTON_PADDING_SMALL_X = "";
 /* The top and bottom padding for small buttons. */
-export const KUI_BUTTON_PADDING_SMALL_Y = "2px";
+export const KUI_BUTTON_PADDING_SMALL_Y = "";
 /* Danger color for icons. */
 export const KUI_ICON_COLOR_DANGER = "#f50045";
 /* Neutral color for icons. */
@@ -4187,70 +4187,70 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_breakpoint_tablet": "1024px",
   "kui_breakpoint_laptop": "1280px",
   "kui_breakpoint_desktop": "1536px",
-  "kui_button_border_radius": "6px",
-  "kui_button_border_width": "2px",
-  "kui_button_color_background_danger": "#d60027",
-  "kui_button_color_background_danger_active": "#5c0000",
-  "kui_button_color_background_danger_disabled": "#e0e4ea",
-  "kui_button_color_background_danger_hover": "#ad000e",
-  "kui_button_color_background_primary": "#0044f4",
-  "kui_button_color_background_primary_active": "#001466",
-  "kui_button_color_background_primary_disabled": "#e0e4ea",
-  "kui_button_color_background_primary_hover": "#0030cc",
-  "kui_button_color_background_secondary": "transparent",
-  "kui_button_color_background_secondary_active": "transparent",
-  "kui_button_color_background_secondary_disabled": "transparent",
-  "kui_button_color_background_secondary_hover": "transparent",
-  "kui_button_color_background_tertiary": "transparent",
-  "kui_button_color_background_tertiary_active": "#bee2ff",
-  "kui_button_color_background_tertiary_disabled": "transparent",
-  "kui_button_color_background_tertiary_hover": "#eefaff",
-  "kui_button_color_border_danger": "transparent",
-  "kui_button_color_border_danger_active": "transparent",
-  "kui_button_color_border_danger_disabled": "transparent",
-  "kui_button_color_border_danger_hover": "transparent",
-  "kui_button_color_border_primary": "transparent",
-  "kui_button_color_border_primary_active": "transparent",
-  "kui_button_color_border_primary_disabled": "transparent",
-  "kui_button_color_border_primary_hover": "transparent",
-  "kui_button_color_border_secondary": "#0044f4",
-  "kui_button_color_border_secondary_active": "#001466",
-  "kui_button_color_border_secondary_disabled": "#e0e4ea",
-  "kui_button_color_border_secondary_hover": "#0030cc",
-  "kui_button_color_border_tertiary": "transparent",
-  "kui_button_color_border_tertiary_active": "transparent",
-  "kui_button_color_border_tertiary_disabled": "transparent",
-  "kui_button_color_border_tertiary_hover": "transparent",
-  "kui_button_color_text_danger": "#ffffff",
-  "kui_button_color_text_danger_active": "#ffffff",
-  "kui_button_color_text_danger_disabled": "#afb7c5",
-  "kui_button_color_text_danger_hover": "#ffffff",
-  "kui_button_color_text_primary": "#ffffff",
-  "kui_button_color_text_primary_active": "#ffffff",
-  "kui_button_color_text_primary_disabled": "#afb7c5",
-  "kui_button_color_text_primary_hover": "#ffffff",
-  "kui_button_color_text_secondary": "#0044f4",
-  "kui_button_color_text_secondary_active": "#001466",
-  "kui_button_color_text_secondary_disabled": "#afb7c5",
-  "kui_button_color_text_secondary_hover": "#0030cc",
-  "kui_button_color_text_tertiary": "#0044f4",
-  "kui_button_color_text_tertiary_active": "#001466",
-  "kui_button_color_text_tertiary_disabled": "#afb7c5",
-  "kui_button_color_text_tertiary_hover": "#0030cc",
-  "kui_button_font_family": "'Inter', Roboto, Helvetica, sans-serif",
-  "kui_button_font_size_large": "16px",
-  "kui_button_font_size_medium": "14px",
-  "kui_button_font_size_small": "12px",
-  "kui_button_font_weight": "600",
-  "kui_button_line_height_large": "24px",
-  "kui_button_line_height_medium": "20px",
-  "kui_button_line_height_small": "16px",
-  "kui_button_padding_large_x": "12px",
-  "kui_button_padding_large_y": "6px",
-  "kui_button_padding_medium_x": "12px",
-  "kui_button_padding_medium_y": "4px",
-  "kui_button_padding_small_x": "12px",
-  "kui_button_padding_small_y": "2px",
+  "kui_button_border_radius": "",
+  "kui_button_border_width": "",
+  "kui_button_color_background_danger": "",
+  "kui_button_color_background_danger_active": "",
+  "kui_button_color_background_danger_disabled": "",
+  "kui_button_color_background_danger_hover": "",
+  "kui_button_color_background_primary": "",
+  "kui_button_color_background_primary_active": "",
+  "kui_button_color_background_primary_disabled": "",
+  "kui_button_color_background_primary_hover": "",
+  "kui_button_color_background_secondary": "",
+  "kui_button_color_background_secondary_active": "",
+  "kui_button_color_background_secondary_disabled": "",
+  "kui_button_color_background_secondary_hover": "",
+  "kui_button_color_background_tertiary": "",
+  "kui_button_color_background_tertiary_active": "",
+  "kui_button_color_background_tertiary_disabled": "",
+  "kui_button_color_background_tertiary_hover": "",
+  "kui_button_color_border_danger": "",
+  "kui_button_color_border_danger_active": "",
+  "kui_button_color_border_danger_disabled": "",
+  "kui_button_color_border_danger_hover": "",
+  "kui_button_color_border_primary": "",
+  "kui_button_color_border_primary_active": "",
+  "kui_button_color_border_primary_disabled": "",
+  "kui_button_color_border_primary_hover": "",
+  "kui_button_color_border_secondary": "",
+  "kui_button_color_border_secondary_active": "",
+  "kui_button_color_border_secondary_disabled": "",
+  "kui_button_color_border_secondary_hover": "",
+  "kui_button_color_border_tertiary": "",
+  "kui_button_color_border_tertiary_active": "",
+  "kui_button_color_border_tertiary_disabled": "",
+  "kui_button_color_border_tertiary_hover": "",
+  "kui_button_color_text_danger": "",
+  "kui_button_color_text_danger_active": "",
+  "kui_button_color_text_danger_disabled": "",
+  "kui_button_color_text_danger_hover": "",
+  "kui_button_color_text_primary": "",
+  "kui_button_color_text_primary_active": "",
+  "kui_button_color_text_primary_disabled": "",
+  "kui_button_color_text_primary_hover": "",
+  "kui_button_color_text_secondary": "",
+  "kui_button_color_text_secondary_active": "",
+  "kui_button_color_text_secondary_disabled": "",
+  "kui_button_color_text_secondary_hover": "",
+  "kui_button_color_text_tertiary": "",
+  "kui_button_color_text_tertiary_active": "",
+  "kui_button_color_text_tertiary_disabled": "",
+  "kui_button_color_text_tertiary_hover": "",
+  "kui_button_font_family": "",
+  "kui_button_font_size_large": "",
+  "kui_button_font_size_medium": "",
+  "kui_button_font_size_small": "",
+  "kui_button_font_weight": "",
+  "kui_button_line_height_large": "",
+  "kui_button_line_height_medium": "",
+  "kui_button_line_height_small": "",
+  "kui_button_padding_large_x": "",
+  "kui_button_padding_large_y": "",
+  "kui_button_padding_medium_x": "",
+  "kui_button_padding_medium_y": "",
+  "kui_button_padding_small_x": "",
+  "kui_button_padding_small_y": "",
   "kui_icon_color_danger": "#f50045",
   "kui_icon_color_neutral": "#828a9e",
   "kui_icon_color_primary": "#306fff",

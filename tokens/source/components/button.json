@@ -3,11 +3,11 @@
     "border": {
       "radius": {
         "$description": "The border radius of the button.",
-        "$value": "{border.radius.30}"
+        "$value": ""
       },
       "width": {
         "$description": "The border width of the button.",
-        "$value": "{border.width.20}"
+        "$value": ""
       }
     },
     "color": {
@@ -15,73 +15,73 @@
         "danger": {
           "_": {
             "$description": "The background color of the danger button in its default state.",
-            "$value": "{color.alias.red.60}"
+            "$value": ""
           },
           "active": {
             "$description": "The background color of the danger button in its active state.",
-            "$value": "{color.alias.red.90}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The background color of the danger button in its disabled state.",
-            "$value": "{color.alias.gray.20}"
+            "$value": ""
           },
           "hover": {
             "$description": "The background color of the danger button in its hover state.",
-            "$value": "{color.alias.red.70}"
+            "$value": ""
           }
         },
         "primary": {
           "_": {
             "$description": "The background color of the primary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": ""
           },
           "active": {
             "$description": "The background color of the primary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The background color of the primary button in its disabled state.",
-            "$value": "{color.alias.gray.20}"
+            "$value": ""
           },
           "hover": {
             "$description": "The background color of the primary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": ""
           }
         },
         "secondary": {
           "_": {
             "$description": "The background color of the secondary button in its default state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "active": {
             "$description": "The background color of the secondary button in its active state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The background color of the secondary button in its disabled state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "hover": {
             "$description": "The background color of the secondary button in its hover state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           }
         },
         "tertiary": {
           "_": {
             "$description": "The background color of the tertiary button in its default state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "active": {
             "$description": "The background color of the tertiary button in its active state.",
-            "$value": "{color.alias.blue.20}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The background color of the tertiary button in its disabled state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "hover": {
             "$description": "The background color of the tertiary button in its hover state.",
-            "$value": "{color.alias.blue.10}"
+            "$value": ""
           }
         }
       },
@@ -89,73 +89,73 @@
         "danger": {
           "_": {
             "$description": "The border color of the danger button in its default state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "active": {
             "$description": "The border color of the danger button in its active state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The border color of the danger button in its disabled state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "hover": {
             "$description": "The border color of the danger button in its hover state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           }
         },
         "primary": {
           "_": {
             "$description": "The border color of the primary button in its default state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "active": {
             "$description": "The border color of the primary button in its active state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The border color of the primary button in its disabled state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "hover": {
             "$description": "The border color of the primary button in its hover state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           }
         },
         "secondary": {
           "_": {
             "$description": "The border color of the secondary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": ""
           },
           "active": {
             "$description": "The border color of the secondary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The border color of the secondary button in its disabled state.",
-            "$value": "{color.alias.gray.20}"
+            "$value": ""
           },
           "hover": {
             "$description": "The border color of the secondary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": ""
           }
         },
         "tertiary": {
           "_": {
             "$description": "The border color of the tertiary button in its default state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "active": {
             "$description": "The border color of the tertiary button in its active state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The border color of the tertiary button in its disabled state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           },
           "hover": {
             "$description": "The border color of the tertiary button in its hover state.",
-            "$value": "{color.alias.transparent}"
+            "$value": ""
           }
         }
       },
@@ -163,73 +163,73 @@
         "danger": {
           "_": {
             "$description": "The text color of the danger button in its default state.",
-            "$value": "{color.alias.white}"
+            "$value": ""
           },
           "active": {
             "$description": "The text color of the danger button in its active state.",
-            "$value": "{color.alias.white}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The text color of the danger button in its disabled state.",
-            "$value": "{color.alias.gray.40}"
+            "$value": ""
           },
           "hover": {
             "$description": "The text color of the danger button in its hover state.",
-            "$value": "{color.alias.white}"
+            "$value": ""
           }
         },
         "primary": {
           "_": {
             "$description": "The text color of the primary button in its default state.",
-            "$value": "{color.alias.white}"
+            "$value": ""
           },
           "active": {
             "$description": "The text color of the primary button in its active state.",
-            "$value": "{color.alias.white}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The text color of the primary button in its disabled state.",
-            "$value": "{color.alias.gray.40}"
+            "$value": ""
           },
           "hover": {
             "$description": "The text color of the primary button in its hover state.",
-            "$value": "{color.alias.white}"
+            "$value": ""
           }
         },
         "secondary": {
           "_": {
             "$description": "The text color of the secondary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": ""
           },
           "active": {
             "$description": "The text color of the secondary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The text color of the secondary button in its disabled state.",
-            "$value": "{color.alias.gray.40}"
+            "$value": ""
           },
           "hover": {
             "$description": "The text color of the secondary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": ""
           }
         },
         "tertiary": {
           "_": {
             "$description": "The text color of the tertiary button in its default state.",
-            "$value": "{color.alias.blue.60}"
+            "$value": ""
           },
           "active": {
             "$description": "The text color of the tertiary button in its active state.",
-            "$value": "{color.alias.blue.90}"
+            "$value": ""
           },
           "disabled": {
             "$description": "The text color of the tertiary button in its disabled state.",
-            "$value": "{color.alias.gray.40}"
+            "$value": ""
           },
           "hover": {
             "$description": "The text color of the tertiary button in its hover state.",
-            "$value": "{color.alias.blue.70}"
+            "$value": ""
           }
         }
       }
@@ -238,71 +238,71 @@
       "family": {
         "$description": "The font family for all buttons.",
         "$type": "font",
-        "$value": "{font.family.text}"
+        "$value": ""
       },
       "size": {
         "large": {
           "$description": "The font size for large buttons.",
-          "$value": "{font.size.40}"
+          "$value": ""
         },
         "medium": {
           "$description": "The font size for medium (default) buttons.",
-          "$value": "{font.size.30}"
+          "$value": ""
         },
         "small": {
           "$description": "The font size for small buttons.",
-          "$value": "{font.size.20}"
+          "$value": ""
         }
       },
       "weight": {
         "$description": "The font weight for all buttons.",
         "$type": "font",
-        "$value": "{font.weight.semibold}"
+        "$value": ""
       }
     },
     "line_height": {
       "large": {
         "$description": "The line-height for large buttons.",
-        "$value": "{line_height.40}"
+        "$value": ""
       },
       "medium": {
         "$description": "The line-height for medium (default) buttons.",
-        "$value": "{line_height.30}"
+        "$value": ""
       },
       "small": {
         "$description": "The line-height for small buttons.",
-        "$value": "{line_height.20}"
+        "$value": ""
       }
     },
     "padding": {
       "large": {
         "x": {
           "$description": "The left and right padding for large buttons.",
-          "$value": "{space.50}"
+          "$value": ""
         },
         "y": {
           "$description": "The top and bottom padding for large buttons.",
-          "$value": "{space.30}"
+          "$value": ""
         }
       },
       "medium": {
         "x": {
           "$description": "The left and right padding for medium (default) buttons.",
-          "$value": "{space.50}"
+          "$value": ""
         },
         "y": {
           "$description": "The top and bottom padding for medium (default) buttons.",
-          "$value": "{space.20}"
+          "$value": ""
         }
       },
       "small": {
         "x": {
           "$description": "The left and right padding for small buttons.",
-          "$value": "{space.50}"
+          "$value": ""
         },
         "y": {
           "$description": "The top and bottom padding for small buttons.",
-          "$value": "{space.10}"
+          "$value": ""
         }
       }
     }
