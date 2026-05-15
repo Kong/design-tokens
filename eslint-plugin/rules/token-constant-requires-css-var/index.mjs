@@ -206,7 +206,6 @@ const rule = {
       // Warn when linting a .vue file so misconfigured setups are caught early.
       const filename = context.filename ?? /** @type {any} */ (context).getFilename?.() ?? ''
       if (filename.endsWith('.vue')) {
-        // eslint-disable-next-line no-console
         console.warn(
           `[@kong/design-tokens] token-constant-requires-css-var: vue-eslint-parser is not active for "${filename}". ` +
           'Add vue-eslint-parser (or eslint-plugin-vue, which ships it) as the parser in your ESLint config.',
