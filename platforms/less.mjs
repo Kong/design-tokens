@@ -1,4 +1,4 @@
-import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
+import { TOKEN_DIRECTORY, emptyToInitialTransform } from '../utilities/index.mjs'
 
 /**
  * LESS Variables
@@ -10,6 +10,7 @@ export default {
     'attribute/cti',
     'name/kebab',
     'color/css',
+    emptyToInitialTransform,
   ],
   files: [
     // LESS variables

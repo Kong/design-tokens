@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary'
-import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
+import { TOKEN_DIRECTORY, emptyToInitialTransform } from '../utilities/index.mjs'
 import { fileHeader, formattedVariables } from 'style-dictionary/utils'
 
 /**
@@ -47,6 +47,7 @@ export default {
     'attribute/cti',
     'name/kebab',
     'color/css',
+    emptyToInitialTransform,
   ],
   files: [
     // SCSS variables

@@ -1,5 +1,5 @@
 import StyleDictionary from 'style-dictionary'
-import { unquoteString, TOKEN_DIRECTORY } from '../utilities/index.mjs'
+import { unquoteString, TOKEN_DIRECTORY, emptyToInitialTransform } from '../utilities/index.mjs'
 import { fileHeader } from 'style-dictionary/utils'
 
 StyleDictionary.registerFormat({
@@ -46,6 +46,7 @@ export default {
     'attribute/cti',
     'name/kebab',
     'color/css',
+    emptyToInitialTransform,
   ],
   files: [
     {
