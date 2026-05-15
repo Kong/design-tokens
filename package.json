@@ -54,7 +54,7 @@
   },
   "peerDependencies": {
     "eslint": "^9.0.0",
-    "vue-eslint-parser": ">=10.4.0"
+    "vue-eslint-parser": ">=10.2.0"
   },
   "peerDependenciesMeta": {
     "eslint": {
