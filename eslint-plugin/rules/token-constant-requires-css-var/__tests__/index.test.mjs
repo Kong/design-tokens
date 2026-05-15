@@ -185,6 +185,32 @@ tester.run(RULE_NAME, rule, {
         'bp',
       ),
     },
+
+    // Script-setup alias already wrapped with correct CSS var — theming works,
+    // so this is idempotent and must not be reported.
+    {
+      filename: 'test.vue',
+      code: sfc({
+        script: [
+          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+          'const myColor = KUI_COLOR_TEXT_INVERSE',
+        ].join('\n'),
+        template: '<div :color="`var(--kui-color-text-inverse, ${myColor})`" />',
+      }),
+    },
+
+    // Function-scoped `const local = KUI_X` must not be tracked — template binding
+    // uses a different `myColor` (e.g. from a prop) and this would be a false positive.
+    {
+      filename: 'test.vue',
+      code: sfc({
+        script: [
+          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+          'function helper() { const myColor = KUI_COLOR_TEXT_INVERSE; return myColor }',
+        ].join('\n'),
+        template: '<div :color="myColor" />',
+      }),
+    },
   ],
 
   // ---------------------------------------------------------------------------
@@ -361,6 +387,21 @@ tester.run(RULE_NAME, rule, {
       output: withImport(
         'KUI_COLOR_TEXT_INVERSE',
         '<div v-bind="{ color: `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})` }" />',
+      ),
+    },
+
+    // Object shorthand property { KUI_X } — fixer must expand to { KUI_X: `var(...)` }
+    // because replacing only the identifier drops the key and yields invalid JS.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div v-bind="{ KUI_COLOR_TEXT_INVERSE }" />',
+      ),
+      errors: [{ messageId: 'wrapInVar', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
+      output: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div v-bind="{ KUI_COLOR_TEXT_INVERSE: `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})` }" />',
       ),
     },
 
@@ -546,22 +587,6 @@ tester.run(RULE_NAME, rule, {
         '<div :color="`var(--kui-color-text-inverse, ${cond ? KUI_COLOR_TEXT_INVERSE : \'red\'})`" />',
       ),
       errors: [{ messageId: 'wrapInVarNoFix', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
-      output: null,
-    },
-
-    // Script-setup var in a var() template literal — Case 2 has no idempotency because
-    // wrapping a script-setup variable still uses the JS value, not the CSS property.
-    // The correct fix is to use the import directly at the binding site.
-    {
-      filename: 'test.vue',
-      code: sfc({
-        script: [
-          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
-          'const myColor = KUI_COLOR_TEXT_INVERSE',
-        ].join('\n'),
-        template: '<div :color="`var(--kui-color-text-inverse, ${myColor})`" />',
-      }),
-      errors: [{ messageId: 'wrapInVarScriptSetup', data: { imported: 'KUI_COLOR_TEXT_INVERSE', local: 'myColor', cssVar: 'kui-color-text-inverse' } }],
       output: null,
     },
 

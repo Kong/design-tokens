@@ -71,7 +71,7 @@ function asDirectIdentifier(node) {
  *
  * @param {import('estree').Node | null | undefined} node - Current AST node
  * @param {string} ctx - Either `AUTOFIX` or `REPORT_ONLY`
- * @param {(id: import('estree').Identifier, ctx: string, parentTemplate?: import('estree').TemplateLiteral, slotIndex?: number) => void} onIdentifier
+ * @param {(id: import('estree').Identifier, ctx: string, parentTemplate?: import('estree').TemplateLiteral, slotIndex?: number, parentShorthandProp?: import('estree').Property) => void} onIdentifier
  */
 function walkExpression(node, ctx, onIdentifier) {
   if (!node) return
@@ -108,10 +108,17 @@ function walkExpression(node, ctx, onIdentifier) {
     case 'ObjectExpression': {
       const n = /** @type {import('estree').ObjectExpression} */ (node)
       for (const prop of n.properties) {
-        if (prop.type === 'Property') {
-          walkExpression(prop.value, ctx, onIdentifier)
-        }
+        if (prop.type !== 'Property') continue
         // SpreadElement is not walked — shape is unknown at static analysis time
+        const p = /** @type {import('estree').Property} */ (prop)
+        if (p.shorthand && p.value.type === 'Identifier') {
+          // Shorthand { KUI_X }: replacing just the identifier drops the key, yielding
+          // `{ \`var(...)\` }` — invalid JS. Pass the Property node so the fixer can
+          // produce the expanded form instead: `{ KUI_X: \`var(...)\` }`.
+          onIdentifier(/** @type {import('estree').Identifier} */ (p.value), ctx, undefined, undefined, p)
+        } else {
+          walkExpression(p.value, ctx, onIdentifier)
+        }
       }
       break
     }
@@ -267,12 +274,18 @@ const rule = {
      * verified against the specific CSS var for this token — not just any
      * `--kui-*` variable.
      *
+     * When the identifier is the value of an object shorthand property,
+     * `parentShorthandProp` is provided so the fixer can replace the entire
+     * property node (producing `{ KUI_X: \`var(...)\` }`) instead of only the
+     * identifier (which would drop the key and yield invalid JS).
+     *
      * @param {import('estree').Identifier} idNode - The token identifier node
      * @param {string} ctx - Either `AUTOFIX` or `REPORT_ONLY`
      * @param {import('estree').TemplateLiteral} [parentTemplate] - Enclosing template literal, if the identifier is its direct expression
      * @param {number} [slotIndex] - Expression slot index within `parentTemplate`
+     * @param {import('estree').Property} [parentShorthandProp] - Enclosing shorthand Property node, if any
      */
-    function handleIdentifier(idNode, ctx, parentTemplate, slotIndex) {
+    function handleIdentifier(idNode, ctx, parentTemplate, slotIndex, parentShorthandProp) {
       const localName = idNode.name
 
       // Case 1: directly-imported KUI token (e.g. KUI_X or its local alias)
@@ -296,7 +309,10 @@ const rule = {
             messageId: 'wrapInVar',
             data: { local: localName, cssVar: cssVarNoPrefix },
             fix(fixer) {
-              // Replace the bare Identifier with a template-literal var() fallback
+              if (parentShorthandProp) {
+                // Shorthand property: { KUI_X } → { KUI_X: `var(--kui-x, ${KUI_X})` }
+                return fixer.replaceText(parentShorthandProp, `${localName}: \`var(${cssVar}, \${${localName}})\``)
+              }
               return fixer.replaceText(idNode, `\`var(${cssVar}, \${${localName}})\``)
             },
           })
@@ -317,6 +333,14 @@ const rule = {
       if (!sourceImportedName) return
 
       const cssVar = kuiIdentifierToCssVar(sourceImportedName)
+
+      // Idempotency: a script-setup alias already wrapped with the correct CSS var
+      // still uses the custom property first, so theming works — no report needed.
+      if (parentTemplate !== undefined && slotIndex !== undefined
+        && isAlreadyWrappedSlot(parentTemplate, slotIndex, cssVar)) {
+        return
+      }
+
       context.report({
         node: idNode,
         messageId: 'wrapInVarScriptSetup',
@@ -366,11 +390,16 @@ const rule = {
 
       /**
        * Detects `const c = KUI_X` in `<script setup>` (one-hop variable detection).
-       * Only simple `Identifier = Identifier` initialisers are tracked.
+       * Only simple `Identifier = Identifier` initialisers at module scope are tracked.
+       * Function-scoped locals are excluded: they are not accessible in the template
+       * and a coincidental name collision would cause a false positive.
        */
       VariableDeclarator(/** @type {import('estree').VariableDeclarator} */ node) {
         if (node.init?.type !== 'Identifier') return
         if (node.id?.type !== 'Identifier') return
+
+        // Only module-scope declarations reach the template
+        if (context.sourceCode.getScope(node).type !== 'module') return
 
         const initName = /** @type {import('estree').Identifier} */ (node.init).name
         if (!trackedImports.has(initName)) return
