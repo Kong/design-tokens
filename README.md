@@ -438,6 +438,7 @@ Additionally, CI will use `commitlint` to validate the commits associated with a
 - Protected branches require at least one approval from code owners.
 - All status checks must pass before a pull request may be merged.
 
+
 ### Package Publishing
 
 This repository utilizes [Semantic Release](https://github.com/semantic-release/semantic-release) for automated package publishing and version updates.
