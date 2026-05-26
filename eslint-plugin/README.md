@@ -76,7 +76,7 @@ The CSS custom property **must come first** so that DOM-level overrides (light/d
   <!-- ❌ ternary branches -->
   <MyComponent :color="isDark ? KUI_COLOR_TEXT_INVERSE : KUI_COLOR_TEXT_PRIMARY" />
 
-  <!-- ❌ object shorthand in :style -->
+  <!-- ❌ object property token value in :style -->
   <MyComponent :style="{ color: KUI_COLOR_TEXT_INVERSE }" />
 </template>
 
