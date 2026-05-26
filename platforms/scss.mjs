@@ -32,7 +32,7 @@ StyleDictionary.registerFormat({
       ' * ```\n' +
       '*/\n' +
       '@mixin kui-css-variables {\n' +
-      formattedVariables({ format: 'css', dictionary, outputReferences }) +
+      formattedVariables({ format: 'css', dictionary, outputReferences, usesDtcg: true }) +
       '\n}\n'
   },
 })
