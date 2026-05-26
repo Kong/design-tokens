@@ -15,8 +15,8 @@ export default {
     {
       format: 'json/flat',
       destination: 'tokens.json',
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
     },
   ],
 }

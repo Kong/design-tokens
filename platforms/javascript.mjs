@@ -17,8 +17,8 @@ export default {
     {
       format: 'javascript/es6',
       destination: 'index.mjs',
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
     },
     // Constants TypeScript types
     {
@@ -27,15 +27,15 @@ export default {
       options: {
         outputStringLiterals: true,
       },
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
     },
     // JavaScript CommonJS
     {
       format: 'javascript/module-flat',
       destination: 'cjs/index.js',
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
     },
     // CommonJS types
     {
@@ -44,8 +44,8 @@ export default {
       options: {
         outputStringLiterals: true,
       },
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
     },
   ],
 }

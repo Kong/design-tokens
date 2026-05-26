@@ -5,8 +5,11 @@ import { fileHeader } from 'style-dictionary/utils'
 StyleDictionary.registerFormat({
   name: 'css/variables/custom/markdown',
   format: async function({ dictionary, file }) {
-    // Generate the SCSS variable tokens
-    const scssTokens = dictionary.allTokens.map(token => {
+    const sourceTokens = dictionary.allTokens.filter(token => token.original.$value !== '')
+    const allTokens = dictionary.allTokens
+
+    // Generate the SCSS variable tokens (omit component tokens with no value — not emitted in the SCSS output)
+    const scssTokens = sourceTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.$value))
       const comment = unquoteString(JSON.stringify(token.$description))
 
@@ -18,8 +21,8 @@ StyleDictionary.registerFormat({
       return tokenOutput
     }).join('\n')
 
-    // Generate the SCSS variable tokens
-    const scssMap = dictionary.allTokens.map(token => {
+    // Generate the SCSS map (omit component tokens with no value — not emitted in the SCSS output)
+    const scssMap = sourceTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.$value))
       const comment = unquoteString(JSON.stringify(token.$description))
 
@@ -31,8 +34,8 @@ StyleDictionary.registerFormat({
       return tokenOutput
     }).join('\n')
 
-    // Generate the LESS variable tokens
-    const lessTokens = dictionary.allTokens.map(token => {
+    // Generate the LESS variable tokens (omit component tokens with no value — not emitted in the LESS output)
+    const lessTokens = sourceTokens.map(token => {
       const value = unquoteString(JSON.stringify(token.$value))
       const comment = unquoteString(JSON.stringify(token.$description))
 
@@ -44,9 +47,9 @@ StyleDictionary.registerFormat({
       return tokenOutput
     }).join('\n')
 
-    // Generate the CSS custom properties
-    const cssTokens = dictionary.allTokens.map(token => {
-      const value = unquoteString(JSON.stringify(token.$value))
+    // Generate the CSS custom properties (empty-value tokens render as `initial` — their correct runtime value)
+    const cssTokens = allTokens.map(token => {
+      const value = token.$value === '' ? 'initial' : unquoteString(JSON.stringify(token.$value))
       const comment = unquoteString(JSON.stringify(token.$description))
 
       let tokenOutput = ''
@@ -57,8 +60,8 @@ StyleDictionary.registerFormat({
       return tokenOutput
     }).join('\n')
 
-    // Generate the JavaScript variable tokens
-    const javascriptTokens = dictionary.allTokens.map(token => {
+    // Generate the JavaScript variable tokens (omit component tokens with no value — not emitted in the JS output)
+    const javascriptTokens = sourceTokens.map(token => {
       const value = JSON.stringify(token.$value)
       const comment = unquoteString(JSON.stringify(token.$description))
 
@@ -70,12 +73,12 @@ StyleDictionary.registerFormat({
       return tokenOutput
     }).join('\n')
 
-    // Generate the JavaScript variable tokens
-    const jsonTokens = dictionary.allTokens.map((token, idx) => {
+    // Generate the JSON tokens (omit component tokens with no value — not emitted in the JSON output)
+    const jsonTokens = sourceTokens.map((token, idx) => {
       const value = JSON.stringify(token.$value)
 
       let tokenOutput = `  "${token.name.replace(/-/g, '_').toLowerCase()}": ${value},`
-      if ((idx + 1) === dictionary.allTokens.length) {
+      if ((idx + 1) === sourceTokens.length) {
         tokenOutput = tokenOutput.replace(/,$/, '')
       }
       return tokenOutput

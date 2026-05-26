@@ -57,20 +57,20 @@ export default {
       options: {
         themeable: true,
       },
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
     },
     // SCSS map
     {
       format: 'scss/map-flat',
       destination: '_map.scss',
-      // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      // Exclude alias tokens, asset tokens, and component tokens with no value (runtime-only CSS customization surface)
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.original.$value !== '',
       options: {
         mapName: 'kui-tokens-map',
       },
     },
-    // SCSS CSS variables mixin
+    // SCSS CSS variables mixin — emits CSS custom properties, so empty-value tokens correctly emit as `initial`
     {
       format: 'css/variables/custom/sass/mixin',
       destination: '_mixins.scss',
