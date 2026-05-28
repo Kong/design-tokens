@@ -6,7 +6,7 @@ import rule from '../index.mjs'
 // Wire up vitest's describe/it so RuleTester integrates with the vitest reporter
 RuleTester.describe = describe
 RuleTester.it = it
-RuleTester.itOnly = it
+RuleTester.itOnly = it.only
 
 const tester = new RuleTester({
   languageOptions: {
