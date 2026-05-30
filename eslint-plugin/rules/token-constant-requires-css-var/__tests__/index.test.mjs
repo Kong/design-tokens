@@ -162,6 +162,33 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
+    // Idempotency is whitespace-tolerant — extra spaces inside var() are valid CSS
+    // and must not cause a false re-report after a developer manually writes the binding.
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var( --kui-color-text-inverse , ${KUI_COLOR_TEXT_INVERSE} )`" />',
+      ),
+    },
+
+    // Options API `<script>` (no setup attribute) — module-scope KUI aliases must not
+    // be tracked because they are not directly accessible in the template; the template
+    // `myColor` refers to a prop/data/computed property, not the module-level const.
+    {
+      filename: 'test.vue',
+      code: [
+        '<script>',
+        "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+        'const myColor = KUI_COLOR_TEXT_INVERSE',
+        "export default { props: ['myColor'] }",
+        '</script>',
+        '<template>',
+        '<div :color="myColor" />',
+        '</template>',
+      ].join('\n'),
+    },
+
     // KUI_BREAKPOINT_* tokens are excluded — they are viewport pixel widths, not CSS
     // custom properties, so DOM-level theming does not apply.
     {

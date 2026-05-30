@@ -35,9 +35,11 @@ function isAlreadyWrappedSlot(templateNode, exprIndex, expectedCssVar) {
   const priorText = templateNode.quasis[exprIndex]?.value?.cooked ?? ''
   const nextText = templateNode.quasis[exprIndex + 1]?.value?.cooked ?? ''
   const escaped = expectedCssVar.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  // nextText.startsWith(')') is intentionally permissive: trailing content such as
-  // `) !important` is valid CSS (e.g. `color: var(--x, fallback) !important`).
-  return new RegExp(`var\\(${escaped},\\s*$`).test(priorText) && nextText.startsWith(')')
+  // Allow optional whitespace after `var(`, around the custom property name, and before
+  // the comma — CSS is whitespace-tolerant in these positions.
+  // trimStart() before startsWith(')') preserves permissiveness for trailing content
+  // like `) !important` while also accepting a space before the closing paren.
+  return new RegExp(`var\\(\\s*${escaped}\\s*,\\s*$`).test(priorText) && nextText.trimStart().startsWith(')')
 }
 
 /**
@@ -259,6 +261,32 @@ const rule = {
       return {}
     }
 
+    // Source range of the <script setup> block, used to restrict one-hop variable
+    // tracking to declarations that are actually accessible in the template.
+    // Module-scope consts in a regular <script> (Options API) are NOT directly
+    // template-accessible, so they must not be tracked as one-hop aliases.
+    //
+    // Three possible states:
+    //   [number, number] — <script setup> found; range used for filtering
+    //   null             — SFC has no <script setup> (Options API); skip all tracking
+    //   undefined        — getDocumentFragment unavailable; fall back to scope-only check
+    const df = /** @type {any} */ (parserServices).getDocumentFragment?.()
+    const scriptSetupEl = df
+      ? /** @type {any[] | undefined} */ (df.children)?.find(
+        // Use n.name (normalized lowercase) not n.rawName (source casing) so that
+        // <Script setup> or <SCRIPT SETUP> is still found correctly.
+          (/** @type {any} */ n) => n.type === 'VElement'
+            && n.name === 'script'
+            && n.startTag?.attributes?.some((/** @type {any} */ a) => a.key?.name === 'setup'),
+        )
+      : undefined
+    /** @type {readonly [number, number] | null | undefined} */
+    const scriptSetupRange = df === undefined || df === null
+      ? undefined // getDocumentFragment not available — fall back to scope-only
+      : scriptSetupEl
+        ? /** @type {any} */ (scriptSetupEl).range // <script setup> found
+        : null // SFC has no <script setup> — skip all tracking
+
     /**
      * Reports a KUI token Identifier found inside a v-bind expression.
      * Issues an autofix when `ctx === AUTOFIX`; reports without fix otherwise.
@@ -384,16 +412,26 @@ const rule = {
 
       /**
        * Detects `const c = KUI_X` in `<script setup>` (one-hop variable detection).
-       * Only simple `Identifier = Identifier` initialisers at module scope are tracked.
-       * Function-scoped locals are excluded: they are not accessible in the template
-       * and a coincidental name collision would cause a false positive.
+       * Only module-scope declarators inside `<script setup>` are tracked — function-
+       * scoped locals and module-scope variables in a regular `<script>` (Options API)
+       * are not directly template-accessible and would cause false positives.
        */
       VariableDeclarator(/** @type {import('estree').VariableDeclarator} */ node) {
         if (node.init?.type !== 'Identifier') return
         if (node.id?.type !== 'Identifier') return
 
-        // Only module-scope declarations reach the template
+        // Exclude function-scoped locals (not reachable in the template)
         if (context.sourceCode.getScope(node).type !== 'module') return
+
+        // Exclude declarations outside <script setup>:
+        //   null      — no <script setup> in this SFC (Options API) → skip all tracking
+        //   undefined — getDocumentFragment unavailable → fall back to scope-only check
+        //   range     — filter to declarations within the setup block
+        if (scriptSetupRange === null) return
+        if (scriptSetupRange !== undefined) {
+          const [start, end] = /** @type {import('estree').VariableDeclarator & { range: [number, number] }} */ (node).range
+          if (start < scriptSetupRange[0] || end > scriptSetupRange[1]) return
+        }
 
         const initName = /** @type {import('estree').Identifier} */ (node.init).name
         if (!trackedImports.has(initName)) return
