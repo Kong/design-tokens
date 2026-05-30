@@ -8,11 +8,15 @@
 
 ## Usage
 
-Install `@kong/design-tokens`, `eslint`, and `vue-eslint-parser` (typically provided by `eslint-plugin-vue`) as `devDependencies`.
+Install `@kong/design-tokens`, `eslint`, `eslint-plugin-vue`, and `vue-eslint-parser` as `devDependencies`.
+
+> **Note**: If the host project already installs `@kong/eslint-config-kong-ui` (which depends on `eslint-plugin-vue` and `vue-eslint-parser`), you only need to install `@kong/design-tokens` and `eslint` here.
 
 ```sh
-pnpm add -D @kong/design-tokens eslint eslint-plugin-vue
+pnpm add -D @kong/design-tokens eslint eslint-plugin-vue vue-eslint-parser
 ```
+
+`vue-eslint-parser` must be the configured parser for `.vue` files — the rule's template-body visitor depends on it. `eslint-plugin-vue`'s `flat/recommended` config sets this up automatically, so no extra parser configuration is needed when using the snippet below.
 
 In your `eslint.config.mjs` (ESLint 9 flat config):
 

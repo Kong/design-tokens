@@ -76,6 +76,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^20.4.3",
+    "@typescript-eslint/parser": "^8.46.1",
     "@commitlint/config-conventional": "^20.4.3",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^2.1.2",

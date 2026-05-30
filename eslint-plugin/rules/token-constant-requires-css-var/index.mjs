@@ -254,14 +254,8 @@ const rule = {
 
     if (!parserServices?.defineTemplateBodyVisitor) {
       // vue-eslint-parser is not configured; no-op for plain JS/TS files.
-      // Warn when linting a .vue file so misconfigured setups are caught early.
-      const filename = context.filename ?? /** @type {any} */ (context).getFilename?.() ?? ''
-      if (filename.endsWith('.vue')) {
-        console.warn(
-          `[@kong/design-tokens] token-constant-requires-css-var: vue-eslint-parser is not active for "${filename}". ` +
-          'Add vue-eslint-parser (or eslint-plugin-vue, which ships it) as the parser in your ESLint config.',
-        )
-      }
+      // .vue files linted without vue-eslint-parser fail to parse before rules run,
+      // so there is nothing useful to report here.
       return {}
     }
 
