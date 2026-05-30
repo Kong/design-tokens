@@ -207,6 +207,24 @@ tester.run(RULE_NAME, rule, {
         template: '<div :color="myColor" />',
       }),
     },
+
+    // Idempotency across token families — the rule must not re-report already-fixed bindings
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_FONT_SIZE_30',
+        '<div :style="{ fontSize: `var(--kui-font-size-30, ${KUI_FONT_SIZE_30})` }" />',
+      ),
+    },
+
+    // Idempotency for multiple tokens in one object — both slots already wrapped
+    {
+      filename: 'test.vue',
+      code: sfc({
+        script: "import { KUI_SPACE_40, KUI_BORDER_RADIUS_20 } from '@kong/design-tokens'",
+        template: '<div :style="{ padding: `var(--kui-space-40, ${KUI_SPACE_40})`, borderRadius: `var(--kui-border-radius-20, ${KUI_BORDER_RADIUS_20})` }" />',
+      }),
+    },
   ],
 
   invalid: [
@@ -617,43 +635,9 @@ tester.run(RULE_NAME, rule, {
   ],
 })
 
-// Idempotency: the fixer output must itself be a valid (no-error) input.
-// tester.run() must be called at the top level (not inside it()) because it
-// internally calls describe() which vitest forbids inside test blocks.
-tester.run(`${RULE_NAME} (idempotency)`, rule, {
-  valid: [
-    {
-      filename: 'test.vue',
-      name: 'does not re-report already-fixed color token',
-      code: withImport(
-        'KUI_COLOR_TEXT_INVERSE',
-        '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`" />',
-      ),
-    },
-    {
-      filename: 'test.vue',
-      name: 'does not re-report already-fixed font-size token',
-      code: withImport(
-        'KUI_FONT_SIZE_30',
-        '<div :style="{ fontSize: `var(--kui-font-size-30, ${KUI_FONT_SIZE_30})` }" />',
-      ),
-    },
-    {
-      filename: 'test.vue',
-      name: 'does not re-report already-fixed space token inside object',
-      code: sfc({
-        script: "import { KUI_SPACE_40, KUI_BORDER_RADIUS_20 } from '@kong/design-tokens'",
-        template: '<div :style="{ padding: `var(--kui-space-40, ${KUI_SPACE_40})`, borderRadius: `var(--kui-border-radius-20, ${KUI_BORDER_RADIUS_20})` }" />',
-      }),
-    },
-  ],
-  invalid: [],
-})
-
-// TypeScript — all four TS-specific branches in the rule must be guarded by
-// discriminating tests: if the branch were deleted, the test must flip.
-// Test infrastructure: a second RuleTester that configures vue-eslint-parser
-// to delegate the <script> block to @typescript-eslint/parser.
+// TypeScript SFCs — requires a second RuleTester that delegates <script lang="ts">
+// to @typescript-eslint/parser, which produces TS-specific AST nodes (TSAsExpression,
+// TSNonNullExpression, importKind) that the rule handles explicitly.
 const tsTester = new RuleTester({
   languageOptions: {
     parser: vueParser,
@@ -698,26 +682,18 @@ function sfcTs({ script = '', template = '' } = {}) {
 
 tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
   valid: [
-    // Branch: declaration-level `import type { KUI_X }` skip (importKind === 'type'
-    // on the ImportDeclaration). Removing this check would track the identifier
-    // and report wrapInVar, flipping this case invalid.
+    // `import type { KUI_X }` — declaration-level type-only import is not tracked
     {
       filename: 'test.vue',
-      name: 'import type declaration — token not tracked',
       code: sfcTs({
         script: "import type { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
         template: '<div :color="KUI_COLOR_TEXT_INVERSE" />',
       }),
     },
 
-    // Branch: `asDirectIdentifier` TS unwrap (TSAsExpression path).
-    // When a token wrapped in `as Type` is the DIRECT slot expression of an
-    // already-correct var(), idempotency must fire. If asDirectIdentifier's TS
-    // unwrap were removed, asDirectIdentifier returns null, the slot falls to
-    // walkExpression(REPORT_ONLY), and an error is emitted — flipping invalid.
+    // `${KUI_X as string}` in an already-correct var() slot — idempotency through a TS cast
     {
       filename: 'test.vue',
-      name: 'asDirectIdentifier unwraps TSAsExpression — correct var() is idempotent',
       code: withImportTs(
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE as string})`" />',
@@ -726,14 +702,9 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
   ],
 
   invalid: [
-    // Branch: `walkExpression` TS unwrap — TSAsExpression.
-    // Removing `nodeType === 'TSAsExpression'` from the unwrap condition causes
-    // the node to hit the `default` switch case and produce no report, so the
-    // test would fail expecting one error.
-    // Autofix replaces only the inner Identifier, leaving the `as Type` cast intact.
+    // TSAsExpression — autofix unwraps the cast to reach the identifier; cast is preserved in output
     {
       filename: 'test.vue',
-      name: 'walkExpression unwraps TSAsExpression — autofix preserves cast',
       code: withImportTs(
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="KUI_COLOR_TEXT_INVERSE as string" />',
@@ -745,12 +716,9 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
       ),
     },
 
-    // Branch: `walkExpression` TS unwrap — TSNonNullExpression.
-    // Guards the `nodeType === 'TSNonNullExpression'` arm of the same condition.
-    // Autofix replaces the Identifier; the non-null `!` operator is appended after.
+    // TSNonNullExpression — autofix unwraps `!`; non-null assertion is preserved in output
     {
       filename: 'test.vue',
-      name: 'walkExpression unwraps TSNonNullExpression — autofix preserves !',
       code: withImportTs(
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="KUI_COLOR_TEXT_INVERSE!" />',
@@ -762,15 +730,9 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
       ),
     },
 
-    // Branch: `asDirectIdentifier` TS unwrap — mismatched CSS var.
-    // Confirms the idempotency check still discriminates through a TS cast:
-    // the wrong custom property is caught even when the token is `as`-cast.
-    // If asDirectIdentifier's unwrap regressed, the test would still see an
-    // error (via walkExpression/REPORT_ONLY), so a PAIRED valid case above is
-    // what actually guards the unwrap.
+    // `${KUI_X as string}` in a var() slot with the WRONG custom property — still caught
     {
       filename: 'test.vue',
-      name: 'asDirectIdentifier unwraps TSAsExpression — mismatched var() is caught',
       code: withImportTs(
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="`var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE as string})`" />',
@@ -779,15 +741,9 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
       output: null,
     },
 
-    // Branch: per-specifier `import { type KUI_X }` skip (importKind === 'type'
-    // on the ImportSpecifier, NOT the ImportDeclaration).
-    // This case uses a MIXED import so declaration-level importKind is 'value'.
-    // Only KUI_SPACE_40 (value specifier) must produce an error; KUI_COLOR_TEXT_INVERSE
-    // (type specifier) must be silent. Removing the per-specifier skip would add
-    // a second error on KUI_COLOR_TEXT_INVERSE, failing the errors.length === 1 assertion.
+    // Mixed import `{ KUI_SPACE_40, type KUI_COLOR_TEXT_INVERSE }` — only the value specifier is reported
     {
       filename: 'test.vue',
-      name: 'per-specifier type import — only value specifier is reported',
       code: sfcTs({
         script: "import { KUI_SPACE_40, type KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
         template: '<div :style="{ padding: KUI_SPACE_40, color: KUI_COLOR_TEXT_INVERSE }" />',

@@ -19,9 +19,8 @@ const plugin = {
 
 plugin.configs = {
   /**
-   * Flat-config preset that registers the plugin and enables the rule as an
-   * error. Spread into your `eslint.config.mjs` inside a `files: ['**/*.vue']`
-   * config entry.
+   * Flat-config preset that registers the plugin and enables the rule as an error.
+   * Spread into your eslint.config.mjs inside a files: ["**\/*.vue"] config entry.
    */
   recommended: {
     plugins: {
