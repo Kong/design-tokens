@@ -23,10 +23,16 @@ const RULE_NAME = '@kong/design-tokens/token-constant-requires-css-var'
 
 // SFC source helpers
 
-/** Builds a minimal `<script setup>` + `<template>` SFC string. */
-function sfc({ script = '', template = '' } = {}) {
+/**
+ * Builds a minimal `<script setup>` + `<template>` SFC string.
+ * @param {object} [parts]
+ * @param {string} [parts.script] - `<script setup>` body
+ * @param {string} [parts.template] - `<template>` body
+ * @param {string} [parts.lang] - Optional `lang` attribute (e.g. `'ts'`)
+ */
+function sfc({ script = '', template = '', lang } = {}) {
   return [
-    '<script setup>',
+    `<script setup${lang ? ` lang="${lang}"` : ''}>`,
     script.trim(),
     '</script>',
     '<template>',
@@ -40,13 +46,30 @@ function sfc({ script = '', template = '' } = {}) {
  * @param {string} varName - The exported constant name (e.g. `KUI_COLOR_TEXT_INVERSE`)
  * @param {string} template - The `<template>` body
  * @param {string} [alias] - Optional local alias (`import { varName as alias }`)
+ * @param {string} [lang] - Optional `<script setup>` lang (e.g. `'ts'`)
  */
-function withImport(varName, template, alias) {
+function withImport(varName, template, alias, lang) {
   const specifier = alias ? `${varName} as ${alias}` : varName
   return sfc({
     script: `import { ${specifier} } from '@kong/design-tokens'`,
     template,
+    lang,
   })
+}
+
+/** TypeScript variant of {@link sfc} (`<script setup lang="ts">`). */
+function sfcTs({ script = '', template = '' } = {}) {
+  return sfc({ script, template, lang: 'ts' })
+}
+
+/**
+ * TypeScript variant of {@link withImport} (`<script setup lang="ts">`).
+ * @param {string} varName - The exported constant name (e.g. `KUI_COLOR_TEXT_INVERSE`)
+ * @param {string} template - The `<template>` body
+ * @param {string} [alias] - Optional local alias (`import { varName as alias }`)
+ */
+function withImportTs(varName, template, alias) {
+  return withImport(varName, template, alias, 'ts')
 }
 
 tester.run(RULE_NAME, rule, {
@@ -726,37 +749,6 @@ const tsTester = new RuleTester({
   },
 })
 
-/**
- * Shorthand for a TypeScript `<script setup lang="ts">` SFC that imports one
- * token from `@kong/design-tokens`.
- * @param {string} varName - The exported constant name (e.g. `KUI_COLOR_TEXT_INVERSE`)
- * @param {string} template - The `<template>` body
- * @param {string} [alias] - Optional local alias (`import { varName as alias }`)
- */
-function withImportTs(varName, template, alias) {
-  const specifier = alias ? `${varName} as ${alias}` : varName
-  return [
-    '<script setup lang="ts">',
-    `import { ${specifier} } from '@kong/design-tokens'`,
-    '</script>',
-    '<template>',
-    template.trim(),
-    '</template>',
-  ].join('\n')
-}
-
-/** Builds a minimal TypeScript `<script setup lang="ts">` + `<template>` SFC. */
-function sfcTs({ script = '', template = '' } = {}) {
-  return [
-    '<script setup lang="ts">',
-    script.trim(),
-    '</script>',
-    '<template>',
-    template.trim(),
-    '</template>',
-  ].join('\n')
-}
-
 tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
   valid: [
     // `import type { KUI_X }` — declaration-level type-only import is not tracked
@@ -774,6 +766,15 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
       code: withImportTs(
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE as string})`" />',
+      ),
+    },
+
+    // `${KUI_X satisfies T}` in an already-correct var() slot — idempotency through `satisfies`
+    {
+      filename: 'test.vue',
+      code: withImportTs(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE satisfies string})`" />',
       ),
     },
   ],
@@ -807,6 +808,37 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
       ),
     },
 
+    // TSSatisfiesExpression — autofix unwraps `satisfies`; the satisfies clause is preserved
+    {
+      filename: 'test.vue',
+      code: withImportTs(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="KUI_COLOR_TEXT_INVERSE satisfies string" />',
+      ),
+      errors: [{ messageId: 'wrapInVar', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
+      output: withImportTs(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})` satisfies string" />',
+      ),
+    },
+
+    /**
+     * One-hop alias with a TS `satisfies` initializer — the wrapper must be unwrapped
+     * so the alias is tracked and the template binding is reported.
+     */
+    {
+      filename: 'test.vue',
+      code: sfcTs({
+        script: [
+          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+          'const myColor = KUI_COLOR_TEXT_INVERSE satisfies string',
+        ].join('\n'),
+        template: '<div :color="myColor" />',
+      }),
+      errors: [{ messageId: 'wrapInVarScriptSetup', data: { imported: 'KUI_COLOR_TEXT_INVERSE', local: 'myColor', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
     // `${KUI_X as string}` in a var() slot with the WRONG custom property — still caught
     {
       filename: 'test.vue',
@@ -830,6 +862,39 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
         script: "import { KUI_SPACE_40, type KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
         template: '<div :style="{ padding: `var(--kui-space-40, ${KUI_SPACE_40})`, color: KUI_COLOR_TEXT_INVERSE }" />',
       }),
+    },
+
+    /**
+     * One-hop alias with a TS `as` cast initializer — the wrapper must be unwrapped
+     * so the alias is still tracked and the template binding is reported.
+     */
+    {
+      filename: 'test.vue',
+      code: sfcTs({
+        script: [
+          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+          'const myColor = KUI_COLOR_TEXT_INVERSE as string',
+        ].join('\n'),
+        template: '<div :color="myColor" />',
+      }),
+      errors: [{ messageId: 'wrapInVarScriptSetup', data: { imported: 'KUI_COLOR_TEXT_INVERSE', local: 'myColor', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
+    },
+
+    /**
+     * One-hop alias with a TS non-null `!` initializer — same unwrapping requirement.
+     */
+    {
+      filename: 'test.vue',
+      code: sfcTs({
+        script: [
+          "import { KUI_COLOR_TEXT_INVERSE } from '@kong/design-tokens'",
+          'const myColor = KUI_COLOR_TEXT_INVERSE!',
+        ].join('\n'),
+        template: '<div :color="myColor" />',
+      }),
+      errors: [{ messageId: 'wrapInVarScriptSetup', data: { imported: 'KUI_COLOR_TEXT_INVERSE', local: 'myColor', cssVar: 'kui-color-text-inverse' } }],
+      output: null,
     },
   ],
 })

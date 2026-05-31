@@ -27,9 +27,10 @@ const KUI_EXCLUDED_PREFIX = 'KUI_BREAKPOINT_'
  * @returns {boolean}
  */
 function isTsWrapperType(nodeType) {
-  return nodeType === 'TSAsExpression'
-    || nodeType === 'TSNonNullExpression'
-    || nodeType === 'TSTypeAssertion'
+  return nodeType === 'TSAsExpression' // `x as T`
+    || nodeType === 'TSSatisfiesExpression' // `x satisfies T`
+    || nodeType === 'TSNonNullExpression' // `x!`
+    || nodeType === 'TSTypeAssertion' // `<T>x`
 }
 
 /**
@@ -61,8 +62,8 @@ function isAlreadyWrappedSlot(templateNode, exprIndex, expectedCssVar) {
 
 /**
  * If `node` is directly an Identifier — or an Identifier wrapped only in
- * TypeScript transparent wrappers (TSAsExpression, TSNonNullExpression,
- * TSTypeAssertion) — returns that Identifier. Otherwise returns `null`.
+ * TypeScript transparent wrappers (see `isTsWrapperType`) — returns that
+ * Identifier. Otherwise returns `null`.
  *
  * Used to detect the case where a TemplateLiteral slot's expression is a bare
  * token reference so the caller can supply parent-template context for the
@@ -384,11 +385,12 @@ const rule = {
           messageId: 'wrapInVar',
           data: { local: localName, cssVar: cssVarNoPrefix },
           fix(fixer) {
+            const wrapped = `\`var(${cssVar}, \${${localName}})\``
+            /** Shorthand { KUI_X } must keep its key: expand to { KUI_X: `var(...)` }. */
             if (parentShorthandProp) {
-              /** Shorthand property: { KUI_X } → { KUI_X: `var(--kui-x, ${KUI_X})` } */
-              return fixer.replaceText(parentShorthandProp, `${localName}: \`var(${cssVar}, \${${localName}})\``)
+              return fixer.replaceText(parentShorthandProp, `${localName}: ${wrapped}`)
             }
-            return fixer.replaceText(idNode, `\`var(${cssVar}, \${${localName}})\``)
+            return fixer.replaceText(idNode, wrapped)
           },
         })
       } else {
@@ -458,16 +460,23 @@ const rule = {
        * the template are tracked (see `isTemplateReachableDeclarator`).
        */
       VariableDeclarator(/** @type {import('estree').VariableDeclarator} */ node) {
-        if (node.init?.type !== 'Identifier') return
         if (node.id?.type !== 'Identifier') return
-        if (!isTemplateReachableDeclarator(node)) return
+        if (!node.init) return
 
-        const initName = /** @type {import('estree').Identifier} */ (node.init).name
-        if (!trackedImports.has(initName)) return
+        /**
+         * Unwrap TS transparent wrappers on the initializer so aliases such as
+         * `const c = KUI_X as string` or `const c = KUI_X!` are tracked, matching
+         * how the template side unwraps them. Non-Identifier initializers (e.g.
+         * `ref(KUI_X)`, object literals) resolve to null and are correctly ignored.
+         */
+        const initId = asDirectIdentifier(node.init)
+        if (!initId) return
+        if (!isTemplateReachableDeclarator(node)) return
+        if (!trackedImports.has(initId.name)) return
 
         trackedScriptVars.set(
           /** @type {import('estree').Identifier} */ (node.id).name,
-          initName,
+          initId.name,
         )
       },
     }
