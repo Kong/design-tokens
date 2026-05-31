@@ -132,8 +132,10 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // MemberExpression property name — KUI token is the key, not the value reference
-    // `walkExpression` only walks the object side of a MemberExpression, not the property.
+    /**
+     * MemberExpression property name — KUI token is the key, not the value reference.
+     * `walkExpression` only walks the object side of a MemberExpression, not the property.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -151,8 +153,10 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // Idempotency with import alias — the CSS var is derived from the canonical imported
-    // name, not the local alias, so the already-wrapped form must be recognised as valid.
+    /**
+     * Idempotency with import alias — the CSS var is derived from the canonical imported
+     * name, not the local alias, so the already-wrapped form must be recognised as valid.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -162,8 +166,10 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // Idempotency is whitespace-tolerant — extra spaces inside var() are valid CSS
-    // and must not cause a false re-report after a developer manually writes the binding.
+    /**
+     * Idempotency is whitespace-tolerant — extra spaces inside var() are valid CSS
+     * and must not cause a false re-report after a developer manually writes the binding.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -172,9 +178,11 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // Options API `<script>` (no setup attribute) — module-scope KUI aliases must not
-    // be tracked because they are not directly accessible in the template; the template
-    // `myColor` refers to a prop/data/computed property, not the module-level const.
+    /**
+     * Options API `<script>` (no setup attribute) — module-scope KUI aliases must not
+     * be tracked because they are not directly accessible in the template; the template
+     * `myColor` refers to a prop/data/computed property, not the module-level const.
+     */
     {
       filename: 'test.vue',
       code: [
@@ -189,8 +197,10 @@ tester.run(RULE_NAME, rule, {
       ].join('\n'),
     },
 
-    // KUI_BREAKPOINT_* tokens are excluded — they are viewport pixel widths, not CSS
-    // custom properties, so DOM-level theming does not apply.
+    /**
+     * KUI_BREAKPOINT_* tokens are excluded — they are viewport pixel widths, not CSS
+     * custom properties, so DOM-level theming does not apply.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -209,8 +219,34 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // Script-setup alias already wrapped with correct CSS var — theming works,
-    // so this is idempotent and must not be reported.
+    /**
+     * Shadowing: a `v-for` item that happens to share a token's name resolves to
+     * the loop variable, not the import, so it must not be flagged.
+     */
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<div v-for="KUI_COLOR_TEXT_INVERSE in colors" :key="KUI_COLOR_TEXT_INVERSE" :color="KUI_COLOR_TEXT_INVERSE" />',
+      ),
+    },
+
+    /**
+     * Shadowing: a scoped-slot prop that shares a token's name resolves to the
+     * slot variable, not the import.
+     */
+    {
+      filename: 'test.vue',
+      code: withImport(
+        'KUI_COLOR_TEXT_INVERSE',
+        '<Comp><template #default="{ KUI_COLOR_TEXT_INVERSE }"><div :color="KUI_COLOR_TEXT_INVERSE" /></template></Comp>',
+      ),
+    },
+
+    /**
+     * Script-setup alias already wrapped with correct CSS var — theming works,
+     * so this is idempotent and must not be reported.
+     */
     {
       filename: 'test.vue',
       code: sfc({
@@ -222,8 +258,10 @@ tester.run(RULE_NAME, rule, {
       }),
     },
 
-    // Function-scoped `const local = KUI_X` must not be tracked — template binding
-    // uses a different `myColor` (e.g. from a prop) and this would be a false positive.
+    /**
+     * Function-scoped `const local = KUI_X` must not be tracked — template binding
+     * uses a different `myColor` (e.g. from a prop) and this would be a false positive.
+     */
     {
       filename: 'test.vue',
       code: sfc({
@@ -428,8 +466,10 @@ tester.run(RULE_NAME, rule, {
       ),
     },
 
-    // Object shorthand property { KUI_X } — fixer must expand to { KUI_X: `var(...)` }
-    // because replacing only the identifier drops the key and yields invalid JS.
+    /**
+     * Object shorthand property { KUI_X } — fixer must expand to { KUI_X: `var(...)` }
+     * because replacing only the identifier drops the key and yields invalid JS.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -567,11 +607,13 @@ tester.run(RULE_NAME, rule, {
       output: null,
     },
 
-    // Multi-token TemplateLiteral — both tokens reported, no autofix.
-    // Adjacent slots share quasi boundaries (quasis[1] is simultaneously the suffix of
-    // slot 0 and the prefix of slot 1), so per-token replacement ranges overlap.
-    // ESLint rejects overlapping fixes; a whole-template rewrite would be needed instead.
-    // Manual fix: `:padding="'var(--kui-space-0, ' + KUI_SPACE_0 + ') var(--kui-space-70, ' + KUI_SPACE_70 + ')'"`.
+    /**
+     * Multi-token TemplateLiteral — both tokens reported, no autofix. Adjacent slots
+     * share quasi boundaries (quasis[1] is simultaneously the suffix of slot 0 and the
+     * prefix of slot 1), so per-token replacement ranges overlap. ESLint rejects
+     * overlapping fixes; a whole-template rewrite would be needed instead.
+     * Manual fix: `:padding="'var(--kui-space-0, ' + KUI_SPACE_0 + ') var(--kui-space-70, ' + KUI_SPACE_70 + ')'"`.
+     */
     {
       filename: 'test.vue',
       code: sfc({
@@ -585,9 +627,11 @@ tester.run(RULE_NAME, rule, {
       output: null,
     },
 
-    // Mismatched CSS var: wraps the token with the WRONG custom property.
-    // `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})` must be caught
-    // because the theme override targets the wrong property and theming will not work.
+    /**
+     * Mismatched CSS var: wraps the token with the WRONG custom property.
+     * `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})` must be caught
+     * because the theme override targets the wrong property and theming will not work.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -598,8 +642,10 @@ tester.run(RULE_NAME, rule, {
       output: null,
     },
 
-    // Mismatched CSS var with import alias — alias resolves to the canonical imported name,
-    // so the wrong var is still caught even when a local alias is used.
+    /**
+     * Mismatched CSS var with import alias — alias resolves to the canonical imported name,
+     * so the wrong var is still caught even when a local alias is used.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -611,9 +657,11 @@ tester.run(RULE_NAME, rule, {
       output: null,
     },
 
-    // Token nested inside a TemplateLiteral slot expression (not a direct Identifier).
-    // `asDirectIdentifier` returns null for the ConditionalExpression, so the slot
-    // context is NOT passed and idempotency is not checked — the nested token is always reported.
+    /**
+     * Token nested inside a TemplateLiteral slot expression (not a direct Identifier).
+     * `asDirectIdentifier` returns null for the ConditionalExpression, so the slot
+     * context is NOT passed and idempotency is not checked — the nested token is always reported.
+     */
     {
       filename: 'test.vue',
       code: withImport(
@@ -662,9 +710,11 @@ tester.run(RULE_NAME, rule, {
   ],
 })
 
-// TypeScript SFCs — requires a second RuleTester that delegates <script lang="ts">
-// to @typescript-eslint/parser, which produces TS-specific AST nodes (TSAsExpression,
-// TSNonNullExpression, importKind) that the rule handles explicitly.
+/**
+ * TypeScript SFCs — requires a second RuleTester that delegates <script lang="ts">
+ * to @typescript-eslint/parser, which produces TS-specific AST nodes (TSAsExpression,
+ * TSNonNullExpression, importKind) that the rule handles explicitly.
+ */
 const tsTester = new RuleTester({
   languageOptions: {
     parser: vueParser,

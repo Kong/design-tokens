@@ -18,6 +18,21 @@ const REPORT_ONLY = 'report'
 const KUI_EXCLUDED_PREFIX = 'KUI_BREAKPOINT_'
 
 /**
+ * TypeScript "transparent" wrapper node types — present when @typescript-eslint/parser
+ * parses the SFC `<script>` block. They wrap an inner expression without changing its
+ * runtime value, so the rule unwraps them to reach the underlying Identifier.
+ * These types are not in the estree Node union, so callers compare against a widened string.
+ *
+ * @param {string} nodeType
+ * @returns {boolean}
+ */
+function isTsWrapperType(nodeType) {
+  return nodeType === 'TSAsExpression'
+    || nodeType === 'TSNonNullExpression'
+    || nodeType === 'TSTypeAssertion'
+}
+
+/**
  * Returns `true` when the TemplateLiteral expression slot at `exprIndex` is
  * already in the form `` `var(<expectedCssVar>, ${IDENTIFIER})` `` for the
  * specific token, so we can skip it on subsequent lint passes (idempotency).
@@ -35,10 +50,12 @@ function isAlreadyWrappedSlot(templateNode, exprIndex, expectedCssVar) {
   const priorText = templateNode.quasis[exprIndex]?.value?.cooked ?? ''
   const nextText = templateNode.quasis[exprIndex + 1]?.value?.cooked ?? ''
   const escaped = expectedCssVar.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  // Allow optional whitespace after `var(`, around the custom property name, and before
-  // the comma — CSS is whitespace-tolerant in these positions.
-  // trimStart() before startsWith(')') preserves permissiveness for trailing content
-  // like `) !important` while also accepting a space before the closing paren.
+  /**
+   * Allow optional whitespace after `var(`, around the custom property name, and
+   * before the comma — CSS is whitespace-tolerant in these positions. trimStart()
+   * before startsWith(')') keeps permissiveness for trailing content like
+   * `) !important` while also accepting a space before the closing paren.
+   */
   return new RegExp(`var\\(\\s*${escaped}\\s*,\\s*$`).test(priorText) && nextText.trimStart().startsWith(')')
 }
 
@@ -55,8 +72,7 @@ function isAlreadyWrappedSlot(templateNode, exprIndex, expectedCssVar) {
  * @returns {import('estree').Identifier | null}
  */
 function asDirectIdentifier(node) {
-  const type = /** @type {string} */ (node.type)
-  if (type === 'TSAsExpression' || type === 'TSNonNullExpression' || type === 'TSTypeAssertion') {
+  if (isTsWrapperType(/** @type {string} */ (node.type))) {
     return asDirectIdentifier(/** @type {{ expression: import('estree').Node }} */ (node).expression)
   }
   return node.type === 'Identifier' ? /** @type {import('estree').Identifier} */ (node) : null
@@ -73,16 +89,16 @@ function asDirectIdentifier(node) {
  *
  * @param {import('estree').Node | null | undefined} node - Current AST node
  * @param {string} ctx - Either `AUTOFIX` or `REPORT_ONLY`
- * @param {(id: import('estree').Identifier, ctx: string, parentTemplate?: import('estree').TemplateLiteral, slotIndex?: number, parentShorthandProp?: import('estree').Property) => void} onIdentifier
+ * @param {(id: import('estree').Identifier, ctx: string, slot?: { parentTemplate?: import('estree').TemplateLiteral, slotIndex?: number, parentShorthandProp?: import('estree').Property }) => void} onIdentifier
  */
 function walkExpression(node, ctx, onIdentifier) {
   if (!node) return
 
-  // TypeScript-specific transparent wrappers (present when @typescript-eslint/parser
-  // is used for the SFC <script> block). These types are not in the estree Node union,
-  // so we widen to `any` before comparing to avoid an TS2367 "no overlap" error.
-  const nodeType = /** @type {string} */ (node.type)
-  if (nodeType === 'TSAsExpression' || nodeType === 'TSNonNullExpression' || nodeType === 'TSTypeAssertion') {
+  /**
+   * Unwrap TypeScript transparent wrappers (e.g. `KUI_X as string`, `KUI_X!`),
+   * preserving the current autofix/report context.
+   */
+  if (isTsWrapperType(/** @type {string} */ (node.type))) {
     walkExpression(/** @type {{ expression: import('estree').Node }} */ (node).expression, ctx, onIdentifier)
     return
   }
@@ -94,7 +110,7 @@ function walkExpression(node, ctx, onIdentifier) {
 
     case 'ConditionalExpression': {
       const n = /** @type {import('estree').ConditionalExpression} */ (node)
-      // Walk value branches only; the boolean test is not a style value
+      /** Walk value branches only; the boolean test is not a style value. */
       walkExpression(n.consequent, ctx, onIdentifier)
       walkExpression(n.alternate, ctx, onIdentifier)
       break
@@ -111,13 +127,15 @@ function walkExpression(node, ctx, onIdentifier) {
       const n = /** @type {import('estree').ObjectExpression} */ (node)
       for (const prop of n.properties) {
         if (prop.type !== 'Property') continue
-        // SpreadElement is not walked — shape is unknown at static analysis time
+        /** SpreadElement is not walked — shape is unknown at static analysis time. */
         const p = /** @type {import('estree').Property} */ (prop)
         if (p.shorthand && p.value.type === 'Identifier') {
-          // Shorthand { KUI_X }: replacing just the identifier drops the key, yielding
-          // `{ \`var(...)\` }` — invalid JS. Pass the Property node so the fixer can
-          // produce the expanded form instead: `{ KUI_X: \`var(...)\` }`.
-          onIdentifier(/** @type {import('estree').Identifier} */ (p.value), ctx, undefined, undefined, p)
+          /**
+           * Shorthand { KUI_X }: replacing just the identifier drops the key,
+           * yielding `{ \`var(...)\` }` — invalid JS. Pass the Property node so the
+           * fixer can produce the expanded form: `{ KUI_X: \`var(...)\` }`.
+           */
+          onIdentifier(/** @type {import('estree').Identifier} */ (p.value), ctx, { parentShorthandProp: p })
         } else {
           walkExpression(p.value, ctx, onIdentifier)
         }
@@ -135,17 +153,19 @@ function walkExpression(node, ctx, onIdentifier) {
 
     case 'TemplateLiteral': {
       const n = /** @type {import('estree').TemplateLiteral} */ (node)
-      // Replacing an Identifier inside `${}` with another backtick string would
-      // nest backticks — not valid JS, so all slots are REPORT_ONLY.
-      // When the slot expression is a direct Identifier (possibly TS-wrapped),
-      // pass the template + slot index so handleIdentifier can do a token-specific
-      // idempotency check (e.g. `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`).
-      // Nested expressions (ternary, call, etc.) never get slot context — they are
-      // always reported without the idempotency escape.
+      /**
+       * Replacing an Identifier inside `${}` with another backtick string would
+       * nest backticks (invalid JS), so all slots are REPORT_ONLY. When the slot
+       * expression is a direct Identifier (possibly TS-wrapped), pass the template
+       * + slot index so `handleIdentifier` can run a token-specific idempotency
+       * check (e.g. `var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`).
+       * Nested expressions (ternary, call, etc.) never get slot context — they are
+       * always reported without the idempotency escape.
+       */
       n.expressions.forEach((expr, i) => {
         const directId = asDirectIdentifier(expr)
         if (directId) {
-          onIdentifier(directId, REPORT_ONLY, n, i)
+          onIdentifier(directId, REPORT_ONLY, { parentTemplate: n, slotIndex: i })
         } else {
           walkExpression(expr, REPORT_ONLY, onIdentifier)
         }
@@ -155,8 +175,10 @@ function walkExpression(node, ctx, onIdentifier) {
 
     case 'CallExpression': {
       const n = /** @type {import('estree').CallExpression} */ (node)
-      // Arguments are REPORT_ONLY: the function may expect a raw color value
-      // (e.g. darken(), rgba()) and wrapping in var() would break it.
+      /**
+       * Arguments are REPORT_ONLY: the function may expect a raw color value
+       * (e.g. darken(), rgba()) and wrapping in var() would break it.
+       */
       for (const arg of n.arguments) {
         walkExpression(arg, REPORT_ONLY, onIdentifier)
       }
@@ -165,13 +187,13 @@ function walkExpression(node, ctx, onIdentifier) {
 
     case 'BinaryExpression': {
       const n = /** @type {import('estree').BinaryExpression} */ (node)
-      // String concat or arithmetic — wrapping changes the resulting value type
+      /** String concat or arithmetic — wrapping changes the resulting value type. */
       walkExpression(n.left, REPORT_ONLY, onIdentifier)
       walkExpression(n.right, REPORT_ONLY, onIdentifier)
       break
     }
 
-    // Standard optional-chaining wrapper (e.g. `a?.b`)
+    /** Standard optional-chaining wrapper (e.g. `a?.b`). */
     case 'ChainExpression': {
       const n = /** @type {import('estree').ChainExpression} */ (node)
       walkExpression(n.expression, ctx, onIdentifier)
@@ -186,7 +208,7 @@ function walkExpression(node, ctx, onIdentifier) {
 
     case 'MemberExpression': {
       const n = /** @type {import('estree').MemberExpression} */ (node)
-      // Walk the object side only; property names are not value references
+      /** Walk the object side only; property names are not value references. */
       walkExpression(n.object, REPORT_ONLY, onIdentifier)
       break
     }
@@ -201,7 +223,7 @@ function walkExpression(node, ctx, onIdentifier) {
     }
 
     default:
-      // Unknown or unhandled node type — stop recursing
+      /** Unknown or unhandled node type — stop recursing. */
       break
   }
 }
@@ -209,7 +231,7 @@ function walkExpression(node, ctx, onIdentifier) {
 /** @type {import('eslint').Rule.RuleModule} */
 const rule = {
   meta: {
-    type: 'suggestion',
+    type: 'problem',
     docs: {
       description:
         'Enforce CSS custom property var() fallback for KUI design tokens in Vue template v-bind expressions',
@@ -255,123 +277,127 @@ const rule = {
       context.sourceCode?.parserServices ?? /** @type {any} */ (context).parserServices
 
     if (!parserServices?.defineTemplateBodyVisitor) {
-      // vue-eslint-parser is not configured; no-op for plain JS/TS files.
-      // .vue files linted without vue-eslint-parser fail to parse before rules run,
-      // so there is nothing useful to report here.
+      /**
+       * vue-eslint-parser is not configured; no-op for plain JS/TS files.
+       * .vue files linted without vue-eslint-parser fail to parse before rules
+       * run, so there is nothing useful to report here.
+       */
       return {}
     }
 
-    // Source range of the <script setup> block, used to restrict one-hop variable
-    // tracking to declarations that are actually accessible in the template.
-    // Module-scope consts in a regular <script> (Options API) are NOT directly
-    // template-accessible, so they must not be tracked as one-hop aliases.
-    //
-    // Three possible states:
-    //   [number, number] — <script setup> found; range used for filtering
-    //   null             — SFC has no <script setup> (Options API); skip all tracking
-    //   undefined        — getDocumentFragment unavailable; fall back to scope-only check
+    /**
+     * Source range of the <script setup> block, used to restrict one-hop variable
+     * tracking to declarations actually reachable from the template. Three states:
+     *   [number, number] — <script setup> found; track only declarations inside it
+     *   null             — SFC has no <script setup> (Options API); track nothing
+     *   undefined        — getDocumentFragment unavailable; fall back to scope-only check
+     */
     const df = /** @type {any} */ (parserServices).getDocumentFragment?.()
-    const scriptSetupEl = df
-      ? /** @type {any[] | undefined} */ (df.children)?.find(
-        // Use n.name (normalized lowercase) not n.rawName (source casing) so that
-        // <Script setup> or <SCRIPT SETUP> is still found correctly.
-          (/** @type {any} */ n) => n.type === 'VElement'
-            && n.name === 'script'
-            && n.startTag?.attributes?.some((/** @type {any} */ a) => a.key?.name === 'setup'),
-        )
-      : undefined
+    const scriptSetupEl = /** @type {any[] | undefined} */ (df?.children)?.find(
+      /**
+       * Match on n.name (normalized lowercase) not n.rawName (source casing) so
+       * <Script setup> / <SCRIPT SETUP> are still recognized.
+       */
+      (/** @type {any} */ n) => n.type === 'VElement'
+        && n.name === 'script'
+        && n.startTag?.attributes?.some((/** @type {any} */ a) => a.key?.name === 'setup'),
+    )
     /** @type {readonly [number, number] | null | undefined} */
-    const scriptSetupRange = df === undefined || df === null
-      ? undefined // getDocumentFragment not available — fall back to scope-only
-      : scriptSetupEl
-        ? /** @type {any} */ (scriptSetupEl).range // <script setup> found
-        : null // SFC has no <script setup> — skip all tracking
+    const scriptSetupRange = !df ? undefined : scriptSetupEl ? /** @type {any} */ (scriptSetupEl).range : null
+
+    /**
+     * Whether `node` is a module-scope declarator reachable from the template —
+     * the only place a one-hop `const c = KUI_X` alias can flow into a style binding.
+     * Excludes function-scoped locals and (when a <script setup> range is known)
+     * declarations outside it, e.g. module-scope consts in an Options API `<script>`.
+     *
+     * @param {import('estree').VariableDeclarator} node
+     * @returns {boolean}
+     */
+    function isTemplateReachableDeclarator(node) {
+      if (context.sourceCode.getScope(node).type !== 'module') return false
+      /** No <script setup> block (Options API): module-scope vars are not template-exposed. */
+      if (scriptSetupRange === null) return false
+      /** getDocumentFragment unavailable: the module-scope check above is sufficient. */
+      if (scriptSetupRange === undefined) return true
+      const [start, end] = /** @type {import('estree').VariableDeclarator & { range: [number, number] }} */ (node).range
+      return start >= scriptSetupRange[0] && end <= scriptSetupRange[1]
+    }
 
     /**
      * Reports a KUI token Identifier found inside a v-bind expression.
-     * Issues an autofix when `ctx === AUTOFIX`; reports without fix otherwise.
      *
-     * When the identifier is the direct expression of a TemplateLiteral slot,
-     * `parentTemplate` and `slotIndex` are provided so idempotency can be
-     * verified against the specific CSS var for this token — not just any
-     * `--kui-*` variable.
-     *
-     * When the identifier is the value of an object shorthand property,
-     * `parentShorthandProp` is provided so the fixer can replace the entire
-     * property node (producing `{ KUI_X: \`var(...)\` }`) instead of only the
-     * identifier (which would drop the key and yield invalid JS).
+     * The identifier resolves either to a directly-imported token (autofixable)
+     * or a one-hop `<script setup>` alias of one (report-only). In both cases the
+     * canonical imported name yields the CSS var, so the idempotency check runs once.
      *
      * @param {import('estree').Identifier} idNode - The token identifier node
      * @param {string} ctx - Either `AUTOFIX` or `REPORT_ONLY`
-     * @param {import('estree').TemplateLiteral} [parentTemplate] - Enclosing template literal, if the identifier is its direct expression
-     * @param {number} [slotIndex] - Expression slot index within `parentTemplate`
-     * @param {import('estree').Property} [parentShorthandProp] - Enclosing shorthand Property node, if any
+     * @param {object} [slot] - Positional context, when present
+     * @param {import('estree').TemplateLiteral} [slot.parentTemplate] - Enclosing template literal, if the identifier is its direct expression
+     * @param {number} [slot.slotIndex] - Expression slot index within `parentTemplate`
+     * @param {import('estree').Property} [slot.parentShorthandProp] - Enclosing shorthand Property node, if any
      */
-    function handleIdentifier(idNode, ctx, parentTemplate, slotIndex, parentShorthandProp) {
+    function handleIdentifier(idNode, ctx, { parentTemplate, slotIndex, parentShorthandProp } = {}) {
       const localName = idNode.name
 
-      // Case 1: directly-imported KUI token (e.g. KUI_X or its local alias)
-      const importedName = trackedImports.get(localName)
-      if (importedName) {
-        const cssVar = kuiIdentifierToCssVar(importedName)
-        const cssVarNoPrefix = cssVar.slice(2) // strip leading '--' for the message
+      /**
+       * Resolve the canonical imported token name: either a direct import (or its
+       * local alias), or a one-hop `<script setup>` variable initialised from one.
+       */
+      const directImport = trackedImports.get(localName)
+      const importedName = directImport ?? trackedImports.get(trackedScriptVars.get(localName) ?? '')
+      if (!importedName) return
 
-        // Idempotency: if the identifier is the direct expression of a TemplateLiteral
-        // slot, confirm the slot is wrapped with the CORRECT CSS var for THIS token.
-        // A mismatched wrapper like `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})`
-        // does NOT satisfy idempotency and will fall through to be reported.
-        if (parentTemplate !== undefined && slotIndex !== undefined
-          && isAlreadyWrappedSlot(parentTemplate, slotIndex, cssVar)) {
-          return
-        }
+      const cssVar = kuiIdentifierToCssVar(importedName)
+      /** Strip the leading `--` for display in the message. */
+      const cssVarNoPrefix = cssVar.slice(2)
 
-        if (ctx === AUTOFIX) {
-          context.report({
-            node: idNode,
-            messageId: 'wrapInVar',
-            data: { local: localName, cssVar: cssVarNoPrefix },
-            fix(fixer) {
-              if (parentShorthandProp) {
-                // Shorthand property: { KUI_X } → { KUI_X: `var(--kui-x, ${KUI_X})` }
-                return fixer.replaceText(parentShorthandProp, `${localName}: \`var(${cssVar}, \${${localName}})\``)
-              }
-              return fixer.replaceText(idNode, `\`var(${cssVar}, \${${localName}})\``)
-            },
-          })
-        } else {
-          context.report({
-            node: idNode,
-            messageId: 'wrapInVarNoFix',
-            data: { local: localName, cssVar: cssVarNoPrefix },
-          })
-        }
-        return
-      }
-
-      // Case 2: script-setup variable initialised from a tracked KUI token
-      const sourceImportLocal = trackedScriptVars.get(localName)
-      if (!sourceImportLocal) return
-      const sourceImportedName = trackedImports.get(sourceImportLocal)
-      if (!sourceImportedName) return
-
-      const cssVar = kuiIdentifierToCssVar(sourceImportedName)
-
-      // Idempotency: a script-setup alias already wrapped with the correct CSS var
-      // still uses the custom property first, so theming works — no report needed.
+      /**
+       * Idempotency: when the identifier is the direct expression of a TemplateLiteral
+       * slot, skip it only if the slot is already wrapped with the CORRECT CSS var for
+       * THIS token. A mismatched wrapper like `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_INVERSE})`
+       * does NOT satisfy idempotency and falls through to be reported.
+       */
       if (parentTemplate !== undefined && slotIndex !== undefined
         && isAlreadyWrappedSlot(parentTemplate, slotIndex, cssVar)) {
         return
       }
 
-      context.report({
-        node: idNode,
-        messageId: 'wrapInVarScriptSetup',
-        data: {
-          imported: sourceImportedName,
-          local: localName,
-          cssVar: cssVar.slice(2),
-        },
-      })
+      /**
+       * One-hop script-setup alias: report at the binding site, never autofixed
+       * (fixing the declaration or inlining the alias would change semantics).
+       */
+      if (!directImport) {
+        context.report({
+          node: idNode,
+          messageId: 'wrapInVarScriptSetup',
+          data: { imported: importedName, local: localName, cssVar: cssVarNoPrefix },
+        })
+        return
+      }
+
+      /** Direct import: autofixable when the expression position is safe. */
+      if (ctx === AUTOFIX) {
+        context.report({
+          node: idNode,
+          messageId: 'wrapInVar',
+          data: { local: localName, cssVar: cssVarNoPrefix },
+          fix(fixer) {
+            if (parentShorthandProp) {
+              /** Shorthand property: { KUI_X } → { KUI_X: `var(--kui-x, ${KUI_X})` } */
+              return fixer.replaceText(parentShorthandProp, `${localName}: \`var(${cssVar}, \${${localName}})\``)
+            }
+            return fixer.replaceText(idNode, `\`var(${cssVar}, \${${localName}})\``)
+          },
+        })
+      } else {
+        context.report({
+          node: idNode,
+          messageId: 'wrapInVarNoFix',
+          data: { local: localName, cssVar: cssVarNoPrefix },
+        })
+      }
     }
 
     const templateVisitor = {
@@ -381,7 +407,23 @@ const rule = {
       ) {
         const valueContainer = node.value
         if (!valueContainer?.expression) return
-        walkExpression(valueContainer.expression, AUTOFIX, handleIdentifier)
+
+        /**
+         * Identifier nodes that resolve to a template-local variable — a `v-for`
+         * item, scoped-slot prop, etc. (vue-eslint-parser sets `ref.variable` for
+         * these). Such a name shadows any same-named token import, so it must be
+         * skipped to avoid a false positive on e.g. `v-for="KUI_X in list"`.
+         */
+        const templateScoped = new Set(
+          /** @type {any[]} */ (valueContainer.references ?? [])
+            .filter((/** @type {any} */ ref) => ref.variable != null)
+            .map((/** @type {any} */ ref) => ref.id),
+        )
+
+        walkExpression(valueContainer.expression, AUTOFIX, (idNode, ctx, slot) => {
+          if (templateScoped.has(idNode)) return
+          handleIdentifier(idNode, ctx, slot)
+        })
       },
     }
 
@@ -389,12 +431,12 @@ const rule = {
       /** Collects KUI_ named imports from `@kong/design-tokens`. */
       ImportDeclaration(/** @type {import('estree').ImportDeclaration} */ node) {
         if (node.source.value !== KUI_IMPORT_SOURCE) return
-        // Skip `import type { ... }` — type-only imports have no runtime value
+        /** Skip `import type { ... }` — type-only imports have no runtime value. */
         if (/** @type {any} */ (node).importKind === 'type') return
 
         for (const specifier of node.specifiers) {
           if (specifier.type !== 'ImportSpecifier') continue
-          // Skip per-specifier `import { type KUI_X }` (TypeScript syntax)
+          /** Skip per-specifier `import { type KUI_X }` (TypeScript syntax). */
           if (/** @type {any} */ (specifier).importKind === 'type') continue
 
           const imported = /** @type {import('estree').ImportSpecifier} */ (specifier).imported
@@ -411,27 +453,14 @@ const rule = {
       },
 
       /**
-       * Detects `const c = KUI_X` in `<script setup>` (one-hop variable detection).
-       * Only module-scope declarators inside `<script setup>` are tracked — function-
-       * scoped locals and module-scope variables in a regular `<script>` (Options API)
-       * are not directly template-accessible and would cause false positives.
+       * Detects `const c = KUI_X` in `<script setup>` (one-hop alias detection).
+       * Only simple `Identifier = Identifier` initialisers that are reachable from
+       * the template are tracked (see `isTemplateReachableDeclarator`).
        */
       VariableDeclarator(/** @type {import('estree').VariableDeclarator} */ node) {
         if (node.init?.type !== 'Identifier') return
         if (node.id?.type !== 'Identifier') return
-
-        // Exclude function-scoped locals (not reachable in the template)
-        if (context.sourceCode.getScope(node).type !== 'module') return
-
-        // Exclude declarations outside <script setup>:
-        //   null      — no <script setup> in this SFC (Options API) → skip all tracking
-        //   undefined — getDocumentFragment unavailable → fall back to scope-only check
-        //   range     — filter to declarations within the setup block
-        if (scriptSetupRange === null) return
-        if (scriptSetupRange !== undefined) {
-          const [start, end] = /** @type {import('estree').VariableDeclarator & { range: [number, number] }} */ (node).range
-          if (start < scriptSetupRange[0] || end > scriptSetupRange[1]) return
-        }
+        if (!isTemplateReachableDeclarator(node)) return
 
         const initName = /** @type {import('estree').Identifier} */ (node.init).name
         if (!trackedImports.has(initName)) return

@@ -147,6 +147,16 @@ KUI_FONT_SIZE_30        →  --kui-font-size-30
 - **Namespace imports** (`import * as tokens from '@kong/design-tokens'`) are not tracked.
 - **Re-exports through barrel files** in consumer code — only direct `@kong/design-tokens` imports are detected.
 - **Multi-hop script-setup flow** (`const a = KUI_X; const b = a`) — only one level of indirection is detected.
+- **Tokens stored in objects/refs/computed** — a token reaches the DOM only through the binding the rule can see. When it is first placed into a script-level object, `ref()`, or `computed()` and that wrapper is bound (e.g. `const styles = { padding: KUI_SPACE_40 }` then `:style="styles"`), the token is not traced into the binding and is not flagged. Wrap the token at the point of use instead:
+  ```vue
+  <script setup>
+  // ❌ not detected — token is hidden inside a script-level object
+  const styles = { padding: KUI_SPACE_40 }
+
+  // ✅ wrap at the value site so the CSS custom property fallback applies
+  const styles = { padding: `var(--kui-space-40, ${KUI_SPACE_40})` }
+  </script>
+  ```
 - **Render functions / JSX** (`.tsx` SFC blocks) — template-only.
 - **`<style>` blocks** — use [`@kong/design-tokens/stylelint-plugin`](../stylelint-plugin/README.md) instead.
 

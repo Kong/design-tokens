@@ -13,7 +13,7 @@ const plugin = {
   rules: {
     'token-constant-requires-css-var': tokenConstantRequiresCssVar,
   },
-  // configs is assigned below to allow self-reference inside the object
+  /** Assigned below so the preset can self-reference `plugin`. */
   configs: /** @type {any} */ (undefined),
 }
 
