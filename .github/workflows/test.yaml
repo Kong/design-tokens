@@ -31,6 +31,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Test eslint plugin
+        run: pnpm test:eslint-plugin
+
       - name: Build sandbox
         run: pnpm sandbox:build
 
