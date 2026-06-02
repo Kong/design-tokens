@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/Kong/design-tokens/compare/v1.22.2...v1.23.0) (2026-06-02)
+
+
+### Features
+
+* **eslint:** add plugin with rule token-constant-requires-css-var ([#656](https://github.com/Kong/design-tokens/issues/656)) ([c44ccaa](https://github.com/Kong/design-tokens/commit/c44ccaaade07248196bfddd1c85f708a2b7a9a82))
+
 ## [1.22.2](https://github.com/Kong/design-tokens/compare/v1.22.1...v1.22.2) (2026-05-15)
 
 
