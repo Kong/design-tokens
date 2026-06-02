@@ -1,0 +1,46 @@
+{
+  "shadow": {
+    "_": {
+      "$description": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+      "$value": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)"
+    },
+    "border": {
+      "_": {
+        "$description": "0px 0px 0px 1px gray.20 inset",
+        "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
+      },
+      "danger": {
+        "_": {
+          "$description": "0px 0px 0px 1px red.60 inset",
+          "$value": "0px 0px 0px 1px {color.alias.red.60} inset"
+        },
+        "strong": {
+          "$description": "0px 0px 0px 1px red.70 inset",
+          "$value": "0px 0px 0px 1px {color.alias.red.70} inset"
+        }
+      },
+      "disabled": {
+        "$description": "0px 0px 0px 1px gray.20 inset",
+        "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
+      },
+      "primary": {
+        "_": {
+          "$description": "0px 0px 0px 1px blue.60 inset",
+          "$value": "0px 0px 0px 1px {color.alias.blue.60} inset"
+        },
+        "strongest": {
+          "$description": "0px 0px 0px 1px blue.90 inset",
+          "$value": "0px 0px 0px 1px {color.alias.blue.90} inset"
+        },
+        "weak": {
+          "$description": "0px 0px 0px 1px blue.40 inset",
+          "$value": "0px 0px 0px 1px {color.alias.blue.40} inset"
+        }
+      }
+    },
+    "focus": {
+      "$description": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
+      "$value": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)"
+    }
+  }
+}

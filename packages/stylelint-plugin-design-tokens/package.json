@@ -1,0 +1,35 @@
+{
+  "name": "@kong/stylelint-plugin-design-tokens",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Stylelint plugin for Kong UI design tokens",
+  "exports": {
+    ".": "./index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "rules",
+    "utilities",
+    "README.md"
+  ],
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "stylelint": ">=14.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kong/design-tokens.git"
+  },
+  "homepage": "https://github.com/Kong/design-tokens/packages/stylelint-plugin-design-tokens/",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.19.5",
+    "pnpm": ">=10.28.2"
+  }
+}

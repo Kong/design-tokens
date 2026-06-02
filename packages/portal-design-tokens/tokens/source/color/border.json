@@ -1,0 +1,144 @@
+{
+  "color": {
+    "border": {
+      "_": {
+        "$description": "Default border color for containers (gray.20).",
+        "$type": "color",
+        "$value": "{color.alias.gray.20}"
+      },
+      "danger": {
+        "_": {
+          "$description": "Border color for danger actions or messages (red.60).",
+          "$type": "color",
+          "$value": "{color.alias.red.60}"
+        },
+        "strong": {
+          "$description": "Strong border color for danger actions or messages (red.70).",
+          "$type": "color",
+          "$value": "{color.alias.red.70}"
+        },
+        "stronger": {
+          "$description": "Stronger border color for danger actions or messages (red.80).",
+          "$type": "color",
+          "$value": "{color.alias.red.80}"
+        },
+        "strongest": {
+          "$description": "Strongest border color for danger actions or messages (red.90).",
+          "$type": "color",
+          "$value": "{color.alias.red.90}"
+        },
+        "weak": {
+          "$description": "Weak border color for danger actions or messages (red.40).",
+          "$type": "color",
+          "$value": "{color.alias.red.40}"
+        },
+        "weaker": {
+          "$description": "Weaker border color for danger actions or messages (red.20).",
+          "$type": "color",
+          "$value": "{color.alias.red.20}"
+        },
+        "weakest": {
+          "$description": "Weakest border color for danger actions or messages (red.10).",
+          "$type": "color",
+          "$value": "{color.alias.red.10}"
+        }
+      },
+      "decorative": {
+        "purple": {
+          "$description": "Border color for decorative purposes (purple.60).",
+          "$type": "color",
+          "$value": "{color.alias.purple.60}"
+        }
+      },
+      "disabled": {
+        "$description": "Border color for disabled elements (gray.20).",
+        "$type": "color",
+        "$value": "{color.alias.gray.20}"
+      },
+      "inverse": {
+        "$description": "Inverse border color (rgba(255, 255, 255, 0.2)).",
+        "$type": "color",
+        "$value": "rgba(255, 255, 255, 0.2)"
+      },
+      "neutral": {
+        "_": {
+          "$description": "Border color for neutral elements (gray.60)",
+          "$type": "color",
+          "$value": "{color.alias.gray.60}"
+        },
+        "strong": {
+          "$description": "Strong border color for neutral elements (gray.70)",
+          "$type": "color",
+          "$value": "{color.alias.gray.70}"
+        },
+        "stronger": {
+          "$description": "Stronger border color for neutral elements (gray.80)",
+          "$type": "color",
+          "$value": "{color.alias.gray.80}"
+        },
+        "strongest": {
+          "$description": "Strongest border color for neutral elements (gray.90)",
+          "$type": "color",
+          "$value": "{color.alias.gray.90}"
+        },
+        "weak": {
+          "$description": "Weak border color for neutral elements (gray.40)",
+          "$type": "color",
+          "$value": "{color.alias.gray.40}"
+        },
+        "weaker": {
+          "$description": "Weaker border color for neutral elements (gray.20)",
+          "$type": "color",
+          "$value": "{color.alias.gray.20}"
+        },
+        "weakest": {
+          "$description": "Weakest border color for neutral elements (gray.10)",
+          "$type": "color",
+          "$value": "{color.alias.gray.10}"
+        }
+      },
+      "primary": {
+        "_": {
+          "$description": "Border color for primary actions or messages (blue.60).",
+          "$type": "color",
+          "$value": "{color.alias.blue.60}"
+        },
+        "strong": {
+          "$description": "Strong border color for primary actions or messages (blue.70).",
+          "$type": "color",
+          "$value": "{color.alias.blue.70}"
+        },
+        "stronger": {
+          "$description": "Stronger border color for primary actions or messages (blue.80).",
+          "$type": "color",
+          "$value": "{color.alias.blue.80}"
+        },
+        "strongest": {
+          "$description": "Strongest border color for primary actions or messages (blue.90).",
+          "$type": "color",
+          "$value": "{color.alias.blue.90}"
+        },
+        "weak": {
+          "$description": "Weak border color for primary actions or messages (blue.40).",
+          "$type": "color",
+          "$value": "{color.alias.blue.40}"
+        },
+        "weaker": {
+          "$description": "Weaker border color for primary actions or messages (blue.20).",
+          "$type": "color",
+          "$value": "{color.alias.blue.20}"
+        },
+        "weakest": {
+          "$description": "Weakest border color for primary actions or messages (blue.10).",
+          "$type": "color",
+          "$value": "{color.alias.blue.10}"
+        }
+      },
+      "transparent": {
+        "$description": "Transparent border color (transparent).",
+        "$type": "color",
+        "$value": "{color.alias.transparent}"
+      }
+    }
+  }
+}

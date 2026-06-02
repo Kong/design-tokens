@@ -1,87 +1,29 @@
 {
-  "name": "@kong/design-tokens",
-  "version": "1.23.0",
-  "description": "Kong UI Design Tokens and style dictionary",
-  "type": "module",
+  "name": "@kong/design-tokens-monorepo",
+  "private": true,
   "scripts": {
-    "build": "pnpm build:clean && pnpm build:tokens && pnpm copy:tokens-doc && pnpm copy:stylelint-plugin && pnpm copy:eslint-plugin",
-    "build:tokens": "style-dictionary build --config ./config.mjs",
-    "build:clean": "rimraf ./dist",
-    "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
-    "copy:stylelint-plugin": "shx cp -R './stylelint-plugin' './dist/stylelint-plugin/'",
-    "copy:eslint-plugin": "shx cp -R './eslint-plugin' './dist/eslint-plugin/'",
-    "test:eslint-plugin": "vitest run --config eslint-plugin/vitest.config.mjs",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
-    "typecheck": "pnpm typecheck:sandbox && pnpm typecheck:eslint-plugin",
-    "typecheck:sandbox": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
-    "typecheck:eslint-plugin": "tsc -p eslint-plugin/tsconfig.json --noEmit",
-    "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
-    "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
-    "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
-    "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
-    "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
-    "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
-    "semantic-release": "semantic-release",
-    "prepublishOnly": "npm run build",
+    "build": "FORCE_COLOR=1 pnpm -r build",
+    "lint": "FORCE_COLOR=1 pnpm -r lint",
+    "typecheck": "FORCE_COLOR=1 pnpm -r typecheck",
+    "sandbox:design-tokens": "FORCE_COLOR=1 pnpm --filter @kong/design-tokens sandbox",
+    "sandbox:design-tokens:build": "FORCE_COLOR=1 pnpm --filter @kong/design-tokens sandbox:build",
+    "sandbox:portal-design-tokens": "FORCE_COLOR=1 pnpm --filter @kong/portal-design-tokens sandbox",
     "commit": "cz"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist",
-    "TOKENS.md"
+  "workspaces": [
+    "packages/*"
   ],
-  "main": "dist/tokens/js/cjs/index.js",
-  "module": "dist/tokens/js/index.mjs",
-  "types": "dist/tokens/js/index.d.ts",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/tokens/js/index.d.ts",
-        "default": "./dist/tokens/js/index.mjs"
-      },
-      "require": {
-        "types": "./dist/tokens/js/cjs/index.d.ts",
-        "default": "./dist/tokens/js/cjs/index.js"
-      }
-    },
-    "./tokens/*": "./dist/tokens/*",
-    "./stylelint-plugin": "./dist/stylelint-plugin/index.mjs",
-    "./eslint-plugin": "./dist/eslint-plugin/index.mjs",
-    "./package.json": "./package.json"
-  },
-  "peerDependencies": {
-    "eslint": "^9.0.0",
-    "vue-eslint-parser": ">=10.2.0"
-  },
-  "peerDependenciesMeta": {
-    "eslint": {
-      "optional": true
-    },
-    "vue-eslint-parser": {
-      "optional": true
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Kong/design-tokens.git"
-  },
-  "author": "Kong Inc.",
-  "license": "Apache-2.0",
-  "homepage": "https://github.com/Kong/design-tokens#readme",
-  "bugs": {
-    "url": "https://github.com/Kong/design-tokens/issues"
-  },
   "devDependencies": {
     "@commitlint/cli": "^20.4.3",
     "@commitlint/config-conventional": "^20.4.3",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^2.1.2",
     "@kong/eslint-config-kong-ui": "^1.6.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@lerna-lite/changed": "^5.2.2",
+    "@lerna-lite/cli": "^5.2.2",
+    "@lerna-lite/list": "^5.2.2",
+    "@lerna-lite/publish": "^5.2.2",
+    "@lerna-lite/version": "^5.2.2",
     "@typescript-eslint/parser": "^8.59.4",
     "@vitejs/plugin-vue": "^6.0.4",
     "chokidar-cli": "^3.0.0",
@@ -92,7 +34,6 @@
     "npm-run-all2": "^8.0.4",
     "rimraf": "^6.1.3",
     "sass": "^1.97.3",
-    "semantic-release": "^25.0.3",
     "shx": "^0.4.0",
     "style-dictionary": "^5.4.0",
     "typescript": "^6.0.3",
@@ -104,44 +45,6 @@
     "vue-eslint-parser": "^10.4.0",
     "vue-router": "^5.0.3",
     "vue-tsc": "^3.2.7"
-  },
-  "release": {
-    "branches": [
-      "+([0-9])?(.{+([0-9]),x}).x",
-      "main",
-      "next",
-      "next-major",
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "CHANGELOG.md",
-            "package.json",
-            "TOKENS.md"
-          ]
-        }
-      ],
-      "@semantic-release/github"
-    ]
   },
   "config": {
     "commitizen": {

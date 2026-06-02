@@ -6,7 +6,7 @@ export default [
   // Only apply the shared JSON config to files that match the given pattern
   ...eslintKongUiConfigJson.map(config => ({
     ...config,
-    files: ['tokens/**/*.json'],
+    files: ['packages/*/tokens/**/*.json'],
   })),
   {
     files: [
@@ -18,7 +18,7 @@ export default [
   },
   // Ignore the sort order for the breakpoint tokens so they can be ordered from smallest to largest
   {
-    files: ['tokens/source/breakpoint/**/*.json'],
+    files: ['packages/*/tokens/source/breakpoint/**/*.json'],
     rules: {
       'jsonc/sort-keys': 'off',
     },

@@ -5,12 +5,13 @@ on:
   workflow_call:
 
 jobs:
-  test:
-    name: Run Tests
+  prepare:
+    name: Prepare
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
+    outputs:
+      packages: ${{ steps.list-packages.outputs.packages }}
     steps:
-
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
@@ -20,33 +21,42 @@ jobs:
         uses: ./.github/actions/setup-pnpm-with-dependencies/
         with:
           force-install: true
+          save-cache: true
+
+      - name: List packages
+        id: list-packages
+        run: |
+          packages=$(pnpm lerna ls --json | jq -c '[.[].name]')
+          # Echo the packages to the console and set it as an output for the next job
+          echo "packages=${packages}"
+          echo "packages=${packages}" >> "$GITHUB_OUTPUT"
+
+  build-and-test:
+    name: Test / ${{ matrix.package }}
+    needs: [prepare]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.prepare.outputs.packages) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup PNPM with Dependencies
+        uses: ./.github/actions/setup-pnpm-with-dependencies/
 
       - name: Lint
-        run: pnpm lint
+        run: pnpm --filter "${{ matrix.package }}" lint
 
-      - name: Build tokens package
-        run: pnpm build
+      - name: Build
+        run: pnpm --filter "${{ matrix.package }}" --if-present build
 
-      # Must build before the typecheck since the files are needed for the sandbox
       - name: Typecheck
-        run: pnpm typecheck
+        run: pnpm --filter "${{ matrix.package }}" --if-present typecheck
 
-      - name: Test eslint plugin
-        run: pnpm test:eslint-plugin
-
-      - name: Build sandbox
-        run: pnpm sandbox:build
-
-      - name: Upload tokens package
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: tokens-package
-          path: dist/
-          retention-days: 1
-
-      - name: Upload sandbox
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: sandbox
-          path: sandbox/dist/
-          retention-days: 1
+      - name: Test
+        run: pnpm --filter "${{ matrix.package }}" --if-present test
