@@ -54,6 +54,9 @@
   "bugs": {
     "url": "https://github.com/Kong/design-tokens/issues"
   },
+  "devDependencies": {
+    "@kong/design-tokens-shared-utils": "workspace:*"
+  },
   "engines": {
     "node": ">=20.19.5",
     "pnpm": ">=10.28.2"

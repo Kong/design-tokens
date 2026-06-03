@@ -1,4 +1,3 @@
+export { KONG_TOKEN_PREFIX, TOKEN_DIRECTORY, emptyToInitialTransform, unquoteString } from '@kong/design-tokens-shared-utils'
 export { customFileHeader } from './file-header.mjs'
-export { unquoteString } from './unquote-string.mjs'
-export { KONG_TOKEN_PREFIX, TOKEN_DIRECTORY } from './constants.mjs'
-export { emptyToInitialTransform } from './transforms.mjs'
+// Future package-specific utilities for this package go here.

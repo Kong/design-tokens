@@ -4,6 +4,7 @@
   "scripts": {
     "build": "FORCE_COLOR=1 pnpm -r build",
     "lint": "FORCE_COLOR=1 pnpm -r lint",
+    "lint:fix": "FORCE_COLOR=1 pnpm -r lint:fix",
     "typecheck": "FORCE_COLOR=1 pnpm -r typecheck",
     "sandbox:design-tokens": "FORCE_COLOR=1 pnpm --filter @kong/design-tokens sandbox",
     "sandbox:design-tokens:build": "FORCE_COLOR=1 pnpm --filter @kong/design-tokens sandbox:build",

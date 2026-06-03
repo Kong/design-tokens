@@ -26,7 +26,7 @@ jobs:
       - name: List packages
         id: list-packages
         run: |
-          packages=$(pnpm lerna ls --json | jq -c '[.[].name]')
+          packages=$(pnpm lerna ls --all --json | jq -c '[.[].name]')
           # Echo the packages to the console and set it as an output for the next job
           echo "packages=${packages}"
           echo "packages=${packages}" >> "$GITHUB_OUTPUT"
