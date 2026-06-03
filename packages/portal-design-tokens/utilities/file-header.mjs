@@ -3,8 +3,8 @@ export const customFileHeader = (defaultMessage) => {
   return [
     ...defaultMessage,
     '',
-    'Kong Portal Design Tokens',
-    'GitHub: https://github.com/Kong/design-tokens',
+    'Kong Konnect Dev Portal Design Tokens',
+    'GitHub: https://github.com/Kong/design-tokens/packages/portal-design-tokens',
     'License: Apache-2.0',
   ]
 }
