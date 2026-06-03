@@ -26,30 +26,6 @@ const EXPECTED_DIST_FILES = [
   'README.md',
 ]
 
-// A representative stable token value from each source category.
-// These assert that no entire category is accidentally dropped from the build
-// and that transforms produce the correct output for each value type.
-const STABLE_TOKENS = [
-  // category         CSS name                             ESM name                             value
-  ['animation', '--kui-animation-duration-20', 'KUI_ANIMATION_DURATION_20', '0.2s'],
-  ['border-radius', '--kui-border-radius-10', 'KUI_BORDER_RADIUS_10', '2px'],
-  // percentage value — tests that non-px units survive transforms
-  ['border-radius%', '--kui-border-radius-circle', 'KUI_BORDER_RADIUS_CIRCLE', '50%'],
-  ['breakpoint', '--kui-breakpoint-mobile', 'KUI_BREAKPOINT_MOBILE', '640px'],
-  // color (hex)
-  ['color', '--kui-color-background', 'KUI_COLOR_BACKGROUND', '#ffffff'],
-  // color (rgba) — tests that rgba() survives the color/css transform
-  ['color-rgba', '--kui-color-background-overlay', 'KUI_COLOR_BACKGROUND_OVERLAY', 'rgba(0, 9, 51, 0.6)'],
-  // font-family — value contains embedded single quotes; tests quote handling through all transforms
-  ['font-family', '--kui-font-family-text', 'KUI_FONT_FAMILY_TEXT', "'Inter', Roboto, Helvetica, sans-serif"],
-  // negative value — tests that negative letter-spacing survives transforms
-  ['letter-spacing', '--kui-letter-spacing-minus-10', 'KUI_LETTER_SPACING_MINUS_10', '-0.12px'],
-  ['line-height', '--kui-line-height-10', 'KUI_LINE_HEIGHT_10', '12px'],
-  // shadow — multi-value property; spaces must survive the name/kebab transform
-  ['shadow', '--kui-shadow', 'KUI_SHADOW', '0px 4px 20px 0px rgba(0, 0, 0, 0.08)'],
-  ['space', '--kui-space-10', 'KUI_SPACE_10', '2px'],
-  ['space-keyword', '--kui-space-auto', 'KUI_SPACE_AUTO', 'auto'],
-]
 
 describe('@kong/design-tokens build artifacts', () => {
   /** @type {string} */
@@ -107,25 +83,48 @@ describe('@kong/design-tokens build artifacts', () => {
   })
 
   // ---------------------------------------------------------------------------
-  // Token category coverage
-  // Asserts at least one stable value per source category, catching accidental
-  // directory exclusions and transform breakage for each value type.
+  // Source-driven coverage
+  // Uses tokens.json (fully resolved, flat) as ground truth and derives the
+  // expected name/value for every token in CSS, SCSS, LESS, and ESM.
+  // Zero maintenance: adding or changing a token automatically updates these
+  // assertions on the next build.
   // ---------------------------------------------------------------------------
 
-  describe('token category coverage', () => {
-    it.each(STABLE_TOKENS)('%s: CSS --kui- variable resolves to the correct value', (_category, cssName, _esmName, value) => {
-      expect(cssVars).toContain(`${cssName}: ${value};`)
+  describe('every source token appears in all output formats', () => {
+    /** @type {Array<[string, string]>} */
+    let tokenEntries
+
+    beforeAll(() => {
+      tokenEntries = Object.entries(JSON.parse(jsonTokens))
     })
 
-    it.each(STABLE_TOKENS)('%s: ESM export resolves to the correct value', (_category, _cssName, esmName, value) => {
-      // font-family tokens contain single quotes in the value, which are inside a double-quoted string
-      expect(jsEsm).toContain(`export const ${esmName} = "${value}";`)
+    it('every token has a CSS custom property with the correct resolved value', () => {
+      for (const [key, value] of tokenEntries) {
+        const name = `--${key.replaceAll('_', '-')}`
+        expect(cssVars, `${name} missing or has wrong value`).toContain(`${name}: ${value};`)
+      }
     })
 
-    it.each(STABLE_TOKENS)('%s: JSON entry resolves to the correct value', (_category, _cssName, esmName, value) => {
-      const key = esmName.toLowerCase()
-      const tokens = JSON.parse(jsonTokens)
-      expect(tokens[key]).toBe(value)
+    it('every token has a SCSS variable with the correct resolved value', () => {
+      for (const [key, value] of tokenEntries) {
+        const name = `$${key.replaceAll('_', '-')}`
+        expect(scssVars, `${name} missing or has wrong value`).toContain(`${name}: ${value} !default;`)
+      }
+    })
+
+    it('every token has a LESS variable with the correct resolved value', () => {
+      for (const [key, value] of tokenEntries) {
+        const name = `@${key.replaceAll('_', '-')}`
+        expect(lessVars, `${name} missing or has wrong value`).toContain(`${name}: ${value};`)
+      }
+    })
+
+    it('every token has an ESM named export', () => {
+      // Value presence is covered by the CSS assertion above; checking names here
+      // avoids brittleness from style-dictionary wrapping long export lines.
+      for (const [key] of tokenEntries) {
+        expect(jsEsm, `export const ${key.toUpperCase()} is missing`).toContain(`export const ${key.toUpperCase()}`)
+      }
     })
   })
 
