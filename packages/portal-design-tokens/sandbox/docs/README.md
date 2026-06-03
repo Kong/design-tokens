@@ -113,7 +113,7 @@ The sidebar is the token customizer running in an `iframe` in embedded mode (`?e
 
 ### Persistence across navigation
 
-The bookmarklet saves the full customizer URL (including your `?o=` overrides) to `sessionStorage` keyed by hostname. If you navigate to another page on the same site, click the bookmarklet again — it restores your exact overrides automatically.
+The bookmarklet saves the full customizer URL (including your `?o=` overrides) to `localStorage` keyed by hostname. If you navigate to another page on the same site, click the bookmarklet again — it restores your exact overrides automatically.
 
 ### Toggling the sidebar
 

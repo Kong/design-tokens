@@ -1,6 +1,6 @@
 <!--
  * Do not edit directly, this file was auto-generated.
- * 
+ *
  * Kong Design Tokens
  * GitHub: https://github.com/Kong/design-tokens
  * License: Apache-2.0
@@ -2050,7 +2050,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 
 <summary>Click to view the list of CSS custom properties</summary>
 
-```scss
+```css
 /* Default background color for containers (white). */
 --kui-color-background: #ffffff;
 /* Background color for danger actions or messages (red.60). */

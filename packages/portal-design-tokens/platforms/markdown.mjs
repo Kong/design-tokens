@@ -27,7 +27,7 @@ StyleDictionary.registerFormat({
       if (comment) {
         tokenOutput += `  /* ${comment} */\n`
       }
-      tokenOutput += `  '${token.name}': ${value};`
+      tokenOutput += `  '${token.name}': ${value},`
       return tokenOutput
     }).join('\n')
 
@@ -137,7 +137,7 @@ You may scope your CSS custom property overrides inside the \`:root\` selector a
 
 <summary>Click to view the list of CSS custom properties</summary>
 
-\`\`\`scss
+\`\`\`css
 ${cssTokens}
 \`\`\`
 
