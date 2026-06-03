@@ -18,7 +18,8 @@
     "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
     "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
     "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
-    "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\""
+    "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
+    "test": "vitest run --config vitest.config.mjs"
   },
   "publishConfig": {
     "access": "public"
