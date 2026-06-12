@@ -4,7 +4,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DIST_DIR = join(__dirname, '../dist/tokens')
+const DIST_DIR = join(__dirname, 'dist/tokens')
 
 /** @param {string} relativePath */
 async function distFile(relativePath) {
@@ -27,7 +27,7 @@ const EXPECTED_DIST_FILES = [
 ]
 
 
-describe('@kong/portal-design-tokens build artifacts', () => {
+describe('@kong/design-tokens build artifacts', () => {
   /** @type {string} */
   let cssVars
   /** @type {string} */
@@ -133,12 +133,12 @@ describe('@kong/portal-design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('css/custom-properties.css', () => {
-    it('includes portal product name in file header', () => {
-      expect(cssVars).toContain('Kong Konnect Dev Portal Design Tokens')
+    it('includes product name in file header', () => {
+      expect(cssVars).toContain('Kong Konnect Design Tokens')
     })
 
-    it('includes portal GitHub URL in file header', () => {
-      expect(cssVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/portal-design-tokens')
+    it('includes GitHub URL in file header', () => {
+      expect(cssVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/design-tokens')
     })
 
     it('includes license in file header', () => {
@@ -222,12 +222,12 @@ describe('@kong/portal-design-tokens build artifacts', () => {
       expect(scssVars).toMatch(/^\/\/ Do not edit directly/m)
     })
 
-    it('includes portal product name in file header', () => {
-      expect(scssVars).toContain('Kong Konnect Dev Portal Design Tokens')
+    it('includes product name in file header', () => {
+      expect(scssVars).toContain('Kong Konnect Design Tokens')
     })
 
-    it('includes portal GitHub URL in file header', () => {
-      expect(scssVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/portal-design-tokens')
+    it('includes GitHub URL in file header', () => {
+      expect(scssVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/design-tokens')
     })
 
     it('uses $kui- prefixed kebab-case variables', () => {
@@ -300,8 +300,8 @@ describe('@kong/portal-design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('scss/_mixins.scss', () => {
-    it('includes portal product name in file header', () => {
-      expect(scssMixins).toContain('Kong Konnect Dev Portal Design Tokens')
+    it('includes product name in file header', () => {
+      expect(scssMixins).toContain('Kong Konnect Design Tokens')
     })
 
     it('defines the kui-css-variables mixin', () => {
@@ -327,12 +327,12 @@ describe('@kong/portal-design-tokens build artifacts', () => {
       expect(lessVars).toMatch(/^\/\/ Do not edit directly/m)
     })
 
-    it('includes portal product name in file header', () => {
-      expect(lessVars).toContain('Kong Konnect Dev Portal Design Tokens')
+    it('includes product name in file header', () => {
+      expect(lessVars).toContain('Kong Konnect Design Tokens')
     })
 
-    it('includes portal GitHub URL in file header', () => {
-      expect(lessVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/portal-design-tokens')
+    it('includes GitHub URL in file header', () => {
+      expect(lessVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/design-tokens')
     })
 
     it('uses @kui- prefixed kebab-case variables', () => {
@@ -362,8 +362,8 @@ describe('@kong/portal-design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('js/index.mjs', () => {
-    it('includes portal product name in file header', () => {
-      expect(jsEsm).toContain('Kong Konnect Dev Portal Design Tokens')
+    it('includes product name in file header', () => {
+      expect(jsEsm).toContain('Kong Konnect Design Tokens')
     })
 
     it('uses named ES module exports', () => {

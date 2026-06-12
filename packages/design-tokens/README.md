@@ -363,9 +363,9 @@ pnpm lint:fix
 
 ### Shared build utilities
 
-This package uses [`@kong/design-tokens-shared-utils`](../shared-utils/README.md) for build-time utilities shared across the Kong token packages — Style Dictionary transforms, string helpers, and the file-header factory. Those shared utilities live in `packages/shared-utils/`.
+Build-time utilities — Style Dictionary transforms, string helpers, and the file-header factory — live in this package's own `utilities/` directory and are exported from `utilities/index.mjs`.
 
-**Package-specific** build utilities (e.g. transforms or formatters that only apply to `@kong/design-tokens`) should be added to this package's own `utilities/` directory and exported from `utilities/index.mjs`.
+**Package-specific** build utilities (e.g. transforms or formatters that only apply to `@kong/design-tokens`) should be added to `utilities/` and exported from `utilities/index.mjs`.
 
 ### Build for production
 

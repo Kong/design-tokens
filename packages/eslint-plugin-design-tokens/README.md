@@ -66,7 +66,7 @@ eslint --fix src/
 
 ### `token-constant-requires-css-var`
 
-Enforces that KUI design token constants (imported from `@kong/design-tokens` or `@kong/portal-design-tokens` by default (configurable via the `importSources` rule option)) are wrapped in a CSS custom property fallback whenever they are used in a Vue `<template>` v-bind expression.
+Enforces that KUI design token constants (imported from `@kong/design-tokens` by default (configurable via the `importSources` rule option)) are wrapped in a CSS custom property fallback whenever they are used in a Vue `<template>` v-bind expression.
 
 The CSS custom property **must come first** so that DOM-level overrides (light/dark mode, theming) take effect. The JS constant serves as the static fallback.
 
@@ -74,7 +74,7 @@ The CSS custom property **must come first** so that DOM-level overrides (light/d
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `importSources` | `string[]` | `['@kong/design-tokens', '@kong/portal-design-tokens']` | Package names to track as token import sources |
+| `importSources` | `string[]` | `['@kong/design-tokens']` | Package names to track as token import sources |
 
 **Example — restrict to a single package:**
 ```js
@@ -156,7 +156,7 @@ KUI_FONT_SIZE_30        →  --kui-font-size-30
 #### Limitations
 
 - **Namespace imports** (`import * as tokens from '@kong/design-tokens'`) are not tracked.
-- **Re-exports through barrel files** in consumer code — only direct imports from the configured `importSources` (defaults to both `@kong/design-tokens` and `@kong/portal-design-tokens`) are detected.
+- **Re-exports through barrel files** in consumer code — only direct imports from the configured `importSources` (defaults to `@kong/design-tokens`) are detected.
 - **Multi-hop script-setup flow** (`const a = KUI_X; const b = a`) — only one level of indirection is detected.
 - **Tokens stored in objects/refs/computed** — a token reaches the DOM only through the binding the rule can see. When it is first placed into a script-level object, `ref()`, or `computed()` and that wrapper is bound (e.g. `const styles = { padding: KUI_SPACE_40 }` then `:style="styles"`), the token is not traced into the binding and is not flagged. Wrap the token at the point of use instead:
   ```vue

@@ -15,4 +15,4 @@ export function kuiIdentifierToCssVar(name) {
 export const KUI_IDENTIFIER_PATTERN = /^KUI_[A-Z0-9_]+$/
 
 /** Default package names recognized as KUI token sources. */
-export const DEFAULT_IMPORT_SOURCES = ['@kong/design-tokens', '@kong/portal-design-tokens']
+export const DEFAULT_IMPORT_SOURCES = ['@kong/design-tokens']

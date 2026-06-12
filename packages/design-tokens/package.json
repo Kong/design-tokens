@@ -56,7 +56,7 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "@kong/design-tokens-shared-utils": "workspace:*"
+    "style-dictionary": "^5.4.0"
   },
   "engines": {
     "node": ">=20.19.5",

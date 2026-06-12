@@ -2,7 +2,7 @@ import { describe, it } from 'vitest'
 import { RuleTester } from 'eslint'
 import vueParser from 'vue-eslint-parser'
 import * as tsParser from '@typescript-eslint/parser'
-import rule from '../index.mjs'
+import rule from './index.mjs'
 
 // Wire up vitest's describe/it so RuleTester integrates with the vitest reporter
 RuleTester.describe = describe
@@ -908,6 +908,7 @@ tsTester.run(`${RULE_NAME} (TypeScript)`, rule, {
 
 /**
  * Shorthand for an SFC that imports one token from `@kong/portal-design-tokens`.
+ * Used to test explicit `importSources` overrides.
  * @param {string} varName - The exported constant name (e.g. `KUI_COLOR_TEXT_INVERSE`)
  * @param {string} template - The `<template>` body
  */
@@ -920,30 +921,20 @@ function withPortalImport(varName, template) {
 
 /**
  * importSources option — controls which packages the rule tracks token imports from.
- * Default: ['@kong/design-tokens', '@kong/portal-design-tokens']
+ * Default: ['@kong/design-tokens']
  */
 tester.run(`${RULE_NAME} (importSources option)`, rule, {
   valid: [
-    // Default options: import from @kong/portal-design-tokens IS tracked — already wrapped is valid
+    // Default options: import from @kong/portal-design-tokens is NOT tracked (no error)
     {
       filename: 'test.vue',
-      code: withPortalImport(
-        'KUI_COLOR_TEXT_INVERSE',
-        '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`" />',
-      ),
-    },
-
-    // importSources restricted to @kong/design-tokens only — portal import is NOT tracked (no error)
-    {
-      filename: 'test.vue',
-      options: [{ importSources: ['@kong/design-tokens'] }],
       code: withPortalImport(
         'KUI_COLOR_TEXT_INVERSE',
         '<div :color="KUI_COLOR_TEXT_INVERSE" />',
       ),
     },
 
-    // importSources restricted to @kong/portal-design-tokens only — design-tokens import is NOT tracked
+    // importSources overridden to @kong/portal-design-tokens only — design-tokens import is NOT tracked
     {
       filename: 'test.vue',
       options: [{ importSources: ['@kong/portal-design-tokens'] }],
@@ -955,20 +946,6 @@ tester.run(`${RULE_NAME} (importSources option)`, rule, {
   ],
 
   invalid: [
-    // Default options: import from @kong/portal-design-tokens IS flagged (same as @kong/design-tokens)
-    {
-      filename: 'test.vue',
-      code: withPortalImport(
-        'KUI_COLOR_TEXT_INVERSE',
-        '<div :color="KUI_COLOR_TEXT_INVERSE" />',
-      ),
-      errors: [{ messageId: 'wrapInVar', data: { local: 'KUI_COLOR_TEXT_INVERSE', cssVar: 'kui-color-text-inverse' } }],
-      output: withPortalImport(
-        'KUI_COLOR_TEXT_INVERSE',
-        '<div :color="`var(--kui-color-text-inverse, ${KUI_COLOR_TEXT_INVERSE})`" />',
-      ),
-    },
-
     // importSources: ['@kong/portal-design-tokens'] — portal import IS flagged, design-tokens is NOT
     {
       filename: 'test.vue',

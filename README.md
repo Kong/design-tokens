@@ -1,13 +1,12 @@
 # design-tokens
 
-This is a **pnpm monorepo** that publishes four independently-versioned packages for Kong UI design systems.
+This is a **pnpm monorepo** that publishes three independently-versioned packages for Kong UI design systems.
 
 ## Packages
 
 | Package | Description | Version |
 |---|---|---|
 | [`@kong/design-tokens`](./packages/design-tokens/README.md) | Konnect design tokens | [![npm](https://img.shields.io/npm/v/@kong/design-tokens.svg)](https://www.npmjs.com/package/@kong/design-tokens) |
-| [`@kong/portal-design-tokens`](./packages/portal-design-tokens/README.md) | Dev Portal design tokens | [![npm](https://img.shields.io/npm/v/@kong/portal-design-tokens.svg)](https://www.npmjs.com/package/@kong/portal-design-tokens) |
 | [`@kong/stylelint-plugin-design-tokens`](./packages/stylelint-plugin-design-tokens/README.md) | Stylelint plugin for Kong design token rules | [![npm](https://img.shields.io/npm/v/@kong/stylelint-plugin-design-tokens.svg)](https://www.npmjs.com/package/@kong/stylelint-plugin-design-tokens) |
 | [`@kong/eslint-plugin-design-tokens`](./packages/eslint-plugin-design-tokens/README.md) | ESLint plugin for Kong design token rules | [![npm](https://img.shields.io/npm/v/@kong/eslint-plugin-design-tokens.svg)](https://www.npmjs.com/package/@kong/eslint-plugin-design-tokens) |
 
@@ -27,7 +26,6 @@ pnpm install
 | `pnpm lint` | Lint all packages |
 | `pnpm typecheck` | Typecheck all packages |
 | `pnpm sandbox:design-tokens` | Open the Konnect tokens sandbox |
-| `pnpm sandbox:portal-design-tokens` | Open the Portal tokens sandbox |
 | `pnpm commit` | Create a conventional commit |
 
 ### Building a single package

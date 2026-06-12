@@ -21,13 +21,6 @@ jobs:
           delete: true
           GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
 
-      - name: Remove preview comment — @kong/portal-design-tokens
-        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
-        with:
-          header: pr_preview_@kong/portal-design-tokens
-          delete: true
-          GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
-
       - name: Remove preview comment — @kong/stylelint-plugin-design-tokens
         uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
         with:
