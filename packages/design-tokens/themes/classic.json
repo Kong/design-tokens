@@ -1,0 +1,1269 @@
+{
+  "kui-animation-duration-20": {
+    "$value": "0.2s",
+    "$description": "Default transition timing."
+  },
+  "kui-border-radius-0": {
+    "$value": "0px"
+  },
+  "kui-border-radius-10": {
+    "$value": "2px"
+  },
+  "kui-border-radius-20": {
+    "$value": "4px"
+  },
+  "kui-border-radius-30": {
+    "$value": "6px"
+  },
+  "kui-border-radius-40": {
+    "$value": "8px"
+  },
+  "kui-border-radius-50": {
+    "$value": "10px"
+  },
+  "kui-border-radius-circle": {
+    "$value": "50%",
+    "$description": "Circle border radius."
+  },
+  "kui-border-radius-round": {
+    "$value": "100px",
+    "$description": "Pill-shaped border radius."
+  },
+  "kui-border-width-0": {
+    "$value": "0px"
+  },
+  "kui-border-width-10": {
+    "$value": "1px"
+  },
+  "kui-border-width-20": {
+    "$value": "2px"
+  },
+  "kui-border-width-30": {
+    "$value": "4px"
+  },
+  "kui-color-background": {
+    "$value": "{color.alias.white}",
+    "$description": "Default background color for containers."
+  },
+  "kui-color-background-danger": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Background color for danger actions or messages."
+  },
+  "kui-color-background-danger-strong": {
+    "$value": "{color.alias.red.70}",
+    "$description": "Strong background color for danger actions or messages."
+  },
+  "kui-color-background-danger-stronger": {
+    "$value": "{color.alias.red.80}",
+    "$description": "Stronger background color for danger actions or messages."
+  },
+  "kui-color-background-danger-strongest": {
+    "$value": "{color.alias.red.90}",
+    "$description": "Strongest background color for danger actions or messages."
+  },
+  "kui-color-background-danger-weak": {
+    "$value": "{color.alias.red.40}",
+    "$description": "Weak background color for danger actions or messages."
+  },
+  "kui-color-background-danger-weaker": {
+    "$value": "{color.alias.red.20}",
+    "$description": "Weaker background color for danger actions or messages."
+  },
+  "kui-color-background-danger-weakest": {
+    "$value": "{color.alias.red.10}",
+    "$description": "Weakest background color for danger actions or messages."
+  },
+  "kui-color-background-decorative-aqua-weakest": {
+    "$value": "{color.alias.aqua.10}",
+    "$description": "Weakest background color for decorative purposes."
+  },
+  "kui-color-background-decorative-purple": {
+    "$value": "{color.alias.purple.60}",
+    "$description": "Background color for decorative purposes."
+  },
+  "kui-color-background-decorative-purple-weakest": {
+    "$value": "{color.alias.purple.10}",
+    "$description": "Weakest background color for decorative purposes."
+  },
+  "kui-color-background-disabled": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Background color for disabled elements."
+  },
+  "kui-color-background-info": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Background color for info elements."
+  },
+  "kui-color-background-info-strong": {
+    "$value": "{color.alias.blue.70}",
+    "$description": "Strong background color for info elements."
+  },
+  "kui-color-background-info-stronger": {
+    "$value": "{color.alias.blue.80}",
+    "$description": "Stronger background color for info elements."
+  },
+  "kui-color-background-info-strongest": {
+    "$value": "{color.alias.blue.90}",
+    "$description": "Strongest background color for info elements."
+  },
+  "kui-color-background-info-weak": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Weak background color for info elements."
+  },
+  "kui-color-background-info-weaker": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Weaker background color for info elements."
+  },
+  "kui-color-background-info-weakest": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Weakest background color for info elements."
+  },
+  "kui-color-background-inverse": {
+    "$value": "{color.alias.blue.100}",
+    "$description": "Inverse background color for containers."
+  },
+  "kui-color-background-neutral": {
+    "$value": "{color.alias.gray.60}",
+    "$description": "Background color for neutral elements."
+  },
+  "kui-color-background-neutral-strong": {
+    "$value": "{color.alias.gray.70}",
+    "$description": "Strong background color for neutral elements."
+  },
+  "kui-color-background-neutral-stronger": {
+    "$value": "{color.alias.gray.80}",
+    "$description": "Stronger background color for neutral elements."
+  },
+  "kui-color-background-neutral-strongest": {
+    "$value": "{color.alias.gray.90}",
+    "$description": "Strongest background color for neutral elements."
+  },
+  "kui-color-background-neutral-weak": {
+    "$value": "{color.alias.gray.40}",
+    "$description": "Weak background color for neutral elements."
+  },
+  "kui-color-background-neutral-weaker": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Weaker background color for neutral elements."
+  },
+  "kui-color-background-neutral-weakest": {
+    "$value": "{color.alias.gray.10}",
+    "$description": "Weakest background color for neutral elements."
+  },
+  "kui-color-background-overlay": {
+    "$value": "rgba(0, 9, 51, 0.6)",
+    "$description": "Overlay background color."
+  },
+  "kui-color-background-primary": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Background color for primary actions or messages."
+  },
+  "kui-color-background-primary-strong": {
+    "$value": "{color.alias.blue.70}",
+    "$description": "Strong background color for primary actions or messages."
+  },
+  "kui-color-background-primary-stronger": {
+    "$value": "{color.alias.blue.80}",
+    "$description": "Stronger background color for primary actions or messages."
+  },
+  "kui-color-background-primary-strongest": {
+    "$value": "{color.alias.blue.90}",
+    "$description": "Strongest background color for primary actions or messages."
+  },
+  "kui-color-background-primary-weak": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Weak background color for primary actions or messages."
+  },
+  "kui-color-background-primary-weaker": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Weaker background color for primary actions or messages."
+  },
+  "kui-color-background-primary-weakest": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Weakest background color for primary actions or messages."
+  },
+  "kui-color-background-success": {
+    "$value": "{color.alias.green.60}",
+    "$description": "Background color for success elements."
+  },
+  "kui-color-background-success-strong": {
+    "$value": "{color.alias.green.70}",
+    "$description": "Strong background color for success elements."
+  },
+  "kui-color-background-success-stronger": {
+    "$value": "{color.alias.green.80}",
+    "$description": "Stronger background color for success elements."
+  },
+  "kui-color-background-success-strongest": {
+    "$value": "{color.alias.green.90}",
+    "$description": "Strongest background color for success elements."
+  },
+  "kui-color-background-success-weak": {
+    "$value": "{color.alias.green.40}",
+    "$description": "Weak background color for success elements."
+  },
+  "kui-color-background-success-weaker": {
+    "$value": "{color.alias.green.20}",
+    "$description": "Weaker background color for success elements."
+  },
+  "kui-color-background-success-weakest": {
+    "$value": "{color.alias.green.10}",
+    "$description": "Weakest background color for success elements."
+  },
+  "kui-color-background-transparent": {
+    "$value": "{color.alias.transparent}",
+    "$description": "Transparent background color (transparent)."
+  },
+  "kui-color-background-warning": {
+    "$value": "{color.alias.yellow.60}",
+    "$description": "Background color for warning elements."
+  },
+  "kui-color-background-warning-strong": {
+    "$value": "{color.alias.yellow.70}",
+    "$description": "Strong background color for warning elements."
+  },
+  "kui-color-background-warning-stronger": {
+    "$value": "{color.alias.yellow.80}",
+    "$description": "Stronger background color for warning elements."
+  },
+  "kui-color-background-warning-strongest": {
+    "$value": "{color.alias.yellow.90}",
+    "$description": "Strongest background color for warning elements."
+  },
+  "kui-color-background-warning-weak": {
+    "$value": "{color.alias.yellow.40}",
+    "$description": "Weak background color for warning elements."
+  },
+  "kui-color-background-warning-weaker": {
+    "$value": "{color.alias.yellow.20}",
+    "$description": "Weaker background color for warning elements."
+  },
+  "kui-color-background-warning-weakest": {
+    "$value": "{color.alias.yellow.10}",
+    "$description": "Weakest background color for warning elements."
+  },
+  "kui-color-border": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Default border color for containers."
+  },
+  "kui-color-border-danger": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Border color for danger actions or messages."
+  },
+  "kui-color-border-danger-strong": {
+    "$value": "{color.alias.red.70}",
+    "$description": "Strong border color for danger actions or messages."
+  },
+  "kui-color-border-danger-stronger": {
+    "$value": "{color.alias.red.80}",
+    "$description": "Stronger border color for danger actions or messages."
+  },
+  "kui-color-border-danger-strongest": {
+    "$value": "{color.alias.red.90}",
+    "$description": "Strongest border color for danger actions or messages."
+  },
+  "kui-color-border-danger-weak": {
+    "$value": "{color.alias.red.40}",
+    "$description": "Weak border color for danger actions or messages."
+  },
+  "kui-color-border-danger-weaker": {
+    "$value": "{color.alias.red.20}",
+    "$description": "Weaker border color for danger actions or messages."
+  },
+  "kui-color-border-danger-weakest": {
+    "$value": "{color.alias.red.10}",
+    "$description": "Weakest border color for danger actions or messages."
+  },
+  "kui-color-border-decorative-purple": {
+    "$value": "{color.alias.purple.60}",
+    "$description": "Border color for decorative purposes."
+  },
+  "kui-color-border-disabled": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Border color for disabled elements."
+  },
+  "kui-color-border-inverse": {
+    "$value": "rgba(255, 255, 255, 0.2)",
+    "$description": "Inverse border color."
+  },
+  "kui-color-border-neutral": {
+    "$value": "{color.alias.gray.60}",
+    "$description": "Border color for neutral elements."
+  },
+  "kui-color-border-neutral-strong": {
+    "$value": "{color.alias.gray.70}",
+    "$description": "Strong border color for neutral elements."
+  },
+  "kui-color-border-neutral-stronger": {
+    "$value": "{color.alias.gray.80}",
+    "$description": "Stronger border color for neutral elements."
+  },
+  "kui-color-border-neutral-strongest": {
+    "$value": "{color.alias.gray.90}",
+    "$description": "Strongest border color for neutral elements."
+  },
+  "kui-color-border-neutral-weak": {
+    "$value": "{color.alias.gray.40}",
+    "$description": "Weak border color for neutral elements."
+  },
+  "kui-color-border-neutral-weaker": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Weaker border color for neutral elements."
+  },
+  "kui-color-border-neutral-weakest": {
+    "$value": "{color.alias.gray.10}",
+    "$description": "Weakest border color for neutral elements."
+  },
+  "kui-color-border-primary": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Border color for primary actions or messages."
+  },
+  "kui-color-border-primary-strong": {
+    "$value": "{color.alias.blue.70}",
+    "$description": "Strong border color for primary actions or messages."
+  },
+  "kui-color-border-primary-stronger": {
+    "$value": "{color.alias.blue.80}",
+    "$description": "Stronger border color for primary actions or messages."
+  },
+  "kui-color-border-primary-strongest": {
+    "$value": "{color.alias.blue.90}",
+    "$description": "Strongest border color for primary actions or messages."
+  },
+  "kui-color-border-primary-weak": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Weak border color for primary actions or messages."
+  },
+  "kui-color-border-primary-weaker": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Weaker border color for primary actions or messages."
+  },
+  "kui-color-border-primary-weakest": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Weakest border color for primary actions or messages."
+  },
+  "kui-color-border-transparent": {
+    "$value": "{color.alias.transparent}",
+    "$description": "Transparent border color (transparent)."
+  },
+  "kui-color-text": {
+    "$value": "{color.alias.blue.100}",
+    "$description": "Default text color."
+  },
+  "kui-color-text-danger": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Text color for danger actions or messages."
+  },
+  "kui-color-text-danger-strong": {
+    "$value": "{color.alias.red.70}",
+    "$description": "Strong text color for danger actions or messages."
+  },
+  "kui-color-text-danger-stronger": {
+    "$value": "{color.alias.red.80}",
+    "$description": "Stronger text color for danger actions or messages."
+  },
+  "kui-color-text-danger-strongest": {
+    "$value": "{color.alias.red.90}",
+    "$description": "Strongest text color for danger actions or messages."
+  },
+  "kui-color-text-danger-weak": {
+    "$value": "{color.alias.red.40}",
+    "$description": "Weak text color for danger actions or messages."
+  },
+  "kui-color-text-danger-weaker": {
+    "$value": "{color.alias.red.20}",
+    "$description": "Weaker text color for danger actions or messages."
+  },
+  "kui-color-text-danger-weakest": {
+    "$value": "{color.alias.red.10}",
+    "$description": "Weakest text color for danger actions or messages."
+  },
+  "kui-color-text-decorative-aqua": {
+    "$value": "{color.alias.aqua.50}",
+    "$description": "Text color for decorative purposes."
+  },
+  "kui-color-text-decorative-pink": {
+    "$value": "{color.alias.pink.60}",
+    "$description": "Text color for decorative purposes."
+  },
+  "kui-color-text-decorative-purple": {
+    "$value": "{color.alias.purple.60}",
+    "$description": "Text color for decorative purposes."
+  },
+  "kui-color-text-decorative-purple-strong": {
+    "$value": "{color.alias.purple.70}",
+    "$description": "Strong text color for decorative purposes."
+  },
+  "kui-color-text-disabled": {
+    "$value": "{color.alias.gray.40}",
+    "$description": "Text color for disabled elements."
+  },
+  "kui-color-text-info": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Text color for info elements."
+  },
+  "kui-color-text-info-strong": {
+    "$value": "{color.alias.blue.70}",
+    "$description": "Strong text color for info elements."
+  },
+  "kui-color-text-info-stronger": {
+    "$value": "{color.alias.blue.80}",
+    "$description": "Stronger text color for info elements."
+  },
+  "kui-color-text-info-strongest": {
+    "$value": "{color.alias.blue.90}",
+    "$description": "Strongest text color for info elements."
+  },
+  "kui-color-text-info-weak": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Weak text color for info elements."
+  },
+  "kui-color-text-info-weaker": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Weaker text color for info elements."
+  },
+  "kui-color-text-info-weakest": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Weakest text color for info elements."
+  },
+  "kui-color-text-inverse": {
+    "$value": "{color.alias.white}",
+    "$description": "Inverse text color."
+  },
+  "kui-color-text-neutral": {
+    "$value": "{color.alias.gray.60}",
+    "$description": "Text color for neutral elements."
+  },
+  "kui-color-text-neutral-strong": {
+    "$value": "{color.alias.gray.70}",
+    "$description": "Strong text color for neutral elements."
+  },
+  "kui-color-text-neutral-stronger": {
+    "$value": "{color.alias.gray.80}",
+    "$description": "Stronger text color for neutral elements."
+  },
+  "kui-color-text-neutral-strongest": {
+    "$value": "{color.alias.gray.90}",
+    "$description": "Strongest text color for neutral elements."
+  },
+  "kui-color-text-neutral-weak": {
+    "$value": "{color.alias.gray.40}",
+    "$description": "Weak text color for neutral elements."
+  },
+  "kui-color-text-neutral-weaker": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Weaker text color for neutral elements."
+  },
+  "kui-color-text-neutral-weakest": {
+    "$value": "{color.alias.gray.10}",
+    "$description": "Weakest text color for neutral elements."
+  },
+  "kui-color-text-primary": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Text color for primary actions or messages."
+  },
+  "kui-color-text-primary-strong": {
+    "$value": "{color.alias.blue.70}",
+    "$description": "Strong text color for primary actions or messages."
+  },
+  "kui-color-text-primary-stronger": {
+    "$value": "{color.alias.blue.80}",
+    "$description": "Stronger text color for primary actions or messages."
+  },
+  "kui-color-text-primary-strongest": {
+    "$value": "{color.alias.blue.90}",
+    "$description": "Strongest text color for primary actions or messages."
+  },
+  "kui-color-text-primary-weak": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Weak text color for primary actions or messages."
+  },
+  "kui-color-text-primary-weaker": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Weaker text color for primary actions or messages."
+  },
+  "kui-color-text-primary-weakest": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Weakest text color for primary actions or messages."
+  },
+  "kui-color-text-success": {
+    "$value": "{color.alias.green.60}",
+    "$description": "Text color for success elements."
+  },
+  "kui-color-text-success-strong": {
+    "$value": "{color.alias.green.70}",
+    "$description": "Strong text color for success elements."
+  },
+  "kui-color-text-success-stronger": {
+    "$value": "{color.alias.green.80}",
+    "$description": "Stronger text color for success elements."
+  },
+  "kui-color-text-success-strongest": {
+    "$value": "{color.alias.green.90}",
+    "$description": "Stronger text color for success elements."
+  },
+  "kui-color-text-success-weak": {
+    "$value": "{color.alias.green.40}",
+    "$description": "Weak text color for success elements."
+  },
+  "kui-color-text-success-weaker": {
+    "$value": "{color.alias.green.20}",
+    "$description": "Weaker text color for success elements."
+  },
+  "kui-color-text-success-weakest": {
+    "$value": "{color.alias.green.10}",
+    "$description": "Weakest text color for success elements."
+  },
+  "kui-color-text-warning": {
+    "$value": "{color.alias.yellow.60}",
+    "$description": "Text color for warning elements."
+  },
+  "kui-color-text-warning-strong": {
+    "$value": "{color.alias.yellow.70}",
+    "$description": "Strong text color for warning elements."
+  },
+  "kui-color-text-warning-stronger": {
+    "$value": "{color.alias.yellow.80}",
+    "$description": "Stronger text color for warning elements."
+  },
+  "kui-color-text-warning-strongest": {
+    "$value": "{color.alias.yellow.90}",
+    "$description": "Strongest text color for warning elements."
+  },
+  "kui-color-text-warning-weak": {
+    "$value": "{color.alias.yellow.40}",
+    "$description": "Weak text color for warning elements."
+  },
+  "kui-color-text-warning-weaker": {
+    "$value": "{color.alias.yellow.20}",
+    "$description": "Weaker text color for warning elements."
+  },
+  "kui-color-text-warning-weakest": {
+    "$value": "{color.alias.yellow.10}",
+    "$description": "Weakest text color for warning elements."
+  },
+  "kui-font-family-code": {
+    "$value": "'JetBrains Mono', Consolas, monospace",
+    "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text."
+  },
+  "kui-font-family-heading": {
+    "$value": "'Inter', Roboto, Helvetica, sans-serif",
+    "$description": "The standard heading text font family."
+  },
+  "kui-font-family-text": {
+    "$value": "'Inter', Roboto, Helvetica, sans-serif",
+    "$description": "The standard text font family."
+  },
+  "kui-font-size-10": {
+    "$value": "10px"
+  },
+  "kui-font-size-100": {
+    "$value": "48px"
+  },
+  "kui-font-size-20": {
+    "$value": "12px"
+  },
+  "kui-font-size-30": {
+    "$value": "14px"
+  },
+  "kui-font-size-40": {
+    "$value": "16px"
+  },
+  "kui-font-size-50": {
+    "$value": "18px"
+  },
+  "kui-font-size-60": {
+    "$value": "20px"
+  },
+  "kui-font-size-70": {
+    "$value": "24px"
+  },
+  "kui-font-size-80": {
+    "$value": "32px"
+  },
+  "kui-font-size-90": {
+    "$value": "40px"
+  },
+  "kui-font-weight-bold": {
+    "$value": "700",
+    "$description": "700: The bold font weight."
+  },
+  "kui-font-weight-medium": {
+    "$value": "500",
+    "$description": "500: The medium font weight."
+  },
+  "kui-font-weight-regular": {
+    "$value": "400",
+    "$description": "400: The normal font weight."
+  },
+  "kui-font-weight-semibold": {
+    "$value": "600",
+    "$description": "600: The semibold font weight."
+  },
+  "kui-icon-color-danger": {
+    "$value": "{color.alias.red.50}",
+    "$description": "Danger color for icons."
+  },
+  "kui-icon-color-neutral": {
+    "$value": "{color.alias.gray.50}",
+    "$description": "Neutral color for icons."
+  },
+  "kui-icon-color-primary": {
+    "$value": "{color.alias.blue.50}",
+    "$description": "Primary color for icons."
+  },
+  "kui-icon-color-success": {
+    "$value": "{color.alias.green.50}",
+    "$description": "Success color for icons."
+  },
+  "kui-icon-color-warning": {
+    "$value": "{color.alias.yellow.40}",
+    "$description": "Warning color for icons."
+  },
+  "kui-icon-size-10": {
+    "$value": "10px"
+  },
+  "kui-icon-size-20": {
+    "$value": "12px"
+  },
+  "kui-icon-size-30": {
+    "$value": "16px"
+  },
+  "kui-icon-size-40": {
+    "$value": "20px"
+  },
+  "kui-icon-size-50": {
+    "$value": "24px"
+  },
+  "kui-icon-size-60": {
+    "$value": "32px"
+  },
+  "kui-icon-size-70": {
+    "$value": "40px"
+  },
+  "kui-icon-size-80": {
+    "$value": "48px"
+  },
+  "kui-letter-spacing-0": {
+    "$value": "normal",
+    "$description": "Alias for letter-spacing-normal."
+  },
+  "kui-letter-spacing-minus-10": {
+    "$value": "-0.12px"
+  },
+  "kui-letter-spacing-minus-20": {
+    "$value": "-0.24px"
+  },
+  "kui-letter-spacing-minus-30": {
+    "$value": "-0.32px"
+  },
+  "kui-letter-spacing-minus-40": {
+    "$value": "-0.4px"
+  },
+  "kui-letter-spacing-minus-50": {
+    "$value": "-0.48px"
+  },
+  "kui-letter-spacing-normal": {
+    "$value": "normal",
+    "$description": "normal."
+  },
+  "kui-line-height-10": {
+    "$value": "12px"
+  },
+  "kui-line-height-100": {
+    "$value": "56px"
+  },
+  "kui-line-height-20": {
+    "$value": "16px"
+  },
+  "kui-line-height-30": {
+    "$value": "20px"
+  },
+  "kui-line-height-40": {
+    "$value": "24px"
+  },
+  "kui-line-height-50": {
+    "$value": "28px"
+  },
+  "kui-line-height-60": {
+    "$value": "32px"
+  },
+  "kui-line-height-70": {
+    "$value": "36px"
+  },
+  "kui-line-height-80": {
+    "$value": "40px"
+  },
+  "kui-line-height-90": {
+    "$value": "48px"
+  },
+  "kui-method-color-background-connect": {
+    "$value": "{color.alias.purple.10}",
+    "$description": "Background color for the CONNECT method."
+  },
+  "kui-method-color-background-delete": {
+    "$value": "{color.alias.red.10}",
+    "$description": "Background color for the DELETE method."
+  },
+  "kui-method-color-background-get": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Background color for the GET method."
+  },
+  "kui-method-color-background-head": {
+    "$value": "{color.alias.gray.70}",
+    "$description": "Background color for the HEAD method."
+  },
+  "kui-method-color-background-options": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Background color for the OPTIONS method."
+  },
+  "kui-method-color-background-patch": {
+    "$value": "{color.alias.aqua.10}",
+    "$description": "Background color for the PATCH method."
+  },
+  "kui-method-color-background-post": {
+    "$value": "{color.alias.green.10}",
+    "$description": "Background color for the POST method."
+  },
+  "kui-method-color-background-put": {
+    "$value": "{color.alias.yellow.10}",
+    "$description": "Background color for the PUT method."
+  },
+  "kui-method-color-background-trace": {
+    "$value": "{color.alias.pink.10}",
+    "$description": "Background color for the TRACE method."
+  },
+  "kui-method-color-text-connect": {
+    "$value": "{color.alias.purple.60}",
+    "$description": "Text color for the CONNECT method."
+  },
+  "kui-method-color-text-connect-strong": {
+    "$value": "{color.alias.purple.70}",
+    "$description": "Strong text color for the CONNECT method."
+  },
+  "kui-method-color-text-delete": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Text color for the DELETE method."
+  },
+  "kui-method-color-text-delete-strong": {
+    "$value": "{color.alias.red.70}",
+    "$description": "Strong text color for the DELETE method."
+  },
+  "kui-method-color-text-get": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Text color for the GET method."
+  },
+  "kui-method-color-text-get-strong": {
+    "$value": "{color.alias.blue.70}",
+    "$description": "Strong text color for the GET method."
+  },
+  "kui-method-color-text-head": {
+    "$value": "{color.alias.gray.20}",
+    "$description": "Text color for the HEAD method."
+  },
+  "kui-method-color-text-head-strong": {
+    "$value": "{color.alias.gray.40}",
+    "$description": "Strong text color for the HEAD method."
+  },
+  "kui-method-color-text-options": {
+    "$value": "{color.alias.gray.70}",
+    "$description": "Text color for the OPTIONS method."
+  },
+  "kui-method-color-text-options-strong": {
+    "$value": "{color.alias.gray.80}",
+    "$description": "Strong text color for the OPTIONS method."
+  },
+  "kui-method-color-text-patch": {
+    "$value": "{color.alias.aqua.60}",
+    "$description": "Text color for the PATCH method."
+  },
+  "kui-method-color-text-patch-strong": {
+    "$value": "{color.alias.aqua.70}",
+    "$description": "Strong text color for the PATCH method."
+  },
+  "kui-method-color-text-post": {
+    "$value": "{color.alias.green.60}",
+    "$description": "Text color for the POST method."
+  },
+  "kui-method-color-text-post-strong": {
+    "$value": "{color.alias.green.70}",
+    "$description": "Strong text color for the POST method."
+  },
+  "kui-method-color-text-put": {
+    "$value": "{color.alias.yellow.60}",
+    "$description": "Text color for the PUT method."
+  },
+  "kui-method-color-text-put-strong": {
+    "$value": "{color.alias.yellow.70}",
+    "$description": "Strong text color for the PUT method."
+  },
+  "kui-method-color-text-trace": {
+    "$value": "{color.alias.pink.60}",
+    "$description": "Text color for the TRACE method."
+  },
+  "kui-method-color-text-trace-strong": {
+    "$value": "{color.alias.pink.70}",
+    "$description": "Strong text color for the TRACE method."
+  },
+  "kui-navigation-color-background": {
+    "$value": "{color.alias.blue.100}",
+    "$description": "blue.100."
+  },
+  "kui-navigation-color-background-selected": {
+    "$value": "rgba(255, 255, 255, 0.12)",
+    "$description": "The background color of a selected navigation item."
+  },
+  "kui-navigation-color-border": {
+    "$value": "rgba(255, 255, 255, 0.12)"
+  },
+  "kui-navigation-color-border-child": {
+    "$value": "{color.alias.green.30}",
+    "$description": "The border color for a selected child navigation item."
+  },
+  "kui-navigation-color-border-divider": {
+    "$value": "rgba(255, 255, 255, 0.24)",
+    "$description": "The color of the navigation section divider."
+  },
+  "kui-navigation-color-text": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Navigation link and icon color."
+  },
+  "kui-navigation-color-text-focus": {
+    "$value": "{color.alias.white}",
+    "$description": "Navigation link and icon focus-visible color."
+  },
+  "kui-navigation-color-text-hover": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Navigation link and icon hover color."
+  },
+  "kui-navigation-color-text-selected": {
+    "$value": "{color.alias.green.30}",
+    "$description": "Navigation link and icon selected color."
+  },
+  "kui-navigation-shadow-border": {
+    "$value": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
+    "$description": "The box-shadow for a focus-visible navigation link."
+  },
+  "kui-navigation-shadow-border-child": {
+    "$value": "4px 0 0 0 {color.alias.green.30} inset",
+    "$description": "The left box-shadow for an active child navigation link."
+  },
+  "kui-navigation-shadow-focus": {
+    "$value": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
+    "$description": "Navigation link focus-visible box-shadow."
+  },
+  "kui-shadow": {
+    "$value": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+    "$description": "Default drop shadow."
+  },
+  "kui-shadow-border": {
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset",
+    "$description": "Default inset border shadow."
+  },
+  "kui-shadow-border-danger": {
+    "$value": "0px 0px 0px 1px {color.alias.red.60} inset",
+    "$description": "Danger state inset border shadow."
+  },
+  "kui-shadow-border-danger-strong": {
+    "$value": "0px 0px 0px 1px {color.alias.red.70} inset",
+    "$description": "Strong danger state inset border shadow."
+  },
+  "kui-shadow-border-disabled": {
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset",
+    "$description": "Disabled state inset border shadow."
+  },
+  "kui-shadow-border-primary": {
+    "$value": "0px 0px 0px 1px {color.alias.blue.60} inset",
+    "$description": "Primary state inset border shadow."
+  },
+  "kui-shadow-border-primary-strongest": {
+    "$value": "0px 0px 0px 1px {color.alias.blue.90} inset",
+    "$description": "Strongest primary state inset border shadow."
+  },
+  "kui-shadow-border-primary-weak": {
+    "$value": "0px 0px 0px 1px {color.alias.blue.40} inset",
+    "$description": "Weak primary state inset border shadow."
+  },
+  "kui-shadow-focus": {
+    "$value": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
+    "$description": "Focus ring drop shadow."
+  },
+  "kui-space-0": {
+    "$value": "0px"
+  },
+  "kui-space-10": {
+    "$value": "2px"
+  },
+  "kui-space-100": {
+    "$value": "40px"
+  },
+  "kui-space-110": {
+    "$value": "48px"
+  },
+  "kui-space-120": {
+    "$value": "56px"
+  },
+  "kui-space-130": {
+    "$value": "64px"
+  },
+  "kui-space-140": {
+    "$value": "80px"
+  },
+  "kui-space-150": {
+    "$value": "96px"
+  },
+  "kui-space-20": {
+    "$value": "4px"
+  },
+  "kui-space-30": {
+    "$value": "6px"
+  },
+  "kui-space-40": {
+    "$value": "8px"
+  },
+  "kui-space-50": {
+    "$value": "12px"
+  },
+  "kui-space-60": {
+    "$value": "16px"
+  },
+  "kui-space-70": {
+    "$value": "20px"
+  },
+  "kui-space-80": {
+    "$value": "24px"
+  },
+  "kui-space-90": {
+    "$value": "32px"
+  },
+  "kui-space-auto": {
+    "$value": "auto"
+  },
+  "kui-status-color-100": {
+    "$value": "{color.alias.blue.20}",
+    "$description": "Color representing response status code 100."
+  },
+  "kui-status-color-100s": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Color for a group of response status codes in the 100-199 range."
+  },
+  "kui-status-color-101": {
+    "$value": "{color.alias.blue.30}",
+    "$description": "Color representing response status code 101."
+  },
+  "kui-status-color-102": {
+    "$value": "{color.alias.blue.40}",
+    "$description": "Color representing response status code 102."
+  },
+  "kui-status-color-103": {
+    "$value": "{color.alias.blue.50}",
+    "$description": "Color representing response status code 103."
+  },
+  "kui-status-color-1na": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Color for unknown response status codes in the 100-199 range."
+  },
+  "kui-status-color-200": {
+    "$value": "{color.alias.green.20}",
+    "$description": "Color representing response status code 200."
+  },
+  "kui-status-color-200s": {
+    "$value": "{color.alias.green.40}",
+    "$description": "Color for a group of response status codes in the 200-299 range."
+  },
+  "kui-status-color-201": {
+    "$value": "{color.alias.green.30}",
+    "$description": "Color representing response status code 201."
+  },
+  "kui-status-color-202": {
+    "$value": "{color.alias.green.40}",
+    "$description": "Color representing response status code 202."
+  },
+  "kui-status-color-203": {
+    "$value": "{color.alias.green.50}",
+    "$description": "Color representing response status code 203."
+  },
+  "kui-status-color-204": {
+    "$value": "{color.alias.green.60}",
+    "$description": "Color representing response status code 204."
+  },
+  "kui-status-color-205": {
+    "$value": "{color.alias.green.70}",
+    "$description": "Color representing response status code 205."
+  },
+  "kui-status-color-206": {
+    "$value": "{color.alias.green.20}",
+    "$description": "Color representing response status code 206."
+  },
+  "kui-status-color-207": {
+    "$value": "{color.alias.green.30}",
+    "$description": "Color representing response status code 207."
+  },
+  "kui-status-color-208": {
+    "$value": "{color.alias.green.20}",
+    "$description": "Color representing response status code 208."
+  },
+  "kui-status-color-226": {
+    "$value": "{color.alias.green.50}",
+    "$description": "Color representing response status code 226."
+  },
+  "kui-status-color-2na": {
+    "$value": "{color.alias.green.10}",
+    "$description": "Color for unknown response status codes in the 200-299 range."
+  },
+  "kui-status-color-300": {
+    "$value": "{color.alias.yellow.20}",
+    "$description": "Color representing response status code 300."
+  },
+  "kui-status-color-300s": {
+    "$value": "{color.alias.yellow.40}",
+    "$description": "Color for a group of response status codes in the 300-399 range."
+  },
+  "kui-status-color-301": {
+    "$value": "{color.alias.yellow.30}",
+    "$description": "Color representing response status code 301."
+  },
+  "kui-status-color-302": {
+    "$value": "{color.alias.yellow.40}",
+    "$description": "Color representing response status code 302."
+  },
+  "kui-status-color-303": {
+    "$value": "{color.alias.yellow.50}",
+    "$description": "Color representing response status code 303."
+  },
+  "kui-status-color-304": {
+    "$value": "{color.alias.yellow.60}",
+    "$description": "Color representing response status code 304."
+  },
+  "kui-status-color-305": {
+    "$value": "{color.alias.yellow.70}",
+    "$description": "Color representing response status code 305."
+  },
+  "kui-status-color-307": {
+    "$value": "{color.alias.yellow.20}",
+    "$description": "Color representing response status code 307."
+  },
+  "kui-status-color-308": {
+    "$value": "{color.alias.yellow.30}",
+    "$description": "Color representing response status code 308."
+  },
+  "kui-status-color-3na": {
+    "$value": "{color.alias.yellow.10}",
+    "$description": "Color for unknown response status codes in the 300-399 range."
+  },
+  "kui-status-color-400": {
+    "$value": "{color.alias.orange.20}",
+    "$description": "Color representing response status code 400."
+  },
+  "kui-status-color-400s": {
+    "$value": "{color.alias.orange.40}",
+    "$description": "Color for a group of response status codes in the 400-499 range."
+  },
+  "kui-status-color-401": {
+    "$value": "{color.alias.orange.30}",
+    "$description": "Color representing response status code 401."
+  },
+  "kui-status-color-402": {
+    "$value": "{color.alias.orange.40}",
+    "$description": "Color representing response status code 402."
+  },
+  "kui-status-color-403": {
+    "$value": "{color.alias.orange.50}",
+    "$description": "Color representing response status code 403."
+  },
+  "kui-status-color-404": {
+    "$value": "{color.alias.orange.60}",
+    "$description": "Color representing response status code 404."
+  },
+  "kui-status-color-405": {
+    "$value": "{color.alias.orange.70}",
+    "$description": "Color representing response status code 405."
+  },
+  "kui-status-color-406": {
+    "$value": "{color.alias.orange.20}",
+    "$description": "Color representing response status code 406."
+  },
+  "kui-status-color-407": {
+    "$value": "{color.alias.orange.30}",
+    "$description": "Color representing response status code 407."
+  },
+  "kui-status-color-408": {
+    "$value": "{color.alias.orange.40}",
+    "$description": "Color representing response status code 408."
+  },
+  "kui-status-color-409": {
+    "$value": "{color.alias.orange.50}",
+    "$description": "Color representing response status code 409."
+  },
+  "kui-status-color-410": {
+    "$value": "{color.alias.orange.60}",
+    "$description": "Color representing response status code 410."
+  },
+  "kui-status-color-411": {
+    "$value": "{color.alias.orange.70}",
+    "$description": "Color representing response status code 411."
+  },
+  "kui-status-color-412": {
+    "$value": "{color.alias.orange.20}",
+    "$description": "Color representing response status code 412."
+  },
+  "kui-status-color-413": {
+    "$value": "{color.alias.orange.30}",
+    "$description": "Color representing response status code 413."
+  },
+  "kui-status-color-414": {
+    "$value": "{color.alias.orange.40}",
+    "$description": "Color representing response status code 414."
+  },
+  "kui-status-color-415": {
+    "$value": "{color.alias.orange.50}",
+    "$description": "Color representing response status code 415."
+  },
+  "kui-status-color-416": {
+    "$value": "{color.alias.orange.60}",
+    "$description": "Color representing response status code 416."
+  },
+  "kui-status-color-417": {
+    "$value": "{color.alias.orange.70}",
+    "$description": "Color representing response status code 417."
+  },
+  "kui-status-color-418": {
+    "$value": "{color.alias.orange.20}",
+    "$description": "Color representing response status code 418."
+  },
+  "kui-status-color-421": {
+    "$value": "{color.alias.orange.30}",
+    "$description": "Color representing response status code 421."
+  },
+  "kui-status-color-422": {
+    "$value": "{color.alias.orange.40}",
+    "$description": "Color representing response status code 422."
+  },
+  "kui-status-color-423": {
+    "$value": "{color.alias.orange.50}",
+    "$description": "Color representing response status code 423."
+  },
+  "kui-status-color-424": {
+    "$value": "{color.alias.orange.60}",
+    "$description": "Color representing response status code 424."
+  },
+  "kui-status-color-425": {
+    "$value": "{color.alias.orange.70}",
+    "$description": "Color representing response status code 425."
+  },
+  "kui-status-color-426": {
+    "$value": "{color.alias.orange.20}",
+    "$description": "Color representing response status code 426."
+  },
+  "kui-status-color-428": {
+    "$value": "{color.alias.orange.30}",
+    "$description": "Color representing response status code 428."
+  },
+  "kui-status-color-429": {
+    "$value": "{color.alias.orange.40}",
+    "$description": "Color representing response status code 429."
+  },
+  "kui-status-color-431": {
+    "$value": "{color.alias.orange.50}",
+    "$description": "Color representing response status code 431."
+  },
+  "kui-status-color-451": {
+    "$value": "{color.alias.orange.60}",
+    "$description": "Color representing response status code 451."
+  },
+  "kui-status-color-4na": {
+    "$value": "{color.alias.orange.10}",
+    "$description": "Color for unknown response status codes in the 400-499 range."
+  },
+  "kui-status-color-500": {
+    "$value": "{color.alias.red.20}",
+    "$description": "Color representing response status code 500."
+  },
+  "kui-status-color-500s": {
+    "$value": "{color.alias.red.40}",
+    "$description": "Color for a group of response status codes in the 500-599 range."
+  },
+  "kui-status-color-501": {
+    "$value": "{color.alias.red.30}",
+    "$description": "Color representing response status code 501."
+  },
+  "kui-status-color-502": {
+    "$value": "{color.alias.red.40}",
+    "$description": "Color representing response status code 502."
+  },
+  "kui-status-color-503": {
+    "$value": "{color.alias.red.50}",
+    "$description": "Color representing response status code 503."
+  },
+  "kui-status-color-504": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Color representing response status code 504."
+  },
+  "kui-status-color-505": {
+    "$value": "{color.alias.red.70}",
+    "$description": "Color representing response status code 505."
+  },
+  "kui-status-color-506": {
+    "$value": "{color.alias.red.20}",
+    "$description": "Color representing response status code 506."
+  },
+  "kui-status-color-507": {
+    "$value": "{color.alias.red.30}",
+    "$description": "Color representing response status code 507."
+  },
+  "kui-status-color-508": {
+    "$value": "{color.alias.red.40}",
+    "$description": "Color representing response status code 508."
+  },
+  "kui-status-color-510": {
+    "$value": "{color.alias.red.50}",
+    "$description": "Color representing response status code 510."
+  },
+  "kui-status-color-511": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Color representing response status code 511."
+  },
+  "kui-status-color-5na": {
+    "$value": "{color.alias.red.10}",
+    "$description": "Color for unknown response status codes in the 500-599 range."
+  },
+  "kui-status-color-background-100": {
+    "$value": "{color.alias.blue.10}",
+    "$description": "Background color for http status 100 elements."
+  },
+  "kui-status-color-background-200": {
+    "$value": "{color.alias.green.10}",
+    "$description": "Background color for http status 200 elements."
+  },
+  "kui-status-color-background-300": {
+    "$value": "{color.alias.yellow.10}",
+    "$description": "Background color for http status 300 elements."
+  },
+  "kui-status-color-background-400": {
+    "$value": "{color.alias.orange.10}",
+    "$description": "Background color for http status 400 elements."
+  },
+  "kui-status-color-background-500": {
+    "$value": "{color.alias.red.10}",
+    "$description": "Background color for http status 500 elements."
+  },
+  "kui-status-color-text-100": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Text color for http status 100 elements."
+  },
+  "kui-status-color-text-200": {
+    "$value": "{color.alias.green.60}",
+    "$description": "Text color for http status 200 elements."
+  },
+  "kui-status-color-text-300": {
+    "$value": "{color.alias.yellow.60}",
+    "$description": "Text color for http status 300 elements."
+  },
+  "kui-status-color-text-400": {
+    "$value": "{color.alias.orange.60}",
+    "$description": "Text color for http status 400 elements."
+  },
+  "kui-status-color-text-500": {
+    "$value": "{color.alias.red.60}",
+    "$description": "Text color for http status 500 elements."
+  }
+}

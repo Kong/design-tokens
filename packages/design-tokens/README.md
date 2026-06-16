@@ -22,6 +22,7 @@ Kong Design Tokens for Konnect, via [Style Dictionary](https://github.com/amzn/s
   - [Directory structure](#directory-structure)
   - [Token Requirements](#token-requirements)
   - [Creating a new theme](#creating-a-new-theme)
+  - [Theme `$description` authoring rules](#theme-description-authoring-rules)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
@@ -483,6 +484,39 @@ pnpm create-theme my-brand --from konnect-light
 This creates `themes/my-brand.json`. The next build picks it up automatically — no code change is required.
 
 > **Prerequisites:** Run `pnpm build` at least once before running `create-theme` so `dist/themeable-tokens.mjs` exists.
+
+### Theme `$description` authoring rules
+
+Every token entry in a theme JSON file may carry an optional `$description` field. When present, it must follow these rules:
+
+- **Match the semantic token's description** — copy the text from the corresponding token in `tokens/source/`. Do not invent a different description for the same concept.
+- **Never reference a CSS value** — descriptions must be value-agnostic. The description explains *what* the token controls, not *what value* it currently holds.
+
+| ❌ Avoid | ✅ Use instead |
+|---|---|
+| `"2px border radius."` | _(omit — scale tokens are self-documenting by name)_ |
+| `"Background color for containers (white)."` | `"Default background color for containers."` |
+| `"Border color for danger actions or messages (red.60)."` | `"Border color for danger actions or messages."` |
+| `"0px 0px 0px 1px blue.60 inset"` | `"Primary state inset border shadow."` |
+
+**When to omit `$description` entirely:** pure scale tokens (`--kui-space-*`, `--kui-border-radius-0` through `-50`, `--kui-border-width-*`, `--kui-icon-size-*`, `--kui-line-height-*`, `--kui-letter-spacing-*`) are self-documenting — their token names carry all the meaning. Leave `$description` off these entries.
+
+**Component tokens may appear in theme files — but never with `$description`.** A theme may set any component token (`--kui-button-*`, `--kui-card-*`, etc.) to provide per-component customization that diverges from the semantic fallback. When included, the entry must have a `$value` only — no `$description`. Component tokens have no inherent default to describe; their purpose is entirely defined by their `var()` fallback chain in the component's SCSS.
+
+```json
+// ✅ Correct — value only, no description
+"kui-button-border-radius-medium": {
+  "$value": "999px"
+}
+
+// ❌ Wrong — component tokens have no default to describe
+"kui-button-border-radius-medium": {
+  "$value": "999px",
+  "$description": "Rounded button corners."
+}
+```
+
+**A theme only needs to define tokens it overrides.** Omit any token whose value should remain at its semantic default (from `custom-properties.css`) or at whatever value a base theme already sets. The `[data-kui-theme]` CSS cascade handles the rest — unset tokens fall back through `var()` to the semantic layer automatically.
 
 ### Development Sandbox
 
