@@ -111,7 +111,13 @@ jobs:
             exit 0
           fi
 
-          pnpm --filter "${pkg_name}" publish --no-git-checks --access public --report-summary --tag "${tag}"
+          publish_output=$(pnpm --filter "${pkg_name}" publish --no-git-checks --access public --report-summary --tag "${tag}" 2>&1)
+          publish_exit=$?
+          echo "${publish_output}"
+          if [ $publish_exit -ne 0 ] || echo "${publish_output}" | grep -qiE "npm error|npm ERR!"; then
+            echo "::error::npm publish failed for ${pkg_name}"
+            exit 1
+          fi
 
           npm_instructions="${pkg_name}@${tag}"
 
@@ -168,7 +174,13 @@ jobs:
           GH_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
         run: |
           pnpm lerna version --conventional-commits --yes
-          pnpm lerna publish from-git --yes
+          publish_output=$(pnpm lerna publish from-git --yes 2>&1)
+          publish_exit=$?
+          echo "${publish_output}"
+          if [ $publish_exit -ne 0 ] || echo "${publish_output}" | grep -qiE "npm error|npm ERR!"; then
+            echo "::error::lerna publish failed"
+            exit 1
+          fi
 
       - name: Version and publish (prerelease)
         if: github.ref_name != 'main'
@@ -177,7 +189,13 @@ jobs:
           BRANCH: ${{ github.ref_name }}
         run: |
           pnpm lerna version --conventional-prerelease --preid "${BRANCH}" --yes
-          pnpm lerna publish from-git --dist-tag "${BRANCH}" --yes
+          publish_output=$(pnpm lerna publish from-git --dist-tag "${BRANCH}" --yes 2>&1)
+          publish_exit=$?
+          echo "${publish_output}"
+          if [ $publish_exit -ne 0 ] || echo "${publish_output}" | grep -qiE "npm error|npm ERR!"; then
+            echo "::error::lerna publish failed"
+            exit 1
+          fi
 
   build-sandbox:
     name: Build Sandbox

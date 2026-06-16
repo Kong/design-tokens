@@ -22,7 +22,7 @@ plugins: [
   '@kong/stylelint-plugin-design-tokens'
 ],
 rules: {
-  '@kong/design-tokens/use-proper-token': [true, {
+  '@kong/stylelint-plugin-design-tokens/use-proper-token': [true, {
     disableFix: true,
     severity: 'error' // You can also configure as `warning`
   }]
