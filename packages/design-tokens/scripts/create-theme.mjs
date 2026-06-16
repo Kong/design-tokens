@@ -23,6 +23,16 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const ROOT = join(__dirname, '..')
 
+/** Scale token key patterns — pure numbered scales that carry no meaningful description for theme authors. */
+const SCALE_TOKEN_PATTERNS = [
+  /^kui-space-/,
+  /^kui-border-radius-\d+$/,
+  /^kui-border-width-/,
+  /^kui-icon-size-/,
+  /^kui-line-height-/,
+  /^kui-letter-spacing-/,
+]
+
 // Helpers (exported for testing)
 
 /**
@@ -50,7 +60,35 @@ export function extractDescriptions(obj, path, result) {
 }
 
 /**
+ * Clean a raw description from a source token JSON file per authoring rules:
+ * - Scale tokens (by key pattern) → `''` — numbered scale tokens carry no useful description
+ * - Trailing parenthetical alias/value refs are stripped: "(white)", "(blue.60)", "(rgba(...))"
+ * - Pure CSS value descriptions (no terminal sentence period) → `''`
+ *
+ * @param {string} key - Token key without leading '--' (e.g. 'kui-color-background')
+ * @param {string} rawDesc - Raw description string from source JSON
+ * @returns {string}
+ */
+export function cleanDescription(key, rawDesc) {
+  if (SCALE_TOKEN_PATTERNS.some(re => re.test(key))) return ''
+  if (!rawDesc) return ''
+
+  // Strip trailing parenthetical refs, e.g. " (white).", " (blue.60).", " (rgba(0,0,0,0.08))"
+  const stripped = rawDesc.replace(/\s*\([^)]*\)\.?\s*$/, '').trim()
+
+  // Restore the terminal period when it was inside the stripped parenthetical
+  const result = stripped && !stripped.endsWith('.') && rawDesc.trimEnd().endsWith('.')
+    ? stripped + '.'
+    : stripped
+
+  // Pure CSS value descriptions do not form a sentence (no terminal period) — discard them
+  return result.endsWith('.') ? result : ''
+}
+
+/**
  * Build a `tokenName → description` map by scanning all token source directories.
+ * Descriptions are cleaned per authoring rules via `cleanDescription`.
+ *
  * @param {string[]} sourceDirs - Absolute paths to scan recursively.
  * @returns {Promise<Record<string, string>>}
  */
@@ -64,7 +102,11 @@ export async function buildDescriptionMap(sourceDirs = [join(ROOT, 'tokens', 'so
           .filter(f => f.endsWith('.json'))
           .map(async f => {
             const parsed = JSON.parse(await readFile(join(dir, f), 'utf-8'))
-            extractDescriptions(parsed, [], result)
+            const raw = {}
+            extractDescriptions(parsed, [], raw)
+            for (const [k, desc] of Object.entries(raw)) {
+              result[k] = cleanDescription(k, desc)
+            }
           }),
       )
     }),

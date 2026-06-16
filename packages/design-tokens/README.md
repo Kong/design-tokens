@@ -501,18 +501,13 @@ Every token entry in a theme JSON file may carry an optional `$description` fiel
 
 **When to omit `$description` entirely:** pure scale tokens (`--kui-space-*`, `--kui-border-radius-0` through `-50`, `--kui-border-width-*`, `--kui-icon-size-*`, `--kui-line-height-*`, `--kui-letter-spacing-*`) are self-documenting — their token names carry all the meaning. Leave `$description` off these entries.
 
-**Component tokens may appear in theme files — but never with `$description`.** A theme may set any component token (`--kui-button-*`, `--kui-card-*`, etc.) to provide per-component customization that diverges from the semantic fallback. When included, the entry must have a `$value` only — no `$description`. Component tokens have no inherent default to describe; their purpose is entirely defined by their `var()` fallback chain in the component's SCSS.
+**Component tokens may appear in theme files with `$description`.** A theme may set any component token (`--kui-button-*`, `--kui-card-*`, etc.) to provide per-component customization that diverges from the semantic fallback. Use the same description as the component token's source definition in `tokens/components/`.
 
 ```json
-// ✅ Correct — value only, no description
+// ✅ Correct — description matches source definition
 "kui-button-border-radius-medium": {
+  "$description": "Medium button border radius.",
   "$value": "999px"
-}
-
-// ❌ Wrong — component tokens have no default to describe
-"kui-button-border-radius-medium": {
-  "$value": "999px",
-  "$description": "Rounded button corners."
 }
 ```
 

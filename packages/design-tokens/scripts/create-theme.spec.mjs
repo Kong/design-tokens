@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterEach } from 'vitest'
 import { readFile, mkdir, rm, writeFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { extractDescriptions, buildDescriptionMap, createTheme, loadSourceTheme } from './create-theme.mjs'
+import { extractDescriptions, cleanDescription, buildDescriptionMap, createTheme, loadSourceTheme } from './create-theme.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(__dirname, '..')
@@ -122,6 +122,53 @@ describe('extractDescriptions', () => {
   })
 })
 
+// ── cleanDescription ──────────────────────────────────────────────────────────
+
+describe('cleanDescription', () => {
+  it('returns empty string for scale tokens (space, numbered border-radius, border-width, icon-size, line-height, letter-spacing)', () => {
+    expect(cleanDescription('kui-space-50', 'Something.')).toBe('')
+    expect(cleanDescription('kui-border-radius-0', '0px border radius.')).toBe('')
+    expect(cleanDescription('kui-border-radius-30', '6px border radius.')).toBe('')
+    expect(cleanDescription('kui-border-radius-50', '10px border radius.')).toBe('')
+    expect(cleanDescription('kui-border-width-10', '1px border width.')).toBe('')
+    expect(cleanDescription('kui-icon-size-30', 'Icon size.')).toBe('')
+    expect(cleanDescription('kui-line-height-30', 'Line height.')).toBe('')
+    expect(cleanDescription('kui-letter-spacing-0', 'Letter spacing.')).toBe('')
+  })
+
+  it('preserves component token descriptions', () => {
+    expect(cleanDescription('kui-button-border-radius-medium', 'Medium button border radius.')).toBe('Medium button border radius.')
+    expect(cleanDescription('kui-badge-border-radius', 'Badge border radius.')).toBe('Badge border radius.')
+    expect(cleanDescription('kui-input-shadow-border-focus', 'Input border shadow when focused.')).toBe('Input border shadow when focused.')
+  })
+
+  it('does not treat non-numbered border-radius tokens as scale tokens', () => {
+    // "circle" and "round" are semantic shapes, not numbered scale steps
+    expect(cleanDescription('kui-border-radius-circle', '50% border radius used to create circles.')).toBe('50% border radius used to create circles.')
+    expect(cleanDescription('kui-border-radius-round', '100px border radius used to create pill shapes.')).toBe('100px border radius used to create pill shapes.')
+  })
+
+  it('strips trailing parenthetical alias refs and preserves the sentence', () => {
+    expect(cleanDescription('kui-color-background', 'Default background color for containers (white).')).toBe('Default background color for containers.')
+    expect(cleanDescription('kui-color-background-danger', 'Background color for danger actions or messages (red.60).')).toBe('Background color for danger actions or messages.')
+    expect(cleanDescription('kui-color-text', 'Default text color (black).')).toBe('Default text color.')
+  })
+
+  it('returns empty for pure CSS value descriptions (no terminal sentence period)', () => {
+    expect(cleanDescription('kui-shadow', '0px 4px 20px 0px rgba(0, 0, 0, 0.08)')).toBe('')
+    expect(cleanDescription('kui-shadow-border', '0px 0px 0px 1px gray.20 inset')).toBe('')
+  })
+
+  it('preserves semantic descriptions that have no parenthetical refs', () => {
+    expect(cleanDescription('kui-color-border', 'Default border color.')).toBe('Default border color.')
+    expect(cleanDescription('kui-shadow-focus', 'Default drop shadow for focused elements.')).toBe('Default drop shadow for focused elements.')
+  })
+
+  it('returns empty string for an empty description', () => {
+    expect(cleanDescription('kui-color-background', '')).toBe('')
+  })
+})
+
 // ── buildDescriptionMap (integration — reads real source files) ───────────────
 
 describe('buildDescriptionMap', () => {
@@ -148,12 +195,18 @@ describe('buildDescriptionMap', () => {
     }
   })
 
-  it('contains expected semantic tokens with their exact descriptions', () => {
-    expect(descriptions['kui-color-background']).toBe('Default background color for containers (white).')
-    expect(descriptions['kui-border-radius-30']).toBe('6px border radius.')
+  it('cleans semantic token descriptions — strips parenthetical refs, preserves sentence', () => {
+    // Parenthetical alias ref stripped, sentence preserved
+    expect(descriptions['kui-color-background']).toBe('Default background color for containers.')
   })
 
-  it('contains expected component tokens with their exact descriptions', () => {
+  it('returns empty string for scale tokens', () => {
+    expect(descriptions['kui-border-radius-30']).toBe('')
+    expect(descriptions['kui-border-width-10']).toBe('')
+    expect(descriptions['kui-space-50']).toBe('')
+  })
+
+  it('contains expected component token descriptions', () => {
     expect(descriptions['kui-button-border-radius-medium']).toBe('Medium button border radius.')
     expect(descriptions['kui-badge-border-radius']).toBe('Badge border radius.')
     expect(descriptions['kui-input-shadow-border-focus']).toBe('Input border shadow when focused.')
