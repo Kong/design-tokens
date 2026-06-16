@@ -1,0 +1,645 @@
+{
+  "kui-badge-border-radius": {
+    "$description": "Badge border radius.",
+    "$value": "2px"
+  },
+  "kui-badge-font-family": {
+    "$description": "Badge font family.",
+    "$value": "'Syne', 'Trebuchet MS', system-ui, sans-serif"
+  },
+  "kui-badge-font-weight": {
+    "$description": "Badge font weight.",
+    "$value": "700"
+  },
+  "kui-border-radius-10": {
+    "$description": "2px border radius.",
+    "$value": "1px"
+  },
+  "kui-border-radius-20": {
+    "$description": "4px border radius.",
+    "$value": "2px"
+  },
+  "kui-border-radius-30": {
+    "$description": "6px border radius.",
+    "$value": "3px"
+  },
+  "kui-border-radius-40": {
+    "$description": "8px border radius.",
+    "$value": "4px"
+  },
+  "kui-border-radius-50": {
+    "$description": "10px border radius.",
+    "$value": "4px"
+  },
+  "kui-button-border-radius-large": {
+    "$description": "Large button border radius.",
+    "$value": "3px"
+  },
+  "kui-button-border-radius-medium": {
+    "$description": "Medium button border radius.",
+    "$value": "3px"
+  },
+  "kui-button-border-radius-small": {
+    "$description": "Small button border radius.",
+    "$value": "2px"
+  },
+  "kui-button-color-background-danger": {
+    "$description": "Danger button background color.",
+    "$value": "#c0392b"
+  },
+  "kui-button-color-background-danger-active": {
+    "$description": "Danger button background color when active.",
+    "$value": "#922b21"
+  },
+  "kui-button-color-background-danger-disabled": {
+    "$description": "Danger button background color when disabled.",
+    "$value": "#1e1b16"
+  },
+  "kui-button-color-background-danger-hover": {
+    "$description": "Danger button background color on hover.",
+    "$value": "#a93226"
+  },
+  "kui-button-color-background-primary": {
+    "$description": "Primary button background color.",
+    "$value": "#f59e0b"
+  },
+  "kui-button-color-background-primary-active": {
+    "$description": "Primary button background color when active.",
+    "$value": "#c67900"
+  },
+  "kui-button-color-background-primary-disabled": {
+    "$description": "Primary button background color when disabled.",
+    "$value": "#1e1b16"
+  },
+  "kui-button-color-background-primary-hover": {
+    "$description": "Primary button background color on hover.",
+    "$value": "#e08a00"
+  },
+  "kui-button-color-background-secondary": {
+    "$description": "Secondary button background color.",
+    "$value": "transparent"
+  },
+  "kui-button-color-background-secondary-active": {
+    "$description": "Secondary button background color when active.",
+    "$value": "#2e2410"
+  },
+  "kui-button-color-background-secondary-disabled": {
+    "$description": "Secondary button background color when disabled.",
+    "$value": "transparent"
+  },
+  "kui-button-color-background-secondary-hover": {
+    "$description": "Secondary button background color on hover.",
+    "$value": "#211a06"
+  },
+  "kui-button-color-background-tertiary": {
+    "$description": "Tertiary button background color.",
+    "$value": "transparent"
+  },
+  "kui-button-color-background-tertiary-active": {
+    "$description": "Tertiary button background color when active.",
+    "$value": "#2e2410"
+  },
+  "kui-button-color-background-tertiary-disabled": {
+    "$description": "Tertiary button background color when disabled.",
+    "$value": "transparent"
+  },
+  "kui-button-color-background-tertiary-hover": {
+    "$description": "Tertiary button background color on hover.",
+    "$value": "#211a06"
+  },
+  "kui-button-color-border-danger": {
+    "$description": "Danger button border color.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-danger-active": {
+    "$description": "Danger button border color when active.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-danger-disabled": {
+    "$description": "Danger button border color when disabled.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-danger-hover": {
+    "$description": "Danger button border color on hover.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-primary": {
+    "$description": "Primary button border color.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-primary-active": {
+    "$description": "Primary button border color when active.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-primary-disabled": {
+    "$description": "Primary button border color when disabled.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-primary-hover": {
+    "$description": "Primary button border color on hover.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-secondary": {
+    "$description": "Secondary button border color.",
+    "$value": "#f59e0b"
+  },
+  "kui-button-color-border-secondary-active": {
+    "$description": "Secondary button border color when active.",
+    "$value": "#e08a00"
+  },
+  "kui-button-color-border-secondary-disabled": {
+    "$description": "Secondary button border color when disabled.",
+    "$value": "#2e2820"
+  },
+  "kui-button-color-border-secondary-hover": {
+    "$description": "Secondary button border color on hover.",
+    "$value": "#fbbf24"
+  },
+  "kui-button-color-border-tertiary": {
+    "$description": "Tertiary button border color.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-tertiary-active": {
+    "$description": "Tertiary button border color when active.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-tertiary-disabled": {
+    "$description": "Tertiary button border color when disabled.",
+    "$value": "transparent"
+  },
+  "kui-button-color-border-tertiary-hover": {
+    "$description": "Tertiary button border color on hover.",
+    "$value": "transparent"
+  },
+  "kui-button-color-text-danger": {
+    "$description": "Danger button text color.",
+    "$value": "#ffffff"
+  },
+  "kui-button-color-text-danger-active": {
+    "$description": "Danger button text color when active.",
+    "$value": "#ffffff"
+  },
+  "kui-button-color-text-danger-disabled": {
+    "$description": "Danger button text color when disabled.",
+    "$value": "#4e4535"
+  },
+  "kui-button-color-text-danger-hover": {
+    "$description": "Danger button text color on hover.",
+    "$value": "#ffffff"
+  },
+  "kui-button-color-text-primary": {
+    "$description": "Primary button text color.",
+    "$value": "#13110e"
+  },
+  "kui-button-color-text-primary-active": {
+    "$description": "Primary button text color when active.",
+    "$value": "#13110e"
+  },
+  "kui-button-color-text-primary-disabled": {
+    "$description": "Primary button text color when disabled.",
+    "$value": "#4e4535"
+  },
+  "kui-button-color-text-primary-hover": {
+    "$description": "Primary button text color on hover.",
+    "$value": "#13110e"
+  },
+  "kui-button-color-text-secondary": {
+    "$description": "Secondary button text color.",
+    "$value": "#fbbf24"
+  },
+  "kui-button-color-text-secondary-active": {
+    "$description": "Secondary button text color when active.",
+    "$value": "#f59e0b"
+  },
+  "kui-button-color-text-secondary-disabled": {
+    "$description": "Secondary button text color when disabled.",
+    "$value": "#4e4535"
+  },
+  "kui-button-color-text-secondary-hover": {
+    "$description": "Secondary button text color on hover.",
+    "$value": "#fcd34d"
+  },
+  "kui-button-color-text-tertiary": {
+    "$description": "Tertiary button text color.",
+    "$value": "#fbbf24"
+  },
+  "kui-button-color-text-tertiary-active": {
+    "$description": "Tertiary button text color when active.",
+    "$value": "#f59e0b"
+  },
+  "kui-button-color-text-tertiary-disabled": {
+    "$description": "Tertiary button text color when disabled.",
+    "$value": "#4e4535"
+  },
+  "kui-button-color-text-tertiary-hover": {
+    "$description": "Tertiary button text color on hover.",
+    "$value": "#fcd34d"
+  },
+  "kui-button-font-weight": {
+    "$description": "Button font weight.",
+    "$value": "700"
+  },
+  "kui-button-shadow-focus": {
+    "$description": "Button focus ring shadow.",
+    "$value": "0px 0px 0px 3px rgba(245, 158, 11, 0.5)"
+  },
+  "kui-card-body-color-text": {
+    "$description": "Card body text color.",
+    "$value": "#8c7e68"
+  },
+  "kui-card-body-font-family": {
+    "$description": "Card body font family.",
+    "$value": "'Syne', 'Trebuchet MS', system-ui, sans-serif"
+  },
+  "kui-card-border-radius": {
+    "$description": "Card border radius.",
+    "$value": "3px"
+  },
+  "kui-card-color-background": {
+    "$description": "Card background color.",
+    "$value": "#1e1b16"
+  },
+  "kui-card-color-border": {
+    "$description": "Card border color.",
+    "$value": "#7a6e58"
+  },
+  "kui-card-gap": {
+    "$description": "Gap between card sections.",
+    "$value": "32px"
+  },
+  "kui-card-padding": {
+    "$description": "Card inner padding.",
+    "$value": "32px"
+  },
+  "kui-card-title-color-text": {
+    "$description": "Card title text color.",
+    "$value": "#ede8dc"
+  },
+  "kui-card-title-font-weight": {
+    "$description": "Card title font weight.",
+    "$value": "700"
+  },
+  "kui-color-background": {
+    "$description": "Default background color for containers (white).",
+    "$value": "#13110e"
+  },
+  "kui-color-background-danger": {
+    "$description": "Background color for danger actions or messages (red.60).",
+    "$value": "#c0392b"
+  },
+  "kui-color-background-danger-weakest": {
+    "$description": "Weakest background color for danger actions or messages (red.10).",
+    "$value": "#2a1210"
+  },
+  "kui-color-background-disabled": {
+    "$description": "Background color for disabled elements (gray.20).",
+    "$value": "#1e1b16"
+  },
+  "kui-color-background-inverse": {
+    "$description": "Inverse background color for containers (blue.100)",
+    "$value": "#fef3c7"
+  },
+  "kui-color-background-neutral": {
+    "$description": "Background color for neutral elements (gray.60).",
+    "$value": "#3c3528"
+  },
+  "kui-color-background-neutral-strong": {
+    "$description": "Strong background color for neutral elements (gray.70).",
+    "$value": "#4e4535"
+  },
+  "kui-color-background-neutral-stronger": {
+    "$description": "Stronger background color for neutral elements (gray.80).",
+    "$value": "#625848"
+  },
+  "kui-color-background-neutral-strongest": {
+    "$description": "Strongest background color for neutral elements (gray.90).",
+    "$value": "#7a6e58"
+  },
+  "kui-color-background-neutral-weak": {
+    "$description": "Weak background color for neutral elements (gray.40).",
+    "$value": "#2e2820"
+  },
+  "kui-color-background-neutral-weaker": {
+    "$description": "Weaker background color for neutral elements (gray.20).",
+    "$value": "#252018"
+  },
+  "kui-color-background-neutral-weakest": {
+    "$description": "Weakest background color for neutral elements (gray.10).",
+    "$value": "#1e1b16"
+  },
+  "kui-color-background-overlay": {
+    "$description": "Overlay background color (rgba(0, 9, 51, 0.6))",
+    "$value": "rgba(0, 0, 0, 0.78)"
+  },
+  "kui-color-background-primary": {
+    "$description": "Background color for primary actions or messages (blue.60).",
+    "$value": "#f59e0b"
+  },
+  "kui-color-background-primary-strong": {
+    "$description": "Strong background color for primary actions or messages (blue.70).",
+    "$value": "#e08a00"
+  },
+  "kui-color-background-primary-weakest": {
+    "$description": "Weakest background color for primary actions or messages (blue.10)",
+    "$value": "#211a06"
+  },
+  "kui-color-background-success-weakest": {
+    "$description": "Weakest background color for success elements (green.10).",
+    "$value": "#0d2010"
+  },
+  "kui-color-background-warning-weakest": {
+    "$description": "Weakest background color for warning elements (yellow.10).",
+    "$value": "#1e1806"
+  },
+  "kui-color-border": {
+    "$description": "Default border color for containers (gray.20).",
+    "$value": "#7a6e58"
+  },
+  "kui-color-border-danger": {
+    "$description": "Border color for danger actions or messages (red.60).",
+    "$value": "#c0392b"
+  },
+  "kui-color-border-disabled": {
+    "$description": "Border color for disabled elements (gray.20).",
+    "$value": "#2e2820"
+  },
+  "kui-color-border-neutral": {
+    "$description": "Border color for neutral elements (gray.60)",
+    "$value": "#7a6e58"
+  },
+  "kui-color-border-neutral-strong": {
+    "$description": "Strong border color for neutral elements (gray.70)",
+    "$value": "#9a8e78"
+  },
+  "kui-color-border-neutral-weak": {
+    "$description": "Weak border color for neutral elements (gray.40)",
+    "$value": "#5a5040"
+  },
+  "kui-color-border-neutral-weaker": {
+    "$description": "Weaker border color for neutral elements (gray.20)",
+    "$value": "#3c3528"
+  },
+  "kui-color-border-neutral-weakest": {
+    "$description": "Weakest border color for neutral elements (gray.10)",
+    "$value": "#2e2820"
+  },
+  "kui-color-border-primary": {
+    "$description": "Border color for primary actions or messages (blue.60).",
+    "$value": "#f59e0b"
+  },
+  "kui-color-border-primary-strong": {
+    "$description": "Strong border color for primary actions or messages (blue.70).",
+    "$value": "#e08a00"
+  },
+  "kui-color-text": {
+    "$description": "Default text color (blue.100).",
+    "$value": "#ede8dc"
+  },
+  "kui-color-text-danger": {
+    "$description": "Text color for danger actions or messages (red.60).",
+    "$value": "#f87171"
+  },
+  "kui-color-text-disabled": {
+    "$description": "Text color for disabled elements (gray.40).",
+    "$value": "#4e4535"
+  },
+  "kui-color-text-inverse": {
+    "$description": "Inverse text color (white).",
+    "$value": "#13110e"
+  },
+  "kui-color-text-neutral": {
+    "$description": "Text color for neutral elements (gray.60).",
+    "$value": "#8c7e68"
+  },
+  "kui-color-text-neutral-strong": {
+    "$description": "Strong text color for neutral elements (gray.70).",
+    "$value": "#b0a088"
+  },
+  "kui-color-text-neutral-stronger": {
+    "$description": "Stronger text color for neutral elements (gray.80).",
+    "$value": "#c8b89a"
+  },
+  "kui-color-text-neutral-strongest": {
+    "$description": "Strongest text color for neutral elements (gray.90).",
+    "$value": "#ddd0bc"
+  },
+  "kui-color-text-neutral-weak": {
+    "$description": "Weak text color for neutral elements (gray.40).",
+    "$value": "#6a5e4c"
+  },
+  "kui-color-text-neutral-weaker": {
+    "$description": "Weaker text color for neutral elements (gray.20).",
+    "$value": "#4e4535"
+  },
+  "kui-color-text-neutral-weakest": {
+    "$description": "Weakest text color for neutral elements (gray.10).",
+    "$value": "#3c3528"
+  },
+  "kui-color-text-primary": {
+    "$description": "Text color for primary actions or messages (blue.60).",
+    "$value": "#fbbf24"
+  },
+  "kui-color-text-primary-strong": {
+    "$description": "Strong text color for primary actions or messages (blue.70).",
+    "$value": "#f59e0b"
+  },
+  "kui-color-text-success": {
+    "$description": "Text color for success elements (green.60).",
+    "$value": "#4ade80"
+  },
+  "kui-color-text-warning": {
+    "$description": "Text color for warning elements (yellow.60).",
+    "$value": "#fbbf24"
+  },
+  "kui-font-family-code": {
+    "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.",
+    "$value": "'JetBrains Mono', 'Fira Code', 'Courier New', monospace"
+  },
+  "kui-font-family-heading": {
+    "$description": "The standard heading text font family.",
+    "$value": "'Syne', 'Trebuchet MS', system-ui, sans-serif"
+  },
+  "kui-font-family-text": {
+    "$description": "The standard text font family.",
+    "$value": "'Syne', 'Trebuchet MS', system-ui, sans-serif"
+  },
+  "kui-font-size-30": {
+    "$value": "15px"
+  },
+  "kui-font-size-40": {
+    "$value": "18px"
+  },
+  "kui-font-size-50": {
+    "$value": "20px"
+  },
+  "kui-font-size-60": {
+    "$value": "24px"
+  },
+  "kui-font-size-70": {
+    "$value": "28px"
+  },
+  "kui-font-weight-bold": {
+    "$description": "700: The bold font weight.",
+    "$value": "800"
+  },
+  "kui-font-weight-medium": {
+    "$description": "500: The medium font weight.",
+    "$value": "600"
+  },
+  "kui-font-weight-regular": {
+    "$description": "400: The normal font weight.",
+    "$value": "500"
+  },
+  "kui-font-weight-semibold": {
+    "$description": "600: The semibold font weight.",
+    "$value": "700"
+  },
+  "kui-input-border-radius": {
+    "$description": "Input border radius.",
+    "$value": "3px"
+  },
+  "kui-input-color-background": {
+    "$description": "Input background color.",
+    "$value": "#13110e"
+  },
+  "kui-input-color-background-disabled": {
+    "$description": "Input background color when disabled.",
+    "$value": "#1e1b16"
+  },
+  "kui-input-color-text": {
+    "$description": "Input text color.",
+    "$value": "#ede8dc"
+  },
+  "kui-input-color-text-disabled": {
+    "$description": "Input text color when disabled.",
+    "$value": "#4e4535"
+  },
+  "kui-input-color-text-placeholder": {
+    "$description": "Input placeholder text color.",
+    "$value": "#8c7e68"
+  },
+  "kui-input-font-family": {
+    "$description": "Input font family.",
+    "$value": "'Syne', 'Trebuchet MS', system-ui, sans-serif"
+  },
+  "kui-input-shadow-border": {
+    "$description": "Input border shadow.",
+    "$value": "0px 0px 0px 1px #7a6e58 inset"
+  },
+  "kui-input-shadow-border-disabled": {
+    "$description": "Input border shadow when disabled.",
+    "$value": "0px 0px 0px 1px #2e2820 inset"
+  },
+  "kui-input-shadow-border-error": {
+    "$description": "Input border shadow in error state.",
+    "$value": "0px 0px 0px 1px #c0392b inset"
+  },
+  "kui-input-shadow-border-error-focus": {
+    "$description": "Input border shadow in error state when focused.",
+    "$value": "0px 0px 0px 1px #e74c3c inset"
+  },
+  "kui-input-shadow-border-error-hover": {
+    "$description": "Input border shadow in error state on hover.",
+    "$value": "0px 0px 0px 1px #e74c3c inset"
+  },
+  "kui-input-shadow-border-focus": {
+    "$description": "Input border shadow when focused.",
+    "$value": "0px 0px 0px 1px #f59e0b inset"
+  },
+  "kui-input-shadow-border-hover": {
+    "$description": "Input border shadow on hover.",
+    "$value": "0px 0px 0px 1px #f59e0b inset"
+  },
+  "kui-input-shadow-focus": {
+    "$description": "Input outer focus ring shadow.",
+    "$value": "0px 0px 0px 3px rgba(245, 158, 11, 0.5)"
+  },
+  "kui-navigation-color-background": {
+    "$description": "blue.100",
+    "$value": "#13110e"
+  },
+  "kui-navigation-color-background-selected": {
+    "$description": "The background color of a selected navigation item.",
+    "$value": "#2e2820"
+  },
+  "kui-navigation-color-border": {
+    "$description": "rgba(255, 255, 255, 0.12)",
+    "$value": "#2e2820"
+  },
+  "kui-navigation-color-border-child": {
+    "$description": "The border color for a selected child navigation item.",
+    "$value": "#2e2820"
+  },
+  "kui-navigation-color-border-divider": {
+    "$description": "The color of the navigation section divider.",
+    "$value": "#3c3528"
+  },
+  "kui-navigation-color-text": {
+    "$description": "Navigation link and icon color.",
+    "$value": "#ede8dc"
+  },
+  "kui-navigation-color-text-focus": {
+    "$description": "Navigation link and icon focus-visible color.",
+    "$value": "#fbbf24"
+  },
+  "kui-navigation-color-text-hover": {
+    "$description": "Navigation link and icon hover color.",
+    "$value": "#fcd34d"
+  },
+  "kui-navigation-color-text-selected": {
+    "$description": "Navigation link and icon selected color.",
+    "$value": "#fbbf24"
+  },
+  "kui-navigation-shadow-border": {
+    "$description": "The box-shadow for a focus-visible navigation link.",
+    "$value": "0px 0px 0px 1px #3c3528 inset"
+  },
+  "kui-navigation-shadow-border-child": {
+    "$description": "The left box-shadow for an active child navigation link.",
+    "$value": "0px 0px 0px 1px #2e2820 inset"
+  },
+  "kui-navigation-shadow-focus": {
+    "$description": "Navigation link focus-visible box-shadow.",
+    "$value": "0px 0px 0px 3px rgba(245, 158, 11, 0.4)"
+  },
+  "kui-shadow": {
+    "$description": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+    "$value": "0 4px 20px rgba(0, 0, 0, 0.6)"
+  },
+  "kui-shadow-border": {
+    "$description": "0px 0px 0px 1px gray.20 inset",
+    "$value": "0px 0px 0px 1px #7a6e58 inset"
+  },
+  "kui-shadow-border-danger": {
+    "$description": "0px 0px 0px 1px red.60 inset",
+    "$value": "0px 0px 0px 1px #c0392b inset"
+  },
+  "kui-shadow-border-disabled": {
+    "$description": "0px 0px 0px 1px gray.20 inset",
+    "$value": "0px 0px 0px 1px #2e2820 inset"
+  },
+  "kui-shadow-border-primary": {
+    "$description": "0px 0px 0px 1px blue.60 inset",
+    "$value": "0px 0px 0px 1px #f59e0b inset"
+  },
+  "kui-shadow-focus": {
+    "$description": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
+    "$value": "0px 0px 0px 3px rgba(245, 158, 11, 0.5)"
+  },
+  "kui-space-40": {
+    "$description": "8px value for gaps, margin, or padding.",
+    "$value": "12px"
+  },
+  "kui-space-50": {
+    "$description": "12px value for gaps, margin, or padding.",
+    "$value": "16px"
+  },
+  "kui-space-60": {
+    "$description": "16px value for gaps, margin, or padding.",
+    "$value": "24px"
+  },
+  "kui-space-70": {
+    "$description": "20px value for gaps, margin, or padding.",
+    "$value": "28px"
+  }
+}

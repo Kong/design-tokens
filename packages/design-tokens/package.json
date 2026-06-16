@@ -8,6 +8,7 @@
     "build": "pnpm build:clean && pnpm build:tokens && pnpm copy:tokens-doc",
     "build:tokens": "style-dictionary build --config ./config.mjs",
     "build:clean": "rimraf ./dist",
+    "create-theme": "node scripts/create-theme.mjs",
     "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
     "lint": "eslint",
     "lint:fix": "eslint --fix",
@@ -15,7 +16,7 @@
     "typecheck:sandbox": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
     "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
-    "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
+    "sandbox:watch": "chokidar \"tokens/**/*.json\" \"themes/**/*.json\" -c \"pnpm build\"",
     "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
     "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
     "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
@@ -40,6 +41,37 @@
       "require": {
         "types": "./dist/tokens/js/cjs/index.d.ts",
         "default": "./dist/tokens/js/cjs/index.js"
+      }
+    },
+    "./themes": {
+      "import": {
+        "types": "./dist/themes/index.d.ts",
+        "default": "./dist/themes/index.mjs"
+      },
+      "require": {
+        "types": "./dist/themes/index.d.ts",
+        "default": "./dist/themes/index.mjs"
+      }
+    },
+    "./themes/*.css": "./dist/themes/*.css",
+    "./themes/*": {
+      "import": {
+        "types": "./dist/themes/*.d.ts",
+        "default": "./dist/themes/*.mjs"
+      },
+      "require": {
+        "types": "./dist/themes/*.d.ts",
+        "default": "./dist/themes/*.mjs"
+      }
+    },
+    "./themeable-tokens": {
+      "import": {
+        "types": "./dist/themeable-tokens.d.ts",
+        "default": "./dist/themeable-tokens.mjs"
+      },
+      "require": {
+        "types": "./dist/themeable-tokens.d.ts",
+        "default": "./dist/themeable-tokens.cjs"
       }
     },
     "./tokens/*": "./dist/tokens/*",

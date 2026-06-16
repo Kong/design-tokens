@@ -191,7 +191,7 @@ export default {
       format: 'css/variables/custom/markdown',
       destination: 'README.md',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
   ],
 }

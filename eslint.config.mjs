@@ -7,6 +7,11 @@ export default [
   ...eslintKongUiConfigJson.map(config => ({
     ...config,
     files: ['packages/*/tokens/**/*.json'],
+    rules: {
+      ...config.rules,
+      'jsonc/object-curly-newline': ['error', 'always'],
+      'jsonc/object-property-newline': ['error'],
+    },
   })),
   {
     files: [
@@ -21,6 +26,22 @@ export default [
     files: ['packages/*/tokens/source/breakpoint/**/*.json'],
     rules: {
       'jsonc/sort-keys': 'off',
+    },
+  },
+  {
+    files: ['packages/*/tokens/themes/**/*.json'],
+    rules: {
+      // Ensure themes utilize kebab-case
+      'jsonc/key-name-casing': ['error',
+        {
+          camelCase: false,
+          PascalCase: false,
+          SCREAMING_SNAKE_CASE: false,
+          'kebab-case': true,
+          snake_case: false,
+          ignores: [],
+        },
+      ],
     },
   },
 ]

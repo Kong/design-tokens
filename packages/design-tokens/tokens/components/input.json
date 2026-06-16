@@ -1,0 +1,111 @@
+{
+  "input": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Input border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Input background color.",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Input background color when disabled.",
+          "$value": ""
+        },
+        "readonly": {
+          "$description": "Input background color when read-only.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "_": {
+          "$description": "Input text color.",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Input text color when disabled.",
+          "$value": ""
+        },
+        "placeholder": {
+          "$description": "Input placeholder text color.",
+          "$value": ""
+        },
+        "readonly": {
+          "$description": "Input text color when read-only.",
+          "$value": ""
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Input font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Input font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Input font weight.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Input line height.",
+      "$value": ""
+    },
+    "padding": {
+      "x": {
+        "$description": "Input horizontal padding.",
+        "$value": ""
+      },
+      "y": {
+        "$description": "Input vertical padding.",
+        "$value": ""
+      }
+    },
+    "shadow": {
+      "border": {
+        "_": {
+          "$description": "Input border shadow.",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Input border shadow when disabled.",
+          "$value": ""
+        },
+        "error": {
+          "_": {
+            "$description": "Input border shadow in error state.",
+            "$value": ""
+          },
+          "focus": {
+            "$description": "Input border shadow in error state when focused.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Input border shadow in error state on hover.",
+            "$value": ""
+          }
+        },
+        "focus": {
+          "$description": "Input border shadow when focused.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Input border shadow on hover.",
+          "$value": ""
+        }
+      },
+      "focus": {
+        "$description": "Input outer focus ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

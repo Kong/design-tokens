@@ -5,10 +5,16 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST_DIR = join(__dirname, 'dist/tokens')
+const DIST_ROOT = join(__dirname, 'dist')
 
 /** @param {string} relativePath */
 async function distFile(relativePath) {
   return readFile(join(DIST_DIR, relativePath), 'utf-8')
+}
+
+/** @param {string} relativePath */
+async function distRootFile(relativePath) {
+  return readFile(join(DIST_ROOT, relativePath), 'utf-8')
 }
 
 const EXPECTED_DIST_FILES = [
@@ -539,6 +545,22 @@ describe('@kong/design-tokens build artifacts', () => {
   // Cross-format consistency
   // ---------------------------------------------------------------------------
 
+  describe('component tokens are excluded from semantic outputs', () => {
+    it('component tokens do not appear in custom-properties.css', () => {
+      expect(cssVars).not.toMatch(/--kui-button-/)
+      expect(cssVars).not.toMatch(/--kui-card-/)
+      expect(cssVars).not.toMatch(/--kui-input-/)
+      expect(cssVars).not.toMatch(/--kui-badge-/)
+    })
+
+    it('component tokens do not appear in js/index.mjs', () => {
+      expect(jsEsm).not.toMatch(/KUI_BUTTON_/)
+      expect(jsEsm).not.toMatch(/KUI_CARD_/)
+      expect(jsEsm).not.toMatch(/KUI_INPUT_/)
+      expect(jsEsm).not.toMatch(/KUI_BADGE_/)
+    })
+  })
+
   describe('cross-format consistency', () => {
     it('all formats export the same number of tokens', () => {
       const cssCount = (cssVars.match(/^\s+--kui-[a-z]/gm) || []).length
@@ -589,5 +611,230 @@ describe('@kong/design-tokens build artifacts', () => {
       const dtsCount = (jsDts.match(/^export const KUI_/gm) || []).length
       expect(dtsCount).toBe(esmCount)
     })
+  })
+})
+
+// ---------------------------------------------------------------------------
+// dist/themeable-tokens.mjs / .cjs / .d.ts
+// ---------------------------------------------------------------------------
+
+describe('dist/themeable-tokens (full themed surface)', () => {
+  /** @type {string} */
+  let themeableTokensMjs
+  /** @type {string} */
+  let themeableTokensCjs
+  /** @type {string} */
+  let themeableTokensDts
+
+  beforeAll(async () => {
+    ;[themeableTokensMjs, themeableTokensCjs, themeableTokensDts] = await Promise.all([
+      distRootFile('themeable-tokens.mjs'),
+      distRootFile('themeable-tokens.cjs'),
+      distRootFile('themeable-tokens.d.ts'),
+    ]).catch((err) => {
+      if (err.code === 'ENOENT') {
+        throw new Error(`dist/themeable-tokens.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
+      }
+      throw err
+    })
+  })
+
+  it('ESM exports KUI_THEMEABLE_TOKENS as a named const', () => {
+    expect(themeableTokensMjs).toContain('export const KUI_THEMEABLE_TOKENS = [')
+  })
+
+  it('CJS exports KUI_THEMEABLE_TOKENS via module.exports', () => {
+    expect(themeableTokensCjs).toContain('module.exports = { KUI_THEMEABLE_TOKENS }')
+  })
+
+  it('d.ts declares KUI_THEMEABLE_TOKENS as a typed readonly tuple (not string[])', () => {
+    expect(themeableTokensDts).toContain('export declare const KUI_THEMEABLE_TOKENS: readonly [')
+    expect(themeableTokensDts).not.toContain('readonly string[]')
+  })
+
+  it('contains semantic tokens', () => {
+    expect(themeableTokensMjs).toContain('--kui-color-text-primary')
+    expect(themeableTokensMjs).toContain('--kui-border-radius-30')
+    expect(themeableTokensMjs).toContain('--kui-shadow-focus')
+  })
+
+  it('contains component tokens', () => {
+    expect(themeableTokensMjs).toContain('--kui-button-')
+    expect(themeableTokensMjs).toContain('--kui-card-')
+    expect(themeableTokensMjs).toContain('--kui-input-')
+    expect(themeableTokensMjs).toContain('--kui-badge-')
+  })
+
+  it('excludes breakpoint tokens', () => {
+    const names = [...themeableTokensMjs.matchAll(/'(--kui-[^']+)'/g)].map(([, n]) => n)
+    for (const name of names) {
+      expect(name, `breakpoint token "${name}" should not be in KUI_THEMEABLE_TOKENS`).not.toMatch(/^--kui-breakpoint-/)
+    }
+  })
+
+  it('all entries follow the --kui-* naming convention', () => {
+    const names = [...themeableTokensMjs.matchAll(/'(--kui-[^']+)'/g)].map(([, n]) => n)
+    expect(names.length).toBeGreaterThan(0)
+    for (const name of names) {
+      expect(name, `"${name}" does not start with --kui-`).toMatch(/^--kui-[a-z]/)
+    }
+  })
+
+  it('list is alphabetically sorted', () => {
+    const names = [...themeableTokensMjs.matchAll(/'(--kui-[^']+)'/g)].map(([, n]) => n)
+    const sorted = [...names].sort((a, b) => a.localeCompare(b))
+    expect(names).toEqual(sorted)
+  })
+
+  it('d.ts documents the breakpoint exclusion reason', () => {
+    expect(themeableTokensDts).toContain('@media feature queries')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// tokens/components/ — source-level enforcement
+// ---------------------------------------------------------------------------
+
+describe('tokens/components/ (source enforcement)', () => {
+  const COMPONENT_DIR = join(__dirname, 'tokens/components')
+
+  /**
+   * Recursively collect every token leaf (object with a `$value` key) from a
+   * parsed DTCG token tree, returning `{ path, value }` pairs.
+   * @param {object} obj
+   * @param {string} filePath - Used in assertion messages.
+   * @param {string[]} path
+   * @param {Array<{ tokenPath: string, value: unknown }>} acc
+   */
+  function collectTokenValues(obj, filePath, path = [], acc = []) {
+    if (typeof obj !== 'object' || obj === null) return acc
+    if ('$value' in obj) {
+      acc.push({ tokenPath: `${filePath}:${path.join('.')}`, value: obj.$value })
+      return acc
+    }
+    for (const [key, child] of Object.entries(obj)) {
+      if (!key.startsWith('$')) collectTokenValues(child, filePath, [...path, key], acc)
+    }
+    return acc
+  }
+
+  it('every component token has an empty string $value (value-less by design)', async () => {
+    const { readdir } = await import('node:fs/promises')
+    const files = await readdir(COMPONENT_DIR)
+    const jsonFiles = files.filter(f => f.endsWith('.json'))
+    expect(jsonFiles.length, 'no component token files found').toBeGreaterThan(0)
+
+    const violations = []
+    await Promise.all(
+      jsonFiles.map(async file => {
+        const parsed = JSON.parse(await readFile(join(COMPONENT_DIR, file), 'utf-8'))
+        const tokens = collectTokenValues(parsed, file)
+        for (const { tokenPath, value } of tokens) {
+          if (value !== '') {
+            violations.push(`${tokenPath} → ${JSON.stringify(value)} (must be "")`)
+          }
+        }
+      }),
+    )
+
+    expect(
+      violations,
+      `Component tokens must be value-less (empty string $value). Violations:\n${violations.join('\n')}`,
+    ).toHaveLength(0)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// dist/themes/
+// ---------------------------------------------------------------------------
+
+const THEME_NAMES = ['konnect-light', 'konnect-dark', 'brand-a', 'brand-b']
+
+describe('dist/themes/', () => {
+  /** @type {Record<string, { css: string, mjs: string, dts: string }>} */
+  const themes = {}
+
+  beforeAll(async () => {
+    await Promise.all(
+      THEME_NAMES.map(async (name) => {
+        const [css, mjs, dts] = await Promise.all([
+          distRootFile(`themes/${name}.css`),
+          distRootFile(`themes/${name}.mjs`),
+          distRootFile(`themes/${name}.d.ts`),
+        ]).catch((err) => {
+          if (err.code === 'ENOENT') {
+            throw new Error(`dist/themes/${name}.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
+          }
+          throw err
+        })
+        themes[name] = { css, mjs, dts }
+      }),
+    )
+  })
+
+  it('generates CSS, MJS, and d.ts for each theme', () => {
+    for (const name of THEME_NAMES) {
+      expect(themes[name].css.length, `${name}.css is empty`).toBeGreaterThan(0)
+      expect(themes[name].mjs.length, `${name}.mjs is empty`).toBeGreaterThan(0)
+      expect(themes[name].dts.length, `${name}.d.ts is empty`).toBeGreaterThan(0)
+    }
+  })
+
+  it('CSS files use @layer kui.theme with [data-kui-theme] selector', () => {
+    for (const name of THEME_NAMES) {
+      expect(themes[name].css, `${name}.css missing @layer`).toContain('@layer kui.theme {')
+      expect(themes[name].css, `${name}.css missing data-kui-theme selector`).toContain(`[data-kui-theme="${name}"]`)
+    }
+  })
+
+  it('CSS files contain only resolved values (no DTCG references or var() calls)', () => {
+    for (const name of THEME_NAMES) {
+      expect(themes[name].css, `${name}.css has unresolved {…} DTCG reference`).not.toMatch(/\{[a-z]/)
+      expect(themes[name].css, `${name}.css has residual var(--kui-color-alias`).not.toContain('var(--kui-color-alias')
+      expect(themes[name].css, `${name}.css has undefined values (token.$value not token.value)`).not.toContain(': undefined;')
+    }
+  })
+
+  it('CSS files contain concrete token values (spot-check)', () => {
+    const css = themes['konnect-light'].css
+    // At least some color values should be hex
+    expect(css).toMatch(/#[0-9a-fA-F]{3,8}/)
+    // At least some size values should be px or rem
+    expect(css).toMatch(/\d+px|\d+rem/)
+  })
+
+  it('MJS files export the named theme object (no "Theme" suffix)', () => {
+    const expectedExportNames = {
+      'konnect-light': 'konnectLight',
+      'konnect-dark': 'konnectDark',
+      'brand-a': 'brandA',
+      'brand-b': 'brandB',
+    }
+    for (const name of THEME_NAMES) {
+      expect(themes[name].mjs, `${name}.mjs missing named export`).toContain(
+        `export const ${expectedExportNames[name]}`,
+      )
+      expect(themes[name].mjs, `${name}.mjs should not use "Theme" suffix`).not.toContain(
+        `export const ${expectedExportNames[name]}Theme`,
+      )
+    }
+  })
+
+  it('d.ts files declare the theme as Readonly<Record<string, string>>', () => {
+    for (const name of THEME_NAMES) {
+      expect(themes[name].dts, `${name}.d.ts missing type declaration`).toContain(
+        'Readonly<Record<string, string>>',
+      )
+    }
+  })
+
+  it('index.mjs re-exports all four themes without "Theme" suffix', async () => {
+    const indexMjs = await distRootFile('themes/index.mjs')
+    expect(indexMjs).toContain('konnectLight')
+    expect(indexMjs).toContain('konnectDark')
+    expect(indexMjs).toContain('brandA')
+    expect(indexMjs).toContain('brandB')
+    expect(indexMjs).not.toContain('konnectLightTheme')
+    expect(indexMjs).not.toContain('brandATheme')
   })
 })

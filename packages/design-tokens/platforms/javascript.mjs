@@ -18,7 +18,7 @@ export default {
       format: 'javascript/es6',
       destination: 'index.mjs',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
     // Constants TypeScript types
     {
@@ -28,14 +28,14 @@ export default {
         outputStringLiterals: true,
       },
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
     // JavaScript CommonJS
     {
       format: 'javascript/module-flat',
       destination: 'cjs/index.js',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
     // CommonJS types
     {
@@ -45,7 +45,7 @@ export default {
         outputStringLiterals: true,
       },
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
   ],
 }

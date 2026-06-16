@@ -2,6 +2,11 @@
 
 Kong Design Tokens for Konnect, via [Style Dictionary](https://github.com/amzn/style-dictionary).
 
+- [Token Tiers](#token-tiers)
+  - [Semantic tokens](#semantic-tokens)
+  - [Component tokens — names only, value-less](#component-tokens--names-only-value-less)
+  - [Themeable token list](#themeable-token-list)
+- [Themes](#themes)
 - [Tokens](#tokens)
   - [Token Formats](#token-formats)
   - [SCSS](#scss)
@@ -12,8 +17,11 @@ Kong Design Tokens for Konnect, via [Style Dictionary](https://github.com/amzn/s
   - [Installation](#installation)
   - [Standalone components](#standalone-components)
   - [Host applications](#host-applications)
+  - [Kongponents](#kongponents)
 - [Updating Tokens & Local Development](#updating-tokens--local-development)
+  - [Directory structure](#directory-structure)
   - [Token Requirements](#token-requirements)
+  - [Creating a new theme](#creating-a-new-theme)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
   - [Build for production](#build-for-production)
@@ -22,9 +30,94 @@ Kong Design Tokens for Konnect, via [Style Dictionary](https://github.com/amzn/s
   - [Approvals](#approvals)
   - [Package Publishing](#package-publishing)
 
-## Tokens
+## Token Tiers
 
-All design tokens **must** be placed inside of the `packages/design-tokens/tokens/` directory in one of two sub-directories.
+The `@kong/design-tokens` package uses a two-tier exported token taxonomy.
+
+| Tier | Source directory | Examples | Exported as |
+|------|-----------------|----------|-------------|
+| **Semantic** | `tokens/source/**` | `--kui-color-background-primary`, `--kui-space-40`, `--kui-border-radius-30`, `--kui-method-color-background-get` | CSS custom properties, SCSS/LESS variables, JS constants |
+| **Component** | `tokens/components/**` | `--kui-button-border-radius-medium`, `--kui-button-color-background-primary`, `--kui-button-shadow-focus` | `KUI_COMPONENT_TOKENS` name array only — **no CSS value** |
+
+> **Alias tokens** (`tokens/alias/**`) form a third internal directory. They hold the raw palette values (hex colors, base sizes) that semantic tokens reference. They are **never exported** — they exist only so Style Dictionary can resolve `{color.alias.blue.100}` references at build time.
+
+### Semantic tokens
+
+Everything in `tokens/source/` is a semantic token — it has a concrete value and is exported to all formats (CSS, SCSS, LESS, JS). This includes:
+
+- **Scale tokens** — `--kui-color-*`, `--kui-space-*`, `--kui-border-radius-*`, `--kui-shadow-*`, `--kui-font-*`, etc. Named after the design dimension they represent.
+- **Domain tokens** (`tokens/source/domain/`) — `--kui-method-*`, `--kui-status-*`, `--kui-navigation-*`, `--kui-icon-*`. Named after a cross-cutting UI concept (HTTP methods, status codes, navigation chrome). Valued and exported exactly like scale tokens. **These are not component tokens** even though they're used inside components.
+
+### Component tokens — names only, value-less
+
+Component tokens (`--kui-button-*`, `--kui-card-*`, `--kui-input-*`, `--kui-badge-*`, …) live in `tokens/components/` and are **declared without any CSS value** — they are purely override slots. Every Kongponents component uses them in a `var()` fallback chain:
+
+```scss
+border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30, $kui-border-radius-30));
+//                 ↑ component token (empty by default)   ↑ semantic fallback        ↑ SCSS literal
+```
+
+When a theme writes `--kui-button-border-radius-medium: 999px`, only buttons go pill-shaped. Inputs and other components keep their semantic default. When no theme writes the token, `var()` falls through to the semantic default — **byte-identical to the un-themed render**.
+
+Import the full registry of component token names from the `./component-tokens` subpath (useful for tooling and contract generation):
+
+```ts
+import { KUI_COMPONENT_TOKENS } from '@kong/design-tokens/component-tokens'
+// KUI_COMPONENT_TOKENS: string[] — all '--kui-<component>-*' names, no values
+```
+
+### Themeable token list
+
+The `./themeable-tokens` subpath exports `KUI_THEMEABLE_TOKENS` — a typed `readonly` tuple of every `--kui-*` custom property name that a theme may meaningfully override. It combines both semantic tokens and value-less component tokens.
+
+```ts
+import { KUI_THEMEABLE_TOKENS } from '@kong/design-tokens/themeable-tokens'
+
+// Derive a union type of all valid theme keys:
+type ThemeToken = typeof KUI_THEMEABLE_TOKENS[number]
+```
+
+**Breakpoint tokens are intentionally excluded.** `--kui-breakpoint-*` tokens are available as CSS custom properties and SCSS variables, but they cannot be consumed inside CSS `@media` feature queries — that is, `@media (min-width: var(--kui-breakpoint-md))` is invalid CSS. Kongponents uses breakpoints exclusively in `@media` rules, so overriding them via a theme has no effect on responsive behavior. Set breakpoints at the SCSS level instead if your project needs custom breakpoint values.
+
+## Themes
+
+Pre-built theme CSS files activate a complete set of token overrides via a `data-kui-theme` attribute on any element. Load a theme CSS file and then set the attribute on the root element (or any subtree element):
+
+```html
+<!-- In your HTML template or equivalent -->
+<html data-kui-theme="konnect-light">
+```
+
+```ts
+// Load the theme CSS — webpack/Vite will bundle it
+import '@kong/design-tokens/themes/konnect-light.css'
+
+// Switch the active theme at runtime
+document.documentElement.setAttribute('data-kui-theme', 'konnect-dark')
+```
+
+Available themes: `konnect-light`, `konnect-dark`, `brand-a`, `brand-b`.
+
+Each theme CSS file uses `@layer kui.theme { [data-kui-theme="name"] { ... } }`. This means customer `:root {}` overrides (which are **unlayered**) beat the theme automatically — no `!important` or special selectors needed.
+
+To respond to the system dark-mode preference, listen to the `prefers-color-scheme` media query in JS:
+
+```ts
+const mq = window.matchMedia('(prefers-color-scheme: dark)')
+const applyColorScheme = (dark: boolean) =>
+  document.documentElement.setAttribute('data-kui-theme', dark ? 'konnect-dark' : 'konnect-light')
+
+applyColorScheme(mq.matches)
+mq.addEventListener('change', e => applyColorScheme(e.matches))
+```
+
+You can also import the theme objects as JavaScript for runtime composition or for use with Kongponents' `applyTheme` / `defineKongponentsTheme`:
+
+```ts
+import { konnectLight, konnectDark, brandA, brandB } from '@kong/design-tokens/themes'
+```
+
+## Tokens
 
 [View the lists of available tokens here](TOKENS.md), or keep reading for more information.
 
@@ -249,6 +342,55 @@ Typically, a host application should only utilize the SCSS and/or JavaScript var
 </style>
 ```
 
+#### Kongponents
+
+[Kongponents](https://kongponents.konghq.com) ships its own `defineKongponentsTheme` helper that validates a theme object against the full typed token surface at authoring time. To use a pre-built design-tokens theme in Kongponents, wrap it with `defineKongponentsTheme`:
+
+```ts
+// my-app-theme.ts
+import { konnectLight } from '@kong/design-tokens/themes'
+import { defineKongponentsTheme } from '@kong/kongponents'
+
+export const myTheme = defineKongponentsTheme({
+  ...konnectLight,           // spread the base theme
+  '--kui-button-border-radius-medium': '999px',  // then override specific tokens
+})
+```
+
+Register the theme at app startup via the Kongponents plugin:
+
+```ts
+// main.ts
+import { createApp } from 'vue'
+import Kongponents from '@kong/kongponents'
+import { myTheme } from './my-app-theme'
+import App from './App.vue'
+
+createApp(App)
+  .use(Kongponents, { theme: myTheme })
+  .mount('#app')
+```
+
+Or apply a theme to a specific subtree at runtime using `KThemeProvider`:
+
+```vue
+<template>
+  <KThemeProvider :theme="myTheme">
+    <!-- everything here renders with myTheme active -->
+  </KThemeProvider>
+</template>
+```
+
+For per-tenant runtime composition (e.g. theme values fetched from an API), use `applyTheme` from `@kong/kongponents`:
+
+```ts
+import { applyTheme } from '@kong/kongponents'
+import { konnectLight } from '@kong/design-tokens/themes'
+
+// Merge the base theme with tenant-specific overrides, then apply to :root
+applyTheme({ ...konnectLight, ...tenantOverrides })
+```
+
 #### Server-Side Rendering (SSR)
 
 If your host application utilizes SSR, you may need to resolve aliases to the package exports.
@@ -276,22 +418,26 @@ To get started, install the package dependencies from the repo root:
 pnpm install
 ```
 
+### Directory structure
+
+The package is organized around four top-level source directories:
+
+| Directory | Purpose |
+|-----------|---------|
+| `tokens/alias/` | **Internal alias palette** — raw CSS values (hex colors, base sizes) that semantic tokens reference via `{color.alias.*}`. Never exported in any build output; only used so Style Dictionary can resolve references at build time. |
+| `tokens/source/` | **Semantic tokens** — scale and domain tokens that are exported to `custom-properties.css`, SCSS, LESS, and JS. Subdirectories: `color/`, `space/`, `shadow/`, `font/`, `border/`, `animation/`, `breakpoint/`, `letter-spacing/`, `line-height/`, plus `domain/` for HTTP-method, status, navigation, and icon token families. |
+| `tokens/components/` | **Component tokens** — name-only override slots for Kongponents components (`button/`, `card/`, `input/`, `badge/`, …). All `$value` fields must be `""`. Exported only as the `KUI_COMPONENT_TOKENS` name array — no CSS, no SCSS/LESS/JS values. |
+| `themes/` | **Named theme override sets** — each `{name}.json` lists the token values that activate for `[data-kui-theme="{name}"]`. Values may be raw hex or `{color.alias.*}` references resolved at build time. |
+
 ### Token Requirements
 
-- Tokens **must** be defined in the corresponding JSON files within the `packages/design-tokens/tokens/` directory in one of two sub-directories:
-
-    Directory | Description
-    ---------|----------
-    `/tokens/alias` | The `alias` directory **must** only contain alias values that point directly to a raw CSS value. Any tokens defined within the `alias` directory **will not** be exposed in the package exports. Tokens defined in the `/tokens/alias/` directory can be utilized/referenced within the `/tokens/source/` files; however, these tokens will **NOT** be exported in the build files.
-    `/tokens/source` | The `source` directory contains all tokens that **will be** available for consumption from the package exports.
-
 - Token keys **must** be lowercase, snake_case, and defined in normal alphabetical order (rules enforced by the eslint config)
-- The `category` of each token should be its own directory (e.g. `tokens/color/`)
-- Each `type` of token should be a file in the `category` directory, named `{type}.json` (e.g. `tokens/color/background.json`)
-- If there is only a single `type` of token within a `category`, you **should** name the file `index.json` (e.g. `tokens/line-height/index.json`)
-- Component tokens **must** be defined within the `/tokens/source/components/` directory. All tokens for a component should be defined in a single JSON file, `{component-name}.json`, with the name of the component as the top-level property in the file.
-- Token aliases (e.g. color aliases) **must not** be exposed/exported from the package exports
+- The `category` of each token should be its own directory (e.g. `tokens/source/color/`)
+- Each `type` of token should be a file in the `category` directory, named `{type}.json` (e.g. `tokens/source/color/background.json`)
+- If there is only a single `type` of token within a `category`, you **should** name the file `index.json` (e.g. `tokens/source/line-height/index.json`)
+- Alias tokens (`tokens/alias/`) **must not** be exposed/exported from the package exports
 - Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens.
+- Component tokens in `tokens/components/` **must always have `$value: ""`** — they are name-only slots with no CSS value. A non-empty `$value` is a build violation caught by the test suite.
 
     <details>
 
@@ -302,17 +448,17 @@ pnpm install
       "color": {
         "text": {
           "_": {
-            "comment": "blue-100",
-            "value": "{color.alias.blue.100}"
+            "$description": "Default text color.",
+            "$value": "{color.alias.blue.100}"
           },
           "neutral": {
             "_": {
-              "comment": "gray-100",
-              "value": "{color.alias.gray.60}"
+              "$description": "Neutral text color.",
+              "$value": "{color.alias.gray.60}"
             },
             "strong": {
-              "comment": "gray-70",
-              "value": "{color.alias.gray.70}"
+              "$description": "Strong neutral text color.",
+              "$value": "{color.alias.gray.70}"
             }
           }
         }
@@ -328,6 +474,22 @@ pnpm install
     ```
 
     </details>
+
+### Creating a new theme
+
+Use the `create-theme` script to scaffold a new theme file from the current `KUI_THEMEABLE_TOKENS` list. The script reads the built `dist/themeable-tokens.mjs` to get the canonical token list, and sources `$description` text from the actual token metadata.
+
+```sh
+# Scaffold an empty theme (all $value fields are "")
+pnpm create-theme my-brand
+
+# Start from a copy of an existing theme's values
+pnpm create-theme my-brand --from konnect-light
+```
+
+This creates `themes/my-brand.json`. The next build picks it up automatically — no code change is required.
+
+> **Prerequisites:** Run `pnpm build` at least once before running `create-theme` so `dist/themeable-tokens.mjs` exists.
 
 ### Development Sandbox
 
@@ -345,7 +507,7 @@ Or from within this package directory:
 pnpm sandbox
 ```
 
-This command will simultaneously start the Vite dev server and initialize a watcher on the `tokens/` directory. If any files in the `tokens/` directory are modified, the sandbox will automatically run the build command to update the tokens and then restart the Vite dev server (simulating hot module reload).
+This command simultaneously starts the Vite dev server and watches both the `tokens/` and `themes/` directories. Changes to either trigger a rebuild and restart the Vite dev server.
 
 Updating any files within the sandbox itself will also trigger hot module reload as expected.
 
@@ -399,7 +561,7 @@ For example, if I want to add a new `my-feature` folder, I'd update the `exports
 
 1. Ensure you are on the `main` branch, then pull down the latest code by running `git checkout main && git pull origin main`
 2. Checkout a new branch for your changes with `git checkout -b {type}/{jira-ticket}-{description}` — as an example, `git checkout feat/khcp-1234-add-color-tokens`
-3. Add/edit the tokens in the `packages/design-tokens/tokens/` directory as needed, ensuring to adhere to the [Token Requirements](#token-requirements)
+3. Add/edit the tokens in the `tokens/` or `themes/` directory as needed, ensuring to adhere to the [Token Requirements](#token-requirements)
 4. Before committing your changes, locally run `pnpm lint` to ensure you do not have any linting errors. If you have errors, you can try running `pnpm lint:fix` to resolve
 5. Commit your changes, adhering to [Conventional Commits](#committing-changes). To make this easier, you're encouraged to run `pnpm commit` from the repo root to help build your commit message
 6. Push your branch up to the remote with `git push origin {branch-name}`
