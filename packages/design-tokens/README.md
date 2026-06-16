@@ -37,7 +37,7 @@ The `@kong/design-tokens` package uses a two-tier exported token taxonomy.
 | Tier | Source directory | Examples | Exported as |
 |------|-----------------|----------|-------------|
 | **Semantic** | `tokens/source/**` | `--kui-color-background-primary`, `--kui-space-40`, `--kui-border-radius-30`, `--kui-method-color-background-get` | CSS custom properties, SCSS/LESS variables, JS constants |
-| **Component** | `tokens/components/**` | `--kui-button-border-radius-medium`, `--kui-button-color-background-primary`, `--kui-button-shadow-focus` | `KUI_COMPONENT_TOKENS` name array only — **no CSS value** |
+| **Component** | `tokens/components/**` | `--kui-button-border-radius-medium`, `--kui-button-color-background-primary`, `--kui-button-shadow-focus` | Included in `KUI_THEMEABLE_TOKENS` — **no CSS value** |
 
 > **Alias tokens** (`tokens/alias/**`) form a third internal directory. They hold the raw palette values (hex colors, base sizes) that semantic tokens reference. They are **never exported** — they exist only so Style Dictionary can resolve `{color.alias.blue.100}` references at build time.
 
@@ -58,13 +58,6 @@ border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30
 ```
 
 When a theme writes `--kui-button-border-radius-medium: 999px`, only buttons go pill-shaped. Inputs and other components keep their semantic default. When no theme writes the token, `var()` falls through to the semantic default — **byte-identical to the un-themed render**.
-
-Import the full registry of component token names from the `./component-tokens` subpath (useful for tooling and contract generation):
-
-```ts
-import { KUI_COMPONENT_TOKENS } from '@kong/design-tokens/component-tokens'
-// KUI_COMPONENT_TOKENS: string[] — all '--kui-<component>-*' names, no values
-```
 
 ### Themeable token list
 
@@ -426,7 +419,7 @@ The package is organized around four top-level source directories:
 |-----------|---------|
 | `tokens/alias/` | **Internal alias palette** — raw CSS values (hex colors, base sizes) that semantic tokens reference via `{color.alias.*}`. Never exported in any build output; only used so Style Dictionary can resolve references at build time. |
 | `tokens/source/` | **Semantic tokens** — scale and domain tokens that are exported to `custom-properties.css`, SCSS, LESS, and JS. Subdirectories: `color/`, `space/`, `shadow/`, `font/`, `border/`, `animation/`, `breakpoint/`, `letter-spacing/`, `line-height/`, plus `domain/` for HTTP-method, status, navigation, and icon token families. |
-| `tokens/components/` | **Component tokens** — name-only override slots for Kongponents components (`button/`, `card/`, `input/`, `badge/`, …). All `$value` fields must be `""`. Exported only as the `KUI_COMPONENT_TOKENS` name array — no CSS, no SCSS/LESS/JS values. |
+| `tokens/components/` | **Component tokens** — name-only override slots for Kongponents components (`button/`, `card/`, `input/`, `badge/`, …). All `$value` fields must be `""`. Included in `KUI_THEMEABLE_TOKENS` — no CSS, no SCSS/LESS/JS values emitted. |
 | `themes/` | **Named theme override sets** — each `{name}.json` lists the token values that activate for `[data-kui-theme="{name}"]`. Values may be raw hex or `{color.alias.*}` references resolved at build time. |
 
 ### Token Requirements
