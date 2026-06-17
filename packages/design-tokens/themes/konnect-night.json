@@ -37,7 +37,7 @@
   },
   "kui-alert-color-text-decorative-hover": {
     "$description": "Decorative alert text color on hover.",
-    "$value": "{color.alias.purple.73}"
+    "$value": "{color.alias.purple.20}"
   },
   "kui-alert-color-text-info": {
     "$description": "Info alert text color.",
@@ -89,7 +89,7 @@
   },
   "kui-badge-border-radius": {
     "$description": "Badge border radius.",
-    "$value": "6px"
+    "$value": "100px"
   },
   "kui-badge-color-background-danger": {
     "$description": "Danger badge background color.",
@@ -101,7 +101,7 @@
   },
   "kui-badge-color-background-info": {
     "$description": "Info badge background color.",
-    "$value": "{color.alias.blue.95}"
+    "$value": "{color.alias.blue.87}"
   },
   "kui-badge-color-background-neutral": {
     "$description": "Neutral badge background color.",
@@ -125,11 +125,11 @@
   },
   "kui-badge-color-text-decorative": {
     "$description": "Decorative badge text color.",
-    "$value": "{color.alias.purple.35}"
+    "$value": "{color.alias.purple.25}"
   },
   "kui-badge-color-text-decorative-hover": {
     "$description": "Decorative badge text color on hover.",
-    "$value": "{color.alias.purple.25}"
+    "$value": "{color.alias.purple.20}"
   },
   "kui-badge-color-text-disabled": {
     "$description": "Disabled badge text color.",
@@ -137,11 +137,11 @@
   },
   "kui-badge-color-text-info": {
     "$description": "Info badge text color.",
-    "$value": "{color.alias.blue.37}"
+    "$value": "{color.alias.blue.25}"
   },
   "kui-badge-color-text-info-hover": {
     "$description": "Info badge text color on hover.",
-    "$value": "{color.alias.blue.28}"
+    "$value": "{color.alias.blue.17}"
   },
   "kui-badge-color-text-neutral": {
     "$description": "Neutral badge text color.",
@@ -193,7 +193,7 @@
   },
   "kui-badge-padding-x": {
     "$description": "Badge horizontal padding.",
-    "$value": "8px"
+    "$value": "12px"
   },
   "kui-badge-padding-y": {
     "$description": "Badge vertical padding.",
@@ -665,9 +665,6 @@
     "$description": "Weakest background color for decorative purposes.",
     "$value": "{color.alias.aqua.72}"
   },
-  "kui-color-background-decorative-pink-weakest": {
-    "$value": "{color.alias.pink.75}"
-  },
   "kui-color-background-decorative-purple": {
     "$description": "Background color for decorative purposes.",
     "$value": "{color.alias.purple.77}"
@@ -864,9 +861,6 @@
     "$description": "Weakest border color for danger actions or messages.",
     "$value": "{color.alias.red.93}"
   },
-  "kui-color-border-decorative-aqua-weaker": {
-    "$value": "{color.alias.aqua.72}"
-  },
   "kui-color-border-decorative-purple": {
     "$description": "Border color for decorative purposes.",
     "$value": "{color.alias.purple.35}"
@@ -988,9 +982,6 @@
   "kui-color-text-disabled": {
     "$description": "Text color for disabled elements.",
     "$value": "{color.alias.gray.45}"
-  },
-  "kui-color-text-fixed-light": {
-    "$value": "{color.alias.white}"
   },
   "kui-color-text-info": {
     "$description": "Text color for info elements.",
@@ -1487,9 +1478,6 @@
     "$description": "Background color for the CONNECT method.",
     "$value": "{color.alias.purple.85}"
   },
-  "kui-method-color-background-custom": {
-    "$value": "{color.alias.gray.73}"
-  },
   "kui-method-color-background-delete": {
     "$description": "Background color for the DELETE method.",
     "$value": "{color.alias.red.93}"
@@ -1529,12 +1517,6 @@
   "kui-method-color-text-connect-strong": {
     "$description": "Strong text color for the CONNECT method.",
     "$value": "{color.alias.purple.45}"
-  },
-  "kui-method-color-text-custom": {
-    "$value": "{color.alias.gray.05}"
-  },
-  "kui-method-color-text-custom-strong": {
-    "$value": "{color.alias.gray.13}"
   },
   "kui-method-color-text-delete": {
     "$description": "Text color for the DELETE method.",

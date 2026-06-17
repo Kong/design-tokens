@@ -89,7 +89,7 @@
   },
   "kui-badge-border-radius": {
     "$description": "Badge border radius.",
-    "$value": "6px"
+    "$value": "100px"
   },
   "kui-badge-color-background-danger": {
     "$description": "Danger badge background color.",
@@ -193,7 +193,7 @@
   },
   "kui-badge-padding-x": {
     "$description": "Badge horizontal padding.",
-    "$value": "8px"
+    "$value": "12px"
   },
   "kui-badge-padding-y": {
     "$description": "Badge vertical padding.",
@@ -665,9 +665,6 @@
     "$value": "{color.alias.aqua.10}",
     "$description": "Weakest background color for decorative purposes."
   },
-  "kui-color-background-decorative-pink-weakest": {
-    "$value": "{color.alias.pink.10}"
-  },
   "kui-color-background-decorative-purple": {
     "$value": "{color.alias.purple.60}",
     "$description": "Background color for decorative purposes."
@@ -864,9 +861,6 @@
     "$description": "Weakest border color for danger actions or messages.",
     "$value": "{color.alias.red.07}"
   },
-  "kui-color-border-decorative-aqua-weaker": {
-    "$value": "{color.alias.aqua.20}"
-  },
   "kui-color-border-decorative-purple": {
     "$value": "{color.alias.purple.60}",
     "$description": "Border color for decorative purposes."
@@ -988,9 +982,6 @@
   "kui-color-text-disabled": {
     "$description": "Text color for disabled elements.",
     "$value": "{color.alias.gray.45}"
-  },
-  "kui-color-text-fixed-light": {
-    "$value": "{color.alias.white}"
   },
   "kui-color-text-info": {
     "$description": "Text color for info elements.",
@@ -1487,9 +1478,6 @@
     "$description": "Background color for the CONNECT method.",
     "$value": "{color.alias.purple.05}"
   },
-  "kui-method-color-background-custom": {
-    "$value": "{color.alias.gray.45}"
-  },
   "kui-method-color-background-delete": {
     "$description": "Background color for the DELETE method.",
     "$value": "{color.alias.red.07}"
@@ -1529,12 +1517,6 @@
   "kui-method-color-text-connect-strong": {
     "$description": "Strong text color for the CONNECT method.",
     "$value": "{color.alias.purple.73}"
-  },
-  "kui-method-color-text-custom": {
-    "$value": "{color.alias.gray.103}"
-  },
-  "kui-method-color-text-custom-strong": {
-    "$value": "{color.alias.gray.103}"
   },
   "kui-method-color-text-delete": {
     "$value": "{color.alias.red.60}",
