@@ -46,7 +46,9 @@ const SCALE_TOKEN_PATTERNS = [
 export function extractDescriptions(obj, path, result) {
   if (typeof obj !== 'object' || obj === null) return
   if ('$value' in obj) {
-    const cleanPath = path.filter(s => s !== '_')
+    // Filter standalone `_` default-state markers, then normalize remaining segments to kebab-case
+    // so that source keys like `line_height` or `input_switch` produce `line-height` / `input-switch`.
+    const cleanPath = path.filter(s => s !== '_').map(s => s.replace(/[\W_]+/g, '-'))
     if (cleanPath.length > 0) {
       result[`kui-${cleanPath.join('-')}`] = obj.$description || ''
     }

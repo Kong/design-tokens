@@ -120,6 +120,28 @@ describe('extractDescriptions', () => {
     expect(() => extractDescriptions(42, [], result)).not.toThrow()
     expect(Object.keys(result)).toHaveLength(0)
   })
+
+  it('normalizes underscore segments to kebab-case (e.g. line_height → line-height)', () => {
+    const result = {}
+    extractDescriptions(
+      { button: { line_height: { medium: { $value: '', $description: 'Medium button line height.' } } } },
+      [],
+      result,
+    )
+    expect(result['kui-button-line-height-medium']).toBe('Medium button line height.')
+    expect(result['kui-button-line_height-medium']).toBeUndefined()
+  })
+
+  it('normalizes compound underscore root keys (e.g. input_switch → input-switch)', () => {
+    const result = {}
+    extractDescriptions(
+      { input_switch: { color: { background: { $value: '', $description: 'Switch track color.' } } } },
+      [],
+      result,
+    )
+    expect(result['kui-input-switch-color-background']).toBe('Switch track color.')
+    expect(result['kui-input_switch-color-background']).toBeUndefined()
+  })
 })
 
 // ── cleanDescription ──────────────────────────────────────────────────────────
@@ -210,6 +232,28 @@ describe('buildDescriptionMap', () => {
     expect(descriptions['kui-button-border-radius-medium']).toBe('Medium button border radius.')
     expect(descriptions['kui-badge-border-radius']).toBe('Badge border radius.')
     expect(descriptions['kui-input-shadow-border-focus']).toBe('Input border shadow when focused.')
+  })
+
+  it('normalizes underscore segments — line_height keys produce hyphenated CSS var names', () => {
+    expect(descriptions['kui-button-line-height-medium']).toBe('Medium button line height.')
+    expect(descriptions['kui-badge-line-height']).toBe('Badge line height.')
+    expect(descriptions['kui-card-body-line-height']).toBe('Card body line height.')
+    expect(descriptions['kui-input-line-height']).toBe('Input line height.')
+    // Underscore form must not exist
+    expect(descriptions['kui-button-line_height-medium']).toBeUndefined()
+  })
+
+  it('contains expected new component token descriptions', () => {
+    expect(descriptions['kui-alert-border-radius']).toBe('Alert border radius.')
+    expect(descriptions['kui-alert-color-background-info']).toBe('Info alert background color.')
+    expect(descriptions['kui-modal-color-background-backdrop']).toBe('Modal backdrop overlay color.')
+    expect(descriptions['kui-modal-title-line-height']).toBe('Modal title line height.')
+    expect(descriptions['kui-tabs-color-border-active']).toBe('Active tab indicator color.')
+    expect(descriptions['kui-tabs-line-height']).toBe('Tab item line height.')
+    expect(descriptions['kui-tooltip-color-background']).toBe('Tooltip background color.')
+    expect(descriptions['kui-input-switch-color-background-checked']).toBe('Input switch track background color when checked.')
+    expect(descriptions['kui-input-switch-shadow-focus']).toBe('Input switch focus ring shadow.')
+    expect(descriptions['kui-button-gap-medium']).toBe('Gap between items in the medium button.')
   })
 
   it('strips the DTCG `_` key — `kui-color-background` exists, `kui-color-background-_` does not', () => {
