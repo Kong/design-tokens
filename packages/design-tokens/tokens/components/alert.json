@@ -1,0 +1,109 @@
+{
+  "alert": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Alert border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "danger": {
+          "$description": "Danger alert background color.",
+          "$value": ""
+        },
+        "decorative": {
+          "$description": "Decorative alert background color.",
+          "$value": ""
+        },
+        "info": {
+          "$description": "Info alert background color.",
+          "$value": ""
+        },
+        "success": {
+          "$description": "Success alert background color.",
+          "$value": ""
+        },
+        "warning": {
+          "$description": "Warning alert background color.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "danger": {
+          "_": {
+            "$description": "Danger alert text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Danger alert text color on hover.",
+            "$value": ""
+          }
+        },
+        "decorative": {
+          "_": {
+            "$description": "Decorative alert text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Decorative alert text color on hover.",
+            "$value": ""
+          }
+        },
+        "info": {
+          "_": {
+            "$description": "Info alert text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Info alert text color on hover.",
+            "$value": ""
+          }
+        },
+        "success": {
+          "_": {
+            "$description": "Success alert text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Success alert text color on hover.",
+            "$value": ""
+          }
+        },
+        "warning": {
+          "_": {
+            "$description": "Warning alert text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Warning alert text color on hover.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Alert font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Alert font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Alert body text font weight.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Alert line height.",
+      "$value": ""
+    },
+    "padding": {
+      "$description": "Alert inner padding.",
+      "$value": ""
+    }
+  }
+}

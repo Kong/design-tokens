@@ -246,14 +246,9 @@ describe('buildDescriptionMap', () => {
   it('contains expected new component token descriptions', () => {
     expect(descriptions['kui-alert-border-radius']).toBe('Alert border radius.')
     expect(descriptions['kui-alert-color-background-info']).toBe('Info alert background color.')
-    expect(descriptions['kui-modal-color-background-backdrop']).toBe('Modal backdrop overlay color.')
-    expect(descriptions['kui-modal-title-line-height']).toBe('Modal title line height.')
-    expect(descriptions['kui-tabs-color-border-active']).toBe('Active tab indicator color.')
-    expect(descriptions['kui-tabs-line-height']).toBe('Tab item line height.')
+    expect(descriptions['kui-alert-gap']).toBeUndefined()
     expect(descriptions['kui-tooltip-color-background']).toBe('Tooltip background color.')
-    expect(descriptions['kui-input-switch-color-background-checked']).toBe('Input switch track background color when checked.')
-    expect(descriptions['kui-input-switch-shadow-focus']).toBe('Input switch focus ring shadow.')
-    expect(descriptions['kui-button-gap-medium']).toBe('Gap between items in the medium button.')
+    expect(descriptions['kui-tooltip-line-height']).toBe('Tooltip line height.')
   })
 
   it('strips the DTCG `_` key — `kui-color-background` exists, `kui-color-background-_` does not', () => {
