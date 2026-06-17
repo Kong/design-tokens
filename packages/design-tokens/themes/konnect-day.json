@@ -1,65 +1,86 @@
 {
   "kui-alert-border-radius": {
+    "$description": "Alert border radius.",
     "$value": "6px"
   },
   "kui-alert-color-background-danger": {
+    "$description": "Danger alert background color.",
     "$value": "{color.alias.red.07}"
   },
   "kui-alert-color-background-decorative": {
+    "$description": "Decorative alert background color.",
     "$value": "{color.alias.purple.05}"
   },
   "kui-alert-color-background-info": {
+    "$description": "Info alert background color.",
     "$value": "{color.alias.blue.13}"
   },
   "kui-alert-color-background-success": {
+    "$description": "Success alert background color.",
     "$value": "{color.alias.green.10}"
   },
   "kui-alert-color-background-warning": {
+    "$description": "Warning alert background color.",
     "$value": "{color.alias.yellow.10}"
   },
   "kui-alert-color-text-danger": {
+    "$description": "Danger alert text color.",
     "$value": "{color.alias.red.60}"
   },
   "kui-alert-color-text-danger-hover": {
+    "$description": "Danger alert text color on hover.",
     "$value": "{color.alias.red.65}"
   },
   "kui-alert-color-text-decorative": {
+    "$description": "Decorative alert text color.",
     "$value": "{color.alias.purple.60}"
   },
   "kui-alert-color-text-decorative-hover": {
+    "$description": "Decorative alert text color on hover.",
     "$value": "{color.alias.purple.73}"
   },
   "kui-alert-color-text-info": {
+    "$description": "Info alert text color.",
     "$value": "{color.alias.blue.48}"
   },
   "kui-alert-color-text-info-hover": {
+    "$description": "Info alert text color on hover.",
     "$value": "{color.alias.blue.57}"
   },
   "kui-alert-color-text-success": {
+    "$description": "Success alert text color.",
     "$value": "{color.alias.green.60}"
   },
   "kui-alert-color-text-success-hover": {
+    "$description": "Success alert text color on hover.",
     "$value": "{color.alias.green.70}"
   },
   "kui-alert-color-text-warning": {
+    "$description": "Warning alert text color.",
     "$value": "{color.alias.yellow.57}"
   },
   "kui-alert-color-text-warning-hover": {
+    "$description": "Warning alert text color on hover.",
     "$value": "{color.alias.yellow.57}"
   },
   "kui-alert-font-family": {
+    "$description": "Alert font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-alert-font-size": {
+    "$description": "Alert font size.",
     "$value": "14px"
   },
   "kui-alert-font-weight": {
+    "$description": "Alert body text font weight.",
     "$value": "400"
   },
   "kui-alert-line-height": {
+    "$description": "Alert line height.",
     "$value": "20px"
   },
   "kui-alert-padding": {
+    "$description": "Alert inner padding.",
     "$value": "12px"
   },
   "kui-animation-duration-20": {
@@ -71,66 +92,87 @@
     "$value": "6px"
   },
   "kui-badge-color-background-danger": {
+    "$description": "Danger badge background color.",
     "$value": "{color.alias.red.07}"
   },
   "kui-badge-color-background-decorative": {
+    "$description": "Decorative badge background color.",
     "$value": "{color.alias.purple.05}"
   },
   "kui-badge-color-background-info": {
+    "$description": "Info badge background color.",
     "$value": "{color.alias.blue.13}"
   },
   "kui-badge-color-background-neutral": {
+    "$description": "Neutral badge background color.",
     "$value": "{color.alias.gray.13}"
   },
   "kui-badge-color-background-success": {
+    "$description": "Success badge background color.",
     "$value": "{color.alias.green.10}"
   },
   "kui-badge-color-background-warning": {
+    "$description": "Warning badge background color.",
     "$value": "{color.alias.yellow.10}"
   },
   "kui-badge-color-text-danger": {
+    "$description": "Danger badge text color.",
     "$value": "{color.alias.red.60}"
   },
   "kui-badge-color-text-danger-hover": {
+    "$description": "Danger badge text color on hover.",
     "$value": "{color.alias.red.65}"
   },
   "kui-badge-color-text-decorative": {
+    "$description": "Decorative badge text color.",
     "$value": "{color.alias.purple.60}"
   },
   "kui-badge-color-text-decorative-hover": {
+    "$description": "Decorative badge text color on hover.",
     "$value": "{color.alias.purple.73}"
   },
   "kui-badge-color-text-disabled": {
+    "$description": "Disabled badge text color.",
     "$value": "{color.alias.gray.45}"
   },
   "kui-badge-color-text-info": {
+    "$description": "Info badge text color.",
     "$value": "{color.alias.blue.48}"
   },
   "kui-badge-color-text-info-hover": {
+    "$description": "Info badge text color on hover.",
     "$value": "{color.alias.blue.57}"
   },
   "kui-badge-color-text-neutral": {
+    "$description": "Neutral badge text color.",
     "$value": "{color.alias.gray.77}"
   },
   "kui-badge-color-text-neutral-hover": {
+    "$description": "Neutral badge text color on hover.",
     "$value": "{color.alias.gray.87}"
   },
   "kui-badge-color-text-success": {
+    "$description": "Success badge text color.",
     "$value": "{color.alias.green.60}"
   },
   "kui-badge-color-text-success-hover": {
+    "$description": "Success badge text color on hover.",
     "$value": "{color.alias.green.70}"
   },
   "kui-badge-color-text-warning": {
+    "$description": "Warning badge text color.",
     "$value": "{color.alias.yellow.57}"
   },
   "kui-badge-color-text-warning-hover": {
+    "$description": "Warning badge text color on hover.",
     "$value": "{color.alias.yellow.57}"
   },
   "kui-badge-font-family": {
+    "$description": "Badge font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-badge-font-size": {
+    "$description": "Badge font size.",
     "$value": "12px"
   },
   "kui-badge-font-weight": {
@@ -138,21 +180,27 @@
     "$value": "600"
   },
   "kui-badge-icon-gap": {
+    "$description": "Gap between the badge icon and text.",
     "$value": "8px"
   },
   "kui-badge-line-height": {
+    "$description": "Badge line height.",
     "$value": "16px"
   },
   "kui-badge-padding-small": {
+    "$description": "Reduced padding for small inline badges.",
     "$value": "2px"
   },
   "kui-badge-padding-x": {
+    "$description": "Badge horizontal padding.",
     "$value": "8px"
   },
   "kui-badge-padding-y": {
+    "$description": "Badge vertical padding.",
     "$value": "4px"
   },
   "kui-badge-shadow-focus": {
+    "$description": "Badge focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-border-radius-0": {
@@ -426,12 +474,15 @@
     "$value": "600"
   },
   "kui-button-icon-size-large": {
+    "$description": "Icon size in the large button.",
     "$value": "24px"
   },
   "kui-button-icon-size-medium": {
+    "$description": "Icon size in the medium button.",
     "$value": "20px"
   },
   "kui-button-icon-size-small": {
+    "$description": "Icon size in the small button.",
     "$value": "16px"
   },
   "kui-button-line-height-large": {
@@ -475,6 +526,7 @@
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-card-actions-gap": {
+    "$description": "Gap between card action items.",
     "$value": "6px"
   },
   "kui-card-body-color-text": {
@@ -482,15 +534,19 @@
     "$value": "{color.alias.gray.73}"
   },
   "kui-card-body-font-family": {
+    "$description": "Card body font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-card-body-font-size": {
+    "$description": "Card body font size.",
     "$value": "14px"
   },
   "kui-card-body-font-weight": {
+    "$description": "Card body font weight.",
     "$value": "400"
   },
   "kui-card-body-line-height": {
+    "$description": "Card body line height.",
     "$value": "20px"
   },
   "kui-card-border-radius": {
@@ -498,6 +554,7 @@
     "$value": "8px"
   },
   "kui-card-border-width": {
+    "$description": "Card border width.",
     "$value": "1px"
   },
   "kui-card-color-background": {
@@ -509,6 +566,7 @@
     "$value": "{color.alias.gray.17}"
   },
   "kui-card-footer-gap": {
+    "$description": "Gap between card footer items.",
     "$value": "6px"
   },
   "kui-card-gap": {
@@ -516,6 +574,7 @@
     "$value": "32px"
   },
   "kui-card-header-gap": {
+    "$description": "Gap between card header items.",
     "$value": "12px"
   },
   "kui-card-padding": {
@@ -527,6 +586,7 @@
     "$value": "{color.alias.gray.77}"
   },
   "kui-card-title-font-size": {
+    "$description": "Card title font size.",
     "$value": "16px"
   },
   "kui-card-title-font-weight": {
@@ -534,30 +594,39 @@
     "$value": "600"
   },
   "kui-card-title-line-height": {
+    "$description": "Card title line height.",
     "$value": "20px"
   },
   "kui-checkbox-border-radius": {
+    "$description": "Checkbox border radius.",
     "$value": "4px"
   },
   "kui-checkbox-color-background": {
+    "$description": "Checkbox background color.",
     "$value": "{color.alias.white}"
   },
   "kui-checkbox-color-background-checked": {
+    "$description": "Checkbox background color when checked or indeterminate.",
     "$value": "{color.alias.electric_lime.60}"
   },
   "kui-checkbox-color-icon": {
+    "$description": "Checkbox icon color when checked or indeterminate.",
     "$value": "{color.alias.white}"
   },
   "kui-checkbox-shadow-border": {
+    "$description": "Checkbox default border shadow.",
     "$value": "0px 0px 0px 1px #d0d0d0 inset"
   },
   "kui-checkbox-shadow-border-checked": {
+    "$description": "Checkbox border shadow when checked or indeterminate.",
     "$value": "0px 0px 0px 1px #77aa00 inset"
   },
   "kui-checkbox-shadow-border-hover": {
+    "$description": "Checkbox border shadow on hover.",
     "$value": "0px 0px 0px 1px {color.alias.blue.40} inset"
   },
   "kui-checkbox-shadow-focus": {
+    "$description": "Checkbox focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-color-background": {
@@ -1068,66 +1137,87 @@
     "$description": "Weakest text color for warning elements."
   },
   "kui-dropdown-border-radius": {
+    "$description": "Dropdown popover border radius.",
     "$value": "6px"
   },
   "kui-dropdown-color-border": {
+    "$description": "Dropdown popover border color.",
     "$value": "{color.alias.gray.17}"
   },
   "kui-dropdown-item-color-background": {
+    "$description": "Dropdown item background color.",
     "$value": "{color.alias.white}"
   },
   "kui-dropdown-item-color-background-active": {
+    "$description": "Dropdown item background color when active.",
     "$value": "{color.alias.gray.17}"
   },
   "kui-dropdown-item-color-background-danger-active": {
+    "$description": "Danger dropdown item background color when active.",
     "$value": "{color.alias.red.17}"
   },
   "kui-dropdown-item-color-background-danger-hover": {
+    "$description": "Danger dropdown item background color on hover.",
     "$value": "{color.alias.red.07}"
   },
   "kui-dropdown-item-color-background-hover": {
+    "$description": "Dropdown item background color on hover.",
     "$value": "{color.alias.gray.13}"
   },
   "kui-dropdown-item-color-background-selected": {
+    "$description": "Selected dropdown item background color.",
     "$value": "{color.alias.electric_lime.10}"
   },
   "kui-dropdown-item-color-background-selected-disabled": {
+    "$description": "Selected and disabled dropdown item background color.",
     "$value": "{color.alias.gray.13}"
   },
   "kui-dropdown-item-color-border-divider": {
+    "$description": "Dropdown item divider border color.",
     "$value": "{color.alias.gray.17}"
   },
   "kui-dropdown-item-color-text": {
+    "$description": "Dropdown item text color.",
     "$value": "{color.alias.gray.77}"
   },
   "kui-dropdown-item-color-text-danger": {
+    "$description": "Danger dropdown item text color.",
     "$value": "{color.alias.red.60}"
   },
   "kui-dropdown-item-color-text-disabled": {
+    "$description": "Disabled dropdown item text color.",
     "$value": "{color.alias.gray.45}"
   },
   "kui-dropdown-item-color-text-selected": {
+    "$description": "Selected dropdown item text color.",
     "$value": "{color.alias.electric_lime.100}"
   },
   "kui-dropdown-item-font-family": {
+    "$description": "Dropdown item font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-dropdown-item-font-size": {
+    "$description": "Dropdown item font size.",
     "$value": "14px"
   },
   "kui-dropdown-item-font-weight": {
+    "$description": "Dropdown item font weight.",
     "$value": "500"
   },
   "kui-dropdown-item-line-height": {
+    "$description": "Dropdown item line height.",
     "$value": "24px"
   },
   "kui-dropdown-item-padding-x": {
+    "$description": "Dropdown item horizontal padding.",
     "$value": "16px"
   },
   "kui-dropdown-item-padding-y": {
+    "$description": "Dropdown item vertical padding.",
     "$value": "12px"
   },
   "kui-dropdown-item-shadow-focus": {
+    "$description": "Dropdown item focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-font-family-code": {
@@ -1245,6 +1335,7 @@
     "$value": "{color.alias.gray.13}"
   },
   "kui-input-color-background-readonly": {
+    "$description": "Input background color when read-only.",
     "$value": "{color.alias.gray.05}"
   },
   "kui-input-color-text": {
@@ -1260,24 +1351,31 @@
     "$value": "{color.alias.gray.17}"
   },
   "kui-input-color-text-readonly": {
+    "$description": "Input text color when read-only.",
     "$value": "{color.alias.gray.77}"
   },
   "kui-input-font-family": {
+    "$description": "Input font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-input-font-size": {
+    "$description": "Input font size.",
     "$value": "14px"
   },
   "kui-input-font-weight": {
+    "$description": "Input font weight.",
     "$value": "400"
   },
   "kui-input-line-height": {
+    "$description": "Input line height.",
     "$value": "24px"
   },
   "kui-input-padding-x": {
+    "$description": "Input horizontal padding.",
     "$value": "12px"
   },
   "kui-input-padding-y": {
+    "$description": "Input vertical padding.",
     "$value": "8px"
   },
   "kui-input-shadow-border": {
@@ -1313,18 +1411,23 @@
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-label-color-text": {
+    "$description": "Label text color.",
     "$value": "{color.alias.gray.77}"
   },
   "kui-label-font-family": {
+    "$description": "Label font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-label-font-size": {
+    "$description": "Label font size.",
     "$value": "14px"
   },
   "kui-label-font-weight": {
+    "$description": "Label font weight.",
     "$value": "600"
   },
   "kui-label-line-height": {
+    "$description": "Label line height.",
     "$value": "20px"
   },
   "kui-letter-spacing-0": {
@@ -1545,42 +1648,55 @@
     "$value": "0 0 0 1px rgba(255, 255, 255, 0.60) inset"
   },
   "kui-select-border-radius": {
+    "$description": "Select dropdown popover border radius.",
     "$value": "6px"
   },
   "kui-select-color-border": {
+    "$description": "Select dropdown popover border color.",
     "$value": "{color.alias.gray.17}"
   },
   "kui-select-item-color-background": {
+    "$description": "Select item background color.",
     "$value": "{color.alias.white}"
   },
   "kui-select-item-color-background-hover": {
+    "$description": "Select item background color on hover.",
     "$value": "{color.alias.electric_lime.10}"
   },
   "kui-select-item-color-background-selected": {
+    "$description": "Selected select item background color.",
     "$value": "{color.alias.electric_lime.10}"
   },
   "kui-select-item-color-background-selected-disabled": {
+    "$description": "Selected and disabled select item background color.",
     "$value": "{color.alias.gray.13}"
   },
   "kui-select-item-color-text": {
+    "$description": "Select item text color.",
     "$value": "{color.alias.gray.77}"
   },
   "kui-select-item-color-text-disabled": {
+    "$description": "Disabled select item text color.",
     "$value": "{color.alias.gray.45}"
   },
   "kui-select-item-color-text-selected": {
+    "$description": "Selected select item text color.",
     "$value": "{color.alias.electric_lime.100}"
   },
   "kui-select-item-font-size": {
+    "$description": "Select item font size.",
     "$value": "14px"
   },
   "kui-select-item-line-height": {
+    "$description": "Select item line height.",
     "$value": "24px"
   },
   "kui-select-item-padding-x": {
+    "$description": "Select item horizontal padding.",
     "$value": "16px"
   },
   "kui-select-item-padding-y": {
+    "$description": "Select item vertical padding.",
     "$value": "12px"
   },
   "kui-shadow": {
@@ -1999,27 +2115,35 @@
     "$description": "Text color for http status 500 elements."
   },
   "kui-tooltip-border-radius": {
+    "$description": "Tooltip border radius.",
     "$value": "4px"
   },
   "kui-tooltip-color-background": {
+    "$description": "Tooltip background color.",
     "$value": "{color.alias.gray.103}"
   },
   "kui-tooltip-color-text": {
+    "$description": "Tooltip text color.",
     "$value": "{color.alias.white}"
   },
   "kui-tooltip-font-family": {
+    "$description": "Tooltip font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-tooltip-font-size": {
+    "$description": "Tooltip font size.",
     "$value": "12px"
   },
   "kui-tooltip-font-weight": {
+    "$description": "Tooltip font weight.",
     "$value": "500"
   },
   "kui-tooltip-line-height": {
+    "$description": "Tooltip line height.",
     "$value": "16px"
   },
   "kui-tooltip-padding": {
+    "$description": "Tooltip inner padding.",
     "$value": "6px"
   }
 }
