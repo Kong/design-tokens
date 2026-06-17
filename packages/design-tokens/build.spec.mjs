@@ -748,7 +748,7 @@ describe('tokens/components/ (source enforcement)', () => {
 // dist/themes/
 // ---------------------------------------------------------------------------
 
-const THEME_NAMES = ['konnect-light', 'konnect-dark', 'brand-a', 'brand-b']
+const THEME_NAMES = ['konnect-day', 'konnect-night', 'brand-a', 'brand-b']
 
 describe('dist/themes/', () => {
   /** @type {Record<string, { css: string, mjs: string, dts: string }>} */
@@ -796,7 +796,7 @@ describe('dist/themes/', () => {
   })
 
   it('CSS files contain concrete token values (spot-check)', () => {
-    const css = themes['konnect-light'].css
+    const css = themes['konnect-day'].css
     // At least some color values should be hex
     expect(css).toMatch(/#[0-9a-fA-F]{3,8}/)
     // At least some size values should be px or rem
@@ -805,8 +805,8 @@ describe('dist/themes/', () => {
 
   it('MJS files export the named theme object (no "Theme" suffix)', () => {
     const expectedExportNames = {
-      'konnect-light': 'konnectLight',
-      'konnect-dark': 'konnectDark',
+      'konnect-day': 'konnectDay',
+      'konnect-night': 'konnectNight',
       'brand-a': 'brandA',
       'brand-b': 'brandB',
     }
@@ -830,11 +830,11 @@ describe('dist/themes/', () => {
 
   it('index.mjs re-exports all four themes without "Theme" suffix', async () => {
     const indexMjs = await distRootFile('themes/index.mjs')
-    expect(indexMjs).toContain('konnectLight')
-    expect(indexMjs).toContain('konnectDark')
+    expect(indexMjs).toContain('konnectDay')
+    expect(indexMjs).toContain('konnectNight')
     expect(indexMjs).toContain('brandA')
     expect(indexMjs).toContain('brandB')
-    expect(indexMjs).not.toContain('konnectLightTheme')
+    expect(indexMjs).not.toContain('konnectDayTheme')
     expect(indexMjs).not.toContain('brandATheme')
   })
 })

@@ -108,7 +108,7 @@ mq.addEventListener('change', e => applyColorScheme(e.matches))
 You can also import the theme objects as JavaScript for runtime composition or for use with Kongponents' `applyTheme` / `defineKongponentsTheme`:
 
 ```ts
-import { konnectLight, konnectDark, brandA, brandB } from '@kong/design-tokens/themes'
+import { konnectDay, konnectNight, brandA, brandB } from '@kong/design-tokens/themes'
 ```
 
 ## Tokens
@@ -342,11 +342,11 @@ Typically, a host application should only utilize the SCSS and/or JavaScript var
 
 ```ts
 // my-app-theme.ts
-import { konnectLight } from '@kong/design-tokens/themes'
+import { konnectDay } from '@kong/design-tokens/themes'
 import { defineKongponentsTheme } from '@kong/kongponents'
 
 export const myTheme = defineKongponentsTheme({
-  ...konnectLight,           // spread the base theme
+  ...konnectDay,           // spread the base theme
   '--kui-button-border-radius-medium': '999px',  // then override specific tokens
 })
 ```
@@ -379,10 +379,10 @@ For per-tenant runtime composition (e.g. theme values fetched from an API), use 
 
 ```ts
 import { applyTheme } from '@kong/kongponents'
-import { konnectLight } from '@kong/design-tokens/themes'
+import { konnectDay } from '@kong/design-tokens/themes'
 
 // Merge the base theme with tenant-specific overrides, then apply to :root
-applyTheme({ ...konnectLight, ...tenantOverrides })
+applyTheme({ ...konnectDay, ...tenantOverrides })
 ```
 
 #### Server-Side Rendering (SSR)
