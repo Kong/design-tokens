@@ -13,7 +13,7 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 ## Eligible components (instrumented in Kongponents + have `tokens/components/<comp>.json`)
 - [x] **button** (day + night) — reference implementation
 - [x] **card** (day + night) — prototype = pure semantic defaults; cleared leftover konnect-light/dark overrides (radius 8→6px, padding/gap 32→20px, title-weight 600→700, body-color → `color-text`). Verified both themes.
-- [ ] input
+- [x] **input** (day + night) — borders are **neutral, not lime** (reset konnect-light/dark leftovers): default→`color-border`, hover/focus→`color-border-neutral`, disabled→**no border**, error→`color-border-danger`, error-hover→`-danger-strong`; focus ring = `2px color-border-neutral @20%` (input-specific, tighter than button's 4px); radius 6px; placeholder→`color-text-neutral`. Verified both themes. NOTE: hover/focus aren't in the static states-table — read them from the prototype's `:hover`/`:focus` CSS rules (semantic-driven).
 - [ ] badge
 - [ ] select
 - [ ] dropdown
@@ -25,7 +25,7 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 ## Per-component process (do for BOTH themes)
 1. **Inspect prototype** at `/components/themed/<comp>`, theme = Day then Night v2. Capture computed
    styles for every variant × state in `.docs-content`: bg, text, border (color/width/style),
-   radius, padding, font (size/line-height/weight), gap, box-shadow.
+   radius, padding, font (size/line-height/weight), gap, box-shadow, hover/focus/active styles.
 2. **Build the target map**: component token → prototype computed value (use `tokens/components/<comp>.json`
    for the token list, and the fallback map for the semantic each falls through to).
 3. **Set every component token explicitly** (exhaustive, classic representation): colors as

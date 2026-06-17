@@ -1324,7 +1324,7 @@
   },
   "kui-input-border-radius": {
     "$description": "Input border radius.",
-    "$value": "8px"
+    "$value": "6px"
   },
   "kui-input-color-background": {
     "$description": "Input background color.",
@@ -1380,35 +1380,35 @@
   },
   "kui-input-shadow-border": {
     "$description": "Input border shadow.",
-    "$value": "0px 0px 0px 1px #3a3a3a inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.83} inset"
   },
   "kui-input-shadow-border-disabled": {
     "$description": "Input border shadow when disabled.",
-    "$value": "0px 0px 0px 1px #2d2d2d inset"
+    "$value": "none"
   },
   "kui-input-shadow-border-error": {
     "$description": "Input border shadow in error state.",
-    "$value": "0px 0px 0px 1px #ef4444 inset"
+    "$value": "0px 0px 0px 1px {color.alias.red.33} inset"
   },
   "kui-input-shadow-border-error-focus": {
     "$description": "Input border shadow in error state when focused.",
-    "$value": "0px 0px 0px 1px #dc2626 inset"
+    "$value": "0px 0px 0px 1px {color.alias.red.33} inset"
   },
   "kui-input-shadow-border-error-hover": {
     "$description": "Input border shadow in error state on hover.",
-    "$value": "0px 0px 0px 1px #dc2626 inset"
+    "$value": "0px 0px 0px 1px {color.alias.red.23} inset"
   },
   "kui-input-shadow-border-focus": {
     "$description": "Input border shadow when focused.",
-    "$value": "0px 0px 0px 1px #ccff00 inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.45} inset"
   },
   "kui-input-shadow-border-hover": {
     "$description": "Input border shadow on hover.",
-    "$value": "0px 0px 0px 1px #ccff00 inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.45} inset"
   },
   "kui-input-shadow-focus": {
     "$description": "Input outer focus ring shadow.",
-    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+    "$value": "0px 0px 0px 2px rgba(157, 169, 157, 0.2)"
   },
   "kui-label-color-text": {
     "$description": "Label text color.",
