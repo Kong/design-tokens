@@ -65,7 +65,7 @@
   },
   "kui-alert-font-family": {
     "$description": "Alert font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-alert-font-size": {
     "$description": "Alert font size.",
@@ -169,7 +169,7 @@
   },
   "kui-badge-font-family": {
     "$description": "Badge font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-badge-font-size": {
     "$description": "Badge font size.",
@@ -531,11 +531,11 @@
   },
   "kui-card-body-color-text": {
     "$description": "Card body text color.",
-    "$value": "{color.alias.gray.45}"
+    "$value": "{color.alias.gray.25}"
   },
   "kui-card-body-font-family": {
     "$description": "Card body font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-card-body-font-size": {
     "$description": "Card body font size.",
@@ -551,7 +551,7 @@
   },
   "kui-card-border-radius": {
     "$description": "Card border radius.",
-    "$value": "8px"
+    "$value": "6px"
   },
   "kui-card-border-width": {
     "$description": "Card border width.",
@@ -559,7 +559,7 @@
   },
   "kui-card-color-background": {
     "$description": "Card background color.",
-    "$value": "{color.alias.gray.83}"
+    "$value": "{color.alias.gray.97}"
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
@@ -571,7 +571,7 @@
   },
   "kui-card-gap": {
     "$description": "Gap between card sections.",
-    "$value": "32px"
+    "$value": "20px"
   },
   "kui-card-header-gap": {
     "$description": "Gap between card header items.",
@@ -579,7 +579,7 @@
   },
   "kui-card-padding": {
     "$description": "Card inner padding.",
-    "$value": "32px"
+    "$value": "20px"
   },
   "kui-card-title-color-text": {
     "$description": "Card title text color.",
@@ -591,7 +591,7 @@
   },
   "kui-card-title-font-weight": {
     "$description": "Card title font weight.",
-    "$value": "600"
+    "$value": "700"
   },
   "kui-card-title-line-height": {
     "$description": "Card title line height.",
@@ -1194,7 +1194,7 @@
   },
   "kui-dropdown-item-font-family": {
     "$description": "Dropdown item font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-dropdown-item-font-size": {
     "$description": "Dropdown item font size.",
@@ -1225,11 +1225,11 @@
     "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text."
   },
   "kui-font-family-heading": {
-    "$value": "'Inter', Roboto, Helvetica, sans-serif",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
     "$description": "The standard heading text font family."
   },
   "kui-font-family-text": {
-    "$value": "'Inter', Roboto, Helvetica, sans-serif",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
     "$description": "The standard text font family."
   },
   "kui-font-size-10": {
@@ -1356,7 +1356,7 @@
   },
   "kui-input-font-family": {
     "$description": "Input font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-input-font-size": {
     "$description": "Input font size.",
@@ -1416,7 +1416,7 @@
   },
   "kui-label-font-family": {
     "$description": "Label font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-label-font-size": {
     "$description": "Label font size.",
@@ -2128,7 +2128,7 @@
   },
   "kui-tooltip-font-family": {
     "$description": "Tooltip font family.",
-    "$value": "'Inter', Roboto, Helvetica, sans-serif"
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-tooltip-font-size": {
     "$description": "Tooltip font size.",

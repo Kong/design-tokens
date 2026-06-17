@@ -12,7 +12,7 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 
 ## Eligible components (instrumented in Kongponents + have `tokens/components/<comp>.json`)
 - [x] **button** (day + night) — reference implementation
-- [ ] card
+- [x] **card** (day + night) — prototype = pure semantic defaults; cleared leftover konnect-light/dark overrides (radius 8→6px, padding/gap 32→20px, title-weight 600→700, body-color → `color-text`). Verified both themes.
 - [ ] input
 - [ ] badge
 - [ ] select
@@ -47,4 +47,10 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 - Source of truth = prototype computed values.
 - Exhaustive: all component tokens present, explicit, `{color.alias.*}`/value (no `var()` refs).
 - Day↔night: same method, inverse direction.
+- **Pre-existing overrides are suspect.** Component tokens from the original Phase-1 build often carry
+  konnect-light/dark leftover values that don't match the prototype — reconciliation must *reset* every
+  token to its prototype value (which, for non-diverging components like card, equals the semantic
+  default), not just fill the missing ones.
+- **Fonts:** all `font-family-text` and `font-family-heading` tokens (semantic + component) = `'Funnel Sans', Roboto, Helvetica, sans-serif`
+  in both themes, EXCEPT `font-family-code` which stays monospace (`'JetBrains Mono', Consolas, monospace`).
 - No Kongponents code changes except additive component tokens `var(--kui-<comp>, var(--kui-<semantic>, $kui-<scss>))`; no `gap` component token for now.
