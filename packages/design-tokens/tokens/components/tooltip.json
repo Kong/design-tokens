@@ -1,0 +1,43 @@
+{
+  "tooltip": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Tooltip border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "$description": "Tooltip background color.",
+        "$value": ""
+      },
+      "text": {
+        "$description": "Tooltip text color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Tooltip font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Tooltip font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Tooltip font weight.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Tooltip line height.",
+      "$value": ""
+    },
+    "padding": {
+      "$description": "Tooltip inner padding.",
+      "$value": ""
+    }
+  }
+}
