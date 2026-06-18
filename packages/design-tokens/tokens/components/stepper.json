@@ -1,0 +1,83 @@
+{
+  "stepper": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Stepper step indicator (circle) border radius.",
+        "$value": ""
+      },
+      "width": {
+        "$description": "Stepper step indicator (circle) border width, applied to incomplete (default) steps.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Stepper step indicator (circle) background color for incomplete (default) and pending steps.",
+          "$value": ""
+        },
+        "completed": {
+          "$description": "Stepper step indicator (circle) background color for completed steps.",
+          "$value": ""
+        },
+        "error": {
+          "$description": "Stepper step indicator (circle) background color for steps in an error state.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Stepper step indicator (circle) background color for the current/active step.",
+          "$value": ""
+        }
+      },
+      "border": {
+        "$description": "Stepper step indicator (circle) border color for incomplete (default) steps.",
+        "$value": ""
+      },
+      "text": {
+        "_": {
+          "$description": "Stepper step number text color inside the step indicator (circle) for incomplete (default) and pending steps.",
+          "$value": ""
+        },
+        "label": {
+          "_": {
+            "$description": "Stepper step label text color.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Stepper step label text color for the current/active and completed steps.",
+            "$value": ""
+          }
+        },
+        "selected": {
+          "$description": "Stepper step number text color inside the step indicator (circle) for the current/active step.",
+          "$value": ""
+        }
+      }
+    },
+    "connector": {
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Stepper connector line color between steps.",
+            "$value": ""
+          },
+          "completed": {
+            "$description": "Stepper connector line color following a completed step.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Stepper step label font family.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Stepper step number and label font weight.",
+        "$value": ""
+      }
+    }
+  }
+}

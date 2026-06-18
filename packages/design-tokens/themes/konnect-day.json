@@ -2269,6 +2269,66 @@
     "$description": "Focus ring drop shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
+  "kui-skeleton-border-radius": {
+    "$value": "4px",
+    "$description": "Skeleton placeholder box border radius."
+  },
+  "kui-skeleton-card-border-radius": {
+    "$value": "6px",
+    "$description": "Card skeleton wrapper border radius."
+  },
+  "kui-skeleton-card-border-width": {
+    "$value": "1px",
+    "$description": "Card skeleton wrapper border width."
+  },
+  "kui-skeleton-card-color-border": {
+    "$description": "Card skeleton wrapper border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-skeleton-color-background": {
+    "$description": "Skeleton placeholder base background color (the resting/non-highlighted gradient stops of the shimmer).",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-skeleton-color-background-shimmer": {
+    "$description": "Skeleton placeholder animated shimmer/highlight color (the moving bright gradient stop).",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-skeleton-fullscreen-color-background": {
+    "$description": "Fullscreen skeleton loader backdrop/overlay background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-skeleton-progress-border-radius": {
+    "$value": "8px",
+    "$description": "Fullscreen skeleton progress bar (track and fill) border radius."
+  },
+  "kui-skeleton-progress-color-background": {
+    "$description": "Fullscreen skeleton progress bar track background color.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-skeleton-progress-color-background-active": {
+    "$description": "Fullscreen skeleton progress bar fill (completed progress) background color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-skeleton-spinner-border-radius": {
+    "$value": "50%",
+    "$description": "Fullscreen generic spinner border radius."
+  },
+  "kui-skeleton-spinner-color-border": {
+    "$description": "Fullscreen generic spinner track (inactive) border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-skeleton-spinner-color-border-active": {
+    "$description": "Fullscreen generic spinner active (leading) segment border color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-skeleton-table-border-width": {
+    "$value": "1px",
+    "$description": "Table skeleton row divider border width."
+  },
+  "kui-skeleton-table-color-border": {
+    "$description": "Table skeleton row divider border color.",
+    "$value": "{color.alias.gray.17}"
+  },
   "kui-slideout-border-width": {
     "$description": "Slideout panel left border width.",
     "$value": "1px"
@@ -2772,6 +2832,66 @@
     "$value": "{color.alias.red.60}",
     "$description": "Text color for http status 500 elements."
   },
+  "kui-stepper-border-radius": {
+    "$value": "50%",
+    "$description": "Stepper step indicator (circle) border radius."
+  },
+  "kui-stepper-border-width": {
+    "$value": "1px",
+    "$description": "Stepper step indicator (circle) border width, applied to incomplete (default) steps."
+  },
+  "kui-stepper-color-background": {
+    "$description": "Stepper step indicator (circle) background color for incomplete (default) and pending steps.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-stepper-color-background-completed": {
+    "$description": "Stepper step indicator (circle) background color for completed steps.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-stepper-color-background-error": {
+    "$description": "Stepper step indicator (circle) background color for steps in an error state.",
+    "$value": "{color.alias.red.60}"
+  },
+  "kui-stepper-color-background-selected": {
+    "$description": "Stepper step indicator (circle) background color for the current/active step.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-stepper-color-border": {
+    "$description": "Stepper step indicator (circle) border color for incomplete (default) steps.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-stepper-color-text": {
+    "$description": "Stepper step number text color inside the step indicator (circle) for incomplete (default) and pending steps.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-stepper-color-text-label": {
+    "$description": "Stepper step label text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-stepper-color-text-label-selected": {
+    "$description": "Stepper step label text color for the current/active and completed steps.",
+    "$value": "{color.alias.gray.87}"
+  },
+  "kui-stepper-color-text-selected": {
+    "$description": "Stepper step number text color inside the step indicator (circle) for the current/active step.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-stepper-connector-color-background": {
+    "$description": "Stepper connector line color between steps.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-stepper-connector-color-background-completed": {
+    "$description": "Stepper connector line color following a completed step.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-stepper-font-family": {
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
+    "$description": "Stepper step label font family."
+  },
+  "kui-stepper-font-weight": {
+    "$value": "600",
+    "$description": "Stepper step number and label font weight."
+  },
   "kui-table-cell-color-text": {
     "$description": "Table body cell text color.",
     "$value": "{color.alias.gray.77}"
@@ -3059,5 +3179,69 @@
   "kui-tooltip-padding": {
     "$description": "Tooltip inner padding.",
     "$value": "6px"
+  },
+  "kui-tree-list-border-radius": {
+    "$value": "4px",
+    "$description": "Tree list item border radius (also applied to the expand/collapse toggle focus ring)."
+  },
+  "kui-tree-list-border-width": {
+    "$value": "1px",
+    "$description": "Tree list item border width."
+  },
+  "kui-tree-list-color-background": {
+    "$description": "Tree list item background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-tree-list-color-background-drag-indicator": {
+    "$description": "Tree list drag indicator bar background color, shown when dragging an item to a drop location.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-tree-list-color-background-hover": {
+    "$description": "Tree list item background color on hover, focus, and focus-visible.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-tree-list-color-background-selected": {
+    "$description": "Tree list item background color when selected.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-tree-list-color-border": {
+    "$description": "Tree list item border color.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-tree-list-color-border-connector": {
+    "$description": "Tree list connecting line color (the lines linking parent and child items).",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-tree-list-color-border-selected": {
+    "$description": "Tree list item border color when selected.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-tree-list-color-text": {
+    "$description": "Tree list item text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-tree-list-color-text-icon": {
+    "$description": "Tree list item leading icon color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-tree-list-color-text-icon-selected": {
+    "$description": "Tree list item leading icon color when selected.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-tree-list-font-family": {
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
+    "$description": "Tree list font family."
+  },
+  "kui-tree-list-font-weight": {
+    "$value": "400",
+    "$description": "Tree list item font weight."
+  },
+  "kui-tree-list-padding": {
+    "$value": "6px",
+    "$description": "Tree list item padding."
+  },
+  "kui-tree-list-shadow-focus": {
+    "$description": "Tree list item focus-visible shadow (focus ring).",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   }
 }
