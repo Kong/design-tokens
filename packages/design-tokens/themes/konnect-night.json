@@ -1557,17 +1557,9 @@
     "$description": "Input border shadow in error state.",
     "$value": "0px 0px 0px 1px {color.alias.red.33} inset"
   },
-  "kui-input-shadow-border-error-focus": {
-    "$description": "Input border shadow in error state when focused.",
-    "$value": "0px 0px 0px 1px {color.alias.red.33} inset"
-  },
   "kui-input-shadow-border-error-hover": {
     "$description": "Input border shadow in error state on hover.",
     "$value": "0px 0px 0px 1px {color.alias.red.23} inset"
-  },
-  "kui-input-shadow-border-focus": {
-    "$description": "Input border shadow when focused.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.45} inset"
   },
   "kui-input-shadow-border-hover": {
     "$description": "Input border shadow on hover.",
@@ -1576,6 +1568,74 @@
   "kui-input-shadow-focus": {
     "$description": "Input outer focus ring shadow.",
     "$value": "0px 0px 0px 2px rgba(157, 169, 157, 0.2)"
+  },
+  "kui-input-switch-border-radius-large": {
+    "$description": "Input switch large size border radius.",
+    "$value": "6px"
+  },
+  "kui-input-switch-border-radius-small": {
+    "$description": "Input switch small size border radius.",
+    "$value": "4px"
+  },
+  "kui-input-switch-color-background": {
+    "$description": "Input switch track background color.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-input-switch-color-background-disabled": {
+    "$description": "Input switch track background color when disabled.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-input-switch-color-background-hover": {
+    "$description": "Input switch track background color on hover.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-input-switch-color-background-selected": {
+    "$description": "Input switch track background color when on.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-input-switch-color-background-selected-hover": {
+    "$description": "Input switch track background color when on and hovered.",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-input-switch-shadow-focus": {
+    "$description": "Input switch focus ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+  },
+  "kui-input-switch-thumb-border-radius": {
+    "$description": "Input switch thumb ring border radius.",
+    "$value": "50%"
+  },
+  "kui-input-switch-thumb-border-width": {
+    "$description": "Input switch thumb ring border width.",
+    "$value": "2px"
+  },
+  "kui-input-switch-thumb-color-background": {
+    "$description": "Input switch thumb background color.",
+    "$value": "{color.alias.gray.97}"
+  },
+  "kui-input-switch-thumb-color-background-disabled": {
+    "$description": "Input switch thumb background color when disabled.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-input-switch-thumb-color-border": {
+    "$description": "Input switch thumb ring border color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-input-switch-thumb-color-border-hover": {
+    "$description": "Input switch thumb ring border color on hover.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-input-switch-thumb-shadow-border": {
+    "$description": "Input switch thumb border shadow.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.17} inset"
+  },
+  "kui-input-switch-thumb-shadow-border-disabled": {
+    "$description": "Input switch thumb border shadow when disabled.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.73} inset"
+  },
+  "kui-input-switch-thumb-shadow-border-selected": {
+    "$description": "Input switch thumb border shadow when on.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.25} inset"
   },
   "kui-label-color-text": {
     "$description": "Label text color.",
@@ -2033,6 +2093,94 @@
     "$description": "Popover title line height.",
     "$value": "20px"
   },
+  "kui-segmented-control-border-radius": {
+    "$description": "Segmented control button border radius (applied to the outer corners of the first and last buttons).",
+    "$value": "6px"
+  },
+  "kui-segmented-control-border-width": {
+    "$description": "Segmented control button border width.",
+    "$value": "1px"
+  },
+  "kui-segmented-control-color-background": {
+    "$description": "Segmented control button background color.",
+    "$value": "{color.alias.gray.97}"
+  },
+  "kui-segmented-control-color-background-disabled-selected": {
+    "$description": "Segmented control button background color when selected and disabled.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-segmented-control-color-background-selected": {
+    "$description": "Segmented control button background color when selected.",
+    "$value": "{color.alias.gray.107}"
+  },
+  "kui-segmented-control-color-border": {
+    "$description": "Segmented control button border color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-segmented-control-color-border-active": {
+    "$description": "Segmented control button border color when active (pressed).",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-segmented-control-color-border-disabled": {
+    "$description": "Segmented control button border color when disabled.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-segmented-control-color-border-hover": {
+    "$description": "Segmented control button border color on hover.",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-segmented-control-color-border-selected": {
+    "$description": "Segmented control button border color when selected.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-segmented-control-color-text": {
+    "$description": "Segmented control button text color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-segmented-control-color-text-active": {
+    "$description": "Segmented control button text color when active (pressed).",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-segmented-control-color-text-disabled": {
+    "$description": "Segmented control button text color when disabled.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-segmented-control-color-text-hover": {
+    "$description": "Segmented control button text color on hover.",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-segmented-control-color-text-selected": {
+    "$description": "Segmented control button text color when selected.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-segmented-control-font-family": {
+    "$description": "Segmented control font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-segmented-control-font-size": {
+    "$description": "Segmented control button font size.",
+    "$value": "12px"
+  },
+  "kui-segmented-control-font-weight": {
+    "$description": "Segmented control button font weight.",
+    "$value": "600"
+  },
+  "kui-segmented-control-line-height": {
+    "$description": "Segmented control button line height.",
+    "$value": "16px"
+  },
+  "kui-segmented-control-padding-x": {
+    "$description": "Segmented control button horizontal padding (small size).",
+    "$value": "12px"
+  },
+  "kui-segmented-control-padding-x-large": {
+    "$description": "Segmented control button horizontal padding (large size).",
+    "$value": "16px"
+  },
+  "kui-segmented-control-shadow-focus": {
+    "$description": "Segmented control button focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+  },
   "kui-select-border-radius": {
     "$description": "Select dropdown popover border radius.",
     "$value": "6px"
@@ -2188,6 +2336,62 @@
   "kui-slideout-title-line-height": {
     "$description": "Slideout title line height.",
     "$value": "28px"
+  },
+  "kui-slider-fill-color-background": {
+    "$description": "Slider filled (progress) track background color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-slider-fill-color-background-disabled": {
+    "$description": "Slider filled (progress) track background color when disabled.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-slider-mark-color-text": {
+    "$description": "Slider mark label text color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-slider-mark-font-family": {
+    "$description": "Slider mark label font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-slider-mark-font-size": {
+    "$description": "Slider mark label font size.",
+    "$value": "14px"
+  },
+  "kui-slider-mark-font-weight": {
+    "$description": "Slider mark label font weight.",
+    "$value": "400"
+  },
+  "kui-slider-mark-line-height": {
+    "$description": "Slider mark label line height.",
+    "$value": "16px"
+  },
+  "kui-slider-thumb-border-radius": {
+    "$description": "Slider thumb (handle) border radius.",
+    "$value": "50%"
+  },
+  "kui-slider-thumb-color-background": {
+    "$description": "Slider thumb (handle) background color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-slider-thumb-color-background-disabled": {
+    "$description": "Slider thumb (handle) background color when disabled.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-slider-thumb-shadow-focus": {
+    "$description": "Slider thumb (handle) focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+  },
+  "kui-slider-thumb-size": {
+    "$description": "Slider thumb (handle) height and width.",
+    "$value": "16px"
+  },
+  "kui-slider-track-border-radius": {
+    "$description": "Slider track border radius.",
+    "$value": "4px"
+  },
+  "kui-slider-track-color-background": {
+    "$description": "Slider track (unfilled) background color.",
+    "$value": "{color.alias.gray.83}"
   },
   "kui-space-0": {
     "$value": "0px"
@@ -2668,10 +2872,6 @@
     "$description": "Tabs current (selected) tab bottom border width — the active-tab underline (default appearance).",
     "$value": "2px"
   },
-  "kui-tabs-color-background-focus": {
-    "$description": "Tabs tab link background color on focus (default appearance).",
-    "$value": "{color.alias.gray.83}"
-  },
   "kui-tabs-color-background-hover": {
     "$description": "Tabs tab link background color on hover (default appearance).",
     "$value": "{color.alias.gray.83}"
@@ -2692,7 +2892,7 @@
     "$description": "Tabs tab link text color when disabled.",
     "$value": "{color.alias.gray.45}"
   },
-  "kui-tabs-color-text-focus": {
+  "kui-tabs-color-text-hover": {
     "$description": "Tabs tab link text color on focus (default appearance).",
     "$value": "{color.alias.gray.25}"
   },

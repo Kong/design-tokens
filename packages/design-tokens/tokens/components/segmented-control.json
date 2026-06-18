@@ -1,0 +1,111 @@
+{
+  "segmented_control": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Segmented control button border radius (applied to the outer corners of the first and last buttons).",
+        "$value": ""
+      },
+      "width": {
+        "$description": "Segmented control button border width.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Segmented control button background color.",
+          "$value": ""
+        },
+        "disabled_selected": {
+          "$description": "Segmented control button background color when selected and disabled.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Segmented control button background color when selected.",
+          "$value": ""
+        }
+      },
+      "border": {
+        "_": {
+          "$description": "Segmented control button border color.",
+          "$value": ""
+        },
+        "active": {
+          "$description": "Segmented control button border color when active (pressed).",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Segmented control button border color when disabled.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Segmented control button border color on hover.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Segmented control button border color when selected.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "_": {
+          "$description": "Segmented control button text color.",
+          "$value": ""
+        },
+        "active": {
+          "$description": "Segmented control button text color when active (pressed).",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Segmented control button text color when disabled.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Segmented control button text color on hover.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Segmented control button text color when selected.",
+          "$value": ""
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Segmented control font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Segmented control button font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Segmented control button font weight.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Segmented control button line height.",
+      "$value": ""
+    },
+    "padding": {
+      "x": {
+        "_": {
+          "$description": "Segmented control button horizontal padding (small size).",
+          "$value": ""
+        },
+        "large": {
+          "$description": "Segmented control button horizontal padding (large size).",
+          "$value": ""
+        }
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Segmented control button focus-visible shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

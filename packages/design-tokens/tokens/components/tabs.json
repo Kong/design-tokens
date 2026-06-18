@@ -25,10 +25,6 @@
     },
     "color": {
       "background": {
-        "focus": {
-          "$description": "Tabs tab link background color on focus (default appearance).",
-          "$value": ""
-        },
         "hover": {
           "$description": "Tabs tab link background color on hover (default appearance).",
           "$value": ""
@@ -53,8 +49,8 @@
           "$description": "Tabs tab link text color when disabled.",
           "$value": ""
         },
-        "focus": {
-          "$description": "Tabs tab link text color on focus (default appearance).",
+        "hover": {
+          "$description": "Tabs tab link text color on hover and focus (default appearance).",
           "$value": ""
         },
         "minimal": {

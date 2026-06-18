@@ -84,18 +84,10 @@
             "$description": "Input border shadow in error state.",
             "$value": ""
           },
-          "focus": {
-            "$description": "Input border shadow in error state when focused.",
-            "$value": ""
-          },
           "hover": {
             "$description": "Input border shadow in error state on hover.",
             "$value": ""
           }
-        },
-        "focus": {
-          "$description": "Input border shadow when focused.",
-          "$value": ""
         },
         "hover": {
           "$description": "Input border shadow on hover.",
