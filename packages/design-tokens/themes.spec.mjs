@@ -41,10 +41,27 @@ let descriptions
 let resolvedValues
 let fallbackMap
 
+/**
+ * Self-contained component→semantic fallback fixture for the fillThemeObject tests.
+ *
+ * The real fallback chains live in the Kongponents repo (grepped into
+ * /tmp/fallback-pairs.txt for the actual fill). That file is NOT present in
+ * design-tokens CI, so the suite must not depend on it — depending on it made
+ * this test pass locally but fail in CI (the map was silently empty, so the
+ * component token couldn't resolve). This fixture provides exactly the pairs
+ * these unit tests exercise; the real chains are validated where the fill runs
+ * with Kongponents checked out.
+ */
+const FALLBACK_FIXTURE = [
+  'kui-alert-color-background-success => kui-color-background-success-weakest',
+  'kui-badge-border-radius => kui-border-radius-20',
+  'kui-button-color-background-danger-hover => kui-color-background-danger-strong',
+  'kui-button-color-background-danger-hover => kui-color-background-danger-stronger',
+].join('\n')
+
 beforeAll(async () => {
   const tokensRaw = await readFile(join(ROOT, 'dist', 'tokens', 'js', 'tokens.json'), 'utf-8')
   const aliasRaw = await readFile(join(ROOT, 'tokens', 'alias', 'color', 'index.json'), 'utf-8')
-  const fallbackRaw = await readFile('/tmp/fallback-pairs.txt', 'utf-8').catch(() => '')
 
   themeable = await getThemeableTokens()
   descriptions = await buildDescriptionMap()
@@ -53,25 +70,18 @@ beforeAll(async () => {
     value: JSON.parse(aliasRaw),
     enumerable: false,
   })
-  fallbackMap = parseFallbackPairs(fallbackRaw)
+  fallbackMap = parseFallbackPairs(FALLBACK_FIXTURE)
 })
 
 /**
- * Read a theme file. For the exhaustive themes the tests prefer the /tmp
- * snapshot when present (so the suite is decoupled from any concurrent edits to
- * the real files), falling back to the real file otherwise.
+ * Read a theme file from the repo's own `themes/` directory. Self-contained:
+ * the suite reads only design-tokens' own source, never external artifacts.
  *
  * @param {string} name - Theme name (no extension).
  * @returns {Promise<Record<string, object>>}
  */
 async function loadTheme(name) {
-  const tmpMap = {
-    'konnect-day': '/tmp/fillcheck-day.json',
-    'konnect-night': '/tmp/fillcheck-night.json',
-  }
-  const tmp = tmpMap[name]
-  const path = tmp ? await readFile(tmp, 'utf-8').then(() => tmp, () => join(ROOT, 'themes', `${name}.json`)) : join(ROOT, 'themes', `${name}.json`)
-  return JSON.parse(await readFile(path, 'utf-8'))
+  return JSON.parse(await readFile(join(ROOT, 'themes', `${name}.json`), 'utf-8'))
 }
 
 describe('drift guard: exhaustive themes contain exactly KUI_THEMEABLE_TOKENS', () => {
