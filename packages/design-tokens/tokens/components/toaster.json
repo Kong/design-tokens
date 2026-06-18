@@ -1,0 +1,119 @@
+{
+  "toaster": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Toaster border radius.",
+        "$value": ""
+      }
+    },
+    "close": {
+      "border": {
+        "radius": {
+          "$description": "Toaster close button border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "text": {
+          "hover": {
+            "$description": "Toaster close button icon color on hover and focus.",
+            "$value": ""
+          }
+        }
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Toaster close button focus-visible shadow.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "$description": "Toaster background color.",
+        "$value": ""
+      },
+      "text": {
+        "$description": "Toaster text color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Toaster message font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Toaster message font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Toaster message font weight.",
+        "$value": ""
+      }
+    },
+    "icon": {
+      "color": {
+        "_": {
+          "$description": "Toaster icon color (knockout matching the toaster background).",
+          "$value": ""
+        },
+        "background": {
+          "_": {
+            "$description": "Toaster icon container background color (info appearance as default).",
+            "$value": ""
+          },
+          "danger": {
+            "$description": "Danger toaster icon container background color.",
+            "$value": ""
+          },
+          "info": {
+            "$description": "Info toaster icon container background color.",
+            "$value": ""
+          },
+          "success": {
+            "$description": "Success toaster icon container background color.",
+            "$value": ""
+          },
+          "system": {
+            "$description": "System toaster icon container background color.",
+            "$value": ""
+          },
+          "warning": {
+            "$description": "Warning toaster icon container background color.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "line_height": {
+      "$description": "Toaster message line height.",
+      "$value": ""
+    },
+    "padding": {
+      "$description": "Toaster inner padding.",
+      "$value": ""
+    },
+    "shadow": {
+      "$description": "Toaster box shadow.",
+      "$value": ""
+    },
+    "title": {
+      "font": {
+        "size": {
+          "$description": "Toaster title font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Toaster title font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Toaster title line height.",
+        "$value": ""
+      }
+    }
+  }
+}

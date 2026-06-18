@@ -1722,6 +1722,110 @@
     "$description": "Strong text color for the TRACE method.",
     "$value": "{color.alias.pink.40}"
   },
+  "kui-modal-border-radius": {
+    "$description": "Modal dialog border radius.",
+    "$value": "8px"
+  },
+  "kui-modal-border-width": {
+    "$description": "Modal dialog border width.",
+    "$value": "1px"
+  },
+  "kui-modal-close-border-radius": {
+    "$description": "Modal close button border radius.",
+    "$value": "4px"
+  },
+  "kui-modal-close-color-text-hover": {
+    "$description": "Modal close button icon color on hover and focus.",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-modal-close-shadow-focus": {
+    "$description": "Modal close button focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+  },
+  "kui-modal-color-background": {
+    "$description": "Modal dialog background color.",
+    "$value": "{color.alias.gray.97}"
+  },
+  "kui-modal-color-border": {
+    "$description": "Modal dialog border color.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-modal-color-text": {
+    "$description": "Modal dialog text color (custom content).",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-modal-content-color-background": {
+    "$description": "Modal content area background color.",
+    "$value": "{color.alias.gray.107}"
+  },
+  "kui-modal-content-color-text": {
+    "$description": "Modal content area text color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-modal-content-font-family": {
+    "$description": "Modal content area font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-modal-content-font-size": {
+    "$description": "Modal content area font size.",
+    "$value": "14px"
+  },
+  "kui-modal-content-font-weight": {
+    "$description": "Modal content area font weight.",
+    "$value": "400"
+  },
+  "kui-modal-content-line-height": {
+    "$description": "Modal content area line height.",
+    "$value": "20px"
+  },
+  "kui-modal-content-padding": {
+    "$description": "Modal content area inner padding.",
+    "$value": "24px"
+  },
+  "kui-modal-font-family": {
+    "$description": "Modal dialog font family (custom content).",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-modal-font-size": {
+    "$description": "Modal dialog font size (custom content).",
+    "$value": "14px"
+  },
+  "kui-modal-font-weight": {
+    "$description": "Modal dialog font weight (custom content).",
+    "$value": "400"
+  },
+  "kui-modal-footer-padding": {
+    "$description": "Modal footer inner padding.",
+    "$value": "16px 24px"
+  },
+  "kui-modal-header-padding": {
+    "$description": "Modal header inner padding.",
+    "$value": "20px 24px"
+  },
+  "kui-modal-line-height": {
+    "$description": "Modal dialog line height (custom content).",
+    "$value": "20px"
+  },
+  "kui-modal-shadow": {
+    "$description": "Modal dialog box shadow.",
+    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+  },
+  "kui-modal-title-font-family": {
+    "$description": "Modal title font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-modal-title-font-size": {
+    "$description": "Modal title font size.",
+    "$value": "20px"
+  },
+  "kui-modal-title-font-weight": {
+    "$description": "Modal title font weight.",
+    "$value": "700"
+  },
+  "kui-modal-title-line-height": {
+    "$description": "Modal title line height.",
+    "$value": "28px"
+  },
   "kui-navigation-color-background": {
     "$description": "blue.100.",
     "$value": "{color.alias.blue.95}"
@@ -1817,6 +1921,82 @@
     "$description": "Pagination page button focus-visible shadow.",
     "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
   },
+  "kui-pop-border-radius": {
+    "$description": "Popover container border radius.",
+    "$value": "6px"
+  },
+  "kui-pop-border-width": {
+    "$description": "Popover container border width.",
+    "$value": "1px"
+  },
+  "kui-pop-close-border-radius": {
+    "$description": "Popover close button border radius.",
+    "$value": "4px"
+  },
+  "kui-pop-close-color-text": {
+    "$description": "Popover close button icon color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-pop-close-color-text-hover": {
+    "$description": "Popover close button icon color on hover and focus.",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-pop-close-shadow-focus": {
+    "$description": "Popover close button focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+  },
+  "kui-pop-color-background": {
+    "$description": "Popover container background color (also used for the caret fill).",
+    "$value": "{color.alias.gray.97}"
+  },
+  "kui-pop-color-border": {
+    "$description": "Popover container border color (also used for the caret border).",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-pop-color-text": {
+    "$description": "Popover content text color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-pop-font-family": {
+    "$description": "Popover container font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-pop-font-size": {
+    "$description": "Popover content font size.",
+    "$value": "12px"
+  },
+  "kui-pop-font-weight": {
+    "$description": "Popover content font weight.",
+    "$value": "400"
+  },
+  "kui-pop-line-height": {
+    "$description": "Popover content line height.",
+    "$value": "16px"
+  },
+  "kui-pop-padding": {
+    "$description": "Popover container inner padding.",
+    "$value": "16px"
+  },
+  "kui-pop-shadow": {
+    "$description": "Popover container box shadow.",
+    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+  },
+  "kui-pop-title-color-text": {
+    "$description": "Popover title text color.",
+    "$value": "{color.alias.gray.25}"
+  },
+  "kui-pop-title-font-size": {
+    "$description": "Popover title font size.",
+    "$value": "16px"
+  },
+  "kui-pop-title-font-weight": {
+    "$description": "Popover title font weight.",
+    "$value": "700"
+  },
+  "kui-pop-title-line-height": {
+    "$description": "Popover title line height.",
+    "$value": "20px"
+  },
   "kui-select-border-radius": {
     "$description": "Select dropdown popover border radius.",
     "$value": "6px"
@@ -1871,34 +2051,34 @@
   },
   "kui-shadow": {
     "$description": "Default drop shadow.",
-    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+    "$value": "0px 4px 20px 0px color-mix(in srgb, #f1f3f1 5%, transparent)"
   },
   "kui-shadow-border": {
     "$description": "Default inset border shadow.",
-    "$value": "0px 0px 0px 1px #3a3a3a inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.17} inset"
   },
   "kui-shadow-border-danger": {
     "$description": "Danger state inset border shadow.",
-    "$value": "0px 0px 0px 1px #ef4444 inset"
+    "$value": "0px 0px 0px 1px {color.alias.red.33} inset"
   },
   "kui-shadow-border-danger-strong": {
-    "$value": "0px 0px 0px 1px {color.alias.red.70} inset",
+    "$value": "0px 0px 0px 1px {color.alias.red.23} inset",
     "$description": "Strong danger state inset border shadow."
   },
   "kui-shadow-border-disabled": {
     "$description": "Disabled state inset border shadow.",
-    "$value": "0px 0px 0px 1px #2d2d2d inset"
+    "$value": "0px 0px 0px 1px #242622 inset"
   },
   "kui-shadow-border-primary": {
     "$description": "Primary state inset border shadow.",
-    "$value": "0px 0px 0px 1px #ccff00 inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.45} inset"
   },
   "kui-shadow-border-primary-strongest": {
-    "$value": "0px 0px 0px 1px {color.alias.blue.90} inset",
+    "$value": "0px 0px 0px 1px {color.alias.gray.13} inset",
     "$description": "Strongest primary state inset border shadow."
   },
   "kui-shadow-border-primary-weak": {
-    "$value": "0px 0px 0px 1px {color.alias.blue.40} inset",
+    "$value": "0px 0px 0px 1px {color.alias.gray.45} inset",
     "$description": "Weak primary state inset border shadow."
   },
   "kui-shadow-focus": {
@@ -2351,6 +2531,94 @@
   "kui-status-color-text-500": {
     "$description": "Text color for http status 500 elements.",
     "$value": "{color.alias.red.17}"
+  },
+  "kui-toaster-border-radius": {
+    "$description": "Toaster border radius.",
+    "$value": "6px"
+  },
+  "kui-toaster-close-border-radius": {
+    "$description": "Toaster close button border radius.",
+    "$value": "4px"
+  },
+  "kui-toaster-close-color-text-hover": {
+    "$description": "Toaster close button icon color on hover and focus.",
+    "$value": "{color.alias.gray.83}"
+  },
+  "kui-toaster-close-shadow-focus": {
+    "$description": "Toaster close button focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
+  },
+  "kui-toaster-color-background": {
+    "$description": "Toaster background color.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-toaster-color-text": {
+    "$description": "Toaster text color.",
+    "$value": "{color.alias.gray.107}"
+  },
+  "kui-toaster-font-family": {
+    "$description": "Toaster message font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-toaster-font-size": {
+    "$description": "Toaster message font size.",
+    "$value": "14px"
+  },
+  "kui-toaster-font-weight": {
+    "$description": "Toaster message font weight.",
+    "$value": "400"
+  },
+  "kui-toaster-icon-color": {
+    "$description": "Toaster icon color (knockout matching the toaster background).",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-toaster-icon-color-background": {
+    "$description": "Toaster icon container background color (info appearance as default).",
+    "$value": "{color.alias.blue.46}"
+  },
+  "kui-toaster-icon-color-background-danger": {
+    "$description": "Danger toaster icon container background color.",
+    "$value": "{color.alias.red.73}"
+  },
+  "kui-toaster-icon-color-background-info": {
+    "$description": "Info toaster icon container background color.",
+    "$value": "{color.alias.blue.46}"
+  },
+  "kui-toaster-icon-color-background-success": {
+    "$description": "Success toaster icon container background color.",
+    "$value": "{color.alias.green.57}"
+  },
+  "kui-toaster-icon-color-background-system": {
+    "$description": "System toaster icon container background color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-toaster-icon-color-background-warning": {
+    "$description": "Warning toaster icon container background color.",
+    "$value": "{color.alias.yellow.45}"
+  },
+  "kui-toaster-line-height": {
+    "$description": "Toaster message line height.",
+    "$value": "20px"
+  },
+  "kui-toaster-padding": {
+    "$description": "Toaster inner padding.",
+    "$value": "12px"
+  },
+  "kui-toaster-shadow": {
+    "$description": "Toaster box shadow.",
+    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+  },
+  "kui-toaster-title-font-size": {
+    "$description": "Toaster title font size.",
+    "$value": "18px"
+  },
+  "kui-toaster-title-font-weight": {
+    "$description": "Toaster title font weight.",
+    "$value": "600"
+  },
+  "kui-toaster-title-line-height": {
+    "$description": "Toaster title line height.",
+    "$value": "24px"
   },
   "kui-tooltip-border-radius": {
     "$description": "Tooltip border radius.",

@@ -1,0 +1,103 @@
+{
+  "pop": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Popover container border radius.",
+        "$value": ""
+      },
+      "width": {
+        "$description": "Popover container border width.",
+        "$value": ""
+      }
+    },
+    "close": {
+      "border": {
+        "radius": {
+          "$description": "Popover close button border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "text": {
+          "_": {
+            "$description": "Popover close button icon color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Popover close button icon color on hover and focus.",
+            "$value": ""
+          }
+        }
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Popover close button focus-visible shadow.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "$description": "Popover container background color (also used for the caret fill).",
+        "$value": ""
+      },
+      "border": {
+        "$description": "Popover container border color (also used for the caret border).",
+        "$value": ""
+      },
+      "text": {
+        "$description": "Popover content text color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Popover container font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Popover content font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Popover content font weight.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Popover content line height.",
+      "$value": ""
+    },
+    "padding": {
+      "$description": "Popover container inner padding.",
+      "$value": ""
+    },
+    "shadow": {
+      "$description": "Popover container box shadow.",
+      "$value": ""
+    },
+    "title": {
+      "color": {
+        "text": {
+          "$description": "Popover title text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Popover title font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Popover title font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Popover title line height.",
+        "$value": ""
+      }
+    }
+  }
+}
