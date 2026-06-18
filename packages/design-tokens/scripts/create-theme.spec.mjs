@@ -231,7 +231,7 @@ describe('buildDescriptionMap', () => {
   it('contains expected component token descriptions', () => {
     expect(descriptions['kui-button-border-radius-medium']).toBe('Medium button border radius.')
     expect(descriptions['kui-badge-border-radius']).toBe('Badge border radius.')
-    expect(descriptions['kui-input-shadow-border-focus']).toBe('Input border shadow when focused.')
+    expect(descriptions['kui-input-shadow-border-hover']).toBe('Input border shadow on hover.')
   })
 
   it('normalizes underscore segments — line_height keys produce hyphenated CSS var names', () => {
