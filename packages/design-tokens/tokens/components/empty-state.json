@@ -1,5 +1,5 @@
 {
-  "empty-state": {
+  "empty_state": {
     "$type": "component",
     "color": {
       "background": {

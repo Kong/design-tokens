@@ -1,5 +1,5 @@
 {
-  "code-block": {
+  "code_block": {
     "$type": "component",
     "actions": {
       "border": {
