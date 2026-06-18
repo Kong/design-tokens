@@ -9,6 +9,7 @@
     "build:tokens": "style-dictionary build --config ./config.mjs",
     "build:clean": "rimraf ./dist",
     "create-theme": "node scripts/create-theme.mjs",
+    "fill-themes": "node scripts/fill-themes.mjs",
     "copy:tokens-doc": "shx cp -f './dist/tokens/README.md' './TOKENS.md'",
     "lint": "eslint",
     "lint:fix": "eslint --fix",

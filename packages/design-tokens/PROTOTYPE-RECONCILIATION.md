@@ -15,12 +15,44 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 - [x] **card** (day + night) — prototype = pure semantic defaults; cleared leftover konnect-light/dark overrides (radius 8→6px, padding/gap 32→20px, title-weight 600→700, body-color → `color-text`). Verified both themes.
 - [x] **input** (day + night) — borders are **neutral, not lime** (reset konnect-light/dark leftovers): default→`color-border`, hover/focus→`color-border-neutral`, disabled→**no border**, error→`color-border-danger`, error-hover→`-danger-strong`; focus ring = `2px color-border-neutral @20%` (input-specific, tighter than button's 4px); radius 6px; placeholder→`color-text-neutral`. Verified both themes. NOTE: hover/focus aren't in the static states-table — read them from the prototype's `:hover`/`:focus` CSS rules (semantic-driven).
 - [x] **badge** (day + night) — appearances render via the semantic ramps (already correct from the exhaustive fill); fixed `badge-border-radius` 6→**100px** (pill, `border-radius-round`) + `padding-x` 8→**12px**; night info-badge + decorative text corrected; designed night `color-text-decorative-hover` = `purple.20` (#cfc8ff). Verified both themes.
-- [ ] select
-- [ ] dropdown
-- [ ] checkbox
+- [x] **select** (day + night) — selected/hover item states render NEUTRAL in the prototype (not lime): `select-item-color-background-selected/hover` → `color-background-primary-weakest` *as rendered by the prototype* = gray (`#f1f3f1` day / `#292b26` night), `select-item-color-text-selected` → neutral. Reset lime leftovers. ⚠ see "Primary-driven states" below.
+- [x] **dropdown** (day + night) — `dropdown-item-color-background-selected` → prototype neutral (`#f1f3f1`/`#292b26`), `-color-text-selected` → neutral; reset lime leftovers. ⚠ see below.
+- [x] **checkbox** (day + night) — checked fill + checked/hover borders are NEUTRAL per prototype (reset lime/generic leftovers): checked→`#4e594e`/`#9da99d`, border→`color-border`. Designed: night default border `#292b26` (prototype's literal `#e3e8e3` is a bright border on the dark box). ⚠ see below.
 - [x] **alert** (day + night) — appearances render via the semantic ramps (already correct); designed night `color-text-decorative-hover` = `purple.20` (prototype's `#5200f5` is too dark on a dark surface). Verified both themes.
-- [ ] tooltip
+- [x] **tooltip** (day + night) — already correct (renders via semantic fallbacks); no leftover overrides. Verified.
 - [x] **label** (day + night) — already correct in both (text=`color-text`, Funnel Sans, weight 600); the required-indicator dot uses the semantic `color-background-danger` directly (no label component token). Verified.
+
+## Resolved decisions
+- **Primary-driven "selected/checked" states → NEUTRAL (match prototype).** RESOLVED: keep the prototype's
+  gray for checkbox-checked + dropdown/select-selected. Lime is reserved as a button accent → **lime buttons,
+  gray selections.** Rationale: the prototype is the source of truth (same call as reversing the brand-ramp
+  buttons). If the design team later wants brand-lime selections, route these through `color-background-primary`.
+- **Night checkbox default border → `#292b26`** (designed; the prototype's literal `#e3e8e3` is a bright
+  border on the dark box — broken).
+- **Night decorative-text-hover (badge + alert) → `purple.20`** (designed; prototype's `#5200f5` too dark on dark).
+
+## Theme completeness (two modes, both guard-enforced in `themes.spec.mjs`)
+- **konnect-day / konnect-night — EXHAUSTIVE** (`EXHAUSTIVE_THEMES`): every themeable token, 548 = 332
+  semantic + 216 component. They legitimately carry component tokens because they genuinely **diverge**
+  from semantics (dark/lime brand buttons, etc.).
+- **classic — SEMANTIC-ONLY** (`SEMANTIC_ONLY_THEMES`): all 332 semantic tokens, **zero** component tokens.
+  As the default theme it never diverges, so components fall through to its semantics via the Kongponents
+  `var()` chain — **live, not a frozen snapshot**. Component-free *by omission* (not filled with snapshots)
+  because this repo owns the component-token namespace (`tokens/components/`) but **not** the
+  component→semantic fallback map (that lives in Kongponents SCSS) — so "contains no component token" is the
+  only fallthrough property the repo can actually verify.
+- **brand-a / brand-b** — intentionally partial (not yet filled).
+
+> **Decision (2026-06-17) — branded themes are kept exhaustive on purpose.** The repo cannot distinguish a
+> *divergent* component token from a *non-divergent snapshot* (the component→semantic fallback map lives in
+> Kongponents, not here), so dropping the snapshot ones would add an external dependency *to delete tokens*
+> for zero verifiability gain, and would break the 1:1 Figma export. Branded-theme component tokens are
+> verifiable only externally — against the prototype — which we've done.
+> **Snapshot caveat:** a later change to a *semantic* value in a branded theme will NOT propagate to the
+> component tokens that should track it, and the repo can't catch that drift. Mitigation is procedural — the
+> prototype is the source of truth, so **re-run the per-component reconciliation when the design changes**;
+> don't hand-edit a semantic and assume components follow. (Repo-verifiable linkage would require recording
+> each component token's semantic fallback in `tokens/components/*.json` — flagged as future tooling, not done.)
 
 ## Per-component process (do for BOTH themes)
 1. **Inspect prototype** at `/components/themed/<comp>`, theme = Day then Night v2. Capture computed

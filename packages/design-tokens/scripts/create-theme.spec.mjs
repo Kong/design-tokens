@@ -391,7 +391,7 @@ describe('loadSourceTheme', () => {
   let values
 
   beforeAll(async () => {
-    values = await loadSourceTheme(THEMES_DIR, 'konnect-light')
+    values = await loadSourceTheme(THEMES_DIR, 'konnect-day')
   })
 
   it('loads $value entries from an existing theme file', () => {
@@ -410,9 +410,9 @@ describe('loadSourceTheme', () => {
     }
   })
 
-  it('returns the resolved $value for known tokens', () => {
-    expect(values['kui-color-background']).toBe('#ffffff')
-    expect(values['kui-badge-border-radius']).toBe('6px')
+  it('returns the raw $value for known tokens', () => {
+    expect(values['kui-color-background']).toBe('{color.alias.white}')
+    expect(values['kui-badge-border-radius']).toBe('100px')
   })
 
   it('does not include $description in the returned map', () => {

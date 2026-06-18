@@ -607,7 +607,7 @@
   },
   "kui-checkbox-color-background-checked": {
     "$description": "Checkbox background color when checked or indeterminate.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.gray.73}"
   },
   "kui-checkbox-color-icon": {
     "$description": "Checkbox icon color when checked or indeterminate.",
@@ -615,15 +615,15 @@
   },
   "kui-checkbox-shadow-border": {
     "$description": "Checkbox default border shadow.",
-    "$value": "0px 0px 0px 1px #d0d0d0 inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.17} inset"
   },
   "kui-checkbox-shadow-border-checked": {
     "$description": "Checkbox border shadow when checked or indeterminate.",
-    "$value": "0px 0px 0px 1px #77aa00 inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.73} inset"
   },
   "kui-checkbox-shadow-border-hover": {
     "$description": "Checkbox border shadow on hover.",
-    "$value": "0px 0px 0px 1px {color.alias.blue.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.73} inset"
   },
   "kui-checkbox-shadow-focus": {
     "$description": "Checkbox focus ring shadow.",
@@ -1157,7 +1157,7 @@
   },
   "kui-dropdown-item-color-background-selected": {
     "$description": "Selected dropdown item background color.",
-    "$value": "{color.alias.electric_lime.10}"
+    "$value": "{color.alias.gray.13}"
   },
   "kui-dropdown-item-color-background-selected-disabled": {
     "$description": "Selected and disabled dropdown item background color.",
@@ -1181,7 +1181,7 @@
   },
   "kui-dropdown-item-color-text-selected": {
     "$description": "Selected dropdown item text color.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.93}"
   },
   "kui-dropdown-item-font-family": {
     "$description": "Dropdown item font family.",
@@ -1643,11 +1643,11 @@
   },
   "kui-select-item-color-background-hover": {
     "$description": "Select item background color on hover.",
-    "$value": "{color.alias.electric_lime.10}"
+    "$value": "{color.alias.gray.13}"
   },
   "kui-select-item-color-background-selected": {
     "$description": "Selected select item background color.",
-    "$value": "{color.alias.electric_lime.10}"
+    "$value": "{color.alias.gray.13}"
   },
   "kui-select-item-color-background-selected-disabled": {
     "$description": "Selected and disabled select item background color.",
@@ -1663,7 +1663,7 @@
   },
   "kui-select-item-color-text-selected": {
     "$description": "Selected select item text color.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.93}"
   },
   "kui-select-item-font-size": {
     "$description": "Select item font size.",
