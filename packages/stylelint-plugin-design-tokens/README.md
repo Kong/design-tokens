@@ -1,6 +1,6 @@
 # @kong/stylelint-plugin-design-tokens
 
-[Stylelint](https://github.com/stylelint/stylelint) plugin for linting design tokens.
+[Stylelint](https://github.com/stylelint/stylelint) plugin for linting Kong's design tokens.
 
 - [Usage](#usage)
 - [Rules](#rules)
