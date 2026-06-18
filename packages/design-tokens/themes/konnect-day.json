@@ -629,6 +629,50 @@
     "$description": "Checkbox focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
+  "kui-code-block-actions-border-width": {
+    "$description": "Code block actions toolbar bottom border width.",
+    "$value": "1px"
+  },
+  "kui-code-block-actions-color-border": {
+    "$description": "Code block actions toolbar bottom border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-code-block-actions-color-border-dark": {
+    "$description": "Code block actions toolbar bottom border color in the dark theme.",
+    "$value": "rgba(255, 255, 255, 0.2)"
+  },
+  "kui-code-block-actions-padding": {
+    "$description": "Code block actions toolbar inner padding.",
+    "$value": "4px 8px"
+  },
+  "kui-code-block-border-radius": {
+    "$description": "Code block border radius.",
+    "$value": "8px"
+  },
+  "kui-code-block-color-background": {
+    "$description": "Code block background color.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-code-block-color-background-dark": {
+    "$description": "Code block background color in the dark theme.",
+    "$value": "{color.alias.gray.103}"
+  },
+  "kui-code-block-color-text": {
+    "$description": "Code block code text color.",
+    "$value": "{color.alias.gray.93}"
+  },
+  "kui-code-block-color-text-dark": {
+    "$description": "Code block code text color in the dark theme.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-code-block-line-number-color-text": {
+    "$description": "Code block line number text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-code-block-line-number-color-text-dark": {
+    "$description": "Code block line number text color in the dark theme.",
+    "$value": "{color.alias.gray.45}"
+  },
   "kui-color-background": {
     "$description": "Default background color for containers.",
     "$value": "{color.alias.white}"
@@ -1211,6 +1255,102 @@
     "$description": "Dropdown item focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
+  "kui-empty-state-color-background": {
+    "$description": "Empty state container background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-empty-state-font-family": {
+    "$description": "Empty state font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-empty-state-footer-border-width": {
+    "$description": "Empty state footer top border width.",
+    "$value": "1px"
+  },
+  "kui-empty-state-footer-color-border": {
+    "$description": "Empty state footer top border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-empty-state-footer-color-text": {
+    "$description": "Empty state footer text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-empty-state-footer-font-size": {
+    "$description": "Empty state footer font size.",
+    "$value": "14px"
+  },
+  "kui-empty-state-footer-font-weight": {
+    "$description": "Empty state footer font weight.",
+    "$value": "400"
+  },
+  "kui-empty-state-footer-line-height": {
+    "$description": "Empty state footer line height.",
+    "$value": "20px"
+  },
+  "kui-empty-state-footer-padding-top": {
+    "$description": "Empty state footer top padding.",
+    "$value": "32px"
+  },
+  "kui-empty-state-icon-background-color-text": {
+    "$description": "Empty state icon color when the icon has a background.",
+    "$value": "{color.alias.aqua.50}"
+  },
+  "kui-empty-state-icon-border-radius": {
+    "$description": "Empty state icon border radius when the icon has a background.",
+    "$value": "4px"
+  },
+  "kui-empty-state-icon-color": {
+    "$description": "Empty state icon color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-empty-state-icon-color-background": {
+    "$description": "Empty state icon background color when the icon has a background.",
+    "$value": "{color.alias.aqua.10}"
+  },
+  "kui-empty-state-icon-padding": {
+    "$description": "Empty state icon padding when the icon has a background.",
+    "$value": "8px"
+  },
+  "kui-empty-state-icon-size": {
+    "$description": "Empty state icon size.",
+    "$value": "32px"
+  },
+  "kui-empty-state-icon-size-background": {
+    "$description": "Empty state icon size when the icon has a background.",
+    "$value": "24px"
+  },
+  "kui-empty-state-message-color-text": {
+    "$description": "Empty state message text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-empty-state-message-font-size": {
+    "$description": "Empty state message font size.",
+    "$value": "14px"
+  },
+  "kui-empty-state-message-font-weight": {
+    "$description": "Empty state message font weight.",
+    "$value": "400"
+  },
+  "kui-empty-state-message-line-height": {
+    "$description": "Empty state message line height.",
+    "$value": "20px"
+  },
+  "kui-empty-state-title-color-text": {
+    "$description": "Empty state title text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-empty-state-title-font-size": {
+    "$description": "Empty state title font size.",
+    "$value": "18px"
+  },
+  "kui-empty-state-title-font-weight": {
+    "$description": "Empty state title font weight.",
+    "$value": "700"
+  },
+  "kui-empty-state-title-line-height": {
+    "$description": "Empty state title line height.",
+    "$value": "24px"
+  },
   "kui-font-family-code": {
     "$value": "'JetBrains Mono', Consolas, monospace",
     "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text."
@@ -1764,6 +1904,74 @@
   "kui-shadow-focus": {
     "$description": "Focus ring drop shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
+  "kui-slideout-border-width": {
+    "$description": "Slideout panel left border width.",
+    "$value": "1px"
+  },
+  "kui-slideout-close-border-radius": {
+    "$description": "Slideout close button border radius.",
+    "$value": "4px"
+  },
+  "kui-slideout-close-color-text-hover": {
+    "$description": "Slideout close button icon color on hover and focus.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-slideout-close-shadow-focus": {
+    "$description": "Slideout close button focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
+  "kui-slideout-color-background": {
+    "$description": "Slideout panel background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-slideout-color-border": {
+    "$description": "Slideout panel left border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-slideout-color-text": {
+    "$description": "Slideout content text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-slideout-font-family": {
+    "$description": "Slideout content font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-slideout-font-size": {
+    "$description": "Slideout content font size.",
+    "$value": "14px"
+  },
+  "kui-slideout-font-weight": {
+    "$description": "Slideout content font weight.",
+    "$value": "400"
+  },
+  "kui-slideout-line-height": {
+    "$description": "Slideout content line height.",
+    "$value": "20px"
+  },
+  "kui-slideout-padding": {
+    "$description": "Slideout panel inner padding.",
+    "$value": "20px 0px 0px 20px"
+  },
+  "kui-slideout-shadow": {
+    "$description": "Slideout panel box shadow.",
+    "$value": "0 4px 16px rgba(0, 0, 0, 0.10)"
+  },
+  "kui-slideout-title-font-family": {
+    "$description": "Slideout title font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-slideout-title-font-size": {
+    "$description": "Slideout title font size.",
+    "$value": "20px"
+  },
+  "kui-slideout-title-font-weight": {
+    "$description": "Slideout title font weight.",
+    "$value": "700"
+  },
+  "kui-slideout-title-line-height": {
+    "$description": "Slideout title line height.",
+    "$value": "28px"
   },
   "kui-space-0": {
     "$value": "0px"

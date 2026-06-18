@@ -1,0 +1,71 @@
+{
+  "code-block": {
+    "$type": "component",
+    "actions": {
+      "border": {
+        "width": {
+          "$description": "Code block actions toolbar bottom border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "border": {
+          "_": {
+            "$description": "Code block actions toolbar bottom border color.",
+            "$value": ""
+          },
+          "dark": {
+            "$description": "Code block actions toolbar bottom border color in the dark theme.",
+            "$value": ""
+          }
+        }
+      },
+      "padding": {
+        "$description": "Code block actions toolbar inner padding.",
+        "$value": ""
+      }
+    },
+    "border": {
+      "radius": {
+        "$description": "Code block border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Code block background color.",
+          "$value": ""
+        },
+        "dark": {
+          "$description": "Code block background color in the dark theme.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "_": {
+          "$description": "Code block code text color.",
+          "$value": ""
+        },
+        "dark": {
+          "$description": "Code block code text color in the dark theme.",
+          "$value": ""
+        }
+      }
+    },
+    "line_number": {
+      "color": {
+        "text": {
+          "_": {
+            "$description": "Code block line number text color.",
+            "$value": ""
+          },
+          "dark": {
+            "$description": "Code block line number text color in the dark theme.",
+            "$value": ""
+          }
+        }
+      }
+    }
+  }
+}
