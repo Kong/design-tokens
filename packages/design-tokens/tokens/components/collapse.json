@@ -1,0 +1,77 @@
+{
+  "collapse": {
+    "$type": "component",
+    "font": {
+      "family": {
+        "$description": "Collapse font family.",
+        "$value": ""
+      }
+    },
+    "title": {
+      "color": {
+        "text": {
+          "$description": "Collapse title text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Collapse title font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Collapse title font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Collapse title line height.",
+        "$value": ""
+      }
+    },
+    "trigger": {
+      "border": {
+        "radius": {
+          "$description": "Collapse trigger button border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "text": {
+          "_": {
+            "$description": "Collapse trigger button text color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Collapse trigger button text color when active (pressed).",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Collapse trigger button text color on hover.",
+            "$value": ""
+          }
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Collapse trigger button font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Collapse trigger button font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Collapse trigger button line height.",
+        "$value": ""
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Collapse trigger button focus-visible shadow.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

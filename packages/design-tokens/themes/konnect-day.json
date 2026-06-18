@@ -709,6 +709,58 @@
     "$description": "Code block line number text color in the dark theme.",
     "$value": "{color.alias.gray.45}"
   },
+  "kui-collapse-font-family": {
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
+    "$description": "Collapse font family."
+  },
+  "kui-collapse-title-color-text": {
+    "$description": "Collapse title text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-collapse-title-font-size": {
+    "$value": "16px",
+    "$description": "Collapse title font size."
+  },
+  "kui-collapse-title-font-weight": {
+    "$value": "700",
+    "$description": "Collapse title font weight."
+  },
+  "kui-collapse-title-line-height": {
+    "$value": "20px",
+    "$description": "Collapse title line height."
+  },
+  "kui-collapse-trigger-border-radius": {
+    "$value": "4px",
+    "$description": "Collapse trigger button border radius."
+  },
+  "kui-collapse-trigger-color-text": {
+    "$description": "Collapse trigger button text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-collapse-trigger-color-text-active": {
+    "$description": "Collapse trigger button text color when active (pressed).",
+    "$value": "{color.alias.gray.87}"
+  },
+  "kui-collapse-trigger-color-text-hover": {
+    "$description": "Collapse trigger button text color on hover.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-collapse-trigger-font-size": {
+    "$value": "14px",
+    "$description": "Collapse trigger button font size."
+  },
+  "kui-collapse-trigger-font-weight": {
+    "$value": "600",
+    "$description": "Collapse trigger button font weight."
+  },
+  "kui-collapse-trigger-line-height": {
+    "$value": "20px",
+    "$description": "Collapse trigger button line height."
+  },
+  "kui-collapse-trigger-shadow-focus": {
+    "$description": "Collapse trigger button focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
   "kui-color-background": {
     "$description": "Default background color for containers.",
     "$value": "{color.alias.white}"
@@ -1207,6 +1259,30 @@
     "$value": "{color.alias.yellow.10}",
     "$description": "Weakest text color for warning elements."
   },
+  "kui-copy-color-text": {
+    "$description": "Copy badge label text color (shown before the copyable value when rendered as a badge).",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-copy-font-family-code": {
+    "$value": "'JetBrains Mono', Consolas, monospace",
+    "$description": "Copy monospace (code) text font family."
+  },
+  "kui-copy-font-size": {
+    "$value": "12px",
+    "$description": "Copy text font size."
+  },
+  "kui-copy-font-weight-code": {
+    "$value": "400",
+    "$description": "Copy monospace (code) text font weight."
+  },
+  "kui-copy-icon-color-text-hover": {
+    "$description": "Copy-to-clipboard icon text color on hover and focus (non-badge appearance).",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-copy-line-height": {
+    "$value": "16px",
+    "$description": "Copy text line height."
+  },
   "kui-dropdown-border-radius": {
     "$description": "Dropdown popover border radius.",
     "$value": "6px"
@@ -1386,6 +1462,58 @@
   "kui-empty-state-title-line-height": {
     "$description": "Empty state title line height.",
     "$value": "24px"
+  },
+  "kui-file-upload-color-text-disabled": {
+    "$description": "File upload selected-file text color when disabled (input appearance).",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-file-upload-color-text-placeholder": {
+    "$description": "File upload placeholder text color when no file is selected (input appearance).",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-file-upload-dropzone-border-radius": {
+    "$value": "6px",
+    "$description": "File upload dropzone border radius."
+  },
+  "kui-file-upload-dropzone-border-width": {
+    "$value": "1px",
+    "$description": "File upload dropzone border width."
+  },
+  "kui-file-upload-dropzone-color-background": {
+    "$description": "File upload dropzone background color.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-file-upload-dropzone-color-background-disabled": {
+    "$description": "File upload dropzone background color when disabled.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-file-upload-dropzone-color-border": {
+    "$description": "File upload dropzone border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-file-upload-dropzone-color-border-disabled": {
+    "$description": "File upload dropzone border color when disabled.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-file-upload-dropzone-color-border-error": {
+    "$description": "File upload dropzone border color in error state.",
+    "$value": "{color.alias.red.60}"
+  },
+  "kui-file-upload-dropzone-color-border-hover": {
+    "$description": "File upload dropzone border color on hover, drag-over, and focus (coordinated).",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-file-upload-dropzone-color-text": {
+    "$description": "File upload dropzone text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-file-upload-dropzone-shadow-focus": {
+    "$description": "File upload dropzone outer focus ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
+  "kui-file-upload-help-text-color-text-error": {
+    "$description": "File upload help text color in error state.",
+    "$value": "{color.alias.red.60}"
   },
   "kui-font-family-code": {
     "$value": "'JetBrains Mono', Consolas, monospace",
