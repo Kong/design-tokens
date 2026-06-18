@@ -1,0 +1,55 @@
+{
+  "breadcrumbs": {
+    "$type": "component",
+    "color": {
+      "text": {
+        "_": {
+          "$description": "Breadcrumbs item text color. Applies to the resting state of links and to the current (non-link) item.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Breadcrumbs link text color on hover and focus.",
+          "$value": ""
+        }
+      }
+    },
+    "divider": {
+      "color": {
+        "text": {
+          "$description": "Breadcrumbs divider (separator) color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "weight": {
+          "$description": "Breadcrumbs divider (separator) font weight.",
+          "$value": ""
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Breadcrumbs font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Breadcrumbs item font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Breadcrumbs item text font weight.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Breadcrumbs item line height.",
+      "$value": ""
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Breadcrumbs link focus-visible shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

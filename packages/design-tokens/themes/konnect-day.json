@@ -241,6 +241,42 @@
   "kui-border-width-30": {
     "$value": "4px"
   },
+  "kui-breadcrumbs-color-text": {
+    "$description": "Breadcrumbs item text color. Applies to the resting state of links and to the current (non-link) item.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-breadcrumbs-color-text-hover": {
+    "$description": "Breadcrumbs link text color on hover and focus.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-breadcrumbs-divider-color-text": {
+    "$description": "Breadcrumbs divider (separator) color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-breadcrumbs-divider-font-weight": {
+    "$description": "Breadcrumbs divider (separator) font weight.",
+    "$value": "400"
+  },
+  "kui-breadcrumbs-font-family": {
+    "$description": "Breadcrumbs font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-breadcrumbs-font-size": {
+    "$description": "Breadcrumbs item font size.",
+    "$value": "14px"
+  },
+  "kui-breadcrumbs-font-weight": {
+    "$description": "Breadcrumbs item text font weight.",
+    "$value": "500"
+  },
+  "kui-breadcrumbs-line-height": {
+    "$description": "Breadcrumbs item line height.",
+    "$value": "20px"
+  },
+  "kui-breadcrumbs-shadow-focus": {
+    "$description": "Breadcrumbs link focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
   "kui-button-border-radius-large": {
     "$description": "Large button border radius.",
     "$value": "100px"
@@ -787,31 +823,31 @@
   },
   "kui-color-background-primary": {
     "$description": "Background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.gray.77}"
   },
   "kui-color-background-primary-strong": {
     "$description": "Strong background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.70}"
+    "$value": "{color.alias.gray.87}"
   },
   "kui-color-background-primary-stronger": {
     "$description": "Stronger background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.80}"
+    "$value": "{color.alias.gray.93}"
   },
   "kui-color-background-primary-strongest": {
     "$description": "Strongest background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.90}"
+    "$value": "{color.alias.gray.103}"
   },
   "kui-color-background-primary-weak": {
     "$description": "Weak background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.40}"
+    "$value": "{color.alias.gray.45}"
   },
   "kui-color-background-primary-weaker": {
     "$description": "Weaker background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.20}"
+    "$value": "{color.alias.gray.17}"
   },
   "kui-color-background-primary-weakest": {
     "$description": "Weakest background color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.10}"
+    "$value": "{color.alias.gray.13}"
   },
   "kui-color-background-success": {
     "$value": "{color.alias.green.60}",
@@ -945,31 +981,31 @@
   },
   "kui-color-border-primary": {
     "$description": "Border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.80}"
+    "$value": "{color.alias.gray.45}"
   },
   "kui-color-border-primary-strong": {
     "$description": "Strong border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.90}"
+    "$value": "{color.alias.gray.87}"
   },
   "kui-color-border-primary-stronger": {
     "$description": "Stronger border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.90}"
+    "$value": "{color.alias.gray.93}"
   },
   "kui-color-border-primary-strongest": {
     "$description": "Strongest border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.103}"
   },
   "kui-color-border-primary-weak": {
     "$description": "Weak border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.gray.45}"
   },
   "kui-color-border-primary-weaker": {
     "$description": "Weaker border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.40}"
+    "$value": "{color.alias.gray.17}"
   },
   "kui-color-border-primary-weakest": {
     "$description": "Weakest border color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.20}"
+    "$value": "{color.alias.gray.13}"
   },
   "kui-color-border-transparent": {
     "$value": "{color.alias.transparent}",
@@ -1089,31 +1125,31 @@
   },
   "kui-color-text-primary": {
     "$description": "Text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.90}"
+    "$value": "{color.alias.gray.77}"
   },
   "kui-color-text-primary-strong": {
     "$description": "Strong text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.87}"
   },
   "kui-color-text-primary-stronger": {
     "$description": "Stronger text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.93}"
   },
   "kui-color-text-primary-strongest": {
     "$description": "Strongest text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.103}"
   },
   "kui-color-text-primary-weak": {
     "$description": "Weak text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.70}"
+    "$value": "{color.alias.gray.45}"
   },
   "kui-color-text-primary-weaker": {
     "$description": "Weaker text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.gray.17}"
   },
   "kui-color-text-primary-weakest": {
     "$description": "Weakest text color for primary actions or messages.",
-    "$value": "{color.alias.electric_lime.40}"
+    "$value": "{color.alias.gray.13}"
   },
   "kui-color-text-success": {
     "$description": "Text color for success elements.",
@@ -2531,6 +2567,178 @@
   "kui-status-color-text-500": {
     "$value": "{color.alias.red.60}",
     "$description": "Text color for http status 500 elements."
+  },
+  "kui-table-cell-color-text": {
+    "$description": "Table body cell text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-table-cell-font-size": {
+    "$description": "Table body cell font size.",
+    "$value": "14px"
+  },
+  "kui-table-cell-font-weight": {
+    "$description": "Table body cell font weight.",
+    "$value": "400"
+  },
+  "kui-table-cell-line-height": {
+    "$description": "Table body cell line height.",
+    "$value": "20px"
+  },
+  "kui-table-cell-shadow-resize-hover": {
+    "$description": "Table body cell resize-handle hover indicator shadow.",
+    "$value": "calc(-1 * 2px) 0 0 0 {color.alias.gray.17} inset"
+  },
+  "kui-table-color-background": {
+    "$description": "Table background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-table-font-family": {
+    "$description": "Table font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-table-header-color-border": {
+    "$description": "Table header bottom border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-table-header-color-text": {
+    "$description": "Table header text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-table-header-color-text-active-sort": {
+    "$description": "Table header text color when the column is the active sort column.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-table-header-font-size": {
+    "$description": "Table header font size.",
+    "$value": "14px"
+  },
+  "kui-table-header-font-weight": {
+    "$description": "Table header font weight.",
+    "$value": "600"
+  },
+  "kui-table-header-line-height": {
+    "$description": "Table header line height.",
+    "$value": "20px"
+  },
+  "kui-table-header-padding": {
+    "$description": "Table header cell inner padding.",
+    "$value": "12px 16px"
+  },
+  "kui-table-header-shadow-resize-hover": {
+    "$description": "Table header resize-handle hover indicator shadow.",
+    "$value": "calc(-1 * 2px) 0 0 0 {color.alias.purple.60} inset"
+  },
+  "kui-table-header-shadow-scrolled": {
+    "$description": "Table header shadow when the table body is scrolled.",
+    "$value": "0px 4px 20px 0px color-mix(in srgb, #181b18 5%, transparent)"
+  },
+  "kui-table-padding": {
+    "$description": "Table cell inner padding.",
+    "$value": "12px 16px"
+  },
+  "kui-table-row-color-background-expanded": {
+    "$description": "Table expanded (expandable content) row background color.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-table-row-color-background-hover": {
+    "$description": "Table row background color on hover.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-table-row-color-border": {
+    "$description": "Table row divider (bottom border) color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-table-sticky-color-background": {
+    "$description": "Table sticky column (and actions column) cell background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-tabs-border-radius": {
+    "$description": "Tabs tab link border radius (default appearance).",
+    "$value": "6px"
+  },
+  "kui-tabs-border-radius-minimal": {
+    "$description": "Tabs tab link border radius (minimal appearance).",
+    "$value": "4px"
+  },
+  "kui-tabs-border-width": {
+    "$description": "Tabs container bottom border width (default appearance).",
+    "$value": "1px"
+  },
+  "kui-tabs-border-width-selected": {
+    "$description": "Tabs current (selected) tab bottom border width — the active-tab underline (default appearance).",
+    "$value": "2px"
+  },
+  "kui-tabs-color-background-focus": {
+    "$description": "Tabs tab link background color on focus (default appearance).",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-tabs-color-background-hover": {
+    "$description": "Tabs tab link background color on hover (default appearance).",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-tabs-color-border": {
+    "$description": "Tabs container bottom border color (default appearance).",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-tabs-color-border-selected": {
+    "$description": "Tabs current (selected) tab bottom border color — the active-tab underline (default appearance).",
+    "$value": "{color.alias.gray.93}"
+  },
+  "kui-tabs-color-text": {
+    "$description": "Tabs tab link text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-tabs-color-text-disabled": {
+    "$description": "Tabs tab link text color when disabled.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-tabs-color-text-focus": {
+    "$description": "Tabs tab link text color on focus (default appearance).",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-tabs-color-text-minimal-hover": {
+    "$description": "Tabs tab link text color on hover (minimal appearance).",
+    "$value": "{color.alias.gray.87}"
+  },
+  "kui-tabs-color-text-selected": {
+    "$description": "Tabs current (selected) tab link text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-tabs-font-family": {
+    "$description": "Tabs font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-tabs-font-size": {
+    "$description": "Tabs tab link font size (default appearance).",
+    "$value": "14px"
+  },
+  "kui-tabs-font-size-minimal": {
+    "$description": "Tabs tab link font size (minimal appearance).",
+    "$value": "12px"
+  },
+  "kui-tabs-font-weight": {
+    "$description": "Tabs tab link font weight (default appearance).",
+    "$value": "600"
+  },
+  "kui-tabs-font-weight-minimal": {
+    "$description": "Tabs tab link font weight (minimal appearance).",
+    "$value": "500"
+  },
+  "kui-tabs-line-height": {
+    "$description": "Tabs tab link line height (default appearance).",
+    "$value": "24px"
+  },
+  "kui-tabs-line-height-minimal": {
+    "$description": "Tabs tab link line height (minimal appearance).",
+    "$value": "20px"
+  },
+  "kui-tabs-padding": {
+    "$description": "Tabs tab link inner padding (default appearance).",
+    "$value": "6px 12px"
+  },
+  "kui-tabs-shadow-focus": {
+    "$description": "Tabs tab link focus-visible shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-toaster-border-radius": {
     "$description": "Toaster border radius.",
