@@ -23,7 +23,7 @@
         "$value": ""
       },
       "shadow": {
-        "resize-hover": {
+        "resize_hover": {
           "$description": "Table body cell resize-handle hover indicator shadow.",
           "$value": ""
         }
@@ -52,7 +52,7 @@
             "$description": "Table header text color.",
             "$value": ""
           },
-          "active-sort": {
+          "active_sort": {
             "$description": "Table header text color when the column is the active sort column.",
             "$value": ""
           }
@@ -77,7 +77,7 @@
         "$value": ""
       },
       "shadow": {
-        "resize-hover": {
+        "resize_hover": {
           "$description": "Table header resize-handle hover indicator shadow.",
           "$value": ""
         },
