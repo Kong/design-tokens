@@ -22,6 +22,16 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 - [x] **tooltip** (day + night) — already correct (renders via semantic fallbacks); no leftover overrides. Verified.
 - [x] **label** (day + night) — already correct in both (text=`color-text`, Funnel Sans, weight 600); the required-indicator dot uses the semantic `color-background-danger` directly (no label component token). Verified.
 
+## Wave 2 — newly instrumented from scratch
+Process per component: enumerate themeable surface from the Kongponents source → instrument the `.vue`/mixin with `var(--kui-<comp>-*, var(--kui-<semantic>, $literal))` chains (split shorthands, atomic-wrap, preserve `!important`) → create `tokens/components/<comp>.json` (value-less registry) → regenerate `/tmp/fallback-pairs.txt` → fill konnect-day/night at each theme's **own** semantic value (non-divergent baseline) → reconcile divergences vs the prototype.
+
+**Convention — do NOT tokenize breakpoint-varying properties.** A property whose value changes by `@media` breakpoint (e.g. pagination's mobile↔desktop font-size/line-height/button-size) must stay on the semantic/literal scale, NOT become a component token. The exhaustive themes assign every component token a single value, which would override *all* breakpoints at once and silently break responsive sizing. Only tokenize properties that are constant across breakpoints (or vary by an explicit size *prop*, like button's `-small/-medium/-large`).
+
+- [x] **pagination** (day + night) — INSTRUMENTED (12 `--kui-pagination-*` tokens on the page-number buttons; arrows + page-size trigger are real `<KButton>`s → inherit `--kui-button-tertiary-*`) + RECONCILED to prototype. Page text and current/hover states **diverge to NEUTRAL gray** (not the lime primary), per the locked primary-states→neutral rule:
+  - `color-text` → `gray.73` (day) / `gray.45` (night); `color-background-selected` → `gray.05` / `gray.107`; `color-border-selected` & `color-border-hover` → `gray.73` / `gray.45`.
+  - Non-divergent (kept inheriting): `color-background` transparent; default `color-border` = `color-border` (`gray.17`/`gray.83`, already = prototype); radius/width/padding/font-family/font-weight/shadow-focus.
+  - Built theme CSS matches the prototype exactly — day `#4E594E`/`#F9FBF9`; night `#9DA99D`/`#070807`. Dropped font-size/line-height/size (breakpoint-varying — see convention above). **Assumption:** hover border = current-border value (prototype styles them together; the static prototype only exposes the current-page state). NOTE: the docs dev server (5173) must be restarted to render the rebuilt design-tokens (it caches the pre-pagination build).
+
 ## Resolved decisions
 - **Primary-driven "selected/checked" states → NEUTRAL (match prototype).** RESOLVED: keep the prototype's
   gray for checkbox-checked + dropdown/select-selected. Lime is reserved as a button accent → **lime buttons,
