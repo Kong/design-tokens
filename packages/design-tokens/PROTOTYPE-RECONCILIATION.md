@@ -10,6 +10,8 @@ prototype so Kongponents renders identically. **The prototype is the source of t
 - Component-token → semantic fallback map (one-time): `/tmp/fallback-pairs.txt`
   (`grep -rhoE 'var\(--kui-[a-z0-9-]+,\s*var\(--kui-[a-z0-9-]+' src/` in the Kongponents repo).
 
+> 📖 **The reusable methodology is now in [`COMPONENT-TOKENS-GUIDE.md`](./COMPONENT-TOKENS-GUIDE.md)** — read it before instrumenting a new component or starting a wave. This file is the per-component reconciliation **log / record** (decisions + worked examples).
+
 ## Eligible components (instrumented in Kongponents + have `tokens/components/<comp>.json`)
 - [x] **button** (day + night) — reference implementation
 - [x] **card** (day + night) — prototype = pure semantic defaults; cleared leftover konnect-light/dark overrides (radius 8→6px, padding/gap 32→20px, title-weight 600→700, body-color → `color-text`). Verified both themes.
@@ -72,8 +74,8 @@ Process per component: enumerate themeable surface from the Kongponents source �
 - **Night decorative-text-hover (badge + alert) → `purple.20`** (designed; prototype's `#5200f5` too dark on dark).
 
 ## Theme completeness (two modes, both guard-enforced in `themes.spec.mjs`)
-- **konnect-day / konnect-night — EXHAUSTIVE** (`EXHAUSTIVE_THEMES`): every themeable token, 548 = 332
-  semantic + 216 component. They legitimately carry component tokens because they genuinely **diverge**
+- **konnect-day / konnect-night — EXHAUSTIVE** (`EXHAUSTIVE_THEMES`): every themeable token (currently **910** = 332
+  semantic + 578 component). They legitimately carry component tokens because they genuinely **diverge**
   from semantics (dark/lime brand buttons, etc.).
 - **classic — SEMANTIC-ONLY** (`SEMANTIC_ONLY_THEMES`): all 332 semantic tokens, **zero** component tokens.
   As the default theme it never diverges, so components fall through to its semantics via the Kongponents
@@ -94,7 +96,8 @@ Process per component: enumerate themeable surface from the Kongponents source �
 > don't hand-edit a semantic and assume components follow. (Repo-verifiable linkage would require recording
 > each component token's semantic fallback in `tokens/components/*.json` — flagged as future tooling, not done.)
 
-## Per-component process (do for BOTH themes)
+## Per-component process — EARLY explicit-fill method (⚠️ superseded by the Reusable Guide above)
+> This was the approach for the first 10 components (set every token explicitly to its prototype value). Wave 2 evolved to **baseline-fill at each theme's own semantic + reconcile only the divergences** (see the Reusable Guide). Kept here as the first-10 record.
 1. **Inspect prototype** at `/components/themed/<comp>`, theme = Day then Night v2. Capture computed
    styles for every variant × state in `.docs-content`: bg, text, border (color/width/style),
    radius, padding, font (size/line-height/weight), gap, box-shadow, hover/focus/active styles.
@@ -132,7 +135,7 @@ Adding component tokens (a new `tokens/components/<x>.json`, or new leaves on an
 themeable set — konnect-day/night must be updated in lockstep or the **Figma 1:1 export silently drifts**.
 This is an *export-completeness* issue, not rendering (Kongponents still falls through `var(--kui-comp,
 var(--kui-semantic, $scss))` at runtime). Proof it's real: 6 stale extras had already accumulated (tokens
-removed from the design system but left in the themes) — now pruned; both themes are exactly 548 = the set.
+removed from the design system but left in the themes) — now pruned; both themes stay exactly 1:1 with the set (currently 910).
 **Solution (recommended, agreed):**
 - **Guard test** — `themes.spec.mjs`: for each *exhaustive* theme (konnect-day, konnect-night) assert its
   `$value` key set === `KUI_THEMEABLE_TOKENS` exactly — fail on BOTH missing tokens and stale extras.
