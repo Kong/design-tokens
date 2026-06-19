@@ -1,0 +1,37 @@
+{
+  "radio": {
+    "$type": "component",
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Radio background color.",
+          "$value": ""
+        },
+        "checked": {
+          "$description": "Radio background color when checked.",
+          "$value": ""
+        }
+      }
+    },
+    "shadow": {
+      "border": {
+        "_": {
+          "$description": "Radio default border shadow.",
+          "$value": ""
+        },
+        "checked": {
+          "$description": "Radio border shadow when checked.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Radio border shadow on hover.",
+          "$value": ""
+        }
+      },
+      "focus": {
+        "$description": "Radio focus ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

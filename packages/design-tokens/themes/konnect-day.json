@@ -1283,6 +1283,42 @@
     "$value": "16px",
     "$description": "Copy text line height."
   },
+  "kui-date-time-picker-day-color-background-hover": {
+    "$description": "Date time picker calendar day cell background color on hover and focus.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-date-time-picker-day-color-background-in-range": {
+    "$description": "Date time picker calendar day cell background color when the day falls within the selected range.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-date-time-picker-day-color-background-selected": {
+    "$description": "Date time picker calendar selected day cell (range start and end) background color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-date-time-picker-day-color-background-selected-hover": {
+    "$description": "Date time picker calendar selected day cell (range start and end) background color on hover and focus.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-date-time-picker-day-color-background-today": {
+    "$description": "Date time picker calendar today indicator background color.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-date-time-picker-day-color-text": {
+    "$description": "Date time picker calendar day cell text color.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-date-time-picker-day-color-text-disabled": {
+    "$description": "Date time picker calendar disabled day cell text color.",
+    "$value": "{color.alias.gray.45}"
+  },
+  "kui-date-time-picker-day-color-text-selected": {
+    "$description": "Date time picker calendar inverse text color (used for content rendered on top of accent/selected backgrounds).",
+    "$value": "{color.alias.white}"
+  },
+  "kui-date-time-picker-shadow-focus": {
+    "$description": "Date time picker calendar focus-visible ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
   "kui-dropdown-border-radius": {
     "$description": "Dropdown popover border radius.",
     "$value": "6px"
@@ -1463,6 +1499,26 @@
     "$description": "Empty state title line height.",
     "$value": "24px"
   },
+  "kui-external-link-color-text": {
+    "$description": "External link text color in the resting state.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-external-link-color-text-active": {
+    "$description": "External link text color in the active (pressed) state.",
+    "$value": "{color.alias.gray.93}"
+  },
+  "kui-external-link-color-text-hover": {
+    "$description": "External link text color on hover and focus-visible.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-external-link-font-weight": {
+    "$value": "400",
+    "$description": "External link font weight."
+  },
+  "kui-external-link-shadow-focus": {
+    "$description": "External link focus-visible ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
   "kui-file-upload-color-text-disabled": {
     "$description": "File upload selected-file text color when disabled (input appearance).",
     "$value": "{color.alias.gray.45}"
@@ -1511,9 +1567,69 @@
     "$description": "File upload dropzone outer focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
-  "kui-file-upload-help-text-color-text-error": {
-    "$description": "File upload help text color in error state.",
-    "$value": "{color.alias.red.60}"
+  "kui-filter-group-clear-border-radius": {
+    "$value": "4px",
+    "$description": "Border radius of the focus highlight around the pill clear button."
+  },
+  "kui-filter-group-pill-border-radius": {
+    "$value": "4px",
+    "$description": "Filter pill border radius."
+  },
+  "kui-filter-group-pill-border-width": {
+    "$value": "1px",
+    "$description": "Filter pill border width."
+  },
+  "kui-filter-group-pill-color-background": {
+    "$description": "Filter pill background color (default, no selection).",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-filter-group-pill-color-background-hover": {
+    "$description": "Filter pill background color on hover and focus (default, no selection).",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-filter-group-pill-color-background-selected": {
+    "$description": "Filter pill background color when a selection is applied.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-filter-group-pill-color-background-selected-hover": {
+    "$description": "Filter pill background color on hover and focus when a selection is applied.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-filter-group-pill-color-border": {
+    "$description": "Filter pill border color (default, no selection).",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-filter-group-pill-color-border-hover": {
+    "$description": "Filter pill border color on hover and focus.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-filter-group-pill-color-border-selected": {
+    "$description": "Filter pill border color when a selection is applied.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-filter-group-pill-color-text": {
+    "$description": "Filter pill text color (default, no selection).",
+    "$value": "{color.alias.gray.87}"
+  },
+  "kui-filter-group-pill-color-text-selected": {
+    "$description": "Filter pill text color when a selection is applied.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-filter-group-pill-color-text-selected-hover": {
+    "$description": "Filter pill text color on hover and focus when a selection is applied.",
+    "$value": "{color.alias.gray.87}"
+  },
+  "kui-filter-group-pill-line-height": {
+    "$value": "16px",
+    "$description": "Filter pill label line height."
+  },
+  "kui-filter-group-pill-shadow-focus": {
+    "$description": "Filter pill focus ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
+  "kui-filter-group-selector-color-text": {
+    "$description": "Filter selector empty (no filters found) message text color.",
+    "$value": "{color.alias.gray.73}"
   },
   "kui-font-family-code": {
     "$value": "'JetBrains Mono', Consolas, monospace",
@@ -2050,6 +2166,46 @@
     "$description": "Modal title line height.",
     "$value": "28px"
   },
+  "kui-multiselect-footer-border-width": {
+    "$value": "1px",
+    "$description": "Multiselect dropdown footer top border width."
+  },
+  "kui-multiselect-footer-color-background": {
+    "$description": "Multiselect dropdown footer background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-multiselect-footer-color-border": {
+    "$description": "Multiselect dropdown footer top border color.",
+    "$value": "{color.alias.gray.17}"
+  },
+  "kui-multiselect-footer-color-text": {
+    "$description": "Multiselect dropdown footer text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-multiselect-group-color-text": {
+    "$description": "Multiselect dropdown group title text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-multiselect-group-font-family": {
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
+    "$description": "Multiselect dropdown group title font family."
+  },
+  "kui-multiselect-group-font-weight": {
+    "$value": "500",
+    "$description": "Multiselect dropdown group title font weight."
+  },
+  "kui-multiselect-search-border-width": {
+    "$value": "1px",
+    "$description": "Multiselect dropdown search input wrapper bottom border width."
+  },
+  "kui-multiselect-search-color-background": {
+    "$description": "Multiselect dropdown search input wrapper background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-multiselect-search-color-border": {
+    "$description": "Multiselect dropdown search input wrapper bottom border color.",
+    "$value": "{color.alias.gray.17}"
+  },
   "kui-navigation-color-background": {
     "$description": "blue.100.",
     "$value": "{color.alias.blue.95}"
@@ -2220,6 +2376,30 @@
   "kui-pop-title-line-height": {
     "$description": "Popover title line height.",
     "$value": "20px"
+  },
+  "kui-radio-color-background": {
+    "$description": "Radio background color.",
+    "$value": "{color.alias.white}"
+  },
+  "kui-radio-color-background-checked": {
+    "$description": "Radio background color when checked.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-radio-shadow-border": {
+    "$description": "Radio default border shadow.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.17} inset"
+  },
+  "kui-radio-shadow-border-checked": {
+    "$description": "Radio border shadow when checked.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.73} inset"
+  },
+  "kui-radio-shadow-border-hover": {
+    "$value": "0px 0px 0px 1px {color.alias.gray.73} inset",
+    "$description": "Radio border shadow on hover."
+  },
+  "kui-radio-shadow-focus": {
+    "$description": "Radio focus ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-segmented-control-border-radius": {
     "$description": "Segmented control button border radius (applied to the outer corners of the first and last buttons).",
@@ -3370,6 +3550,30 @@
   },
   "kui-tree-list-shadow-focus": {
     "$description": "Tree list item focus-visible shadow (focus ring).",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
+  "kui-truncate-collapse-trigger-color-background": {
+    "$description": "Truncate collapse trigger button background color.",
+    "$value": "{color.alias.gray.05}"
+  },
+  "kui-truncate-collapse-trigger-color-background-hover": {
+    "$description": "Truncate collapse trigger button background color on hover, focus, and focus-within.",
+    "$value": "{color.alias.gray.13}"
+  },
+  "kui-truncate-collapse-trigger-color-text": {
+    "$description": "Truncate collapse trigger button text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-truncate-expand-trigger-color-text": {
+    "$description": "Truncate expand trigger button text color.",
+    "$value": "{color.alias.gray.73}"
+  },
+  "kui-truncate-expand-trigger-color-text-hover": {
+    "$description": "Truncate expand trigger button text color on hover and focus.",
+    "$value": "{color.alias.gray.77}"
+  },
+  "kui-truncate-shadow-focus": {
+    "$description": "Truncate expand and collapse trigger button focus-visible ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   }
 }

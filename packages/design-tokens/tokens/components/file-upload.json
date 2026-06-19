@@ -64,16 +64,6 @@
           "$value": ""
         }
       }
-    },
-    "help_text": {
-      "color": {
-        "text": {
-          "error": {
-            "$description": "File upload help text color in error state.",
-            "$value": ""
-          }
-        }
-      }
     }
   }
 }

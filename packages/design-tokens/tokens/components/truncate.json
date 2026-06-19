@@ -1,0 +1,43 @@
+{
+  "truncate": {
+    "$type": "component",
+    "collapse_trigger": {
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Truncate collapse trigger button background color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Truncate collapse trigger button background color on hover, focus, and focus-within.",
+            "$value": ""
+          }
+        },
+        "text": {
+          "$description": "Truncate collapse trigger button text color.",
+          "$value": ""
+        }
+      }
+    },
+    "expand_trigger": {
+      "color": {
+        "text": {
+          "_": {
+            "$description": "Truncate expand trigger button text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Truncate expand trigger button text color on hover and focus.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Truncate expand and collapse trigger button focus-visible ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}
