@@ -1439,10 +1439,6 @@
     "$description": "Empty state footer top padding.",
     "$value": "32px"
   },
-  "kui-empty-state-icon-background-color-text": {
-    "$description": "Empty state icon color when the icon has a background.",
-    "$value": "{color.alias.aqua.50}"
-  },
   "kui-empty-state-icon-border-radius": {
     "$description": "Empty state icon border radius when the icon has a background.",
     "$value": "4px"
@@ -1454,6 +1450,10 @@
   "kui-empty-state-icon-color-background": {
     "$description": "Empty state icon background color when the icon has a background.",
     "$value": "{color.alias.aqua.10}"
+  },
+  "kui-empty-state-icon-color-text-background": {
+    "$description": "Empty state icon text/glyph color when the icon has a background.",
+    "$value": "{color.alias.aqua.50}"
   },
   "kui-empty-state-icon-padding": {
     "$description": "Empty state icon padding when the icon has a background.",

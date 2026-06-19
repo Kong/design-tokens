@@ -52,14 +52,6 @@
       }
     },
     "icon": {
-      "background": {
-        "color": {
-          "text": {
-            "$description": "Empty state icon color when the icon has a background.",
-            "$value": ""
-          }
-        }
-      },
       "border": {
         "radius": {
           "$description": "Empty state icon border radius when the icon has a background.",
@@ -74,6 +66,12 @@
         "background": {
           "$description": "Empty state icon background color when the icon has a background.",
           "$value": ""
+        },
+        "text": {
+          "background": {
+            "$description": "Empty state icon text/glyph color when the icon has a background.",
+            "$value": ""
+          }
         }
       },
       "padding": {
