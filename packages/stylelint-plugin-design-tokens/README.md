@@ -1,0 +1,126 @@
+# @kong/stylelint-plugin-design-tokens
+
+[Stylelint](https://github.com/stylelint/stylelint) plugin for linting design tokens.
+
+- [Usage](#usage)
+- [Rules](#rules)
+  - [`use-proper-token`](#use-proper-token)
+  - [`token-var-usage`](#token-var-usage)
+
+## Usage
+
+Install `@kong/stylelint-plugin-design-tokens` and `stylelint` packages as a `devDependency` in your project
+
+```sh
+pnpm add -D @kong/stylelint-plugin-design-tokens stylelint
+```
+
+In your stylelint config file, add the plugin and enable rules that you want to use:
+
+```javascript
+plugins: [
+  '@kong/stylelint-plugin-design-tokens'
+],
+rules: {
+  '@kong/stylelint-plugin-design-tokens/use-proper-token': [true, {
+    disableFix: true,
+    severity: 'error' // You can also configure as `warning`
+  }]
+}
+```
+
+## Rules
+
+### `use-proper-token`
+
+Rule that parses CSS properties for inappropriate tokens being referenced.
+
+For example, the `kui-color-text-primary` token **should** be used as a value for `color`, but **should not** be used for `background-color`.
+
+#### :red_circle: Incorrect usage
+
+```scss
+.foo {
+  // This **will** trigger an error, text color token used for background-color property
+  background-color: $kui-color-text-primary;
+}
+```
+
+#### :green_circle: Correct usage
+
+```scss
+.foo {
+  // This **will NOT** trigger an error, appropriate token for the property
+  color: $kui-color-text-primary;
+}
+```
+
+### `token-var-usage`
+
+Rule that ensures SCSS design tokens are properly used as fallback values in CSS custom properties.
+
+SCSS tokens (e.g., `$kui-color-text-primary`) **must** be wrapped in the `var()` function with the corresponding CSS custom property as the first argument and the SCSS token as the fallback. The format must be exact: `var(--kui-token-name, $kui-token-name)` with exactly one space after the comma and no other spaces.
+
+For cases where SCSS interpolation is needed (e.g., when defining CSS custom properties), the interpolated format is also valid: `var(--kui-token-name, #{$kui-token-name})`.
+
+This approach provides progressive enhancement: browsers use the CSS custom property (which can be overridden), with the SCSS token as a compile-time fallback.
+
+#### :red_circle: Incorrect usage
+
+```scss
+.foo {
+  // Direct SCSS token usage without var()
+  color: $kui-color-text-primary;
+}
+
+.bar {
+  // Missing space after the comma
+  color: var(--kui-color-text-primary,$kui-color-text-primary);
+}
+
+.baz {
+  // Extra spaces
+  color: var(--kui-color-text-primary,  $kui-color-text-primary);
+}
+
+.qux {
+  // Standalone interpolation without var() - no auto-fix provided
+  // Developer must determine correct usage based on context
+  color: #{$kui-color-text-primary};
+}
+```
+
+#### :green_circle: Correct usage
+
+```scss
+.foo {
+  // Proper format with CSS custom property and SCSS fallback
+  color: var(--kui-color-text-primary, $kui-color-text-primary);
+}
+
+.bar {
+  // Interpolated format (useful when defining CSS custom properties)
+  --vc-white: var(--kui-color-text-inverse, #{$kui-color-text-inverse});
+}
+```
+
+#### Limitations
+
+The `token-var-usage` rule has some known limitations:
+
+1. **Multi-line `var()` declarations**: The rule currently does not handle `var()` function calls that span multiple lines. To ensure proper linting and auto-fixing, keep your `var()` declarations on a single line:
+
+   ```scss
+   // ❌ May produce unexpected behavior
+   font-size: var(
+     --kui-font-size-40,
+     $kui-font-size-40
+   );
+
+   // ✅ Works correctly
+   font-size: var(--kui-font-size-40, $kui-font-size-40);
+   ```
+
+2. **Standalone interpolation**: SCSS tokens wrapped only in interpolation syntax (e.g., `#{$kui-color-text-primary}`) without `var()` cannot be auto-fixed. The rule will flag these cases, but you must manually determine the correct usage based on your context—whether to use the standard `var()` format or the interpolated `var()` format.
+
+3. **Complex SCSS expressions**: The rule is designed to work with direct token references. Complex SCSS expressions involving tokens (e.g., calculations, functions) may not be properly detected or auto-fixed.

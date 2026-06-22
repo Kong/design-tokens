@@ -12,29 +12,38 @@ inputs:
     description: When false, pnpm install will use the --no-frozen-lockfile flag
     required: false
     default: 'true'
+  save-cache:
+    description: When 'true', saves the dependency cache after installation
+    required: false
+    default: 'false'
 outputs:
   cache-hit:
     description: Whether or not there was a cache hit
     value: ${{ steps.dependency-cache.outputs.cache-hit }}
+  cache-key:
+    description: The computed cache key used for this run
+    value: ${{ steps.node-version.outputs.cache-key }}
 runs:
   using: composite
   steps:
 
-    - name: get Node version
+    - name: Get Node version
       id: node-version
       shell: bash
       run: |
-        voltaNodeVersion=$(cat package.json|jq -r ".volta.node")
+        voltaNodeVersion=$(cat package.json | jq -r ".volta.node")
         if [[ $voltaNodeVersion == null ]]; then
           voltaNodeVersion="${{ inputs.nodejs-version }}"
         fi
-        packageManagerVersion=$(cat package.json|jq -r ".packageManager")
+        packageManagerVersion=$(cat package.json | jq -r ".packageManager")
         if [[ $packageManagerVersion == null ]]; then
-          packageManagerVersion="9.7.0"
+          packageManagerVersion="pnpm@10.30.3"
         fi
+        cacheKey="${packageManagerVersion}-node-${voltaNodeVersion}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}"
 
-        echo "node-version=${voltaNodeVersion}">> $GITHUB_OUTPUT
-        echo "package-manager-version=${packageManagerVersion}">> $GITHUB_OUTPUT
+        echo "node-version=${voltaNodeVersion}" >> $GITHUB_OUTPUT
+        echo "package-manager-version=${packageManagerVersion}" >> $GITHUB_OUTPUT
+        echo "cache-key=${cacheKey}" >> $GITHUB_OUTPUT
 
     - name: Setup Node
       uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
@@ -48,14 +57,21 @@ runs:
         npm i -g ${{ steps.node-version.outputs.package-manager-version }}
         pnpm --version
 
-    - name: Dependency Cache
+    - name: Restore Dependency Cache
       id: dependency-cache
-      uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+      uses: actions/cache/restore@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
       with:
         path: '**/node_modules'
-        key: ${{ steps.node-version.outputs.package-manager-version }}-${{ steps.node-version.outputs.node-version }}-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        key: ${{ steps.node-version.outputs.cache-key }}
 
     - name: Install Dependencies
       if: ${{ inputs.force-install == 'true' || steps.dependency-cache.outputs.cache-hit != 'true' }}
       shell: bash
       run: pnpm i${{ inputs.frozen-lockfile == 'false' && ' --no-frozen-lockfile' || '' }}
+
+    - name: Save Dependency Cache
+      if: ${{ inputs.save-cache == 'true' && steps.dependency-cache.outputs.cache-hit != 'true' }}
+      uses: actions/cache/save@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+      with:
+        path: '**/node_modules'
+        key: ${{ steps.node-version.outputs.cache-key }}

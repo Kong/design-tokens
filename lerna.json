@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/@lerna-lite/cli/schemas/lerna-schema.json",
+  "version": "independent",
+  "npmClient": "pnpm",
+  "useWorkspaces": true,
+  "packages": ["packages/*"],
+  "command": {
+    "version": {
+      "conventionalCommits": true,
+      "message": "chore(release): {version} [skip ci]"
+    },
+    "publish": {
+      "registry": "https://registry.npmjs.org"
+    }
+  }
+}

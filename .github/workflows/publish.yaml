@@ -1,12 +1,9 @@
-
 name: Publish
 
 on:
   push:
     branches:
       - main
-      - alpha
-      - beta
   pull_request:
     types:
       - opened
@@ -15,12 +12,10 @@ on:
       - labeled
     branches:
       - main
-      - alpha
-      - beta
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
   actions: read
 
 jobs:
@@ -28,113 +23,222 @@ jobs:
     name: Tests
     uses: ./.github/workflows/test.yaml
 
-  publish:
-    name: Build and Publish
-    needs:
-      - run-tests
+  detect:
+    name: Detect Changed Packages
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.detect.outputs.changed }}
     steps:
-      - name: Remove preview consumption comment
-        if: ${{ github.event_name == 'pull_request' && env.GITHUB_TOKEN != '' }}
-        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
-        with:
-          header: pr_preview_consumption
-          delete: true
-          GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
-
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          token: ${{ secrets.KONGPONENTS_BOT_PAT }}
+          fetch-depth: 0
 
       - name: Setup PNPM with Dependencies
         uses: ./.github/actions/setup-pnpm-with-dependencies/
 
-      - name: Download tokens package
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
+      - name: Detect changed packages
+        id: detect
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          changed=$(pnpm lerna changed --since "origin/${BASE_REF}" --json 2>/dev/null || echo '[]')
+          changed=$(echo "$changed" | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+          # Echo the packages to the console and set it as an output for the next job
+          echo "changed=${changed}"
+          echo "changed=${changed}" >> "$GITHUB_OUTPUT"
+
+  preview:
+    name: Preview / ${{ matrix.package }}
+    needs: [run-tests, detect]
+    if: |
+      github.event_name == 'pull_request' &&
+      needs.detect.outputs.changed != '[]' &&
+      needs.detect.outputs.changed != '' &&
+      (github.actor != 'renovate[bot]' || contains(github.event.pull_request.labels.*.name, 'create preview package')) &&
+      !contains(github.head_ref || github.ref_name, 'alpha') &&
+      !contains(github.head_ref || github.ref_name, 'beta')
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{ fromJson(needs.detect.outputs.changed) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          name: tokens-package
+          token: ${{ secrets.KONGPONENTS_BOT_PAT }}
+          fetch-depth: 0
+
+      - name: Setup PNPM with Dependencies
+        uses: ./.github/actions/setup-pnpm-with-dependencies/
 
       - name: Prepare git
         run: |
           git config user.email "konnectx-engineers+kongponents-bot@konghq.com"
           git config user.name "Kong UI Bot"
 
+      - name: Remove stale preview comment
+        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        with:
+          header: pr_preview_${{ matrix.package }}
+          delete: true
+          GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+
+      - name: Build package
+        run: pnpm --filter "${{ matrix.package }}" --if-present build
+
       - name: Publish package preview
         id: package-preview
-        # Do not run for `alpha` or `beta` branches
-        if: github.event_name == 'pull_request' && (github.actor != 'renovate[bot]' || contains(github.event.pull_request.labels.*.name, 'create preview package')) && !contains(github.head_ref || github.ref_name, 'alpha') && !contains(github.head_ref || github.ref_name, 'beta')
         run: |
-          git config user.email "konnectx-engineers+kongponents-bot@konghq.com"
-          git config user.name "Kong UI Bot"
-
           preid="pr.${{ github.event.pull_request.number }}.$(git rev-parse --short ${{ github.event.pull_request.head.sha }})"
           tag="pr-${{ github.event.pull_request.number }}"
-          echo "preid=${preid}"
+          pkg_name="${{ matrix.package }}"
 
-          pnpm version prerelease --preid ${preid} --no-git-tag-version --yes --amend
+          pkgdir=$(pnpm lerna ls --json | jq -r --arg n "${pkg_name}" '.[] | select(.name==$n) | .location')
+          # Move into the package directory, bump the version with a unique prerelease tag, then move back to the root
+          cd "$pkgdir" && pnpm version prerelease --preid "${preid}" --no-git-tag-version && cd -
+          pkg_version=$(jq -r ".version" "${pkgdir}/package.json")
 
-          package_version=$(jq -r ".version" package.json)
-          package=@kong/design-tokens@"${package_version}"
+          package="${pkg_name}@${pkg_version}"
 
-          npm show "${package}" >/dev/null 2>&1 && npm_show_status=0 || npm_show_status=1
-          if [ $npm_show_status -eq 0 ]; then
-            echo "Package ${package} is already published. Skipping publishing."
+          pnpm view "${package}" version >/dev/null 2>&1 && pkg_exists=0 || pkg_exists=1
+          if [ $pkg_exists -eq 0 ]; then
+            echo "Package ${package} is already published. Skipping."
             exit 0
           fi
 
-          npm_instructions=""
-
-          pkg=$(npm publish --no-git-checks --access public --report-summary --tag "${tag}" | grep "+ "| sed 's/+ //')
-
-          if [[ -z "${pkg}" ]]; then
-            echo "Error publishing package"
-            exit -1
+          publish_output=$(pnpm --filter "${pkg_name}" publish --no-git-checks --access public --report-summary --tag "${tag}" 2>&1)
+          publish_exit=$?
+          echo "${publish_output}"
+          if [ $publish_exit -ne 0 ] || echo "${publish_output}" | grep -qiE "npm error|npm ERR!"; then
+            echo "::error::npm publish failed for ${pkg_name}"
+            exit 1
           fi
 
-          npm_instructions="@$(echo ${pkg}|cut -d'@' -f2)@${tag}"
+          npm_instructions="${pkg_name}@${tag}"
 
           echo "npm_instructions<<EOF" >> $GITHUB_OUTPUT
           echo -e "$npm_instructions" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Provide preview link info
+      - name: Post preview comment
         if: ${{ steps.package-preview.outputs.npm_instructions != '' }}
         uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
         with:
-          header: pr_preview_consumption
+          header: pr_preview_${{ matrix.package }}
           message: |
-             ### Install the preview package from this PR in your consuming application
+            ### Install preview package: `${{ matrix.package }}`
 
-             In your host project, you may install the preview package version generated by this PR:
+            In your host project, install the preview package version generated by this PR:
 
-             ```sh
-             ${{ steps.package-preview.outputs.npm_instructions }}
-             ```
+            ```sh
+            ${{ steps.package-preview.outputs.npm_instructions }}
+            ```
           GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
 
-      - name: Semantic Release
-        if: github.event_name == 'push'
-        uses: cycjimmy/semantic-release-action@b12c8f6015dc215fe37bc154d4ad456dd3833c90 # v6.0.0
+  release:
+    name: Release
+    needs: [run-tests]
+    if: github.event_name == 'push'
+    concurrency:
+      group: release-${{ github.ref }}
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          token: ${{ secrets.KONGPONENTS_BOT_PAT }}
+          fetch-depth: 0
+
+      - name: Setup PNPM with Dependencies
+        uses: ./.github/actions/setup-pnpm-with-dependencies/
+        with:
+          force-install: true
+
+      - name: Prepare git
+        run: |
+          git config user.email "konnectx-engineers+kongponents-bot@konghq.com"
+          git config user.name "Kong UI Bot"
+
+      - name: Build all packages
+        run: pnpm build
+
+      - name: Version and publish (main)
+        if: github.ref_name == 'main'
         env:
-          GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+          GH_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+        run: |
+          pnpm lerna version --conventional-commits --yes
+          publish_output=$(pnpm lerna publish from-git --yes 2>&1)
+          publish_exit=$?
+          echo "${publish_output}"
+          if [ $publish_exit -ne 0 ] || echo "${publish_output}" | grep -qiE "npm error|npm ERR!"; then
+            echo "::error::lerna publish failed"
+            exit 1
+          fi
+
+      - name: Version and publish (prerelease)
+        if: github.ref_name != 'main'
+        env:
+          GH_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          pnpm lerna version --conventional-prerelease --preid "${BRANCH}" --yes
+          publish_output=$(pnpm lerna publish from-git --dist-tag "${BRANCH}" --yes 2>&1)
+          publish_exit=$?
+          echo "${publish_output}"
+          if [ $publish_exit -ne 0 ] || echo "${publish_output}" | grep -qiE "npm error|npm ERR!"; then
+            echo "::error::lerna publish failed"
+            exit 1
+          fi
+
+  build-sandbox:
+    name: Build Sandbox
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [release]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Setup PNPM with Dependencies
+        uses: ./.github/actions/setup-pnpm-with-dependencies/
+        with:
+          force-install: true
+
+      - name: Build tokens package
+        run: pnpm --filter @kong/design-tokens build
+
+      - name: Build sandbox
+        run: pnpm --filter @kong/design-tokens sandbox:build
+
+      - name: Upload sandbox artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: sandbox
+          path: packages/design-tokens/sandbox/dist/
+          retention-days: 1
 
   deploy-github-pages:
     name: Deploy GitHub Pages
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [publish]
+    needs: [build-sandbox]
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
     permissions:
       contents: read
       pages: write
       id-token: write
-    # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-    # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
     concurrency:
       group: 'pages'
       cancel-in-progress: false
@@ -142,16 +246,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: Setup PNPM with Dependencies
-        uses: ./.github/actions/setup-pnpm-with-dependencies/
-        with:
-          force-install: true
-
       - name: Download sandbox
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c #v8.0.1
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: sandbox
-          path: sandbox/dist
+          path: packages/design-tokens/sandbox/dist
 
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6
@@ -159,8 +258,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          # Upload sandbox/dist directory
-          path: './sandbox/dist'
+          path: './packages/design-tokens/sandbox/dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
