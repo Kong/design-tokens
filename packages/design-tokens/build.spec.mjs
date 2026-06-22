@@ -138,7 +138,7 @@ describe('@kong/design-tokens build artifacts', () => {
     })
 
     it('includes GitHub URL in file header', () => {
-      expect(cssVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/design-tokens')
+      expect(cssVars).toContain('GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens')
     })
 
     it('includes license in file header', () => {
@@ -227,7 +227,7 @@ describe('@kong/design-tokens build artifacts', () => {
     })
 
     it('includes GitHub URL in file header', () => {
-      expect(scssVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/design-tokens')
+      expect(scssVars).toContain('GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens')
     })
 
     it('uses $kui- prefixed kebab-case variables', () => {
@@ -332,7 +332,7 @@ describe('@kong/design-tokens build artifacts', () => {
     })
 
     it('includes GitHub URL in file header', () => {
-      expect(lessVars).toContain('GitHub: https://github.com/Kong/design-tokens/packages/design-tokens')
+      expect(lessVars).toContain('GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens')
     })
 
     it('uses @kui- prefixed kebab-case variables', () => {

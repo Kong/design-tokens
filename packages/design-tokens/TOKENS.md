@@ -2,7 +2,7 @@
  * Do not edit directly, this file was auto-generated.
  * 
  * Kong Konnect Design Tokens
- * GitHub: https://github.com/Kong/design-tokens/packages/design-tokens
+ * GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens
  * License: Apache-2.0
 -->
 
