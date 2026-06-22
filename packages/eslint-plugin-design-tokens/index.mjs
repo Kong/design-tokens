@@ -1,5 +1,7 @@
 import tokenConstantRequiresCssVar from './rules/token-constant-requires-css-var/index.mjs'
 
+// TODO: remove
+
 /**
  * ESLint plugin that enforces correct usage of Kong design tokens in Vue 3
  * template `v-bind` expressions. Tokens imported from `@kong/design-tokens`
