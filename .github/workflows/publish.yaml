@@ -45,6 +45,24 @@ jobs:
         run: |
           changed=$(pnpm lerna changed --since "origin/${BASE_REF}" --json 2>/dev/null || echo '[]')
           changed=$(echo "$changed" | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+
+          # If any critical root-level files changed, force preview publish for all packages.
+          # Only include files that genuinely affect build output; lint/ts config and the lockfile
+          # do not change dist artifacts and should not trigger unnecessary publishes.
+          critical_files="pnpm-workspace.yaml package.json"
+          changed_files=$(git diff --name-only "origin/${BASE_REF}...HEAD")
+          force_all=false
+          for f in $critical_files; do
+            if echo "$changed_files" | grep -qx "$f"; then
+              force_all=true
+              break
+            fi
+          done
+          if [ "$force_all" = "true" ]; then
+            echo "Critical root-level file(s) changed - forcing CI for all packages"
+            changed=$(pnpm lerna ls --json 2>/dev/null | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+          fi
+
           # Echo the packages to the console and set it as an output for the next job
           echo "changed=${changed}"
           echo "changed=${changed}" >> "$GITHUB_OUTPUT"
