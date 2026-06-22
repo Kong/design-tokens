@@ -46,8 +46,10 @@ jobs:
           changed=$(pnpm lerna changed --since "origin/${BASE_REF}" --json 2>/dev/null || echo '[]')
           changed=$(echo "$changed" | jq -c '[.[].name]' 2>/dev/null || echo '[]')
 
-          # If any critical root-level files changed, force CI for all packages
-          critical_files="pnpm-workspace.yaml pnpm-lock.yaml package.json eslint.config.mjs tsconfig.base.json tsconfig.json"
+          # If any critical root-level files changed, force preview publish for all packages.
+          # Only include files that genuinely affect build output; lint/ts config and the lockfile
+          # do not change dist artifacts and should not trigger unnecessary publishes.
+          critical_files="pnpm-workspace.yaml package.json"
           changed_files=$(git diff --name-only "origin/${BASE_REF}...HEAD")
           force_all=false
           for f in $critical_files; do
