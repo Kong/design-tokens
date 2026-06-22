@@ -9,7 +9,7 @@ export const createFileHeader = ({ product, packageDirectory }) => (defaultMessa
   ...defaultMessage,
   '',
   product,
-  `GitHub: https://github.com/Kong/design-tokens/packages/${packageDirectory}`,
+  `GitHub: https://github.com/Kong/design-tokens/tree/main/packages/${packageDirectory}`,
   'License: Apache-2.0',
 ]
 

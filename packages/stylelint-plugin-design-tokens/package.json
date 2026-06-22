@@ -1,6 +1,6 @@
 {
   "name": "@kong/stylelint-plugin-design-tokens",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "type": "module",
   "description": "Stylelint plugin for Kong UI design tokens",
   "exports": {
