@@ -56,9 +56,7 @@ jobs:
       github.event_name == 'pull_request' &&
       needs.detect.outputs.changed != '[]' &&
       needs.detect.outputs.changed != '' &&
-      (github.actor != 'renovate[bot]' || contains(github.event.pull_request.labels.*.name, 'create preview package')) &&
-      !contains(github.head_ref || github.ref_name, 'alpha') &&
-      !contains(github.head_ref || github.ref_name, 'beta')
+      (github.actor != 'renovate[bot]' || contains(github.event.pull_request.labels.*.name, 'create preview package'))
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -137,6 +135,20 @@ jobs:
             ${{ steps.package-preview.outputs.npm_instructions }}
             ```
           GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
+
+  preview-complete:
+    name: Preview Complete
+    needs: [preview]
+    if: always() && github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check preview result
+        run: |
+          if [[ "${{ needs.preview.result }}" == "failure" ]]; then
+            echo "One or more preview jobs failed."
+            exit 1
+          fi
+          echo "Preview jobs passed or were skipped."
 
   release:
     name: Release
