@@ -42,7 +42,7 @@
     "$value": "4px"
   },
   "kui-color-background": {
-    "$value": "{color.alias.gray.05}",
+    "$value": "{color.alias.white}",
     "$description": "Default background color for containers."
   },
   "kui-color-background-danger": {
