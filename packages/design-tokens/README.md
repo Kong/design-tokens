@@ -79,18 +79,19 @@ Pre-built theme CSS files activate a complete set of token overrides via a `data
 
 ```html
 <!-- In your HTML template or equivalent -->
-<html data-kui-theme="konnect-light">
+<html data-kui-theme="konnect-day">
 ```
 
 ```ts
 // Load the theme CSS — webpack/Vite will bundle it
-import '@kong/design-tokens/themes/konnect-light.css'
+import '@kong/design-tokens/themes/konnect-day.css'
 
 // Switch the active theme at runtime
-document.documentElement.setAttribute('data-kui-theme', 'konnect-dark')
+document.documentElement.setAttribute('data-kui-theme', 'konnect-night')
 ```
 
-Available themes: `konnect-light`, `konnect-dark`, `brand-a`, `brand-b`.
+Available themes: `classic-day`, `classic-night`, `konnect-day`, `konnect-night`, `brand-a`, `brand-b`.
+`classic-day` is the default look (identical to the unthemed `:root` exports); `classic-night` is its dark counterpart.
 
 Each theme CSS file uses `@layer kui.theme { [data-kui-theme="name"] { ... } }`. This means customer `:root {}` overrides (which are **unlayered**) beat the theme automatically — no `!important` or special selectors needed.
 
@@ -99,7 +100,7 @@ To respond to the system dark-mode preference, listen to the `prefers-color-sche
 ```ts
 const mq = window.matchMedia('(prefers-color-scheme: dark)')
 const applyColorScheme = (dark: boolean) =>
-  document.documentElement.setAttribute('data-kui-theme', dark ? 'konnect-dark' : 'konnect-light')
+  document.documentElement.setAttribute('data-kui-theme', dark ? 'konnect-night' : 'konnect-day')
 
 applyColorScheme(mq.matches)
 mq.addEventListener('change', e => applyColorScheme(e.matches))
@@ -471,19 +472,30 @@ The package is organized around four top-level source directories:
 
 ### Creating a new theme
 
-Use the `create-theme` script to scaffold a new theme file from the current `KUI_THEMEABLE_TOKENS` list. The script reads the built `dist/themeable-tokens.mjs` to get the canonical token list, and sources `$description` text from the actual token metadata.
+A new theme is made by **copying an existing one** of the same class — it already carries the full token
+set, descriptions, and a valid, building starting point. Pick the closest existing theme:
+
+- **Exhaustive** (every themeable token, incl. component tokens — like `konnect-day`/`konnect-night`).
+- **Semantic-only** (every semantic token, **zero** component tokens — like `classic-day`/`classic-night`;
+  components fall through to their semantic defaults).
 
 ```sh
-# Scaffold an empty theme (all $value fields are "")
-pnpm create-theme my-brand
+NEW=my-brand
+FROM=konnect-day   # or classic-day for a semantic-only theme
 
-# Start from a copy of an existing theme's values
-pnpm create-theme my-brand --from konnect-light
+# 1. Copy the theme definition and (for alias-based themes) its companion color palette.
+cp themes/$FROM.json themes/$NEW.json
+cp tokens/alias/color/$FROM.json tokens/alias/color/$NEW.json   # every alias-using theme MUST have one
+
+# 2. Edit themes/$NEW.json (token $values) and tokens/alias/color/$NEW.json (palette values) to taste.
+# 3. Classify $NEW in themes.spec.mjs (EXHAUSTIVE_THEMES / SEMANTIC_ONLY_THEMES / UNCHECKED_THEMES).
+# 4. Build + verify — the drift, classification, and off-source guards confirm completeness.
+pnpm build:tokens && pnpm test
 ```
 
-This creates `themes/my-brand.json`. The next build picks it up automatically — no code change is required.
-
-> **Prerequisites:** Run `pnpm build` at least once before running `create-theme` so `dist/themeable-tokens.mjs` exists.
+The build auto-discovers any `themes/*.json` — no code change needed. An alias-referencing theme with no
+matching `tokens/alias/color/<name>.json` palette is a hard build error (no silent fallback), which is why
+step 1 copies the palette too. See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
 
 ### Theme `$description` authoring rules
 

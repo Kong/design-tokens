@@ -21,7 +21,7 @@ An undeclared custom property is the guaranteed-invalid value by spec, so `var()
 
 **Two theme modes** (guard-enforced in `themes.spec.mjs`):
 - **EXHAUSTIVE** (`konnect-day`, `konnect-night`) — contain EVERY token in `KUI_THEMEABLE_TOKENS` (semantic + component), each as a frozen value (1:1 with the Figma export).
-- **SEMANTIC-ONLY** (`classic`, the default) — all semantic tokens, **zero** component tokens; components fall through to its semantics live. Component-free *by omission*. **Reconciliation never touches `classic`** — it keeps the Kongponents default look.
+- **SEMANTIC-ONLY** (`classic-day` — the default — and its dark counterpart `classic-night`) — all semantic tokens, **zero** component tokens; components fall through to their semantics live. Component-free *by omission*. **Reconciliation never touches the classic-* themes** — they keep the Kongponents default look (classic-night only re-points ~20 text/border/background semantics to darker steps).
 
 **Sources of truth & tools:**
 - **Prototype = source of truth** for konnect: `http://localhost:5177/components/themed/<comp>` (switch Day / Night v2 buttons).
@@ -86,16 +86,16 @@ Only captures chains whose fallback starts with `var(--kui-`; raw/`$scss`/`calc(
 
 Each exhaustive theme must contain every new token. Fill each at **that theme's OWN semantic value** (the non-divergent baseline):
 - **Do it MANUALLY** (a node script): for each new pair `kui-X => kui-Y`, set `konnect-day[X] = clone(konnect-day[Y])` and `konnect-night[X] = clone(konnect-night[Y])`, attaching the component token's `$description` from the registry.
-- **Do NOT use `pnpm fill-themes --write` for value-correctness:** it resolves against `dist/tokens/js/tokens.json` (BASE/default values, shared across themes) → it writes light/base values into konnect-night. `fill-themes` is a *completeness* checker (dry-run to list missing tokens); the per-theme value must come from the manual fill.
-- Composite / raw-fallback tokens (not in the map) → set explicitly per theme.
-- Verify: each exhaustive theme key-count === `KUI_THEMEABLE_TOKENS`, 0 empty `$value`, classic unchanged.
+- **The completeness check is the drift-guard test** (`pnpm test` → `themes.spec.mjs`): it names exactly which tokens are missing/extra in each exhaustive theme and fails CI. Use it to see what still needs filling; the per-theme **value** is always authored by hand (a component token's value is a design choice — there is no default to infer it from).
+- Composite / raw-fallback tokens → set explicitly per theme.
+- Verify: each exhaustive theme key-count === `KUI_THEMEABLE_TOKENS` (drift guard green), 0 empty `$value`, classic-day/classic-night unchanged.
 
 ## Phase F — Reconcile divergences vs the prototype (BOTH themes)
 
 A token is **divergent** only when the source uses a *primary/brand* semantic the prototype renders as *neutral*, or the prototype hard-codes off-scale. Tokens that already inherit base/neutral semantics need nothing (verify the inherited-semantic set matches the prototype, both themes — don't re-check every element).
 
 **F.1** Read the prototype's component CSS semantics via `document.styleSheets` (works WITHOUT triggering the component): for each state, which `--kui-*` does the prototype reference? Compare to the source's level-② semantic.
-**F.2 The recurring divergence:** interactive states (selected/hover/active/checked, fills, connectors, links) use `color-*-primary*` in the Kongponents source, but the konnect design uses `color-*-neutral*`. Override the konnect tokens to the prototype's neutral semantic; **classic keeps the source's primary** (the default look). This stems from the locked decision: **konnect's whole `color-*-primary*` family is neutral gray; electric-lime lives ONLY on `--kui-button-color-*` → "lime buttons, gray selections."**
+**F.2 The recurring divergence:** interactive states (selected/hover/active/checked, fills, connectors, links) use `color-*-primary*` in the Kongponents source, but the konnect design uses `color-*-neutral*`. Override the konnect tokens to the prototype's neutral semantic; **the classic-* themes keep the source's primary** (the default look). This stems from the locked decision: **konnect's whole `color-*-primary*` family is neutral gray; electric-lime lives ONLY on `--kui-button-color-*` → "lime buttons, gray selections."**
 **F.3 The primary→neutral semantic remap is necessary but NOT sufficient:** the prototype's neutral *steps* don't always equal the primary steps (segmented selected-bg = `neutral-weakest` ≠ `primary-weakest`), and a primary step can equal its neutral counterpart in ONE theme but not the other (slider matched in night, diverged in day). So reconcile **per-component, per-state, in BOTH themes** — read the actual prototype value (the CSS semantic, and/or open the component and read the rendered `getComputedStyle`) and override to that exact neutral.
 **F.4 Families:** when a component mirrors a reconciled sibling (radio↔checkbox), align its konnect values to the sibling's already-reconciled values.
 **F.5** Verify against the built CSS (`dist/themes/<theme>.css`) and/or the rendered prototype.
@@ -104,8 +104,8 @@ A token is **divergent** only when the source uses a *primary/brand* semantic th
 ```bash
 # design-tokens
 pnpm build:tokens
-npx vitest run themes.spec.mjs       # guard: exhaustive themes === KUI_THEMEABLE_TOKENS; classic = semantic-only → 17/17
-node -e 'console.log(Object.keys(require("./themes/classic.json")).length)'  # classic UNCHANGED (currently 332)
+npx vitest run themes.spec.mjs       # guard: exhaustive themes === KUI_THEMEABLE_TOKENS; classic-day/classic-night = semantic-only
+node -e 'console.log(Object.keys(require("./themes/classic-day.json")).length)'  # classic-day UNCHANGED (currently 332)
 # kongponents
 node_modules/.bin/stylelint "src/components/K<Comp>/**/*.vue"   # property↔name + property order — MUST pass
 rm -rf docs/.vitepress/cache         # so 5173 reflects the rebuild
@@ -113,9 +113,9 @@ rm -rf docs/.vitepress/cache         # so 5173 reflects the rebuild
 Also grep the source for dangling refs to any token you renamed/removed, and confirm the byte-identical reuse (reused tokens resolve to the same value).
 
 ## Pitfalls (consolidated)
-- **`fill-themes.mjs` writes BASE values** (wrong for konnect-night) — use the manual per-theme fill (Phase E).
+- **Theme tokens are authored by hand** (Phase E) — component values are design choices that can't be auto-resolved. The drift-guard test (`pnpm test`) is the completeness check: it names the missing/extra tokens and fails CI.
 - **Docs (5173) caches design-tokens** — restart / clear `docs/.vitepress/cache`; trust the 5177 prototype.
-- **Coordinated `-hover` keeps PER-DECLARATION fallbacks** (NOT one flattened value): one `-hover` token on `:hover`/`:focus`/`:focus-visible`, but each declaration retains its OWN level-② semantic so the default render is byte-identical (the KButton pattern). Flattening every state to the `:hover` fallback silently changes `classic`'s focus look — the headline bug caught in the Wave-2 review (input/segmented/file-upload focus). The D.2 `uniq -d` listing a coordinated `-hover` under multiple semantics is expected, not an error.
+- **Coordinated `-hover` keeps PER-DECLARATION fallbacks** (NOT one flattened value): one `-hover` token on `:hover`/`:focus`/`:focus-visible`, but each declaration retains its OWN level-② semantic so the default render is byte-identical (the KButton pattern). Flattening every state to the `:hover` fallback silently changes `classic-day`'s focus look — the headline bug caught in the Wave-2 review (input/segmented/file-upload focus). The D.2 `uniq -d` listing a coordinated `-hover` under multiple semantics is expected, not an error.
 - **The D.2 fallback-map grep is single-line** — it misses multi-line `var(` declarations (e.g. `_input-text.scss` hover/error mixins), so a token used only there looks unmapped/"dead." Read the source to confirm before treating a registry token as unused or a baseline as missing.
 - **Naming misorder** (variant before category; a bg-rendered token missing `color-background`) — stylelint catches it; run it on every file.
 - **Snapshot drift:** changing a *semantic* value does NOT auto-update the frozen component-token snapshots that inherited it — re-snapshot the non-overridden inheriting ones; periodically diff the *whole* semantic layer vs the prototype (composite/primary families can be unreconciled from the initial build — that's how the lime-primary + `shadow-border` families were caught).
@@ -124,7 +124,7 @@ Also grep the source for dangling refs to any token you renamed/removed, and con
 - **Verify load-bearing assumptions** with source/spec proof, not assertion.
 
 ## Decisions (locked — see `PROTOTYPE-RECONCILIATION.md` → "Resolved decisions" + "Theme completeness" for detail)
-- Prototype = source of truth for konnect; `classic` = the Kongponents default, never reconciled.
+- Prototype = source of truth for konnect; the `classic-*` themes (`classic-day` default + `classic-night` dark) = the Kongponents default, never reconciled.
 - **konnect `color-*-primary*` = neutral gray**; lime lives only on `--kui-button-color-*`.
 - Primary-driven selected/checked/active states → neutral in konnect (route through `color-background-primary` only if the design later wants brand selections).
 - Branded themes kept EXHAUSTIVE on purpose (1:1 Figma; the repo can't distinguish a *divergent* token from a *snapshot* one — the fallback map lives in Kongponents).

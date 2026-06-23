@@ -77,9 +77,11 @@ Process per component: enumerate themeable surface from the Kongponents source �
 - **konnect-day / konnect-night — EXHAUSTIVE** (`EXHAUSTIVE_THEMES`): every themeable token (currently **910** = 332
   semantic + 578 component). They legitimately carry component tokens because they genuinely **diverge**
   from semantics (dark/lime brand buttons, etc.).
-- **classic — SEMANTIC-ONLY** (`SEMANTIC_ONLY_THEMES`): all 332 semantic tokens, **zero** component tokens.
-  As the default theme it never diverges, so components fall through to its semantics via the Kongponents
-  `var()` chain — **live, not a frozen snapshot**. Component-free *by omission* (not filled with snapshots)
+- **classic-day / classic-night — SEMANTIC-ONLY** (`SEMANTIC_ONLY_THEMES`): each has all 332 semantic
+  tokens, **zero** component tokens (classic-night = classic-day with ~20 text/border/background semantics
+  re-pointed to darker steps). As the default-family themes they never diverge, so components fall through
+  to their semantics via the Kongponents `var()` chain — **live, not a frozen snapshot**. Component-free
+  *by omission* (not filled with snapshots)
   because this repo owns the component-token namespace (`tokens/components/`) but **not** the
   component→semantic fallback map (that lives in Kongponents SCSS) — so "contains no component token" is the
   only fallthrough property the repo can actually verify.
@@ -112,8 +114,8 @@ Process per component: enumerate themeable surface from the Kongponents source �
 5. **Focus / weight / border conventions**: focus rings → the neutral semantic ring
    (Day `rgba(24,27,24,.15)`, Night `rgba(241,243,241,.15)`, 4px); font-weight & border-width per the
    prototype's *visible* value.
-6. **Descriptions**: every component token carries its `$description` (from `tokens/components/<comp>.json`
-   via `buildDescriptionMap` in `scripts/create-theme.mjs`).
+6. **Descriptions**: every component token carries its `$description`, authored directly in
+   `tokens/components/<comp>.json`.
 7. **Rebuild + verify**: `pnpm build:tokens`; resolved values == prototype (designed states excepted),
    0 `var()` refs, 0 unexpected mismatches, build clean.
 8. **Visual check** (optional): `pnpm sandbox:dev` → component page → Konnect Day/Night vs prototype.
@@ -139,11 +141,10 @@ removed from the design system but left in the themes) — now pruned; both them
 **Solution (recommended, agreed):**
 - **Guard test** — `themes.spec.mjs`: for each *exhaustive* theme (konnect-day, konnect-night) assert its
   `$value` key set === `KUI_THEMEABLE_TOKENS` exactly — fail on BOTH missing tokens and stale extras.
-  (classic / brand-a / brand-b are intentionally non-exhaustive → exclude.) Reuse `getThemeableTokens()`.
-- **Fill script** — `scripts/fill-themes.mjs`: add any MISSING themeable token to each exhaustive theme at
-  its resolved fallback value (colors → `{color.alias.*}`; non-colors → the **resolved concrete value** from
-  `dist/tokens/js/tokens.json`, NOT a `{…}` ref, which won't resolve in the per-theme build). Report extras
-  (opt-in `--prune`). NEVER overwrite an existing value (intentional divergences must survive). Flag
-  ambiguous fallbacks (a token appearing in multiple `var()` chains, e.g. focus-visible reusing hover) for
-  manual decision. Workflow: add component tokens → `pnpm fill-themes` → reconcile the new tokens to the prototype → guard test passes.
-- Do NOT bake the fill into `platforms/themes.mjs` (it would mutate source during build + hit the unresolved-ref problem).
+  (classic-day / classic-night / brand-a / brand-b are intentionally non-exhaustive → exclude.) Reuse `getThemeableTokens()`.
+- **No fill script.** The guard test above IS the completeness mechanism — it names exactly which tokens
+  are missing/extra and fails CI. Add MISSING tokens to each exhaustive theme **by hand** at the per-theme
+  value (intentional divergences must survive; component-token values are design choices that can't be
+  auto-resolved). Workflow: add component tokens → run `pnpm test`, read the named-missing list → hand-add
+  + reconcile each new token to the prototype → drift guard passes.
+- Do NOT bake any source mutation into `platforms/themes.mjs` (it would rewrite source during build + hit the unresolved-ref problem).

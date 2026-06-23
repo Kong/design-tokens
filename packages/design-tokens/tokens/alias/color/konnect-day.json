@@ -1,0 +1,590 @@
+{
+  "color": {
+    "alias": {
+      "aqua": {
+        "05": {
+          "$description": "Alias for #F7FEFF.",
+          "$type": "color",
+          "$value": "#F7FEFF"
+        },
+        "10": {
+          "$description": "Alias for #ECFCFF.",
+          "$type": "color",
+          "$value": "#ECFCFF"
+        },
+        "20": {
+          "$description": "Alias for #B3F1FF.",
+          "$type": "color",
+          "$value": "#B3F1FF"
+        },
+        "30": {
+          "$description": "Alias for #67E3FF.",
+          "$type": "color",
+          "$value": "#67E3FF"
+        },
+        "40": {
+          "$description": "Alias for #00C8F4.",
+          "$type": "color",
+          "$value": "#00C8F4"
+        },
+        "50": {
+          "$description": "Alias for #00ABD2.",
+          "$type": "color",
+          "$value": "#00ABD2"
+        },
+        "60": {
+          "$description": "Alias for #00819D.",
+          "$type": "color",
+          "$value": "#00819D"
+        },
+        "70": {
+          "$description": "Alias for #00647A.",
+          "$type": "color",
+          "$value": "#00647A"
+        },
+        "80": {
+          "$description": "Alias for #004757.",
+          "$type": "color",
+          "$value": "#004757"
+        },
+        "90": {
+          "$description": "Alias for #003946.",
+          "$type": "color",
+          "$value": "#003946"
+        },
+        "100": {
+          "$description": "Alias for #002A34.",
+          "$type": "color",
+          "$value": "#002A34"
+        }
+      },
+      "black": {
+        "$description": "Alias for #000000.",
+        "$type": "color",
+        "$value": "#000000"
+      },
+      "blue": {
+        "05": {
+          "$description": "Alias for #F8FBFF.",
+          "$type": "color",
+          "$value": "#F8FBFF"
+        },
+        "10": {
+          "$description": "Alias for #EEF6FF.",
+          "$type": "color",
+          "$value": "#EEF6FF"
+        },
+        "20": {
+          "$description": "Alias for #BEDDFF.",
+          "$type": "color",
+          "$value": "#BEDDFF"
+        },
+        "30": {
+          "$description": "Alias for #8FC5FF.",
+          "$type": "color",
+          "$value": "#8FC5FF"
+        },
+        "40": {
+          "$description": "Alias for #5FACFF.",
+          "$type": "color",
+          "$value": "#5FACFF"
+        },
+        "50": {
+          "$description": "Alias for #3094FF.",
+          "$type": "color",
+          "$value": "#3094FF"
+        },
+        "60": {
+          "$description": "Alias for #0076F4.",
+          "$type": "color",
+          "$value": "#0076F4"
+        },
+        "70": {
+          "$description": "Alias for #0063CC.",
+          "$type": "color",
+          "$value": "#0063CC"
+        },
+        "80": {
+          "$description": "Alias for #004A99.",
+          "$type": "color",
+          "$value": "#004A99"
+        },
+        "90": {
+          "$description": "Alias for #003166.",
+          "$type": "color",
+          "$value": "#003166"
+        },
+        "100": {
+          "$description": "Alias for #001933.",
+          "$type": "color",
+          "$value": "#001933"
+        }
+      },
+      "electric_lime": {
+        "05": {
+          "$description": "Alias for #FEFFF8.",
+          "$type": "color",
+          "$value": "#FEFFF8"
+        },
+        "10": {
+          "$description": "Alias for #FCFFEE.",
+          "$type": "color",
+          "$value": "#FCFFEE"
+        },
+        "20": {
+          "$description": "Alias for #F2FFBE.",
+          "$type": "color",
+          "$value": "#F2FFBE"
+        },
+        "30": {
+          "$description": "Alias for #E9FF8F.",
+          "$type": "color",
+          "$value": "#E9FF8F"
+        },
+        "40": {
+          "$description": "Alias for #DFFF5F.",
+          "$type": "color",
+          "$value": "#DFFF5F"
+        },
+        "50": {
+          "$description": "Alias for #D6FF30.",
+          "$type": "color",
+          "$value": "#D6FF30"
+        },
+        "60": {
+          "$description": "Alias for #CCFF00.",
+          "$type": "color",
+          "$value": "#CCFF00"
+        },
+        "70": {
+          "$description": "Alias for #A3CC00.",
+          "$type": "color",
+          "$value": "#A3CC00"
+        },
+        "80": {
+          "$description": "Alias for #7A9900.",
+          "$type": "color",
+          "$value": "#7A9900"
+        },
+        "90": {
+          "$description": "Alias for #526600.",
+          "$type": "color",
+          "$value": "#526600"
+        },
+        "100": {
+          "$description": "Alias for #293300.",
+          "$type": "color",
+          "$value": "#293300"
+        }
+      },
+      "gray": {
+        "05": {
+          "$description": "Alias for #F9FBF9.",
+          "$type": "color",
+          "$value": "#F9FBF9"
+        },
+        "10": {
+          "$description": "Alias for #F1F3F1.",
+          "$type": "color",
+          "$value": "#F1F3F1"
+        },
+        "20": {
+          "$description": "Alias for #E3E8E3.",
+          "$type": "color",
+          "$value": "#E3E8E3"
+        },
+        "30": {
+          "$description": "Alias for #D2D7D2.",
+          "$type": "color",
+          "$value": "#D2D7D2"
+        },
+        "40": {
+          "$description": "Alias for #9DA99D.",
+          "$type": "color",
+          "$value": "#9DA99D"
+        },
+        "50": {
+          "$description": "Alias for #697769.",
+          "$type": "color",
+          "$value": "#697769"
+        },
+        "60": {
+          "$description": "Alias for #4E594E.",
+          "$type": "color",
+          "$value": "#4E594E"
+        },
+        "70": {
+          "$description": "Alias for #3D443D.",
+          "$type": "color",
+          "$value": "#3D443D"
+        },
+        "80": {
+          "$description": "Alias for #242824.",
+          "$type": "color",
+          "$value": "#242824"
+        },
+        "90": {
+          "$description": "Alias for #181B18.",
+          "$type": "color",
+          "$value": "#181B18"
+        },
+        "100": {
+          "$description": "Alias for #090D09.",
+          "$type": "color",
+          "$value": "#090D09"
+        }
+      },
+      "green": {
+        "05": {
+          "$description": "Alias for #F7FFFD.",
+          "$type": "color",
+          "$value": "#F7FFFD"
+        },
+        "10": {
+          "$description": "Alias for #ECFFFB.",
+          "$type": "color",
+          "$value": "#ECFFFB"
+        },
+        "20": {
+          "$description": "Alias for #B5FFEE.",
+          "$type": "color",
+          "$value": "#B5FFEE"
+        },
+        "30": {
+          "$description": "Alias for #00FABE.",
+          "$type": "color",
+          "$value": "#00FABE"
+        },
+        "40": {
+          "$description": "Alias for #00D6A4.",
+          "$type": "color",
+          "$value": "#00D6A4"
+        },
+        "50": {
+          "$description": "Alias for #00A17B.",
+          "$type": "color",
+          "$value": "#00A17B"
+        },
+        "60": {
+          "$description": "Alias for #007D60.",
+          "$type": "color",
+          "$value": "#007D60"
+        },
+        "70": {
+          "$description": "Alias for #005944.",
+          "$type": "color",
+          "$value": "#005944"
+        },
+        "80": {
+          "$description": "Alias for #004737.",
+          "$type": "color",
+          "$value": "#004737"
+        },
+        "90": {
+          "$description": "Alias for #003629.",
+          "$type": "color",
+          "$value": "#003629"
+        },
+        "100": {
+          "$description": "Alias for #00241C.",
+          "$type": "color",
+          "$value": "#00241C"
+        }
+      },
+      "orange": {
+        "05": {
+          "$description": "Alias for #FFFAF9.",
+          "$type": "color",
+          "$value": "#FFFAF9"
+        },
+        "10": {
+          "$description": "Alias for #FFF3EF.",
+          "$type": "color",
+          "$value": "#FFF3EF"
+        },
+        "20": {
+          "$description": "Alias for #FFC6B3.",
+          "$type": "color",
+          "$value": "#FFC6B3"
+        },
+        "30": {
+          "$description": "Alias for #FF9877.",
+          "$type": "color",
+          "$value": "#FF9877"
+        },
+        "40": {
+          "$description": "Alias for #FF6D3C.",
+          "$type": "color",
+          "$value": "#FF6D3C"
+        },
+        "50": {
+          "$description": "Alias for #F74408.",
+          "$type": "color",
+          "$value": "#F74408"
+        },
+        "60": {
+          "$description": "Alias for #D13500.",
+          "$type": "color",
+          "$value": "#D13500"
+        },
+        "70": {
+          "$description": "Alias for #A32900.",
+          "$type": "color",
+          "$value": "#A32900"
+        },
+        "80": {
+          "$description": "Alias for #751D00.",
+          "$type": "color",
+          "$value": "#751D00"
+        },
+        "90": {
+          "$description": "Alias for #471200.",
+          "$type": "color",
+          "$value": "#471200"
+        },
+        "100": {
+          "$description": "Alias for #330D00.",
+          "$type": "color",
+          "$value": "#330D00"
+        }
+      },
+      "pink": {
+        "05": {
+          "$description": "Alias for #FFF9FC.",
+          "$type": "color",
+          "$value": "#FFF9FC"
+        },
+        "10": {
+          "$description": "Alias for #FFF0F7.",
+          "$type": "color",
+          "$value": "#FFF0F7"
+        },
+        "20": {
+          "$description": "Alias for #FFB4D8.",
+          "$type": "color",
+          "$value": "#FFB4D8"
+        },
+        "30": {
+          "$description": "Alias for #FF78B9.",
+          "$type": "color",
+          "$value": "#FF78B9"
+        },
+        "40": {
+          "$description": "Alias for #FF3C99.",
+          "$type": "color",
+          "$value": "#FF3C99"
+        },
+        "50": {
+          "$description": "Alias for #F40076.",
+          "$type": "color",
+          "$value": "#F40076"
+        },
+        "60": {
+          "$description": "Alias for #D60067.",
+          "$type": "color",
+          "$value": "#D60067"
+        },
+        "70": {
+          "$description": "Alias for #AD0053.",
+          "$type": "color",
+          "$value": "#AD0053"
+        },
+        "80": {
+          "$description": "Alias for #850040.",
+          "$type": "color",
+          "$value": "#850040"
+        },
+        "90": {
+          "$description": "Alias for #5C002C.",
+          "$type": "color",
+          "$value": "#5C002C"
+        },
+        "100": {
+          "$description": "Alias for #330019.",
+          "$type": "color",
+          "$value": "#330019"
+        }
+      },
+      "purple": {
+        "05": {
+          "$description": "Alias for #FBF9FF.",
+          "$type": "color",
+          "$value": "#FBF9FF"
+        },
+        "10": {
+          "$description": "Alias for #F5F0FF.",
+          "$type": "color",
+          "$value": "#F5F0FF"
+        },
+        "20": {
+          "$description": "Alias for #DAC8FF.",
+          "$type": "color",
+          "$value": "#DAC8FF"
+        },
+        "30": {
+          "$description": "Alias for #C0A0FF.",
+          "$type": "color",
+          "$value": "#C0A0FF"
+        },
+        "40": {
+          "$description": "Alias for #A578FF.",
+          "$type": "color",
+          "$value": "#A578FF"
+        },
+        "50": {
+          "$description": "Alias for #8A50FF.",
+          "$type": "color",
+          "$value": "#8A50FF"
+        },
+        "60": {
+          "$description": "Alias for #6F28FF.",
+          "$type": "color",
+          "$value": "#6F28FF"
+        },
+        "70": {
+          "$description": "Alias for #5200F5.",
+          "$type": "color",
+          "$value": "#5200F5"
+        },
+        "80": {
+          "$description": "Alias for #4100C2.",
+          "$type": "color",
+          "$value": "#4100C2"
+        },
+        "90": {
+          "$description": "Alias for #2C0085.",
+          "$type": "color",
+          "$value": "#2C0085"
+        },
+        "100": {
+          "$description": "Alias for #180047.",
+          "$type": "color",
+          "$value": "#180047"
+        }
+      },
+      "red": {
+        "05": {
+          "$description": "Alias for #FFF5F6.",
+          "$type": "color",
+          "$value": "#FFF5F6"
+        },
+        "10": {
+          "$description": "Alias for #FFE5EA.",
+          "$type": "color",
+          "$value": "#FFE5EA"
+        },
+        "20": {
+          "$description": "Alias for #FFBDC9.",
+          "$type": "color",
+          "$value": "#FFBDC9"
+        },
+        "30": {
+          "$description": "Alias for #FF8A9F.",
+          "$type": "color",
+          "$value": "#FF8A9F"
+        },
+        "40": {
+          "$description": "Alias for #FF395D.",
+          "$type": "color",
+          "$value": "#FF395D"
+        },
+        "50": {
+          "$description": "Alias for #F5002D.",
+          "$type": "color",
+          "$value": "#F5002D"
+        },
+        "60": {
+          "$description": "Alias for #D60027.",
+          "$type": "color",
+          "$value": "#D60027"
+        },
+        "70": {
+          "$description": "Alias for #AD0020.",
+          "$type": "color",
+          "$value": "#AD0020"
+        },
+        "80": {
+          "$description": "Alias for #850018.",
+          "$type": "color",
+          "$value": "#850018"
+        },
+        "90": {
+          "$description": "Alias for #5C0011.",
+          "$type": "color",
+          "$value": "#5C0011"
+        },
+        "100": {
+          "$description": "Alias for #330009.",
+          "$type": "color",
+          "$value": "#330009"
+        }
+      },
+      "transparent": {
+        "$description": "Alias for transparent.",
+        "$value": "transparent"
+      },
+      "white": {
+        "$description": "Alias for #FFFFFF.",
+        "$type": "color",
+        "$value": "#FFFFFF"
+      },
+      "yellow": {
+        "05": {
+          "$description": "Alias for #FFFEF3.",
+          "$type": "color",
+          "$value": "#FFFEF3"
+        },
+        "10": {
+          "$description": "Alias for #FFFCE0.",
+          "$type": "color",
+          "$value": "#FFFCE0"
+        },
+        "20": {
+          "$description": "Alias for #FFF496.",
+          "$type": "color",
+          "$value": "#FFF496"
+        },
+        "30": {
+          "$description": "Alias for #FFED4B.",
+          "$type": "color",
+          "$value": "#FFED4B"
+        },
+        "40": {
+          "$description": "Alias for #FFE500.",
+          "$type": "color",
+          "$value": "#FFE500"
+        },
+        "50": {
+          "$description": "Alias for #B3A100.",
+          "$type": "color",
+          "$value": "#B3A100"
+        },
+        "60": {
+          "$description": "Alias for #998A00.",
+          "$type": "color",
+          "$value": "#998A00"
+        },
+        "70": {
+          "$description": "Alias for #807300.",
+          "$type": "color",
+          "$value": "#807300"
+        },
+        "80": {
+          "$description": "Alias for #665C00.",
+          "$type": "color",
+          "$value": "#665C00"
+        },
+        "90": {
+          "$description": "Alias for #4D4500.",
+          "$type": "color",
+          "$value": "#4D4500"
+        },
+        "100": {
+          "$description": "Alias for #332E00.",
+          "$type": "color",
+          "$value": "#332E00"
+        }
+      }
+    }
+  }
+}
