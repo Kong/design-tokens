@@ -39,7 +39,6 @@ jspm_packages
 # Native Builds
 build/
 dist/
-dist-original/
 sandbox/dist/
 sandbox/dist-copy/
 
