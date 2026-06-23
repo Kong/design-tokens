@@ -42,10 +42,12 @@ tokens/alias/color/
   - Alias-free theme (raw-hex `brand-a`/`brand-b`) → empty include, never errors.
   - `_manifest.json` is never an include.
 
-## 3. Authoring values from figma (`_temp_source` → palette)
+## 3. Palette value schema (and re-importing from figma)
 
-Designers hand off a figma variables export under `_temp_source/aliases-<theme>.json`. The importer
-[`scripts/import-figma-aliases.mjs`](./scripts/import-figma-aliases.mjs) transforms it to our schema:
+The original palette values came from a figma variables export (`_temp_source/aliases-<theme>.json`) run
+through a one-time importer. **Both that importer (`scripts/import-figma-aliases.mjs`) and the
+`_temp_source/` exports have been removed now that the migration is complete — palettes are
+hand-maintained (§9).** The schema conventions below still apply to any hand edit or future re-import:
 
 | figma | palette |
 |---|---|
@@ -58,13 +60,21 @@ Designers hand off a figma variables export under `_temp_source/aliases-<theme>.
 | (figma has none) | `transparent` added as a net-new leaf (`"$value": "transparent"`) |
 
 > ⚠️ figma `$description` is unreliable (e.g. `gray-05` hex `#F9FBF9` but description `#F9FAFB`).
-> Descriptions are always generated from the value.
+> Descriptions are always generated from the value (enforced by the `$description` drift guard, §5).
+
+> **Re-importing from figma:** if a designer hands off a fresh export, recover the importer from git
+> history rather than rewriting it —
+> `git log --all --oneline -- packages/design-tokens/scripts/import-figma-aliases.mjs`, then
+> `git show <sha>:<path>` (last present in commit `6391f4b`). Only its `parseFigma`/`buildPalette`/
+> `buildManifest` transform is reusable; the index-based *re-pointing* half (§4) is not, since
+> `index.json` is gone.
 
 ## 4. Re-pointing a theme to standardized steps
 
 Existing themes referenced `index.json` intermediate steps (whole-value refs **and** refs embedded in
-composite values such as `box-shadow: 0px 0px 0px 1px {color.alias.gray.17} inset`). The importer
-re-points **every** ref — whole and embedded — by **value**:
+composite values such as `box-shadow: 0px 0px 0px 1px {color.alias.gray.17} inset`). The one-time
+migration re-pointed **every** ref — whole and embedded — by **value** (this section is history; it
+explains why the current theme files reference the steps they do):
 
 1. Resolve the ref's pre-refactor value (from the recovered `index.json`).
 2. If the theme's palette has a step with that exact value → rewrite the ref to it (value-preserving).
@@ -129,30 +139,38 @@ resolve to that theme's alias file, these were **snapped to the nearest standard
 `gray.83`→`gray.80`, `red.23`→`red.20`, `green.30` accents → the muted night `green.30`). Night is now
 fully alias-referenced.
 
-The figma-night **example output** (`_temp_source/output-konnect-night.css`) is approximate and still
-carries some of the off-scale values, so snapped night diverges from it on ~60 props — expected. The
+The figma-night **example output** the designer provided was approximate and still carried some of the
+off-scale values, so snapped night diverged from it on ~60 props — expected. The
 designer refines the actual colors by editing **step values in `konnect-night.json`** (e.g. the green
 on badges/alerts and the dark gray he flagged), and the change propagates to every token referencing
 that step. That is the steady-state value-tuning workflow — no token-by-token edits, no raw literals.
 
 ## 8. Adding a future theme
 
-1. Drop the figma export at `_temp_source/aliases-<theme>.json`.
-2. Recover the legacy palette if re-pointing an existing theme:
-   `git show HEAD:packages/design-tokens/tokens/alias/color/index.json > /tmp/old-index.json`
-   (only needed for the original index-based re-point; new themes authored fresh don't need it).
-3. Generate the palette (transform §3). It must contain the full `_manifest.json` key set — copy an
-   existing palette and override the values (the drift guard fails the build on any missing/extra key).
-4. Author `themes/<theme>.json` referencing only standardized steps.
-5. `pnpm build:tokens` (the theme auto-discovers; missing palette → hard error) and run the drift
-   guard + verification (§5–6).
+1. Create `tokens/alias/color/<theme>.json` with the full `_manifest.json` key set — copy an existing
+   palette and override the values (the drift guard fails the build on any missing/extra key; the
+   `$description` guard requires each to read `"Alias for <value>."`).
+2. Author `themes/<theme>.json` referencing only standardized steps — copy an existing theme of the same
+   class (exhaustive vs semantic-only) and re-point what differs.
+3. Classify the theme in `themes.spec.mjs` (`EXHAUSTIVE_THEMES` / `SEMANTIC_ONLY_THEMES` /
+   `UNCHECKED_THEMES`), or the classification guard fails.
+4. `pnpm build:tokens` (the theme auto-discovers; an alias-using theme with no palette → hard error) and
+   run the drift guard + verification (§5–6).
+
+(To regenerate a palette from a fresh figma export instead of authoring by hand, recover the importer
+per §3.)
 
 ## 9. Script lifecycle (what's permanent vs throwaway)
 
 | Script | Status | Notes |
 |---|---|---|
-| `scripts/import-figma-aliases.mjs` | **one-time migration — deletable after merge** | Re-points FROM the original index-based theme refs (recovered to `/tmp/old-index.json`), so it is NOT reproducibly re-runnable once `index.json` is gone. Only its `parseFigma`/`buildPalette`/`buildManifest` core is reusable; extract a small `figma-to-palette` helper if recurring figma imports are ever needed. |
 | `scripts/alias-manifest.mjs` | **permanent** | Tolerant `manifestLeaves`/`paletteLeaves` used by the drift guard in `themes.spec.mjs`. |
+| `scripts/create-theme.mjs` | **permanent** | `getThemeableTokens()` (consumed by `themes.spec.mjs`) + the `create-theme` scaffolding script. |
+
+> **`scripts/import-figma-aliases.mjs` was deleted** (one-time migration). Its `_temp_source/` figma
+> inputs and the old `index.json` were already removed, so it could no longer run, and its output
+> (palettes / manifest / re-pointed themes) is committed and now hand-maintained. Recover it from git
+> history if a fresh figma export ever needs transforming — see §3.
 
 > **`scripts/fill-themes.mjs` was deleted.** Theme completeness is enforced by the drift-guard test
 > (§5), which names exactly which tokens are missing/extra and fails CI — no separate script needed.
@@ -163,7 +181,7 @@ that step. That is the steady-state value-tuning workflow — no token-by-token 
 **Steady-state for the three common tasks** (no migration script needed):
 - *Change one alias value in a theme* → edit that `$value` in `tokens/alias/color/<theme>.json`, update its `$description` to match, `pnpm build:tokens`.
 - *Add a step/group* → add the leaf to `_manifest.json` AND every palette (with each theme's value), `pnpm build:tokens` (drift guard + `$description` test enforce completeness).
-- *Re-import figma for a theme* → regenerate just that palette from the figma export (the reusable transform), `pnpm build:tokens`, verify (§6).
+- *Re-import figma for a theme* → recover the importer's transform from git history (§3), regenerate just that palette, `pnpm build:tokens`, verify (§6).
 
 ## 10. `classic-day` + `classic-night` (light/dark of the default theme)
 
