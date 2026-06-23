@@ -171,9 +171,10 @@ const HEADER =
 async function buildAllThemes() {
   const themes = await discoverThemes()
 
-  // Pre-flight: validate every theme's alias palette BEFORE writing anything, so a misconfigured
+  // Pre-flight: resolve every theme's alias include BEFORE writing anything, so a misconfigured
   // theme fails atomically rather than leaving a partial dist/ (missing index.mjs / later themes).
-  for (const { name } of themes) aliasIncludesForTheme(name)
+  // Resolved once here and reused below — no second filesystem pass per theme.
+  const includesByTheme = new Map(themes.map(({ name }) => [name, aliasIncludesForTheme(name)]))
 
   await mkdir('dist/themes', { recursive: true })
 
@@ -181,7 +182,7 @@ async function buildAllThemes() {
     const sd = new StyleDictionary({
       log: { verbosity: logVerbosityLevels.verbose },
       source: [`./themes/${name}.json`],
-      include: aliasIncludesForTheme(name),
+      include: includesByTheme.get(name),
       platforms: createThemePlatforms(name, exportName),
     })
     await sd.buildAllPlatforms()

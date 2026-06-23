@@ -86,9 +86,9 @@ Only captures chains whose fallback starts with `var(--kui-`; raw/`$scss`/`calc(
 
 Each exhaustive theme must contain every new token. Fill each at **that theme's OWN semantic value** (the non-divergent baseline):
 - **Do it MANUALLY** (a node script): for each new pair `kui-X => kui-Y`, set `konnect-day[X] = clone(konnect-day[Y])` and `konnect-night[X] = clone(konnect-night[Y])`, attaching the component token's `$description` from the registry.
-- **Do NOT use `pnpm fill-themes --write` for value-correctness.** It is a *completeness* checker (dry-run to list missing tokens) and is now fully self-contained (no Kongponents/`/tmp` fallback map). For a value-less **component** token it cannot guess a per-theme value, so it adds the entry EMPTY and flags it `NEEDS MANUAL`. For a **semantic** token it writes the BASE/default value from `dist/tokens/js/tokens.json` (shared across themes → wrong for konnect-night). Either way the correct per-theme value must come from the manual fill.
-- Composite / raw-fallback tokens (not in the map) → set explicitly per theme.
-- Verify: each exhaustive theme key-count === `KUI_THEMEABLE_TOKENS`, 0 empty `$value`, classic unchanged.
+- **The completeness check is the drift-guard test** (`pnpm test` → `themes.spec.mjs`): it names exactly which tokens are missing/extra in each exhaustive theme and fails CI. Use it to see what still needs filling; the per-theme **value** is always authored by hand (a component token's value is a design choice — there is no default to infer it from).
+- Composite / raw-fallback tokens → set explicitly per theme.
+- Verify: each exhaustive theme key-count === `KUI_THEMEABLE_TOKENS` (drift guard green), 0 empty `$value`, classic unchanged.
 
 ## Phase F — Reconcile divergences vs the prototype (BOTH themes)
 
@@ -113,7 +113,7 @@ rm -rf docs/.vitepress/cache         # so 5173 reflects the rebuild
 Also grep the source for dangling refs to any token you renamed/removed, and confirm the byte-identical reuse (reused tokens resolve to the same value).
 
 ## Pitfalls (consolidated)
-- **`fill-themes.mjs` never sets correct per-theme component values** — it flags value-less component tokens `NEEDS MANUAL` (empty `$value`) and writes only BASE/default values for semantic tokens (wrong for konnect-night). Use the manual per-theme fill (Phase E).
+- **There is no auto-fill for theme tokens** — per-theme values are authored by hand (Phase E). The drift-guard test (`pnpm test`) is the completeness check: it names the missing/extra tokens and fails CI. (A `fill-themes.mjs` script used to stub these; it was removed — the test already reports what's missing, and component values can't be auto-resolved anyway.)
 - **Docs (5173) caches design-tokens** — restart / clear `docs/.vitepress/cache`; trust the 5177 prototype.
 - **Coordinated `-hover` keeps PER-DECLARATION fallbacks** (NOT one flattened value): one `-hover` token on `:hover`/`:focus`/`:focus-visible`, but each declaration retains its OWN level-② semantic so the default render is byte-identical (the KButton pattern). Flattening every state to the `:hover` fallback silently changes `classic`'s focus look — the headline bug caught in the Wave-2 review (input/segmented/file-upload focus). The D.2 `uniq -d` listing a coordinated `-hover` under multiple semantics is expected, not an error.
 - **The D.2 fallback-map grep is single-line** — it misses multi-line `var(` declarations (e.g. `_input-text.scss` hover/error mixins), so a token used only there looks unmapped/"dead." Read the source to confirm before treating a registry token as unused or a baseline as missing.

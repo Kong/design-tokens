@@ -140,10 +140,10 @@ removed from the design system but left in the themes) — now pruned; both them
 - **Guard test** — `themes.spec.mjs`: for each *exhaustive* theme (konnect-day, konnect-night) assert its
   `$value` key set === `KUI_THEMEABLE_TOKENS` exactly — fail on BOTH missing tokens and stale extras.
   (classic / brand-a / brand-b are intentionally non-exhaustive → exclude.) Reuse `getThemeableTokens()`.
-- **Fill script** — `scripts/fill-themes.mjs`: add any MISSING themeable token to each exhaustive theme at
-  its resolved fallback value (colors → `{color.alias.*}`; non-colors → the **resolved concrete value** from
-  `dist/tokens/js/tokens.json`, NOT a `{…}` ref, which won't resolve in the per-theme build). Report extras
-  (opt-in `--prune`). NEVER overwrite an existing value (intentional divergences must survive). Flag
-  ambiguous fallbacks (a token appearing in multiple `var()` chains, e.g. focus-visible reusing hover) for
-  manual decision. Workflow: add component tokens → `pnpm fill-themes` → reconcile the new tokens to the prototype → guard test passes.
-- Do NOT bake the fill into `platforms/themes.mjs` (it would mutate source during build + hit the unresolved-ref problem).
+- **No fill script.** The guard test above IS the completeness mechanism — it names exactly which tokens
+  are missing/extra and fails CI. Add MISSING tokens to each exhaustive theme **by hand** at the per-theme
+  value (intentional divergences must survive; component-token values are design choices that can't be
+  auto-resolved). Workflow: add component tokens → run `pnpm test`, read the named-missing list → hand-add
+  + reconcile each new token to the prototype → drift guard passes. (An earlier `scripts/fill-themes.mjs`
+  auto-stubbed these; it was removed since the test already reports what's missing.)
+- Do NOT bake any source mutation into `platforms/themes.mjs` (it would rewrite source during build + hit the unresolved-ref problem).

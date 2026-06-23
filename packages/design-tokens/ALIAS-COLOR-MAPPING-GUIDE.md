@@ -88,7 +88,7 @@ to a different existing step.
 
 ## 5. Enforcement
 
-Mirrors the themeable-token machinery (`KUI_THEMEABLE_TOKENS` + `fill-themes` + drift guard):
+Enforced entirely by the drift-guard tests in `themes.spec.mjs` (run by `pnpm test`):
 
 - **Drift guard** (`themes.spec.mjs` → "alias palettes contain exactly the `_manifest.json` key set"):
   every palette must contain **exactly** the manifest's leaf set — no missing, no extra. Singletons
@@ -148,7 +148,12 @@ that step. That is the steady-state value-tuning workflow — no token-by-token 
 |---|---|---|
 | `scripts/import-figma-aliases.mjs` | **one-time migration — deletable after merge** | Re-points FROM the original index-based theme refs (recovered to `/tmp/old-index.json`), so it is NOT reproducibly re-runnable once `index.json` is gone. Only its `parseFigma`/`buildPalette`/`buildManifest` core is reusable; extract a small `figma-to-palette` helper if recurring figma imports are ever needed. |
 | `scripts/alias-manifest.mjs` | **permanent** | Tolerant `manifestLeaves`/`paletteLeaves` used by the drift guard in `themes.spec.mjs`. |
-| `scripts/fill-themes.mjs` | **permanent (pre-existing)** | Completeness checker that adds any missing `KUI_THEMEABLE_TOKENS` to the exhaustive themes. **Fully self-contained** — reads only this repo's built `dist/` + the `classic.json` alias source (no Kongponents, no `/tmp`). A missing **semantic** token is filled from the default build value (colors → `{color.alias.*}` via the reverse map); a missing value-less **component** token can't be auto-resolved, so it is added EMPTY and flagged `NEEDS MANUAL`. Its color reverse-map source was repointed `index.json`→`classic.json` in this refactor. |
+
+> **`scripts/fill-themes.mjs` was deleted.** Theme completeness is enforced by the drift-guard test
+> (§5), which names exactly which tokens are missing/extra and fails CI — no separate script needed.
+> To add a token, add its entry to `themes/konnect-day.json` + `themes/konnect-night.json` by hand
+> (and per `COMPONENT-TOKENS-GUIDE.md` Phase E for the per-theme value); run `pnpm test` until the
+> drift guard is green.
 
 **Steady-state for the three common tasks** (no migration script needed):
 - *Change one alias value in a theme* → edit that `$value` in `tokens/alias/color/<theme>.json`, update its `$description` to match, `pnpm build:tokens`.
