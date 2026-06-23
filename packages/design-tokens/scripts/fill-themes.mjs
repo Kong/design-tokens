@@ -2,9 +2,12 @@
 /**
  * Fill exhaustive themes with any missing KUI_THEMEABLE_TOKENS entries.
  *
- * Each "exhaustive" theme (konnect-day, konnect-night) is required to contain
- * EVERY entry in `KUI_THEMEABLE_TOKENS`. This script ADDS the missing ones at
- * their resolved fallback value — it can NEVER change an existing entry.
+ * Each "exhaustive" theme (konnect-day, konnect-night) is required to contain EVERY entry in
+ * `KUI_THEMEABLE_TOKENS`. This script ADDS the missing ones — it can NEVER change an existing entry.
+ * A missing SEMANTIC token is filled from the default build value (colors as `{color.alias.*}` refs
+ * against classic.json; non-colors as literals). A missing value-less COMPONENT token has no default
+ * value here, so it is added empty and flagged NEEDS MANUAL for a human to set the theme value.
+ * Fully self-contained: reads only this repo's built `dist/` + alias source (no Kongponents, no /tmp).
  *
  * Usage:
  *   pnpm fill-themes                 # dry-run: print planned additions, write nothing
@@ -183,81 +186,27 @@ export function buildColorReverseMap(aliasIndex) {
 }
 
 /**
- * Parse the `kui-x => kui-y` fallback-pairs file into a map of
- * `tokenName → Set<targetName>`. A token with >1 distinct target is ambiguous.
+ * Compute the `$value` to assign to a missing themeable token, from this repo's own data only.
  *
- * @param {string} text - Raw file contents.
- * @returns {Map<string, Set<string>>}
- */
-export function parseFallbackPairs(text) {
-  /** @type {Map<string, Set<string>>} */
-  const map = new Map()
-  for (const line of text.split('\n')) {
-    const trimmed = line.trim()
-    if (!trimmed) continue
-    const parts = trimmed.split('=>').map(s => s.trim())
-    if (parts.length !== 2 || !parts[0] || !parts[1]) continue
-    if (!map.has(parts[0])) map.set(parts[0], new Set())
-    map.get(parts[0]).add(parts[1])
-  }
-  return map
-}
-
-/**
- * Resolve a `kui-*` token name to its concrete value.
- *
- * Resolution order:
- *   1. Direct hit in `resolvedValues` (the dist tokens.json, underscore-keyed).
- *   2. Follow the (single) fallback target recursively.
- *
- * @param {string} name - Token name WITHOUT leading `--` (e.g. `kui-alert-border-radius`).
- * @param {Record<string, string>} resolvedValues - `kui_x` (underscore) → concrete value.
- * @param {Map<string, Set<string>>} fallbackMap - `kui-x` → Set of fallback targets.
- * @param {Set<string>} [seen] - Cycle guard.
- * @returns {{ kind: 'value', value: string } | { kind: 'ambiguous', targets: string[] } | { kind: 'unresolved' }}
- */
-export function resolveConcreteValue(name, resolvedValues, fallbackMap, seen = new Set()) {
-  if (seen.has(name)) return { kind: 'unresolved' }
-  seen.add(name)
-
-  const underscore = name.replace(/-/g, '_')
-  if (Object.prototype.hasOwnProperty.call(resolvedValues, underscore)) {
-    return { kind: 'value', value: resolvedValues[underscore] }
-  }
-
-  const targets = fallbackMap.get(name)
-  if (!targets || targets.size === 0) return { kind: 'unresolved' }
-  if (targets.size > 1) return { kind: 'ambiguous', targets: [...targets] }
-
-  return resolveConcreteValue([...targets][0], resolvedValues, fallbackMap, seen)
-}
-
-/**
- * Compute the `$value` to assign to a missing themeable token.
- *
- * - Colors → `{color.alias.*}` reverse-mapped reference.
- * - Non-colors → the resolved concrete value (a literal, never a `{…}` ref).
- * - Ambiguous fallback, no fallback, or a color with no alias match →
- *   `$value: ''` and flagged for manual entry (never guessed).
+ * - SEMANTIC token (has a concrete value in `resolvedValues`):
+ *     - color → its `{color.alias.*}` reverse-mapped reference (NEEDS MANUAL if no alias match);
+ *     - non-color → the literal value.
+ * - value-less COMPONENT token (no concrete value) → NEEDS MANUAL: its per-theme value is a design
+ *   choice and there is no default here to infer it from.
  *
  * @param {string} name - Token name without leading `--`.
  * @param {object} ctx
- * @param {Record<string, string>} ctx.resolvedValues - `kui_x` → concrete value.
- * @param {Map<string, Set<string>>} ctx.fallbackMap - component fallback pairs.
+ * @param {Record<string, string>} ctx.resolvedValues - `kui_x` → concrete value (dist tokens.json).
  * @param {Map<string, string>} ctx.colorReverseMap - normalized color → `{color.alias.*}`.
  * @returns {{ value: string, manual: boolean, reason?: string }}
  */
-export function computeFillValue(name, { resolvedValues, fallbackMap, colorReverseMap }) {
-  const resolved = resolveConcreteValue(name, resolvedValues, fallbackMap)
-
-  if (resolved.kind === 'ambiguous') {
-    return { value: '', manual: true, reason: `ambiguous fallback (${resolved.targets.join(' | ')})` }
-  }
-  if (resolved.kind === 'unresolved') {
-    return { value: '', manual: true, reason: 'no fallback / unresolved' }
+export function computeFillValue(name, { resolvedValues, colorReverseMap }) {
+  const underscore = name.replace(/-/g, '_')
+  if (!Object.prototype.hasOwnProperty.call(resolvedValues, underscore)) {
+    return { value: '', manual: true, reason: 'value-less component token — set the theme value manually' }
   }
 
-  const concrete = resolved.value
+  const concrete = resolvedValues[underscore]
   if (isColorValue(concrete)) {
     const ref = colorReverseMap.get(normalizeColor(concrete))
     if (ref) return { value: ref, manual: false }
@@ -276,12 +225,11 @@ export function computeFillValue(name, { resolvedValues, fallbackMap, colorRever
  *
  * @param {Record<string, { $value: unknown, $description?: string }>} original - Parsed theme object.
  * @param {readonly string[]} themeable - `--kui-*` custom property names (KUI_THEMEABLE_TOKENS).
- * @param {Map<string, Set<string>>} fallbackMap - Component fallback pairs.
  * @param {Record<string, string>} resolvedValues - `kui_x` (underscore) → concrete value.
  * @param {Record<string, string>} descriptions - `kui-x` → description from buildDescriptionMap.
  * @returns {{ result: Record<string, object>, added: Array<{ name: string, value: string, description: string }>, needsManual: Array<{ name: string, reason: string }> }}
  */
-export function fillThemeObject(original, themeable, fallbackMap, resolvedValues, descriptions) {
+export function fillThemeObject(original, themeable, resolvedValues, descriptions) {
   // Spread original FIRST — every existing entry is preserved verbatim (by reference).
   /** @type {Record<string, object>} */
   const result = { ...original }
@@ -299,11 +247,7 @@ export function fillThemeObject(original, themeable, fallbackMap, resolvedValues
     // GUARD: only ever assign MISSING keys. Existing keys are never touched.
     if (Object.prototype.hasOwnProperty.call(result, name)) continue
 
-    const { value, manual, reason } = computeFillValue(name, {
-      resolvedValues,
-      fallbackMap,
-      colorReverseMap,
-    })
+    const { value, manual, reason } = computeFillValue(name, { resolvedValues, colorReverseMap })
 
     const description = descriptions[name] ?? ''
     const entry = description ? { $description: description, $value: value } : { $value: value }
@@ -398,29 +342,27 @@ export function assertAdditiveOnly(original, result, expectedAdded) {
 // IO layer
 
 /**
- * Load all inputs needed for filling (themeable list, descriptions, resolved
- * values, fallback pairs, alias color index). Reads dist + tokens ONCE.
+ * Load all inputs needed for filling: the themeable list, descriptions, resolved
+ * values, and the default alias color index (attached as a non-enumerable
+ * `__aliasIndex` on `resolvedValues`). Reads dist + alias source ONCE.
  *
  * @returns {Promise<{
  *   themeable: readonly string[],
  *   descriptions: Record<string, string>,
  *   resolvedValues: Record<string, string>,
- *   fallbackMap: Map<string, Set<string>>,
  * }>}
  */
 async function loadInputs() {
   const tokensJsonPath = join(ROOT, 'dist', 'tokens', 'js', 'tokens.json')
-  // classic.json is the canonical default palette: missing tokens fill at their default value,
+  // classic.json is the canonical default palette: missing semantic tokens fill at their default value,
   // expressed as a ref into the default palette (index.json was removed in the per-theme alias refactor).
   const aliasIndexPath = join(ROOT, 'tokens', 'alias', 'color', 'classic.json')
-  const fallbackPath = process.env.FILL_THEMES_FALLBACK_PAIRS || '/tmp/fallback-pairs.txt'
 
-  const [themeable, descriptions, tokensRaw, aliasRaw, fallbackRaw] = await Promise.all([
+  const [themeable, descriptions, tokensRaw, aliasRaw] = await Promise.all([
     getThemeableTokens(),
     buildDescriptionMap(),
     readFile(tokensJsonPath, 'utf-8'),
     readFile(aliasIndexPath, 'utf-8'),
-    existsSync(fallbackPath) ? readFile(fallbackPath, 'utf-8') : Promise.resolve(''),
   ])
 
   const resolvedValues = JSON.parse(tokensRaw)
@@ -435,7 +377,6 @@ async function loadInputs() {
     themeable,
     descriptions,
     resolvedValues,
-    fallbackMap: parseFallbackPairs(fallbackRaw),
   }
 }
 
@@ -469,7 +410,6 @@ async function processTheme(themeName, opts, inputs) {
   const { result: filled, added, needsManual } = fillThemeObject(
     original,
     inputs.themeable,
-    inputs.fallbackMap,
     inputs.resolvedValues,
     inputs.descriptions,
   )

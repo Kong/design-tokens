@@ -20,6 +20,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { manifestLeaves, paletteLeaves } from './scripts/alias-manifest.mjs'
+import { aliasIncludesFor } from './platforms/themes.mjs'
 
 import { getThemeableTokens, buildDescriptionMap } from './scripts/create-theme.mjs'
 import {
@@ -29,7 +30,6 @@ import {
   fillThemeObject,
   assertAdditiveOnly,
   findExtraKeys,
-  parseFallbackPairs,
   computeFillValue,
   buildColorReverseMap,
   serializeTheme,
@@ -42,25 +42,6 @@ const ROOT = __dirname
 let themeable
 let descriptions
 let resolvedValues
-let fallbackMap
-
-/**
- * Self-contained component→semantic fallback fixture for the fillThemeObject tests.
- *
- * The real fallback chains live in the Kongponents repo (grepped into
- * /tmp/fallback-pairs.txt for the actual fill). That file is NOT present in
- * design-tokens CI, so the suite must not depend on it — depending on it made
- * this test pass locally but fail in CI (the map was silently empty, so the
- * component token couldn't resolve). This fixture provides exactly the pairs
- * these unit tests exercise; the real chains are validated where the fill runs
- * with Kongponents checked out.
- */
-const FALLBACK_FIXTURE = [
-  'kui-alert-color-background-success => kui-color-background-success-weakest',
-  'kui-badge-border-radius => kui-border-radius-20',
-  'kui-button-color-background-danger-hover => kui-color-background-danger-strong',
-  'kui-button-color-background-danger-hover => kui-color-background-danger-stronger',
-].join('\n')
 
 beforeAll(async () => {
   const tokensRaw = await readFile(join(ROOT, 'dist', 'tokens', 'js', 'tokens.json'), 'utf-8')
@@ -74,7 +55,6 @@ beforeAll(async () => {
     value: JSON.parse(aliasRaw),
     enumerable: false,
   })
-  fallbackMap = parseFallbackPairs(FALLBACK_FIXTURE)
 })
 
 /**
@@ -159,7 +139,7 @@ describe('drift guard logic on synthetic fixtures', () => {
 describe('fillThemeObject — additive-only core', () => {
   it('is a no-op on an already-complete theme (0 added)', async () => {
     const original = await loadTheme('konnect-day')
-    const { result, added, needsManual } = fillThemeObject(original, themeable, fallbackMap, resolvedValues, descriptions)
+    const { result, added, needsManual } = fillThemeObject(original, themeable, resolvedValues, descriptions)
     expect(added).toEqual([])
     expect(needsManual).toEqual([])
     // byte-identical serialization
@@ -168,47 +148,36 @@ describe('fillThemeObject — additive-only core', () => {
     expect(after).toBe(before)
   })
 
-  it('re-adds exactly 3 deleted tokens (color, scale/px, component) at correct values; otherwise byte-identical', async () => {
+  it('re-adds deleted SEMANTIC tokens (color + scale) at their default values; otherwise byte-identical', async () => {
     const original = await loadTheme('konnect-day')
 
-    // Three tokens whose authored entry is a clean round-trip of the fill logic
-    // (canonical $description-first order, description == buildDescriptionMap,
-    // and color alias == the exact-value reverse map), so re-adding them
-    // reproduces the original file byte-for-byte:
-    //   - base color token    → {color.alias.*}
-    //   - base scale/px token → literal "6px"
-    //   - component token (color) → {color.alias.*} via fallback resolution
-    const colorToken = 'kui-color-background' // base color → {color.alias.white}
-    const scaleToken = 'kui-border-radius-30' // base scale → "6px"
-    const componentToken = 'kui-alert-color-background-success' // component color → {color.alias.green.10}
+    // A base color token → {color.alias.*} (via the reverse map) and a base scale token → its literal,
+    // both resolved from the default build values; re-adding reproduces the file byte-for-byte.
+    // (Value-less component tokens can't be auto-resolved — see the NEEDS MANUAL test below.)
+    const colorToken = 'kui-color-background' // → {color.alias.white}
+    const scaleToken = 'kui-border-radius-30' // → "6px"
 
-    // Sanity: all three currently exist in the snapshot.
     expect(original[colorToken]).toBeDefined()
     expect(original[scaleToken]).toBeDefined()
-    expect(original[componentToken]).toBeDefined()
 
     const fixture = { ...original }
     delete fixture[colorToken]
     delete fixture[scaleToken]
-    delete fixture[componentToken]
 
-    const { result, added, needsManual } = fillThemeObject(fixture, themeable, fallbackMap, resolvedValues, descriptions)
+    const { result, added, needsManual } = fillThemeObject(fixture, themeable, resolvedValues, descriptions)
 
-    // Exactly the three we removed were added.
-    expect(added.map(a => a.name).sort()).toEqual([colorToken, componentToken, scaleToken].sort())
+    expect(added.map(a => a.name).sort()).toEqual([colorToken, scaleToken].sort())
     expect(needsManual).toEqual([])
 
-    // Correct resolved values: colors → {color.alias.*}, scale → literal px.
     const byName = Object.fromEntries(added.map(a => [a.name, a.value]))
     expect(byName[colorToken]).toBe('{color.alias.white}')
     expect(byName[scaleToken]).toBe('6px')
-    expect(byName[componentToken]).toBe('{color.alias.green.10}')
 
-    // Result is byte-identical to the ORIGINAL — additive fill restored it exactly.
+    // Byte-identical to the ORIGINAL — additive fill restored it exactly.
     expect(serializeTheme(result)).toBe(serializeTheme(original))
 
     // Idempotence: a second run adds nothing and changes nothing.
-    const second = fillThemeObject(result, themeable, fallbackMap, resolvedValues, descriptions)
+    const second = fillThemeObject(result, themeable, resolvedValues, descriptions)
     expect(second.added).toEqual([])
     expect(serializeTheme(second.result)).toBe(serializeTheme(result))
   })
@@ -220,20 +189,22 @@ describe('fillThemeObject — additive-only core', () => {
     expect(original[name]).toBeDefined()
     // Establish that the snapshot's description is the hand-edited one.
     const handEdited = JSON.stringify(original[name])
-    const { result } = fillThemeObject(original, themeable, fallbackMap, resolvedValues, descriptions)
+    const { result } = fillThemeObject(original, themeable, resolvedValues, descriptions)
     expect(JSON.stringify(result[name])).toBe(handEdited)
   })
 
-  it('flags ambiguous-fallback tokens as NEEDS MANUAL with empty $value', async () => {
+  it('flags value-less component tokens as NEEDS MANUAL with empty $value', async () => {
     const original = await loadTheme('konnect-day')
-    const ambiguousToken = 'kui-button-color-background-danger-hover'
-    expect(original[ambiguousToken]).toBeDefined()
+    // A component token has no default build value (it is itself a {color.alias.*}/semantic
+    // reference), so fill cannot auto-resolve it — it is added empty and flagged for manual entry.
+    const componentToken = 'kui-button-color-background-danger-hover'
+    expect(original[componentToken]).toBeDefined()
     const fixture = { ...original }
-    delete fixture[ambiguousToken]
-    const { result, added, needsManual } = fillThemeObject(fixture, themeable, fallbackMap, resolvedValues, descriptions)
-    expect(added.map(a => a.name)).toEqual([ambiguousToken])
-    expect(result[ambiguousToken].$value).toBe('')
-    expect(needsManual.map(m => m.name)).toContain(ambiguousToken)
+    delete fixture[componentToken]
+    const { result, added, needsManual } = fillThemeObject(fixture, themeable, resolvedValues, descriptions)
+    expect(added.map(a => a.name)).toEqual([componentToken])
+    expect(result[componentToken].$value).toBe('')
+    expect(needsManual.map(m => m.name)).toContain(componentToken)
   })
 })
 
@@ -261,7 +232,7 @@ describe('abort path — construction that would alter an existing value is reje
     const fixture = { ...original }
     // Remove several tokens of mixed kinds.
     for (const k of ['kui-color-text', 'kui-space-40', 'kui-badge-border-radius']) delete fixture[k]
-    const { result, added } = fillThemeObject(fixture, themeable, fallbackMap, resolvedValues, descriptions)
+    const { result, added } = fillThemeObject(fixture, themeable, resolvedValues, descriptions)
     // The pure core's output is, by construction, additive-only vs its input.
     expect(() => assertAdditiveOnly(fixture, result, added.map(a => a.name))).not.toThrow()
   })
@@ -279,7 +250,6 @@ describe('color reverse map + computeFillValue', () => {
   it('non-color tokens resolve to a literal value, never a {…} ref', () => {
     const r = computeFillValue('kui-font-size-40', {
       resolvedValues,
-      fallbackMap,
       colorReverseMap: buildColorReverseMap(resolvedValues.__aliasIndex),
     })
     expect(r.manual).toBe(false)
@@ -290,7 +260,6 @@ describe('color reverse map + computeFillValue', () => {
   it('colors with no alias match are flagged NEEDS MANUAL (never guessed)', () => {
     const r = computeFillValue('kui-color-background-overlay', {
       resolvedValues,
-      fallbackMap,
       colorReverseMap: buildColorReverseMap(resolvedValues.__aliasIndex),
     })
     // rgba(...) overlay has no {color.alias.*} match.
@@ -338,4 +307,75 @@ describe('alias palette $description is value-derived', () => {
       expect(stale, `${file} non-value-derived $descriptions: ${stale.join('; ')}`).toEqual([])
     })
   }
+})
+
+describe('every theme color resolves to a value in its own alias palette (no off-source colors)', () => {
+  // The core guarantee of the per-theme refactor: nothing in a compiled theme renders a color that
+  // isn't in that theme's alias palette — including colors embedded in composite box-shadow / rgba /
+  // color-mix values. Codifies the previously-manual off-source audit so it can't silently regress.
+  const norm = (h) => {
+    const s = h.trim().toLowerCase()
+    const m = s.match(/^#([0-9a-f]{3})$/)
+    return m ? `#${m[1][0]}${m[1][0]}${m[1][1]}${m[1][1]}${m[1][2]}${m[1][2]}` : s
+  }
+  const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => Number(x).toString(16).padStart(2, '0')).join('')
+
+  for (const file of PALETTE_FILES) {
+    const name = file.slice(0, -5)
+    it(`${name}.css renders only colors present in ${file}`, async () => {
+      const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
+      const palVals = new Set()
+      const collect = (node) => {
+        if (node && typeof node === 'object' && node.$value !== undefined) {
+          if (typeof node.$value === 'string' && node.$value.startsWith('#')) palVals.add(norm(node.$value))
+          return
+        }
+        if (node && typeof node === 'object') for (const child of Object.values(node)) collect(child)
+      }
+      collect(palette.color.alias)
+
+      const css = await readFile(join(ROOT, 'dist', 'themes', `${name}.css`), 'utf-8')
+      const off = new Set()
+      for (const m of css.matchAll(/#[0-9a-fA-F]{3,8}\b/g)) {
+        const h = norm(m[0])
+        if (!palVals.has(h)) off.add(h)
+      }
+      for (const m of css.matchAll(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/gi)) {
+        const h = norm(rgbToHex(m[1], m[2], m[3]))
+        if (!palVals.has(h)) off.add(h)
+      }
+      expect([...off], `${name}.css renders colors absent from ${file}: ${[...off].join(', ')}`).toEqual([])
+    })
+  }
+})
+
+describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => {
+  it('includes the per-theme palette when it exists', () => {
+    expect(aliasIncludesFor('konnect-day', true, null)).toEqual(['./tokens/alias/color/konnect-day.json'])
+  })
+
+  it('throws when an alias-using theme has no palette (no silent fallback)', () => {
+    const theme = { 'kui-color-text': { $value: '{color.alias.gray.10}' } }
+    expect(() => aliasIncludesFor('konnect-contrast', false, theme)).toThrow(/references \{color\.alias/)
+  })
+
+  it('returns [] for a raw-hex theme with no alias refs and no palette', () => {
+    const theme = { 'kui-color-text': { $value: '#ffffff' } }
+    expect(aliasIncludesFor('brand-a', false, theme)).toEqual([])
+  })
+
+  it('detects alias usage from $value only — a {color.alias.*} mention in $description is not a ref', () => {
+    const theme = { 'kui-x': { $description: 'maps to {color.alias.gray.10}', $value: '#ffffff' } }
+    expect(aliasIncludesFor('brand-x', false, theme)).toEqual([])
+  })
+})
+
+describe('classic theme is frozen (golden snapshot)', () => {
+  // classic is the default palette + theme; its resolved output must not drift. Any change fails here
+  // and must be accepted explicitly (`vitest -u`). day/night are intentionally NOT snapshotted — they
+  // evolve with designer tuning; their guarantees are structural (drift guard + off-source + $description).
+  it('classic.css resolved output matches the committed golden', async () => {
+    const css = await readFile(join(ROOT, 'dist', 'themes', 'classic.css'), 'utf-8')
+    await expect(css).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'classic.theme.css'))
+  })
 })

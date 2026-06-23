@@ -136,9 +136,8 @@ that step. That is the steady-state value-tuning workflow — no token-by-token 
 2. Recover the legacy palette if re-pointing an existing theme:
    `git show HEAD:packages/design-tokens/tokens/alias/color/index.json > /tmp/old-index.json`
    (only needed for the original index-based re-point; new themes authored fresh don't need it).
-3. Generate the palette (transform §3). It must contain the full `_manifest.json` key set — use
-   `scripts/fill-alias-palettes.mjs` (additive, manifest-driven) or copy an existing palette and
-   override values.
+3. Generate the palette (transform §3). It must contain the full `_manifest.json` key set — copy an
+   existing palette and override the values (the drift guard fails the build on any missing/extra key).
 4. Author `themes/<theme>.json` referencing only standardized steps.
 5. `pnpm build:tokens` (the theme auto-discovers; missing palette → hard error) and run the drift
    guard + verification (§5–6).
@@ -147,10 +146,9 @@ that step. That is the steady-state value-tuning workflow — no token-by-token 
 
 | Script | Status | Notes |
 |---|---|---|
-| `scripts/import-figma-aliases.mjs` | **one-time migration — deletable after night Phase 2** | Its re-point path depends on the deleted `index.json` (recovered to `/tmp/old-index.json`) and the gitignored `dist-original/` snapshot, so it is NOT reproducibly re-runnable after merge. Only its `parseFigma`/`buildPalette`/`buildManifest` core is reusable; extract that into a small `figma-to-palette` helper if recurring figma imports are needed. |
-| `scripts/fill-alias-palettes.mjs` | **optional convenience** | Reports/fills palette keys missing vs the manifest. The drift guard (`themes.spec.mjs`) is the real enforcement; this just bootstraps a new palette faster. Keep or drop by preference. |
-| `scripts/alias-manifest.mjs` | **permanent** | Shared `manifestLeaves`/`paletteLeaves` used by the drift guard and the fill script — single source for the leaf-set logic. |
-| `scripts/fill-themes.mjs` | **permanent (pre-existing)** | Fills exhaustive themes with missing `KUI_THEMEABLE_TOKENS`; unrelated to this refactor (its reverse-map source was repointed `index.json`→`classic.json`). |
+| `scripts/import-figma-aliases.mjs` | **one-time migration — deletable after merge** | Re-points FROM the original index-based theme refs (recovered to `/tmp/old-index.json`), so it is NOT reproducibly re-runnable once `index.json` is gone. Only its `parseFigma`/`buildPalette`/`buildManifest` core is reusable; extract a small `figma-to-palette` helper if recurring figma imports are ever needed. |
+| `scripts/alias-manifest.mjs` | **permanent** | Tolerant `manifestLeaves`/`paletteLeaves` used by the drift guard in `themes.spec.mjs`. |
+| `scripts/fill-themes.mjs` | **permanent (pre-existing)** | Completeness checker that adds any missing `KUI_THEMEABLE_TOKENS` to the exhaustive themes. **Fully self-contained** — reads only this repo's built `dist/` + the `classic.json` alias source (no Kongponents, no `/tmp`). A missing **semantic** token is filled from the default build value (colors → `{color.alias.*}` via the reverse map); a missing value-less **component** token can't be auto-resolved, so it is added EMPTY and flagged `NEEDS MANUAL`. Its color reverse-map source was repointed `index.json`→`classic.json` in this refactor. |
 
 **Steady-state for the three common tasks** (no migration script needed):
 - *Change one alias value in a theme* → edit that `$value` in `tokens/alias/color/<theme>.json`, update its `$description` to match, `pnpm build:tokens`.

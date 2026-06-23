@@ -13,23 +13,24 @@ function toExportName(name) {
 }
 
 /**
- * Resolve the color-alias include list for a single theme build.
+ * Pure decision for which color-alias palette (if any) a theme build includes — the testable core of
+ * `aliasIncludesForTheme` (no filesystem access).
  *
- * Each theme resolves its `{color.alias.*}` references against its OWN palette file
- * (`tokens/alias/color/<name>.json`), so themes share step names with theme-specific values. A theme
- * that references aliases but has no palette file is a hard error — no silent fallback. A theme that
- * references no aliases (e.g. raw-hex brand themes) needs no palette. The names-only `_manifest.json`
- * is never an include: it is the key-set contract, not a value source.
- * @param {string} name - Theme name matching `themes/${name}.json`.
+ * Each theme resolves its `{color.alias.*}` references against its OWN palette (`<name>.json`), so
+ * themes share step names with theme-specific values. A theme that references aliases but has no
+ * palette is a hard error — no silent fallback. A theme with no alias refs (raw-hex brand themes)
+ * needs no palette. Alias usage is detected from token `$value`s (not raw text — avoids false
+ * positives from a `{color.alias.*}` mention inside a `$description`).
+ *
+ * @param {string} name - Theme name.
+ * @param {boolean} paletteExists - Whether `tokens/alias/color/<name>.json` exists.
+ * @param {Record<string, { $value?: unknown }> | null} themeObj - Parsed theme (only read when no palette).
  * @returns {string[]} Style Dictionary `include` globs (0 or 1 palette file).
+ * @throws {Error} when the theme references aliases but has no palette.
  */
-function aliasIncludesForTheme(name) {
-  const palette = `./tokens/alias/color/${name}.json`
-  if (existsSync(palette)) return [palette]
-  // Detect alias usage by inspecting token `$value`s (not a raw-text scan — avoids false positives
-  // from a `{color.alias.*}` mention inside a `$description`).
-  const theme = JSON.parse(readFileSync(`./themes/${name}.json`, 'utf-8'))
-  const usesAliases = Object.values(theme).some(
+export function aliasIncludesFor(name, paletteExists, themeObj) {
+  if (paletteExists) return [`./tokens/alias/color/${name}.json`]
+  const usesAliases = Object.values(themeObj ?? {}).some(
     entry => entry && typeof entry.$value === 'string' && entry.$value.includes('{color.alias.'),
   )
   if (usesAliases) {
@@ -39,6 +40,17 @@ function aliasIncludesForTheme(name) {
     )
   }
   return []
+}
+
+/**
+ * Resolve the color-alias include list for a single theme build (IO wrapper around `aliasIncludesFor`).
+ * @param {string} name - Theme name matching `themes/${name}.json`.
+ * @returns {string[]} Style Dictionary `include` globs (0 or 1 palette file).
+ */
+function aliasIncludesForTheme(name) {
+  const paletteExists = existsSync(`./tokens/alias/color/${name}.json`)
+  const themeObj = paletteExists ? null : JSON.parse(readFileSync(`./themes/${name}.json`, 'utf-8'))
+  return aliasIncludesFor(name, paletteExists, themeObj)
 }
 
 /**

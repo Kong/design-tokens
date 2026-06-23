@@ -1,6 +1,6 @@
 /**
- * Shared helpers for the color-alias manifest contract, used by the drift guard
- * (`themes.spec.mjs`) and `fill-alias-palettes.mjs` so the leaf-set logic lives in ONE place.
+ * Shared helpers for the color-alias manifest contract, used by the drift guard in `themes.spec.mjs`.
+ * Tolerant of malformed nodes so a mis-authored palette surfaces as a named diff, not a crash.
  *
  * Manifest representation (`tokens/alias/color/_manifest.json`, names only):
  *   - a family mapped to `[]` (empty array) is a single direct-value leaf, e.g. `white` → `color.alias.white`
