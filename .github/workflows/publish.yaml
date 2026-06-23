@@ -12,8 +12,6 @@ on:
       - labeled
     branches:
       - main
-      # TODO: REMOVE BEFORE MERGE
-      - feat/component-tokens-and-themes
 
 permissions:
   id-token: write
