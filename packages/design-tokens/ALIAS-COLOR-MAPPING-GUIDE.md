@@ -13,8 +13,10 @@ Every theme shares **one standardized set of color-alias names** (`color.alias.g
 tokens/alias/color/
   _manifest.json      ← CANONICAL key set. Color groups + step NAMES ONLY (no values, no descriptions).
                         Enforces that every alias exists in every palette. Excluded from all builds.
-  classic.json        ← default palette. The main semantic build (SCSS/JS/TS/CSS/LESS) resolves against
-                        THIS file. Also the `classic` theme's palette.
+  classic-day.json    ← default palette. The main semantic build (SCSS/JS/TS/CSS/LESS) resolves against
+                        THIS file. Also the `classic-day` theme's palette.
+  classic-night.json  ← `classic-night` theme's palette. IDENTICAL values to classic-day — dark mode is
+                        a semantic override (see §10), not a different palette.
   konnect-day.json    ← konnect-day (light) palette: standardized steps, day values.
   konnect-night.json  ← konnect-night (dark) palette: standardized steps, night values.
 ```
@@ -31,8 +33,8 @@ tokens/alias/color/
 
 ## 2. Build wiring
 
-- **Main build** (`config.mjs`) includes **only** `tokens/alias/color/classic.json`. classic is the
-  source of truth for the default exported output. The other palette files and `_manifest.json` live
+- **Main build** (`config.mjs`) includes **only** `tokens/alias/color/classic-day.json`. classic-day is
+  the source of truth for the default exported output. The other palette files and `_manifest.json` live
   in the same directory but are **not** included here (they would collide on shared step names).
 - **Theme build** (`platforms/themes.mjs` → `aliasIncludesForTheme(name)`): each theme resolves
   against `tokens/alias/color/<name>.json` only.
@@ -70,9 +72,9 @@ re-points **every** ref — whole and embedded — by **value**:
    index), so it is **snapped to the nearest COLOR in the same family** (by RGB distance, not step
    number — minimizes how many distinct shades collapse). The token adopts that step's value.
 4. **Composite tokens authored with a literal color** (not a `{color.alias.*}` ref) are re-pointed too,
-   mirroring how `classic.json` composes them: `kui-shadow-border-disabled`/`kui-navigation-shadow-border-child`
+   mirroring how `classic-day.json` composes them: `kui-shadow-border-disabled`/`kui-navigation-shadow-border-child`
    get the embedded hex replaced with the nearest gray/green alias; `kui-color-background-overlay` keeps
-   its raw `rgba()` form (like classic) but its base is rewritten to the nearest source value.
+   its raw `rgba()` form (like classic-day) but its base is rewritten to the nearest source value.
 
 Non-color values (px/font) are untouched. **Result: every color in `dist/themes/*` traces to its
 theme's alias palette — 0 off-source colors in both themes.** (Verify with the off-source audit in §6.)
@@ -107,8 +109,11 @@ cp -r dist dist-original          # snapshot BEFORE editing (gitignored)
 pnpm build:tokens                 # rebuild
 diff -rq dist dist-original       # inspect
 ```
-- **Main exports + `classic` theme + konnect-day** → values unchanged vs the pre-refactor build
-  (`classic` byte-identical bar timestamp; konnect-day normalized color-equivalent, only `#FFF→#FFFFFF`).
+- **Main exports + `classic-day` theme + konnect-day** → values unchanged vs the pre-refactor build
+  (`classic-day` is byte-identical to the former `classic` bar the theme name/selector + timestamp;
+  konnect-day normalized color-equivalent, only `#FFF→#FFFFFF`).
+- **`classic-night`** → **intentionally re-valued** for the ~20 dark-mode semantic overrides (see §10);
+  all other tokens resolve to the same classic-day palette values.
 - **konnect-night** → **intentionally re-valued** for the 124 snapped tokens (they now use the
   standardized night palette values instead of off-scale leftovers). Verified instead by: every night
   color resolves to a real night-palette step (build would fail otherwise), and the un-snapped 786
@@ -159,3 +164,29 @@ that step. That is the steady-state value-tuning workflow — no token-by-token 
 - *Change one alias value in a theme* → edit that `$value` in `tokens/alias/color/<theme>.json`, update its `$description` to match, `pnpm build:tokens`.
 - *Add a step/group* → add the leaf to `_manifest.json` AND every palette (with each theme's value), `pnpm build:tokens` (drift guard + `$description` test enforce completeness).
 - *Re-import figma for a theme* → regenerate just that palette from the figma export (the reusable transform), `pnpm build:tokens`, verify (§6).
+
+## 10. `classic-day` + `classic-night` (light/dark of the default theme)
+
+The Kongponents default look ships as **two** semantic-only themes that **share one palette** (identical
+alias values — dark mode is a *semantic re-point*, not a different set of colors):
+
+- **`classic-day`** — the default. The main build (`config.mjs`) resolves the exported `:root`
+  custom-properties against `tokens/alias/color/classic-day.json`, and `themes/classic-day.json` is the
+  light theme. This is the former `classic` theme, renamed 1:1 (byte-identical resolved values).
+- **`classic-night`** — the dark counterpart. `tokens/alias/color/classic-night.json` is an **exact copy**
+  of classic-day's palette; `themes/classic-night.json` is a copy of classic-day's theme with ~20
+  `color-text` / `color-border` / `shadow-border` / `color-background` tokens **re-pointed to darker
+  alias steps** (e.g. `color-text` → `{color.alias.white}`, `color-background` → `{color.alias.black}`,
+  `color-border` → `{color.alias.gray.80}`). `color-background-overlay` stays raw `rgba()` like
+  classic-day, with a darker base. Every override resolves to a step that already exists in the shared
+  palette, so the **0-off-source-colors** invariant holds with no new palette values.
+
+Both are `SEMANTIC_ONLY_THEMES` in `themes.spec.mjs` (every semantic token, **zero** component tokens —
+components fall through to their semantic default), both are frozen by golden snapshots
+(`__snapshots__/themes/classic-{day,night}.css`), and both are cross-checked by the classification guard.
+
+**Maintaining the dark overrides:** edit `themes/classic-night.json` only — change the `$value` of the
+relevant token to the desired `{color.alias.*}` step (keep the token's `$description`, which documents its
+*purpose*, not its value). `pnpm test -u` re-freezes the snapshot. To change a value for **both** day and
+night, edit the shared palette step in `classic-day.json` **and** `classic-night.json` (they must stay
+identical) — or, more often, edit the semantic token in `tokens/source/**`, which flows to both.

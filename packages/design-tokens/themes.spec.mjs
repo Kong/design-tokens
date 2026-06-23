@@ -3,11 +3,12 @@
  *
  * Verifies every theme contains the right token set and resolves to the right values:
  *   - exhaustive themes (konnect-day, konnect-night) contain EXACTLY KUI_THEMEABLE_TOKENS;
- *   - semantic-only themes (classic) contain every semantic token and ZERO component tokens;
+ *   - semantic-only themes (classic-day, classic-night) contain every semantic token and ZERO
+ *     component tokens;
  *   - every alias palette matches the names-only `_manifest.json` key set, with value-derived
  *     `$description`s, and every compiled theme color traces to that theme's own palette;
  *   - the per-theme alias build wiring throws (never silently falls back) for a misconfigured theme;
- *   - classic's resolved output is frozen by a golden snapshot.
+ *   - classic-day's and classic-night's resolved output is frozen by golden snapshots.
  *
  * All reads target the repo's own source/dist; nothing on disk is modified by the tests.
  */
@@ -27,8 +28,9 @@ const ROOT = __dirname
 
 // ── Theme taxonomy ──────────────────────────────────────────────────────────
 // Which themes must contain which token set. This is policy, NOT derivable from the filename
-// (themes/ also holds the semantic-only `classic` and the raw-hex `brand-*` playgrounds), so it is
-// declared explicitly and cross-checked against themes/ by the "classification" guard below.
+// (themes/ also holds the semantic-only `classic-day`/`classic-night` and the raw-hex `brand-*`
+// playgrounds), so it is declared explicitly and cross-checked against themes/ by the
+// "classification" guard below.
 
 /** Themes that MUST contain every themeable token (semantic + component). */
 const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
@@ -36,16 +38,22 @@ const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
 /**
  * Themes that MUST contain every SEMANTIC token and ZERO component tokens.
  *
- * `classic` is the default theme: it deliberately sets no component tokens, so every component
- * falls through to its semantic default via the Kongponents `var()` chain. This repo owns the
+ * `classic-day` is the default theme (the resolved `:root` exports) and `classic-night` is its dark
+ * counterpart — identical alias palette, with a handful of semantic tokens (text/border/background)
+ * re-pointed to darker steps. Both deliberately set no component tokens, so every component falls
+ * through to its semantic default via the Kongponents `var()` chain. This repo owns the
  * component-token namespace (`tokens/components/`) but NOT the component→semantic fallback map
  * (that lives in Kongponents SCSS), so "contains no component token" is the only fallthrough
  * guarantee this repo can verify — hence component-free by omission.
  */
-const SEMANTIC_ONLY_THEMES = ['classic']
+const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
 
 /** Raw-hex playground themes — intentionally NOT guarded for token completeness. */
 const UNCHECKED_THEMES = ['brand-a', 'brand-b']
+
+// Style Dictionary stamps a volatile `Generated on <date>` line into the main build's file header;
+// neutralize it so the snapshot tracks resolved-value drift, not the clock.
+const stripTimestamp = (css) => css.replace(/Generated on [^\n]*/g, 'Generated on <stripped>')
 
 /**
  * Enumerate every component-token name (without the leading `--`) declared in
@@ -253,22 +261,33 @@ describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => 
   })
 })
 
-describe('classic theme is unchanged (golden snapshot)', () => {
-  // classic is the default palette + theme; its resolved output must not drift. Any change fails here
-  // and must be accepted explicitly (`vitest -u`). day/night are intentionally NOT snapshotted — they
-  // evolve with designer tuning; their guarantees are structural (drift guard + off-source + $description).
+describe('classic-day / classic-night themes are unchanged (golden snapshot)', () => {
+  // classic-day is the default palette + theme; classic-night is its fixed dark counterpart. Both are
+  // deterministic (no designer tuning), so their resolved output is frozen — any change fails here and
+  // must be accepted explicitly (`vitest -u`). konnect day/night are intentionally NOT snapshotted —
+  // they evolve with tuning; their guarantees are structural (drift guard + off-source + $description).
 
-  // Style Dictionary stamps a volatile `Generated on <date>` line into the main build's file header;
-  // neutralize it so the snapshot tracks resolved-value drift, not the clock.
-  const stripTimestamp = (css) => css.replace(/Generated on [^\n]*/g, 'Generated on <stripped>')
+  for (const themeName of SEMANTIC_ONLY_THEMES) {
+    it(`dist/themes/${themeName}.css resolved output remains unchanged`, async () => {
+      const css = await readFile(join(ROOT, 'dist', 'themes', `${themeName}.css`), 'utf-8')
+      await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'themes', `${themeName}.css`))
+    })
+  }
+})
 
-  it('dist/themes/classic.css resolved output remains unchanged', async () => {
-    const css = await readFile(join(ROOT, 'dist', 'themes', 'classic.css'), 'utf-8')
-    await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'themes', 'classic.css'))
-  })
-
-  it('dist/tokens/custom-properties.css resolved output remains unchanged', async () => {
+describe('semantic token exports are unchanged (golden snapshot)', () => {
+  it('dist/tokens/css/custom-properties.css resolved output remains unchanged', async () => {
     const css = await readFile(join(ROOT, 'dist', 'tokens', 'css', 'custom-properties.css'), 'utf-8')
     await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'tokens', 'css', 'custom-properties.css'))
+  })
+
+  it('dist/tokens/js/index.mjs resolved output remains unchanged', async () => {
+    const css = await readFile(join(ROOT, 'dist', 'tokens', 'js', 'index.mjs'), 'utf-8')
+    await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'tokens', 'js', 'index.mjs'))
+  })
+
+  it('dist/tokens/scss/_variables.scss resolved output remains unchanged', async () => {
+    const css = await readFile(join(ROOT, 'dist', 'tokens', 'scss', '_variables.scss'), 'utf-8')
+    await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'tokens', 'scss', '_variables.scss'))
   })
 })

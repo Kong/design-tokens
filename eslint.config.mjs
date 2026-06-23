@@ -44,4 +44,12 @@ export default [
       ],
     },
   },
+  // Exclude the generated JS snapshot from stylistic rules since it is auto-generated and not meant to be human-edited
+  {
+    files: ['packages/design-tokens/__snapshots__/tokens/js/index.mjs'],
+    rules: {
+      '@stylistic/quotes': 'off',
+      '@stylistic/semi': 'off',
+    },
+  },
 ]

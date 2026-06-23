@@ -7,7 +7,7 @@
  *   1. `tokens/alias/color/_manifest.json`        — names-only canonical key set.
  *   2. `tokens/alias/color/konnect-day.json`      — full standardized palette, figma-day values.
  *   3. `tokens/alias/color/konnect-night.json`    — full standardized palette, figma-night values.
- *   4. `tokens/alias/color/classic.json`          — existing entries preserved, net-new carrier
+ *   4. `tokens/alias/color/classic-day.json`      — existing entries preserved, net-new carrier
  *                                                   keys appended at figma-day values.
  *   5. `themes/konnect-day.json`                  — every `{color.alias.*}` ref re-pointed to the
  *                                                   standardized step holding the same value (lossless).
@@ -322,7 +322,7 @@ const dayPalette = buildPalette(figmaDay)
 const nightPalette = buildPalette(figmaNight)
 const manifest = buildManifest([figmaDay, figmaNight])
 
-const classicObj = JSON.parse(await readFile(p('tokens', 'alias', 'color', 'classic.json'), 'utf-8'))
+const classicObj = JSON.parse(await readFile(p('tokens', 'alias', 'color', 'classic-day.json'), 'utf-8'))
 const { palette: classicExpanded, added: classicAdded } = expandClassic(classicObj, dayPalette)
 
 const themeDay = JSON.parse(await readFile(p('themes', 'konnect-day.json'), 'utf-8'))
@@ -362,7 +362,7 @@ if (!WRITE) {
 await writeFile(p('tokens', 'alias', 'color', '_manifest.json'), serializeSorted(manifest))
 await writeFile(p('tokens', 'alias', 'color', 'konnect-day.json'), serializeSorted(dayPalette))
 await writeFile(p('tokens', 'alias', 'color', 'konnect-night.json'), serializeSorted(nightPalette))
-await writeFile(p('tokens', 'alias', 'color', 'classic.json'), serializeSorted(classicExpanded))
+await writeFile(p('tokens', 'alias', 'color', 'classic-day.json'), serializeSorted(classicExpanded))
 await writeFile(p('themes', 'konnect-day.json'), serializeSorted(dayResult.theme))
 await writeFile(p('themes', 'konnect-night.json'), serializeSorted(nightResult.theme))
 console.log('\nWrote palette files, manifest, expanded classic, and re-pointed themes.')

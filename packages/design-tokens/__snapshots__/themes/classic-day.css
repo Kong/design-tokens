@@ -1,9 +1,9 @@
 /**
- * @kong/design-tokens — classic theme
+ * @kong/design-tokens — classic-day theme
  * GENERATED FILE — do not edit by hand. Run `pnpm build:themes` to regenerate.
  */
 @layer kui.theme {
-  [data-kui-theme="classic"] {
+  [data-kui-theme="classic-day"] {
     --kui-animation-duration-20: 0.2s;
     --kui-border-radius-0: 0px;
     --kui-border-radius-10: 2px;
