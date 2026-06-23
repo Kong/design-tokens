@@ -47,8 +47,8 @@ const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
  */
 const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
 
-/** Raw-hex playground themes — intentionally NOT guarded for token completeness. */
-const UNCHECKED_THEMES = ['brand-a', 'brand-b']
+/** Playground brand themes — intentionally NOT guarded for token completeness. */
+const UNCHECKED_THEMES = ['brand-a', 'brand-b', 'paper']
 
 // Style Dictionary stamps a volatile `Generated on <date>` line into the main build's file header;
 // neutralize it so the snapshot tracks resolved-value drift, not the clock.
