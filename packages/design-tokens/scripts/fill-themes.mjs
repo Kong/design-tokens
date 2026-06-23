@@ -134,7 +134,7 @@ export function isColorValue(value) {
  * from the alias color index. When several alias names share a concrete value,
  * the one whose family ranks earliest in COLOR_FAMILY_PRIORITY wins.
  *
- * @param {object} aliasIndex - Parsed `tokens/alias/color/index.json`.
+ * @param {object} aliasIndex - Parsed default color palette (`tokens/alias/color/classic.json`).
  * @returns {Map<string, string>} normalized value → `{color.alias.*}` reference.
  */
 export function buildColorReverseMap(aliasIndex) {
@@ -410,7 +410,9 @@ export function assertAdditiveOnly(original, result, expectedAdded) {
  */
 async function loadInputs() {
   const tokensJsonPath = join(ROOT, 'dist', 'tokens', 'js', 'tokens.json')
-  const aliasIndexPath = join(ROOT, 'tokens', 'alias', 'color', 'index.json')
+  // classic.json is the canonical default palette: missing tokens fill at their default value,
+  // expressed as a ref into the default palette (index.json was removed in the per-theme alias refactor).
+  const aliasIndexPath = join(ROOT, 'tokens', 'alias', 'color', 'classic.json')
   const fallbackPath = process.env.FILL_THEMES_FALLBACK_PAIRS || '/tmp/fallback-pairs.txt'
 
   const [themeable, descriptions, tokensRaw, aliasRaw, fallbackRaw] = await Promise.all([

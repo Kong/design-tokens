@@ -1,0 +1,376 @@
+:root[data-theme="konnect-night"] {
+  --kui-color-background: #0d0f0d; /** color-background */
+  --kui-color-background-disabled: #292b26; /** color-background-disabled */
+  --kui-color-background-inverse: #f9fbf9; /** color-background-inverse */
+  --kui-color-background-overlay: rgba(9, 13, 9, 0.6); /** color-background-overlay */
+  --kui-color-background-transparent: rgba(0, 0, 0, 0); /** color-background-transparent */
+  --kui-color-background-brand: #ccff00; /** color-background-brand */
+  --kui-color-background-brand-strong: #ccff00; /** color-background-brand-strong */
+  --kui-color-background-brand-stronger: #a3cc00; /** color-background-brand-stronger */
+  --kui-color-background-brand-strongest: #7a9900; /** color-background-brand-strongest */
+  --kui-color-background-brand-weak: #d6ff30; /** color-background-brand-weak */
+  --kui-color-background-brand-weaker: #dfff5f; /** color-background-brand-weaker */
+  --kui-color-background-brand-weakest: #e9ff8f; /** color-background-brand-weakest */
+  --kui-color-background-primary: #9da99d; /** color-background-primary */
+  --kui-color-background-primary-strong: #e3e8e3; /** color-background-primary-strong */
+  --kui-color-background-primary-stronger: #e3e8e3; /** color-background-primary-stronger */
+  --kui-color-background-primary-strongest: #f1f3f1; /** color-background-primary-strongest */
+  --kui-color-background-primary-weak: #4e594e; /** color-background-primary-weak */
+  --kui-color-background-primary-weaker: #3d443d; /** color-background-primary-weaker */
+  --kui-color-background-primary-weakest: #292b26; /** color-background-primary-weakest */
+  --kui-color-background-neutral: #9da99d; /** color-background-neutral */
+  --kui-color-background-neutral-strong: #d2d7d2; /** color-background-neutral-strong */
+  --kui-color-background-neutral-stronger: #e3e8e3; /** color-background-neutral-stronger */
+  --kui-color-background-neutral-strongest: #f1f3f1; /** color-background-neutral-strongest */
+  --kui-color-background-neutral-weak: #4e594e; /** color-background-neutral-weak */
+  --kui-color-background-neutral-weaker: #292b26; /** color-background-neutral-weaker */
+  --kui-color-background-neutral-weakest: #070807; /** color-background-neutral-weakest */
+  --kui-color-background-success: #83baad; /** color-background-success */
+  --kui-color-background-success-strong: #a7cfc6; /** color-background-success-strong */
+  --kui-color-background-success-stronger: #cce3de; /** color-background-success-stronger */
+  --kui-color-background-success-strongest: #f7fcfb; /** color-background-success-strongest */
+  --kui-color-background-success-weak: #3d8776; /** color-background-success-weak */
+  --kui-color-background-success-weaker: #24594d; /** color-background-success-weaker */
+  --kui-color-background-success-weakest: #143029; /** color-background-success-weakest */
+  --kui-color-background-warning: #dbd06a; /** color-background-warning */
+  --kui-color-background-warning-strong: #d1cb92; /** color-background-warning-strong */
+  --kui-color-background-warning-stronger: #eee9b9; /** color-background-warning-stronger */
+  --kui-color-background-warning-strongest: #f8f6e1; /** color-background-warning-strongest */
+  --kui-color-background-warning-weak: #b5a72c; /** color-background-warning-weak */
+  --kui-color-background-warning-weaker: #665e19; /** color-background-warning-weaker */
+  --kui-color-background-warning-weakest: #2b2809; /** color-background-warning-weakest */
+  --kui-color-background-danger: #d78392; /** color-background-danger */
+  --kui-color-background-danger-strong: #ebaeb9; /** color-background-danger-strong */
+  --kui-color-background-danger-stronger: #efcdd3; /** color-background-danger-stronger */
+  --kui-color-background-danger-strongest: #fbf3f4; /** color-background-danger-strongest */
+  --kui-color-background-danger-weak: #953042; /** color-background-danger-weak */
+  --kui-color-background-danger-weaker: #6f2432; /** color-background-danger-weaker */
+  --kui-color-background-danger-weakest: #361118; /** color-background-danger-weakest */
+  --kui-color-background-info: #759dc7; /** color-background-info */
+  --kui-color-background-info-strong: #95b3d4; /** color-background-info-strong */
+  --kui-color-background-info-stronger: #bcd1e8; /** color-background-info-stronger */
+  --kui-color-background-info-strongest: #d7e3ef; /** color-background-info-strongest */
+  --kui-color-background-info-weak: #5485ba; /** color-background-info-weak */
+  --kui-color-background-info-weaker: #406e9f; /** color-background-info-weaker */
+  --kui-color-background-info-weakest: #192a3d; /** color-background-info-weakest */
+  --kui-color-background-decorative-purple: #4c337f; /** color-background-decorative-purple */
+  --kui-color-background-decorative-purple-weakest: #25193d; /** color-background-decorative-purple-weakest */
+  --kui-color-background-decorative-aqua-weakest: #244d56; /** color-background-decorative-aqua-weakest */
+  --kui-color-background-decorative-pink-weakest: #803358; /** color-background-decorative-pink-weakest */
+  --kui-color-border: #292b26; /** color-border */
+  --kui-color-border-disabled: #292b26; /** color-border-disabled */
+  --kui-color-border-inverse: rgba(255, 255, 255, 0.2); /** color-border-inverse */
+  --kui-color-border-transparent: rgba(0, 0, 0, 0); /** color-border-transparent */
+  --kui-color-border-brand: #ccff00; /** color-border-brand */
+  --kui-color-border-brand-strong: #d6ff30; /** color-border-brand-strong */
+  --kui-color-border-brand-stronger: #dfff5f; /** color-border-brand-stronger */
+  --kui-color-border-brand-strongest: #e9ff8f; /** color-border-brand-strongest */
+  --kui-color-border-brand-weak: #a3cc00; /** color-border-brand-weak */
+  --kui-color-border-brand-weaker: #7a9900; /** color-border-brand-weaker */
+  --kui-color-border-brand-weakest: #526600; /** color-border-brand-weakest */
+  --kui-color-border-primary: #d2d7d2; /** color-border-primary */
+  --kui-color-border-primary-strong: #e3e8e3; /** color-border-primary-strong */
+  --kui-color-border-primary-stronger: #f1f3f1; /** color-border-primary-stronger */
+  --kui-color-border-primary-strongest: #f9fbf9; /** color-border-primary-strongest */
+  --kui-color-border-primary-weak: #4e594e; /** color-border-primary-weak */
+  --kui-color-border-primary-weaker: #292b26; /** color-border-primary-weaker */
+  --kui-color-border-primary-weakest: #0d0f0d; /** color-border-primary-weakest */
+  --kui-color-border-neutral: #9da99d; /** color-border-neutral */
+  --kui-color-border-neutral-strong: #d2d7d2; /** color-border-neutral-strong */
+  --kui-color-border-neutral-stronger: #e3e8e3; /** color-border-neutral-stronger */
+  --kui-color-border-neutral-strongest: #f1f3f1; /** color-border-neutral-strongest */
+  --kui-color-border-neutral-weak: #4e594e; /** color-border-neutral-weak */
+  --kui-color-border-neutral-weaker: #292b26; /** color-border-neutral-weaker */
+  --kui-color-border-neutral-weakest: #0d0f0d; /** color-border-neutral-weakest */
+  --kui-color-border-danger: #d78392; /** color-border-danger */
+  --kui-color-border-danger-strong: #ebaeb9; /** color-border-danger-strong */
+  --kui-color-border-danger-stronger: #efcdd3; /** color-border-danger-stronger */
+  --kui-color-border-danger-strongest: #fbf3f4; /** color-border-danger-strongest */
+  --kui-color-border-danger-weak: #953042; /** color-border-danger-weak */
+  --kui-color-border-danger-weaker: #6f2432; /** color-border-danger-weaker */
+  --kui-color-border-danger-weakest: #4a1821; /** color-border-danger-weakest */
+  --kui-color-border-decorative-purple: #aa95d4; /** color-border-decorative-purple */
+  --kui-color-border-decorative-aqua-weaker: #244d56; /** color-border-decorative-aqua-weaker */
+  --kui-color-text: #d2d7d2; /** color-text */
+  --kui-color-text-disabled: #9da99d; /** color-text-disabled */
+  --kui-color-text-inverse: #070807; /** color-text-inverse */
+  --kui-color-text-fixed-light: #ffffff; /** color-text-fixed-light */
+  --kui-color-text-brand: #090d09; /** color-text-brand */
+  --kui-color-text-brand-stronger: #f9fbf9; /** color-text-brand-stronger */
+  --kui-color-text-brand-strongest: #f9fbf9; /** color-text-brand-strongest */
+  --kui-color-text-brand-weak: #3d443d; /** color-text-brand-weak */
+  --kui-color-text-brand-weaker: #4e594e; /** color-text-brand-weaker */
+  --kui-color-text-brand-weakest: #697769; /** color-text-brand-weakest */
+  --kui-color-text-primary: #d2d7d2; /** color-text-primary */
+  --kui-color-text-primary-strong: #e3e8e3; /** color-text-primary-strong */
+  --kui-color-text-primary-stronger: #f1f3f1; /** color-text-primary-stronger */
+  --kui-color-text-primary-trong: #f1f3f1; /** color-text-brand-strong */
+  --kui-color-text-primary-strongest: #f9fbf9; /** color-text-primary-strongest */
+  --kui-color-text-primary-weak: #4e594e; /** color-text-primary-weak */
+  --kui-color-text-primary-weaker: #292b26; /** color-text-primary-weaker */
+  --kui-color-text-primary-weakest: #0d0f0d; /** color-text-primary-weakest */
+  --kui-color-text-neutral: #9da99d; /** color-text-neutral */
+  --kui-color-text-neutral-strong: #d2d7d2; /** color-text-neutral-strong */
+  --kui-color-text-neutral-stronger: #e3e8e3; /** color-text-neutral-stronger */
+  --kui-color-text-neutral-strongest: #f1f3f1; /** color-text-neutral-strongest */
+  --kui-color-text-neutral-weak: #4e594e; /** color-text-neutral-weak */
+  --kui-color-text-neutral-weaker: #292b26; /** color-text-neutral-weaker */
+  --kui-color-text-neutral-weakest: #0d0f0d; /** color-text-neutral-weakest */
+  --kui-color-text-success: #a7cfc6; /** color-text-success */
+  --kui-color-text-success-strong: #cce3de; /** color-text-success-strong */
+  --kui-color-text-success-stronger: #f7fcfb; /** color-text-success-stronger */
+  --kui-color-text-success-strongest: #ffffff; /** color-text-success-strongest */
+  --kui-color-text-success-weak: #3d8776; /** color-text-success-weak */
+  --kui-color-text-success-weaker: #24594d; /** color-text-success-weaker */
+  --kui-color-text-success-weakest: #1d473d; /** color-text-success-weakest */
+  --kui-color-text-warning: #d1cb92; /** color-text-warning */
+  --kui-color-text-warning-strong: #d1cb92; /** color-text-warning-strong */
+  --kui-color-text-warning-stronger: #eee9b9; /** color-text-warning-stronger */
+  --kui-color-text-warning-strongest: #f8f6e1; /** color-text-warning-strongest */
+  --kui-color-text-warning-weak: #b5a72c; /** color-text-warning-weak */
+  --kui-color-text-warning-weaker: #665e19; /** color-text-warning-weaker */
+  --kui-color-text-warning-weakest: #403b0f; /** color-text-warning-weakest */
+  --kui-color-text-danger: #ebaeb9; /** color-text-danger */
+  --kui-color-text-danger-strong: #efcdd3; /** color-text-danger-strong */
+  --kui-color-text-danger-stronger: #fbf3f4; /** color-text-danger-stronger */
+  --kui-color-text-danger-strongest: #ffffff; /** color-text-danger-strongest */
+  --kui-color-text-danger-weak: #953042; /** color-text-danger-weak */
+  --kui-color-text-danger-weaker: #6f2432; /** color-text-danger-weaker */
+  --kui-color-text-danger-weakest: #4a1821; /** color-text-danger-weakest */
+  --kui-color-text-info: #bcd1e8; /** color-text-info */
+  --kui-color-text-info-strong: #d7e3ef; /** color-text-info-strong */
+  --kui-color-text-info-stronger: #f7f9fc; /** color-text-info-stronger */
+  --kui-color-text-info-strongest: #ffffff; /** color-text-info-strongest */
+  --kui-color-text-info-weak: #5485ba; /** color-text-info-weak */
+  --kui-color-text-info-weaker: #33587f; /** color-text-info-weaker */
+  --kui-color-text-info-weakest: #26415e; /** color-text-info-weakest */
+  --kui-color-text-decorative-aqua: #a1ced8; /** color-text-decorative-aqua */
+  --kui-color-text-decorative-pink: #e2b6cb; /** color-text-decorative-pink */
+  --kui-color-text-decorative-purple: #cbbce8; /** color-text-decorative-purple */
+  --kui-color-text-decorative-purple-strong: #5200f5; /** Strong purple text color for decorative purposes (purple.70). */
+  --kui-animation-duration-20: 0.2s; /** Default transition timing */
+  --kui-border-radius-0: 0px; /** 0px border radius. */
+  --kui-border-radius-10: 2px; /** 2px border radius. */
+  --kui-border-radius-20: 4px; /** 4px border radius. */
+  --kui-border-radius-30: 6px; /** 6px border radius. */
+  --kui-border-radius-40: 8px; /** 8px border radius. */
+  --kui-border-radius-50: 10px; /** 10px border radius. */
+  --kui-border-radius-circle: 50%; /** 50% border radius used to create circles. */
+  --kui-border-radius-round: 100px; /** 100px border radius used to create pill shapes. */
+  --kui-border-width-0: 0px; /** 0px border width. */
+  --kui-border-width-10: 1px; /** 1px border width. */
+  --kui-border-width-20: 2px; /** 2px border width. */
+  --kui-border-width-30: 4px; /** 4px border width. */
+  --kui-breakpoint-mobile: 640px; /** Used for larger mobile screens. Any viewport width under this value is considered mobile. */
+  --kui-breakpoint-phablet: 768px; /** Used for tablet screens. */
+  --kui-breakpoint-tablet: 1024px; /** Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
+  --kui-breakpoint-laptop: 1280px; /** Used for standard desktop screens. */
+  --kui-breakpoint-desktop: 1536px; /** Used for larger desktop screens. */
+  --kui-icon-color-danger: #f5002d; /** Danger color for icons. */
+  --kui-icon-color-neutral: #697769; /** Neutral color for icons. */
+  --kui-icon-color-primary: #3094ff; /** Primary color for icons. */
+  --kui-icon-color-success: #00a17b; /** Success color for icons. */
+  --kui-icon-color-warning: #ffe500; /** Warning color for icons. */
+  --kui-icon-size-10: 10px; /** 10px icon size. */
+  --kui-icon-size-20: 12px; /** 12px icon size. */
+  --kui-icon-size-30: 16px; /** 16px icon size. */
+  --kui-icon-size-40: 20px; /** 20px icon size. */
+  --kui-icon-size-50: 24px; /** 24px icon size (default). */
+  --kui-icon-size-60: 32px; /** 32px icon size. */
+  --kui-icon-size-70: 40px; /** 40px icon size. */
+  --kui-icon-size-80: 48px; /** 48px icon size. */
+  --kui-method-color-background-connect: #39265e; /** method-color-background-connect */
+  --kui-method-color-background-custom: #4e594e; /** method-color-background-custom */
+  --kui-method-color-background-delete: #4a1821; /** method-color-background-delete */
+  --kui-method-color-background-get: #1d473d; /** method-color-background-get */
+  --kui-method-color-background-head: #d2d7d2; /** method-color-background-head */
+  --kui-method-color-background-options: #292b26; /** method-color-background-options */
+  --kui-method-color-background-patch: #152d32; /** method-color-background-patch */
+  --kui-method-color-background-post: #26415e; /** method-color-background-post */
+  --kui-method-color-background-put: #403b0f; /** method-color-background-put */
+  --kui-method-color-background-trace: #5f2642; /** method-color-background-trace */
+  --kui-method-color-text-connect: #aa95d4; /** method-color-text-connect */
+  --kui-method-color-text-connect-strong: #8a50ff; /** Strong method-color-text-connect. */
+  --kui-method-color-text-custom: #f9fbf9; /** method-color-text-custom */
+  --kui-method-color-text-custom-strong: #f1f3f1; /** Strong method-color-text-custom. */
+  --kui-method-color-text-delete: #d78392; /** method-color-text-delete */
+  --kui-method-color-text-delete-strong: #ff395d; /** Strong method-color-text-delete. */
+  --kui-method-color-text-get: #83baad; /** method-color-text-get */
+  --kui-method-color-text-get-strong: #00fabe; /** Strong method-color-text-get. */
+  --kui-method-color-text-head: #292b26; /** method-color-text-head */
+  --kui-method-color-text-head-strong: #242824; /** Strong method-color-text-head. */
+  --kui-method-color-text-options: #d2d7d2; /** method-color-text-options */
+  --kui-method-color-text-options-strong: #9da99d; /** Strong method-color-text-options. */
+  --kui-method-color-text-patch: #7dbbc9; /** method-color-text-patch */
+  --kui-method-color-text-patch-strong: #00c8f4; /** Strong method-color-text-patch. */
+  --kui-method-color-text-post: #95b3d4; /** method-color-text-post */
+  --kui-method-color-text-post-strong: #5facff; /** Strong method-color-text-post. */
+  --kui-method-color-text-put: #dbd06a; /** method-color-text-put */
+  --kui-method-color-text-put-strong: #ffe500; /** Strong method-color-text-put. */
+  --kui-method-color-text-trace: #d596b4; /** method-color-text-trace */
+  --kui-method-color-text-trace-strong: #ff3c99; /** Strong method-color-text-trace. */
+  --kui-navigation-color-background: #001933; /** blue.100 */
+  --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12); /** The background color of a selected navigation item. */
+  --kui-navigation-color-border: rgba(255, 255, 255, 0.12); /** rgba(white, 0.12) */
+  --kui-navigation-color-border-child: #00fabe; /** The border color for a selected child navigation item. */
+  --kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24); /** The color of the navigation section divider. */
+  --kui-navigation-color-text: #beddff; /** Navigation link and icon color. */
+  --kui-navigation-color-text-focus: #ffffff; /** Navigation link and icon focus-visible color. */
+  --kui-navigation-color-text-hover: #eef6ff; /** Navigation link and icon hover color. */
+  --kui-navigation-color-text-selected: #00fabe; /** Navigation link and icon selected color. */
+  --kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset; /** The box-shadow for a focus-visible navigation link. */
+  --kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset; /** The left box-shadow for an active child navigation link. */
+  --kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset; /** Navigation link focus-visible box-shadow. */
+  --kui-status-color-100: #33587f; /** status-color-100 */
+  --kui-status-color-101: #406e9f; /** status-color-101 */
+  --kui-status-color-102: #5485ba; /** status-color-102 */
+  --kui-status-color-103: #759dc7; /** status-color-103 */
+  --kui-status-color-200: #24594d; /** status-color-200 */
+  --kui-status-color-201: #2b6b5c; /** status-color-201 */
+  --kui-status-color-202: #3d8776; /** status-color-202 */
+  --kui-status-color-203: #5a998a; /** status-color-203 */
+  --kui-status-color-204: #83baad; /** status-color-204 */
+  --kui-status-color-205: #a7cfc6; /** status-color-205 */
+  --kui-status-color-206: #24594d; /** status-color-206 */
+  --kui-status-color-207: #2b6b5c; /** status-color-207 */
+  --kui-status-color-208: #3d8776; /** status-color-208 */
+  --kui-status-color-226: #5a998a; /** status-color-226 */
+  --kui-status-color-300: #665e19; /** status-color-300 */
+  --kui-status-color-301: #8e8322; /** status-color-301 */
+  --kui-status-color-302: #b5a72c; /** status-color-302 */
+  --kui-status-color-303: #d1c342; /** status-color-303 */
+  --kui-status-color-304: #dbd06a; /** status-color-304 */
+  --kui-status-color-305: #d1cb92; /** status-color-305 */
+  --kui-status-color-307: #665e19; /** status-color-307 */
+  --kui-status-color-308: #8e8322; /** status-color-308 */
+  --kui-status-color-400: #8e2400; /** status-color-400 */
+  --kui-status-color-401: #bf3000; /** status-color-401 */
+  --kui-status-color-402: #bf5430; /** status-color-402 */
+  --kui-status-color-403: #ff5821; /** status-color-403 */
+  --kui-status-color-404: #ff7d51; /** status-color-404 */
+  --kui-status-color-405: #ffa182; /** status-color-405 */
+  --kui-status-color-406: #8e2400; /** status-color-406 */
+  --kui-status-color-407: #bf3000; /** status-color-407 */
+  --kui-status-color-408: #bf5430; /** status-color-408 */
+  --kui-status-color-409: #ff5821; /** status-color-409 */
+  --kui-status-color-410: #ff7d51; /** status-color-410 */
+  --kui-status-color-411: #ffa182; /** status-color-411 */
+  --kui-status-color-412: #8e2400; /** status-color-412 */
+  --kui-status-color-413: #bf3000; /** status-color-413 */
+  --kui-status-color-414: #bf5430; /** status-color-414 */
+  --kui-status-color-415: #ff5821; /** status-color-415 */
+  --kui-status-color-416: #ff7d51; /** status-color-416 */
+  --kui-status-color-417: #ffa182; /** status-color-417 */
+  --kui-status-color-418: #8e2400; /** status-color-418 */
+  --kui-status-color-421: #bf3000; /** status-color-421 */
+  --kui-status-color-422: #bf5430; /** status-color-422 */
+  --kui-status-color-423: #ff5821; /** status-color-423 */
+  --kui-status-color-424: #ff7d51; /** status-color-424 */
+  --kui-status-color-425: #ffa182; /** status-color-425 */
+  --kui-status-color-426: #8e2400; /** status-color-426 */
+  --kui-status-color-428: #bf3000; /** status-color-428 */
+  --kui-status-color-429: #bf5430; /** status-color-429 */
+  --kui-status-color-431: #ff5821; /** status-color-431 */
+  --kui-status-color-451: #ff7d51; /** status-color-451 */
+  --kui-status-color-500: #6f2432; /** status-color-500 */
+  --kui-status-color-501: #953042; /** status-color-501 */
+  --kui-status-color-502: #953042; /** status-color-502 */
+  --kui-status-color-503: #cb5d71; /** status-color-503 */
+  --kui-status-color-504: #d78392; /** status-color-504 */
+  --kui-status-color-505: #ebaeb9; /** status-color-505 */
+  --kui-status-color-506: #6f2432; /** status-color-506 */
+  --kui-status-color-507: #953042; /** status-color-507 */
+  --kui-status-color-508: #953042; /** status-color-508 */
+  --kui-status-color-510: #cb5d71; /** status-color-510 */
+  --kui-status-color-511: #d78392; /** status-color-511 */
+  --kui-status-color-100s: #5485ba; /** status-color-100s */
+  --kui-status-color-1na: #26415e; /** status-color-1na */
+  --kui-status-color-200s: #3d8776; /** status-color-200s */
+  --kui-status-color-2na: #1d473d; /** status-color-2na */
+  --kui-status-color-300s: #b5a72c; /** status-color-300s */
+  --kui-status-color-3na: #403b0f; /** status-color-3na */
+  --kui-status-color-400s: #bf5430; /** status-color-400s */
+  --kui-status-color-4na: #5e1800; /** status-color-4na */
+  --kui-status-color-500s: #953042; /** status-color-500s */
+  --kui-status-color-5na: #4a1821; /** status-color-5na */
+  --kui-status-color-background-100: #26415e; /** Background color for http status 100 elements (blue.82). */
+  --kui-status-color-background-200: #1d473d; /** Background color for http status 200 elements (green.65). */
+  --kui-status-color-background-300: #403b0f; /** Background color for http status 300 elements (yellow.82). */
+  --kui-status-color-background-400: #5e1800; /** Background color for http status 400 elements (orange.82). */
+  --kui-status-color-background-500: #4a1821; /** Background color for http status 500 elements (red.82). */
+  --kui-status-color-text-100: #beddff; /** Text color for http status 100 elements (blue.20). */
+  --kui-status-color-text-200: #b5ffee; /** Text color for http status 200 elements (green.20). */
+  --kui-status-color-text-300: #fff496; /** Text color for http status 300 elements (yellow.20). */
+  --kui-status-color-text-400: #ffc6b3; /** Text color for http status 400 elements (orange.20). */
+  --kui-status-color-text-500: #ffbdc9; /** Text color for http status 500 elements (red.20). */
+  --kui-font-family-code: 'JetBrains Mono', Consolas, monospace; /** The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+  --kui-font-family-heading: 'Funnel Sans', Roboto, Helvetica, sans-serif; /** The standard heading text font family. */
+  --kui-font-family-text: 'Funnel Sans', Roboto, Helvetica, sans-serif; /** The standard text font family. */
+  --kui-font-size-10: 10px;
+  --kui-font-size-20: 12px;
+  --kui-font-size-30: 14px;
+  --kui-font-size-40: 16px;
+  --kui-font-size-50: 18px;
+  --kui-font-size-60: 20px;
+  --kui-font-size-70: 24px;
+  --kui-font-size-80: 32px;
+  --kui-font-size-90: 40px;
+  --kui-font-size-100: 48px;
+  --kui-font-weight-bold: 700; /** 700: The bold font weight. */
+  --kui-font-weight-medium: 500; /** 500: The medium font weight. */
+  --kui-font-weight-regular: 400; /** 400: The normal font weight. */
+  --kui-font-weight-semibold: 600; /** 600: The semibold font weight. */
+  --kui-letter-spacing-0: normal; /** Alias for letter-spacing-normal */
+  --kui-letter-spacing-minus-10: -0.12px; /** -0.12px */
+  --kui-letter-spacing-minus-20: -0.24px; /** -0.24px */
+  --kui-letter-spacing-minus-30: -0.32px; /** -0.32px */
+  --kui-letter-spacing-minus-40: -0.4px; /** -0.4px */
+  --kui-letter-spacing-minus-50: -0.48px; /** -0.48px */
+  --kui-letter-spacing-normal: normal; /** normal */
+  --kui-line-height-10: 12px; /** 12px */
+  --kui-line-height-20: 16px; /** 16px */
+  --kui-line-height-30: 20px; /** 20px */
+  --kui-line-height-40: 24px; /** 24px */
+  --kui-line-height-50: 28px; /** 28px */
+  --kui-line-height-60: 32px; /** 32px */
+  --kui-line-height-70: 36px; /** 36px */
+  --kui-line-height-80: 40px; /** 40px */
+  --kui-line-height-90: 48px; /** 48px */
+  --kui-line-height-100: 56px; /** 56px */
+  --kui-shadow: 0px 4px 20px 0px color-mix(in srgb, var(--kui-color-background-neutral-strongest) 5%, transparent);
+  --kui-shadow-border: 0px 0px 0px 1px var(--kui-color-border-neutral-stronger) inset;
+  --kui-shadow-border-danger: 0px 0px 0px 1px var(--kui-color-border-danger) inset;
+  --kui-shadow-border-danger-strong: 0px 0px 0px 1px var(--kui-color-border-danger-strong) inset;
+  --kui-shadow-border-disabled: 0px 0px 0px 1px #242622 inset;
+  --kui-shadow-border-primary: 0px 0px 0px 1px var(--kui-color-border-neutral) inset;
+  --kui-shadow-border-primary-strongest: 0 0 0 1px var(--kui-color-border-neutral-strongest) inset;
+  --kui-shadow-border-primary-weak: 0px 0px 0px 1px var(--kui-color-border-neutral) inset;
+  --kui-shadow-focus: 0px 0px 0px 4px color-mix(in srgb, var(--kui-color-border-neutral-strongest) 15%, transparent);
+  --kui-space-0: 0px; /** 0px value for gaps, margin, or padding. */
+  --kui-space-10: 2px; /** 2px value for gaps, margin, or padding. */
+  --kui-space-20: 4px; /** 4px value for gaps, margin, or padding. */
+  --kui-space-30: 6px; /** 6px value for gaps, margin, or padding. */
+  --kui-space-40: 8px; /** 8px value for gaps, margin, or padding. */
+  --kui-space-50: 12px; /** 12px value for gaps, margin, or padding. */
+  --kui-space-60: 16px; /** 16px value for gaps, margin, or padding. */
+  --kui-space-70: 20px; /** 20px value for gaps, margin, or padding. */
+  --kui-space-80: 24px; /** 24px value for gaps, margin, or padding. */
+  --kui-space-90: 32px; /** 32px value for gaps, margin, or padding. */
+  --kui-space-100: 40px; /** 40px value for gaps, margin, or padding. */
+  --kui-space-110: 48px; /** 48px value for gaps, margin, or padding. */
+  --kui-space-120: 56px; /** 56px value for gaps, margin, or padding. */
+  --kui-space-130: 64px; /** 64px value for gaps, margin, or padding. */
+  --kui-space-140: 80px; /** 80px value for gaps, margin, or padding. */
+  --kui-space-150: 96px; /** 96px value for gaps, margin, or padding. */
+  --kui-space-auto: auto; /** auto */
+  --kui-chart-color-background-series-1: #5485ba; /** chart-color-background-series-1 */
+  --kui-chart-color-background-series-2: #00819d; /** chart-color-background-series-2 */
+  --kui-chart-color-background-series-3: #3d8776; /** chart-color-background-series-3 */
+  --kui-chart-color-background-series-4: #7654ba; /** chart-color-background-series-4 */
+  --kui-chart-color-background-series-5: #a1406f; /** chart-color-background-series-5 */
+  --kui-chart-color-background-series-6: #953042; /** chart-color-background-series-6 */
+  --kui-chart-color-background-series-7: #bf5430; /** chart-color-background-series-7 */
+  --kui-chart-color-background-series-8: #b5a72c; /** chart-color-background-series-8 */
+  --kui-chart-color-background-series-9: #9da99d; /** chart-color-background-series-9 */
+  --kui-chart-color-background-series-10: #4e594e; /** chart-color-background-series-10 */
+}

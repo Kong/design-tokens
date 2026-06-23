@@ -15,8 +15,11 @@
 
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFile } from 'node:fs/promises'
+import { readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { manifestLeaves, paletteLeaves } from './scripts/alias-manifest.mjs'
 
 import { getThemeableTokens, buildDescriptionMap } from './scripts/create-theme.mjs'
 import {
@@ -61,7 +64,8 @@ const FALLBACK_FIXTURE = [
 
 beforeAll(async () => {
   const tokensRaw = await readFile(join(ROOT, 'dist', 'tokens', 'js', 'tokens.json'), 'utf-8')
-  const aliasRaw = await readFile(join(ROOT, 'tokens', 'alias', 'color', 'index.json'), 'utf-8')
+  // classic.json is the canonical default palette (index.json was removed in the per-theme alias refactor).
+  const aliasRaw = await readFile(join(ROOT, 'tokens', 'alias', 'color', 'classic.json'), 'utf-8')
 
   themeable = await getThemeableTokens()
   descriptions = await buildDescriptionMap()
@@ -293,4 +297,45 @@ describe('color reverse map + computeFillValue', () => {
     expect(r.manual).toBe(true)
     expect(r.value).toBe('')
   })
+})
+
+const ALIAS_DIR = join(ROOT, 'tokens', 'alias', 'color')
+// Auto-discover every palette file (exclude `_manifest.json` and any other `_`-prefixed internal
+// file) so a newly added palette is enrolled in these guards without editing this test.
+const PALETTE_FILES = readdirSync(ALIAS_DIR).filter(f => f.endsWith('.json') && !f.startsWith('_'))
+
+describe('drift guard: alias palettes contain exactly the _manifest.json key set', () => {
+  for (const file of PALETTE_FILES) {
+    it(`${file} contains exactly the manifest aliases (no missing, no extra)`, async () => {
+      const manifest = JSON.parse(await readFile(join(ALIAS_DIR, '_manifest.json'), 'utf-8'))
+      const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
+      const expected = manifestLeaves(manifest)
+      const actual = paletteLeaves(palette)
+      const missing = [...expected].filter(k => !actual.has(k)).sort()
+      const extra = [...actual].filter(k => !expected.has(k)).sort()
+      expect(missing, `${file} MISSING aliases: ${missing.join(', ')}`).toEqual([])
+      expect(extra, `${file} EXTRA aliases: ${extra.join(', ')}`).toEqual([])
+    })
+  }
+})
+
+describe('alias palette $description is value-derived', () => {
+  // Guards the invariant that every color leaf reads `Alias for <value>.` — so a hand-edit of a
+  // value that forgets to update the description (or a stale figma description) fails CI.
+  for (const file of PALETTE_FILES) {
+    it(`${file} color entries match "Alias for <value>."`, async () => {
+      const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
+      const stale = []
+      const walk = (node) => {
+        if (node && typeof node === 'object' && node.$value !== undefined) {
+          const expected = `Alias for ${node.$value}.`
+          if (node.$description !== expected) stale.push(`${node.$value}: got "${node.$description}"`)
+          return
+        }
+        if (node && typeof node === 'object') for (const child of Object.values(node)) walk(child)
+      }
+      walk(palette.color.alias)
+      expect(stale, `${file} non-value-derived $descriptions: ${stale.join('; ')}`).toEqual([])
+    })
+  }
 })
