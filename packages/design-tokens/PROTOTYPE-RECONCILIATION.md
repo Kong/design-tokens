@@ -114,8 +114,8 @@ Process per component: enumerate themeable surface from the Kongponents source �
 5. **Focus / weight / border conventions**: focus rings → the neutral semantic ring
    (Day `rgba(24,27,24,.15)`, Night `rgba(241,243,241,.15)`, 4px); font-weight & border-width per the
    prototype's *visible* value.
-6. **Descriptions**: every component token carries its `$description` (from `tokens/components/<comp>.json`
-   via `buildDescriptionMap` in `scripts/create-theme.mjs`).
+6. **Descriptions**: every component token carries its `$description`, authored directly in
+   `tokens/components/<comp>.json`.
 7. **Rebuild + verify**: `pnpm build:tokens`; resolved values == prototype (designed states excepted),
    0 `var()` refs, 0 unexpected mismatches, build clean.
 8. **Visual check** (optional): `pnpm sandbox:dev` → component page → Konnect Day/Night vs prototype.
@@ -146,6 +146,5 @@ removed from the design system but left in the themes) — now pruned; both them
   are missing/extra and fails CI. Add MISSING tokens to each exhaustive theme **by hand** at the per-theme
   value (intentional divergences must survive; component-token values are design choices that can't be
   auto-resolved). Workflow: add component tokens → run `pnpm test`, read the named-missing list → hand-add
-  + reconcile each new token to the prototype → drift guard passes. (An earlier `scripts/fill-themes.mjs`
-  auto-stubbed these; it was removed since the test already reports what's missing.)
+  + reconcile each new token to the prototype → drift guard passes.
 - Do NOT bake any source mutation into `platforms/themes.mjs` (it would rewrite source during build + hit the unresolved-ref problem).

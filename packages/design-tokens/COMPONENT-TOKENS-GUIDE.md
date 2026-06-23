@@ -113,7 +113,7 @@ rm -rf docs/.vitepress/cache         # so 5173 reflects the rebuild
 Also grep the source for dangling refs to any token you renamed/removed, and confirm the byte-identical reuse (reused tokens resolve to the same value).
 
 ## Pitfalls (consolidated)
-- **There is no auto-fill for theme tokens** — per-theme values are authored by hand (Phase E). The drift-guard test (`pnpm test`) is the completeness check: it names the missing/extra tokens and fails CI. (A `fill-themes.mjs` script used to stub these; it was removed — the test already reports what's missing, and component values can't be auto-resolved anyway.)
+- **Theme tokens are authored by hand** (Phase E) — component values are design choices that can't be auto-resolved. The drift-guard test (`pnpm test`) is the completeness check: it names the missing/extra tokens and fails CI.
 - **Docs (5173) caches design-tokens** — restart / clear `docs/.vitepress/cache`; trust the 5177 prototype.
 - **Coordinated `-hover` keeps PER-DECLARATION fallbacks** (NOT one flattened value): one `-hover` token on `:hover`/`:focus`/`:focus-visible`, but each declaration retains its OWN level-② semantic so the default render is byte-identical (the KButton pattern). Flattening every state to the `:hover` fallback silently changes `classic-day`'s focus look — the headline bug caught in the Wave-2 review (input/segmented/file-upload focus). The D.2 `uniq -d` listing a coordinated `-hover` under multiple semantics is expected, not an error.
 - **The D.2 fallback-map grep is single-line** — it misses multi-line `var(` declarations (e.g. `_input-text.scss` hover/error mixins), so a token used only there looks unmapped/"dead." Read the source to confirm before treating a registry token as unused or a baseline as missing.

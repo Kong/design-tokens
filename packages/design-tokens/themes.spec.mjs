@@ -21,7 +21,6 @@ import { fileURLToPath } from 'node:url'
 
 import { manifestLeaves, paletteLeaves } from './scripts/alias-manifest.mjs'
 import { aliasIncludesFor } from './platforms/themes.mjs'
-import { getThemeableTokens } from './scripts/create-theme.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = __dirname
@@ -56,8 +55,18 @@ const UNCHECKED_THEMES = ['brand-a', 'brand-b']
 const stripTimestamp = (css) => css.replace(/Generated on [^\n]*/g, 'Generated on <stripped>')
 
 /**
- * Enumerate every component-token name (without the leading `--`) declared in
- * `tokens/components/*.json` — the namespace a semantic-only theme must avoid.
+ * The canonical themeable-token list (`--kui-*` names), read from the built dist.
+ * The `pretest` hook (`pnpm build:tokens`) guarantees `dist/themeable-tokens.mjs` exists first.
+ * @returns {Promise<readonly string[]>}
+ */
+async function getThemeableTokens() {
+  const { KUI_THEMEABLE_TOKENS } = await import(join(ROOT, 'dist', 'themeable-tokens.mjs'))
+  return KUI_THEMEABLE_TOKENS
+}
+
+/**
+ * Every component-token name (without the leading `--`) declared in `tokens/components/*.json` —
+ * the namespace a semantic-only theme must omit (its components fall through to their semantic default).
  * @returns {Promise<Set<string>>}
  */
 async function getComponentTokenNames() {
