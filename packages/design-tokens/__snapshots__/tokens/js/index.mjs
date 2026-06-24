@@ -177,21 +177,6 @@ export const KUI_METHOD_COLOR_TEXT_PUT = "#995c00"; // Text color for the PUT me
 export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = "#804400"; // Strong text color for the PUT method (yellow.70).
 export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067"; // Text color for the TRACE method (pink.60).
 export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053"; // Strong text color for the TRACE method (pink.70).
-export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933"; // blue.100
-export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED =
-  "rgba(255, 255, 255, 0.12)"; // The background color of a selected navigation item.
-export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)"; // rgba(255, 255, 255, 0.12)
-export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe"; // The border color for a selected child navigation item.
-export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)"; // The color of the navigation section divider.
-export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff"; // Navigation link and icon color.
-export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff"; // Navigation link and icon focus-visible color.
-export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff"; // Navigation link and icon hover color.
-export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe"; // Navigation link and icon selected color.
-export const KUI_NAVIGATION_SHADOW_BORDER =
-  "0 0 0 1px rgba(255, 255, 255, 0.12) inset"; // The box-shadow for a focus-visible navigation link.
-export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset"; // The left box-shadow for an active child navigation link.
-export const KUI_NAVIGATION_SHADOW_FOCUS =
-  "0 0 0 1px rgba(255, 255, 255, 0.60) inset"; // Navigation link focus-visible box-shadow.
 export const KUI_STATUS_COLOR_100 = "#bee2ff"; // Color representing response status code 100 (blue.20).
 export const KUI_STATUS_COLOR_101 = "#8fc1ff"; // Color representing response status code 101 (blue.30).
 export const KUI_STATUS_COLOR_102 = "#5f9aff"; // Color representing response status code 102 (blue.40).
@@ -321,6 +306,21 @@ export const KUI_LINE_HEIGHT_70 = "36px"; // 36px
 export const KUI_LINE_HEIGHT_80 = "40px"; // 40px
 export const KUI_LINE_HEIGHT_90 = "48px"; // 48px
 export const KUI_LINE_HEIGHT_100 = "56px"; // 56px
+export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933"; // blue.100
+export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED =
+  "rgba(255, 255, 255, 0.12)"; // The background color of a selected navigation item.
+export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)"; // rgba(255, 255, 255, 0.12)
+export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe"; // The border color for a selected child navigation item.
+export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)"; // The color of the navigation section divider.
+export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff"; // Navigation link and icon color.
+export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff"; // Navigation link and icon focus-visible color.
+export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff"; // Navigation link and icon hover color.
+export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe"; // Navigation link and icon selected color.
+export const KUI_NAVIGATION_SHADOW_BORDER =
+  "0 0 0 1px rgba(255, 255, 255, 0.12) inset"; // The box-shadow for a focus-visible navigation link.
+export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset"; // The left box-shadow for an active child navigation link.
+export const KUI_NAVIGATION_SHADOW_FOCUS =
+  "0 0 0 1px rgba(255, 255, 255, 0.60) inset"; // Navigation link focus-visible box-shadow.
 export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)"; // 0px 4px 20px 0px rgba(0, 0, 0, 0.08)
 export const KUI_SHADOW_BORDER = "0px 0px 0px 1px #e0e4ea inset"; // 0px 0px 0px 1px gray.20 inset
 export const KUI_SHADOW_BORDER_DANGER = "0px 0px 0px 1px #d60027 inset"; // 0px 0px 0px 1px red.60 inset
