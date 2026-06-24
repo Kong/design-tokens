@@ -852,7 +852,7 @@
     "$description": "Navigation link focus-visible box-shadow."
   },
   "kui-shadow": {
-    "$value": "1px 2px 6px rgba(42, 41, 36, 0.22)",
+    "$value": "3px 3px 0 0 {color.alias.gray.90}",
     "$description": "Default drop shadow."
   },
   "kui-shadow-border": {
