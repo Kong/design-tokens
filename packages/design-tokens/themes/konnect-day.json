@@ -1815,11 +1815,11 @@
   },
   "kui-input-switch-border-radius-large": {
     "$description": "Input switch large size border radius.",
-    "$value": "6px"
+    "$value": "100px"
   },
   "kui-input-switch-border-radius-small": {
     "$description": "Input switch small size border radius.",
-    "$value": "4px"
+    "$value": "100px"
   },
   "kui-input-switch-color-background": {
     "$description": "Input switch track background color.",
@@ -1847,7 +1847,7 @@
   },
   "kui-input-switch-thumb-border-radius": {
     "$description": "Input switch thumb ring border radius.",
-    "$value": "50%"
+    "$value": "100px"
   },
   "kui-input-switch-thumb-border-width": {
     "$description": "Input switch thumb ring border width.",
