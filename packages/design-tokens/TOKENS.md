@@ -104,7 +104,7 @@ $kui-color-background-success-weaker: #b5ffee;
 /* Weakest background color for success elements (green.10). */
 $kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
-$kui-color-background-transparent: transparent;
+$kui-color-background-transparent: rgba(0, 0, 0, 0);
 /* Background color for warning elements (yellow.60). */
 $kui-color-background-warning: #995c00;
 /* Strong background color for warning elements (yellow.70). */
@@ -170,7 +170,7 @@ $kui-color-border-primary-weaker: #bee2ff;
 /* Weakest border color for primary actions or messages (blue.10). */
 $kui-color-border-primary-weakest: #eefaff;
 /* Transparent border color (transparent). */
-$kui-color-border-transparent: transparent;
+$kui-color-border-transparent: rgba(0, 0, 0, 0);
 /* Default text color (blue.100). */
 $kui-color-text: #000933;
 /* Text color for danger actions or messages (red.60). */
@@ -305,32 +305,6 @@ $kui-breakpoint-tablet: 1024px;
 $kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 $kui-breakpoint-desktop: 1536px;
-/* Danger color for icons. */
-$kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
-$kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
-$kui-icon-color-primary: #306fff;
-/* Success color for icons. */
-$kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
-$kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
-$kui-icon-size-10: 10px;
-/* 12px icon size. */
-$kui-icon-size-20: 12px;
-/* 16px icon size. */
-$kui-icon-size-30: 16px;
-/* 20px icon size. */
-$kui-icon-size-40: 20px;
-/* 24px icon size (default). */
-$kui-icon-size-50: 24px;
-/* 32px icon size. */
-$kui-icon-size-60: 32px;
-/* 40px icon size. */
-$kui-icon-size-70: 40px;
-/* 48px icon size. */
-$kui-icon-size-80: 48px;
 /* Background color for the CONNECT method (purple.10). */
 $kui-method-color-background-connect: #f1f0ff;
 /* Background color for the DELETE method (red.10). */
@@ -385,30 +359,6 @@ $kui-method-color-text-put-strong: #804400;
 $kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 $kui-method-color-text-trace-strong: #ad0053;
-/* blue.100 */
-$kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
-$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(255, 255, 255, 0.12) */
-$kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
-$kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
-$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
-$kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
-$kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
-$kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
-$kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
-$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
-$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
-$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* Color representing response status code 100 (blue.20). */
 $kui-status-color-100: #bee2ff;
 /* Color representing response status code 101 (blue.30). */
@@ -454,63 +404,63 @@ $kui-status-color-307: #fff296;
 /* Color representing response status code 103 (yellow.30). */
 $kui-status-color-308: #ffe04b;
 /* Color representing response status code 400 (orange.20). */
-$kui-status-color-400: #FFC2B3;
+$kui-status-color-400: #ffc2b3;
 /* Color representing response status code 401 (orange.30). */
-$kui-status-color-401: #FF9877;
+$kui-status-color-401: #ff9877;
 /* Color representing response status code 402 (orange.40). */
-$kui-status-color-402: #FF723C;
+$kui-status-color-402: #ff723c;
 /* Color representing response status code 403 (orange.50). */
-$kui-status-color-403: #F75008;
+$kui-status-color-403: #f75008;
 /* Color representing response status code 404 (orange.60). */
-$kui-status-color-404: #D13500;
+$kui-status-color-404: #d13500;
 /* Color representing response status code 405 (orange.70). */
-$kui-status-color-405: #A31F00;
+$kui-status-color-405: #a31f00;
 /* Color representing response status code 406 (orange.20). */
-$kui-status-color-406: #FFC2B3;
+$kui-status-color-406: #ffc2b3;
 /* Color representing response status code 407 (orange.30). */
-$kui-status-color-407: #FF9877;
+$kui-status-color-407: #ff9877;
 /* Color representing response status code 408 (orange.40). */
-$kui-status-color-408: #FF723C;
+$kui-status-color-408: #ff723c;
 /* Color representing response status code 409 (orange.50). */
-$kui-status-color-409: #F75008;
+$kui-status-color-409: #f75008;
 /* Color representing response status code 410 (orange.60). */
-$kui-status-color-410: #D13500;
+$kui-status-color-410: #d13500;
 /* Color representing response status code 411 (orange.70). */
-$kui-status-color-411: #A31F00;
+$kui-status-color-411: #a31f00;
 /* Color representing response status code 412 (orange.20). */
-$kui-status-color-412: #FFC2B3;
+$kui-status-color-412: #ffc2b3;
 /* Color representing response status code 413 (orange.30). */
-$kui-status-color-413: #FF9877;
+$kui-status-color-413: #ff9877;
 /* Color representing response status code 414 (orange.40). */
-$kui-status-color-414: #FF723C;
+$kui-status-color-414: #ff723c;
 /* Color representing response status code 415 (orange.50). */
-$kui-status-color-415: #F75008;
+$kui-status-color-415: #f75008;
 /* Color representing response status code 416 (orange.60). */
-$kui-status-color-416: #D13500;
+$kui-status-color-416: #d13500;
 /* Color representing response status code 417 (orange.70). */
-$kui-status-color-417: #A31F00;
+$kui-status-color-417: #a31f00;
 /* Color representing response status code 418 (orange.20). */
-$kui-status-color-418: #FFC2B3;
+$kui-status-color-418: #ffc2b3;
 /* Color representing response status code 421 (orange.30). */
-$kui-status-color-421: #FF9877;
+$kui-status-color-421: #ff9877;
 /* Color representing response status code 422 (orange.40). */
-$kui-status-color-422: #FF723C;
+$kui-status-color-422: #ff723c;
 /* Color representing response status code 423 (orange.50). */
-$kui-status-color-423: #F75008;
+$kui-status-color-423: #f75008;
 /* Color representing response status code 424 (orange.60). */
-$kui-status-color-424: #D13500;
+$kui-status-color-424: #d13500;
 /* Color representing response status code 425 (orange.70). */
-$kui-status-color-425: #A31F00;
+$kui-status-color-425: #a31f00;
 /* Color representing response status code 426 (orange.20). */
-$kui-status-color-426: #FFC2B3;
+$kui-status-color-426: #ffc2b3;
 /* Color representing response status code 428 (orange.30). */
-$kui-status-color-428: #FF9877;
+$kui-status-color-428: #ff9877;
 /* Color representing response status code 429 (orange.40). */
-$kui-status-color-429: #FF723C;
+$kui-status-color-429: #ff723c;
 /* Color representing response status code 431 (orange.50). */
-$kui-status-color-431: #F75008;
+$kui-status-color-431: #f75008;
 /* Color representing response status code 451 (orange.60). */
-$kui-status-color-451: #D13500;
+$kui-status-color-451: #d13500;
 /* Color representing response status code 500 (red.20). */
 $kui-status-color-500: #ffabab;
 /* Color representing response status code 501 (red.30). */
@@ -540,7 +490,7 @@ $kui-status-color-2na: #ecfffb;
 /* Color for unknown response status codes in the 300-399 range (yellow.10). */
 $kui-status-color-3na: #fffce0;
 /* Color for unknown response status codes in the 400-499 range (orange.10). */
-$kui-status-color-4na: #FFF1EF;
+$kui-status-color-4na: #fff1ef;
 /* Color for unknown response status codes in the 500-599 range (red.10). */
 $kui-status-color-5na: #ffe5e5;
 /* Color for a group of response status codes in the 100-199 range (blue.40). */
@@ -550,7 +500,7 @@ $kui-status-color-200s: #00d6a4;
 /* Color for a group of response status codes in the 300-399 range (yellow.40). */
 $kui-status-color-300s: #ffc400;
 /* Color for a group of response status codes in the 400-499 range (orange.40). */
-$kui-status-color-400s: #FF723C;
+$kui-status-color-400s: #ff723c;
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 $kui-status-color-500s: #ff3954;
 /* Background color for http status 100 elements (blue.10). */
@@ -560,7 +510,7 @@ $kui-status-color-background-200: #ecfffb;
 /* Background color for http status 300 elements (yellow.10). */
 $kui-status-color-background-300: #fffce0;
 /* Background color for http status 400 elements (orange.10). */
-$kui-status-color-background-400: #FFF1EF;
+$kui-status-color-background-400: #fff1ef;
 /* Background color for http status 500 elements (red.10). */
 $kui-status-color-background-500: #ffe5e5;
 /* Text color for http status 100 elements (blue.60). */
@@ -570,7 +520,7 @@ $kui-status-color-text-200: #007d60;
 /* Text color for http status 300 elements (yellow.60). */
 $kui-status-color-text-300: #995c00;
 /* Text color for http status 400 elements (orange.60). */
-$kui-status-color-text-400: #D13500;
+$kui-status-color-text-400: #d13500;
 /* Text color for http status 500 elements (red.60). */
 $kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
@@ -597,6 +547,32 @@ $kui-font-weight-medium: 500;
 $kui-font-weight-regular: 400;
 /* 600: The semibold font weight. */
 $kui-font-weight-semibold: 600;
+/* Danger color for icons. */
+$kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+$kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+$kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+$kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+$kui-icon-color-warning: #ffc400;
+/* 10px icon size. */
+$kui-icon-size-10: 10px;
+/* 12px icon size. */
+$kui-icon-size-20: 12px;
+/* 16px icon size. */
+$kui-icon-size-30: 16px;
+/* 20px icon size. */
+$kui-icon-size-40: 20px;
+/* 24px icon size (default). */
+$kui-icon-size-50: 24px;
+/* 32px icon size. */
+$kui-icon-size-60: 32px;
+/* 40px icon size. */
+$kui-icon-size-70: 40px;
+/* 48px icon size. */
+$kui-icon-size-80: 48px;
 /* Alias for letter-spacing-normal */
 $kui-letter-spacing-0: normal;
 /* -0.12px */
@@ -631,6 +607,30 @@ $kui-line-height-80: 40px;
 $kui-line-height-90: 48px;
 /* 56px */
 $kui-line-height-100: 56px;
+/* blue.100 */
+$kui-navigation-color-background: #000933;
+/* The background color of a selected navigation item. */
+$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+$kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* The border color for a selected child navigation item. */
+$kui-navigation-color-border-child: #00fabe;
+/* The color of the navigation section divider. */
+$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* Navigation link and icon color. */
+$kui-navigation-color-text: #bee2ff;
+/* Navigation link and icon focus-visible color. */
+$kui-navigation-color-text-focus: #ffffff;
+/* Navigation link and icon hover color. */
+$kui-navigation-color-text-hover: #eefaff;
+/* Navigation link and icon selected color. */
+$kui-navigation-color-text-selected: #00fabe;
+/* The box-shadow for a focus-visible navigation link. */
+$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* The left box-shadow for an active child navigation link. */
+$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* Navigation link focus-visible box-shadow. */
+$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 $kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 /* 0px 0px 0px 1px gray.20 inset */
@@ -780,7 +780,7 @@ $tokens-map: (
   /* Weakest background color for success elements (green.10). */
   'kui-color-background-success-weakest': #ecfffb,
   /* Transparent background color (transparent). */
-  'kui-color-background-transparent': transparent,
+  'kui-color-background-transparent': rgba(0, 0, 0, 0),
   /* Background color for warning elements (yellow.60). */
   'kui-color-background-warning': #995c00,
   /* Strong background color for warning elements (yellow.70). */
@@ -846,7 +846,7 @@ $tokens-map: (
   /* Weakest border color for primary actions or messages (blue.10). */
   'kui-color-border-primary-weakest': #eefaff,
   /* Transparent border color (transparent). */
-  'kui-color-border-transparent': transparent,
+  'kui-color-border-transparent': rgba(0, 0, 0, 0),
   /* Default text color (blue.100). */
   'kui-color-text': #000933,
   /* Text color for danger actions or messages (red.60). */
@@ -981,32 +981,6 @@ $tokens-map: (
   'kui-breakpoint-laptop': 1280px,
   /* Used for larger desktop screens. */
   'kui-breakpoint-desktop': 1536px,
-  /* Danger color for icons. */
-  'kui-icon-color-danger': #f50045,
-  /* Neutral color for icons. */
-  'kui-icon-color-neutral': #828a9e,
-  /* Primary color for icons. */
-  'kui-icon-color-primary': #306fff,
-  /* Success color for icons. */
-  'kui-icon-color-success': #00a17b,
-  /* Warning color for icons. */
-  'kui-icon-color-warning': #ffc400,
-  /* 10px icon size. */
-  'kui-icon-size-10': 10px,
-  /* 12px icon size. */
-  'kui-icon-size-20': 12px,
-  /* 16px icon size. */
-  'kui-icon-size-30': 16px,
-  /* 20px icon size. */
-  'kui-icon-size-40': 20px,
-  /* 24px icon size (default). */
-  'kui-icon-size-50': 24px,
-  /* 32px icon size. */
-  'kui-icon-size-60': 32px,
-  /* 40px icon size. */
-  'kui-icon-size-70': 40px,
-  /* 48px icon size. */
-  'kui-icon-size-80': 48px,
   /* Background color for the CONNECT method (purple.10). */
   'kui-method-color-background-connect': #f1f0ff,
   /* Background color for the DELETE method (red.10). */
@@ -1061,30 +1035,6 @@ $tokens-map: (
   'kui-method-color-text-trace': #d60067,
   /* Strong text color for the TRACE method (pink.70). */
   'kui-method-color-text-trace-strong': #ad0053,
-  /* blue.100 */
-  'kui-navigation-color-background': #000933,
-  /* The background color of a selected navigation item. */
-  'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12),
-  /* rgba(255, 255, 255, 0.12) */
-  'kui-navigation-color-border': rgba(255, 255, 255, 0.12),
-  /* The border color for a selected child navigation item. */
-  'kui-navigation-color-border-child': #00fabe,
-  /* The color of the navigation section divider. */
-  'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24),
-  /* Navigation link and icon color. */
-  'kui-navigation-color-text': #bee2ff,
-  /* Navigation link and icon focus-visible color. */
-  'kui-navigation-color-text-focus': #ffffff,
-  /* Navigation link and icon hover color. */
-  'kui-navigation-color-text-hover': #eefaff,
-  /* Navigation link and icon selected color. */
-  'kui-navigation-color-text-selected': #00fabe,
-  /* The box-shadow for a focus-visible navigation link. */
-  'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset,
-  /* The left box-shadow for an active child navigation link. */
-  'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset,
-  /* Navigation link focus-visible box-shadow. */
-  'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset,
   /* Color representing response status code 100 (blue.20). */
   'kui-status-color-100': #bee2ff,
   /* Color representing response status code 101 (blue.30). */
@@ -1130,63 +1080,63 @@ $tokens-map: (
   /* Color representing response status code 103 (yellow.30). */
   'kui-status-color-308': #ffe04b,
   /* Color representing response status code 400 (orange.20). */
-  'kui-status-color-400': #FFC2B3,
+  'kui-status-color-400': #ffc2b3,
   /* Color representing response status code 401 (orange.30). */
-  'kui-status-color-401': #FF9877,
+  'kui-status-color-401': #ff9877,
   /* Color representing response status code 402 (orange.40). */
-  'kui-status-color-402': #FF723C,
+  'kui-status-color-402': #ff723c,
   /* Color representing response status code 403 (orange.50). */
-  'kui-status-color-403': #F75008,
+  'kui-status-color-403': #f75008,
   /* Color representing response status code 404 (orange.60). */
-  'kui-status-color-404': #D13500,
+  'kui-status-color-404': #d13500,
   /* Color representing response status code 405 (orange.70). */
-  'kui-status-color-405': #A31F00,
+  'kui-status-color-405': #a31f00,
   /* Color representing response status code 406 (orange.20). */
-  'kui-status-color-406': #FFC2B3,
+  'kui-status-color-406': #ffc2b3,
   /* Color representing response status code 407 (orange.30). */
-  'kui-status-color-407': #FF9877,
+  'kui-status-color-407': #ff9877,
   /* Color representing response status code 408 (orange.40). */
-  'kui-status-color-408': #FF723C,
+  'kui-status-color-408': #ff723c,
   /* Color representing response status code 409 (orange.50). */
-  'kui-status-color-409': #F75008,
+  'kui-status-color-409': #f75008,
   /* Color representing response status code 410 (orange.60). */
-  'kui-status-color-410': #D13500,
+  'kui-status-color-410': #d13500,
   /* Color representing response status code 411 (orange.70). */
-  'kui-status-color-411': #A31F00,
+  'kui-status-color-411': #a31f00,
   /* Color representing response status code 412 (orange.20). */
-  'kui-status-color-412': #FFC2B3,
+  'kui-status-color-412': #ffc2b3,
   /* Color representing response status code 413 (orange.30). */
-  'kui-status-color-413': #FF9877,
+  'kui-status-color-413': #ff9877,
   /* Color representing response status code 414 (orange.40). */
-  'kui-status-color-414': #FF723C,
+  'kui-status-color-414': #ff723c,
   /* Color representing response status code 415 (orange.50). */
-  'kui-status-color-415': #F75008,
+  'kui-status-color-415': #f75008,
   /* Color representing response status code 416 (orange.60). */
-  'kui-status-color-416': #D13500,
+  'kui-status-color-416': #d13500,
   /* Color representing response status code 417 (orange.70). */
-  'kui-status-color-417': #A31F00,
+  'kui-status-color-417': #a31f00,
   /* Color representing response status code 418 (orange.20). */
-  'kui-status-color-418': #FFC2B3,
+  'kui-status-color-418': #ffc2b3,
   /* Color representing response status code 421 (orange.30). */
-  'kui-status-color-421': #FF9877,
+  'kui-status-color-421': #ff9877,
   /* Color representing response status code 422 (orange.40). */
-  'kui-status-color-422': #FF723C,
+  'kui-status-color-422': #ff723c,
   /* Color representing response status code 423 (orange.50). */
-  'kui-status-color-423': #F75008,
+  'kui-status-color-423': #f75008,
   /* Color representing response status code 424 (orange.60). */
-  'kui-status-color-424': #D13500,
+  'kui-status-color-424': #d13500,
   /* Color representing response status code 425 (orange.70). */
-  'kui-status-color-425': #A31F00,
+  'kui-status-color-425': #a31f00,
   /* Color representing response status code 426 (orange.20). */
-  'kui-status-color-426': #FFC2B3,
+  'kui-status-color-426': #ffc2b3,
   /* Color representing response status code 428 (orange.30). */
-  'kui-status-color-428': #FF9877,
+  'kui-status-color-428': #ff9877,
   /* Color representing response status code 429 (orange.40). */
-  'kui-status-color-429': #FF723C,
+  'kui-status-color-429': #ff723c,
   /* Color representing response status code 431 (orange.50). */
-  'kui-status-color-431': #F75008,
+  'kui-status-color-431': #f75008,
   /* Color representing response status code 451 (orange.60). */
-  'kui-status-color-451': #D13500,
+  'kui-status-color-451': #d13500,
   /* Color representing response status code 500 (red.20). */
   'kui-status-color-500': #ffabab,
   /* Color representing response status code 501 (red.30). */
@@ -1216,7 +1166,7 @@ $tokens-map: (
   /* Color for unknown response status codes in the 300-399 range (yellow.10). */
   'kui-status-color-3na': #fffce0,
   /* Color for unknown response status codes in the 400-499 range (orange.10). */
-  'kui-status-color-4na': #FFF1EF,
+  'kui-status-color-4na': #fff1ef,
   /* Color for unknown response status codes in the 500-599 range (red.10). */
   'kui-status-color-5na': #ffe5e5,
   /* Color for a group of response status codes in the 100-199 range (blue.40). */
@@ -1226,7 +1176,7 @@ $tokens-map: (
   /* Color for a group of response status codes in the 300-399 range (yellow.40). */
   'kui-status-color-300s': #ffc400,
   /* Color for a group of response status codes in the 400-499 range (orange.40). */
-  'kui-status-color-400s': #FF723C,
+  'kui-status-color-400s': #ff723c,
   /* Color for a group of response status codes in the 500-599 range (red.40). */
   'kui-status-color-500s': #ff3954,
   /* Background color for http status 100 elements (blue.10). */
@@ -1236,7 +1186,7 @@ $tokens-map: (
   /* Background color for http status 300 elements (yellow.10). */
   'kui-status-color-background-300': #fffce0,
   /* Background color for http status 400 elements (orange.10). */
-  'kui-status-color-background-400': #FFF1EF,
+  'kui-status-color-background-400': #fff1ef,
   /* Background color for http status 500 elements (red.10). */
   'kui-status-color-background-500': #ffe5e5,
   /* Text color for http status 100 elements (blue.60). */
@@ -1246,7 +1196,7 @@ $tokens-map: (
   /* Text color for http status 300 elements (yellow.60). */
   'kui-status-color-text-300': #995c00,
   /* Text color for http status 400 elements (orange.60). */
-  'kui-status-color-text-400': #D13500,
+  'kui-status-color-text-400': #d13500,
   /* Text color for http status 500 elements (red.60). */
   'kui-status-color-text-500': #d60027,
   /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
@@ -1273,6 +1223,32 @@ $tokens-map: (
   'kui-font-weight-regular': 400,
   /* 600: The semibold font weight. */
   'kui-font-weight-semibold': 600,
+  /* Danger color for icons. */
+  'kui-icon-color-danger': #f50045,
+  /* Neutral color for icons. */
+  'kui-icon-color-neutral': #828a9e,
+  /* Primary color for icons. */
+  'kui-icon-color-primary': #306fff,
+  /* Success color for icons. */
+  'kui-icon-color-success': #00a17b,
+  /* Warning color for icons. */
+  'kui-icon-color-warning': #ffc400,
+  /* 10px icon size. */
+  'kui-icon-size-10': 10px,
+  /* 12px icon size. */
+  'kui-icon-size-20': 12px,
+  /* 16px icon size. */
+  'kui-icon-size-30': 16px,
+  /* 20px icon size. */
+  'kui-icon-size-40': 20px,
+  /* 24px icon size (default). */
+  'kui-icon-size-50': 24px,
+  /* 32px icon size. */
+  'kui-icon-size-60': 32px,
+  /* 40px icon size. */
+  'kui-icon-size-70': 40px,
+  /* 48px icon size. */
+  'kui-icon-size-80': 48px,
   /* Alias for letter-spacing-normal */
   'kui-letter-spacing-0': normal,
   /* -0.12px */
@@ -1307,6 +1283,30 @@ $tokens-map: (
   'kui-line-height-90': 48px,
   /* 56px */
   'kui-line-height-100': 56px,
+  /* blue.100 */
+  'kui-navigation-color-background': #000933,
+  /* The background color of a selected navigation item. */
+  'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12),
+  /* rgba(255, 255, 255, 0.12) */
+  'kui-navigation-color-border': rgba(255, 255, 255, 0.12),
+  /* The border color for a selected child navigation item. */
+  'kui-navigation-color-border-child': #00fabe,
+  /* The color of the navigation section divider. */
+  'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24),
+  /* Navigation link and icon color. */
+  'kui-navigation-color-text': #bee2ff,
+  /* Navigation link and icon focus-visible color. */
+  'kui-navigation-color-text-focus': #ffffff,
+  /* Navigation link and icon hover color. */
+  'kui-navigation-color-text-hover': #eefaff,
+  /* Navigation link and icon selected color. */
+  'kui-navigation-color-text-selected': #00fabe,
+  /* The box-shadow for a focus-visible navigation link. */
+  'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+  /* The left box-shadow for an active child navigation link. */
+  'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset,
+  /* Navigation link focus-visible box-shadow. */
+  'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset,
   /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
   'kui-shadow': 0px 4px 20px 0px rgba(0, 0, 0, 0.08),
   /* 0px 0px 0px 1px gray.20 inset */
@@ -1458,7 +1458,7 @@ $tokens-map: (
 /* Weakest background color for success elements (green.10). */
 @kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
-@kui-color-background-transparent: transparent;
+@kui-color-background-transparent: rgba(0, 0, 0, 0);
 /* Background color for warning elements (yellow.60). */
 @kui-color-background-warning: #995c00;
 /* Strong background color for warning elements (yellow.70). */
@@ -1524,7 +1524,7 @@ $tokens-map: (
 /* Weakest border color for primary actions or messages (blue.10). */
 @kui-color-border-primary-weakest: #eefaff;
 /* Transparent border color (transparent). */
-@kui-color-border-transparent: transparent;
+@kui-color-border-transparent: rgba(0, 0, 0, 0);
 /* Default text color (blue.100). */
 @kui-color-text: #000933;
 /* Text color for danger actions or messages (red.60). */
@@ -1659,32 +1659,6 @@ $tokens-map: (
 @kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 @kui-breakpoint-desktop: 1536px;
-/* Danger color for icons. */
-@kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
-@kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
-@kui-icon-color-primary: #306fff;
-/* Success color for icons. */
-@kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
-@kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
-@kui-icon-size-10: 10px;
-/* 12px icon size. */
-@kui-icon-size-20: 12px;
-/* 16px icon size. */
-@kui-icon-size-30: 16px;
-/* 20px icon size. */
-@kui-icon-size-40: 20px;
-/* 24px icon size (default). */
-@kui-icon-size-50: 24px;
-/* 32px icon size. */
-@kui-icon-size-60: 32px;
-/* 40px icon size. */
-@kui-icon-size-70: 40px;
-/* 48px icon size. */
-@kui-icon-size-80: 48px;
 /* Background color for the CONNECT method (purple.10). */
 @kui-method-color-background-connect: #f1f0ff;
 /* Background color for the DELETE method (red.10). */
@@ -1739,30 +1713,6 @@ $tokens-map: (
 @kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 @kui-method-color-text-trace-strong: #ad0053;
-/* blue.100 */
-@kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
-@kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(255, 255, 255, 0.12) */
-@kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
-@kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
-@kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
-@kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
-@kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
-@kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
-@kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
-@kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
-@kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
-@kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* Color representing response status code 100 (blue.20). */
 @kui-status-color-100: #bee2ff;
 /* Color representing response status code 101 (blue.30). */
@@ -1808,63 +1758,63 @@ $tokens-map: (
 /* Color representing response status code 103 (yellow.30). */
 @kui-status-color-308: #ffe04b;
 /* Color representing response status code 400 (orange.20). */
-@kui-status-color-400: #FFC2B3;
+@kui-status-color-400: #ffc2b3;
 /* Color representing response status code 401 (orange.30). */
-@kui-status-color-401: #FF9877;
+@kui-status-color-401: #ff9877;
 /* Color representing response status code 402 (orange.40). */
-@kui-status-color-402: #FF723C;
+@kui-status-color-402: #ff723c;
 /* Color representing response status code 403 (orange.50). */
-@kui-status-color-403: #F75008;
+@kui-status-color-403: #f75008;
 /* Color representing response status code 404 (orange.60). */
-@kui-status-color-404: #D13500;
+@kui-status-color-404: #d13500;
 /* Color representing response status code 405 (orange.70). */
-@kui-status-color-405: #A31F00;
+@kui-status-color-405: #a31f00;
 /* Color representing response status code 406 (orange.20). */
-@kui-status-color-406: #FFC2B3;
+@kui-status-color-406: #ffc2b3;
 /* Color representing response status code 407 (orange.30). */
-@kui-status-color-407: #FF9877;
+@kui-status-color-407: #ff9877;
 /* Color representing response status code 408 (orange.40). */
-@kui-status-color-408: #FF723C;
+@kui-status-color-408: #ff723c;
 /* Color representing response status code 409 (orange.50). */
-@kui-status-color-409: #F75008;
+@kui-status-color-409: #f75008;
 /* Color representing response status code 410 (orange.60). */
-@kui-status-color-410: #D13500;
+@kui-status-color-410: #d13500;
 /* Color representing response status code 411 (orange.70). */
-@kui-status-color-411: #A31F00;
+@kui-status-color-411: #a31f00;
 /* Color representing response status code 412 (orange.20). */
-@kui-status-color-412: #FFC2B3;
+@kui-status-color-412: #ffc2b3;
 /* Color representing response status code 413 (orange.30). */
-@kui-status-color-413: #FF9877;
+@kui-status-color-413: #ff9877;
 /* Color representing response status code 414 (orange.40). */
-@kui-status-color-414: #FF723C;
+@kui-status-color-414: #ff723c;
 /* Color representing response status code 415 (orange.50). */
-@kui-status-color-415: #F75008;
+@kui-status-color-415: #f75008;
 /* Color representing response status code 416 (orange.60). */
-@kui-status-color-416: #D13500;
+@kui-status-color-416: #d13500;
 /* Color representing response status code 417 (orange.70). */
-@kui-status-color-417: #A31F00;
+@kui-status-color-417: #a31f00;
 /* Color representing response status code 418 (orange.20). */
-@kui-status-color-418: #FFC2B3;
+@kui-status-color-418: #ffc2b3;
 /* Color representing response status code 421 (orange.30). */
-@kui-status-color-421: #FF9877;
+@kui-status-color-421: #ff9877;
 /* Color representing response status code 422 (orange.40). */
-@kui-status-color-422: #FF723C;
+@kui-status-color-422: #ff723c;
 /* Color representing response status code 423 (orange.50). */
-@kui-status-color-423: #F75008;
+@kui-status-color-423: #f75008;
 /* Color representing response status code 424 (orange.60). */
-@kui-status-color-424: #D13500;
+@kui-status-color-424: #d13500;
 /* Color representing response status code 425 (orange.70). */
-@kui-status-color-425: #A31F00;
+@kui-status-color-425: #a31f00;
 /* Color representing response status code 426 (orange.20). */
-@kui-status-color-426: #FFC2B3;
+@kui-status-color-426: #ffc2b3;
 /* Color representing response status code 428 (orange.30). */
-@kui-status-color-428: #FF9877;
+@kui-status-color-428: #ff9877;
 /* Color representing response status code 429 (orange.40). */
-@kui-status-color-429: #FF723C;
+@kui-status-color-429: #ff723c;
 /* Color representing response status code 431 (orange.50). */
-@kui-status-color-431: #F75008;
+@kui-status-color-431: #f75008;
 /* Color representing response status code 451 (orange.60). */
-@kui-status-color-451: #D13500;
+@kui-status-color-451: #d13500;
 /* Color representing response status code 500 (red.20). */
 @kui-status-color-500: #ffabab;
 /* Color representing response status code 501 (red.30). */
@@ -1894,7 +1844,7 @@ $tokens-map: (
 /* Color for unknown response status codes in the 300-399 range (yellow.10). */
 @kui-status-color-3na: #fffce0;
 /* Color for unknown response status codes in the 400-499 range (orange.10). */
-@kui-status-color-4na: #FFF1EF;
+@kui-status-color-4na: #fff1ef;
 /* Color for unknown response status codes in the 500-599 range (red.10). */
 @kui-status-color-5na: #ffe5e5;
 /* Color for a group of response status codes in the 100-199 range (blue.40). */
@@ -1904,7 +1854,7 @@ $tokens-map: (
 /* Color for a group of response status codes in the 300-399 range (yellow.40). */
 @kui-status-color-300s: #ffc400;
 /* Color for a group of response status codes in the 400-499 range (orange.40). */
-@kui-status-color-400s: #FF723C;
+@kui-status-color-400s: #ff723c;
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 @kui-status-color-500s: #ff3954;
 /* Background color for http status 100 elements (blue.10). */
@@ -1914,7 +1864,7 @@ $tokens-map: (
 /* Background color for http status 300 elements (yellow.10). */
 @kui-status-color-background-300: #fffce0;
 /* Background color for http status 400 elements (orange.10). */
-@kui-status-color-background-400: #FFF1EF;
+@kui-status-color-background-400: #fff1ef;
 /* Background color for http status 500 elements (red.10). */
 @kui-status-color-background-500: #ffe5e5;
 /* Text color for http status 100 elements (blue.60). */
@@ -1924,7 +1874,7 @@ $tokens-map: (
 /* Text color for http status 300 elements (yellow.60). */
 @kui-status-color-text-300: #995c00;
 /* Text color for http status 400 elements (orange.60). */
-@kui-status-color-text-400: #D13500;
+@kui-status-color-text-400: #d13500;
 /* Text color for http status 500 elements (red.60). */
 @kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
@@ -1951,6 +1901,32 @@ $tokens-map: (
 @kui-font-weight-regular: 400;
 /* 600: The semibold font weight. */
 @kui-font-weight-semibold: 600;
+/* Danger color for icons. */
+@kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+@kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+@kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+@kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+@kui-icon-color-warning: #ffc400;
+/* 10px icon size. */
+@kui-icon-size-10: 10px;
+/* 12px icon size. */
+@kui-icon-size-20: 12px;
+/* 16px icon size. */
+@kui-icon-size-30: 16px;
+/* 20px icon size. */
+@kui-icon-size-40: 20px;
+/* 24px icon size (default). */
+@kui-icon-size-50: 24px;
+/* 32px icon size. */
+@kui-icon-size-60: 32px;
+/* 40px icon size. */
+@kui-icon-size-70: 40px;
+/* 48px icon size. */
+@kui-icon-size-80: 48px;
 /* Alias for letter-spacing-normal */
 @kui-letter-spacing-0: normal;
 /* -0.12px */
@@ -1985,6 +1961,30 @@ $tokens-map: (
 @kui-line-height-90: 48px;
 /* 56px */
 @kui-line-height-100: 56px;
+/* blue.100 */
+@kui-navigation-color-background: #000933;
+/* The background color of a selected navigation item. */
+@kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+@kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* The border color for a selected child navigation item. */
+@kui-navigation-color-border-child: #00fabe;
+/* The color of the navigation section divider. */
+@kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* Navigation link and icon color. */
+@kui-navigation-color-text: #bee2ff;
+/* Navigation link and icon focus-visible color. */
+@kui-navigation-color-text-focus: #ffffff;
+/* Navigation link and icon hover color. */
+@kui-navigation-color-text-hover: #eefaff;
+/* Navigation link and icon selected color. */
+@kui-navigation-color-text-selected: #00fabe;
+/* The box-shadow for a focus-visible navigation link. */
+@kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* The left box-shadow for an active child navigation link. */
+@kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* Navigation link focus-visible box-shadow. */
+@kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 @kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 /* 0px 0px 0px 1px gray.20 inset */
@@ -2137,7 +2137,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Weakest background color for success elements (green.10). */
 --kui-color-background-success-weakest: #ecfffb;
 /* Transparent background color (transparent). */
---kui-color-background-transparent: transparent;
+--kui-color-background-transparent: rgba(0, 0, 0, 0);
 /* Background color for warning elements (yellow.60). */
 --kui-color-background-warning: #995c00;
 /* Strong background color for warning elements (yellow.70). */
@@ -2203,7 +2203,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Weakest border color for primary actions or messages (blue.10). */
 --kui-color-border-primary-weakest: #eefaff;
 /* Transparent border color (transparent). */
---kui-color-border-transparent: transparent;
+--kui-color-border-transparent: rgba(0, 0, 0, 0);
 /* Default text color (blue.100). */
 --kui-color-text: #000933;
 /* Text color for danger actions or messages (red.60). */
@@ -2338,32 +2338,6 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 --kui-breakpoint-desktop: 1536px;
-/* Danger color for icons. */
---kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
---kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
---kui-icon-color-primary: #306fff;
-/* Success color for icons. */
---kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
---kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
---kui-icon-size-10: 10px;
-/* 12px icon size. */
---kui-icon-size-20: 12px;
-/* 16px icon size. */
---kui-icon-size-30: 16px;
-/* 20px icon size. */
---kui-icon-size-40: 20px;
-/* 24px icon size (default). */
---kui-icon-size-50: 24px;
-/* 32px icon size. */
---kui-icon-size-60: 32px;
-/* 40px icon size. */
---kui-icon-size-70: 40px;
-/* 48px icon size. */
---kui-icon-size-80: 48px;
 /* Background color for the CONNECT method (purple.10). */
 --kui-method-color-background-connect: #f1f0ff;
 /* Background color for the DELETE method (red.10). */
@@ -2418,30 +2392,6 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 --kui-method-color-text-trace-strong: #ad0053;
-/* blue.100 */
---kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
---kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(255, 255, 255, 0.12) */
---kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
---kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
---kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
---kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
---kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
---kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
---kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
---kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
---kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
---kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* Color representing response status code 100 (blue.20). */
 --kui-status-color-100: #bee2ff;
 /* Color representing response status code 101 (blue.30). */
@@ -2487,63 +2437,63 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Color representing response status code 103 (yellow.30). */
 --kui-status-color-308: #ffe04b;
 /* Color representing response status code 400 (orange.20). */
---kui-status-color-400: #FFC2B3;
+--kui-status-color-400: #ffc2b3;
 /* Color representing response status code 401 (orange.30). */
---kui-status-color-401: #FF9877;
+--kui-status-color-401: #ff9877;
 /* Color representing response status code 402 (orange.40). */
---kui-status-color-402: #FF723C;
+--kui-status-color-402: #ff723c;
 /* Color representing response status code 403 (orange.50). */
---kui-status-color-403: #F75008;
+--kui-status-color-403: #f75008;
 /* Color representing response status code 404 (orange.60). */
---kui-status-color-404: #D13500;
+--kui-status-color-404: #d13500;
 /* Color representing response status code 405 (orange.70). */
---kui-status-color-405: #A31F00;
+--kui-status-color-405: #a31f00;
 /* Color representing response status code 406 (orange.20). */
---kui-status-color-406: #FFC2B3;
+--kui-status-color-406: #ffc2b3;
 /* Color representing response status code 407 (orange.30). */
---kui-status-color-407: #FF9877;
+--kui-status-color-407: #ff9877;
 /* Color representing response status code 408 (orange.40). */
---kui-status-color-408: #FF723C;
+--kui-status-color-408: #ff723c;
 /* Color representing response status code 409 (orange.50). */
---kui-status-color-409: #F75008;
+--kui-status-color-409: #f75008;
 /* Color representing response status code 410 (orange.60). */
---kui-status-color-410: #D13500;
+--kui-status-color-410: #d13500;
 /* Color representing response status code 411 (orange.70). */
---kui-status-color-411: #A31F00;
+--kui-status-color-411: #a31f00;
 /* Color representing response status code 412 (orange.20). */
---kui-status-color-412: #FFC2B3;
+--kui-status-color-412: #ffc2b3;
 /* Color representing response status code 413 (orange.30). */
---kui-status-color-413: #FF9877;
+--kui-status-color-413: #ff9877;
 /* Color representing response status code 414 (orange.40). */
---kui-status-color-414: #FF723C;
+--kui-status-color-414: #ff723c;
 /* Color representing response status code 415 (orange.50). */
---kui-status-color-415: #F75008;
+--kui-status-color-415: #f75008;
 /* Color representing response status code 416 (orange.60). */
---kui-status-color-416: #D13500;
+--kui-status-color-416: #d13500;
 /* Color representing response status code 417 (orange.70). */
---kui-status-color-417: #A31F00;
+--kui-status-color-417: #a31f00;
 /* Color representing response status code 418 (orange.20). */
---kui-status-color-418: #FFC2B3;
+--kui-status-color-418: #ffc2b3;
 /* Color representing response status code 421 (orange.30). */
---kui-status-color-421: #FF9877;
+--kui-status-color-421: #ff9877;
 /* Color representing response status code 422 (orange.40). */
---kui-status-color-422: #FF723C;
+--kui-status-color-422: #ff723c;
 /* Color representing response status code 423 (orange.50). */
---kui-status-color-423: #F75008;
+--kui-status-color-423: #f75008;
 /* Color representing response status code 424 (orange.60). */
---kui-status-color-424: #D13500;
+--kui-status-color-424: #d13500;
 /* Color representing response status code 425 (orange.70). */
---kui-status-color-425: #A31F00;
+--kui-status-color-425: #a31f00;
 /* Color representing response status code 426 (orange.20). */
---kui-status-color-426: #FFC2B3;
+--kui-status-color-426: #ffc2b3;
 /* Color representing response status code 428 (orange.30). */
---kui-status-color-428: #FF9877;
+--kui-status-color-428: #ff9877;
 /* Color representing response status code 429 (orange.40). */
---kui-status-color-429: #FF723C;
+--kui-status-color-429: #ff723c;
 /* Color representing response status code 431 (orange.50). */
---kui-status-color-431: #F75008;
+--kui-status-color-431: #f75008;
 /* Color representing response status code 451 (orange.60). */
---kui-status-color-451: #D13500;
+--kui-status-color-451: #d13500;
 /* Color representing response status code 500 (red.20). */
 --kui-status-color-500: #ffabab;
 /* Color representing response status code 501 (red.30). */
@@ -2573,7 +2523,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Color for unknown response status codes in the 300-399 range (yellow.10). */
 --kui-status-color-3na: #fffce0;
 /* Color for unknown response status codes in the 400-499 range (orange.10). */
---kui-status-color-4na: #FFF1EF;
+--kui-status-color-4na: #fff1ef;
 /* Color for unknown response status codes in the 500-599 range (red.10). */
 --kui-status-color-5na: #ffe5e5;
 /* Color for a group of response status codes in the 100-199 range (blue.40). */
@@ -2583,7 +2533,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Color for a group of response status codes in the 300-399 range (yellow.40). */
 --kui-status-color-300s: #ffc400;
 /* Color for a group of response status codes in the 400-499 range (orange.40). */
---kui-status-color-400s: #FF723C;
+--kui-status-color-400s: #ff723c;
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 --kui-status-color-500s: #ff3954;
 /* Background color for http status 100 elements (blue.10). */
@@ -2593,7 +2543,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Background color for http status 300 elements (yellow.10). */
 --kui-status-color-background-300: #fffce0;
 /* Background color for http status 400 elements (orange.10). */
---kui-status-color-background-400: #FFF1EF;
+--kui-status-color-background-400: #fff1ef;
 /* Background color for http status 500 elements (red.10). */
 --kui-status-color-background-500: #ffe5e5;
 /* Text color for http status 100 elements (blue.60). */
@@ -2603,7 +2553,7 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 /* Text color for http status 300 elements (yellow.60). */
 --kui-status-color-text-300: #995c00;
 /* Text color for http status 400 elements (orange.60). */
---kui-status-color-text-400: #D13500;
+--kui-status-color-text-400: #d13500;
 /* Text color for http status 500 elements (red.60). */
 --kui-status-color-text-500: #d60027;
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
@@ -2630,6 +2580,32 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-font-weight-regular: 400;
 /* 600: The semibold font weight. */
 --kui-font-weight-semibold: 600;
+/* Danger color for icons. */
+--kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+--kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+--kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+--kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+--kui-icon-color-warning: #ffc400;
+/* 10px icon size. */
+--kui-icon-size-10: 10px;
+/* 12px icon size. */
+--kui-icon-size-20: 12px;
+/* 16px icon size. */
+--kui-icon-size-30: 16px;
+/* 20px icon size. */
+--kui-icon-size-40: 20px;
+/* 24px icon size (default). */
+--kui-icon-size-50: 24px;
+/* 32px icon size. */
+--kui-icon-size-60: 32px;
+/* 40px icon size. */
+--kui-icon-size-70: 40px;
+/* 48px icon size. */
+--kui-icon-size-80: 48px;
 /* Alias for letter-spacing-normal */
 --kui-letter-spacing-0: normal;
 /* -0.12px */
@@ -2664,6 +2640,30 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-line-height-90: 48px;
 /* 56px */
 --kui-line-height-100: 56px;
+/* blue.100 */
+--kui-navigation-color-background: #000933;
+/* The background color of a selected navigation item. */
+--kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+--kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* The border color for a selected child navigation item. */
+--kui-navigation-color-border-child: #00fabe;
+/* The color of the navigation section divider. */
+--kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* Navigation link and icon color. */
+--kui-navigation-color-text: #bee2ff;
+/* Navigation link and icon focus-visible color. */
+--kui-navigation-color-text-focus: #ffffff;
+/* Navigation link and icon hover color. */
+--kui-navigation-color-text-hover: #eefaff;
+/* Navigation link and icon selected color. */
+--kui-navigation-color-text-selected: #00fabe;
+/* The box-shadow for a focus-visible navigation link. */
+--kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* The left box-shadow for an active child navigation link. */
+--kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* Navigation link focus-visible box-shadow. */
+--kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 --kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
 /* 0px 0px 0px 1px gray.20 inset */
@@ -2814,7 +2814,7 @@ export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKER = "#b5ffee";
 /* Weakest background color for success elements (green.10). */
 export const KUI_COLOR_BACKGROUND_SUCCESS_WEAKEST = "#ecfffb";
 /* Transparent background color (transparent). */
-export const KUI_COLOR_BACKGROUND_TRANSPARENT = "transparent";
+export const KUI_COLOR_BACKGROUND_TRANSPARENT = "rgba(0, 0, 0, 0)";
 /* Background color for warning elements (yellow.60). */
 export const KUI_COLOR_BACKGROUND_WARNING = "#995c00";
 /* Strong background color for warning elements (yellow.70). */
@@ -2880,7 +2880,7 @@ export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#bee2ff";
 /* Weakest border color for primary actions or messages (blue.10). */
 export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff";
 /* Transparent border color (transparent). */
-export const KUI_COLOR_BORDER_TRANSPARENT = "transparent";
+export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)";
 /* Default text color (blue.100). */
 export const KUI_COLOR_TEXT = "#000933";
 /* Text color for danger actions or messages (red.60). */
@@ -3015,32 +3015,6 @@ export const KUI_BREAKPOINT_TABLET = "1024px";
 export const KUI_BREAKPOINT_LAPTOP = "1280px";
 /* Used for larger desktop screens. */
 export const KUI_BREAKPOINT_DESKTOP = "1536px";
-/* Danger color for icons. */
-export const KUI_ICON_COLOR_DANGER = "#f50045";
-/* Neutral color for icons. */
-export const KUI_ICON_COLOR_NEUTRAL = "#828a9e";
-/* Primary color for icons. */
-export const KUI_ICON_COLOR_PRIMARY = "#306fff";
-/* Success color for icons. */
-export const KUI_ICON_COLOR_SUCCESS = "#00a17b";
-/* Warning color for icons. */
-export const KUI_ICON_COLOR_WARNING = "#ffc400";
-/* 10px icon size. */
-export const KUI_ICON_SIZE_10 = "10px";
-/* 12px icon size. */
-export const KUI_ICON_SIZE_20 = "12px";
-/* 16px icon size. */
-export const KUI_ICON_SIZE_30 = "16px";
-/* 20px icon size. */
-export const KUI_ICON_SIZE_40 = "20px";
-/* 24px icon size (default). */
-export const KUI_ICON_SIZE_50 = "24px";
-/* 32px icon size. */
-export const KUI_ICON_SIZE_60 = "32px";
-/* 40px icon size. */
-export const KUI_ICON_SIZE_70 = "40px";
-/* 48px icon size. */
-export const KUI_ICON_SIZE_80 = "48px";
 /* Background color for the CONNECT method (purple.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = "#f1f0ff";
 /* Background color for the DELETE method (red.10). */
@@ -3095,30 +3069,6 @@ export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = "#804400";
 export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
 /* Strong text color for the TRACE method (pink.70). */
 export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
-/* blue.100 */
-export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
-/* The background color of a selected navigation item. */
-export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
-/* rgba(255, 255, 255, 0.12) */
-export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
-/* The border color for a selected child navigation item. */
-export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
-/* The color of the navigation section divider. */
-export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
-/* Navigation link and icon color. */
-export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
-/* Navigation link and icon focus-visible color. */
-export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
-/* Navigation link and icon hover color. */
-export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
-/* Navigation link and icon selected color. */
-export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
-/* The box-shadow for a focus-visible navigation link. */
-export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
-/* The left box-shadow for an active child navigation link. */
-export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
-/* Navigation link focus-visible box-shadow. */
-export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
 /* Color representing response status code 100 (blue.20). */
 export const KUI_STATUS_COLOR_100 = "#bee2ff";
 /* Color representing response status code 101 (blue.30). */
@@ -3164,63 +3114,63 @@ export const KUI_STATUS_COLOR_307 = "#fff296";
 /* Color representing response status code 103 (yellow.30). */
 export const KUI_STATUS_COLOR_308 = "#ffe04b";
 /* Color representing response status code 400 (orange.20). */
-export const KUI_STATUS_COLOR_400 = "#FFC2B3";
+export const KUI_STATUS_COLOR_400 = "#ffc2b3";
 /* Color representing response status code 401 (orange.30). */
-export const KUI_STATUS_COLOR_401 = "#FF9877";
+export const KUI_STATUS_COLOR_401 = "#ff9877";
 /* Color representing response status code 402 (orange.40). */
-export const KUI_STATUS_COLOR_402 = "#FF723C";
+export const KUI_STATUS_COLOR_402 = "#ff723c";
 /* Color representing response status code 403 (orange.50). */
-export const KUI_STATUS_COLOR_403 = "#F75008";
+export const KUI_STATUS_COLOR_403 = "#f75008";
 /* Color representing response status code 404 (orange.60). */
-export const KUI_STATUS_COLOR_404 = "#D13500";
+export const KUI_STATUS_COLOR_404 = "#d13500";
 /* Color representing response status code 405 (orange.70). */
-export const KUI_STATUS_COLOR_405 = "#A31F00";
+export const KUI_STATUS_COLOR_405 = "#a31f00";
 /* Color representing response status code 406 (orange.20). */
-export const KUI_STATUS_COLOR_406 = "#FFC2B3";
+export const KUI_STATUS_COLOR_406 = "#ffc2b3";
 /* Color representing response status code 407 (orange.30). */
-export const KUI_STATUS_COLOR_407 = "#FF9877";
+export const KUI_STATUS_COLOR_407 = "#ff9877";
 /* Color representing response status code 408 (orange.40). */
-export const KUI_STATUS_COLOR_408 = "#FF723C";
+export const KUI_STATUS_COLOR_408 = "#ff723c";
 /* Color representing response status code 409 (orange.50). */
-export const KUI_STATUS_COLOR_409 = "#F75008";
+export const KUI_STATUS_COLOR_409 = "#f75008";
 /* Color representing response status code 410 (orange.60). */
-export const KUI_STATUS_COLOR_410 = "#D13500";
+export const KUI_STATUS_COLOR_410 = "#d13500";
 /* Color representing response status code 411 (orange.70). */
-export const KUI_STATUS_COLOR_411 = "#A31F00";
+export const KUI_STATUS_COLOR_411 = "#a31f00";
 /* Color representing response status code 412 (orange.20). */
-export const KUI_STATUS_COLOR_412 = "#FFC2B3";
+export const KUI_STATUS_COLOR_412 = "#ffc2b3";
 /* Color representing response status code 413 (orange.30). */
-export const KUI_STATUS_COLOR_413 = "#FF9877";
+export const KUI_STATUS_COLOR_413 = "#ff9877";
 /* Color representing response status code 414 (orange.40). */
-export const KUI_STATUS_COLOR_414 = "#FF723C";
+export const KUI_STATUS_COLOR_414 = "#ff723c";
 /* Color representing response status code 415 (orange.50). */
-export const KUI_STATUS_COLOR_415 = "#F75008";
+export const KUI_STATUS_COLOR_415 = "#f75008";
 /* Color representing response status code 416 (orange.60). */
-export const KUI_STATUS_COLOR_416 = "#D13500";
+export const KUI_STATUS_COLOR_416 = "#d13500";
 /* Color representing response status code 417 (orange.70). */
-export const KUI_STATUS_COLOR_417 = "#A31F00";
+export const KUI_STATUS_COLOR_417 = "#a31f00";
 /* Color representing response status code 418 (orange.20). */
-export const KUI_STATUS_COLOR_418 = "#FFC2B3";
+export const KUI_STATUS_COLOR_418 = "#ffc2b3";
 /* Color representing response status code 421 (orange.30). */
-export const KUI_STATUS_COLOR_421 = "#FF9877";
+export const KUI_STATUS_COLOR_421 = "#ff9877";
 /* Color representing response status code 422 (orange.40). */
-export const KUI_STATUS_COLOR_422 = "#FF723C";
+export const KUI_STATUS_COLOR_422 = "#ff723c";
 /* Color representing response status code 423 (orange.50). */
-export const KUI_STATUS_COLOR_423 = "#F75008";
+export const KUI_STATUS_COLOR_423 = "#f75008";
 /* Color representing response status code 424 (orange.60). */
-export const KUI_STATUS_COLOR_424 = "#D13500";
+export const KUI_STATUS_COLOR_424 = "#d13500";
 /* Color representing response status code 425 (orange.70). */
-export const KUI_STATUS_COLOR_425 = "#A31F00";
+export const KUI_STATUS_COLOR_425 = "#a31f00";
 /* Color representing response status code 426 (orange.20). */
-export const KUI_STATUS_COLOR_426 = "#FFC2B3";
+export const KUI_STATUS_COLOR_426 = "#ffc2b3";
 /* Color representing response status code 428 (orange.30). */
-export const KUI_STATUS_COLOR_428 = "#FF9877";
+export const KUI_STATUS_COLOR_428 = "#ff9877";
 /* Color representing response status code 429 (orange.40). */
-export const KUI_STATUS_COLOR_429 = "#FF723C";
+export const KUI_STATUS_COLOR_429 = "#ff723c";
 /* Color representing response status code 431 (orange.50). */
-export const KUI_STATUS_COLOR_431 = "#F75008";
+export const KUI_STATUS_COLOR_431 = "#f75008";
 /* Color representing response status code 451 (orange.60). */
-export const KUI_STATUS_COLOR_451 = "#D13500";
+export const KUI_STATUS_COLOR_451 = "#d13500";
 /* Color representing response status code 500 (red.20). */
 export const KUI_STATUS_COLOR_500 = "#ffabab";
 /* Color representing response status code 501 (red.30). */
@@ -3250,7 +3200,7 @@ export const KUI_STATUS_COLOR_2NA = "#ecfffb";
 /* Color for unknown response status codes in the 300-399 range (yellow.10). */
 export const KUI_STATUS_COLOR_3NA = "#fffce0";
 /* Color for unknown response status codes in the 400-499 range (orange.10). */
-export const KUI_STATUS_COLOR_4NA = "#FFF1EF";
+export const KUI_STATUS_COLOR_4NA = "#fff1ef";
 /* Color for unknown response status codes in the 500-599 range (red.10). */
 export const KUI_STATUS_COLOR_5NA = "#ffe5e5";
 /* Color for a group of response status codes in the 100-199 range (blue.40). */
@@ -3260,7 +3210,7 @@ export const KUI_STATUS_COLOR_200S = "#00d6a4";
 /* Color for a group of response status codes in the 300-399 range (yellow.40). */
 export const KUI_STATUS_COLOR_300S = "#ffc400";
 /* Color for a group of response status codes in the 400-499 range (orange.40). */
-export const KUI_STATUS_COLOR_400S = "#FF723C";
+export const KUI_STATUS_COLOR_400S = "#ff723c";
 /* Color for a group of response status codes in the 500-599 range (red.40). */
 export const KUI_STATUS_COLOR_500S = "#ff3954";
 /* Background color for http status 100 elements (blue.10). */
@@ -3270,7 +3220,7 @@ export const KUI_STATUS_COLOR_BACKGROUND_200 = "#ecfffb";
 /* Background color for http status 300 elements (yellow.10). */
 export const KUI_STATUS_COLOR_BACKGROUND_300 = "#fffce0";
 /* Background color for http status 400 elements (orange.10). */
-export const KUI_STATUS_COLOR_BACKGROUND_400 = "#FFF1EF";
+export const KUI_STATUS_COLOR_BACKGROUND_400 = "#fff1ef";
 /* Background color for http status 500 elements (red.10). */
 export const KUI_STATUS_COLOR_BACKGROUND_500 = "#ffe5e5";
 /* Text color for http status 100 elements (blue.60). */
@@ -3280,7 +3230,7 @@ export const KUI_STATUS_COLOR_TEXT_200 = "#007d60";
 /* Text color for http status 300 elements (yellow.60). */
 export const KUI_STATUS_COLOR_TEXT_300 = "#995c00";
 /* Text color for http status 400 elements (orange.60). */
-export const KUI_STATUS_COLOR_TEXT_400 = "#D13500";
+export const KUI_STATUS_COLOR_TEXT_400 = "#d13500";
 /* Text color for http status 500 elements (red.60). */
 export const KUI_STATUS_COLOR_TEXT_500 = "#d60027";
 /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
@@ -3307,6 +3257,32 @@ export const KUI_FONT_WEIGHT_MEDIUM = "500";
 export const KUI_FONT_WEIGHT_REGULAR = "400";
 /* 600: The semibold font weight. */
 export const KUI_FONT_WEIGHT_SEMIBOLD = "600";
+/* Danger color for icons. */
+export const KUI_ICON_COLOR_DANGER = "#f50045";
+/* Neutral color for icons. */
+export const KUI_ICON_COLOR_NEUTRAL = "#828a9e";
+/* Primary color for icons. */
+export const KUI_ICON_COLOR_PRIMARY = "#306fff";
+/* Success color for icons. */
+export const KUI_ICON_COLOR_SUCCESS = "#00a17b";
+/* Warning color for icons. */
+export const KUI_ICON_COLOR_WARNING = "#ffc400";
+/* 10px icon size. */
+export const KUI_ICON_SIZE_10 = "10px";
+/* 12px icon size. */
+export const KUI_ICON_SIZE_20 = "12px";
+/* 16px icon size. */
+export const KUI_ICON_SIZE_30 = "16px";
+/* 20px icon size. */
+export const KUI_ICON_SIZE_40 = "20px";
+/* 24px icon size (default). */
+export const KUI_ICON_SIZE_50 = "24px";
+/* 32px icon size. */
+export const KUI_ICON_SIZE_60 = "32px";
+/* 40px icon size. */
+export const KUI_ICON_SIZE_70 = "40px";
+/* 48px icon size. */
+export const KUI_ICON_SIZE_80 = "48px";
 /* Alias for letter-spacing-normal */
 export const KUI_LETTER_SPACING_0 = "normal";
 /* -0.12px */
@@ -3341,6 +3317,30 @@ export const KUI_LINE_HEIGHT_80 = "40px";
 export const KUI_LINE_HEIGHT_90 = "48px";
 /* 56px */
 export const KUI_LINE_HEIGHT_100 = "56px";
+/* blue.100 */
+export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
+/* The background color of a selected navigation item. */
+export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
+/* rgba(255, 255, 255, 0.12) */
+export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
+/* The border color for a selected child navigation item. */
+export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
+/* The color of the navigation section divider. */
+export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
+/* Navigation link and icon color. */
+export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
+/* Navigation link and icon focus-visible color. */
+export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
+/* Navigation link and icon hover color. */
+export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
+/* Navigation link and icon selected color. */
+export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
+/* The box-shadow for a focus-visible navigation link. */
+export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
+/* The left box-shadow for an active child navigation link. */
+export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
+/* Navigation link focus-visible box-shadow. */
+export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
 /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
 export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
 /* 0px 0px 0px 1px gray.20 inset */
@@ -3447,7 +3447,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_background_success_weak": "#00d6a4",
   "kui_color_background_success_weaker": "#b5ffee",
   "kui_color_background_success_weakest": "#ecfffb",
-  "kui_color_background_transparent": "transparent",
+  "kui_color_background_transparent": "rgba(0, 0, 0, 0)",
   "kui_color_background_warning": "#995c00",
   "kui_color_background_warning_strong": "#804400",
   "kui_color_background_warning_stronger": "#662d00",
@@ -3480,7 +3480,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_color_border_primary_weak": "#5f9aff",
   "kui_color_border_primary_weaker": "#bee2ff",
   "kui_color_border_primary_weakest": "#eefaff",
-  "kui_color_border_transparent": "transparent",
+  "kui_color_border_transparent": "rgba(0, 0, 0, 0)",
   "kui_color_text": "#000933",
   "kui_color_text_danger": "#d60027",
   "kui_color_text_danger_strong": "#ad000e",
@@ -3548,19 +3548,6 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_breakpoint_tablet": "1024px",
   "kui_breakpoint_laptop": "1280px",
   "kui_breakpoint_desktop": "1536px",
-  "kui_icon_color_danger": "#f50045",
-  "kui_icon_color_neutral": "#828a9e",
-  "kui_icon_color_primary": "#306fff",
-  "kui_icon_color_success": "#00a17b",
-  "kui_icon_color_warning": "#ffc400",
-  "kui_icon_size_10": "10px",
-  "kui_icon_size_20": "12px",
-  "kui_icon_size_30": "16px",
-  "kui_icon_size_40": "20px",
-  "kui_icon_size_50": "24px",
-  "kui_icon_size_60": "32px",
-  "kui_icon_size_70": "40px",
-  "kui_icon_size_80": "48px",
   "kui_method_color_background_connect": "#f1f0ff",
   "kui_method_color_background_delete": "#ffe5e5",
   "kui_method_color_background_get": "#eefaff",
@@ -3588,18 +3575,6 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_method_color_text_put_strong": "#804400",
   "kui_method_color_text_trace": "#d60067",
   "kui_method_color_text_trace_strong": "#ad0053",
-  "kui_navigation_color_background": "#000933",
-  "kui_navigation_color_background_selected": "rgba(255, 255, 255, 0.12)",
-  "kui_navigation_color_border": "rgba(255, 255, 255, 0.12)",
-  "kui_navigation_color_border_child": "#00fabe",
-  "kui_navigation_color_border_divider": "rgba(255, 255, 255, 0.24)",
-  "kui_navigation_color_text": "#bee2ff",
-  "kui_navigation_color_text_focus": "#ffffff",
-  "kui_navigation_color_text_hover": "#eefaff",
-  "kui_navigation_color_text_selected": "#00fabe",
-  "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
-  "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
-  "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
   "kui_status_color_100": "#bee2ff",
   "kui_status_color_101": "#8fc1ff",
   "kui_status_color_102": "#5f9aff",
@@ -3622,35 +3597,35 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_305": "#804400",
   "kui_status_color_307": "#fff296",
   "kui_status_color_308": "#ffe04b",
-  "kui_status_color_400": "#FFC2B3",
-  "kui_status_color_401": "#FF9877",
-  "kui_status_color_402": "#FF723C",
-  "kui_status_color_403": "#F75008",
-  "kui_status_color_404": "#D13500",
-  "kui_status_color_405": "#A31F00",
-  "kui_status_color_406": "#FFC2B3",
-  "kui_status_color_407": "#FF9877",
-  "kui_status_color_408": "#FF723C",
-  "kui_status_color_409": "#F75008",
-  "kui_status_color_410": "#D13500",
-  "kui_status_color_411": "#A31F00",
-  "kui_status_color_412": "#FFC2B3",
-  "kui_status_color_413": "#FF9877",
-  "kui_status_color_414": "#FF723C",
-  "kui_status_color_415": "#F75008",
-  "kui_status_color_416": "#D13500",
-  "kui_status_color_417": "#A31F00",
-  "kui_status_color_418": "#FFC2B3",
-  "kui_status_color_421": "#FF9877",
-  "kui_status_color_422": "#FF723C",
-  "kui_status_color_423": "#F75008",
-  "kui_status_color_424": "#D13500",
-  "kui_status_color_425": "#A31F00",
-  "kui_status_color_426": "#FFC2B3",
-  "kui_status_color_428": "#FF9877",
-  "kui_status_color_429": "#FF723C",
-  "kui_status_color_431": "#F75008",
-  "kui_status_color_451": "#D13500",
+  "kui_status_color_400": "#ffc2b3",
+  "kui_status_color_401": "#ff9877",
+  "kui_status_color_402": "#ff723c",
+  "kui_status_color_403": "#f75008",
+  "kui_status_color_404": "#d13500",
+  "kui_status_color_405": "#a31f00",
+  "kui_status_color_406": "#ffc2b3",
+  "kui_status_color_407": "#ff9877",
+  "kui_status_color_408": "#ff723c",
+  "kui_status_color_409": "#f75008",
+  "kui_status_color_410": "#d13500",
+  "kui_status_color_411": "#a31f00",
+  "kui_status_color_412": "#ffc2b3",
+  "kui_status_color_413": "#ff9877",
+  "kui_status_color_414": "#ff723c",
+  "kui_status_color_415": "#f75008",
+  "kui_status_color_416": "#d13500",
+  "kui_status_color_417": "#a31f00",
+  "kui_status_color_418": "#ffc2b3",
+  "kui_status_color_421": "#ff9877",
+  "kui_status_color_422": "#ff723c",
+  "kui_status_color_423": "#f75008",
+  "kui_status_color_424": "#d13500",
+  "kui_status_color_425": "#a31f00",
+  "kui_status_color_426": "#ffc2b3",
+  "kui_status_color_428": "#ff9877",
+  "kui_status_color_429": "#ff723c",
+  "kui_status_color_431": "#f75008",
+  "kui_status_color_451": "#d13500",
   "kui_status_color_500": "#ffabab",
   "kui_status_color_501": "#ff7272",
   "kui_status_color_502": "#ff3954",
@@ -3665,22 +3640,22 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_1na": "#eefaff",
   "kui_status_color_2na": "#ecfffb",
   "kui_status_color_3na": "#fffce0",
-  "kui_status_color_4na": "#FFF1EF",
+  "kui_status_color_4na": "#fff1ef",
   "kui_status_color_5na": "#ffe5e5",
   "kui_status_color_100s": "#5f9aff",
   "kui_status_color_200s": "#00d6a4",
   "kui_status_color_300s": "#ffc400",
-  "kui_status_color_400s": "#FF723C",
+  "kui_status_color_400s": "#ff723c",
   "kui_status_color_500s": "#ff3954",
   "kui_status_color_background_100": "#eefaff",
   "kui_status_color_background_200": "#ecfffb",
   "kui_status_color_background_300": "#fffce0",
-  "kui_status_color_background_400": "#FFF1EF",
+  "kui_status_color_background_400": "#fff1ef",
   "kui_status_color_background_500": "#ffe5e5",
   "kui_status_color_text_100": "#0044f4",
   "kui_status_color_text_200": "#007d60",
   "kui_status_color_text_300": "#995c00",
-  "kui_status_color_text_400": "#D13500",
+  "kui_status_color_text_400": "#d13500",
   "kui_status_color_text_500": "#d60027",
   "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
   "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
@@ -3699,6 +3674,19 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_font_weight_medium": "500",
   "kui_font_weight_regular": "400",
   "kui_font_weight_semibold": "600",
+  "kui_icon_color_danger": "#f50045",
+  "kui_icon_color_neutral": "#828a9e",
+  "kui_icon_color_primary": "#306fff",
+  "kui_icon_color_success": "#00a17b",
+  "kui_icon_color_warning": "#ffc400",
+  "kui_icon_size_10": "10px",
+  "kui_icon_size_20": "12px",
+  "kui_icon_size_30": "16px",
+  "kui_icon_size_40": "20px",
+  "kui_icon_size_50": "24px",
+  "kui_icon_size_60": "32px",
+  "kui_icon_size_70": "40px",
+  "kui_icon_size_80": "48px",
   "kui_letter_spacing_0": "normal",
   "kui_letter_spacing_minus_10": "-0.12px",
   "kui_letter_spacing_minus_20": "-0.24px",
@@ -3716,6 +3704,18 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_line_height_80": "40px",
   "kui_line_height_90": "48px",
   "kui_line_height_100": "56px",
+  "kui_navigation_color_background": "#000933",
+  "kui_navigation_color_background_selected": "rgba(255, 255, 255, 0.12)",
+  "kui_navigation_color_border": "rgba(255, 255, 255, 0.12)",
+  "kui_navigation_color_border_child": "#00fabe",
+  "kui_navigation_color_border_divider": "rgba(255, 255, 255, 0.24)",
+  "kui_navigation_color_text": "#bee2ff",
+  "kui_navigation_color_text_focus": "#ffffff",
+  "kui_navigation_color_text_hover": "#eefaff",
+  "kui_navigation_color_text_selected": "#00fabe",
+  "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
+  "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
+  "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
   "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
   "kui_shadow_border": "0px 0px 0px 1px #e0e4ea inset",
   "kui_shadow_border_danger": "0px 0px 0px 1px #d60027 inset",

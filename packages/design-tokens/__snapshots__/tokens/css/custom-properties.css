@@ -50,7 +50,7 @@
   --kui-color-background-success-weak: #00d6a4; /** Weak background color for success elements (green.40). */
   --kui-color-background-success-weaker: #b5ffee; /** Weaker background color for success elements (green.20). */
   --kui-color-background-success-weakest: #ecfffb; /** Weakest background color for success elements (green.10). */
-  --kui-color-background-transparent: transparent; /** Transparent background color (transparent). */
+  --kui-color-background-transparent: rgba(0, 0, 0, 0); /** Transparent background color (transparent). */
   --kui-color-background-warning: #995c00; /** Background color for warning elements (yellow.60). */
   --kui-color-background-warning-strong: #804400; /** Strong background color for warning elements (yellow.70). */
   --kui-color-background-warning-stronger: #662d00; /** Stronger background color for warning elements (yellow.80). */
@@ -83,7 +83,7 @@
   --kui-color-border-primary-weak: #5f9aff; /** Weak border color for primary actions or messages (blue.40). */
   --kui-color-border-primary-weaker: #bee2ff; /** Weaker border color for primary actions or messages (blue.20). */
   --kui-color-border-primary-weakest: #eefaff; /** Weakest border color for primary actions or messages (blue.10). */
-  --kui-color-border-transparent: transparent; /** Transparent border color (transparent). */
+  --kui-color-border-transparent: rgba(0, 0, 0, 0); /** Transparent border color (transparent). */
   --kui-color-text: #000933; /** Default text color (blue.100). */
   --kui-color-text-danger: #d60027; /** Text color for danger actions or messages (red.60). */
   --kui-color-text-danger-strong: #ad000e; /** Strong text color for danger actions or messages (red.70). */
@@ -200,35 +200,35 @@
   --kui-status-color-305: #804400; /** Color representing response status code 103 (yellow.70). */
   --kui-status-color-307: #fff296; /** Color representing response status code 103 (yellow.20). */
   --kui-status-color-308: #ffe04b; /** Color representing response status code 103 (yellow.30). */
-  --kui-status-color-400: #FFC2B3; /** Color representing response status code 400 (orange.20). */
-  --kui-status-color-401: #FF9877; /** Color representing response status code 401 (orange.30). */
-  --kui-status-color-402: #FF723C; /** Color representing response status code 402 (orange.40). */
-  --kui-status-color-403: #F75008; /** Color representing response status code 403 (orange.50). */
-  --kui-status-color-404: #D13500; /** Color representing response status code 404 (orange.60). */
-  --kui-status-color-405: #A31F00; /** Color representing response status code 405 (orange.70). */
-  --kui-status-color-406: #FFC2B3; /** Color representing response status code 406 (orange.20). */
-  --kui-status-color-407: #FF9877; /** Color representing response status code 407 (orange.30). */
-  --kui-status-color-408: #FF723C; /** Color representing response status code 408 (orange.40). */
-  --kui-status-color-409: #F75008; /** Color representing response status code 409 (orange.50). */
-  --kui-status-color-410: #D13500; /** Color representing response status code 410 (orange.60). */
-  --kui-status-color-411: #A31F00; /** Color representing response status code 411 (orange.70). */
-  --kui-status-color-412: #FFC2B3; /** Color representing response status code 412 (orange.20). */
-  --kui-status-color-413: #FF9877; /** Color representing response status code 413 (orange.30). */
-  --kui-status-color-414: #FF723C; /** Color representing response status code 414 (orange.40). */
-  --kui-status-color-415: #F75008; /** Color representing response status code 415 (orange.50). */
-  --kui-status-color-416: #D13500; /** Color representing response status code 416 (orange.60). */
-  --kui-status-color-417: #A31F00; /** Color representing response status code 417 (orange.70). */
-  --kui-status-color-418: #FFC2B3; /** Color representing response status code 418 (orange.20). */
-  --kui-status-color-421: #FF9877; /** Color representing response status code 421 (orange.30). */
-  --kui-status-color-422: #FF723C; /** Color representing response status code 422 (orange.40). */
-  --kui-status-color-423: #F75008; /** Color representing response status code 423 (orange.50). */
-  --kui-status-color-424: #D13500; /** Color representing response status code 424 (orange.60). */
-  --kui-status-color-425: #A31F00; /** Color representing response status code 425 (orange.70). */
-  --kui-status-color-426: #FFC2B3; /** Color representing response status code 426 (orange.20). */
-  --kui-status-color-428: #FF9877; /** Color representing response status code 428 (orange.30). */
-  --kui-status-color-429: #FF723C; /** Color representing response status code 429 (orange.40). */
-  --kui-status-color-431: #F75008; /** Color representing response status code 431 (orange.50). */
-  --kui-status-color-451: #D13500; /** Color representing response status code 451 (orange.60). */
+  --kui-status-color-400: #ffc2b3; /** Color representing response status code 400 (orange.20). */
+  --kui-status-color-401: #ff9877; /** Color representing response status code 401 (orange.30). */
+  --kui-status-color-402: #ff723c; /** Color representing response status code 402 (orange.40). */
+  --kui-status-color-403: #f75008; /** Color representing response status code 403 (orange.50). */
+  --kui-status-color-404: #d13500; /** Color representing response status code 404 (orange.60). */
+  --kui-status-color-405: #a31f00; /** Color representing response status code 405 (orange.70). */
+  --kui-status-color-406: #ffc2b3; /** Color representing response status code 406 (orange.20). */
+  --kui-status-color-407: #ff9877; /** Color representing response status code 407 (orange.30). */
+  --kui-status-color-408: #ff723c; /** Color representing response status code 408 (orange.40). */
+  --kui-status-color-409: #f75008; /** Color representing response status code 409 (orange.50). */
+  --kui-status-color-410: #d13500; /** Color representing response status code 410 (orange.60). */
+  --kui-status-color-411: #a31f00; /** Color representing response status code 411 (orange.70). */
+  --kui-status-color-412: #ffc2b3; /** Color representing response status code 412 (orange.20). */
+  --kui-status-color-413: #ff9877; /** Color representing response status code 413 (orange.30). */
+  --kui-status-color-414: #ff723c; /** Color representing response status code 414 (orange.40). */
+  --kui-status-color-415: #f75008; /** Color representing response status code 415 (orange.50). */
+  --kui-status-color-416: #d13500; /** Color representing response status code 416 (orange.60). */
+  --kui-status-color-417: #a31f00; /** Color representing response status code 417 (orange.70). */
+  --kui-status-color-418: #ffc2b3; /** Color representing response status code 418 (orange.20). */
+  --kui-status-color-421: #ff9877; /** Color representing response status code 421 (orange.30). */
+  --kui-status-color-422: #ff723c; /** Color representing response status code 422 (orange.40). */
+  --kui-status-color-423: #f75008; /** Color representing response status code 423 (orange.50). */
+  --kui-status-color-424: #d13500; /** Color representing response status code 424 (orange.60). */
+  --kui-status-color-425: #a31f00; /** Color representing response status code 425 (orange.70). */
+  --kui-status-color-426: #ffc2b3; /** Color representing response status code 426 (orange.20). */
+  --kui-status-color-428: #ff9877; /** Color representing response status code 428 (orange.30). */
+  --kui-status-color-429: #ff723c; /** Color representing response status code 429 (orange.40). */
+  --kui-status-color-431: #f75008; /** Color representing response status code 431 (orange.50). */
+  --kui-status-color-451: #d13500; /** Color representing response status code 451 (orange.60). */
   --kui-status-color-500: #ffabab; /** Color representing response status code 500 (red.20). */
   --kui-status-color-501: #ff7272; /** Color representing response status code 501 (red.30). */
   --kui-status-color-502: #ff3954; /** Color representing response status code 502 (red.40). */
@@ -243,22 +243,22 @@
   --kui-status-color-1na: #eefaff; /** Color for unknown response status codes in the 100-199 range (blue.10). */
   --kui-status-color-2na: #ecfffb; /** Color for unknown response status codes in the 200-299 range (green.10). */
   --kui-status-color-3na: #fffce0; /** Color for unknown response status codes in the 300-399 range (yellow.10). */
-  --kui-status-color-4na: #FFF1EF; /** Color for unknown response status codes in the 400-499 range (orange.10). */
+  --kui-status-color-4na: #fff1ef; /** Color for unknown response status codes in the 400-499 range (orange.10). */
   --kui-status-color-5na: #ffe5e5; /** Color for unknown response status codes in the 500-599 range (red.10). */
   --kui-status-color-100s: #5f9aff; /** Color for a group of response status codes in the 100-199 range (blue.40). */
   --kui-status-color-200s: #00d6a4; /** Color for a group of response status codes in the 200-299 range (green.40). */
   --kui-status-color-300s: #ffc400; /** Color for a group of response status codes in the 300-399 range (yellow.40). */
-  --kui-status-color-400s: #FF723C; /** Color for a group of response status codes in the 400-499 range (orange.40). */
+  --kui-status-color-400s: #ff723c; /** Color for a group of response status codes in the 400-499 range (orange.40). */
   --kui-status-color-500s: #ff3954; /** Color for a group of response status codes in the 500-599 range (red.40). */
   --kui-status-color-background-100: #eefaff; /** Background color for http status 100 elements (blue.10). */
   --kui-status-color-background-200: #ecfffb; /** Background color for http status 200 elements (green.10). */
   --kui-status-color-background-300: #fffce0; /** Background color for http status 300 elements (yellow.10). */
-  --kui-status-color-background-400: #FFF1EF; /** Background color for http status 400 elements (orange.10). */
+  --kui-status-color-background-400: #fff1ef; /** Background color for http status 400 elements (orange.10). */
   --kui-status-color-background-500: #ffe5e5; /** Background color for http status 500 elements (red.10). */
   --kui-status-color-text-100: #0044f4; /** Text color for http status 100 elements (blue.60). */
   --kui-status-color-text-200: #007d60; /** Text color for http status 200 elements (green.60). */
   --kui-status-color-text-300: #995c00; /** Text color for http status 300 elements (yellow.60). */
-  --kui-status-color-text-400: #D13500; /** Text color for http status 400 elements (orange.60). */
+  --kui-status-color-text-400: #d13500; /** Text color for http status 400 elements (orange.60). */
   --kui-status-color-text-500: #d60027; /** Text color for http status 500 elements (red.60). */
   --kui-font-family-code: 'JetBrains Mono', Consolas, monospace; /** The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
   --kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif; /** The standard heading text font family. */
