@@ -149,19 +149,6 @@ $kui-breakpoint-phablet: 768px !default; // Used for tablet screens.
 $kui-breakpoint-tablet: 1024px !default; // Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout.
 $kui-breakpoint-laptop: 1280px !default; // Used for standard desktop screens.
 $kui-breakpoint-desktop: 1536px !default; // Used for larger desktop screens.
-$kui-icon-color-danger: #f50045 !default; // Danger color for icons.
-$kui-icon-color-neutral: #828a9e !default; // Neutral color for icons.
-$kui-icon-color-primary: #306fff !default; // Primary color for icons.
-$kui-icon-color-success: #00a17b !default; // Success color for icons.
-$kui-icon-color-warning: #ffc400 !default; // Warning color for icons.
-$kui-icon-size-10: 10px !default; // 10px icon size.
-$kui-icon-size-20: 12px !default; // 12px icon size.
-$kui-icon-size-30: 16px !default; // 16px icon size.
-$kui-icon-size-40: 20px !default; // 20px icon size.
-$kui-icon-size-50: 24px !default; // 24px icon size (default).
-$kui-icon-size-60: 32px !default; // 32px icon size.
-$kui-icon-size-70: 40px !default; // 40px icon size.
-$kui-icon-size-80: 48px !default; // 48px icon size.
 $kui-method-color-background-connect: #f1f0ff !default; // Background color for the CONNECT method (purple.10).
 $kui-method-color-background-delete: #ffe5e5 !default; // Background color for the DELETE method (red.10).
 $kui-method-color-background-get: #eefaff !default; // Background color for the GET method (blue.10).
@@ -300,6 +287,19 @@ $kui-font-weight-bold: 700 !default; // 700: The bold font weight.
 $kui-font-weight-medium: 500 !default; // 500: The medium font weight.
 $kui-font-weight-regular: 400 !default; // 400: The normal font weight.
 $kui-font-weight-semibold: 600 !default; // 600: The semibold font weight.
+$kui-icon-color-danger: #f50045 !default; // Danger color for icons.
+$kui-icon-color-neutral: #828a9e !default; // Neutral color for icons.
+$kui-icon-color-primary: #306fff !default; // Primary color for icons.
+$kui-icon-color-success: #00a17b !default; // Success color for icons.
+$kui-icon-color-warning: #ffc400 !default; // Warning color for icons.
+$kui-icon-size-10: 10px !default; // 10px icon size.
+$kui-icon-size-20: 12px !default; // 12px icon size.
+$kui-icon-size-30: 16px !default; // 16px icon size.
+$kui-icon-size-40: 20px !default; // 20px icon size.
+$kui-icon-size-50: 24px !default; // 24px icon size (default).
+$kui-icon-size-60: 32px !default; // 32px icon size.
+$kui-icon-size-70: 40px !default; // 40px icon size.
+$kui-icon-size-80: 48px !default; // 48px icon size.
 $kui-letter-spacing-0: normal !default; // Alias for letter-spacing-normal
 $kui-letter-spacing-minus-10: -0.12px !default; // -0.12px
 $kui-letter-spacing-minus-20: -0.24px !default; // -0.24px

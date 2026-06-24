@@ -151,19 +151,6 @@
   --kui-breakpoint-tablet: 1024px; /** Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
   --kui-breakpoint-laptop: 1280px; /** Used for standard desktop screens. */
   --kui-breakpoint-desktop: 1536px; /** Used for larger desktop screens. */
-  --kui-icon-color-danger: #f50045; /** Danger color for icons. */
-  --kui-icon-color-neutral: #828a9e; /** Neutral color for icons. */
-  --kui-icon-color-primary: #306fff; /** Primary color for icons. */
-  --kui-icon-color-success: #00a17b; /** Success color for icons. */
-  --kui-icon-color-warning: #ffc400; /** Warning color for icons. */
-  --kui-icon-size-10: 10px; /** 10px icon size. */
-  --kui-icon-size-20: 12px; /** 12px icon size. */
-  --kui-icon-size-30: 16px; /** 16px icon size. */
-  --kui-icon-size-40: 20px; /** 20px icon size. */
-  --kui-icon-size-50: 24px; /** 24px icon size (default). */
-  --kui-icon-size-60: 32px; /** 32px icon size. */
-  --kui-icon-size-70: 40px; /** 40px icon size. */
-  --kui-icon-size-80: 48px; /** 48px icon size. */
   --kui-method-color-background-connect: #f1f0ff; /** Background color for the CONNECT method (purple.10). */
   --kui-method-color-background-delete: #ffe5e5; /** Background color for the DELETE method (red.10). */
   --kui-method-color-background-get: #eefaff; /** Background color for the GET method (blue.10). */
@@ -302,6 +289,19 @@
   --kui-font-weight-medium: 500; /** 500: The medium font weight. */
   --kui-font-weight-regular: 400; /** 400: The normal font weight. */
   --kui-font-weight-semibold: 600; /** 600: The semibold font weight. */
+  --kui-icon-color-danger: #f50045; /** Danger color for icons. */
+  --kui-icon-color-neutral: #828a9e; /** Neutral color for icons. */
+  --kui-icon-color-primary: #306fff; /** Primary color for icons. */
+  --kui-icon-color-success: #00a17b; /** Success color for icons. */
+  --kui-icon-color-warning: #ffc400; /** Warning color for icons. */
+  --kui-icon-size-10: 10px; /** 10px icon size. */
+  --kui-icon-size-20: 12px; /** 12px icon size. */
+  --kui-icon-size-30: 16px; /** 16px icon size. */
+  --kui-icon-size-40: 20px; /** 20px icon size. */
+  --kui-icon-size-50: 24px; /** 24px icon size (default). */
+  --kui-icon-size-60: 32px; /** 32px icon size. */
+  --kui-icon-size-70: 40px; /** 40px icon size. */
+  --kui-icon-size-80: 48px; /** 48px icon size. */
   --kui-letter-spacing-0: normal; /** Alias for letter-spacing-normal */
   --kui-letter-spacing-minus-10: -0.12px; /** -0.12px */
   --kui-letter-spacing-minus-20: -0.24px; /** -0.24px */
