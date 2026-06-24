@@ -1499,26 +1499,6 @@
     "$description": "Empty state title line height.",
     "$value": "24px"
   },
-  "kui-external-link-color-text": {
-    "$description": "External link text color in the resting state.",
-    "$value": "{color.alias.gray.60}"
-  },
-  "kui-external-link-color-text-active": {
-    "$description": "External link text color in the active (pressed) state.",
-    "$value": "{color.alias.gray.90}"
-  },
-  "kui-external-link-color-text-hover": {
-    "$description": "External link text color on hover and focus-visible.",
-    "$value": "{color.alias.gray.70}"
-  },
-  "kui-external-link-font-weight": {
-    "$value": "400",
-    "$description": "External link font weight."
-  },
-  "kui-external-link-shadow-focus": {
-    "$description": "External link focus-visible ring shadow.",
-    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
-  },
   "kui-file-upload-color-text-disabled": {
     "$description": "File upload selected-file text color when disabled (input appearance).",
     "$value": "{color.alias.gray.40}"
@@ -1953,6 +1933,38 @@
   },
   "kui-line-height-90": {
     "$value": "48px"
+  },
+  "kui-link-color-text": {
+    "$description": "Link text color.",
+    "$value": "{color.alias.gray.60}"
+  },
+  "kui-link-color-text-active": {
+    "$description": "Link text color in the active (pressed) state.",
+    "$value": "{color.alias.gray.90}"
+  },
+  "kui-link-color-text-disabled": {
+    "$description": "Link text color in the disabled state.",
+    "$value": "{color.alias.gray.40}"
+  },
+  "kui-link-color-text-hover": {
+    "$description": "Link text color on hover and focus-visible.",
+    "$value": "{color.alias.gray.70}"
+  },
+  "kui-link-font-weight": {
+    "$description": "Link font weight.",
+    "$value": "400"
+  },
+  "kui-link-shadow-focus": {
+    "$description": "Link focus-visible ring shadow.",
+    "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
+  },
+  "kui-link-text-decoration": {
+    "$description": "Link text decoration (e.g. underline).",
+    "$value": "underline"
+  },
+  "kui-link-text-decoration-hover": {
+    "$description": "Link text decoration on hover and focus-visible.",
+    "$value": "underline"
   },
   "kui-method-color-background-connect": {
     "$description": "Background color for the CONNECT method.",
