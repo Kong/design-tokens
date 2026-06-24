@@ -1,28 +1,24 @@
 {
   "breakpoint": {
+    "$type": "breakpoint",
     "mobile": {
       "$description": "Used for larger mobile screens. Any viewport width under this value is considered mobile.",
-      "$type": "breakpoint",
       "$value": "640px"
     },
     "phablet": {
       "$description": "Used for tablet screens.",
-      "$type": "breakpoint",
       "$value": "768px"
     },
     "tablet": {
       "$description": "Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout.",
-      "$type": "breakpoint",
       "$value": "1024px"
     },
     "laptop": {
       "$description": "Used for standard desktop screens.",
-      "$type": "breakpoint",
       "$value": "1280px"
     },
     "desktop": {
       "$description": "Used for larger desktop screens.",
-      "$type": "breakpoint",
       "$value": "1536px"
     }
   }
