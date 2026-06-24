@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Kong Konnect Design Tokens and style dictionary",
   "private": false,
   "type": "module",
@@ -88,7 +88,7 @@
     "url": "https://github.com/Kong/design-tokens/issues"
   },
   "devDependencies": {
-    "style-dictionary": "^5.4.0"
+    "style-dictionary": "^5.4.4"
   },
   "engines": {
     "node": ">=20.19.5",

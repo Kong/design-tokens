@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@2.0.0...@kong/design-tokens@2.0.1) (2026-06-24)
+
+**Note:** Version bump only for package @kong/design-tokens
+
 # 2.0.0 (2026-06-22)
 
 * feat(*)!: monorepository single tokens package [KHCP-20773] (#665) ([a0b4ee6](https://github.com/Kong/design-tokens/commit/a0b4ee6c5df04cad1e6c50df05a8a53c4dbb9e61)), closes [#665](https://github.com/Kong/design-tokens/issues/665)

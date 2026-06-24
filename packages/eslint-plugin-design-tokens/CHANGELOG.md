@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/Kong/design-tokens/compare/@kong/eslint-plugin-design-tokens@1.0.1...@kong/eslint-plugin-design-tokens@1.0.2) (2026-06-24)
+
+**Note:** Version bump only for package @kong/eslint-plugin-design-tokens
+
 ## [1.0.1](https://github.com/Kong/design-tokens/compare/@kong/eslint-plugin-design-tokens@0.1.0...@kong/eslint-plugin-design-tokens@1.0.1) (2026-06-22)
 
 ### Bug Fixes

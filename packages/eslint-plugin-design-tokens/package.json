@@ -1,6 +1,6 @@
 {
   "name": "@kong/eslint-plugin-design-tokens",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "description": "ESLint plugin for Kong UI design tokens",
   "exports": {
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.59.4",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.8"
   },
   "scripts": {
     "lint": "eslint .",
