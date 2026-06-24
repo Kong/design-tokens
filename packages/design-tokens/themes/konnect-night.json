@@ -2160,7 +2160,7 @@
   },
   "kui-modal-shadow": {
     "$description": "Modal dialog box shadow.",
-    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+    "$value": "0 4px 16px rgba(241, 243, 241, 0.10)"
   },
   "kui-modal-title-font-family": {
     "$description": "Modal title font family.",
@@ -2371,7 +2371,7 @@
   },
   "kui-pop-shadow": {
     "$description": "Popover container box shadow.",
-    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+    "$value": "0 4px 16px rgba(241, 243, 241, 0.10)"
   },
   "kui-pop-title-color-text": {
     "$description": "Popover title text color.",
@@ -2699,7 +2699,7 @@
   },
   "kui-slideout-shadow": {
     "$description": "Slideout panel box shadow.",
-    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+    "$value": "0 4px 16px rgba(241, 243, 241, 0.10)"
   },
   "kui-slideout-title-font-family": {
     "$description": "Slideout title font family.",
@@ -3454,7 +3454,7 @@
   },
   "kui-toaster-shadow": {
     "$description": "Toaster box shadow.",
-    "$value": "0 4px 16px rgba(0, 0, 0, 0.50)"
+    "$value": "0 4px 16px rgba(241, 243, 241, 0.10)"
   },
   "kui-toaster-title-font-size": {
     "$description": "Toaster title font size.",
