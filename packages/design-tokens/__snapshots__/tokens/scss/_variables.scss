@@ -149,6 +149,53 @@ $kui-breakpoint-phablet: 768px !default; // Used for tablet screens.
 $kui-breakpoint-tablet: 1024px !default; // Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout.
 $kui-breakpoint-laptop: 1280px !default; // Used for standard desktop screens.
 $kui-breakpoint-desktop: 1536px !default; // Used for larger desktop screens.
+$kui-font-family-code: 'JetBrains Mono', Consolas, monospace !default; // The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.
+$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif !default; // The standard heading text font family.
+$kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif !default; // The standard text font family.
+$kui-font-size-10: 10px !default;
+$kui-font-size-20: 12px !default;
+$kui-font-size-30: 14px !default;
+$kui-font-size-40: 16px !default;
+$kui-font-size-50: 18px !default;
+$kui-font-size-60: 20px !default;
+$kui-font-size-70: 24px !default;
+$kui-font-size-80: 32px !default;
+$kui-font-size-90: 40px !default;
+$kui-font-size-100: 48px !default;
+$kui-font-weight-bold: 700 !default; // 700: The bold font weight.
+$kui-font-weight-medium: 500 !default; // 500: The medium font weight.
+$kui-font-weight-regular: 400 !default; // 400: The normal font weight.
+$kui-font-weight-semibold: 600 !default; // 600: The semibold font weight.
+$kui-icon-color-danger: #f50045 !default; // Danger color for icons.
+$kui-icon-color-neutral: #828a9e !default; // Neutral color for icons.
+$kui-icon-color-primary: #306fff !default; // Primary color for icons.
+$kui-icon-color-success: #00a17b !default; // Success color for icons.
+$kui-icon-color-warning: #ffc400 !default; // Warning color for icons.
+$kui-icon-size-10: 10px !default; // 10px icon size.
+$kui-icon-size-20: 12px !default; // 12px icon size.
+$kui-icon-size-30: 16px !default; // 16px icon size.
+$kui-icon-size-40: 20px !default; // 20px icon size.
+$kui-icon-size-50: 24px !default; // 24px icon size (default).
+$kui-icon-size-60: 32px !default; // 32px icon size.
+$kui-icon-size-70: 40px !default; // 40px icon size.
+$kui-icon-size-80: 48px !default; // 48px icon size.
+$kui-letter-spacing-0: normal !default; // Alias for letter-spacing-normal
+$kui-letter-spacing-minus-10: -0.12px !default; // -0.12px
+$kui-letter-spacing-minus-20: -0.24px !default; // -0.24px
+$kui-letter-spacing-minus-30: -0.32px !default; // -0.32px
+$kui-letter-spacing-minus-40: -0.4px !default; // -0.4px
+$kui-letter-spacing-minus-50: -0.48px !default; // -0.48px
+$kui-letter-spacing-normal: normal !default; // normal
+$kui-line-height-10: 12px !default; // 12px
+$kui-line-height-20: 16px !default; // 16px
+$kui-line-height-30: 20px !default; // 20px
+$kui-line-height-40: 24px !default; // 24px
+$kui-line-height-50: 28px !default; // 28px
+$kui-line-height-60: 32px !default; // 32px
+$kui-line-height-70: 36px !default; // 36px
+$kui-line-height-80: 40px !default; // 40px
+$kui-line-height-90: 48px !default; // 48px
+$kui-line-height-100: 56px !default; // 56px
 $kui-method-color-background-connect: #f1f0ff !default; // Background color for the CONNECT method (purple.10).
 $kui-method-color-background-delete: #ffe5e5 !default; // Background color for the DELETE method (red.10).
 $kui-method-color-background-get: #eefaff !default; // Background color for the GET method (blue.10).
@@ -176,6 +223,44 @@ $kui-method-color-text-put: #995c00 !default; // Text color for the PUT method (
 $kui-method-color-text-put-strong: #804400 !default; // Strong text color for the PUT method (yellow.70).
 $kui-method-color-text-trace: #d60067 !default; // Text color for the TRACE method (pink.60).
 $kui-method-color-text-trace-strong: #ad0053 !default; // Strong text color for the TRACE method (pink.70).
+$kui-navigation-color-background: #000933 !default; // blue.100
+$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12) !default; // The background color of a selected navigation item.
+$kui-navigation-color-border: rgba(255, 255, 255, 0.12) !default; // rgba(255, 255, 255, 0.12)
+$kui-navigation-color-border-child: #00fabe !default; // The border color for a selected child navigation item.
+$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24) !default; // The color of the navigation section divider.
+$kui-navigation-color-text: #bee2ff !default; // Navigation link and icon color.
+$kui-navigation-color-text-focus: #ffffff !default; // Navigation link and icon focus-visible color.
+$kui-navigation-color-text-hover: #eefaff !default; // Navigation link and icon hover color.
+$kui-navigation-color-text-selected: #00fabe !default; // Navigation link and icon selected color.
+$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset !default; // The box-shadow for a focus-visible navigation link.
+$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset !default; // The left box-shadow for an active child navigation link.
+$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset !default; // Navigation link focus-visible box-shadow.
+$kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08) !default; // 0px 4px 20px 0px rgba(0, 0, 0, 0.08)
+$kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset !default; // 0px 0px 0px 1px gray.20 inset
+$kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset !default; // 0px 0px 0px 1px red.60 inset
+$kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset !default; // 0px 0px 0px 1px red.70 inset
+$kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset !default; // 0px 0px 0px 1px gray.20 inset
+$kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset !default; // 0px 0px 0px 1px blue.60 inset
+$kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset !default; // 0px 0px 0px 1px blue.90 inset
+$kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset !default; // 0px 0px 0px 1px blue.40 inset
+$kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2) !default; // 0px 0px 0px 4px rgba(0, 68, 244, 0.2)
+$kui-space-0: 0px !default; // 0px value for gaps, margin, or padding.
+$kui-space-10: 2px !default; // 2px value for gaps, margin, or padding.
+$kui-space-20: 4px !default; // 4px value for gaps, margin, or padding.
+$kui-space-30: 6px !default; // 6px value for gaps, margin, or padding.
+$kui-space-40: 8px !default; // 8px value for gaps, margin, or padding.
+$kui-space-50: 12px !default; // 12px value for gaps, margin, or padding.
+$kui-space-60: 16px !default; // 16px value for gaps, margin, or padding.
+$kui-space-70: 20px !default; // 20px value for gaps, margin, or padding.
+$kui-space-80: 24px !default; // 24px value for gaps, margin, or padding.
+$kui-space-90: 32px !default; // 32px value for gaps, margin, or padding.
+$kui-space-100: 40px !default; // 40px value for gaps, margin, or padding.
+$kui-space-110: 48px !default; // 48px value for gaps, margin, or padding.
+$kui-space-120: 56px !default; // 56px value for gaps, margin, or padding.
+$kui-space-130: 64px !default; // 64px value for gaps, margin, or padding.
+$kui-space-140: 80px !default; // 80px value for gaps, margin, or padding.
+$kui-space-150: 96px !default; // 96px value for gaps, margin, or padding.
+$kui-space-auto: auto !default; // auto
 $kui-status-color-100: #bee2ff !default; // Color representing response status code 100 (blue.20).
 $kui-status-color-101: #8fc1ff !default; // Color representing response status code 101 (blue.30).
 $kui-status-color-102: #5f9aff !default; // Color representing response status code 102 (blue.40).
@@ -258,88 +343,3 @@ $kui-status-color-text-200: #007d60 !default; // Text color for http status 200 
 $kui-status-color-text-300: #995c00 !default; // Text color for http status 300 elements (yellow.60).
 $kui-status-color-text-400: #d13500 !default; // Text color for http status 400 elements (orange.60).
 $kui-status-color-text-500: #d60027 !default; // Text color for http status 500 elements (red.60).
-$kui-font-family-code: 'JetBrains Mono', Consolas, monospace !default; // The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.
-$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif !default; // The standard heading text font family.
-$kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif !default; // The standard text font family.
-$kui-font-size-10: 10px !default;
-$kui-font-size-20: 12px !default;
-$kui-font-size-30: 14px !default;
-$kui-font-size-40: 16px !default;
-$kui-font-size-50: 18px !default;
-$kui-font-size-60: 20px !default;
-$kui-font-size-70: 24px !default;
-$kui-font-size-80: 32px !default;
-$kui-font-size-90: 40px !default;
-$kui-font-size-100: 48px !default;
-$kui-font-weight-bold: 700 !default; // 700: The bold font weight.
-$kui-font-weight-medium: 500 !default; // 500: The medium font weight.
-$kui-font-weight-regular: 400 !default; // 400: The normal font weight.
-$kui-font-weight-semibold: 600 !default; // 600: The semibold font weight.
-$kui-icon-color-danger: #f50045 !default; // Danger color for icons.
-$kui-icon-color-neutral: #828a9e !default; // Neutral color for icons.
-$kui-icon-color-primary: #306fff !default; // Primary color for icons.
-$kui-icon-color-success: #00a17b !default; // Success color for icons.
-$kui-icon-color-warning: #ffc400 !default; // Warning color for icons.
-$kui-icon-size-10: 10px !default; // 10px icon size.
-$kui-icon-size-20: 12px !default; // 12px icon size.
-$kui-icon-size-30: 16px !default; // 16px icon size.
-$kui-icon-size-40: 20px !default; // 20px icon size.
-$kui-icon-size-50: 24px !default; // 24px icon size (default).
-$kui-icon-size-60: 32px !default; // 32px icon size.
-$kui-icon-size-70: 40px !default; // 40px icon size.
-$kui-icon-size-80: 48px !default; // 48px icon size.
-$kui-letter-spacing-0: normal !default; // Alias for letter-spacing-normal
-$kui-letter-spacing-minus-10: -0.12px !default; // -0.12px
-$kui-letter-spacing-minus-20: -0.24px !default; // -0.24px
-$kui-letter-spacing-minus-30: -0.32px !default; // -0.32px
-$kui-letter-spacing-minus-40: -0.4px !default; // -0.4px
-$kui-letter-spacing-minus-50: -0.48px !default; // -0.48px
-$kui-letter-spacing-normal: normal !default; // normal
-$kui-line-height-10: 12px !default; // 12px
-$kui-line-height-20: 16px !default; // 16px
-$kui-line-height-30: 20px !default; // 20px
-$kui-line-height-40: 24px !default; // 24px
-$kui-line-height-50: 28px !default; // 28px
-$kui-line-height-60: 32px !default; // 32px
-$kui-line-height-70: 36px !default; // 36px
-$kui-line-height-80: 40px !default; // 40px
-$kui-line-height-90: 48px !default; // 48px
-$kui-line-height-100: 56px !default; // 56px
-$kui-navigation-color-background: #000933 !default; // blue.100
-$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12) !default; // The background color of a selected navigation item.
-$kui-navigation-color-border: rgba(255, 255, 255, 0.12) !default; // rgba(255, 255, 255, 0.12)
-$kui-navigation-color-border-child: #00fabe !default; // The border color for a selected child navigation item.
-$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24) !default; // The color of the navigation section divider.
-$kui-navigation-color-text: #bee2ff !default; // Navigation link and icon color.
-$kui-navigation-color-text-focus: #ffffff !default; // Navigation link and icon focus-visible color.
-$kui-navigation-color-text-hover: #eefaff !default; // Navigation link and icon hover color.
-$kui-navigation-color-text-selected: #00fabe !default; // Navigation link and icon selected color.
-$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset !default; // The box-shadow for a focus-visible navigation link.
-$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset !default; // The left box-shadow for an active child navigation link.
-$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset !default; // Navigation link focus-visible box-shadow.
-$kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08) !default; // 0px 4px 20px 0px rgba(0, 0, 0, 0.08)
-$kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset !default; // 0px 0px 0px 1px gray.20 inset
-$kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset !default; // 0px 0px 0px 1px red.60 inset
-$kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset !default; // 0px 0px 0px 1px red.70 inset
-$kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset !default; // 0px 0px 0px 1px gray.20 inset
-$kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset !default; // 0px 0px 0px 1px blue.60 inset
-$kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset !default; // 0px 0px 0px 1px blue.90 inset
-$kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset !default; // 0px 0px 0px 1px blue.40 inset
-$kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2) !default; // 0px 0px 0px 4px rgba(0, 68, 244, 0.2)
-$kui-space-0: 0px !default; // 0px value for gaps, margin, or padding.
-$kui-space-10: 2px !default; // 2px value for gaps, margin, or padding.
-$kui-space-20: 4px !default; // 4px value for gaps, margin, or padding.
-$kui-space-30: 6px !default; // 6px value for gaps, margin, or padding.
-$kui-space-40: 8px !default; // 8px value for gaps, margin, or padding.
-$kui-space-50: 12px !default; // 12px value for gaps, margin, or padding.
-$kui-space-60: 16px !default; // 16px value for gaps, margin, or padding.
-$kui-space-70: 20px !default; // 20px value for gaps, margin, or padding.
-$kui-space-80: 24px !default; // 24px value for gaps, margin, or padding.
-$kui-space-90: 32px !default; // 32px value for gaps, margin, or padding.
-$kui-space-100: 40px !default; // 40px value for gaps, margin, or padding.
-$kui-space-110: 48px !default; // 48px value for gaps, margin, or padding.
-$kui-space-120: 56px !default; // 56px value for gaps, margin, or padding.
-$kui-space-130: 64px !default; // 64px value for gaps, margin, or padding.
-$kui-space-140: 80px !default; // 80px value for gaps, margin, or padding.
-$kui-space-150: 96px !default; // 96px value for gaps, margin, or padding.
-$kui-space-auto: auto !default; // auto
