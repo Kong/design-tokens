@@ -1,6 +1,7 @@
 {
   "icon": {
     "color": {
+      "$type": "color",
       "danger": {
         "$description": "Danger color for icons.",
         "$value": "{color.alias.red.50}"

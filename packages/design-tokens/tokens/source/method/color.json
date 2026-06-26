@@ -1,6 +1,7 @@
 {
   "method": {
     "color": {
+      "$type": "color",
       "background": {
         "connect": {
           "$description": "Background color for the CONNECT method (purple.10).",

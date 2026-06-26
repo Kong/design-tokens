@@ -1,6 +1,7 @@
 {
   "navigation": {
     "color": {
+      "$type": "color",
       "background": {
         "_": {
           "$description": "blue.100",
