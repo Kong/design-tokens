@@ -28,8 +28,10 @@ export default [
       'jsonc/sort-keys': 'off',
     },
   },
-  {
-    files: ['packages/*/tokens/themes/**/*.json'],
+  // Apply the JSON config to theme files so they get the correct parser/processor
+  ...eslintKongUiConfigJson.map(config => ({
+    ...config,
+    files: ['packages/design-tokens/themes/*.json'],
     rules: {
       // Ensure themes utilize kebab-case
       'jsonc/key-name-casing': ['error',
@@ -43,7 +45,7 @@ export default [
         },
       ],
     },
-  },
+  })),
   // Exclude the generated JS snapshot from stylistic rules since it is auto-generated and not meant to be human-edited
   {
     files: ['packages/design-tokens/__snapshots__/tokens/js/index.mjs'],
