@@ -3342,7 +3342,7 @@
   },
   "kui-tabs-color-text-selected": {
     "$description": "Tabs current (selected) tab link text color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-tabs-font-family": {
     "$description": "Tabs font family.",
