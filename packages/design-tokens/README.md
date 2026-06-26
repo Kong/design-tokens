@@ -47,7 +47,7 @@ The `@kong/design-tokens` package uses a two-tier exported token taxonomy.
 Everything in `tokens/source/` is a semantic token — it has a concrete value and is exported to all formats (CSS, SCSS, LESS, JS). This includes:
 
 - **Scale tokens** — `--kui-color-*`, `--kui-space-*`, `--kui-border-radius-*`, `--kui-shadow-*`, `--kui-font-*`, etc. Named after the design dimension they represent.
-- **Domain tokens** (`tokens/source/domain/`) — `--kui-method-*`, `--kui-status-*`, `--kui-navigation-*`, `--kui-icon-*`. Named after a cross-cutting UI concept (HTTP methods, status codes, navigation chrome). Valued and exported exactly like scale tokens. **These are not component tokens** even though they're used inside components.
+- **Concept tokens** — `--kui-method-*`, `--kui-status-*`, `--kui-navigation-*`, `--kui-icon-*`. Named after a cross-cutting UI concept (HTTP methods, status codes, navigation chrome, icons) rather than a design dimension. Each family lives in its own folder under `tokens/source/` (`method/`, `status/`, `navigation/`, `icon/`), following the same pattern as the scale folders. They are plain semantic tokens, valued and exported exactly like scale tokens. **These are not component tokens** even though they're used inside components.
 
 ### Component tokens — names only, value-less
 
@@ -420,7 +420,7 @@ The package is organized around four top-level source directories:
 | Directory | Purpose |
 |-----------|---------|
 | `tokens/alias/` | **Internal alias palette** — raw CSS values (hex colors, base sizes) that semantic tokens reference via `{color.alias.*}`. Never exported in any build output; only used so Style Dictionary can resolve references at build time. |
-| `tokens/source/` | **Semantic tokens** — scale and domain tokens that are exported to `custom-properties.css`, SCSS, LESS, and JS. Subdirectories: `color/`, `space/`, `shadow/`, `font/`, `border/`, `animation/`, `breakpoint/`, `letter-spacing/`, `line-height/`, plus `domain/` for HTTP-method, status, navigation, and icon token families. |
+| `tokens/source/` | **Semantic tokens** exported to `custom-properties.css`, SCSS, LESS, and JS. Each token family is its own subdirectory: `color/`, `space/`, `shadow/`, `font/`, `border/`, `animation/`, `breakpoint/`, `letter-spacing/`, `line-height/`, plus the concept-named families `method/`, `status/`, `navigation/`, and `icon/` (HTTP methods, status codes, navigation chrome, icons). |
 | `tokens/components/` | **Component tokens** — name-only override slots for Kongponents components (`button/`, `card/`, `input/`, `badge/`, …). All `$value` fields must be `""`. Included in `KUI_THEMEABLE_TOKENS` — no CSS, no SCSS/LESS/JS values emitted. |
 | `themes/` | **Named theme override sets** — each `{name}.json` lists the token values that activate for `[data-kui-theme="{name}"]`. Values may be raw hex or `{color.alias.*}` references resolved at build time. |
 
