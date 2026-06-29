@@ -23,7 +23,7 @@
     }
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.59.4",
+    "@typescript-eslint/parser": "^8.61.1",
     "vitest": "^4.1.8"
   },
   "scripts": {
