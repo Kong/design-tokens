@@ -90,7 +90,7 @@ StyleDictionary.registerFormat({
   name: 'css/kui-theme',
   /**
    * Emits `@layer kui.theme { [data-kui-theme="name"] { ... } }`.
-   * Uses `token.value` (resolved) — alias references in theme files resolve
+   * Uses `token.$value` (resolved) — alias references in theme files resolve
    * because alias token files are included in each per-theme SD instance.
    */
   format: async function({ dictionary, options }) {
