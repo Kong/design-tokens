@@ -305,6 +305,90 @@ $kui-breakpoint-tablet: 1024px;
 $kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 $kui-breakpoint-desktop: 1536px;
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+$kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
+/* The standard heading text font family. */
+$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
+/* The standard text font family. */
+$kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
+$kui-font-size-10: 10px;
+$kui-font-size-20: 12px;
+$kui-font-size-30: 14px;
+$kui-font-size-40: 16px;
+$kui-font-size-50: 18px;
+$kui-font-size-60: 20px;
+$kui-font-size-70: 24px;
+$kui-font-size-80: 32px;
+$kui-font-size-90: 40px;
+$kui-font-size-100: 48px;
+/* 700: The bold font weight. */
+$kui-font-weight-bold: 700;
+/* 500: The medium font weight. */
+$kui-font-weight-medium: 500;
+/* 400: The normal font weight. */
+$kui-font-weight-regular: 400;
+/* 600: The semibold font weight. */
+$kui-font-weight-semibold: 600;
+/* Danger color for icons. */
+$kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+$kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+$kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+$kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+$kui-icon-color-warning: #ffc400;
+/* 10px icon size. */
+$kui-icon-size-10: 10px;
+/* 12px icon size. */
+$kui-icon-size-20: 12px;
+/* 16px icon size. */
+$kui-icon-size-30: 16px;
+/* 20px icon size. */
+$kui-icon-size-40: 20px;
+/* 24px icon size (default). */
+$kui-icon-size-50: 24px;
+/* 32px icon size. */
+$kui-icon-size-60: 32px;
+/* 40px icon size. */
+$kui-icon-size-70: 40px;
+/* 48px icon size. */
+$kui-icon-size-80: 48px;
+/* Alias for letter-spacing-normal */
+$kui-letter-spacing-0: normal;
+/* -0.12px */
+$kui-letter-spacing-minus-10: -0.12px;
+/* -0.24px */
+$kui-letter-spacing-minus-20: -0.24px;
+/* -0.32px */
+$kui-letter-spacing-minus-30: -0.32px;
+/* -0.4px */
+$kui-letter-spacing-minus-40: -0.4px;
+/* -0.48px */
+$kui-letter-spacing-minus-50: -0.48px;
+/* normal */
+$kui-letter-spacing-normal: normal;
+/* 12px */
+$kui-line-height-10: 12px;
+/* 16px */
+$kui-line-height-20: 16px;
+/* 20px */
+$kui-line-height-30: 20px;
+/* 24px */
+$kui-line-height-40: 24px;
+/* 28px */
+$kui-line-height-50: 28px;
+/* 32px */
+$kui-line-height-60: 32px;
+/* 36px */
+$kui-line-height-70: 36px;
+/* 40px */
+$kui-line-height-80: 40px;
+/* 48px */
+$kui-line-height-90: 48px;
+/* 56px */
+$kui-line-height-100: 56px;
 /* Background color for the CONNECT method (purple.10). */
 $kui-method-color-background-connect: #f1f0ff;
 /* Background color for the DELETE method (red.10). */
@@ -359,6 +443,82 @@ $kui-method-color-text-put-strong: #804400;
 $kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 $kui-method-color-text-trace-strong: #ad0053;
+/* blue.100 */
+$kui-navigation-color-background: #000933;
+/* The background color of a selected navigation item. */
+$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+$kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* The border color for a selected child navigation item. */
+$kui-navigation-color-border-child: #00fabe;
+/* The color of the navigation section divider. */
+$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* Navigation link and icon color. */
+$kui-navigation-color-text: #bee2ff;
+/* Navigation link and icon focus-visible color. */
+$kui-navigation-color-text-focus: #ffffff;
+/* Navigation link and icon hover color. */
+$kui-navigation-color-text-hover: #eefaff;
+/* Navigation link and icon selected color. */
+$kui-navigation-color-text-selected: #00fabe;
+/* The box-shadow for a focus-visible navigation link. */
+$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* The left box-shadow for an active child navigation link. */
+$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* Navigation link focus-visible box-shadow. */
+$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+$kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 1px gray.20 inset */
+$kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px red.60 inset */
+$kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px red.70 inset */
+$kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
+/* 0px 0px 0px 1px gray.20 inset */
+$kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px blue.60 inset */
+$kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.90 inset */
+$kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
+/* 0px 0px 0px 1px blue.40 inset */
+$kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+$kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
+/* 0px value for gaps, margin, or padding. */
+$kui-space-0: 0px;
+/* 2px value for gaps, margin, or padding. */
+$kui-space-10: 2px;
+/* 4px value for gaps, margin, or padding. */
+$kui-space-20: 4px;
+/* 6px value for gaps, margin, or padding. */
+$kui-space-30: 6px;
+/* 8px value for gaps, margin, or padding. */
+$kui-space-40: 8px;
+/* 12px value for gaps, margin, or padding. */
+$kui-space-50: 12px;
+/* 16px value for gaps, margin, or padding. */
+$kui-space-60: 16px;
+/* 20px value for gaps, margin, or padding. */
+$kui-space-70: 20px;
+/* 24px value for gaps, margin, or padding. */
+$kui-space-80: 24px;
+/* 32px value for gaps, margin, or padding. */
+$kui-space-90: 32px;
+/* 40px value for gaps, margin, or padding. */
+$kui-space-100: 40px;
+/* 48px value for gaps, margin, or padding. */
+$kui-space-110: 48px;
+/* 56px value for gaps, margin, or padding. */
+$kui-space-120: 56px;
+/* 64px value for gaps, margin, or padding. */
+$kui-space-130: 64px;
+/* 80px value for gaps, margin, or padding. */
+$kui-space-140: 80px;
+/* 96px value for gaps, margin, or padding. */
+$kui-space-150: 96px;
+/* auto */
+$kui-space-auto: auto;
 /* Color representing response status code 100 (blue.20). */
 $kui-status-color-100: #bee2ff;
 /* Color representing response status code 101 (blue.30). */
@@ -523,166 +683,6 @@ $kui-status-color-text-300: #995c00;
 $kui-status-color-text-400: #d13500;
 /* Text color for http status 500 elements (red.60). */
 $kui-status-color-text-500: #d60027;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-$kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
-/* The standard heading text font family. */
-$kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
-/* The standard text font family. */
-$kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
-$kui-font-size-10: 10px;
-$kui-font-size-20: 12px;
-$kui-font-size-30: 14px;
-$kui-font-size-40: 16px;
-$kui-font-size-50: 18px;
-$kui-font-size-60: 20px;
-$kui-font-size-70: 24px;
-$kui-font-size-80: 32px;
-$kui-font-size-90: 40px;
-$kui-font-size-100: 48px;
-/* 700: The bold font weight. */
-$kui-font-weight-bold: 700;
-/* 500: The medium font weight. */
-$kui-font-weight-medium: 500;
-/* 400: The normal font weight. */
-$kui-font-weight-regular: 400;
-/* 600: The semibold font weight. */
-$kui-font-weight-semibold: 600;
-/* Danger color for icons. */
-$kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
-$kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
-$kui-icon-color-primary: #306fff;
-/* Success color for icons. */
-$kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
-$kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
-$kui-icon-size-10: 10px;
-/* 12px icon size. */
-$kui-icon-size-20: 12px;
-/* 16px icon size. */
-$kui-icon-size-30: 16px;
-/* 20px icon size. */
-$kui-icon-size-40: 20px;
-/* 24px icon size (default). */
-$kui-icon-size-50: 24px;
-/* 32px icon size. */
-$kui-icon-size-60: 32px;
-/* 40px icon size. */
-$kui-icon-size-70: 40px;
-/* 48px icon size. */
-$kui-icon-size-80: 48px;
-/* Alias for letter-spacing-normal */
-$kui-letter-spacing-0: normal;
-/* -0.12px */
-$kui-letter-spacing-minus-10: -0.12px;
-/* -0.24px */
-$kui-letter-spacing-minus-20: -0.24px;
-/* -0.32px */
-$kui-letter-spacing-minus-30: -0.32px;
-/* -0.4px */
-$kui-letter-spacing-minus-40: -0.4px;
-/* -0.48px */
-$kui-letter-spacing-minus-50: -0.48px;
-/* normal */
-$kui-letter-spacing-normal: normal;
-/* 12px */
-$kui-line-height-10: 12px;
-/* 16px */
-$kui-line-height-20: 16px;
-/* 20px */
-$kui-line-height-30: 20px;
-/* 24px */
-$kui-line-height-40: 24px;
-/* 28px */
-$kui-line-height-50: 28px;
-/* 32px */
-$kui-line-height-60: 32px;
-/* 36px */
-$kui-line-height-70: 36px;
-/* 40px */
-$kui-line-height-80: 40px;
-/* 48px */
-$kui-line-height-90: 48px;
-/* 56px */
-$kui-line-height-100: 56px;
-/* blue.100 */
-$kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
-$kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(255, 255, 255, 0.12) */
-$kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
-$kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
-$kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
-$kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
-$kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
-$kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
-$kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
-$kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
-$kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
-$kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-$kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-/* 0px 0px 0px 1px gray.20 inset */
-$kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px red.60 inset */
-$kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
-/* 0px 0px 0px 1px red.70 inset */
-$kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
-/* 0px 0px 0px 1px gray.20 inset */
-$kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px blue.60 inset */
-$kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
-/* 0px 0px 0px 1px blue.90 inset */
-$kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
-/* 0px 0px 0px 1px blue.40 inset */
-$kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-$kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px value for gaps, margin, or padding. */
-$kui-space-0: 0px;
-/* 2px value for gaps, margin, or padding. */
-$kui-space-10: 2px;
-/* 4px value for gaps, margin, or padding. */
-$kui-space-20: 4px;
-/* 6px value for gaps, margin, or padding. */
-$kui-space-30: 6px;
-/* 8px value for gaps, margin, or padding. */
-$kui-space-40: 8px;
-/* 12px value for gaps, margin, or padding. */
-$kui-space-50: 12px;
-/* 16px value for gaps, margin, or padding. */
-$kui-space-60: 16px;
-/* 20px value for gaps, margin, or padding. */
-$kui-space-70: 20px;
-/* 24px value for gaps, margin, or padding. */
-$kui-space-80: 24px;
-/* 32px value for gaps, margin, or padding. */
-$kui-space-90: 32px;
-/* 40px value for gaps, margin, or padding. */
-$kui-space-100: 40px;
-/* 48px value for gaps, margin, or padding. */
-$kui-space-110: 48px;
-/* 56px value for gaps, margin, or padding. */
-$kui-space-120: 56px;
-/* 64px value for gaps, margin, or padding. */
-$kui-space-130: 64px;
-/* 80px value for gaps, margin, or padding. */
-$kui-space-140: 80px;
-/* 96px value for gaps, margin, or padding. */
-$kui-space-150: 96px;
-/* auto */
-$kui-space-auto: auto;
 ```
 
 </details>
@@ -981,6 +981,90 @@ $tokens-map: (
   'kui-breakpoint-laptop': 1280px,
   /* Used for larger desktop screens. */
   'kui-breakpoint-desktop': 1536px,
+  /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+  'kui-font-family-code': 'JetBrains Mono', Consolas, monospace,
+  /* The standard heading text font family. */
+  'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif,
+  /* The standard text font family. */
+  'kui-font-family-text': 'Inter', Roboto, Helvetica, sans-serif,
+  'kui-font-size-10': 10px,
+  'kui-font-size-20': 12px,
+  'kui-font-size-30': 14px,
+  'kui-font-size-40': 16px,
+  'kui-font-size-50': 18px,
+  'kui-font-size-60': 20px,
+  'kui-font-size-70': 24px,
+  'kui-font-size-80': 32px,
+  'kui-font-size-90': 40px,
+  'kui-font-size-100': 48px,
+  /* 700: The bold font weight. */
+  'kui-font-weight-bold': 700,
+  /* 500: The medium font weight. */
+  'kui-font-weight-medium': 500,
+  /* 400: The normal font weight. */
+  'kui-font-weight-regular': 400,
+  /* 600: The semibold font weight. */
+  'kui-font-weight-semibold': 600,
+  /* Danger color for icons. */
+  'kui-icon-color-danger': #f50045,
+  /* Neutral color for icons. */
+  'kui-icon-color-neutral': #828a9e,
+  /* Primary color for icons. */
+  'kui-icon-color-primary': #306fff,
+  /* Success color for icons. */
+  'kui-icon-color-success': #00a17b,
+  /* Warning color for icons. */
+  'kui-icon-color-warning': #ffc400,
+  /* 10px icon size. */
+  'kui-icon-size-10': 10px,
+  /* 12px icon size. */
+  'kui-icon-size-20': 12px,
+  /* 16px icon size. */
+  'kui-icon-size-30': 16px,
+  /* 20px icon size. */
+  'kui-icon-size-40': 20px,
+  /* 24px icon size (default). */
+  'kui-icon-size-50': 24px,
+  /* 32px icon size. */
+  'kui-icon-size-60': 32px,
+  /* 40px icon size. */
+  'kui-icon-size-70': 40px,
+  /* 48px icon size. */
+  'kui-icon-size-80': 48px,
+  /* Alias for letter-spacing-normal */
+  'kui-letter-spacing-0': normal,
+  /* -0.12px */
+  'kui-letter-spacing-minus-10': -0.12px,
+  /* -0.24px */
+  'kui-letter-spacing-minus-20': -0.24px,
+  /* -0.32px */
+  'kui-letter-spacing-minus-30': -0.32px,
+  /* -0.4px */
+  'kui-letter-spacing-minus-40': -0.4px,
+  /* -0.48px */
+  'kui-letter-spacing-minus-50': -0.48px,
+  /* normal */
+  'kui-letter-spacing-normal': normal,
+  /* 12px */
+  'kui-line-height-10': 12px,
+  /* 16px */
+  'kui-line-height-20': 16px,
+  /* 20px */
+  'kui-line-height-30': 20px,
+  /* 24px */
+  'kui-line-height-40': 24px,
+  /* 28px */
+  'kui-line-height-50': 28px,
+  /* 32px */
+  'kui-line-height-60': 32px,
+  /* 36px */
+  'kui-line-height-70': 36px,
+  /* 40px */
+  'kui-line-height-80': 40px,
+  /* 48px */
+  'kui-line-height-90': 48px,
+  /* 56px */
+  'kui-line-height-100': 56px,
   /* Background color for the CONNECT method (purple.10). */
   'kui-method-color-background-connect': #f1f0ff,
   /* Background color for the DELETE method (red.10). */
@@ -1035,6 +1119,82 @@ $tokens-map: (
   'kui-method-color-text-trace': #d60067,
   /* Strong text color for the TRACE method (pink.70). */
   'kui-method-color-text-trace-strong': #ad0053,
+  /* blue.100 */
+  'kui-navigation-color-background': #000933,
+  /* The background color of a selected navigation item. */
+  'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12),
+  /* rgba(255, 255, 255, 0.12) */
+  'kui-navigation-color-border': rgba(255, 255, 255, 0.12),
+  /* The border color for a selected child navigation item. */
+  'kui-navigation-color-border-child': #00fabe,
+  /* The color of the navigation section divider. */
+  'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24),
+  /* Navigation link and icon color. */
+  'kui-navigation-color-text': #bee2ff,
+  /* Navigation link and icon focus-visible color. */
+  'kui-navigation-color-text-focus': #ffffff,
+  /* Navigation link and icon hover color. */
+  'kui-navigation-color-text-hover': #eefaff,
+  /* Navigation link and icon selected color. */
+  'kui-navigation-color-text-selected': #00fabe,
+  /* The box-shadow for a focus-visible navigation link. */
+  'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+  /* The left box-shadow for an active child navigation link. */
+  'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset,
+  /* Navigation link focus-visible box-shadow. */
+  'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset,
+  /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+  'kui-shadow': 0px 4px 20px 0px rgba(0, 0, 0, 0.08),
+  /* 0px 0px 0px 1px gray.20 inset */
+  'kui-shadow-border': 0px 0px 0px 1px #e0e4ea inset,
+  /* 0px 0px 0px 1px red.60 inset */
+  'kui-shadow-border-danger': 0px 0px 0px 1px #d60027 inset,
+  /* 0px 0px 0px 1px red.70 inset */
+  'kui-shadow-border-danger-strong': 0px 0px 0px 1px #ad000e inset,
+  /* 0px 0px 0px 1px gray.20 inset */
+  'kui-shadow-border-disabled': 0px 0px 0px 1px #e0e4ea inset,
+  /* 0px 0px 0px 1px blue.60 inset */
+  'kui-shadow-border-primary': 0px 0px 0px 1px #0044f4 inset,
+  /* 0px 0px 0px 1px blue.90 inset */
+  'kui-shadow-border-primary-strongest': 0px 0px 0px 1px #001466 inset,
+  /* 0px 0px 0px 1px blue.40 inset */
+  'kui-shadow-border-primary-weak': 0px 0px 0px 1px #5f9aff inset,
+  /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+  'kui-shadow-focus': 0px 0px 0px 4px rgba(0, 68, 244, 0.2),
+  /* 0px value for gaps, margin, or padding. */
+  'kui-space-0': 0px,
+  /* 2px value for gaps, margin, or padding. */
+  'kui-space-10': 2px,
+  /* 4px value for gaps, margin, or padding. */
+  'kui-space-20': 4px,
+  /* 6px value for gaps, margin, or padding. */
+  'kui-space-30': 6px,
+  /* 8px value for gaps, margin, or padding. */
+  'kui-space-40': 8px,
+  /* 12px value for gaps, margin, or padding. */
+  'kui-space-50': 12px,
+  /* 16px value for gaps, margin, or padding. */
+  'kui-space-60': 16px,
+  /* 20px value for gaps, margin, or padding. */
+  'kui-space-70': 20px,
+  /* 24px value for gaps, margin, or padding. */
+  'kui-space-80': 24px,
+  /* 32px value for gaps, margin, or padding. */
+  'kui-space-90': 32px,
+  /* 40px value for gaps, margin, or padding. */
+  'kui-space-100': 40px,
+  /* 48px value for gaps, margin, or padding. */
+  'kui-space-110': 48px,
+  /* 56px value for gaps, margin, or padding. */
+  'kui-space-120': 56px,
+  /* 64px value for gaps, margin, or padding. */
+  'kui-space-130': 64px,
+  /* 80px value for gaps, margin, or padding. */
+  'kui-space-140': 80px,
+  /* 96px value for gaps, margin, or padding. */
+  'kui-space-150': 96px,
+  /* auto */
+  'kui-space-auto': auto,
   /* Color representing response status code 100 (blue.20). */
   'kui-status-color-100': #bee2ff,
   /* Color representing response status code 101 (blue.30). */
@@ -1199,166 +1359,6 @@ $tokens-map: (
   'kui-status-color-text-400': #d13500,
   /* Text color for http status 500 elements (red.60). */
   'kui-status-color-text-500': #d60027,
-  /* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-  'kui-font-family-code': 'JetBrains Mono', Consolas, monospace,
-  /* The standard heading text font family. */
-  'kui-font-family-heading': 'Inter', Roboto, Helvetica, sans-serif,
-  /* The standard text font family. */
-  'kui-font-family-text': 'Inter', Roboto, Helvetica, sans-serif,
-  'kui-font-size-10': 10px,
-  'kui-font-size-20': 12px,
-  'kui-font-size-30': 14px,
-  'kui-font-size-40': 16px,
-  'kui-font-size-50': 18px,
-  'kui-font-size-60': 20px,
-  'kui-font-size-70': 24px,
-  'kui-font-size-80': 32px,
-  'kui-font-size-90': 40px,
-  'kui-font-size-100': 48px,
-  /* 700: The bold font weight. */
-  'kui-font-weight-bold': 700,
-  /* 500: The medium font weight. */
-  'kui-font-weight-medium': 500,
-  /* 400: The normal font weight. */
-  'kui-font-weight-regular': 400,
-  /* 600: The semibold font weight. */
-  'kui-font-weight-semibold': 600,
-  /* Danger color for icons. */
-  'kui-icon-color-danger': #f50045,
-  /* Neutral color for icons. */
-  'kui-icon-color-neutral': #828a9e,
-  /* Primary color for icons. */
-  'kui-icon-color-primary': #306fff,
-  /* Success color for icons. */
-  'kui-icon-color-success': #00a17b,
-  /* Warning color for icons. */
-  'kui-icon-color-warning': #ffc400,
-  /* 10px icon size. */
-  'kui-icon-size-10': 10px,
-  /* 12px icon size. */
-  'kui-icon-size-20': 12px,
-  /* 16px icon size. */
-  'kui-icon-size-30': 16px,
-  /* 20px icon size. */
-  'kui-icon-size-40': 20px,
-  /* 24px icon size (default). */
-  'kui-icon-size-50': 24px,
-  /* 32px icon size. */
-  'kui-icon-size-60': 32px,
-  /* 40px icon size. */
-  'kui-icon-size-70': 40px,
-  /* 48px icon size. */
-  'kui-icon-size-80': 48px,
-  /* Alias for letter-spacing-normal */
-  'kui-letter-spacing-0': normal,
-  /* -0.12px */
-  'kui-letter-spacing-minus-10': -0.12px,
-  /* -0.24px */
-  'kui-letter-spacing-minus-20': -0.24px,
-  /* -0.32px */
-  'kui-letter-spacing-minus-30': -0.32px,
-  /* -0.4px */
-  'kui-letter-spacing-minus-40': -0.4px,
-  /* -0.48px */
-  'kui-letter-spacing-minus-50': -0.48px,
-  /* normal */
-  'kui-letter-spacing-normal': normal,
-  /* 12px */
-  'kui-line-height-10': 12px,
-  /* 16px */
-  'kui-line-height-20': 16px,
-  /* 20px */
-  'kui-line-height-30': 20px,
-  /* 24px */
-  'kui-line-height-40': 24px,
-  /* 28px */
-  'kui-line-height-50': 28px,
-  /* 32px */
-  'kui-line-height-60': 32px,
-  /* 36px */
-  'kui-line-height-70': 36px,
-  /* 40px */
-  'kui-line-height-80': 40px,
-  /* 48px */
-  'kui-line-height-90': 48px,
-  /* 56px */
-  'kui-line-height-100': 56px,
-  /* blue.100 */
-  'kui-navigation-color-background': #000933,
-  /* The background color of a selected navigation item. */
-  'kui-navigation-color-background-selected': rgba(255, 255, 255, 0.12),
-  /* rgba(255, 255, 255, 0.12) */
-  'kui-navigation-color-border': rgba(255, 255, 255, 0.12),
-  /* The border color for a selected child navigation item. */
-  'kui-navigation-color-border-child': #00fabe,
-  /* The color of the navigation section divider. */
-  'kui-navigation-color-border-divider': rgba(255, 255, 255, 0.24),
-  /* Navigation link and icon color. */
-  'kui-navigation-color-text': #bee2ff,
-  /* Navigation link and icon focus-visible color. */
-  'kui-navigation-color-text-focus': #ffffff,
-  /* Navigation link and icon hover color. */
-  'kui-navigation-color-text-hover': #eefaff,
-  /* Navigation link and icon selected color. */
-  'kui-navigation-color-text-selected': #00fabe,
-  /* The box-shadow for a focus-visible navigation link. */
-  'kui-navigation-shadow-border': 0 0 0 1px rgba(255, 255, 255, 0.12) inset,
-  /* The left box-shadow for an active child navigation link. */
-  'kui-navigation-shadow-border-child': 4px 0 0 0 #00fabe inset,
-  /* Navigation link focus-visible box-shadow. */
-  'kui-navigation-shadow-focus': 0 0 0 1px rgba(255, 255, 255, 0.60) inset,
-  /* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-  'kui-shadow': 0px 4px 20px 0px rgba(0, 0, 0, 0.08),
-  /* 0px 0px 0px 1px gray.20 inset */
-  'kui-shadow-border': 0px 0px 0px 1px #e0e4ea inset,
-  /* 0px 0px 0px 1px red.60 inset */
-  'kui-shadow-border-danger': 0px 0px 0px 1px #d60027 inset,
-  /* 0px 0px 0px 1px red.70 inset */
-  'kui-shadow-border-danger-strong': 0px 0px 0px 1px #ad000e inset,
-  /* 0px 0px 0px 1px gray.20 inset */
-  'kui-shadow-border-disabled': 0px 0px 0px 1px #e0e4ea inset,
-  /* 0px 0px 0px 1px blue.60 inset */
-  'kui-shadow-border-primary': 0px 0px 0px 1px #0044f4 inset,
-  /* 0px 0px 0px 1px blue.90 inset */
-  'kui-shadow-border-primary-strongest': 0px 0px 0px 1px #001466 inset,
-  /* 0px 0px 0px 1px blue.40 inset */
-  'kui-shadow-border-primary-weak': 0px 0px 0px 1px #5f9aff inset,
-  /* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-  'kui-shadow-focus': 0px 0px 0px 4px rgba(0, 68, 244, 0.2),
-  /* 0px value for gaps, margin, or padding. */
-  'kui-space-0': 0px,
-  /* 2px value for gaps, margin, or padding. */
-  'kui-space-10': 2px,
-  /* 4px value for gaps, margin, or padding. */
-  'kui-space-20': 4px,
-  /* 6px value for gaps, margin, or padding. */
-  'kui-space-30': 6px,
-  /* 8px value for gaps, margin, or padding. */
-  'kui-space-40': 8px,
-  /* 12px value for gaps, margin, or padding. */
-  'kui-space-50': 12px,
-  /* 16px value for gaps, margin, or padding. */
-  'kui-space-60': 16px,
-  /* 20px value for gaps, margin, or padding. */
-  'kui-space-70': 20px,
-  /* 24px value for gaps, margin, or padding. */
-  'kui-space-80': 24px,
-  /* 32px value for gaps, margin, or padding. */
-  'kui-space-90': 32px,
-  /* 40px value for gaps, margin, or padding. */
-  'kui-space-100': 40px,
-  /* 48px value for gaps, margin, or padding. */
-  'kui-space-110': 48px,
-  /* 56px value for gaps, margin, or padding. */
-  'kui-space-120': 56px,
-  /* 64px value for gaps, margin, or padding. */
-  'kui-space-130': 64px,
-  /* 80px value for gaps, margin, or padding. */
-  'kui-space-140': 80px,
-  /* 96px value for gaps, margin, or padding. */
-  'kui-space-150': 96px,
-  /* auto */
-  'kui-space-auto': auto,
 );
 ```
 
@@ -1659,6 +1659,90 @@ $tokens-map: (
 @kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 @kui-breakpoint-desktop: 1536px;
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+@kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
+/* The standard heading text font family. */
+@kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
+/* The standard text font family. */
+@kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
+@kui-font-size-10: 10px;
+@kui-font-size-20: 12px;
+@kui-font-size-30: 14px;
+@kui-font-size-40: 16px;
+@kui-font-size-50: 18px;
+@kui-font-size-60: 20px;
+@kui-font-size-70: 24px;
+@kui-font-size-80: 32px;
+@kui-font-size-90: 40px;
+@kui-font-size-100: 48px;
+/* 700: The bold font weight. */
+@kui-font-weight-bold: 700;
+/* 500: The medium font weight. */
+@kui-font-weight-medium: 500;
+/* 400: The normal font weight. */
+@kui-font-weight-regular: 400;
+/* 600: The semibold font weight. */
+@kui-font-weight-semibold: 600;
+/* Danger color for icons. */
+@kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+@kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+@kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+@kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+@kui-icon-color-warning: #ffc400;
+/* 10px icon size. */
+@kui-icon-size-10: 10px;
+/* 12px icon size. */
+@kui-icon-size-20: 12px;
+/* 16px icon size. */
+@kui-icon-size-30: 16px;
+/* 20px icon size. */
+@kui-icon-size-40: 20px;
+/* 24px icon size (default). */
+@kui-icon-size-50: 24px;
+/* 32px icon size. */
+@kui-icon-size-60: 32px;
+/* 40px icon size. */
+@kui-icon-size-70: 40px;
+/* 48px icon size. */
+@kui-icon-size-80: 48px;
+/* Alias for letter-spacing-normal */
+@kui-letter-spacing-0: normal;
+/* -0.12px */
+@kui-letter-spacing-minus-10: -0.12px;
+/* -0.24px */
+@kui-letter-spacing-minus-20: -0.24px;
+/* -0.32px */
+@kui-letter-spacing-minus-30: -0.32px;
+/* -0.4px */
+@kui-letter-spacing-minus-40: -0.4px;
+/* -0.48px */
+@kui-letter-spacing-minus-50: -0.48px;
+/* normal */
+@kui-letter-spacing-normal: normal;
+/* 12px */
+@kui-line-height-10: 12px;
+/* 16px */
+@kui-line-height-20: 16px;
+/* 20px */
+@kui-line-height-30: 20px;
+/* 24px */
+@kui-line-height-40: 24px;
+/* 28px */
+@kui-line-height-50: 28px;
+/* 32px */
+@kui-line-height-60: 32px;
+/* 36px */
+@kui-line-height-70: 36px;
+/* 40px */
+@kui-line-height-80: 40px;
+/* 48px */
+@kui-line-height-90: 48px;
+/* 56px */
+@kui-line-height-100: 56px;
 /* Background color for the CONNECT method (purple.10). */
 @kui-method-color-background-connect: #f1f0ff;
 /* Background color for the DELETE method (red.10). */
@@ -1713,6 +1797,82 @@ $tokens-map: (
 @kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 @kui-method-color-text-trace-strong: #ad0053;
+/* blue.100 */
+@kui-navigation-color-background: #000933;
+/* The background color of a selected navigation item. */
+@kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+@kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* The border color for a selected child navigation item. */
+@kui-navigation-color-border-child: #00fabe;
+/* The color of the navigation section divider. */
+@kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* Navigation link and icon color. */
+@kui-navigation-color-text: #bee2ff;
+/* Navigation link and icon focus-visible color. */
+@kui-navigation-color-text-focus: #ffffff;
+/* Navigation link and icon hover color. */
+@kui-navigation-color-text-hover: #eefaff;
+/* Navigation link and icon selected color. */
+@kui-navigation-color-text-selected: #00fabe;
+/* The box-shadow for a focus-visible navigation link. */
+@kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* The left box-shadow for an active child navigation link. */
+@kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* Navigation link focus-visible box-shadow. */
+@kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+@kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 1px gray.20 inset */
+@kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px red.60 inset */
+@kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px red.70 inset */
+@kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
+/* 0px 0px 0px 1px gray.20 inset */
+@kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px blue.60 inset */
+@kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.90 inset */
+@kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
+/* 0px 0px 0px 1px blue.40 inset */
+@kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+@kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
+/* 0px value for gaps, margin, or padding. */
+@kui-space-0: 0px;
+/* 2px value for gaps, margin, or padding. */
+@kui-space-10: 2px;
+/* 4px value for gaps, margin, or padding. */
+@kui-space-20: 4px;
+/* 6px value for gaps, margin, or padding. */
+@kui-space-30: 6px;
+/* 8px value for gaps, margin, or padding. */
+@kui-space-40: 8px;
+/* 12px value for gaps, margin, or padding. */
+@kui-space-50: 12px;
+/* 16px value for gaps, margin, or padding. */
+@kui-space-60: 16px;
+/* 20px value for gaps, margin, or padding. */
+@kui-space-70: 20px;
+/* 24px value for gaps, margin, or padding. */
+@kui-space-80: 24px;
+/* 32px value for gaps, margin, or padding. */
+@kui-space-90: 32px;
+/* 40px value for gaps, margin, or padding. */
+@kui-space-100: 40px;
+/* 48px value for gaps, margin, or padding. */
+@kui-space-110: 48px;
+/* 56px value for gaps, margin, or padding. */
+@kui-space-120: 56px;
+/* 64px value for gaps, margin, or padding. */
+@kui-space-130: 64px;
+/* 80px value for gaps, margin, or padding. */
+@kui-space-140: 80px;
+/* 96px value for gaps, margin, or padding. */
+@kui-space-150: 96px;
+/* auto */
+@kui-space-auto: auto;
 /* Color representing response status code 100 (blue.20). */
 @kui-status-color-100: #bee2ff;
 /* Color representing response status code 101 (blue.30). */
@@ -1877,166 +2037,6 @@ $tokens-map: (
 @kui-status-color-text-400: #d13500;
 /* Text color for http status 500 elements (red.60). */
 @kui-status-color-text-500: #d60027;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-@kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
-/* The standard heading text font family. */
-@kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
-/* The standard text font family. */
-@kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
-@kui-font-size-10: 10px;
-@kui-font-size-20: 12px;
-@kui-font-size-30: 14px;
-@kui-font-size-40: 16px;
-@kui-font-size-50: 18px;
-@kui-font-size-60: 20px;
-@kui-font-size-70: 24px;
-@kui-font-size-80: 32px;
-@kui-font-size-90: 40px;
-@kui-font-size-100: 48px;
-/* 700: The bold font weight. */
-@kui-font-weight-bold: 700;
-/* 500: The medium font weight. */
-@kui-font-weight-medium: 500;
-/* 400: The normal font weight. */
-@kui-font-weight-regular: 400;
-/* 600: The semibold font weight. */
-@kui-font-weight-semibold: 600;
-/* Danger color for icons. */
-@kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
-@kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
-@kui-icon-color-primary: #306fff;
-/* Success color for icons. */
-@kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
-@kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
-@kui-icon-size-10: 10px;
-/* 12px icon size. */
-@kui-icon-size-20: 12px;
-/* 16px icon size. */
-@kui-icon-size-30: 16px;
-/* 20px icon size. */
-@kui-icon-size-40: 20px;
-/* 24px icon size (default). */
-@kui-icon-size-50: 24px;
-/* 32px icon size. */
-@kui-icon-size-60: 32px;
-/* 40px icon size. */
-@kui-icon-size-70: 40px;
-/* 48px icon size. */
-@kui-icon-size-80: 48px;
-/* Alias for letter-spacing-normal */
-@kui-letter-spacing-0: normal;
-/* -0.12px */
-@kui-letter-spacing-minus-10: -0.12px;
-/* -0.24px */
-@kui-letter-spacing-minus-20: -0.24px;
-/* -0.32px */
-@kui-letter-spacing-minus-30: -0.32px;
-/* -0.4px */
-@kui-letter-spacing-minus-40: -0.4px;
-/* -0.48px */
-@kui-letter-spacing-minus-50: -0.48px;
-/* normal */
-@kui-letter-spacing-normal: normal;
-/* 12px */
-@kui-line-height-10: 12px;
-/* 16px */
-@kui-line-height-20: 16px;
-/* 20px */
-@kui-line-height-30: 20px;
-/* 24px */
-@kui-line-height-40: 24px;
-/* 28px */
-@kui-line-height-50: 28px;
-/* 32px */
-@kui-line-height-60: 32px;
-/* 36px */
-@kui-line-height-70: 36px;
-/* 40px */
-@kui-line-height-80: 40px;
-/* 48px */
-@kui-line-height-90: 48px;
-/* 56px */
-@kui-line-height-100: 56px;
-/* blue.100 */
-@kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
-@kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(255, 255, 255, 0.12) */
-@kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
-@kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
-@kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
-@kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
-@kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
-@kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
-@kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
-@kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
-@kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
-@kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-@kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-/* 0px 0px 0px 1px gray.20 inset */
-@kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px red.60 inset */
-@kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
-/* 0px 0px 0px 1px red.70 inset */
-@kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
-/* 0px 0px 0px 1px gray.20 inset */
-@kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px blue.60 inset */
-@kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
-/* 0px 0px 0px 1px blue.90 inset */
-@kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
-/* 0px 0px 0px 1px blue.40 inset */
-@kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-@kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px value for gaps, margin, or padding. */
-@kui-space-0: 0px;
-/* 2px value for gaps, margin, or padding. */
-@kui-space-10: 2px;
-/* 4px value for gaps, margin, or padding. */
-@kui-space-20: 4px;
-/* 6px value for gaps, margin, or padding. */
-@kui-space-30: 6px;
-/* 8px value for gaps, margin, or padding. */
-@kui-space-40: 8px;
-/* 12px value for gaps, margin, or padding. */
-@kui-space-50: 12px;
-/* 16px value for gaps, margin, or padding. */
-@kui-space-60: 16px;
-/* 20px value for gaps, margin, or padding. */
-@kui-space-70: 20px;
-/* 24px value for gaps, margin, or padding. */
-@kui-space-80: 24px;
-/* 32px value for gaps, margin, or padding. */
-@kui-space-90: 32px;
-/* 40px value for gaps, margin, or padding. */
-@kui-space-100: 40px;
-/* 48px value for gaps, margin, or padding. */
-@kui-space-110: 48px;
-/* 56px value for gaps, margin, or padding. */
-@kui-space-120: 56px;
-/* 64px value for gaps, margin, or padding. */
-@kui-space-130: 64px;
-/* 80px value for gaps, margin, or padding. */
-@kui-space-140: 80px;
-/* 96px value for gaps, margin, or padding. */
-@kui-space-150: 96px;
-/* auto */
-@kui-space-auto: auto;
 ```
 
 </details>
@@ -2338,6 +2338,90 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-breakpoint-laptop: 1280px;
 /* Used for larger desktop screens. */
 --kui-breakpoint-desktop: 1536px;
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+--kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
+/* The standard heading text font family. */
+--kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
+/* The standard text font family. */
+--kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
+--kui-font-size-10: 10px;
+--kui-font-size-20: 12px;
+--kui-font-size-30: 14px;
+--kui-font-size-40: 16px;
+--kui-font-size-50: 18px;
+--kui-font-size-60: 20px;
+--kui-font-size-70: 24px;
+--kui-font-size-80: 32px;
+--kui-font-size-90: 40px;
+--kui-font-size-100: 48px;
+/* 700: The bold font weight. */
+--kui-font-weight-bold: 700;
+/* 500: The medium font weight. */
+--kui-font-weight-medium: 500;
+/* 400: The normal font weight. */
+--kui-font-weight-regular: 400;
+/* 600: The semibold font weight. */
+--kui-font-weight-semibold: 600;
+/* Danger color for icons. */
+--kui-icon-color-danger: #f50045;
+/* Neutral color for icons. */
+--kui-icon-color-neutral: #828a9e;
+/* Primary color for icons. */
+--kui-icon-color-primary: #306fff;
+/* Success color for icons. */
+--kui-icon-color-success: #00a17b;
+/* Warning color for icons. */
+--kui-icon-color-warning: #ffc400;
+/* 10px icon size. */
+--kui-icon-size-10: 10px;
+/* 12px icon size. */
+--kui-icon-size-20: 12px;
+/* 16px icon size. */
+--kui-icon-size-30: 16px;
+/* 20px icon size. */
+--kui-icon-size-40: 20px;
+/* 24px icon size (default). */
+--kui-icon-size-50: 24px;
+/* 32px icon size. */
+--kui-icon-size-60: 32px;
+/* 40px icon size. */
+--kui-icon-size-70: 40px;
+/* 48px icon size. */
+--kui-icon-size-80: 48px;
+/* Alias for letter-spacing-normal */
+--kui-letter-spacing-0: normal;
+/* -0.12px */
+--kui-letter-spacing-minus-10: -0.12px;
+/* -0.24px */
+--kui-letter-spacing-minus-20: -0.24px;
+/* -0.32px */
+--kui-letter-spacing-minus-30: -0.32px;
+/* -0.4px */
+--kui-letter-spacing-minus-40: -0.4px;
+/* -0.48px */
+--kui-letter-spacing-minus-50: -0.48px;
+/* normal */
+--kui-letter-spacing-normal: normal;
+/* 12px */
+--kui-line-height-10: 12px;
+/* 16px */
+--kui-line-height-20: 16px;
+/* 20px */
+--kui-line-height-30: 20px;
+/* 24px */
+--kui-line-height-40: 24px;
+/* 28px */
+--kui-line-height-50: 28px;
+/* 32px */
+--kui-line-height-60: 32px;
+/* 36px */
+--kui-line-height-70: 36px;
+/* 40px */
+--kui-line-height-80: 40px;
+/* 48px */
+--kui-line-height-90: 48px;
+/* 56px */
+--kui-line-height-100: 56px;
 /* Background color for the CONNECT method (purple.10). */
 --kui-method-color-background-connect: #f1f0ff;
 /* Background color for the DELETE method (red.10). */
@@ -2392,6 +2476,82 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-method-color-text-trace: #d60067;
 /* Strong text color for the TRACE method (pink.70). */
 --kui-method-color-text-trace-strong: #ad0053;
+/* blue.100 */
+--kui-navigation-color-background: #000933;
+/* The background color of a selected navigation item. */
+--kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
+/* rgba(255, 255, 255, 0.12) */
+--kui-navigation-color-border: rgba(255, 255, 255, 0.12);
+/* The border color for a selected child navigation item. */
+--kui-navigation-color-border-child: #00fabe;
+/* The color of the navigation section divider. */
+--kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
+/* Navigation link and icon color. */
+--kui-navigation-color-text: #bee2ff;
+/* Navigation link and icon focus-visible color. */
+--kui-navigation-color-text-focus: #ffffff;
+/* Navigation link and icon hover color. */
+--kui-navigation-color-text-hover: #eefaff;
+/* Navigation link and icon selected color. */
+--kui-navigation-color-text-selected: #00fabe;
+/* The box-shadow for a focus-visible navigation link. */
+--kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+/* The left box-shadow for an active child navigation link. */
+--kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
+/* Navigation link focus-visible box-shadow. */
+--kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+--kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+/* 0px 0px 0px 1px gray.20 inset */
+--kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px red.60 inset */
+--kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
+/* 0px 0px 0px 1px red.70 inset */
+--kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
+/* 0px 0px 0px 1px gray.20 inset */
+--kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
+/* 0px 0px 0px 1px blue.60 inset */
+--kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
+/* 0px 0px 0px 1px blue.90 inset */
+--kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
+/* 0px 0px 0px 1px blue.40 inset */
+--kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+--kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
+/* 0px value for gaps, margin, or padding. */
+--kui-space-0: 0px;
+/* 2px value for gaps, margin, or padding. */
+--kui-space-10: 2px;
+/* 4px value for gaps, margin, or padding. */
+--kui-space-20: 4px;
+/* 6px value for gaps, margin, or padding. */
+--kui-space-30: 6px;
+/* 8px value for gaps, margin, or padding. */
+--kui-space-40: 8px;
+/* 12px value for gaps, margin, or padding. */
+--kui-space-50: 12px;
+/* 16px value for gaps, margin, or padding. */
+--kui-space-60: 16px;
+/* 20px value for gaps, margin, or padding. */
+--kui-space-70: 20px;
+/* 24px value for gaps, margin, or padding. */
+--kui-space-80: 24px;
+/* 32px value for gaps, margin, or padding. */
+--kui-space-90: 32px;
+/* 40px value for gaps, margin, or padding. */
+--kui-space-100: 40px;
+/* 48px value for gaps, margin, or padding. */
+--kui-space-110: 48px;
+/* 56px value for gaps, margin, or padding. */
+--kui-space-120: 56px;
+/* 64px value for gaps, margin, or padding. */
+--kui-space-130: 64px;
+/* 80px value for gaps, margin, or padding. */
+--kui-space-140: 80px;
+/* 96px value for gaps, margin, or padding. */
+--kui-space-150: 96px;
+/* auto */
+--kui-space-auto: auto;
 /* Color representing response status code 100 (blue.20). */
 --kui-status-color-100: #bee2ff;
 /* Color representing response status code 101 (blue.30). */
@@ -2556,166 +2716,6 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-status-color-text-400: #d13500;
 /* Text color for http status 500 elements (red.60). */
 --kui-status-color-text-500: #d60027;
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
---kui-font-family-code: 'JetBrains Mono', Consolas, monospace;
-/* The standard heading text font family. */
---kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
-/* The standard text font family. */
---kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
---kui-font-size-10: 10px;
---kui-font-size-20: 12px;
---kui-font-size-30: 14px;
---kui-font-size-40: 16px;
---kui-font-size-50: 18px;
---kui-font-size-60: 20px;
---kui-font-size-70: 24px;
---kui-font-size-80: 32px;
---kui-font-size-90: 40px;
---kui-font-size-100: 48px;
-/* 700: The bold font weight. */
---kui-font-weight-bold: 700;
-/* 500: The medium font weight. */
---kui-font-weight-medium: 500;
-/* 400: The normal font weight. */
---kui-font-weight-regular: 400;
-/* 600: The semibold font weight. */
---kui-font-weight-semibold: 600;
-/* Danger color for icons. */
---kui-icon-color-danger: #f50045;
-/* Neutral color for icons. */
---kui-icon-color-neutral: #828a9e;
-/* Primary color for icons. */
---kui-icon-color-primary: #306fff;
-/* Success color for icons. */
---kui-icon-color-success: #00a17b;
-/* Warning color for icons. */
---kui-icon-color-warning: #ffc400;
-/* 10px icon size. */
---kui-icon-size-10: 10px;
-/* 12px icon size. */
---kui-icon-size-20: 12px;
-/* 16px icon size. */
---kui-icon-size-30: 16px;
-/* 20px icon size. */
---kui-icon-size-40: 20px;
-/* 24px icon size (default). */
---kui-icon-size-50: 24px;
-/* 32px icon size. */
---kui-icon-size-60: 32px;
-/* 40px icon size. */
---kui-icon-size-70: 40px;
-/* 48px icon size. */
---kui-icon-size-80: 48px;
-/* Alias for letter-spacing-normal */
---kui-letter-spacing-0: normal;
-/* -0.12px */
---kui-letter-spacing-minus-10: -0.12px;
-/* -0.24px */
---kui-letter-spacing-minus-20: -0.24px;
-/* -0.32px */
---kui-letter-spacing-minus-30: -0.32px;
-/* -0.4px */
---kui-letter-spacing-minus-40: -0.4px;
-/* -0.48px */
---kui-letter-spacing-minus-50: -0.48px;
-/* normal */
---kui-letter-spacing-normal: normal;
-/* 12px */
---kui-line-height-10: 12px;
-/* 16px */
---kui-line-height-20: 16px;
-/* 20px */
---kui-line-height-30: 20px;
-/* 24px */
---kui-line-height-40: 24px;
-/* 28px */
---kui-line-height-50: 28px;
-/* 32px */
---kui-line-height-60: 32px;
-/* 36px */
---kui-line-height-70: 36px;
-/* 40px */
---kui-line-height-80: 40px;
-/* 48px */
---kui-line-height-90: 48px;
-/* 56px */
---kui-line-height-100: 56px;
-/* blue.100 */
---kui-navigation-color-background: #000933;
-/* The background color of a selected navigation item. */
---kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
-/* rgba(255, 255, 255, 0.12) */
---kui-navigation-color-border: rgba(255, 255, 255, 0.12);
-/* The border color for a selected child navigation item. */
---kui-navigation-color-border-child: #00fabe;
-/* The color of the navigation section divider. */
---kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24);
-/* Navigation link and icon color. */
---kui-navigation-color-text: #bee2ff;
-/* Navigation link and icon focus-visible color. */
---kui-navigation-color-text-focus: #ffffff;
-/* Navigation link and icon hover color. */
---kui-navigation-color-text-hover: #eefaff;
-/* Navigation link and icon selected color. */
---kui-navigation-color-text-selected: #00fabe;
-/* The box-shadow for a focus-visible navigation link. */
---kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
-/* The left box-shadow for an active child navigation link. */
---kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset;
-/* Navigation link focus-visible box-shadow. */
---kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset;
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
---kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
-/* 0px 0px 0px 1px gray.20 inset */
---kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px red.60 inset */
---kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset;
-/* 0px 0px 0px 1px red.70 inset */
---kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset;
-/* 0px 0px 0px 1px gray.20 inset */
---kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset;
-/* 0px 0px 0px 1px blue.60 inset */
---kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset;
-/* 0px 0px 0px 1px blue.90 inset */
---kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset;
-/* 0px 0px 0px 1px blue.40 inset */
---kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset;
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
---kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
-/* 0px value for gaps, margin, or padding. */
---kui-space-0: 0px;
-/* 2px value for gaps, margin, or padding. */
---kui-space-10: 2px;
-/* 4px value for gaps, margin, or padding. */
---kui-space-20: 4px;
-/* 6px value for gaps, margin, or padding. */
---kui-space-30: 6px;
-/* 8px value for gaps, margin, or padding. */
---kui-space-40: 8px;
-/* 12px value for gaps, margin, or padding. */
---kui-space-50: 12px;
-/* 16px value for gaps, margin, or padding. */
---kui-space-60: 16px;
-/* 20px value for gaps, margin, or padding. */
---kui-space-70: 20px;
-/* 24px value for gaps, margin, or padding. */
---kui-space-80: 24px;
-/* 32px value for gaps, margin, or padding. */
---kui-space-90: 32px;
-/* 40px value for gaps, margin, or padding. */
---kui-space-100: 40px;
-/* 48px value for gaps, margin, or padding. */
---kui-space-110: 48px;
-/* 56px value for gaps, margin, or padding. */
---kui-space-120: 56px;
-/* 64px value for gaps, margin, or padding. */
---kui-space-130: 64px;
-/* 80px value for gaps, margin, or padding. */
---kui-space-140: 80px;
-/* 96px value for gaps, margin, or padding. */
---kui-space-150: 96px;
-/* auto */
---kui-space-auto: auto;
 ```
 
 </details>
@@ -3015,6 +3015,90 @@ export const KUI_BREAKPOINT_TABLET = "1024px";
 export const KUI_BREAKPOINT_LAPTOP = "1280px";
 /* Used for larger desktop screens. */
 export const KUI_BREAKPOINT_DESKTOP = "1536px";
+/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
+/* The standard heading text font family. */
+export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
+/* The standard text font family. */
+export const KUI_FONT_FAMILY_TEXT = "'Inter', Roboto, Helvetica, sans-serif";
+export const KUI_FONT_SIZE_10 = "10px";
+export const KUI_FONT_SIZE_20 = "12px";
+export const KUI_FONT_SIZE_30 = "14px";
+export const KUI_FONT_SIZE_40 = "16px";
+export const KUI_FONT_SIZE_50 = "18px";
+export const KUI_FONT_SIZE_60 = "20px";
+export const KUI_FONT_SIZE_70 = "24px";
+export const KUI_FONT_SIZE_80 = "32px";
+export const KUI_FONT_SIZE_90 = "40px";
+export const KUI_FONT_SIZE_100 = "48px";
+/* 700: The bold font weight. */
+export const KUI_FONT_WEIGHT_BOLD = "700";
+/* 500: The medium font weight. */
+export const KUI_FONT_WEIGHT_MEDIUM = "500";
+/* 400: The normal font weight. */
+export const KUI_FONT_WEIGHT_REGULAR = "400";
+/* 600: The semibold font weight. */
+export const KUI_FONT_WEIGHT_SEMIBOLD = "600";
+/* Danger color for icons. */
+export const KUI_ICON_COLOR_DANGER = "#f50045";
+/* Neutral color for icons. */
+export const KUI_ICON_COLOR_NEUTRAL = "#828a9e";
+/* Primary color for icons. */
+export const KUI_ICON_COLOR_PRIMARY = "#306fff";
+/* Success color for icons. */
+export const KUI_ICON_COLOR_SUCCESS = "#00a17b";
+/* Warning color for icons. */
+export const KUI_ICON_COLOR_WARNING = "#ffc400";
+/* 10px icon size. */
+export const KUI_ICON_SIZE_10 = "10px";
+/* 12px icon size. */
+export const KUI_ICON_SIZE_20 = "12px";
+/* 16px icon size. */
+export const KUI_ICON_SIZE_30 = "16px";
+/* 20px icon size. */
+export const KUI_ICON_SIZE_40 = "20px";
+/* 24px icon size (default). */
+export const KUI_ICON_SIZE_50 = "24px";
+/* 32px icon size. */
+export const KUI_ICON_SIZE_60 = "32px";
+/* 40px icon size. */
+export const KUI_ICON_SIZE_70 = "40px";
+/* 48px icon size. */
+export const KUI_ICON_SIZE_80 = "48px";
+/* Alias for letter-spacing-normal */
+export const KUI_LETTER_SPACING_0 = "normal";
+/* -0.12px */
+export const KUI_LETTER_SPACING_MINUS_10 = "-0.12px";
+/* -0.24px */
+export const KUI_LETTER_SPACING_MINUS_20 = "-0.24px";
+/* -0.32px */
+export const KUI_LETTER_SPACING_MINUS_30 = "-0.32px";
+/* -0.4px */
+export const KUI_LETTER_SPACING_MINUS_40 = "-0.4px";
+/* -0.48px */
+export const KUI_LETTER_SPACING_MINUS_50 = "-0.48px";
+/* normal */
+export const KUI_LETTER_SPACING_NORMAL = "normal";
+/* 12px */
+export const KUI_LINE_HEIGHT_10 = "12px";
+/* 16px */
+export const KUI_LINE_HEIGHT_20 = "16px";
+/* 20px */
+export const KUI_LINE_HEIGHT_30 = "20px";
+/* 24px */
+export const KUI_LINE_HEIGHT_40 = "24px";
+/* 28px */
+export const KUI_LINE_HEIGHT_50 = "28px";
+/* 32px */
+export const KUI_LINE_HEIGHT_60 = "32px";
+/* 36px */
+export const KUI_LINE_HEIGHT_70 = "36px";
+/* 40px */
+export const KUI_LINE_HEIGHT_80 = "40px";
+/* 48px */
+export const KUI_LINE_HEIGHT_90 = "48px";
+/* 56px */
+export const KUI_LINE_HEIGHT_100 = "56px";
 /* Background color for the CONNECT method (purple.10). */
 export const KUI_METHOD_COLOR_BACKGROUND_CONNECT = "#f1f0ff";
 /* Background color for the DELETE method (red.10). */
@@ -3069,6 +3153,82 @@ export const KUI_METHOD_COLOR_TEXT_PUT_STRONG = "#804400";
 export const KUI_METHOD_COLOR_TEXT_TRACE = "#d60067";
 /* Strong text color for the TRACE method (pink.70). */
 export const KUI_METHOD_COLOR_TEXT_TRACE_STRONG = "#ad0053";
+/* blue.100 */
+export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
+/* The background color of a selected navigation item. */
+export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
+/* rgba(255, 255, 255, 0.12) */
+export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
+/* The border color for a selected child navigation item. */
+export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
+/* The color of the navigation section divider. */
+export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
+/* Navigation link and icon color. */
+export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
+/* Navigation link and icon focus-visible color. */
+export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
+/* Navigation link and icon hover color. */
+export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
+/* Navigation link and icon selected color. */
+export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
+/* The box-shadow for a focus-visible navigation link. */
+export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
+/* The left box-shadow for an active child navigation link. */
+export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
+/* Navigation link focus-visible box-shadow. */
+export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
+/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
+/* 0px 0px 0px 1px gray.20 inset */
+export const KUI_SHADOW_BORDER = "0px 0px 0px 1px #e0e4ea inset";
+/* 0px 0px 0px 1px red.60 inset */
+export const KUI_SHADOW_BORDER_DANGER = "0px 0px 0px 1px #d60027 inset";
+/* 0px 0px 0px 1px red.70 inset */
+export const KUI_SHADOW_BORDER_DANGER_STRONG = "0px 0px 0px 1px #ad000e inset";
+/* 0px 0px 0px 1px gray.20 inset */
+export const KUI_SHADOW_BORDER_DISABLED = "0px 0px 0px 1px #e0e4ea inset";
+/* 0px 0px 0px 1px blue.60 inset */
+export const KUI_SHADOW_BORDER_PRIMARY = "0px 0px 0px 1px #0044f4 inset";
+/* 0px 0px 0px 1px blue.90 inset */
+export const KUI_SHADOW_BORDER_PRIMARY_STRONGEST = "0px 0px 0px 1px #001466 inset";
+/* 0px 0px 0px 1px blue.40 inset */
+export const KUI_SHADOW_BORDER_PRIMARY_WEAK = "0px 0px 0px 1px #5f9aff inset";
+/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+export const KUI_SHADOW_FOCUS = "0px 0px 0px 4px rgba(0, 68, 244, 0.2)";
+/* 0px value for gaps, margin, or padding. */
+export const KUI_SPACE_0 = "0px";
+/* 2px value for gaps, margin, or padding. */
+export const KUI_SPACE_10 = "2px";
+/* 4px value for gaps, margin, or padding. */
+export const KUI_SPACE_20 = "4px";
+/* 6px value for gaps, margin, or padding. */
+export const KUI_SPACE_30 = "6px";
+/* 8px value for gaps, margin, or padding. */
+export const KUI_SPACE_40 = "8px";
+/* 12px value for gaps, margin, or padding. */
+export const KUI_SPACE_50 = "12px";
+/* 16px value for gaps, margin, or padding. */
+export const KUI_SPACE_60 = "16px";
+/* 20px value for gaps, margin, or padding. */
+export const KUI_SPACE_70 = "20px";
+/* 24px value for gaps, margin, or padding. */
+export const KUI_SPACE_80 = "24px";
+/* 32px value for gaps, margin, or padding. */
+export const KUI_SPACE_90 = "32px";
+/* 40px value for gaps, margin, or padding. */
+export const KUI_SPACE_100 = "40px";
+/* 48px value for gaps, margin, or padding. */
+export const KUI_SPACE_110 = "48px";
+/* 56px value for gaps, margin, or padding. */
+export const KUI_SPACE_120 = "56px";
+/* 64px value for gaps, margin, or padding. */
+export const KUI_SPACE_130 = "64px";
+/* 80px value for gaps, margin, or padding. */
+export const KUI_SPACE_140 = "80px";
+/* 96px value for gaps, margin, or padding. */
+export const KUI_SPACE_150 = "96px";
+/* auto */
+export const KUI_SPACE_AUTO = "auto";
 /* Color representing response status code 100 (blue.20). */
 export const KUI_STATUS_COLOR_100 = "#bee2ff";
 /* Color representing response status code 101 (blue.30). */
@@ -3233,166 +3393,6 @@ export const KUI_STATUS_COLOR_TEXT_300 = "#995c00";
 export const KUI_STATUS_COLOR_TEXT_400 = "#d13500";
 /* Text color for http status 500 elements (red.60). */
 export const KUI_STATUS_COLOR_TEXT_500 = "#d60027";
-/* The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
-export const KUI_FONT_FAMILY_CODE = "'JetBrains Mono', Consolas, monospace";
-/* The standard heading text font family. */
-export const KUI_FONT_FAMILY_HEADING = "'Inter', Roboto, Helvetica, sans-serif";
-/* The standard text font family. */
-export const KUI_FONT_FAMILY_TEXT = "'Inter', Roboto, Helvetica, sans-serif";
-export const KUI_FONT_SIZE_10 = "10px";
-export const KUI_FONT_SIZE_20 = "12px";
-export const KUI_FONT_SIZE_30 = "14px";
-export const KUI_FONT_SIZE_40 = "16px";
-export const KUI_FONT_SIZE_50 = "18px";
-export const KUI_FONT_SIZE_60 = "20px";
-export const KUI_FONT_SIZE_70 = "24px";
-export const KUI_FONT_SIZE_80 = "32px";
-export const KUI_FONT_SIZE_90 = "40px";
-export const KUI_FONT_SIZE_100 = "48px";
-/* 700: The bold font weight. */
-export const KUI_FONT_WEIGHT_BOLD = "700";
-/* 500: The medium font weight. */
-export const KUI_FONT_WEIGHT_MEDIUM = "500";
-/* 400: The normal font weight. */
-export const KUI_FONT_WEIGHT_REGULAR = "400";
-/* 600: The semibold font weight. */
-export const KUI_FONT_WEIGHT_SEMIBOLD = "600";
-/* Danger color for icons. */
-export const KUI_ICON_COLOR_DANGER = "#f50045";
-/* Neutral color for icons. */
-export const KUI_ICON_COLOR_NEUTRAL = "#828a9e";
-/* Primary color for icons. */
-export const KUI_ICON_COLOR_PRIMARY = "#306fff";
-/* Success color for icons. */
-export const KUI_ICON_COLOR_SUCCESS = "#00a17b";
-/* Warning color for icons. */
-export const KUI_ICON_COLOR_WARNING = "#ffc400";
-/* 10px icon size. */
-export const KUI_ICON_SIZE_10 = "10px";
-/* 12px icon size. */
-export const KUI_ICON_SIZE_20 = "12px";
-/* 16px icon size. */
-export const KUI_ICON_SIZE_30 = "16px";
-/* 20px icon size. */
-export const KUI_ICON_SIZE_40 = "20px";
-/* 24px icon size (default). */
-export const KUI_ICON_SIZE_50 = "24px";
-/* 32px icon size. */
-export const KUI_ICON_SIZE_60 = "32px";
-/* 40px icon size. */
-export const KUI_ICON_SIZE_70 = "40px";
-/* 48px icon size. */
-export const KUI_ICON_SIZE_80 = "48px";
-/* Alias for letter-spacing-normal */
-export const KUI_LETTER_SPACING_0 = "normal";
-/* -0.12px */
-export const KUI_LETTER_SPACING_MINUS_10 = "-0.12px";
-/* -0.24px */
-export const KUI_LETTER_SPACING_MINUS_20 = "-0.24px";
-/* -0.32px */
-export const KUI_LETTER_SPACING_MINUS_30 = "-0.32px";
-/* -0.4px */
-export const KUI_LETTER_SPACING_MINUS_40 = "-0.4px";
-/* -0.48px */
-export const KUI_LETTER_SPACING_MINUS_50 = "-0.48px";
-/* normal */
-export const KUI_LETTER_SPACING_NORMAL = "normal";
-/* 12px */
-export const KUI_LINE_HEIGHT_10 = "12px";
-/* 16px */
-export const KUI_LINE_HEIGHT_20 = "16px";
-/* 20px */
-export const KUI_LINE_HEIGHT_30 = "20px";
-/* 24px */
-export const KUI_LINE_HEIGHT_40 = "24px";
-/* 28px */
-export const KUI_LINE_HEIGHT_50 = "28px";
-/* 32px */
-export const KUI_LINE_HEIGHT_60 = "32px";
-/* 36px */
-export const KUI_LINE_HEIGHT_70 = "36px";
-/* 40px */
-export const KUI_LINE_HEIGHT_80 = "40px";
-/* 48px */
-export const KUI_LINE_HEIGHT_90 = "48px";
-/* 56px */
-export const KUI_LINE_HEIGHT_100 = "56px";
-/* blue.100 */
-export const KUI_NAVIGATION_COLOR_BACKGROUND = "#000933";
-/* The background color of a selected navigation item. */
-export const KUI_NAVIGATION_COLOR_BACKGROUND_SELECTED = "rgba(255, 255, 255, 0.12)";
-/* rgba(255, 255, 255, 0.12) */
-export const KUI_NAVIGATION_COLOR_BORDER = "rgba(255, 255, 255, 0.12)";
-/* The border color for a selected child navigation item. */
-export const KUI_NAVIGATION_COLOR_BORDER_CHILD = "#00fabe";
-/* The color of the navigation section divider. */
-export const KUI_NAVIGATION_COLOR_BORDER_DIVIDER = "rgba(255, 255, 255, 0.24)";
-/* Navigation link and icon color. */
-export const KUI_NAVIGATION_COLOR_TEXT = "#bee2ff";
-/* Navigation link and icon focus-visible color. */
-export const KUI_NAVIGATION_COLOR_TEXT_FOCUS = "#ffffff";
-/* Navigation link and icon hover color. */
-export const KUI_NAVIGATION_COLOR_TEXT_HOVER = "#eefaff";
-/* Navigation link and icon selected color. */
-export const KUI_NAVIGATION_COLOR_TEXT_SELECTED = "#00fabe";
-/* The box-shadow for a focus-visible navigation link. */
-export const KUI_NAVIGATION_SHADOW_BORDER = "0 0 0 1px rgba(255, 255, 255, 0.12) inset";
-/* The left box-shadow for an active child navigation link. */
-export const KUI_NAVIGATION_SHADOW_BORDER_CHILD = "4px 0 0 0 #00fabe inset";
-/* Navigation link focus-visible box-shadow. */
-export const KUI_NAVIGATION_SHADOW_FOCUS = "0 0 0 1px rgba(255, 255, 255, 0.60) inset";
-/* 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
-export const KUI_SHADOW = "0px 4px 20px 0px rgba(0, 0, 0, 0.08)";
-/* 0px 0px 0px 1px gray.20 inset */
-export const KUI_SHADOW_BORDER = "0px 0px 0px 1px #e0e4ea inset";
-/* 0px 0px 0px 1px red.60 inset */
-export const KUI_SHADOW_BORDER_DANGER = "0px 0px 0px 1px #d60027 inset";
-/* 0px 0px 0px 1px red.70 inset */
-export const KUI_SHADOW_BORDER_DANGER_STRONG = "0px 0px 0px 1px #ad000e inset";
-/* 0px 0px 0px 1px gray.20 inset */
-export const KUI_SHADOW_BORDER_DISABLED = "0px 0px 0px 1px #e0e4ea inset";
-/* 0px 0px 0px 1px blue.60 inset */
-export const KUI_SHADOW_BORDER_PRIMARY = "0px 0px 0px 1px #0044f4 inset";
-/* 0px 0px 0px 1px blue.90 inset */
-export const KUI_SHADOW_BORDER_PRIMARY_STRONGEST = "0px 0px 0px 1px #001466 inset";
-/* 0px 0px 0px 1px blue.40 inset */
-export const KUI_SHADOW_BORDER_PRIMARY_WEAK = "0px 0px 0px 1px #5f9aff inset";
-/* 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
-export const KUI_SHADOW_FOCUS = "0px 0px 0px 4px rgba(0, 68, 244, 0.2)";
-/* 0px value for gaps, margin, or padding. */
-export const KUI_SPACE_0 = "0px";
-/* 2px value for gaps, margin, or padding. */
-export const KUI_SPACE_10 = "2px";
-/* 4px value for gaps, margin, or padding. */
-export const KUI_SPACE_20 = "4px";
-/* 6px value for gaps, margin, or padding. */
-export const KUI_SPACE_30 = "6px";
-/* 8px value for gaps, margin, or padding. */
-export const KUI_SPACE_40 = "8px";
-/* 12px value for gaps, margin, or padding. */
-export const KUI_SPACE_50 = "12px";
-/* 16px value for gaps, margin, or padding. */
-export const KUI_SPACE_60 = "16px";
-/* 20px value for gaps, margin, or padding. */
-export const KUI_SPACE_70 = "20px";
-/* 24px value for gaps, margin, or padding. */
-export const KUI_SPACE_80 = "24px";
-/* 32px value for gaps, margin, or padding. */
-export const KUI_SPACE_90 = "32px";
-/* 40px value for gaps, margin, or padding. */
-export const KUI_SPACE_100 = "40px";
-/* 48px value for gaps, margin, or padding. */
-export const KUI_SPACE_110 = "48px";
-/* 56px value for gaps, margin, or padding. */
-export const KUI_SPACE_120 = "56px";
-/* 64px value for gaps, margin, or padding. */
-export const KUI_SPACE_130 = "64px";
-/* 80px value for gaps, margin, or padding. */
-export const KUI_SPACE_140 = "80px";
-/* 96px value for gaps, margin, or padding. */
-export const KUI_SPACE_150 = "96px";
-/* auto */
-export const KUI_SPACE_AUTO = "auto";
 ```
 
 </details>
@@ -3548,6 +3548,53 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_breakpoint_tablet": "1024px",
   "kui_breakpoint_laptop": "1280px",
   "kui_breakpoint_desktop": "1536px",
+  "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
+  "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
+  "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
+  "kui_font_size_10": "10px",
+  "kui_font_size_20": "12px",
+  "kui_font_size_30": "14px",
+  "kui_font_size_40": "16px",
+  "kui_font_size_50": "18px",
+  "kui_font_size_60": "20px",
+  "kui_font_size_70": "24px",
+  "kui_font_size_80": "32px",
+  "kui_font_size_90": "40px",
+  "kui_font_size_100": "48px",
+  "kui_font_weight_bold": "700",
+  "kui_font_weight_medium": "500",
+  "kui_font_weight_regular": "400",
+  "kui_font_weight_semibold": "600",
+  "kui_icon_color_danger": "#f50045",
+  "kui_icon_color_neutral": "#828a9e",
+  "kui_icon_color_primary": "#306fff",
+  "kui_icon_color_success": "#00a17b",
+  "kui_icon_color_warning": "#ffc400",
+  "kui_icon_size_10": "10px",
+  "kui_icon_size_20": "12px",
+  "kui_icon_size_30": "16px",
+  "kui_icon_size_40": "20px",
+  "kui_icon_size_50": "24px",
+  "kui_icon_size_60": "32px",
+  "kui_icon_size_70": "40px",
+  "kui_icon_size_80": "48px",
+  "kui_letter_spacing_0": "normal",
+  "kui_letter_spacing_minus_10": "-0.12px",
+  "kui_letter_spacing_minus_20": "-0.24px",
+  "kui_letter_spacing_minus_30": "-0.32px",
+  "kui_letter_spacing_minus_40": "-0.4px",
+  "kui_letter_spacing_minus_50": "-0.48px",
+  "kui_letter_spacing_normal": "normal",
+  "kui_line_height_10": "12px",
+  "kui_line_height_20": "16px",
+  "kui_line_height_30": "20px",
+  "kui_line_height_40": "24px",
+  "kui_line_height_50": "28px",
+  "kui_line_height_60": "32px",
+  "kui_line_height_70": "36px",
+  "kui_line_height_80": "40px",
+  "kui_line_height_90": "48px",
+  "kui_line_height_100": "56px",
   "kui_method_color_background_connect": "#f1f0ff",
   "kui_method_color_background_delete": "#ffe5e5",
   "kui_method_color_background_get": "#eefaff",
@@ -3575,6 +3622,44 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_method_color_text_put_strong": "#804400",
   "kui_method_color_text_trace": "#d60067",
   "kui_method_color_text_trace_strong": "#ad0053",
+  "kui_navigation_color_background": "#000933",
+  "kui_navigation_color_background_selected": "rgba(255, 255, 255, 0.12)",
+  "kui_navigation_color_border": "rgba(255, 255, 255, 0.12)",
+  "kui_navigation_color_border_child": "#00fabe",
+  "kui_navigation_color_border_divider": "rgba(255, 255, 255, 0.24)",
+  "kui_navigation_color_text": "#bee2ff",
+  "kui_navigation_color_text_focus": "#ffffff",
+  "kui_navigation_color_text_hover": "#eefaff",
+  "kui_navigation_color_text_selected": "#00fabe",
+  "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
+  "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
+  "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
+  "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
+  "kui_shadow_border": "0px 0px 0px 1px #e0e4ea inset",
+  "kui_shadow_border_danger": "0px 0px 0px 1px #d60027 inset",
+  "kui_shadow_border_danger_strong": "0px 0px 0px 1px #ad000e inset",
+  "kui_shadow_border_disabled": "0px 0px 0px 1px #e0e4ea inset",
+  "kui_shadow_border_primary": "0px 0px 0px 1px #0044f4 inset",
+  "kui_shadow_border_primary_strongest": "0px 0px 0px 1px #001466 inset",
+  "kui_shadow_border_primary_weak": "0px 0px 0px 1px #5f9aff inset",
+  "kui_shadow_focus": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
+  "kui_space_0": "0px",
+  "kui_space_10": "2px",
+  "kui_space_20": "4px",
+  "kui_space_30": "6px",
+  "kui_space_40": "8px",
+  "kui_space_50": "12px",
+  "kui_space_60": "16px",
+  "kui_space_70": "20px",
+  "kui_space_80": "24px",
+  "kui_space_90": "32px",
+  "kui_space_100": "40px",
+  "kui_space_110": "48px",
+  "kui_space_120": "56px",
+  "kui_space_130": "64px",
+  "kui_space_140": "80px",
+  "kui_space_150": "96px",
+  "kui_space_auto": "auto",
   "kui_status_color_100": "#bee2ff",
   "kui_status_color_101": "#8fc1ff",
   "kui_status_color_102": "#5f9aff",
@@ -3656,92 +3741,7 @@ export const KUI_SPACE_AUTO = "auto";
   "kui_status_color_text_200": "#007d60",
   "kui_status_color_text_300": "#995c00",
   "kui_status_color_text_400": "#d13500",
-  "kui_status_color_text_500": "#d60027",
-  "kui_font_family_code": "'JetBrains Mono', Consolas, monospace",
-  "kui_font_family_heading": "'Inter', Roboto, Helvetica, sans-serif",
-  "kui_font_family_text": "'Inter', Roboto, Helvetica, sans-serif",
-  "kui_font_size_10": "10px",
-  "kui_font_size_20": "12px",
-  "kui_font_size_30": "14px",
-  "kui_font_size_40": "16px",
-  "kui_font_size_50": "18px",
-  "kui_font_size_60": "20px",
-  "kui_font_size_70": "24px",
-  "kui_font_size_80": "32px",
-  "kui_font_size_90": "40px",
-  "kui_font_size_100": "48px",
-  "kui_font_weight_bold": "700",
-  "kui_font_weight_medium": "500",
-  "kui_font_weight_regular": "400",
-  "kui_font_weight_semibold": "600",
-  "kui_icon_color_danger": "#f50045",
-  "kui_icon_color_neutral": "#828a9e",
-  "kui_icon_color_primary": "#306fff",
-  "kui_icon_color_success": "#00a17b",
-  "kui_icon_color_warning": "#ffc400",
-  "kui_icon_size_10": "10px",
-  "kui_icon_size_20": "12px",
-  "kui_icon_size_30": "16px",
-  "kui_icon_size_40": "20px",
-  "kui_icon_size_50": "24px",
-  "kui_icon_size_60": "32px",
-  "kui_icon_size_70": "40px",
-  "kui_icon_size_80": "48px",
-  "kui_letter_spacing_0": "normal",
-  "kui_letter_spacing_minus_10": "-0.12px",
-  "kui_letter_spacing_minus_20": "-0.24px",
-  "kui_letter_spacing_minus_30": "-0.32px",
-  "kui_letter_spacing_minus_40": "-0.4px",
-  "kui_letter_spacing_minus_50": "-0.48px",
-  "kui_letter_spacing_normal": "normal",
-  "kui_line_height_10": "12px",
-  "kui_line_height_20": "16px",
-  "kui_line_height_30": "20px",
-  "kui_line_height_40": "24px",
-  "kui_line_height_50": "28px",
-  "kui_line_height_60": "32px",
-  "kui_line_height_70": "36px",
-  "kui_line_height_80": "40px",
-  "kui_line_height_90": "48px",
-  "kui_line_height_100": "56px",
-  "kui_navigation_color_background": "#000933",
-  "kui_navigation_color_background_selected": "rgba(255, 255, 255, 0.12)",
-  "kui_navigation_color_border": "rgba(255, 255, 255, 0.12)",
-  "kui_navigation_color_border_child": "#00fabe",
-  "kui_navigation_color_border_divider": "rgba(255, 255, 255, 0.24)",
-  "kui_navigation_color_text": "#bee2ff",
-  "kui_navigation_color_text_focus": "#ffffff",
-  "kui_navigation_color_text_hover": "#eefaff",
-  "kui_navigation_color_text_selected": "#00fabe",
-  "kui_navigation_shadow_border": "0 0 0 1px rgba(255, 255, 255, 0.12) inset",
-  "kui_navigation_shadow_border_child": "4px 0 0 0 #00fabe inset",
-  "kui_navigation_shadow_focus": "0 0 0 1px rgba(255, 255, 255, 0.60) inset",
-  "kui_shadow": "0px 4px 20px 0px rgba(0, 0, 0, 0.08)",
-  "kui_shadow_border": "0px 0px 0px 1px #e0e4ea inset",
-  "kui_shadow_border_danger": "0px 0px 0px 1px #d60027 inset",
-  "kui_shadow_border_danger_strong": "0px 0px 0px 1px #ad000e inset",
-  "kui_shadow_border_disabled": "0px 0px 0px 1px #e0e4ea inset",
-  "kui_shadow_border_primary": "0px 0px 0px 1px #0044f4 inset",
-  "kui_shadow_border_primary_strongest": "0px 0px 0px 1px #001466 inset",
-  "kui_shadow_border_primary_weak": "0px 0px 0px 1px #5f9aff inset",
-  "kui_shadow_focus": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
-  "kui_space_0": "0px",
-  "kui_space_10": "2px",
-  "kui_space_20": "4px",
-  "kui_space_30": "6px",
-  "kui_space_40": "8px",
-  "kui_space_50": "12px",
-  "kui_space_60": "16px",
-  "kui_space_70": "20px",
-  "kui_space_80": "24px",
-  "kui_space_90": "32px",
-  "kui_space_100": "40px",
-  "kui_space_110": "48px",
-  "kui_space_120": "56px",
-  "kui_space_130": "64px",
-  "kui_space_140": "80px",
-  "kui_space_150": "96px",
-  "kui_space_auto": "auto"
+  "kui_status_color_text_500": "#d60027"
 }
 ```
 
