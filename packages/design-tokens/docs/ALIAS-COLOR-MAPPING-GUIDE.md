@@ -36,7 +36,6 @@ tokens/alias/color/
 - **Theme build** (`platforms/themes.mjs` → `aliasIncludesForTheme(name)`): each theme resolves
   against `tokens/alias/color/<name>.json` only.
   - Alias-referencing theme with **no** matching palette file → **hard error** (no fallback).
-  - Alias-free theme (raw-hex `brand-a`/`brand-b`) → empty include, never errors.
   - `_manifest.json` is never an include.
 
 ## 3. Palette value schema
@@ -62,7 +61,7 @@ Everything is enforced by `themes.spec.mjs` (run by `pnpm test`) — no separate
 - **Theme token sets** — exhaustive themes (`konnect-day`/`konnect-night`) contain exactly
   `KUI_THEMEABLE_TOKENS`; semantic-only themes (`classic-day`/`classic-night`) contain every semantic
   token and **zero** component tokens.
-- **Classification** — every `themes/*.json` is classified exactly once (`EXHAUSTIVE_THEMES` /
+- **Classification** — every `themes/*.theme.json` is classified exactly once (`EXHAUSTIVE_THEMES` /
   `SEMANTIC_ONLY_THEMES` / `UNCHECKED_THEMES`).
 - **Golden snapshots** — `classic-day` / `classic-night` resolved CSS plus the main build are frozen.
 
@@ -86,8 +85,9 @@ Verify any change with `pnpm test` (the §4 guards + golden snapshots) and `pnpm
 1. Create `tokens/alias/color/<theme>.json` with the full `_manifest.json` key set — copy an existing
    palette and override the values (the drift guard fails the build on any missing/extra key; the
    `$description` guard requires each to read `"Alias for <value>."`).
-2. Author `themes/<theme>.json` referencing only standardized steps — copy an existing theme of the same
-   class (exhaustive vs semantic-only) and re-point what differs.
+2. Author `themes/<theme>.theme.json` referencing only standardized steps — copy an existing theme of the same
+   class (exhaustive vs semantic-only) and re-point what differs. The `.theme.json` suffix is **required**
+   (the build and the naming guard in `themes.spec.mjs` fail on any other name).
 3. Classify the theme in `themes.spec.mjs` (`EXHAUSTIVE_THEMES` / `SEMANTIC_ONLY_THEMES` /
    `UNCHECKED_THEMES`), or the classification guard fails.
 4. `pnpm build:tokens` (the theme auto-discovers; an alias-using theme with no palette → hard error) and
@@ -99,10 +99,10 @@ The Kongponents default look ships as **two** semantic-only themes that **share 
 alias values — dark mode is a *semantic re-point*, not a different set of colors):
 
 - **`classic-day`** — the default. The main build (`config.mjs`) resolves the exported `:root`
-  custom-properties against `tokens/alias/color/classic-day.json`, and `themes/classic-day.json` is the
+  custom-properties against `tokens/alias/color/classic-day.json`, and `themes/classic-day.theme.json` is the
   light theme.
 - **`classic-night`** — the dark counterpart. `tokens/alias/color/classic-night.json` is an **exact copy**
-  of classic-day's palette; `themes/classic-night.json` is a copy of classic-day's theme with ~20
+  of classic-day's palette; `themes/classic-night.theme.json` is a copy of classic-day's theme with ~20
   `color-text` / `color-border` / `shadow-border` / `color-background` tokens **re-pointed to darker
   alias steps** (e.g. `color-text` → `{color.alias.white}`, `color-background` → `{color.alias.black}`,
   `color-border` → `{color.alias.gray.80}`). `color-background-overlay` stays raw `rgba()` like
@@ -113,7 +113,7 @@ Both are `SEMANTIC_ONLY_THEMES` in `themes.spec.mjs` (every semantic token, **ze
 components fall through to their semantic default), both are frozen by golden snapshots
 (`__snapshots__/themes/classic-{day,night}.css`), and both are cross-checked by the classification guard.
 
-**Maintaining the dark overrides:** edit `themes/classic-night.json` only — change the `$value` of the
+**Maintaining the dark overrides:** edit `themes/classic-night.theme.json` only — change the `$value` of the
 relevant token to the desired `{color.alias.*}` step (keep the token's `$description`, which documents its
 *purpose*, not its value). `pnpm test -u` re-freezes the snapshot. To change a value for **both** day and
 night, edit the shared palette step in `classic-day.json` **and** `classic-night.json` (they must stay

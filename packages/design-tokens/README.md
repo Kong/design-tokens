@@ -90,7 +90,7 @@ import '@kong/design-tokens/themes/konnect-day.css'
 document.documentElement.setAttribute('data-kui-theme', 'konnect-night')
 ```
 
-Available themes: `classic-day`, `classic-night`, `konnect-day`, `konnect-night`, `brand-a`, `brand-b`.
+Available themes: `classic-day`, `classic-night`, `konnect-day`, `konnect-night`.
 `classic-day` is the default look (identical to the unthemed `:root` exports); `classic-night` is its dark counterpart.
 
 Each theme CSS file uses `@layer kui.theme { [data-kui-theme="name"] { ... } }`. This means customer `:root {}` overrides (which are **unlayered**) beat the theme automatically — no `!important` or special selectors needed.
@@ -109,7 +109,7 @@ mq.addEventListener('change', e => applyColorScheme(e.matches))
 You can also import the theme objects as JavaScript for runtime composition or for use with Kongponents' `applyTheme` / `defineKongponentsTheme`:
 
 ```ts
-import { konnectDay, konnectNight, brandA, brandB } from '@kong/design-tokens/themes'
+import { konnectDay, konnectNight, classicDay, classicNight } from '@kong/design-tokens/themes'
 ```
 
 ## Tokens
@@ -422,7 +422,7 @@ The package is organized around four top-level source directories:
 | `tokens/alias/` | **Internal alias palette** — raw CSS values (hex colors, base sizes) that semantic tokens reference via `{color.alias.*}`. Never exported in any build output; only used so Style Dictionary can resolve references at build time. |
 | `tokens/source/` | **Semantic tokens** exported to `custom-properties.css`, SCSS, LESS, and JS. Each token family is its own subdirectory: `color/`, `space/`, `shadow/`, `font/`, `border/`, `animation/`, `breakpoint/`, `letter-spacing/`, `line-height/`, plus the concept-named families `method/`, `status/`, `navigation/`, and `icon/` (HTTP methods, status codes, navigation chrome, icons). |
 | `tokens/components/` | **Component tokens** — name-only override slots for Kongponents components (`button/`, `card/`, `input/`, `badge/`, …). All `$value` fields must be `""`. Included in `KUI_THEMEABLE_TOKENS` — no CSS, no SCSS/LESS/JS values emitted. |
-| `themes/` | **Named theme override sets** — each `{name}.json` lists the token values that activate for `[data-kui-theme="{name}"]`. Values may be raw hex or `{color.alias.*}` references resolved at build time. |
+| `themes/` | **Named theme override sets** — each `{name}.theme.json` lists the token values that activate for `[data-kui-theme="{name}"]`. The `.theme.json` suffix is required and enforced by the build and tests. Values may be raw hex or `{color.alias.*}` references resolved at build time. |
 
 ### Token Requirements
 
@@ -484,18 +484,20 @@ NEW=my-brand
 FROM=konnect-day   # or classic-day for a semantic-only theme
 
 # 1. Copy the theme definition and (for alias-based themes) its companion color palette.
-cp themes/$FROM.json themes/$NEW.json
+#    Theme files MUST be named <theme-name>.theme.json (enforced by the build + tests).
+cp themes/$FROM.theme.json themes/$NEW.theme.json
 cp tokens/alias/color/$FROM.json tokens/alias/color/$NEW.json   # every alias-using theme MUST have one
 
-# 2. Edit themes/$NEW.json (token $values) and tokens/alias/color/$NEW.json (palette values) to taste.
+# 2. Edit themes/$NEW.theme.json (token $values) and tokens/alias/color/$NEW.json (palette values) to taste.
 # 3. Classify $NEW in themes.spec.mjs (EXHAUSTIVE_THEMES / SEMANTIC_ONLY_THEMES / UNCHECKED_THEMES).
 # 4. Build + verify — the drift, classification, and off-source guards confirm completeness.
 pnpm build:tokens && pnpm test
 ```
 
-The build auto-discovers any `themes/*.json` — no code change needed. An alias-referencing theme with no
-matching `tokens/alias/color/<name>.json` palette is a hard build error (no silent fallback), which is why
-step 1 copies the palette too. See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
+The build auto-discovers any `themes/*.theme.json` — no code change needed. A theme file that does not
+follow the `<theme-name>.theme.json` naming convention is a hard build error (and fails `pnpm test`), as is
+an alias-referencing theme with no matching `tokens/alias/color/<name>.json` palette (no silent fallback),
+which is why step 1 copies the palette too. See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./docs/ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
 
 ### Theme `$description` authoring rules
 

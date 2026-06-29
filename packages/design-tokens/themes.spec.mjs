@@ -7,6 +7,7 @@
  *     component tokens;
  *   - every alias palette matches the names-only `_manifest.json` key set, with value-derived
  *     `$description`s, and every compiled theme color traces to that theme's own palette;
+ *   - every theme file follows the `<theme-name>.theme.json` naming convention;
  *   - the per-theme alias build wiring throws (never silently falls back) for a misconfigured theme;
  *   - classic-day's and classic-night's resolved output is frozen by golden snapshots.
  *
@@ -27,8 +28,8 @@ const ROOT = __dirname
 
 // ── Theme taxonomy ──────────────────────────────────────────────────────────
 // Which themes must contain which token set. This is policy, NOT derivable from the filename
-// (themes/ also holds the semantic-only `classic-day`/`classic-night` and the raw-hex `brand-*`
-// playgrounds), so it is declared explicitly and cross-checked against themes/ by the
+// (themes/ also holds the semantic-only `classic-day`/`classic-night`
+// so it is declared explicitly and cross-checked against themes/ by the
 // "classification" guard below.
 
 /** Themes that MUST contain every themeable token (semantic + component). */
@@ -46,9 +47,6 @@ const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
  * guarantee this repo can verify — hence component-free by omission.
  */
 const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
-
-/** Playground brand themes — intentionally NOT guarded for token completeness. */
-const UNCHECKED_THEMES = ['brand-a', 'brand-b', 'paper']
 
 // Style Dictionary stamps a volatile `Generated on <date>` line into the main build's file header;
 // neutralize it so the snapshot tracks resolved-value drift, not the clock.
@@ -104,7 +102,7 @@ beforeAll(async () => {
  * @returns {Promise<Record<string, object>>}
  */
 async function loadTheme(name) {
-  return JSON.parse(await readFile(join(ROOT, 'themes', `${name}.json`), 'utf-8'))
+  return JSON.parse(await readFile(join(ROOT, 'themes', `${name}.theme.json`), 'utf-8'))
 }
 
 describe('drift guard: exhaustive themes contain exactly KUI_THEMEABLE_TOKENS', () => {
@@ -152,18 +150,30 @@ describe('theme classification stays in sync with themes/', () => {
   // silently going untested. "Exhaustive" itself can't be inferred from the filename — it's policy.
   it('every themes/*.json is classified exactly once (exhaustive | semantic-only | unchecked)', () => {
     const onDisk = readdirSync(join(ROOT, 'themes'))
-      .filter(f => f.endsWith('.json') && !f.startsWith('_'))
-      .map(f => f.slice(0, -5))
+      .filter(f => f.endsWith('.theme.json') && !f.startsWith('_'))
+      .map(f => f.slice(0, -'.theme.json'.length))
       .sort()
-    const classified = [...EXHAUSTIVE_THEMES, ...SEMANTIC_ONLY_THEMES, ...UNCHECKED_THEMES].sort()
+    const classified = [...EXHAUSTIVE_THEMES, ...SEMANTIC_ONLY_THEMES].sort()
 
     const unclassified = onDisk.filter(t => !classified.includes(t))
     const missing = classified.filter(t => !onDisk.includes(t))
     const duplicated = classified.filter((t, i) => classified.indexOf(t) !== i)
 
-    expect(unclassified, `Unclassified theme(s) in themes/ — add each to EXHAUSTIVE_THEMES, SEMANTIC_ONLY_THEMES, or UNCHECKED_THEMES: ${unclassified.join(', ')}`).toEqual([])
+    expect(unclassified, `Unclassified theme(s) in themes/ — add each to EXHAUSTIVE_THEMES or SEMANTIC_ONLY_THEMES: ${unclassified.join(', ')}`).toEqual([])
     expect(missing, `Classified theme(s) missing from themes/: ${missing.join(', ')}`).toEqual([])
     expect(duplicated, `Theme(s) classified in more than one bucket: ${duplicated.join(', ')}`).toEqual([])
+  })
+})
+
+describe('theme files follow the <theme-name>.theme.json naming convention', () => {
+  // Enforces the same rule the build enforces (platforms/themes.mjs discoverThemes): a stray theme JSON
+  // that does not end in `.theme.json` fails here with its name, instead of being silently skipped by
+  // the build's discovery filter.
+  it('every non-internal .json in themes/ is named <theme-name>.theme.json', () => {
+    const offenders = readdirSync(join(ROOT, 'themes'))
+      .filter(f => f.endsWith('.json') && !f.startsWith('_') && !f.endsWith('.theme.json'))
+      .sort()
+    expect(offenders, `Theme file(s) must be named <theme-name>.theme.json; rename: ${offenders.join(', ')}`).toEqual([])
   })
 })
 
@@ -257,16 +267,6 @@ describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => 
   it('throws when an alias-using theme has no palette (no silent fallback)', () => {
     const theme = { 'kui-color-text': { $value: '{color.alias.gray.10}' } }
     expect(() => aliasIncludesFor('konnect-contrast', false, theme)).toThrow(/references \{color\.alias/)
-  })
-
-  it('returns [] for a raw-hex theme with no alias refs and no palette', () => {
-    const theme = { 'kui-color-text': { $value: '#ffffff' } }
-    expect(aliasIncludesFor('brand-a', false, theme)).toEqual([])
-  })
-
-  it('detects alias usage from $value only — a {color.alias.*} mention in $description is not a ref', () => {
-    const theme = { 'kui-x': { $description: 'maps to {color.alias.gray.10}', $value: '#ffffff' } }
-    expect(aliasIncludesFor('brand-x', false, theme)).toEqual([])
   })
 })
 

@@ -748,7 +748,7 @@ describe('tokens/components/ (source enforcement)', () => {
 // dist/themes/
 // ---------------------------------------------------------------------------
 
-const THEME_NAMES = ['konnect-day', 'konnect-night', 'brand-a', 'brand-b']
+const THEME_NAMES = ['classic-day', 'classic-night', 'konnect-day', 'konnect-night']
 
 describe('dist/themes/', () => {
   /** @type {Record<string, { css: string, mjs: string, dts: string }>} */
@@ -805,10 +805,10 @@ describe('dist/themes/', () => {
 
   it('MJS files export the named theme object (no "Theme" suffix)', () => {
     const expectedExportNames = {
+      'classic-day': 'classicDay',
+      'classic-night': 'classicNight',
       'konnect-day': 'konnectDay',
       'konnect-night': 'konnectNight',
-      'brand-a': 'brandA',
-      'brand-b': 'brandB',
     }
     for (const name of THEME_NAMES) {
       expect(themes[name].mjs, `${name}.mjs missing named export`).toContain(
@@ -830,11 +830,13 @@ describe('dist/themes/', () => {
 
   it('index.mjs re-exports all four themes without "Theme" suffix', async () => {
     const indexMjs = await distRootFile('themes/index.mjs')
+    expect(indexMjs).toContain('classicDay')
+    expect(indexMjs).toContain('classicNight')
+    expect(indexMjs).not.toContain('classicDayTheme')
+    expect(indexMjs).not.toContain('classicNightTheme')
     expect(indexMjs).toContain('konnectDay')
     expect(indexMjs).toContain('konnectNight')
-    expect(indexMjs).toContain('brandA')
-    expect(indexMjs).toContain('brandB')
     expect(indexMjs).not.toContain('konnectDayTheme')
-    expect(indexMjs).not.toContain('brandATheme')
+    expect(indexMjs).not.toContain('konnectNightTheme')
   })
 })

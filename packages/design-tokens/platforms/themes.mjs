@@ -18,7 +18,7 @@ function toExportName(name) {
  *
  * Each theme resolves its `{color.alias.*}` references against its OWN palette (`<name>.json`), so
  * themes share step names with theme-specific values. A theme that references aliases but has no
- * palette is a hard error — no silent fallback. A theme with no alias refs (raw-hex brand themes)
+ * palette is a hard error — no silent fallback. A theme with no alias refs
  * needs no palette. Alias usage is detected from token `$value`s (not raw text — avoids false
  * positives from a `{color.alias.*}` mention inside a `$description`).
  *
@@ -44,27 +44,43 @@ export function aliasIncludesFor(name, paletteExists, themeObj) {
 
 /**
  * Resolve the color-alias include list for a single theme build (IO wrapper around `aliasIncludesFor`).
- * @param {string} name - Theme name matching `themes/${name}.json`.
+ * @param {string} name - Theme name matching `themes/${name}.theme.json`.
  * @returns {string[]} Style Dictionary `include` globs (0 or 1 palette file).
  */
 function aliasIncludesForTheme(name) {
   const paletteExists = existsSync(`./tokens/alias/color/${name}.json`)
-  const themeObj = paletteExists ? null : JSON.parse(readFileSync(`./themes/${name}.json`, 'utf-8'))
+  const themeObj = paletteExists ? null : JSON.parse(readFileSync(`./themes/${name}.theme.json`, 'utf-8'))
   return aliasIncludesFor(name, paletteExists, themeObj)
 }
 
 /**
- * Auto-discover all theme JSON files in `themes/`, excluding those prefixed
- * with `_` (internal/template files). Adding a new `.json` file to that
- * directory is sufficient to include it in the next build.
+ * Auto-discover the theme files in `themes/`. Every theme JSON MUST be named `<theme-name>.theme.json`;
+ * files prefixed with `_` are treated as internal/templates and skipped. Adding a conforming
+ * `<name>.theme.json` to that directory is sufficient to include it in the next build. A `.json` file
+ * that does NOT match the convention is a hard error so it can never be silently skipped or mis-built.
  * @returns {Promise<Array<{ name: string, exportName: string }>>}
+ * @throws {Error} when a non-`_` `.json` file does not end in `.theme.json`.
  */
 export async function discoverThemes() {
   const files = await readdir('./themes')
-  return files
-    .filter(f => f.endsWith('.json') && !f.startsWith('_'))
+  const jsonFiles = files.filter(f => f.endsWith('.json') && !f.startsWith('_'))
+
+  // Enforce the `<theme-name>.theme.json` naming convention — fail loudly rather than skip/mis-build.
+  const nonConforming = jsonFiles.filter(f => !f.endsWith('.theme.json')).sort()
+  if (nonConforming.length) {
+    throw new Error(
+      'Theme file(s) do not match the required `<theme-name>.theme.json` naming convention: ' +
+      `${nonConforming.join(', ')}. Rename each (e.g. \`my-theme.theme.json\`). ` +
+      'See README.md "Creating a new theme".',
+    )
+  }
+
+  return jsonFiles
     .sort()
-    .map(f => ({ name: f.slice(0, -5), exportName: toExportName(f.slice(0, -5)) }))
+    .map(f => {
+      const name = f.slice(0, -'.theme.json'.length)
+      return { name, exportName: toExportName(name) }
+    })
 }
 
 // ── Format registrations ──────────────────────────────────────────────────────
@@ -125,7 +141,7 @@ StyleDictionary.registerFormat({
 
 /**
  * Creates Style Dictionary platform configs for a single named theme.
- * @param {string} name - Theme name matching `themes/${name}.json`
+ * @param {string} name - Theme name matching `themes/${name}.theme.json`
  * @param {string} exportName - JS identifier for the exported theme object
  * @returns {Record<string, object>} SD `platforms` config object
  */
@@ -181,7 +197,7 @@ async function buildAllThemes() {
   for (const { name, exportName } of themes) {
     const sd = new StyleDictionary({
       log: { verbosity: logVerbosityLevels.verbose },
-      source: [`./themes/${name}.json`],
+      source: [`./themes/${name}.theme.json`],
       include: includesByTheme.get(name),
       platforms: createThemePlatforms(name, exportName),
     })
