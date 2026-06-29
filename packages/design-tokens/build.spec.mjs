@@ -29,6 +29,7 @@ const EXPECTED_DIST_FILES = [
   'js/tokens.json',
   'js/cjs/index.js',
   'js/cjs/index.d.ts',
+  'js/cjs/package.json',
   'README.md',
 ]
 
@@ -471,8 +472,9 @@ describe('@kong/design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('js/cjs/index.d.ts', () => {
-    it('exports a default tokens object', () => {
-      expect(cjsDts).toContain('export default tokens;')
+    it('exports the tokens object via `export =` (CommonJS interop, not `export default`)', () => {
+      expect(cjsDts).toContain('export = tokens;')
+      expect(cjsDts).not.toContain('export default tokens;')
     })
 
     it('declares a DesignToken interface', () => {
@@ -625,12 +627,15 @@ describe('dist/themeable-tokens (full themed surface)', () => {
   let themeableTokensCjs
   /** @type {string} */
   let themeableTokensDts
+  /** @type {string} */
+  let themeableTokensDcts
 
   beforeAll(async () => {
-    ;[themeableTokensMjs, themeableTokensCjs, themeableTokensDts] = await Promise.all([
+    ;[themeableTokensMjs, themeableTokensCjs, themeableTokensDts, themeableTokensDcts] = await Promise.all([
       distRootFile('themeable-tokens.mjs'),
       distRootFile('themeable-tokens.cjs'),
       distRootFile('themeable-tokens.d.ts'),
+      distRootFile('themeable-tokens.d.cts'),
     ]).catch((err) => {
       if (err.code === 'ENOENT') {
         throw new Error(`dist/themeable-tokens.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
@@ -650,6 +655,11 @@ describe('dist/themeable-tokens (full themed surface)', () => {
   it('d.ts declares KUI_THEMEABLE_TOKENS as a typed readonly tuple (not string[])', () => {
     expect(themeableTokensDts).toContain('export declare const KUI_THEMEABLE_TOKENS: readonly [')
     expect(themeableTokensDts).not.toContain('readonly string[]')
+  })
+
+  it('emits a CJS-flavored d.cts (for the require condition) matching the d.ts', () => {
+    expect(themeableTokensDcts).toContain('export declare const KUI_THEMEABLE_TOKENS: readonly [')
+    expect(themeableTokensDcts).toEqual(themeableTokensDts)
   })
 
   it('contains semantic tokens', () => {

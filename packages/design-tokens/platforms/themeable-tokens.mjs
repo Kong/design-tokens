@@ -95,5 +95,12 @@ export default {
       format: 'typescript/kui-themeable-tokens',
       filter: isThemeable,
     },
+    {
+      // CJS-flavored declaration for the `require` export condition. The package is `"type": "module"`,
+      // so a bare `.d.ts` is ESM-typed; `.d.cts` pairs correctly with the CommonJS `themeable-tokens.cjs`.
+      destination: 'themeable-tokens.d.cts',
+      format: 'typescript/kui-themeable-tokens',
+      filter: isThemeable,
+    },
   ],
 }

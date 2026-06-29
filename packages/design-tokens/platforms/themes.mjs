@@ -124,6 +124,22 @@ StyleDictionary.registerFormat({
 })
 
 StyleDictionary.registerFormat({
+  name: 'js/kui-theme-cjs',
+  format: async function({ dictionary, options }) {
+    const { exportName } = options
+    const header =
+      '/**\n' +
+      ` * @kong/design-tokens — ${exportName}\n` +
+      ' * GENERATED FILE — do not edit by hand. Run `pnpm build:themes` to regenerate.\n' +
+      ' */\n'
+    const entries = dictionary.allTokens
+      .map(token => `  '--${token.path.join('-')}': ${JSON.stringify(token.$value)},`)
+      .join('\n')
+    return `${header}'use strict'\nconst ${exportName} = {\n${entries}\n}\nmodule.exports = { ${exportName} }\n`
+  },
+})
+
+StyleDictionary.registerFormat({
   name: 'typescript/kui-theme-declarations',
   format: async function({ options }) {
     const { exportName } = options
@@ -171,6 +187,18 @@ export function createThemePlatforms(name, exportName) {
           filter: (token) => token.isSource === true,
           options: { exportName },
         },
+        {
+          destination: `${name}.cjs`,
+          format: 'js/kui-theme-cjs',
+          filter: (token) => token.isSource === true,
+          options: { exportName },
+        },
+        {
+          destination: `${name}.d.cts`,
+          format: 'typescript/kui-theme-declarations',
+          filter: (token) => token.isSource === true,
+          options: { exportName },
+        },
       ],
     },
   }
@@ -214,8 +242,24 @@ async function buildAllThemes() {
     themes.map(({ name, exportName }) => `export { ${exportName} } from './${name}.js'`).join('\n') +
     '\n'
 
+  // CJS counterparts so the package's `require` export condition resolves to real CommonJS (mirrors the
+  // `.` and `./themeable-tokens` exports). `.d.cts` gives `require` consumers CJS-correct types.
+  const indexCjs =
+    HEADER +
+    '\'use strict\'\n' +
+    'module.exports = {\n' +
+    themes.map(({ name, exportName }) => `  ${exportName}: require('./${name}.cjs').${exportName},`).join('\n') +
+    '\n}\n'
+
+  const indexDcts =
+    HEADER +
+    themes.map(({ name, exportName }) => `export { ${exportName} } from './${name}.cjs'`).join('\n') +
+    '\n'
+
   await writeFile('dist/themes/index.mjs', indexMjs, 'utf-8')
   await writeFile('dist/themes/index.d.ts', indexDts, 'utf-8')
+  await writeFile('dist/themes/index.cjs', indexCjs, 'utf-8')
+  await writeFile('dist/themes/index.d.cts', indexDcts, 'utf-8')
 
   console.log(`Built ${themes.length} themes.`)
 }

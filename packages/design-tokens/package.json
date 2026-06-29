@@ -49,8 +49,8 @@
         "default": "./dist/themes/index.mjs"
       },
       "require": {
-        "types": "./dist/themes/index.d.ts",
-        "default": "./dist/themes/index.mjs"
+        "types": "./dist/themes/index.d.cts",
+        "default": "./dist/themes/index.cjs"
       }
     },
     "./themes/*.css": "./dist/themes/*.css",
@@ -60,8 +60,8 @@
         "default": "./dist/themes/*.mjs"
       },
       "require": {
-        "types": "./dist/themes/*.d.ts",
-        "default": "./dist/themes/*.mjs"
+        "types": "./dist/themes/*.d.cts",
+        "default": "./dist/themes/*.cjs"
       }
     },
     "./themeable-tokens": {
@@ -70,7 +70,7 @@
         "default": "./dist/themeable-tokens.mjs"
       },
       "require": {
-        "types": "./dist/themeable-tokens.d.ts",
+        "types": "./dist/themeable-tokens.d.cts",
         "default": "./dist/themeable-tokens.cjs"
       }
     },
