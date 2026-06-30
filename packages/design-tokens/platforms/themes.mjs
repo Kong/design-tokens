@@ -15,6 +15,7 @@ const _breakpointSource = JSON.parse(
 export const THEME_BREAKPOINTS = Object.fromEntries(
   Object.entries(_breakpointSource.breakpoint)
     .filter(([key]) => !key.startsWith('$'))
+    .filter(([, token]) => token.$value !== undefined)
     .map(([name, token]) => [`kui-breakpoint-${name}`, token.$value]),
 )
 

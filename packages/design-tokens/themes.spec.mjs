@@ -268,6 +268,12 @@ describe('every theme color resolves to a value in its own alias palette (no off
 })
 
 describe('build wiring: injectThemeBreakpoints preprocessor', () => {
+  it('all THEME_BREAKPOINTS values are non-undefined strings', () => {
+    for (const [name, value] of Object.entries(THEME_BREAKPOINTS)) {
+      expect(typeof value, `${name} has non-string value`).toBe('string')
+    }
+  })
+
   it('injects all 5 breakpoints into a dictionary that has none', () => {
     const result = injectThemeBreakpoints({ 'kui-color-text': { $value: '#000', isSource: true } })
     for (const [name, value] of Object.entries(THEME_BREAKPOINTS)) {
