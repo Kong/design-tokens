@@ -3,6 +3,21 @@ import { logVerbosityLevels } from 'style-dictionary/enums'
 import { writeFile, mkdir, readdir } from 'node:fs/promises'
 import { existsSync, readFileSync } from 'node:fs'
 
+const _breakpointSource = JSON.parse(
+  readFileSync(new URL('../tokens/source/breakpoint/index.json', import.meta.url), 'utf-8'),
+)
+
+/**
+ * Flat `kui-breakpoint-*` → pixel value map, derived from the canonical breakpoint source tokens.
+ * Exported so consumers (e.g. drift-guard tests) can identify which tokens are build-injected
+ * rather than defined in source theme files.
+ */
+export const THEME_BREAKPOINTS = Object.fromEntries(
+  Object.entries(_breakpointSource.breakpoint)
+    .filter(([key]) => !key.startsWith('$'))
+    .map(([name, token]) => [`kui-breakpoint-${name}`, token.$value]),
+)
+
 /**
  * Convert a kebab-case theme filename to a camelCase JS export identifier.
  * @param {string} name - Kebab-case name (no .json extension)
@@ -82,6 +97,31 @@ export async function discoverThemes() {
       return { name, exportName: toExportName(name) }
     })
 }
+
+// ── Preprocessor registration ─────────────────────────────────────────────────
+// Must run once before any StyleDictionary instance is built.
+
+/**
+ * Injects (or overrides) the canonical breakpoint tokens into a merged SD token dictionary.
+ * Runs after all source/include files are merged, so theme-defined breakpoint values are
+ * replaced by the fixed values from the breakpoint source file.
+ * Marking each token `isSource: true` ensures it passes all format filters in createThemePlatforms.
+ * Exported for unit testing.
+ * @param {Record<string, unknown>} dictionary - Merged SD token dictionary (DTCG format).
+ * @returns {Record<string, unknown>}
+ */
+export function injectThemeBreakpoints(dictionary) {
+  const result = { ...dictionary }
+  for (const [name, value] of Object.entries(THEME_BREAKPOINTS)) {
+    result[name] = { $value: value, isSource: true }
+  }
+  return result
+}
+
+StyleDictionary.registerPreprocessor({
+  name: 'inject-theme-breakpoints',
+  preprocessor: injectThemeBreakpoints,
+})
 
 // ── Format registrations ──────────────────────────────────────────────────────
 // Must run once before any StyleDictionary instance is built.
@@ -227,6 +267,7 @@ async function buildAllThemes() {
       log: { verbosity: logVerbosityLevels.verbose },
       source: [`./themes/${name}.theme.json`],
       include: includesByTheme.get(name),
+      preprocessors: ['inject-theme-breakpoints'],
       platforms: createThemePlatforms(name, exportName),
     })
     await sd.buildAllPlatforms()

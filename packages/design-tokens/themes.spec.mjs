@@ -21,7 +21,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { manifestLeaves, paletteLeaves } from './scripts/alias-manifest.mjs'
-import { aliasIncludesFor } from './platforms/themes.mjs'
+import { aliasIncludesFor, THEME_BREAKPOINTS, injectThemeBreakpoints } from './platforms/themes.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = __dirname
@@ -106,10 +106,14 @@ async function loadTheme(name) {
 }
 
 describe('drift guard: exhaustive themes contain exactly KUI_THEMEABLE_TOKENS', () => {
+  // Breakpoints are always injected at build time by platforms/themes.mjs and must NOT appear
+  // in source theme files — exclude them from the drift guard comparison.
+  const buildInjected = new Set(Object.keys(THEME_BREAKPOINTS))
+
   for (const themeName of EXHAUSTIVE_THEMES) {
     it(`${themeName} has no missing or extra tokens`, async () => {
       const theme = await loadTheme(themeName)
-      const expected = new Set(themeable.map(t => t.slice(2)))
+      const expected = new Set(themeable.map(t => t.slice(2)).filter(t => !buildInjected.has(t)))
       const actual = new Set(Object.keys(theme))
 
       const missing = [...expected].filter(k => !actual.has(k)).sort()
@@ -123,12 +127,16 @@ describe('drift guard: exhaustive themes contain exactly KUI_THEMEABLE_TOKENS', 
 })
 
 describe('drift guard: semantic-only themes are semantic-complete and component-free', () => {
+  // Breakpoints are always injected at build time by platforms/themes.mjs and must NOT appear
+  // in source theme files — exclude them from the drift guard comparison.
+  const buildInjected = new Set(Object.keys(THEME_BREAKPOINTS))
+
   for (const themeName of SEMANTIC_ONLY_THEMES) {
     it(`${themeName} contains every semantic token and ZERO component tokens`, async () => {
       const theme = await loadTheme(themeName)
       const componentNames = await getComponentTokenNames()
-      // Expected = every themeable token that is NOT a component token.
-      const expected = new Set(themeable.map(t => t.slice(2)).filter(t => !componentNames.has(t)))
+      // Expected = every themeable token that is NOT a component token and NOT build-injected.
+      const expected = new Set(themeable.map(t => t.slice(2)).filter(t => !componentNames.has(t) && !buildInjected.has(t)))
       const actual = new Set(Object.keys(theme))
 
       const missing = [...expected].filter(k => !actual.has(k)).sort()
@@ -257,6 +265,36 @@ describe('every theme color resolves to a value in its own alias palette (no off
       expect([...off], `${name}.css renders colors absent from ${file}: ${[...off].join(', ')}`).toEqual([])
     })
   }
+})
+
+describe('build wiring: injectThemeBreakpoints preprocessor', () => {
+  it('injects all 5 breakpoints into a dictionary that has none', () => {
+    const result = injectThemeBreakpoints({ 'kui-color-text': { $value: '#000', isSource: true } })
+    for (const [name, value] of Object.entries(THEME_BREAKPOINTS)) {
+      expect(result[name]).toEqual({ $value: value, isSource: true })
+    }
+  })
+
+  it('overrides a theme-defined breakpoint value with the canonical value', () => {
+    const overrideValue = '9999px'
+    const dict = { 'kui-breakpoint-mobile': { $value: overrideValue, isSource: true } }
+    const result = injectThemeBreakpoints(dict)
+    expect(result['kui-breakpoint-mobile'].$value).toBe(THEME_BREAKPOINTS['kui-breakpoint-mobile'])
+    expect(result['kui-breakpoint-mobile'].$value).not.toBe(overrideValue)
+  })
+
+  it('preserves non-breakpoint tokens unchanged', () => {
+    const token = { $value: '#fff', isSource: true }
+    const result = injectThemeBreakpoints({ 'kui-color-background': token })
+    expect(result['kui-color-background']).toBe(token)
+  })
+
+  it('marks all injected tokens isSource: true', () => {
+    const result = injectThemeBreakpoints({})
+    for (const name of Object.keys(THEME_BREAKPOINTS)) {
+      expect(result[name].isSource).toBe(true)
+    }
+  })
 })
 
 describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => {

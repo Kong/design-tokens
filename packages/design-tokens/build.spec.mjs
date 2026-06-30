@@ -675,11 +675,17 @@ describe('dist/themeable-tokens (full themed surface)', () => {
     expect(themeableTokensMjs).toContain('--kui-badge-')
   })
 
-  it('excludes breakpoint tokens', () => {
-    const names = [...themeableTokensMjs.matchAll(/'(--kui-[^']+)'/g)].map(([, n]) => n)
-    for (const name of names) {
-      expect(name, `breakpoint token "${name}" should not be in KUI_THEMEABLE_TOKENS`).not.toMatch(/^--kui-breakpoint-/)
-    }
+  it('includes the 5 breakpoint tokens', () => {
+    const names = [...themeableTokensMjs.matchAll(/'(--kui-breakpoint-[^']+)'/g)].map(([, n]) => n)
+
+    expect(names).toHaveLength(5)
+    expect(names).toEqual(expect.arrayContaining([
+      '--kui-breakpoint-mobile',
+      '--kui-breakpoint-phablet',
+      '--kui-breakpoint-tablet',
+      '--kui-breakpoint-laptop',
+      '--kui-breakpoint-desktop',
+    ]))
   })
 
   it('all entries follow the --kui-* naming convention', () => {
@@ -848,5 +854,21 @@ describe('dist/themes/', () => {
     expect(indexMjs).toContain('konnectNight')
     expect(indexMjs).not.toContain('konnectDayTheme')
     expect(indexMjs).not.toContain('konnectNightTheme')
+  })
+
+  it('all themes include the five fixed breakpoint tokens', () => {
+    const BREAKPOINTS = [
+      '--kui-breakpoint-mobile',
+      '--kui-breakpoint-phablet',
+      '--kui-breakpoint-tablet',
+      '--kui-breakpoint-laptop',
+      '--kui-breakpoint-desktop',
+    ]
+    for (const name of THEME_NAMES) {
+      for (const bp of BREAKPOINTS) {
+        expect(themes[name].css, `${name}.css missing ${bp}`).toContain(bp)
+        expect(themes[name].mjs, `${name}.mjs missing ${bp}`).toContain(bp)
+      }
+    }
   })
 })

@@ -336,5 +336,10 @@
     --kui-status-color-text-300: #995C00;
     --kui-status-color-text-400: #D13500;
     --kui-status-color-text-500: #D60027;
+    --kui-breakpoint-mobile: 640px;
+    --kui-breakpoint-phablet: 768px;
+    --kui-breakpoint-tablet: 1024px;
+    --kui-breakpoint-laptop: 1280px;
+    --kui-breakpoint-desktop: 1536px;
   }
 }

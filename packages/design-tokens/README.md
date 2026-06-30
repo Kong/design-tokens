@@ -71,8 +71,6 @@ import { KUI_THEMEABLE_TOKENS } from '@kong/design-tokens/themeable-tokens'
 type ThemeToken = typeof KUI_THEMEABLE_TOKENS[number]
 ```
 
-**Breakpoint tokens are intentionally excluded.** `--kui-breakpoint-*` tokens are available as CSS custom properties and SCSS variables, but they cannot be consumed inside CSS `@media` feature queries — that is, `@media (min-width: var(--kui-breakpoint-md))` is invalid CSS. Kongponents uses breakpoints exclusively in `@media` rules, so overriding them via a theme has no effect on responsive behavior. Set breakpoints at the SCSS level instead if your project needs custom breakpoint values.
-
 ## Themes
 
 Pre-built theme CSS files activate a complete set of token overrides via a `data-kui-theme` attribute on any element. Load a theme CSS file and then set the attribute on the root element (or any subtree element):
