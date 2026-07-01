@@ -1,0 +1,115 @@
+{
+  "tabs": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "_": {
+          "$description": "Tabs tab link border radius (default appearance).",
+          "$value": ""
+        },
+        "minimal": {
+          "$description": "Tabs tab link border radius (minimal appearance).",
+          "$value": ""
+        }
+      },
+      "width": {
+        "_": {
+          "$description": "Tabs container bottom border width (default appearance).",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Tabs current (selected) tab bottom border width — the active-tab underline (default appearance).",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "hover": {
+          "$description": "Tabs tab link background color on hover (default appearance).",
+          "$value": ""
+        }
+      },
+      "border": {
+        "_": {
+          "$description": "Tabs container bottom border color (default appearance).",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Tabs current (selected) tab bottom border color — the active-tab underline (default appearance).",
+          "$value": ""
+        }
+      },
+      "text": {
+        "_": {
+          "$description": "Tabs tab link text color.",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Tabs tab link text color when disabled.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Tabs tab link text color on hover and focus (default appearance).",
+          "$value": ""
+        },
+        "minimal": {
+          "hover": {
+            "$description": "Tabs tab link text color on hover (minimal appearance).",
+            "$value": ""
+          }
+        },
+        "selected": {
+          "$description": "Tabs current (selected) tab link text color.",
+          "$value": ""
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Tabs font family.",
+        "$value": ""
+      },
+      "size": {
+        "_": {
+          "$description": "Tabs tab link font size (default appearance).",
+          "$value": ""
+        },
+        "minimal": {
+          "$description": "Tabs tab link font size (minimal appearance).",
+          "$value": ""
+        }
+      },
+      "weight": {
+        "_": {
+          "$description": "Tabs tab link font weight (default appearance).",
+          "$value": ""
+        },
+        "minimal": {
+          "$description": "Tabs tab link font weight (minimal appearance).",
+          "$value": ""
+        }
+      }
+    },
+    "line_height": {
+      "_": {
+        "$description": "Tabs tab link line height (default appearance).",
+        "$value": ""
+      },
+      "minimal": {
+        "$description": "Tabs tab link line height (minimal appearance).",
+        "$value": ""
+      }
+    },
+    "padding": {
+      "$description": "Tabs tab link inner padding (default appearance).",
+      "$value": ""
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Tabs tab link focus-visible shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

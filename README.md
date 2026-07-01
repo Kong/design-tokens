@@ -40,4 +40,4 @@ See each package's README for token structure, development workflow, and contrib
 
 This repo uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). Run `pnpm commit` to create a guided commit message.
 
-Releases are managed by [lerna-lite](https://github.com/lerna-lite/lerna-lite) in independent mode — each package is versioned and published automatically based on conventional commits on `main`, `alpha`, and `beta` branches.
+Releases are managed by [lerna-lite](https://github.com/lerna-lite/lerna-lite) in independent mode — each package is versioned and published automatically.

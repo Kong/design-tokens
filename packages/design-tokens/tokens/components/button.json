@@ -1,0 +1,345 @@
+{
+  "button": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "large": {
+          "$description": "Large button border radius.",
+          "$value": ""
+        },
+        "medium": {
+          "$description": "Medium button border radius.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Small button border radius.",
+          "$value": ""
+        }
+      },
+      "width": {
+        "large": {
+          "$description": "Large button border width.",
+          "$value": ""
+        },
+        "medium": {
+          "$description": "Medium button border width.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Small button border width.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "danger": {
+          "_": {
+            "$description": "Danger button background color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Danger button background color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Danger button background color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Danger button background color on hover.",
+            "$value": ""
+          }
+        },
+        "primary": {
+          "_": {
+            "$description": "Primary button background color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Primary button background color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Primary button background color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Primary button background color on hover.",
+            "$value": ""
+          }
+        },
+        "secondary": {
+          "_": {
+            "$description": "Secondary button background color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Secondary button background color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Secondary button background color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Secondary button background color on hover.",
+            "$value": ""
+          }
+        },
+        "tertiary": {
+          "_": {
+            "$description": "Tertiary button background color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Tertiary button background color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Tertiary button background color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Tertiary button background color on hover.",
+            "$value": ""
+          }
+        }
+      },
+      "border": {
+        "danger": {
+          "_": {
+            "$description": "Danger button border color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Danger button border color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Danger button border color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Danger button border color on hover.",
+            "$value": ""
+          }
+        },
+        "primary": {
+          "_": {
+            "$description": "Primary button border color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Primary button border color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Primary button border color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Primary button border color on hover.",
+            "$value": ""
+          }
+        },
+        "secondary": {
+          "_": {
+            "$description": "Secondary button border color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Secondary button border color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Secondary button border color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Secondary button border color on hover.",
+            "$value": ""
+          }
+        },
+        "tertiary": {
+          "_": {
+            "$description": "Tertiary button border color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Tertiary button border color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Tertiary button border color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Tertiary button border color on hover.",
+            "$value": ""
+          }
+        }
+      },
+      "text": {
+        "danger": {
+          "_": {
+            "$description": "Danger button text color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Danger button text color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Danger button text color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Danger button text color on hover.",
+            "$value": ""
+          }
+        },
+        "primary": {
+          "_": {
+            "$description": "Primary button text color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Primary button text color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Primary button text color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Primary button text color on hover.",
+            "$value": ""
+          }
+        },
+        "secondary": {
+          "_": {
+            "$description": "Secondary button text color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Secondary button text color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Secondary button text color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Secondary button text color on hover.",
+            "$value": ""
+          }
+        },
+        "tertiary": {
+          "_": {
+            "$description": "Tertiary button text color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Tertiary button text color when active.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Tertiary button text color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Tertiary button text color on hover.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "font": {
+      "size": {
+        "large": {
+          "$description": "Large button font size.",
+          "$value": ""
+        },
+        "medium": {
+          "$description": "Medium button font size.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Small button font size.",
+          "$value": ""
+        }
+      },
+      "weight": {
+        "$description": "Button font weight.",
+        "$value": ""
+      }
+    },
+    "icon": {
+      "size": {
+        "large": {
+          "$description": "Icon size in the large button.",
+          "$value": ""
+        },
+        "medium": {
+          "$description": "Icon size in the medium button.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Icon size in the small button.",
+          "$value": ""
+        }
+      }
+    },
+    "line_height": {
+      "large": {
+        "$description": "Large button line height.",
+        "$value": ""
+      },
+      "medium": {
+        "$description": "Medium button line height.",
+        "$value": ""
+      },
+      "small": {
+        "$description": "Small button line height.",
+        "$value": ""
+      }
+    },
+    "padding": {
+      "x": {
+        "large": {
+          "$description": "Large button horizontal padding.",
+          "$value": ""
+        },
+        "medium": {
+          "$description": "Medium button horizontal padding.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Small button horizontal padding.",
+          "$value": ""
+        }
+      },
+      "y": {
+        "large": {
+          "$description": "Large button vertical padding.",
+          "$value": ""
+        },
+        "medium": {
+          "$description": "Medium button vertical padding.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Small button vertical padding.",
+          "$value": ""
+        }
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Button focus ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

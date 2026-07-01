@@ -1,0 +1,63 @@
+{
+  "multiselect": {
+    "$type": "component",
+    "footer": {
+      "border": {
+        "width": {
+          "$description": "Multiselect dropdown footer top border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "$description": "Multiselect dropdown footer background color.",
+          "$value": ""
+        },
+        "border": {
+          "$description": "Multiselect dropdown footer top border color.",
+          "$value": ""
+        },
+        "text": {
+          "$description": "Multiselect dropdown footer text color.",
+          "$value": ""
+        }
+      }
+    },
+    "group": {
+      "color": {
+        "text": {
+          "$description": "Multiselect dropdown group title text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "family": {
+          "$description": "Multiselect dropdown group title font family.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Multiselect dropdown group title font weight.",
+          "$value": ""
+        }
+      }
+    },
+    "search": {
+      "border": {
+        "width": {
+          "$description": "Multiselect dropdown search input wrapper bottom border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "$description": "Multiselect dropdown search input wrapper background color.",
+          "$value": ""
+        },
+        "border": {
+          "$description": "Multiselect dropdown search input wrapper bottom border color.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

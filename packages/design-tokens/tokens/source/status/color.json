@@ -1,6 +1,7 @@
 {
   "status": {
     "color": {
+      "$type": "color",
       "1na": {
         "$description": "Color for unknown response status codes in the 100-199 range (blue.10).",
         "$value": "{color.alias.blue.10}"

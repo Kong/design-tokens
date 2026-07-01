@@ -1,0 +1,47 @@
+{
+  "checkbox": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Checkbox border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Checkbox background color.",
+          "$value": ""
+        },
+        "checked": {
+          "$description": "Checkbox background color when checked or indeterminate.",
+          "$value": ""
+        }
+      },
+      "icon": {
+        "$description": "Checkbox icon color when checked or indeterminate.",
+        "$value": ""
+      }
+    },
+    "shadow": {
+      "border": {
+        "_": {
+          "$description": "Checkbox default border shadow.",
+          "$value": ""
+        },
+        "checked": {
+          "$description": "Checkbox border shadow when checked or indeterminate.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Checkbox border shadow on hover.",
+          "$value": ""
+        }
+      },
+      "focus": {
+        "$description": "Checkbox focus ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

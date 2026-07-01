@@ -1,0 +1,47 @@
+{
+  "link": {
+    "$type": "component",
+    "color": {
+      "text": {
+        "_": {
+          "$description": "Link text color.",
+          "$value": ""
+        },
+        "active": {
+          "$description": "Link text color in the active (pressed) state.",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Link text color in the disabled state.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Link text color on hover and focus-visible.",
+          "$value": ""
+        }
+      }
+    },
+    "font": {
+      "weight": {
+        "$description": "Link font weight.",
+        "$value": ""
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Link focus-visible ring shadow.",
+        "$value": ""
+      }
+    },
+    "text_decoration": {
+      "_": {
+        "$description": "Link text decoration (e.g. underline).",
+        "$value": ""
+      },
+      "hover": {
+        "$description": "Link text decoration on hover and focus-visible.",
+        "$value": ""
+      }
+    }
+  }
+}

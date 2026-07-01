@@ -1,0 +1,69 @@
+{
+  "file_upload": {
+    "$type": "component",
+    "color": {
+      "text": {
+        "disabled": {
+          "$description": "File upload selected-file text color when disabled (input appearance).",
+          "$value": ""
+        },
+        "placeholder": {
+          "$description": "File upload placeholder text color when no file is selected (input appearance).",
+          "$value": ""
+        }
+      }
+    },
+    "dropzone": {
+      "border": {
+        "radius": {
+          "$description": "File upload dropzone border radius.",
+          "$value": ""
+        },
+        "width": {
+          "$description": "File upload dropzone border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "File upload dropzone background color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "File upload dropzone background color when disabled.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "_": {
+            "$description": "File upload dropzone border color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "File upload dropzone border color when disabled.",
+            "$value": ""
+          },
+          "error": {
+            "$description": "File upload dropzone border color in error state.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "File upload dropzone border color on hover, drag-over, and focus (coordinated).",
+            "$value": ""
+          }
+        },
+        "text": {
+          "$description": "File upload dropzone text color.",
+          "$value": ""
+        }
+      },
+      "shadow": {
+        "focus": {
+          "$description": "File upload dropzone outer focus ring shadow.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

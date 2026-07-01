@@ -5,11 +5,11 @@ import css from './css.mjs'
 import javascript from './javascript.mjs'
 import json from './json.mjs'
 import markdown from './markdown.mjs'
+import themeableTokens from './themeable-tokens.mjs'
+import { themesPlatform } from './themes.mjs'
 // Import utilities
 import { customFileHeader, KONG_TOKEN_PREFIX } from '../utilities/index.mjs'
 
-// Add platforms to const
-// The property key should match platform.transformGroup; e.g. `scss: scss`
 const platforms = {
   scss,
   less,
@@ -17,6 +17,8 @@ const platforms = {
   javascript,
   json,
   markdown,
+  'themeable-tokens': themeableTokens,
+  themes: themesPlatform,
 }
 
 // Loop through all platforms and apply universal settings

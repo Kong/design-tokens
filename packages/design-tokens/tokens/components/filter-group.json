@@ -1,0 +1,95 @@
+{
+  "filter_group": {
+    "$type": "component",
+    "clear": {
+      "border": {
+        "radius": {
+          "$description": "Border radius of the focus highlight around the pill clear button.",
+          "$value": ""
+        }
+      }
+    },
+    "pill": {
+      "border": {
+        "radius": {
+          "$description": "Filter pill border radius.",
+          "$value": ""
+        },
+        "width": {
+          "$description": "Filter pill border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Filter pill background color (default, no selection).",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Filter pill background color on hover and focus (default, no selection).",
+            "$value": ""
+          },
+          "selected": {
+            "_": {
+              "$description": "Filter pill background color when a selection is applied.",
+              "$value": ""
+            },
+            "hover": {
+              "$description": "Filter pill background color on hover and focus when a selection is applied.",
+              "$value": ""
+            }
+          }
+        },
+        "border": {
+          "_": {
+            "$description": "Filter pill border color (default, no selection).",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Filter pill border color on hover and focus.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Filter pill border color when a selection is applied.",
+            "$value": ""
+          }
+        },
+        "text": {
+          "_": {
+            "$description": "Filter pill text color (default, no selection).",
+            "$value": ""
+          },
+          "selected": {
+            "_": {
+              "$description": "Filter pill text color when a selection is applied.",
+              "$value": ""
+            },
+            "hover": {
+              "$description": "Filter pill text color on hover and focus when a selection is applied.",
+              "$value": ""
+            }
+          }
+        }
+      },
+      "line_height": {
+        "$description": "Filter pill label line height.",
+        "$value": ""
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Filter pill focus ring shadow.",
+          "$value": ""
+        }
+      }
+    },
+    "selector": {
+      "color": {
+        "text": {
+          "$description": "Filter selector empty (no filters found) message text color.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

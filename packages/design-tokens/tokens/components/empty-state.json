@@ -1,0 +1,137 @@
+{
+  "empty_state": {
+    "$type": "component",
+    "color": {
+      "background": {
+        "$description": "Empty state container background color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Empty state font family.",
+        "$value": ""
+      }
+    },
+    "footer": {
+      "border": {
+        "width": {
+          "$description": "Empty state footer top border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "border": {
+          "$description": "Empty state footer top border color.",
+          "$value": ""
+        },
+        "text": {
+          "$description": "Empty state footer text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Empty state footer font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Empty state footer font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Empty state footer line height.",
+        "$value": ""
+      },
+      "padding": {
+        "top": {
+          "$description": "Empty state footer top padding.",
+          "$value": ""
+        }
+      }
+    },
+    "icon": {
+      "border": {
+        "radius": {
+          "$description": "Empty state icon border radius when the icon has a background.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "_": {
+          "$description": "Empty state icon color.",
+          "$value": ""
+        },
+        "background": {
+          "$description": "Empty state icon background color when the icon has a background.",
+          "$value": ""
+        },
+        "text": {
+          "background": {
+            "$description": "Empty state icon text/glyph color when the icon has a background.",
+            "$value": ""
+          }
+        }
+      },
+      "padding": {
+        "$description": "Empty state icon padding when the icon has a background.",
+        "$value": ""
+      },
+      "size": {
+        "_": {
+          "$description": "Empty state icon size.",
+          "$value": ""
+        },
+        "background": {
+          "$description": "Empty state icon size when the icon has a background.",
+          "$value": ""
+        }
+      }
+    },
+    "message": {
+      "color": {
+        "text": {
+          "$description": "Empty state message text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Empty state message font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Empty state message font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Empty state message line height.",
+        "$value": ""
+      }
+    },
+    "title": {
+      "color": {
+        "text": {
+          "$description": "Empty state title text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Empty state title font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Empty state title font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Empty state title line height.",
+        "$value": ""
+      }
+    }
+  }
+}

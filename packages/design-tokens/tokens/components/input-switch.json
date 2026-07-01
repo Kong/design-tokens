@@ -1,0 +1,99 @@
+{
+  "input_switch": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "large": {
+          "$description": "Input switch large size border radius.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Input switch small size border radius.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Input switch track background color.",
+          "$value": ""
+        },
+        "disabled": {
+          "$description": "Input switch track background color when disabled.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Input switch track background color on hover.",
+          "$value": ""
+        },
+        "selected": {
+          "_": {
+            "$description": "Input switch track background color when on.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Input switch track background color when on and hovered.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Input switch focus ring shadow.",
+        "$value": ""
+      }
+    },
+    "thumb": {
+      "border": {
+        "radius": {
+          "$description": "Input switch thumb ring border radius.",
+          "$value": ""
+        },
+        "width": {
+          "$description": "Input switch thumb ring border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Input switch thumb background color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Input switch thumb background color when disabled.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "_": {
+            "$description": "Input switch thumb ring border color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Input switch thumb ring border color on hover.",
+            "$value": ""
+          }
+        }
+      },
+      "shadow": {
+        "border": {
+          "_": {
+            "$description": "Input switch thumb border shadow.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Input switch thumb border shadow when disabled.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Input switch thumb border shadow when on.",
+            "$value": ""
+          }
+        }
+      }
+    }
+  }
+}

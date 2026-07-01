@@ -1,27 +1,5 @@
 {
   "icon": {
-    "color": {
-      "danger": {
-        "$description": "Danger color for icons.",
-        "$value": "{color.alias.red.50}"
-      },
-      "neutral": {
-        "$description": "Neutral color for icons.",
-        "$value": "{color.alias.gray.50}"
-      },
-      "primary": {
-        "$description": "Primary color for icons.",
-        "$value": "{color.alias.blue.50}"
-      },
-      "success": {
-        "$description": "Success color for icons.",
-        "$value": "{color.alias.green.50}"
-      },
-      "warning": {
-        "$description": "Warning color for icons.",
-        "$value": "{color.alias.yellow.40}"
-      }
-    },
     "size": {
       "10": {
         "$description": "10px icon size.",

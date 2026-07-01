@@ -1,0 +1,348 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ * Generated on <stripped>
+ * 
+ * Kong Konnect Design Tokens
+ * GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens
+ * License: Apache-2.0
+ */
+
+:root {
+  --kui-color-background: #ffffff; /** Default background color for containers (white). */
+  --kui-color-background-danger: #d60027; /** Background color for danger actions or messages (red.60). */
+  --kui-color-background-danger-strong: #ad000e; /** Strong background color for danger actions or messages (red.70). */
+  --kui-color-background-danger-stronger: #850000; /** Stronger background color for danger actions or messages (red.80). */
+  --kui-color-background-danger-strongest: #5c0000; /** Strongest background color for danger actions or messages (red.90). */
+  --kui-color-background-danger-weak: #ff3954; /** Weak background color for danger actions or messages (red.40). */
+  --kui-color-background-danger-weaker: #ffabab; /** Weaker background color for danger actions or messages (red.20). */
+  --kui-color-background-danger-weakest: #ffe5e5; /** Weakest background color for danger actions or messages (red.10). */
+  --kui-color-background-decorative-aqua-weakest: #ecfcff; /** Weakest background color for decorative purposes (aqua.10). */
+  --kui-color-background-decorative-purple: #6f28ff; /** Background color for decorative purposes (purple.60). */
+  --kui-color-background-decorative-purple-weakest: #f1f0ff; /** Weakest background color for decorative purposes (purple.10). */
+  --kui-color-background-disabled: #e0e4ea; /** Background color for disabled elements (gray.20). */
+  --kui-color-background-info: #0044f4; /** Background color for info elements (blue.60). */
+  --kui-color-background-info-strong: #0030cc; /** Strong background color for info elements (blue.70). */
+  --kui-color-background-info-stronger: #002099; /** Stronger background color for info elements (blue.80). */
+  --kui-color-background-info-strongest: #001466; /** Strongest background color for info elements (blue.90). */
+  --kui-color-background-info-weak: #5f9aff; /** Weak background color for info elements (blue.40). */
+  --kui-color-background-info-weaker: #bee2ff; /** Weaker background color for info elements (blue.20). */
+  --kui-color-background-info-weakest: #eefaff; /** Weakest background color for info elements (blue.10). */
+  --kui-color-background-inverse: #000933; /** Inverse background color for containers (blue.100) */
+  --kui-color-background-neutral: #6c7489; /** Background color for neutral elements (gray.60). */
+  --kui-color-background-neutral-strong: #52596e; /** Strong background color for neutral elements (gray.70). */
+  --kui-color-background-neutral-stronger: #3a3f51; /** Stronger background color for neutral elements (gray.80). */
+  --kui-color-background-neutral-strongest: #232633; /** Strongest background color for neutral elements (gray.90). */
+  --kui-color-background-neutral-weak: #afb7c5; /** Weak background color for neutral elements (gray.40). */
+  --kui-color-background-neutral-weaker: #e0e4ea; /** Weaker background color for neutral elements (gray.20). */
+  --kui-color-background-neutral-weakest: #f9fafb; /** Weakest background color for neutral elements (gray.10). */
+  --kui-color-background-overlay: rgba(0, 9, 51, 0.6); /** Overlay background color (rgba(0, 9, 51, 0.6)) */
+  --kui-color-background-primary: #0044f4; /** Background color for primary actions or messages (blue.60). */
+  --kui-color-background-primary-strong: #0030cc; /** Strong background color for primary actions or messages (blue.70). */
+  --kui-color-background-primary-stronger: #002099; /** Stronger background color for primary actions or messages (blue.80). */
+  --kui-color-background-primary-strongest: #001466; /** Strongest background color for primary actions or messages (blue.90). */
+  --kui-color-background-primary-weak: #5f9aff; /** Weak background color for primary actions or messages (blue.40). */
+  --kui-color-background-primary-weaker: #bee2ff; /** Weaker background color for primary actions or messages (blue.20). */
+  --kui-color-background-primary-weakest: #eefaff; /** Weakest background color for primary actions or messages (blue.10) */
+  --kui-color-background-success: #007d60; /** Background color for success elements (green.60). */
+  --kui-color-background-success-strong: #005944; /** Strong background color for success elements (green.70). */
+  --kui-color-background-success-stronger: #004737; /** Stronger background color for success elements (green.80). */
+  --kui-color-background-success-strongest: #003629; /** Strongest background color for success elements (green.90). */
+  --kui-color-background-success-weak: #00d6a4; /** Weak background color for success elements (green.40). */
+  --kui-color-background-success-weaker: #b5ffee; /** Weaker background color for success elements (green.20). */
+  --kui-color-background-success-weakest: #ecfffb; /** Weakest background color for success elements (green.10). */
+  --kui-color-background-transparent: rgba(0, 0, 0, 0); /** Transparent background color (transparent). */
+  --kui-color-background-warning: #995c00; /** Background color for warning elements (yellow.60). */
+  --kui-color-background-warning-strong: #804400; /** Strong background color for warning elements (yellow.70). */
+  --kui-color-background-warning-stronger: #662d00; /** Stronger background color for warning elements (yellow.80). */
+  --kui-color-background-warning-strongest: #4d1b00; /** Strongest background color for warning elements (yellow.90). */
+  --kui-color-background-warning-weak: #ffc400; /** Weak background color for warning elements (yellow.40). */
+  --kui-color-background-warning-weaker: #fff296; /** Weaker background color for warning elements (yellow.20). */
+  --kui-color-background-warning-weakest: #fffce0; /** Weakest background color for warning elements (yellow.10). */
+  --kui-color-border: #e0e4ea; /** Default border color for containers (gray.20). */
+  --kui-color-border-danger: #d60027; /** Border color for danger actions or messages (red.60). */
+  --kui-color-border-danger-strong: #ad000e; /** Strong border color for danger actions or messages (red.70). */
+  --kui-color-border-danger-stronger: #850000; /** Stronger border color for danger actions or messages (red.80). */
+  --kui-color-border-danger-strongest: #5c0000; /** Strongest border color for danger actions or messages (red.90). */
+  --kui-color-border-danger-weak: #ff3954; /** Weak border color for danger actions or messages (red.40). */
+  --kui-color-border-danger-weaker: #ffabab; /** Weaker border color for danger actions or messages (red.20). */
+  --kui-color-border-danger-weakest: #ffe5e5; /** Weakest border color for danger actions or messages (red.10). */
+  --kui-color-border-decorative-purple: #6f28ff; /** Border color for decorative purposes (purple.60). */
+  --kui-color-border-disabled: #e0e4ea; /** Border color for disabled elements (gray.20). */
+  --kui-color-border-inverse: rgba(255, 255, 255, 0.2); /** Inverse border color (rgba(255, 255, 255, 0.2)). */
+  --kui-color-border-neutral: #6c7489; /** Border color for neutral elements (gray.60) */
+  --kui-color-border-neutral-strong: #52596e; /** Strong border color for neutral elements (gray.70) */
+  --kui-color-border-neutral-stronger: #3a3f51; /** Stronger border color for neutral elements (gray.80) */
+  --kui-color-border-neutral-strongest: #232633; /** Strongest border color for neutral elements (gray.90) */
+  --kui-color-border-neutral-weak: #afb7c5; /** Weak border color for neutral elements (gray.40) */
+  --kui-color-border-neutral-weaker: #e0e4ea; /** Weaker border color for neutral elements (gray.20) */
+  --kui-color-border-neutral-weakest: #f9fafb; /** Weakest border color for neutral elements (gray.10) */
+  --kui-color-border-primary: #0044f4; /** Border color for primary actions or messages (blue.60). */
+  --kui-color-border-primary-strong: #0030cc; /** Strong border color for primary actions or messages (blue.70). */
+  --kui-color-border-primary-stronger: #002099; /** Stronger border color for primary actions or messages (blue.80). */
+  --kui-color-border-primary-strongest: #001466; /** Strongest border color for primary actions or messages (blue.90). */
+  --kui-color-border-primary-weak: #5f9aff; /** Weak border color for primary actions or messages (blue.40). */
+  --kui-color-border-primary-weaker: #bee2ff; /** Weaker border color for primary actions or messages (blue.20). */
+  --kui-color-border-primary-weakest: #eefaff; /** Weakest border color for primary actions or messages (blue.10). */
+  --kui-color-border-transparent: rgba(0, 0, 0, 0); /** Transparent border color (transparent). */
+  --kui-color-text: #000933; /** Default text color (blue.100). */
+  --kui-color-text-danger: #d60027; /** Text color for danger actions or messages (red.60). */
+  --kui-color-text-danger-strong: #ad000e; /** Strong text color for danger actions or messages (red.70). */
+  --kui-color-text-danger-stronger: #850000; /** Stronger text color for danger actions or messages (red.80). */
+  --kui-color-text-danger-strongest: #5c0000; /** Strongest text color for danger actions or messages (red.90). */
+  --kui-color-text-danger-weak: #ff3954; /** Weak text color for danger actions or messages (red.40). */
+  --kui-color-text-danger-weaker: #ffabab; /** Weaker text color for danger actions or messages (red.20). */
+  --kui-color-text-danger-weakest: #ffe5e5; /** Weakest text color for danger actions or messages (red.10). */
+  --kui-color-text-decorative-aqua: #00abd2; /** Text color for decorative purposes (aqua.50). */
+  --kui-color-text-decorative-pink: #d60067; /** Text color for decorative purposes (pink.60). */
+  --kui-color-text-decorative-purple: #6f28ff; /** Text color for decorative purposes (purple.60). */
+  --kui-color-text-decorative-purple-strong: #5e00f5; /** Strong text color for decorative purposes (purple.70). */
+  --kui-color-text-disabled: #afb7c5; /** Text color for disabled elements (gray.40). */
+  --kui-color-text-info: #0044f4; /** Text color for info elements (blue.60). */
+  --kui-color-text-info-strong: #0030cc; /** Strong text color for info elements (blue.70). */
+  --kui-color-text-info-stronger: #002099; /** Stronger text color for info elements (blue.80). */
+  --kui-color-text-info-strongest: #001466; /** Strongest text color for info elements (blue.90). */
+  --kui-color-text-info-weak: #5f9aff; /** Weak text color for info elements (blue.40). */
+  --kui-color-text-info-weaker: #bee2ff; /** Weaker text color for info elements (blue.20). */
+  --kui-color-text-info-weakest: #eefaff; /** Weakest text color for info elements (blue.10). */
+  --kui-color-text-inverse: #ffffff; /** Inverse text color (white). */
+  --kui-color-text-neutral: #6c7489; /** Text color for neutral elements (gray.60). */
+  --kui-color-text-neutral-strong: #52596e; /** Strong text color for neutral elements (gray.70). */
+  --kui-color-text-neutral-stronger: #3a3f51; /** Stronger text color for neutral elements (gray.80). */
+  --kui-color-text-neutral-strongest: #232633; /** Strongest text color for neutral elements (gray.90). */
+  --kui-color-text-neutral-weak: #afb7c5; /** Weak text color for neutral elements (gray.40). */
+  --kui-color-text-neutral-weaker: #e0e4ea; /** Weaker text color for neutral elements (gray.20). */
+  --kui-color-text-neutral-weakest: #f9fafb; /** Weakest text color for neutral elements (gray.10). */
+  --kui-color-text-primary: #0044f4; /** Text color for primary actions or messages (blue.60). */
+  --kui-color-text-primary-strong: #0030cc; /** Strong text color for primary actions or messages (blue.70). */
+  --kui-color-text-primary-stronger: #002099; /** Stronger text color for primary actions or messages (blue.80). */
+  --kui-color-text-primary-strongest: #001466; /** Strongest text color for primary actions or messages (blue.90). */
+  --kui-color-text-primary-weak: #5f9aff; /** Weak text color for primary actions or messages (blue.40). */
+  --kui-color-text-primary-weaker: #bee2ff; /** Weaker text color for primary actions or messages (blue.20). */
+  --kui-color-text-primary-weakest: #eefaff; /** Weakest text color for primary actions or messages (blue.10). */
+  --kui-color-text-success: #007d60; /** Text color for success elements (green.60). */
+  --kui-color-text-success-strong: #005944; /** Strong text color for success elements (green.70). */
+  --kui-color-text-success-stronger: #004737; /** Stronger text color for success elements (green.80). */
+  --kui-color-text-success-strongest: #003629; /** Stronger text color for success elements (green.90). */
+  --kui-color-text-success-weak: #00d6a4; /** Weak text color for success elements (green.40). */
+  --kui-color-text-success-weaker: #b5ffee; /** Weaker text color for success elements (green.20). */
+  --kui-color-text-success-weakest: #ecfffb; /** Weakest text color for success elements (green.10). */
+  --kui-color-text-warning: #995c00; /** Text color for warning elements (yellow.60). */
+  --kui-color-text-warning-strong: #804400; /** Strong text color for warning elements (yellow.70). */
+  --kui-color-text-warning-stronger: #662d00; /** Stronger text color for warning elements (yellow.80). */
+  --kui-color-text-warning-strongest: #4d1b00; /** Strongest text color for warning elements (yellow.90). */
+  --kui-color-text-warning-weak: #ffc400; /** Weak text color for warning elements (yellow.40). */
+  --kui-color-text-warning-weaker: #fff296; /** Weaker text color for warning elements (yellow.20). */
+  --kui-color-text-warning-weakest: #fffce0; /** Weakest text color for warning elements (yellow.10). */
+  --kui-animation-duration-20: 0.2s; /** Default transition timing */
+  --kui-border-radius-0: 0px; /** 0px border radius. */
+  --kui-border-radius-10: 2px; /** 2px border radius. */
+  --kui-border-radius-20: 4px; /** 4px border radius. */
+  --kui-border-radius-30: 6px; /** 6px border radius. */
+  --kui-border-radius-40: 8px; /** 8px border radius. */
+  --kui-border-radius-50: 10px; /** 10px border radius. */
+  --kui-border-radius-circle: 50%; /** 50% border radius used to create circles. */
+  --kui-border-radius-round: 100px; /** 100px border radius used to create pill shapes. */
+  --kui-border-width-0: 0px; /** 0px border width. */
+  --kui-border-width-10: 1px; /** 1px border width. */
+  --kui-border-width-20: 2px; /** 2px border width. */
+  --kui-border-width-30: 4px; /** 4px border width. */
+  --kui-breakpoint-mobile: 640px; /** Used for larger mobile screens. Any viewport width under this value is considered mobile. */
+  --kui-breakpoint-phablet: 768px; /** Used for tablet screens. */
+  --kui-breakpoint-tablet: 1024px; /** Used for larger tablet screens. Any viewport width less than this value will likely show a mobile layout. Any viewport width this value and greater will likely show a desktop layout. */
+  --kui-breakpoint-laptop: 1280px; /** Used for standard desktop screens. */
+  --kui-breakpoint-desktop: 1536px; /** Used for larger desktop screens. */
+  --kui-font-family-code: 'JetBrains Mono', Consolas, monospace; /** The standard monospace text font family. Typically used for code blocks, inline code, and copyable text. */
+  --kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif; /** The standard heading text font family. */
+  --kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif; /** The standard text font family. */
+  --kui-font-size-10: 10px;
+  --kui-font-size-20: 12px;
+  --kui-font-size-30: 14px;
+  --kui-font-size-40: 16px;
+  --kui-font-size-50: 18px;
+  --kui-font-size-60: 20px;
+  --kui-font-size-70: 24px;
+  --kui-font-size-80: 32px;
+  --kui-font-size-90: 40px;
+  --kui-font-size-100: 48px;
+  --kui-font-weight-bold: 700; /** 700: The bold font weight. */
+  --kui-font-weight-medium: 500; /** 500: The medium font weight. */
+  --kui-font-weight-regular: 400; /** 400: The normal font weight. */
+  --kui-font-weight-semibold: 600; /** 600: The semibold font weight. */
+  --kui-icon-color-danger: #f50045; /** Danger color for icons. */
+  --kui-icon-color-neutral: #828a9e; /** Neutral color for icons. */
+  --kui-icon-color-primary: #306fff; /** Primary color for icons. */
+  --kui-icon-color-success: #00a17b; /** Success color for icons. */
+  --kui-icon-color-warning: #ffc400; /** Warning color for icons. */
+  --kui-icon-size-10: 10px; /** 10px icon size. */
+  --kui-icon-size-20: 12px; /** 12px icon size. */
+  --kui-icon-size-30: 16px; /** 16px icon size. */
+  --kui-icon-size-40: 20px; /** 20px icon size. */
+  --kui-icon-size-50: 24px; /** 24px icon size (default). */
+  --kui-icon-size-60: 32px; /** 32px icon size. */
+  --kui-icon-size-70: 40px; /** 40px icon size. */
+  --kui-icon-size-80: 48px; /** 48px icon size. */
+  --kui-letter-spacing-0: normal; /** Alias for letter-spacing-normal */
+  --kui-letter-spacing-minus-10: -0.12px; /** -0.12px */
+  --kui-letter-spacing-minus-20: -0.24px; /** -0.24px */
+  --kui-letter-spacing-minus-30: -0.32px; /** -0.32px */
+  --kui-letter-spacing-minus-40: -0.4px; /** -0.4px */
+  --kui-letter-spacing-minus-50: -0.48px; /** -0.48px */
+  --kui-letter-spacing-normal: normal; /** normal */
+  --kui-line-height-10: 12px; /** 12px */
+  --kui-line-height-20: 16px; /** 16px */
+  --kui-line-height-30: 20px; /** 20px */
+  --kui-line-height-40: 24px; /** 24px */
+  --kui-line-height-50: 28px; /** 28px */
+  --kui-line-height-60: 32px; /** 32px */
+  --kui-line-height-70: 36px; /** 36px */
+  --kui-line-height-80: 40px; /** 40px */
+  --kui-line-height-90: 48px; /** 48px */
+  --kui-line-height-100: 56px; /** 56px */
+  --kui-method-color-background-connect: #f1f0ff; /** Background color for the CONNECT method (purple.10). */
+  --kui-method-color-background-delete: #ffe5e5; /** Background color for the DELETE method (red.10). */
+  --kui-method-color-background-get: #eefaff; /** Background color for the GET method (blue.10). */
+  --kui-method-color-background-head: #52596e; /** Background color for the HEAD method (gray.70). */
+  --kui-method-color-background-options: #e0e4ea; /** Background color for the OPTIONS method (gray.20). */
+  --kui-method-color-background-patch: #ecfcff; /** Background color for the PATCH method (aqua.10). */
+  --kui-method-color-background-post: #ecfffb; /** Background color for the POST method (green.10). */
+  --kui-method-color-background-put: #fffce0; /** Background color for the PUT method (yellow.10). */
+  --kui-method-color-background-trace: #fff0f7; /** Background color for the TRACE method (pink.10). */
+  --kui-method-color-text-connect: #6f28ff; /** Text color for the CONNECT method (purple.60). */
+  --kui-method-color-text-connect-strong: #5e00f5; /** Strong text color for the CONNECT method (purple.70). */
+  --kui-method-color-text-delete: #d60027; /** Text color for the DELETE method (red.60). */
+  --kui-method-color-text-delete-strong: #ad000e; /** Strong text color for the DELETE method (red.70). */
+  --kui-method-color-text-get: #0044f4; /** Text color for the GET method (blue.60). */
+  --kui-method-color-text-get-strong: #0030cc; /** Strong text color for the GET method (blue.70). */
+  --kui-method-color-text-head: #e0e4ea; /** Text color for the HEAD method (gray.20). */
+  --kui-method-color-text-head-strong: #afb7c5; /** Strong text color for the HEAD method (gray.40). */
+  --kui-method-color-text-options: #52596e; /** Text color for the OPTIONS method (gray.70). */
+  --kui-method-color-text-options-strong: #3a3f51; /** Strong text color for the OPTIONS method (gray.80). */
+  --kui-method-color-text-patch: #00819d; /** Text color for the PATCH method (aqua.60). */
+  --kui-method-color-text-patch-strong: #00647a; /** Strong text color for the PATCH method (aqua.70). */
+  --kui-method-color-text-post: #007d60; /** Text color for the POST method (green.60). */
+  --kui-method-color-text-post-strong: #005944; /** Strong text color for the POST method (green.70). */
+  --kui-method-color-text-put: #995c00; /** Text color for the PUT method (yellow.60). */
+  --kui-method-color-text-put-strong: #804400; /** Strong text color for the PUT method (yellow.70). */
+  --kui-method-color-text-trace: #d60067; /** Text color for the TRACE method (pink.60). */
+  --kui-method-color-text-trace-strong: #ad0053; /** Strong text color for the TRACE method (pink.70). */
+  --kui-navigation-color-background: #000933; /** blue.100 */
+  --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12); /** The background color of a selected navigation item. */
+  --kui-navigation-color-border: rgba(255, 255, 255, 0.12); /** rgba(255, 255, 255, 0.12) */
+  --kui-navigation-color-border-child: #00fabe; /** The border color for a selected child navigation item. */
+  --kui-navigation-color-border-divider: rgba(255, 255, 255, 0.24); /** The color of the navigation section divider. */
+  --kui-navigation-color-text: #bee2ff; /** Navigation link and icon color. */
+  --kui-navigation-color-text-focus: #ffffff; /** Navigation link and icon focus-visible color. */
+  --kui-navigation-color-text-hover: #eefaff; /** Navigation link and icon hover color. */
+  --kui-navigation-color-text-selected: #00fabe; /** Navigation link and icon selected color. */
+  --kui-navigation-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.12) inset; /** The box-shadow for a focus-visible navigation link. */
+  --kui-navigation-shadow-border-child: 4px 0 0 0 #00fabe inset; /** The left box-shadow for an active child navigation link. */
+  --kui-navigation-shadow-focus: 0 0 0 1px rgba(255, 255, 255, 0.60) inset; /** Navigation link focus-visible box-shadow. */
+  --kui-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08); /** 0px 4px 20px 0px rgba(0, 0, 0, 0.08) */
+  --kui-shadow-border: 0px 0px 0px 1px #e0e4ea inset; /** 0px 0px 0px 1px gray.20 inset */
+  --kui-shadow-border-danger: 0px 0px 0px 1px #d60027 inset; /** 0px 0px 0px 1px red.60 inset */
+  --kui-shadow-border-danger-strong: 0px 0px 0px 1px #ad000e inset; /** 0px 0px 0px 1px red.70 inset */
+  --kui-shadow-border-disabled: 0px 0px 0px 1px #e0e4ea inset; /** 0px 0px 0px 1px gray.20 inset */
+  --kui-shadow-border-primary: 0px 0px 0px 1px #0044f4 inset; /** 0px 0px 0px 1px blue.60 inset */
+  --kui-shadow-border-primary-strongest: 0px 0px 0px 1px #001466 inset; /** 0px 0px 0px 1px blue.90 inset */
+  --kui-shadow-border-primary-weak: 0px 0px 0px 1px #5f9aff inset; /** 0px 0px 0px 1px blue.40 inset */
+  --kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2); /** 0px 0px 0px 4px rgba(0, 68, 244, 0.2) */
+  --kui-space-0: 0px; /** 0px value for gaps, margin, or padding. */
+  --kui-space-10: 2px; /** 2px value for gaps, margin, or padding. */
+  --kui-space-20: 4px; /** 4px value for gaps, margin, or padding. */
+  --kui-space-30: 6px; /** 6px value for gaps, margin, or padding. */
+  --kui-space-40: 8px; /** 8px value for gaps, margin, or padding. */
+  --kui-space-50: 12px; /** 12px value for gaps, margin, or padding. */
+  --kui-space-60: 16px; /** 16px value for gaps, margin, or padding. */
+  --kui-space-70: 20px; /** 20px value for gaps, margin, or padding. */
+  --kui-space-80: 24px; /** 24px value for gaps, margin, or padding. */
+  --kui-space-90: 32px; /** 32px value for gaps, margin, or padding. */
+  --kui-space-100: 40px; /** 40px value for gaps, margin, or padding. */
+  --kui-space-110: 48px; /** 48px value for gaps, margin, or padding. */
+  --kui-space-120: 56px; /** 56px value for gaps, margin, or padding. */
+  --kui-space-130: 64px; /** 64px value for gaps, margin, or padding. */
+  --kui-space-140: 80px; /** 80px value for gaps, margin, or padding. */
+  --kui-space-150: 96px; /** 96px value for gaps, margin, or padding. */
+  --kui-space-auto: auto; /** auto */
+  --kui-status-color-100: #bee2ff; /** Color representing response status code 100 (blue.20). */
+  --kui-status-color-101: #8fc1ff; /** Color representing response status code 101 (blue.30). */
+  --kui-status-color-102: #5f9aff; /** Color representing response status code 102 (blue.40). */
+  --kui-status-color-103: #306fff; /** Color representing response status code 103 (blue.50). */
+  --kui-status-color-200: #b5ffee; /** Color representing response status code 200 (green.20). */
+  --kui-status-color-201: #00fabe; /** Color representing response status code 201 (green.30). */
+  --kui-status-color-202: #00d6a4; /** Color representing response status code 202 (green.40). */
+  --kui-status-color-203: #00a17b; /** Color representing response status code 203 (green.50). */
+  --kui-status-color-204: #007d60; /** Color representing response status code 204 (green.60). */
+  --kui-status-color-205: #005944; /** Color representing response status code 205 (green.70). */
+  --kui-status-color-206: #b5ffee; /** Color representing response status code 206 (green.20). */
+  --kui-status-color-207: #00fabe; /** Color representing response status code 207 (green.30). */
+  --kui-status-color-208: #b5ffee; /** Color representing response status code 208 (green.40). */
+  --kui-status-color-226: #00a17b; /** Color representing response status code 226 (green.50). */
+  --kui-status-color-300: #fff296; /** Color representing response status code 100 (yellow.20). */
+  --kui-status-color-301: #ffe04b; /** Color representing response status code 101 (yellow.30). */
+  --kui-status-color-302: #ffc400; /** Color representing response status code 102 (yellow.40). */
+  --kui-status-color-303: #b37600; /** Color representing response status code 103 (yellow.50). */
+  --kui-status-color-304: #995c00; /** Color representing response status code 103 (yellow.60). */
+  --kui-status-color-305: #804400; /** Color representing response status code 103 (yellow.70). */
+  --kui-status-color-307: #fff296; /** Color representing response status code 103 (yellow.20). */
+  --kui-status-color-308: #ffe04b; /** Color representing response status code 103 (yellow.30). */
+  --kui-status-color-400: #ffc2b3; /** Color representing response status code 400 (orange.20). */
+  --kui-status-color-401: #ff9877; /** Color representing response status code 401 (orange.30). */
+  --kui-status-color-402: #ff723c; /** Color representing response status code 402 (orange.40). */
+  --kui-status-color-403: #f75008; /** Color representing response status code 403 (orange.50). */
+  --kui-status-color-404: #d13500; /** Color representing response status code 404 (orange.60). */
+  --kui-status-color-405: #a31f00; /** Color representing response status code 405 (orange.70). */
+  --kui-status-color-406: #ffc2b3; /** Color representing response status code 406 (orange.20). */
+  --kui-status-color-407: #ff9877; /** Color representing response status code 407 (orange.30). */
+  --kui-status-color-408: #ff723c; /** Color representing response status code 408 (orange.40). */
+  --kui-status-color-409: #f75008; /** Color representing response status code 409 (orange.50). */
+  --kui-status-color-410: #d13500; /** Color representing response status code 410 (orange.60). */
+  --kui-status-color-411: #a31f00; /** Color representing response status code 411 (orange.70). */
+  --kui-status-color-412: #ffc2b3; /** Color representing response status code 412 (orange.20). */
+  --kui-status-color-413: #ff9877; /** Color representing response status code 413 (orange.30). */
+  --kui-status-color-414: #ff723c; /** Color representing response status code 414 (orange.40). */
+  --kui-status-color-415: #f75008; /** Color representing response status code 415 (orange.50). */
+  --kui-status-color-416: #d13500; /** Color representing response status code 416 (orange.60). */
+  --kui-status-color-417: #a31f00; /** Color representing response status code 417 (orange.70). */
+  --kui-status-color-418: #ffc2b3; /** Color representing response status code 418 (orange.20). */
+  --kui-status-color-421: #ff9877; /** Color representing response status code 421 (orange.30). */
+  --kui-status-color-422: #ff723c; /** Color representing response status code 422 (orange.40). */
+  --kui-status-color-423: #f75008; /** Color representing response status code 423 (orange.50). */
+  --kui-status-color-424: #d13500; /** Color representing response status code 424 (orange.60). */
+  --kui-status-color-425: #a31f00; /** Color representing response status code 425 (orange.70). */
+  --kui-status-color-426: #ffc2b3; /** Color representing response status code 426 (orange.20). */
+  --kui-status-color-428: #ff9877; /** Color representing response status code 428 (orange.30). */
+  --kui-status-color-429: #ff723c; /** Color representing response status code 429 (orange.40). */
+  --kui-status-color-431: #f75008; /** Color representing response status code 431 (orange.50). */
+  --kui-status-color-451: #d13500; /** Color representing response status code 451 (orange.60). */
+  --kui-status-color-500: #ffabab; /** Color representing response status code 500 (red.20). */
+  --kui-status-color-501: #ff7272; /** Color representing response status code 501 (red.30). */
+  --kui-status-color-502: #ff3954; /** Color representing response status code 502 (red.40). */
+  --kui-status-color-503: #f50045; /** Color representing response status code 503 (red.50). */
+  --kui-status-color-504: #d60027; /** Color representing response status code 504 (red.60). */
+  --kui-status-color-505: #ad000e; /** Color representing response status code 505 (red.70). */
+  --kui-status-color-506: #ffabab; /** Color representing response status code 506 (red.20). */
+  --kui-status-color-507: #ff7272; /** Color representing response status code 507 (red.30). */
+  --kui-status-color-508: #ff3954; /** Color representing response status code 508 (red.40). */
+  --kui-status-color-510: #f50045; /** Color representing response status code 510 (red.50). */
+  --kui-status-color-511: #d60027; /** Color representing response status code 511 (red.60). */
+  --kui-status-color-1na: #eefaff; /** Color for unknown response status codes in the 100-199 range (blue.10). */
+  --kui-status-color-2na: #ecfffb; /** Color for unknown response status codes in the 200-299 range (green.10). */
+  --kui-status-color-3na: #fffce0; /** Color for unknown response status codes in the 300-399 range (yellow.10). */
+  --kui-status-color-4na: #fff1ef; /** Color for unknown response status codes in the 400-499 range (orange.10). */
+  --kui-status-color-5na: #ffe5e5; /** Color for unknown response status codes in the 500-599 range (red.10). */
+  --kui-status-color-100s: #5f9aff; /** Color for a group of response status codes in the 100-199 range (blue.40). */
+  --kui-status-color-200s: #00d6a4; /** Color for a group of response status codes in the 200-299 range (green.40). */
+  --kui-status-color-300s: #ffc400; /** Color for a group of response status codes in the 300-399 range (yellow.40). */
+  --kui-status-color-400s: #ff723c; /** Color for a group of response status codes in the 400-499 range (orange.40). */
+  --kui-status-color-500s: #ff3954; /** Color for a group of response status codes in the 500-599 range (red.40). */
+  --kui-status-color-background-100: #eefaff; /** Background color for http status 100 elements (blue.10). */
+  --kui-status-color-background-200: #ecfffb; /** Background color for http status 200 elements (green.10). */
+  --kui-status-color-background-300: #fffce0; /** Background color for http status 300 elements (yellow.10). */
+  --kui-status-color-background-400: #fff1ef; /** Background color for http status 400 elements (orange.10). */
+  --kui-status-color-background-500: #ffe5e5; /** Background color for http status 500 elements (red.10). */
+  --kui-status-color-text-100: #0044f4; /** Text color for http status 100 elements (blue.60). */
+  --kui-status-color-text-200: #007d60; /** Text color for http status 200 elements (green.60). */
+  --kui-status-color-text-300: #995c00; /** Text color for http status 300 elements (yellow.60). */
+  --kui-status-color-text-400: #d13500; /** Text color for http status 400 elements (orange.60). */
+  --kui-status-color-text-500: #d60027; /** Text color for http status 500 elements (red.60). */
+}

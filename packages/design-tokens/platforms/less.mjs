@@ -18,7 +18,7 @@ export default {
       format: 'less/variables',
       destination: 'variables.less',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
   ],
 }

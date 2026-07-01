@@ -1,6 +1,6 @@
 # @kong/eslint-plugin-design-tokens
 
-[ESLint](https://eslint.org/) plugin for enforcing correct usage of KUI design tokens in Vue 3 (and Nuxt 4) templates.
+[ESLint](https://eslint.org/) plugin for enforcing correct usage of KUI design tokens in Vue templates.
 
 - [Usage](#usage)
 - [Rules](#rules)

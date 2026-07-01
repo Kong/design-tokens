@@ -1,0 +1,139 @@
+{
+  "modal": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Modal dialog border radius.",
+        "$value": ""
+      },
+      "width": {
+        "$description": "Modal dialog border width.",
+        "$value": ""
+      }
+    },
+    "close": {
+      "border": {
+        "radius": {
+          "$description": "Modal close button border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "text": {
+          "hover": {
+            "$description": "Modal close button icon color on hover and focus.",
+            "$value": ""
+          }
+        }
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Modal close button focus-visible shadow.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "$description": "Modal dialog background color.",
+        "$value": ""
+      },
+      "border": {
+        "$description": "Modal dialog border color.",
+        "$value": ""
+      },
+      "text": {
+        "$description": "Modal dialog text color (custom content).",
+        "$value": ""
+      }
+    },
+    "content": {
+      "color": {
+        "background": {
+          "$description": "Modal content area background color.",
+          "$value": ""
+        },
+        "text": {
+          "$description": "Modal content area text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "family": {
+          "$description": "Modal content area font family.",
+          "$value": ""
+        },
+        "size": {
+          "$description": "Modal content area font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Modal content area font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Modal content area line height.",
+        "$value": ""
+      },
+      "padding": {
+        "$description": "Modal content area inner padding.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Modal dialog font family (custom content).",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Modal dialog font size (custom content).",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Modal dialog font weight (custom content).",
+        "$value": ""
+      }
+    },
+    "footer": {
+      "padding": {
+        "$description": "Modal footer inner padding.",
+        "$value": ""
+      }
+    },
+    "header": {
+      "padding": {
+        "$description": "Modal header inner padding.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Modal dialog line height (custom content).",
+      "$value": ""
+    },
+    "shadow": {
+      "$description": "Modal dialog box shadow.",
+      "$value": ""
+    },
+    "title": {
+      "font": {
+        "family": {
+          "$description": "Modal title font family.",
+          "$value": ""
+        },
+        "size": {
+          "$description": "Modal title font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Modal title font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Modal title line height.",
+        "$value": ""
+      }
+    }
+  }
+}

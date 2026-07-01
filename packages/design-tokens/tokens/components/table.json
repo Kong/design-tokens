@@ -1,0 +1,121 @@
+{
+  "table": {
+    "$type": "component",
+    "cell": {
+      "color": {
+        "text": {
+          "$description": "Table body cell text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Table body cell font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Table body cell font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Table body cell line height.",
+        "$value": ""
+      },
+      "shadow": {
+        "resize_hover": {
+          "$description": "Table body cell resize-handle hover indicator shadow.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "$description": "Table background color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Table font family.",
+        "$value": ""
+      }
+    },
+    "header": {
+      "color": {
+        "border": {
+          "$description": "Table header bottom border color.",
+          "$value": ""
+        },
+        "text": {
+          "_": {
+            "$description": "Table header text color.",
+            "$value": ""
+          },
+          "active_sort": {
+            "$description": "Table header text color when the column is the active sort column.",
+            "$value": ""
+          }
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Table header font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Table header font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Table header line height.",
+        "$value": ""
+      },
+      "padding": {
+        "$description": "Table header cell inner padding.",
+        "$value": ""
+      },
+      "shadow": {
+        "resize_hover": {
+          "$description": "Table header resize-handle hover indicator shadow.",
+          "$value": ""
+        },
+        "scrolled": {
+          "$description": "Table header shadow when the table body is scrolled.",
+          "$value": ""
+        }
+      }
+    },
+    "padding": {
+      "$description": "Table cell inner padding.",
+      "$value": ""
+    },
+    "row": {
+      "color": {
+        "background": {
+          "expanded": {
+            "$description": "Table expanded (expandable content) row background color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Table row background color on hover.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "$description": "Table row divider (bottom border) color.",
+          "$value": ""
+        }
+      }
+    },
+    "sticky": {
+      "color": {
+        "background": {
+          "$description": "Table sticky column (and actions column) cell background color.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
 {
   "navigation": {
     "color": {
+      "$type": "color",
       "background": {
         "_": {
           "$description": "blue.100",
@@ -42,22 +43,6 @@
           "$description": "Navigation link and icon selected color.",
           "$value": "{color.alias.green.30}"
         }
-      }
-    },
-    "shadow": {
-      "border": {
-        "_": {
-          "$description": "The box-shadow for a focus-visible navigation link.",
-          "$value": "0 0 0 1px rgba(255, 255, 255, 0.12) inset"
-        },
-        "child": {
-          "$description": "The left box-shadow for an active child navigation link.",
-          "$value": "4px 0 0 0 {color.alias.green.30} inset"
-        }
-      },
-      "focus": {
-        "$description": "Navigation link focus-visible box-shadow.",
-        "$value": "0 0 0 1px rgba(255, 255, 255, 0.60) inset"
       }
     }
   }

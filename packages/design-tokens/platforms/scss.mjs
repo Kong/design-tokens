@@ -58,14 +58,14 @@ export default {
         themeable: true,
       },
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
     // SCSS map
     {
       format: 'scss/map-flat',
       destination: '_map.scss',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
       options: {
         mapName: 'kui-tokens-map',
       },
@@ -75,7 +75,7 @@ export default {
       format: 'css/variables/custom/sass/mixin',
       destination: '_mixins.scss',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
   ],
 }
