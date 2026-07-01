@@ -675,8 +675,41 @@ describe('dist/themeable-tokens (full themed surface)', () => {
     expect(themeableTokensMjs).toContain('--kui-badge-')
   })
 
+  it('each entry is an object exposing name, description, category, and value', () => {
+    // Field lines are 4-space indented under a 2-space-indented object literal.
+    const nameCount = (themeableTokensMjs.match(/\n {4}name: "--kui-/g) || []).length
+    const descCount = (themeableTokensMjs.match(/\n {4}description: /g) || []).length
+    const catCount = (themeableTokensMjs.match(/\n {4}category: "/g) || []).length
+    const valCount = (themeableTokensMjs.match(/\n {4}value: /g) || []).length
+
+    expect(nameCount).toBeGreaterThan(0)
+    expect(descCount).toBe(nameCount)
+    expect(catCount).toBe(nameCount)
+    expect(valCount).toBe(nameCount)
+  })
+
+  it('value-less component tokens carry category "component" and a null value', () => {
+    expect(themeableTokensMjs).toMatch(
+      /name: "--kui-badge-border-radius",\n {4}description: ".*",\n {4}category: "component",\n {4}value: null,/,
+    )
+  })
+
+  it('semantic tokens carry their token family as the category and a non-null value', () => {
+    expect(themeableTokensMjs).toMatch(
+      /name: "--kui-breakpoint-mobile",\n {4}description: ".*",\n {4}category: "breakpoint",\n {4}value: "[^"]+",/,
+    )
+    expect(themeableTokensMjs).toMatch(
+      /name: "--kui-color-text-primary",\n {4}description: ".*",\n {4}category: "color",\n {4}value: "[^"]+",/,
+    )
+  })
+
+  it('contains no duplicate token names', () => {
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-[^"]+)"/g)].map(([, n]) => n)
+    expect(new Set(names).size).toBe(names.length)
+  })
+
   it('includes the 5 breakpoint tokens', () => {
-    const names = [...themeableTokensMjs.matchAll(/'(--kui-breakpoint-[^']+)'/g)].map(([, n]) => n)
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-breakpoint-[^"]+)"/g)].map(([, n]) => n)
 
     expect(names).toHaveLength(5)
     expect(names).toEqual(expect.arrayContaining([
@@ -689,17 +722,24 @@ describe('dist/themeable-tokens (full themed surface)', () => {
   })
 
   it('all entries follow the --kui-* naming convention', () => {
-    const names = [...themeableTokensMjs.matchAll(/'(--kui-[^']+)'/g)].map(([, n]) => n)
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-[^"]+)"/g)].map(([, n]) => n)
     expect(names.length).toBeGreaterThan(0)
     for (const name of names) {
       expect(name, `"${name}" does not start with --kui-`).toMatch(/^--kui-[a-z]/)
     }
   })
 
-  it('list is alphabetically sorted', () => {
-    const names = [...themeableTokensMjs.matchAll(/'(--kui-[^']+)'/g)].map(([, n]) => n)
+  it('list is alphabetically sorted by name', () => {
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-[^"]+)"/g)].map(([, n]) => n)
     const sorted = [...names].sort((a, b) => a.localeCompare(b))
     expect(names).toEqual(sorted)
+  })
+
+  it('d.ts types name and category as literals with a string|null value', () => {
+    expect(themeableTokensDts).toContain('readonly name: "--kui-')
+    expect(themeableTokensDts).toContain('readonly category: "')
+    expect(themeableTokensDts).toContain('readonly description: string')
+    expect(themeableTokensDts).toContain('readonly value: string | null')
   })
 
   it('d.ts documents the breakpoint exclusion reason', () => {

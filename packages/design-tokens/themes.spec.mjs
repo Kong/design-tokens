@@ -41,10 +41,7 @@ const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
  * `classic-day` is the default theme (the resolved `:root` exports) and `classic-night` is its dark
  * counterpart — identical alias palette, with a handful of semantic tokens (text/border/background)
  * re-pointed to darker steps. Both deliberately set no component tokens, so every component falls
- * through to its semantic default via the Kongponents `var()` chain. This repo owns the
- * component-token namespace (`tokens/components/`) but NOT the component→semantic fallback map
- * (that lives in Kongponents SCSS), so "contains no component token" is the only fallthrough
- * guarantee this repo can verify — hence component-free by omission.
+ * through to its semantic default via the `var()` chain.
  */
 const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
 
@@ -54,12 +51,14 @@ const stripTimestamp = (css) => css.replace(/Generated on [^\n]*/g, 'Generated o
 
 /**
  * The canonical themeable-token list (`--kui-*` names), read from the built dist.
+ * `KUI_THEMEABLE_TOKENS` is an array of `{ name, description, category, value }` records;
+ * this guard only needs the names, so we project them out.
  * The `pretest` hook (`pnpm build:tokens`) guarantees `dist/themeable-tokens.mjs` exists first.
  * @returns {Promise<readonly string[]>}
  */
 async function getThemeableTokens() {
   const { KUI_THEMEABLE_TOKENS } = await import(join(ROOT, 'dist', 'themeable-tokens.mjs'))
-  return KUI_THEMEABLE_TOKENS
+  return KUI_THEMEABLE_TOKENS.map(token => token.name)
 }
 
 /**
@@ -141,7 +140,7 @@ describe('drift guard: semantic-only themes are semantic-complete and component-
 
       const missing = [...expected].filter(k => !actual.has(k)).sort()
       // Component-freeness is the verifiable fallthrough guarantee (the repo can't
-      // verify a snapshot equals its semantic fallback — that map lives in Kongponents).
+      // verify a snapshot equals its semantic fallback
       const componentPresent = [...actual].filter(k => componentNames.has(k)).sort()
       const extra = [...actual].filter(k => !expected.has(k) && !componentNames.has(k)).sort()
 
