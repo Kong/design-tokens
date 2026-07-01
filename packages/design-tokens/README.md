@@ -49,6 +49,12 @@ Everything in `tokens/source/` is a semantic token — it has a concrete value a
 - **Scale tokens** — `--kui-color-*`, `--kui-space-*`, `--kui-border-radius-*`, `--kui-shadow-*`, `--kui-font-*`, etc. Named after the design dimension they represent.
 - **Concept tokens** — `--kui-method-*`, `--kui-status-*`, `--kui-navigation-*`, `--kui-icon-*`. Named after a cross-cutting UI concept (HTTP methods, status codes, navigation chrome, icons) rather than a design dimension. Each family lives in its own folder under `tokens/source/` (`method/`, `status/`, `navigation/`, `icon/`), following the same pattern as the scale folders. They are plain semantic tokens, valued and exported exactly like scale tokens. **These are not component tokens** even though they're used inside components.
 
+> **IMPORTANT — `primary` / accent colors must be overridden in the Dev Portal**
+>
+> The `primary` accent color tokens (`--kui-color-background-primary`, `--kui-color-text-primary`, `--kui-color-border-primary`, and any future accent color that is used the same way as `primary`) ship a **Kong-branded default value**. The Kong Konnect **Dev Portal** (`kong-konnect/portal`) renders **customer-branded** UIs, where each customer configures their own brand/theme color.
+>
+> Because these accent tokens carry a default, that default will **leak Kong's brand color into the customer's portal** unless the portal overrides it. Therefore, whenever a `primary`-like accent color token is **added, renamed, or its default value changes**, `kong-konnect/portal` customization plugin **must** be updated to override the token with the portal's configured theme color variants so the design-tokens default never reaches the rendered Dev Portal.
+
 ### Component tokens — names only, value-less
 
 Component tokens (`--kui-button-*`, `--kui-card-*`, `--kui-input-*`, `--kui-badge-*`, …) live in `tokens/components/` and are **declared without any CSS value** — they are purely override slots. Every Kongponents component uses them in a `var()` fallback chain:
@@ -67,8 +73,9 @@ The `./themeable-tokens` subpath exports `KUI_THEMEABLE_TOKENS` — a typed `rea
 ```ts
 import { KUI_THEMEABLE_TOKENS } from '@kong/design-tokens/themeable-tokens'
 
-// Derive a union type of all valid theme keys:
-type ThemeToken = typeof KUI_THEMEABLE_TOKENS[number]
+// Each entry is a `{ name, description, category, value }` record.
+// Derive a union type of all valid theme keys from their `name`s:
+type ThemeToken = typeof KUI_THEMEABLE_TOKENS[number]['name']
 ```
 
 ## Themes
