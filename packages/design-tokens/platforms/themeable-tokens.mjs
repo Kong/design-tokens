@@ -1,4 +1,5 @@
 import StyleDictionary from 'style-dictionary'
+import { TOKEN_DIRECTORY } from '../utilities/index.mjs'
 
 /**
  * Tokens that belong in the themeable surface:
@@ -23,7 +24,7 @@ const isThemeable = (token) => token.isSource === true
  * @param {{ allTokens: Array<object> }} dictionary - The Style Dictionary dictionary.
  * @returns {ThemeableTokenRecord[]}
  */
-function buildRecords(dictionary) {
+export function buildRecords(dictionary) {
   const byName = new Map()
 
   for (const token of dictionary.allTokens) {
@@ -49,7 +50,7 @@ function buildRecords(dictionary) {
 }
 
 /** Render one record as a JS/TS object literal (double-quoted keys' values, trailing commas). */
-function renderJsObject(record) {
+export function renderJsObject(record) {
   return (
     '  {\n' +
     `    name: ${JSON.stringify(record.name)},\n` +
@@ -119,7 +120,7 @@ StyleDictionary.registerFormat({
       ' * readonly tuple of records. `name` and `category` are string literals so consumers\n' +
       ' * can derive precise union types:\n' +
       ' *\n' +
-      ' *   import { KUI_THEMEABLE_TOKENS } from \'@kong/design-tokens/themeable-tokens\'\n' +
+      ' *   import { KUI_THEMEABLE_TOKENS } from \'@kong/design-tokens/tokens/themeable-tokens\'\n' +
       ' *   type ThemeToken = typeof KUI_THEMEABLE_TOKENS[number][\'name\']\n' +
       ' *\n' +
       ' * CSS custom properties cannot be consumed inside @media feature queries,\n' +
@@ -131,30 +132,30 @@ StyleDictionary.registerFormat({
 })
 
 export default {
-  buildPath: 'dist/',
+  buildPath: `${TOKEN_DIRECTORY}/themeable-tokens/`,
   // `color/css` matches the color serialization used by the CSS/JS platforms so each record's
   // `value` equals the default emitted to `:root`.
   transforms: ['attribute/cti', 'name/kebab', 'color/css'],
   files: [
     {
-      destination: 'themeable-tokens.mjs',
+      destination: 'index.mjs',
       format: 'js/kui-themeable-tokens-esm',
       filter: isThemeable,
     },
     {
-      destination: 'themeable-tokens.cjs',
+      destination: 'index.cjs',
       format: 'js/kui-themeable-tokens-cjs',
       filter: isThemeable,
     },
     {
-      destination: 'themeable-tokens.d.ts',
+      destination: 'index.d.ts',
       format: 'typescript/kui-themeable-tokens',
       filter: isThemeable,
     },
     {
       // CJS-flavored declaration for the `require` export condition. The package is `"type": "module"`,
-      // so a bare `.d.ts` is ESM-typed; `.d.cts` pairs correctly with the CommonJS `themeable-tokens.cjs`.
-      destination: 'themeable-tokens.d.cts',
+      // so a bare `.d.ts` is ESM-typed; `.d.cts` pairs correctly with the CommonJS `index.cjs`.
+      destination: 'index.d.cts',
       format: 'typescript/kui-themeable-tokens',
       filter: isThemeable,
     },

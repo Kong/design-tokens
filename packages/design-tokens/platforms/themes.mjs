@@ -285,7 +285,7 @@ async function buildAllThemes() {
     '\n'
 
   // CJS counterparts so the package's `require` export condition resolves to real CommonJS (mirrors the
-  // `.` and `./themeable-tokens` exports). `.d.cts` gives `require` consumers CJS-correct types.
+  // `.` and `./tokens/themeable-tokens` exports). `.d.cts` gives `require` consumers CJS-correct types.
   const indexCjs =
     HEADER +
     '\'use strict\'\n' +

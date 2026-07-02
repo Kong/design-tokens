@@ -13,7 +13,7 @@ Every theme shares **one standardized set of color-alias names** (`color.alias.g
 tokens/alias/color/
   _manifest.json      ← CANONICAL key set. Color groups + step NAMES ONLY (no values, no descriptions).
                         Enforces that every alias exists in every palette. Excluded from all builds.
-  classic-day.json    ← default palette. The main semantic build (SCSS/JS/TS/CSS/LESS) resolves against
+  classic-day.json    ← default palette. The main semantic build (SCSS/JS/TS/CSS) resolves against
                         THIS file. Also the `classic-day` theme's palette.
   classic-night.json  ← `classic-night` theme's palette. IDENTICAL values to classic-day — dark mode is
                         a semantic override (see §7), not a different palette.

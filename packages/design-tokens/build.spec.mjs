@@ -23,7 +23,6 @@ const EXPECTED_DIST_FILES = [
   'scss/_variables.scss',
   'scss/_map.scss',
   'scss/_mixins.scss',
-  'less/variables.less',
   'js/index.mjs',
   'js/index.d.ts',
   'js/tokens.json',
@@ -46,8 +45,6 @@ describe('@kong/design-tokens build artifacts', () => {
   /** @type {string} */
   let scssMixins
   /** @type {string} */
-  let lessVars
-  /** @type {string} */
   let jsEsm
   /** @type {string} */
   let jsDts
@@ -59,13 +56,12 @@ describe('@kong/design-tokens build artifacts', () => {
   let cjsDts
 
   beforeAll(async () => {
-    [cssVars, cssVarsList, scssVars, scssMap, scssMixins, lessVars, jsEsm, jsDts, jsonTokens, cjsJs, cjsDts] = await Promise.all([
+    [cssVars, cssVarsList, scssVars, scssMap, scssMixins, jsEsm, jsDts, jsonTokens, cjsJs, cjsDts] = await Promise.all([
       distFile('css/custom-properties.css'),
       distFile('css/custom-properties-list.css'),
       distFile('scss/_variables.scss'),
       distFile('scss/_map.scss'),
       distFile('scss/_mixins.scss'),
-      distFile('less/variables.less'),
       distFile('js/index.mjs'),
       distFile('js/index.d.ts'),
       distFile('js/tokens.json'),
@@ -92,7 +88,7 @@ describe('@kong/design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
   // Source-driven coverage
   // Uses tokens.json (fully resolved, flat) as ground truth and derives the
-  // expected name/value for every token in CSS, SCSS, LESS, and ESM.
+  // expected name/value for every token in CSS, SCSS, and ESM.
   // Zero maintenance: adding or changing a token automatically updates these
   // assertions on the next build.
   // ---------------------------------------------------------------------------
@@ -116,13 +112,6 @@ describe('@kong/design-tokens build artifacts', () => {
       for (const [key, value] of tokenEntries) {
         const name = `$${key.replaceAll('_', '-')}`
         expect(scssVars, `${name} missing or has wrong value`).toContain(`${name}: ${value} !default;`)
-      }
-    })
-
-    it('every token has a LESS variable with the correct resolved value', () => {
-      for (const [key, value] of tokenEntries) {
-        const name = `@${key.replaceAll('_', '-')}`
-        expect(lessVars, `${name} missing or has wrong value`).toContain(`${name}: ${value};`)
       }
     })
 
@@ -322,45 +311,6 @@ describe('@kong/design-tokens build artifacts', () => {
 
     it('does not expose alias tokens', () => {
       expect(scssMixins).not.toMatch(/--kui-color-alias/)
-    })
-  })
-
-  // ---------------------------------------------------------------------------
-  // less/variables.less
-  // ---------------------------------------------------------------------------
-
-  describe('less/variables.less', () => {
-    it('uses line-comment style file header (// not /* */)', () => {
-      expect(lessVars).toMatch(/^\/\/ Do not edit directly/m)
-    })
-
-    it('includes product name in file header', () => {
-      expect(lessVars).toContain('Kong Konnect Design Tokens')
-    })
-
-    it('includes GitHub URL in file header', () => {
-      expect(lessVars).toContain('GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens')
-    })
-
-    it('uses @kui- prefixed kebab-case variables', () => {
-      expect(lessVars).toMatch(/^@kui-[a-z][a-z0-9-]+:/m)
-    })
-
-    it('exports at least 330 variables', () => {
-      const count = (lessVars.match(/^@kui-[a-z]/gm) || []).length
-      expect(count).toBeGreaterThanOrEqual(330)
-    })
-
-    it('does not expose alias tokens', () => {
-      expect(lessVars).not.toMatch(/@kui-color-alias/)
-    })
-
-    it('resolves font-family with embedded single quotes correctly', () => {
-      expect(lessVars).toContain("@kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;")
-    })
-
-    it('resolves negative letter-spacing correctly', () => {
-      expect(lessVars).toContain('@kui-letter-spacing-minus-10: -0.12px;')
     })
   })
 
@@ -567,12 +517,10 @@ describe('@kong/design-tokens build artifacts', () => {
     it('all formats export the same number of tokens', () => {
       const cssCount = (cssVars.match(/^\s+--kui-[a-z]/gm) || []).length
       const scssVarCount = (scssVars.match(/^\$kui-[a-z]/gm) || []).length
-      const lessCount = (lessVars.match(/^@kui-[a-z]/gm) || []).length
       const esmCount = (jsEsm.match(/^export const KUI_/gm) || []).length
       const jsonCount = Object.keys(JSON.parse(jsonTokens)).length
 
       expect(scssVarCount).toBe(cssCount)
-      expect(lessCount).toBe(cssCount)
       expect(esmCount).toBe(cssCount)
       expect(jsonCount).toBe(cssCount)
     })
@@ -580,7 +528,6 @@ describe('@kong/design-tokens build artifacts', () => {
     it('kui-color-background resolves to #ffffff in every format', () => {
       expect(cssVars).toContain('--kui-color-background: #ffffff;')
       expect(scssVars).toContain('$kui-color-background: #ffffff !default;')
-      expect(lessVars).toContain('@kui-color-background: #ffffff;')
       expect(jsEsm).toContain('export const KUI_COLOR_BACKGROUND = "#ffffff";')
       expect(JSON.parse(jsonTokens).kui_color_background).toBe('#ffffff')
     })
@@ -588,7 +535,6 @@ describe('@kong/design-tokens build artifacts', () => {
     it('kui-space-10 resolves to 2px in every format', () => {
       expect(cssVars).toContain('--kui-space-10: 2px;')
       expect(scssVars).toContain('$kui-space-10: 2px !default;')
-      expect(lessVars).toContain('@kui-space-10: 2px;')
       expect(jsEsm).toContain('export const KUI_SPACE_10 = "2px";')
       expect(JSON.parse(jsonTokens).kui_space_10).toBe('2px')
     })
@@ -597,7 +543,6 @@ describe('@kong/design-tokens build artifacts', () => {
       const shadowValue = '0px 4px 20px 0px rgba(0, 0, 0, 0.08)'
       expect(cssVars).toContain(`--kui-shadow: ${shadowValue};`)
       expect(scssVars).toContain(`$kui-shadow: ${shadowValue} !default;`)
-      expect(lessVars).toContain(`@kui-shadow: ${shadowValue};`)
       expect(jsEsm).toContain(`export const KUI_SHADOW = "${shadowValue}";`)
       expect(JSON.parse(jsonTokens).kui_shadow).toBe(shadowValue)
     })
@@ -617,10 +562,10 @@ describe('@kong/design-tokens build artifacts', () => {
 })
 
 // ---------------------------------------------------------------------------
-// dist/themeable-tokens.mjs / .cjs / .d.ts
+// dist/tokens/themeable-tokens/index.{mjs,cjs,d.ts,d.cts}
 // ---------------------------------------------------------------------------
 
-describe('dist/themeable-tokens (full themed surface)', () => {
+describe('dist/tokens/themeable-tokens (full themed surface)', () => {
   /** @type {string} */
   let themeableTokensMjs
   /** @type {string} */
@@ -632,13 +577,13 @@ describe('dist/themeable-tokens (full themed surface)', () => {
 
   beforeAll(async () => {
     ;[themeableTokensMjs, themeableTokensCjs, themeableTokensDts, themeableTokensDcts] = await Promise.all([
-      distRootFile('themeable-tokens.mjs'),
-      distRootFile('themeable-tokens.cjs'),
-      distRootFile('themeable-tokens.d.ts'),
-      distRootFile('themeable-tokens.d.cts'),
+      distFile('themeable-tokens/index.mjs'),
+      distFile('themeable-tokens/index.cjs'),
+      distFile('themeable-tokens/index.d.ts'),
+      distFile('themeable-tokens/index.d.cts'),
     ]).catch((err) => {
       if (err.code === 'ENOENT') {
-        throw new Error(`dist/themeable-tokens.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
+        throw new Error(`dist/tokens/themeable-tokens/index.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
       }
       throw err
     })

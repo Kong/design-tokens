@@ -53,11 +53,11 @@ const stripTimestamp = (css) => css.replace(/Generated on [^\n]*/g, 'Generated o
  * The canonical themeable-token list (`--kui-*` names), read from the built dist.
  * `KUI_THEMEABLE_TOKENS` is an array of `{ name, description, category, value }` records;
  * this guard only needs the names, so we project them out.
- * The `pretest` hook (`pnpm build:tokens`) guarantees `dist/themeable-tokens.mjs` exists first.
+ * The `pretest` hook (`pnpm build:tokens`) guarantees `dist/tokens/themeable-tokens/index.mjs` exists first.
  * @returns {Promise<readonly string[]>}
  */
 async function getThemeableTokens() {
-  const { KUI_THEMEABLE_TOKENS } = await import(join(ROOT, 'dist', 'themeable-tokens.mjs'))
+  const { KUI_THEMEABLE_TOKENS } = await import(join(ROOT, 'dist', 'tokens', 'themeable-tokens', 'index.mjs'))
   return KUI_THEMEABLE_TOKENS.map(token => token.name)
 }
 

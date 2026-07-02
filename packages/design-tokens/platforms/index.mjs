@@ -1,6 +1,5 @@
 // Import all platforms
 import scss from './scss.mjs'
-import less from './less.mjs'
 import css from './css.mjs'
 import javascript from './javascript.mjs'
 import json from './json.mjs'
@@ -12,7 +11,6 @@ import { customFileHeader, KONG_TOKEN_PREFIX } from '../utilities/index.mjs'
 
 const platforms = {
   scss,
-  less,
   css,
   javascript,
   json,

@@ -64,14 +64,14 @@
         "default": "./dist/themes/*.cjs"
       }
     },
-    "./themeable-tokens": {
+    "./tokens/themeable-tokens": {
       "import": {
-        "types": "./dist/themeable-tokens.d.ts",
-        "default": "./dist/themeable-tokens.mjs"
+        "types": "./dist/tokens/themeable-tokens/index.d.ts",
+        "default": "./dist/tokens/themeable-tokens/index.mjs"
       },
       "require": {
-        "types": "./dist/themeable-tokens.d.cts",
-        "default": "./dist/themeable-tokens.cjs"
+        "types": "./dist/tokens/themeable-tokens/index.d.cts",
+        "default": "./dist/tokens/themeable-tokens/index.cjs"
       }
     },
     "./tokens/*": "./dist/tokens/*",

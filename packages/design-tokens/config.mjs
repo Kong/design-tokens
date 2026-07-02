@@ -7,7 +7,7 @@ const config = {
     verbosity: logVerbosityLevels.verbose,
   },
   // Resolve COLOR aliases against the default (classic-day) palette ONLY. classic-day.json is the
-  // source of truth for the exported semantic output (SCSS/JS/TS/CSS/LESS). The per-theme palette
+  // source of truth for the exported semantic output (SCSS/JS/TS/CSS). The per-theme palette
   // files (classic-night.json, konnect-*.json) and the names-only _manifest.json share this directory
   // but must NOT be included here — they would collide on shared step names. Aliases are filtered from
   // output via token.isSource.
@@ -20,7 +20,7 @@ const config = {
   source: [
     './tokens/source/**/*.json',
     // Component tokens are name-only (no CSS value). They live outside tokens/source/ to
-    // signal they are not exported to CSS/SCSS/LESS/JS — only to KUI_THEMEABLE_TOKENS.
+    // signal they are not exported to CSS/SCSS/JS — only to KUI_THEMEABLE_TOKENS.
     './tokens/components/**/*.json',
   ],
 }
