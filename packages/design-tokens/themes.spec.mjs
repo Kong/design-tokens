@@ -7,7 +7,8 @@
  *     component tokens;
  *   - every alias palette matches the names-only `_manifest.json` key set, with value-derived
  *     `$description`s, and every compiled theme color traces to that theme's own palette;
- *   - every theme file follows the `<theme-name>.theme.json` naming convention;
+ *   - every theme file follows the `<theme-name>.theme.json` naming convention, and every alias
+ *     palette its companion `<theme-name>.alias.json` convention;
  *   - the per-theme alias build wiring throws (never silently falls back) for a misconfigured theme;
  *   - classic-day's and classic-night's resolved output is frozen by golden snapshots.
  *
@@ -185,9 +186,22 @@ describe('theme files follow the <theme-name>.theme.json naming convention', () 
 })
 
 const ALIAS_DIR = join(ROOT, 'tokens', 'alias', 'color')
-// Auto-discover every palette file (exclude `_manifest.json` and any other `_`-prefixed internal
-// file) so a newly added palette is enrolled in these guards without editing this test.
-const PALETTE_FILES = readdirSync(ALIAS_DIR).filter(f => f.endsWith('.json') && !f.startsWith('_'))
+// Auto-discover every palette file. Palettes are named `<theme-name>.alias.json` to mirror their
+// companion `themes/<theme-name>.theme.json`; `_manifest.json` and any other `_`-prefixed internal
+// file are excluded. A newly added palette is enrolled in these guards without editing this test.
+const PALETTE_FILES = readdirSync(ALIAS_DIR).filter(f => f.endsWith('.alias.json') && !f.startsWith('_'))
+
+describe('alias palettes follow the <theme-name>.alias.json naming convention', () => {
+  // Palettes correspond 1:1 with themes/<theme-name>.theme.json. Enforce the `.alias.json` suffix so a
+  // stray/mis-named palette fails here with its name instead of being silently skipped by the discovery
+  // filter above (which would drop it out of the drift, $description, and off-source guards).
+  it('every non-internal .json in tokens/alias/color/ is named <theme-name>.alias.json', () => {
+    const offenders = readdirSync(ALIAS_DIR)
+      .filter(f => f.endsWith('.json') && !f.startsWith('_') && !f.endsWith('.alias.json'))
+      .sort()
+    expect(offenders, `Alias palette(s) must be named <theme-name>.alias.json; rename: ${offenders.join(', ')}`).toEqual([])
+  })
+})
 
 describe('drift guard: alias palettes contain exactly the _manifest.json key set', () => {
   for (const file of PALETTE_FILES) {
@@ -238,7 +252,7 @@ describe('every theme color resolves to a value in its own alias palette (no off
   const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => Number(x).toString(16).padStart(2, '0')).join('')
 
   for (const file of PALETTE_FILES) {
-    const name = file.slice(0, -5)
+    const name = file.slice(0, -'.alias.json'.length)
     it(`${name}.css renders only colors present in ${file}`, async () => {
       const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
       const palVals = new Set()
@@ -304,7 +318,7 @@ describe('build wiring: injectThemeBreakpoints preprocessor', () => {
 
 describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => {
   it('includes the per-theme palette when it exists', () => {
-    expect(aliasIncludesFor('konnect-day', true, null)).toEqual(['./tokens/alias/color/konnect-day.json'])
+    expect(aliasIncludesFor('konnect-day', true, null)).toEqual(['./tokens/alias/color/konnect-day.alias.json'])
   })
 
   it('throws when an alias-using theme has no palette (no silent fallback)', () => {

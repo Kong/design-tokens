@@ -481,9 +481,9 @@ FROM=konnect-day   # or classic-day for a semantic-only theme
 # 1. Copy the theme definition and (for alias-based themes) its companion color palette.
 #    Theme files MUST be named <theme-name>.theme.json (enforced by the build + tests).
 cp themes/$FROM.theme.json themes/$NEW.theme.json
-cp tokens/alias/color/$FROM.json tokens/alias/color/$NEW.json   # every alias-using theme MUST have one
+cp tokens/alias/color/$FROM.alias.json tokens/alias/color/$NEW.alias.json   # every alias-using theme MUST have one
 
-# 2. Edit themes/$NEW.theme.json (token $values) and tokens/alias/color/$NEW.json (palette values) to taste.
+# 2. Edit themes/$NEW.theme.json (token $values) and tokens/alias/color/$NEW.alias.json (palette values) to taste.
 # 3. Classify $NEW in themes.spec.mjs (EXHAUSTIVE_THEMES / SEMANTIC_ONLY_THEMES / UNCHECKED_THEMES).
 # 4. Build + verify — the drift, classification, and off-source guards confirm completeness.
 pnpm build:tokens && pnpm test
@@ -491,7 +491,7 @@ pnpm build:tokens && pnpm test
 
 The build auto-discovers any `themes/*.theme.json` — no code change needed. A theme file that does not
 follow the `<theme-name>.theme.json` naming convention is a hard build error (and fails `pnpm test`), as is
-an alias-referencing theme with no matching `tokens/alias/color/<name>.json` palette (no silent fallback),
+an alias-referencing theme with no matching `tokens/alias/color/<name>.alias.json` palette (no silent fallback),
 which is why step 1 copies the palette too. See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./docs/ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
 
 ### Theme `$description` authoring rules
