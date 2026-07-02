@@ -18,6 +18,7 @@
     --kui-border-width-20: 2px;
     --kui-border-width-30: 4px;
     --kui-color-background: #FFF;
+    --kui-color-background-accent: #0044F4;
     --kui-color-background-danger: #D60027;
     --kui-color-background-danger-strong: #AD000E;
     --kui-color-background-danger-stronger: #850000;
@@ -68,6 +69,7 @@
     --kui-color-background-warning-weaker: #FFF296;
     --kui-color-background-warning-weakest: #FFFCE0;
     --kui-color-border: #E0E4EA;
+    --kui-color-border-accent: #0044F4;
     --kui-color-border-danger: #D60027;
     --kui-color-border-danger-strong: #AD000E;
     --kui-color-border-danger-stronger: #850000;
@@ -94,6 +96,7 @@
     --kui-color-border-primary-weakest: #EEFAFF;
     --kui-color-border-transparent: transparent;
     --kui-color-text: #000933;
+    --kui-color-text-accent: #0044F4;
     --kui-color-text-danger: #D60027;
     --kui-color-text-danger-strong: #AD000E;
     --kui-color-text-danger-stronger: #850000;

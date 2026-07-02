@@ -45,6 +45,10 @@
     "$value": "{color.alias.black}",
     "$description": "Default background color for containers."
   },
+  "kui-color-background-accent": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Accent background color for emphasis on non-primary UI, such as loading indicators or highlighted surfaces. Distinct from the primary action color."
+  },
   "kui-color-background-danger": {
     "$value": "{color.alias.red.60}",
     "$description": "Background color for danger actions or messages."
@@ -245,6 +249,10 @@
     "$value": "{color.alias.gray.80}",
     "$description": "Default border color for containers."
   },
+  "kui-color-border-accent": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Accent border color for emphasis on non-primary UI. Distinct from the primary action color."
+  },
   "kui-color-border-danger": {
     "$value": "{color.alias.red.60}",
     "$description": "Border color for danger actions or messages."
@@ -348,6 +356,10 @@
   "kui-color-text": {
     "$value": "{color.alias.white}",
     "$description": "Default text color."
+  },
+  "kui-color-text-accent": {
+    "$value": "{color.alias.blue.60}",
+    "$description": "Accent text color for emphasis on non-primary UI, such as active navigation. Distinct from the primary action color; verify contrast, as accent is not guaranteed legible on light or dark surfaces in every theme."
   },
   "kui-color-text-danger": {
     "$value": "{color.alias.red.60}",

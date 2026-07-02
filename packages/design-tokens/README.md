@@ -49,11 +49,11 @@ Everything in `tokens/source/` is a semantic token — it has a concrete value a
 - **Scale tokens** — `--kui-color-*`, `--kui-space-*`, `--kui-border-radius-*`, `--kui-shadow-*`, `--kui-font-*`, etc. Named after the design dimension they represent.
 - **Concept tokens** — `--kui-method-*`, `--kui-status-*`, `--kui-navigation-*`, `--kui-icon-*`. Named after a cross-cutting UI concept (HTTP methods, status codes, navigation chrome, icons) rather than a design dimension. Each family lives in its own folder under `tokens/source/` (`method/`, `status/`, `navigation/`, `icon/`), following the same pattern as the scale folders. They are plain semantic tokens, valued and exported exactly like scale tokens. **These are not component tokens** even though they're used inside components.
 
-> **IMPORTANT — `primary` / accent colors must be overridden in the Dev Portal**
+> **IMPORTANT — `primary` and `accent` colors must be overridden in the Dev Portal**
 >
-> The `primary` accent color tokens (`--kui-color-background-primary`, `--kui-color-text-primary`, `--kui-color-border-primary`, and any future accent color that is used the same way as `primary`) ship a **Kong-branded default value**. The Kong Konnect **Dev Portal** (`kong-konnect/portal`) renders **customer-branded** UIs, where each customer configures their own brand/theme color.
+> The `primary` tokens (`--kui-color-background-primary`, `--kui-color-text-primary`, `--kui-color-border-primary`) and the `accent` tokens (`--kui-color-background-accent`, `--kui-color-text-accent`, `--kui-color-border-accent`) — plus any future brand-derived color used the same way — ship a **Kong-branded default value**. The Kong Konnect **Dev Portal** (`kong-konnect/portal`) renders **customer-branded** UIs, where each customer configures their own brand/theme color.
 >
-> Because these accent tokens carry a default, that default will **leak Kong's brand color into the customer's portal** unless the portal overrides it. Therefore, whenever a `primary`-like accent color token is **added, renamed, or its default value changes**, `kong-konnect/portal` customization plugin **must** be updated to override the token with the portal's configured theme color variants so the design-tokens default never reaches the rendered Dev Portal.
+> Because these tokens carry a default, that default will **leak Kong's brand color into the customer's portal** unless the portal overrides it. Therefore, whenever a `primary`- or `accent`-like brand color token is **added, renamed, or its default value changes**, the `kong-konnect/portal` customization plugin **must** be updated to override the token with the portal's configured theme color variants so the design-tokens default never reaches the rendered Dev Portal.
 
 ### Component tokens — names only, value-less
 

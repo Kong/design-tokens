@@ -9,6 +9,7 @@
 
 :root {
   --kui-color-background: #ffffff; /** Default background color for containers (white). */
+  --kui-color-background-accent: #0044f4; /** Accent background color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
   --kui-color-background-danger: #d60027; /** Background color for danger actions or messages (red.60). */
   --kui-color-background-danger-strong: #ad000e; /** Strong background color for danger actions or messages (red.70). */
   --kui-color-background-danger-stronger: #850000; /** Stronger background color for danger actions or messages (red.80). */
@@ -59,6 +60,7 @@
   --kui-color-background-warning-weaker: #fff296; /** Weaker background color for warning elements (yellow.20). */
   --kui-color-background-warning-weakest: #fffce0; /** Weakest background color for warning elements (yellow.10). */
   --kui-color-border: #e0e4ea; /** Default border color for containers (gray.20). */
+  --kui-color-border-accent: #0044f4; /** Accent border color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
   --kui-color-border-danger: #d60027; /** Border color for danger actions or messages (red.60). */
   --kui-color-border-danger-strong: #ad000e; /** Strong border color for danger actions or messages (red.70). */
   --kui-color-border-danger-stronger: #850000; /** Stronger border color for danger actions or messages (red.80). */
@@ -85,6 +87,7 @@
   --kui-color-border-primary-weakest: #eefaff; /** Weakest border color for primary actions or messages (blue.10). */
   --kui-color-border-transparent: rgba(0, 0, 0, 0); /** Transparent border color (transparent). */
   --kui-color-text: #000933; /** Default text color (blue.100). */
+  --kui-color-text-accent: #0044f4; /** Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
   --kui-color-text-danger: #d60027; /** Text color for danger actions or messages (red.60). */
   --kui-color-text-danger-strong: #ad000e; /** Strong text color for danger actions or messages (red.70). */
   --kui-color-text-danger-stronger: #850000; /** Stronger text color for danger actions or messages (red.80). */

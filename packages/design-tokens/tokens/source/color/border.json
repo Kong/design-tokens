@@ -6,6 +6,10 @@
         "$description": "Default border color for containers (gray.20).",
         "$value": "{color.alias.gray.20}"
       },
+      "accent": {
+        "$description": "Accent border color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.",
+        "$value": "{color.alias.blue.60}"
+      },
       "danger": {
         "_": {
           "$description": "Border color for danger actions or messages (red.60).",

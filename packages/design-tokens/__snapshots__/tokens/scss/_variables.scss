@@ -7,6 +7,7 @@
 // License: Apache-2.0
 
 $kui-color-background: #ffffff !default; // Default background color for containers (white).
+$kui-color-background-accent: #0044f4 !default; // Accent background color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 $kui-color-background-danger: #d60027 !default; // Background color for danger actions or messages (red.60).
 $kui-color-background-danger-strong: #ad000e !default; // Strong background color for danger actions or messages (red.70).
 $kui-color-background-danger-stronger: #850000 !default; // Stronger background color for danger actions or messages (red.80).
@@ -57,6 +58,7 @@ $kui-color-background-warning-weak: #ffc400 !default; // Weak background color f
 $kui-color-background-warning-weaker: #fff296 !default; // Weaker background color for warning elements (yellow.20).
 $kui-color-background-warning-weakest: #fffce0 !default; // Weakest background color for warning elements (yellow.10).
 $kui-color-border: #e0e4ea !default; // Default border color for containers (gray.20).
+$kui-color-border-accent: #0044f4 !default; // Accent border color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 $kui-color-border-danger: #d60027 !default; // Border color for danger actions or messages (red.60).
 $kui-color-border-danger-strong: #ad000e !default; // Strong border color for danger actions or messages (red.70).
 $kui-color-border-danger-stronger: #850000 !default; // Stronger border color for danger actions or messages (red.80).
@@ -83,6 +85,7 @@ $kui-color-border-primary-weaker: #bee2ff !default; // Weaker border color for p
 $kui-color-border-primary-weakest: #eefaff !default; // Weakest border color for primary actions or messages (blue.10).
 $kui-color-border-transparent: rgba(0, 0, 0, 0) !default; // Transparent border color (transparent).
 $kui-color-text: #000933 !default; // Default text color (blue.100).
+$kui-color-text-accent: #0044f4 !default; // Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 $kui-color-text-danger: #d60027 !default; // Text color for danger actions or messages (red.60).
 $kui-color-text-danger-strong: #ad000e !default; // Strong text color for danger actions or messages (red.70).
 $kui-color-text-danger-stronger: #850000 !default; // Stronger text color for danger actions or messages (red.80).

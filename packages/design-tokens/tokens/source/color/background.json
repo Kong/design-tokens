@@ -6,6 +6,10 @@
         "$description": "Default background color for containers (white).",
         "$value": "{color.alias.white}"
       },
+      "accent": {
+        "$description": "Accent background color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.",
+        "$value": "{color.alias.blue.60}"
+      },
       "danger": {
         "_": {
           "$description": "Background color for danger actions or messages (red.60).",

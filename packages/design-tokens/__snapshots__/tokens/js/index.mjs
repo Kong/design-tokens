@@ -8,6 +8,7 @@
  */
 
 export const KUI_COLOR_BACKGROUND = "#ffffff"; // Default background color for containers (white).
+export const KUI_COLOR_BACKGROUND_ACCENT = "#0044f4"; // Accent background color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 export const KUI_COLOR_BACKGROUND_DANGER = "#d60027"; // Background color for danger actions or messages (red.60).
 export const KUI_COLOR_BACKGROUND_DANGER_STRONG = "#ad000e"; // Strong background color for danger actions or messages (red.70).
 export const KUI_COLOR_BACKGROUND_DANGER_STRONGER = "#850000"; // Stronger background color for danger actions or messages (red.80).
@@ -58,6 +59,7 @@ export const KUI_COLOR_BACKGROUND_WARNING_WEAK = "#ffc400"; // Weak background c
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKER = "#fff296"; // Weaker background color for warning elements (yellow.20).
 export const KUI_COLOR_BACKGROUND_WARNING_WEAKEST = "#fffce0"; // Weakest background color for warning elements (yellow.10).
 export const KUI_COLOR_BORDER = "#e0e4ea"; // Default border color for containers (gray.20).
+export const KUI_COLOR_BORDER_ACCENT = "#0044f4"; // Accent border color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 export const KUI_COLOR_BORDER_DANGER = "#d60027"; // Border color for danger actions or messages (red.60).
 export const KUI_COLOR_BORDER_DANGER_STRONG = "#ad000e"; // Strong border color for danger actions or messages (red.70).
 export const KUI_COLOR_BORDER_DANGER_STRONGER = "#850000"; // Stronger border color for danger actions or messages (red.80).
@@ -84,6 +86,7 @@ export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#bee2ff"; // Weaker border color
 export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff"; // Weakest border color for primary actions or messages (blue.10).
 export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)"; // Transparent border color (transparent).
 export const KUI_COLOR_TEXT = "#000933"; // Default text color (blue.100).
+export const KUI_COLOR_TEXT_ACCENT = "#0044f4"; // Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 export const KUI_COLOR_TEXT_DANGER = "#d60027"; // Text color for danger actions or messages (red.60).
 export const KUI_COLOR_TEXT_DANGER_STRONG = "#ad000e"; // Strong text color for danger actions or messages (red.70).
 export const KUI_COLOR_TEXT_DANGER_STRONGER = "#850000"; // Stronger text color for danger actions or messages (red.80).
