@@ -1,0 +1,11 @@
+{
+  "name": "@kong/skills",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Claude skills for the Kong design-tokens repository.",
+  "engines": {
+    "node": ">=20.19.5",
+    "pnpm": ">=10.28.2"
+  }
+}
