@@ -12,14 +12,19 @@ Don't guess at colors or style from a vague request ("make it look nice") — as
 questions gets you further than iterating blind:
 
 - **Light, dark, or a day/night pair?** Determines the template class alongside scope (below).
-- **A full theme (own color system + optionally every component) or a narrow override** (e.g.
-  "just this customer's primary button")? This decides whether you're heading into Step 3's
-  full template flow or the "Minimal/partial overrides" shortcut in Step 6B.
+- **A full theme (own color system, every component individually overridable by default) or a
+  narrow override** (e.g. "just this customer's primary button")? This decides whether you're
+  heading into Step 3's full template flow (which defaults to exhaustive — don't separately ask
+  whether every component should be overridable) or the "Minimal/partial overrides" shortcut in
+  Step 6B.
 - **Exact brand/accent colors, if they have them** (hex codes, a brand guideline PDF, a Figma
   library). This is the fastest path — skip straight to plugging real values into the palette
   once you have hex codes; no visual inspection needed.
 - **Any visual reference** — a screenshot, mockup, exported design comp, or a URL of a site/page
   whose look they want to emulate. See below for how to work each of these.
+- **An existing published theme to port/emulate** — e.g. a VS Code theme like `One Dark Pro`,
+  another editor/terminal theme, or a published palette (Tailwind/shadcn, etc.). See "Porting an
+  existing published theme" below.
 
 ## Screenshots and mockups (image files)
 
@@ -66,6 +71,64 @@ If no browser tool is available, don't guess at a site's visual identity from me
 brand — use a text-fetching tool to confirm you have the right site/page, then ask the user for
 a screenshot instead. Never invent colors for a real, named company's site from general
 knowledge; brand colors change, and a wrong guess baked into a theme is worse than asking.
+
+## Porting an existing published theme
+
+Sometimes the "reference" isn't a screenshot or a URL but the **name of an existing, published
+theme** the user wants emulated — most commonly a code editor theme ("make it look like
+`One Dark Pro`"), but the same approach applies to any published palette with an inspectable
+source: other editor themes, terminal color schemes, a Tailwind/shadcn palette, etc. VS Code
+themes are used as the worked example below because they're common and their source is public
+and structured, but treat the pattern as general.
+
+**Get the real source, never memory — same rule as a named company's URL above.** Don't
+reconstruct a well-known theme's colors from general knowledge; fetch its actual published
+definition. For a VS Code theme, that's the extension's theme JSON in its source repository —
+e.g. `One Dark Pro`'s are at `github.com/Binaryify/OneDark-Pro`, under `themes/*.json`. Two
+things to nail down before extracting anything:
+
+- **Which variant?** Many themes ship several (`One Dark Pro` alone has `OneDark-Pro`,
+  `-darker`, `-flat`, `-mix`, `-night-flat`) — confirm the exact one the user means rather than
+  guessing from the base name.
+- **Light or dark?** Almost always answered by the theme itself (and by the variant chosen) —
+  this directly answers Step 2.5's light/dark/day-night question, no separate question needed.
+
+**A VS Code theme JSON has two different color sections — only one of them maps.** `colors` is
+a flat object of UI/"workbench" keys (editor chrome, buttons, panels, borders) — this is what
+maps onto Kong's semantic roles, the same way a screenshot's visible UI does. `tokenColors` is
+an array of syntax-highlighting rules for source code — it has no Kong equivalent (there's no
+"keyword" or "string literal" token in a design-token system) and is generally **not** mapped;
+at most, skim it for a representative accent hue if `colors` alone doesn't surface one clearly.
+
+A few representative `colors` keys and the Kong role they typically inform (starting points,
+not an exhaustive or authoritative mapping — judge each theme's own key set on its own terms):
+
+| VS Code `colors` key | Typical Kong role |
+|---|---|
+| `editor.background`, `editorGroupHeader.tabsBackground` | Background hierarchy (page vs. surface) |
+| `editor.foreground`, `foreground` | Text color |
+| `button.background` | Primary |
+| `focusBorder`, `textLink.foreground` | Accent / link |
+| `panel.border`, `editorGroup.border` | Border |
+
+**Colors are exact; everything else still needs your eyes.** Because the source JSON's hex
+values are literal, the "be honest about precision" estimate caveat above doesn't apply to
+color — you're not eyeballing a value, you're reading one. What *does* still require visual
+inspection is everything a theme JSON doesn't encode for a web app at all: shadow/elevation
+depth, padding/density on buttons and cards, corner rounding, and the theme's overall feel.
+Render the theme (the extension's marketplace screenshots are usually enough; failing that,
+install it and take one yourself) and read it exactly like an uploaded screenshot — see
+"Screenshots and mockups" above for the property → token-family mapping
+(`--kui-shadow-*`, `--kui-space-*`, `--kui-border-radius-*`). A code editor doesn't really have
+"button padding" or "card elevation" in the first place, so deriving believable values for
+those from a theme's general mood is a `frontend-design`-level judgment call, not extraction —
+flag it as such and confirm with the user rather than presenting a guess as read-off fact.
+
+**Hand-off.** Once you have concrete colors and a read on the non-color properties, both
+recombine with every other intake path exactly the same way: colors go through
+`token-model.md`'s "Mapping a design input onto the palette" (family + step selection);
+non-color properties go through the same screenshot property → token-family guidance above.
+Nothing about a ported theme changes Steps 3 onward.
 
 ## Verbal-only guidelines
 

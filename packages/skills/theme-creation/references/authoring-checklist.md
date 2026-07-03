@@ -11,24 +11,28 @@ file — see the "Scope guardrail" section at the top of `SKILL.md` for the full
 ## Before you touch a file
 
 - [ ] Design brief gathered (SKILL.md Step 2.5): light/dark + full-theme-vs-override scope,
-      brand/accent colors or a visual reference (screenshot/mockup/URL), or explicit verbal
-      guidance — see `design-inputs.md` for how to work from whatever the user provided. Don't
-      skip straight to copying a template on a guess.
+      brand/accent colors, a visual reference (screenshot/mockup/URL), an existing theme to
+      port (e.g. a VS Code theme), or explicit verbal guidance — see `design-inputs.md` for how
+      to work from whatever the user provided. Don't skip straight to copying a template on a
+      guess.
 - [ ] Theme name is **kebab-case** (lowercase, hyphen-separated — e.g. `acme-day`, not
       `AcmeDay` or `acme_day`).
 - [ ] Theme name is **unique** — not already a file in
       `packages/design-tokens/themes/*.theme.json`. Check with a directory listing, not memory.
-- [ ] You've picked a **template theme of the matching class** to copy:
-      - Want every component individually overridable? → exhaustive → copy `konnect-day` or
-        `konnect-night`.
-      - Want components to fall through to semantic defaults? → semantic-only → copy
-        `classic-day` or `classic-night`.
+- [ ] You've picked a **template theme** to copy — **default to exhaustive** (`konnect-day` or
+      `konnect-night`) without asking; only use semantic-only (`classic-day` or `classic-night`)
+      if the user's own request says, in substance, that components shouldn't be separately
+      overridable (see `SKILL.md` Step 3 for phrasing calibration — the test is the meaning of
+      what they said, not a match against the exact words "semantic-only").
       - Building a day/night pair? Copy both of the matching class and treat the night variant
         as a re-point of a handful of text/border/background/shadow tokens to darker alias
         steps — not a wholly new palette (mirrors how `classic-night` relates to `classic-day`;
         verified in the real repo, the day/night `.alias.json` pair in each class is
-        byte-identical — leave the night variant's palette hex values untouched and do 100% of
-        the darkening via `.theme.json` re-points).
+        byte-identical). **"Byte-identical" describes the template's own day/night pair, not a
+        license to copy the template's night palette into your new theme** — leave the night
+        variant's palette hex values identical to *the new day theme you just authored*, not to
+        `konnect-night`/`classic-night`'s original template values, and do 100% of the darkening
+        via `.theme.json` re-points (see `SKILL.md` Step 4 item 3).
       - Only need a handful of tokens overridden, not a full color system or component set?
         Don't use this checklist at all — see the skill's "Minimal/partial overrides" section
         (`SKILL.md` Step 6B) for a lighter-weight approach that skips the guarded pipeline
@@ -40,17 +44,21 @@ file — see the "Scope guardrail" section at the top of `SKILL.md` for the full
 - [ ] `cp tokens/alias/color/<from>.alias.json tokens/alias/color/<new>.alias.json` — required
       for any theme that references `{color.alias.*}` (virtually all of them). Skipping this is
       a hard build error, not a warning.
-- [ ] Edit palette hex values in `tokens/alias/color/<new>.alias.json` — **skip this step
-      entirely if `<new>` is a night/dark variant of a day theme** (leave it byte-identical to
-      the day palette; see above):
+- [ ] Edit palette hex values in `tokens/alias/color/<new>.alias.json` — **the copied-in values
+      are the template's colors, not this theme's defaults**: go through every step and set it
+      deliberately from the design brief, don't leave any step unedited just because the brief
+      didn't name it explicitly (see `SKILL.md` Step 3's "structural donor only" rule). **Skip
+      this step entirely if `<new>` is a night/dark variant of a day theme** (leave it
+      byte-identical to the day theme *you just authored*, not the original template; see
+      above):
       - `$value` uppercase hex or `transparent`.
       - `$description` = `"Alias for <VALUE>."` exactly, updated to match the new value. This
         one is guard-checked (`themes.spec.mjs`'s `$description` guard covers `.alias.json`).
       - Don't add or remove keys — the set must match `_manifest.json` exactly.
-- [ ] Edit token `$value`s in `themes/<new>.theme.json` as needed — change which alias step a
-      token points to wherever this theme should diverge from its template. For a night variant,
-      this is where 100% of the work happens (re-point to already-darker steps in the unchanged
-      palette), not in the alias file above.
+- [ ] Edit token `$value`s in `themes/<new>.theme.json` — choose each alias step by the
+      contrast/role it needs in *this theme's own new palette*, not by mirroring the template's
+      re-point choices. For a night variant, this is where 100% of the work happens (re-point to
+      already-darker steps in the unchanged palette), not in the alias file above.
 - [ ] Apply the `$description` rules (see `token-model.md`) to any token you touch — judge
       "pure scale token" by tier, not by whether the name contains a scale-sounding word
       (`kui-border-radius-30` omits it; `kui-button-border-radius-large` keeps one). **This is

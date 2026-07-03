@@ -68,6 +68,13 @@ Declared explicitly in `themes.spec.mjs` — not derivable from the filename:
 - **`SEMANTIC_ONLY_THEMES`** (`classic-day`, `classic-night`): must contain every semantic
   token and **zero** component tokens. Components fall through to their semantic default.
 
+These two are described symmetrically above purely as *what each class technically requires* —
+that is **not** the same as saying a new theme should be authored by weighing the two options.
+**When actually authoring a new theme, exhaustive is the default and is not a decision to make
+with the user**; semantic-only is reserved for a theme the user explicitly asked to have
+components fall through to semantic defaults. See `SKILL.md` Step 3 for the full rule — this
+section only documents what each class technically enforces, not which one to pick.
+
 There is no third "unchecked" bucket in the actual code — every theme file on disk must land in
 exactly one of these two arrays or the classification guard fails the build.
 
@@ -100,9 +107,14 @@ existing step set with new values.
 
 ### Mapping a design input onto the palette
 
-Once you have a concrete color (from a hex code, a screenshot estimate, or a `getComputedStyle`
-read — see `design-inputs.md`), you're choosing a **family** and a **step** within that family's
-existing 11-step ramp (or a singleton), not inventing a new key:
+Once you have a concrete color (from a hex code, a screenshot estimate, a `getComputedStyle`
+read, or a value pulled from a ported theme's source — see `design-inputs.md`), you're
+choosing a **family** and a **step** within that family's
+existing 11-step ramp (or a singleton), not inventing a new key. This applies just as much to
+the palette file you copied as a Step 3 template: its shipped values are a structural
+placeholder, not a source for this section's family/step decisions (see `SKILL.md` Step 3) —
+every value below should trace back to the design brief, not to whatever the template already
+had at that key.
 
 - **Pick the family by hue category**, not by which family a competing theme happens to use for
   a similar purpose. The family names (`blue`, `red`, `green`, `orange`, etc.) are just labels,

@@ -1,6 +1,7 @@
 ---
 name: theme-creation
-description: Use this skill whenever the user wants to create, add, author, or scaffold a new theme for the @kong/design-tokens package — including phrases like "add a new theme", "create a theme like konnect-day", "make a dark/light variant", "I need a brand theme for a customer", "a new data-kui-theme", "I need a standalone theme CSS file for another app", "match this screenshot/mockup", "make our theme look like this site/URL", or "here are our brand colors". Also use it if the user wants to modify how an existing theme relates to tokens (semantic vs component tokens, color aliases/palettes) as part of building a new one, or supplies a screenshot, mockup, reference URL, or brand guideline as the basis for a theme's look. Make sure to trigger this even if the user doesn't say "design-tokens", "Style Dictionary", or "theme" explicitly — a request to reskin, rebrand, or restyle the product to match some visual reference, in the context of Kong's design-tokens theming system, should trigger this skill too.
+description: Use this skill whenever the user wants to create, add, author, or scaffold a new theme for the @kong/design-tokens package — including phrases like "add a new theme", "create a theme like konnect-day", "make a dark/light variant", "I need a brand theme for a customer", "a new data-kui-theme", "I need a standalone theme CSS file for another app", "match this screenshot/mockup", "make our theme look like this site/URL", "here are our brand colors", "port/emulate an existing theme", "make a theme like One Dark Pro", or "match this VS Code/editor/terminal theme". Also use it if the user wants to modify how an existing theme relates to tokens (semantic vs component tokens, color aliases/palettes) as part of building a new one, or supplies a screenshot, mockup, reference URL, brand guideline, or the name of an existing published theme (editor, terminal, or otherwise) as the basis for a theme's look. Make sure to trigger this even if the user doesn't say "design-tokens", "Style Dictionary", or "theme" explicitly — a request to reskin, rebrand, or restyle the product to match some visual reference, in the context of Kong's design-tokens theming system, should trigger this skill too.
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch
 ---
 
 # Theme Creation
@@ -105,19 +106,25 @@ actual request. Establish, from what the user has already said or by asking:
 
 - **Light, dark, or a day/night pair**, and **full theme vs. a narrow override** (a handful of
   tokens, not a whole color system) — these two answers drive the template-class decision in
-  Step 3.
+  Step 3. (Don't separately ask whether every component should be individually overridable —
+  Step 3 defaults to the exhaustive, every-component class unless the user explicitly asks for
+  semantic-only/component-fallback behavior.)
 - **Exact brand/accent colors**, if the user has them — the fastest path, since you can skip
   straight to plugging real values into the palette.
 - **Any visual reference**: a screenshot, mockup, exported design comp, or a URL of a page whose
   look they want to emulate.
+- **An existing published theme to port/emulate** — e.g. "make it look like `One Dark Pro`"
+  (a VS Code theme), another editor/terminal theme, or a published palette (Tailwind/shadcn,
+  etc.). Fetch its real source rather than working from memory of the name.
 - **Verbal style guidance** with no visual artifact ("dark, moody, high-contrast") — this still
   counts as real direction; don't treat "no screenshot" as "no design direction."
 
 If the user already supplied any of this in their request, don't re-ask for it — confirm your
 reading of it instead. For everything about *how* to inspect a screenshot, work from a URL using
-browser tooling, handle verbal-only guidance, and when to bring in the **frontend-design** skill
-for aesthetic judgment calls, see `references/design-inputs.md` — read it now if the user gave
-you anything beyond an exact hex code to work from.
+browser tooling, port an existing published theme, handle verbal-only guidance, and when to
+bring in the **frontend-design** skill for aesthetic judgment calls, see
+`references/design-inputs.md` — read it now if the user gave you anything beyond an exact hex
+code to work from.
 
 **What this step produces**: a concrete mapping of design inputs onto actual token decisions —
 which hex values go into the palette (Step 4.3) and which tokens re-point to a different step
@@ -126,14 +133,50 @@ judgment (an estimated color, a derived accent scale) rather than an exact value
 
 ## Step 3 — Pick a template to copy
 
-Never author a theme from scratch — copy the closest existing theme of the **same class**,
-matching the light/dark and scope decisions from Step 2.5:
+Never author a theme from scratch — copy the closest existing theme. **Default to the
+exhaustive class without asking** — copy `konnect-day` / `konnect-night` (every themeable
+token, including component tokens, so every Kongponent is individually overridable). Don't
+present exhaustive vs. semantic-only as a choice for the user to make.
 
-- **Exhaustive** (every themeable token, including component tokens — like `konnect-day` /
-  `konnect-night`): every Kongponent is individually overridable by this theme.
+**The template is a structural donor only — never a color or style source.** Copying
+`konnect-day.theme.json` (or any other existing theme's files) exists purely to get the
+complete *token key set* and the *mechanics* of how a theme file is shaped — it is not a hint,
+a starting point, or a fallback for what the new theme should actually look like. Every alias
+hex value and every token re-point in the copied files must come from Step 2.5's design brief;
+never leave a value as whatever `konnect-day`/`classic-day`/etc. happened to ship with just
+because the brief didn't explicitly call it out, and never reach for "this looks close to
+konnect's blue" as a substitute for a real decision. Treat an under-specified value the same
+way you'd treat a missing one — derive it from the brief's stated direction (brand hue, light/
+dark, mood), don't borrow it from the template. **The one exception**: if the user explicitly
+asked to **literally reuse** a *specific* existing theme's values — "base this on classic-night,"
+"reuse konnect-day's greys," "make it like konnect-day but blue" — that named theme's values (or,
+for a partial ask like "reuse konnect-day's greys," *only the specific family named*, not the
+whole palette) become part of the design brief itself, treated as a confirmed design input (like
+a ported theme, see `design-inputs.md`) rather than an implicit copy-source default. **Don't
+extend this to mood/vibe language that merely references another theme's name** — "it should
+feel like classic-night" or "something like konnect-day's energy" is a *verbal* design input
+(see `design-inputs.md`'s "Verbal-only guidelines"), not permission for literal value reuse;
+independently derive values from that mood the same as any other verbal guidance, and if it's
+ambiguous whether the user means "copy these exact values" or "capture this feeling," ask before
+assuming literal reuse — the two produce very different results and the wrong guess is expensive
+to unwind after Step 4.
+
 - **Semantic-only** (every semantic token, zero component tokens — like `classic-day` /
-  `classic-night`): components fall through to their semantic default; only the underlying
-  color/space/etc. system changes.
+  `classic-night`, where components fall through to their semantic default) applies whenever the
+  user's own request says, in substance, that individual components shouldn't be separately
+  overridable — the test is the *meaning*, not a match against one exact phrase. Treat any of
+  these as clearing the bar (not an exhaustive list, just calibration): "I don't need
+  per-component overrides," "just theme the base colors, don't worry about button/card stuff,"
+  "keep it simple, no component-level styling," "just the color system," as well as the more
+  direct "semantic-only" / "components should fall through to defaults." Don't require the user
+  to use the skill's own vocabulary — if their own words describe semantic-only's actual
+  behavior, that counts as explicit, even if they never say "semantic-only." What does *not*
+  count: a request that's simply short or informal ("keep it simple") **with no accompanying
+  statement about components** — that's under-specified, not an opt-out, and defaults to
+  exhaustive. When genuinely unsure whether a request is describing scope (full-theme-vs-
+  narrow-override, see above) or class (exhaustive-vs-semantic-only), ask which one they mean
+  rather than guessing — these are two different axes and a wrong guess sends the theme down a
+  structurally different path (a real registered theme vs. a hand-authored CSS override).
 
 **If Step 2.5 established this is a narrow override**, not a full color system or component set,
 don't force it through the exhaustive/semantic-only machinery below — both existing theme
@@ -148,11 +191,15 @@ app-level stylesheet).
 **Building a light/dark pair?** Treat the dark variant as a **re-point of tokens only** —
 `classic-day`/`classic-night` and `konnect-day`/`konnect-night` all have **byte-identical alias
 palettes** in the real repo; 100% of the day/night difference lives in which alias step each
-`.theme.json` token points to, never in the palette's hex values. Copy the day theme's
-`.alias.json` for the night variant unchanged (don't edit its hex values in Step 4.3), and do all
-the "make it darker" work in Step 4.4 by re-pointing individual tokens to different (already
-darker) steps in that same palette. Only invent genuinely new palette values if the user
-explicitly wants different hues — not just different lightness — between the two.
+`.theme.json` token points to, never in the palette's hex values. **That fact describes those
+existing templates, not a value source for your new theme** — your new day theme's palette will
+have its own, different hex values (per Step 4 item 3's design-brief rule), and it's *that*
+palette — not `konnect-day`'s or `classic-day`'s original one — the night variant must copy
+unchanged. Concretely: author the new day theme's palette first, then copy *that* `.alias.json`
+for the night variant unchanged (don't edit its hex values in Step 4 item 3), and do all the
+"make it darker" work in Step 4 item 4 by re-pointing individual tokens to different (already
+darker) steps in that same, already-recolored palette. Only invent genuinely new palette values
+if the user explicitly wants different hues — not just different lightness — between the two.
 
 ## Step 4 — Author the theme
 
@@ -163,17 +210,36 @@ Both paths follow the same authoring mechanics; only what happens afterward diff
    if you think the theme won't need its own palette. Almost every theme references
    `{color.alias.*}`, and a theme with no matching palette file is a **hard build error**, not
    a graceful fallback.
-3. Edit `tokens/alias/color/<new>.alias.json`: change the hex `$value` for whichever alias
-   steps should differ for this theme (brand colors, etc.) — **unless** `<new>` is the dark
-   counterpart of a day theme you're also creating/already have (see Step 3), in which case
-   leave this file's values identical to the day palette and do all the work in item 4 below.
-   Keep the exact key set from `_manifest.json` — don't add or remove entries. Update each
-   changed `$description` to read `"Alias for <VALUE>."` exactly — this one **is** guard-checked
-   (`themes.spec.mjs`'s `$description` guard applies to `.alias.json` files only).
-4. Edit `themes/<new>.theme.json`: change which alias step individual tokens point to, where
-   the theme should diverge from its template beyond a straight palette recolor — this is also
-   where a dark variant does 100% of its work (re-point text/border/background/shadow tokens to
-   darker steps already present in the unchanged palette). Follow the `$description` rules in
+3. Edit `tokens/alias/color/<new>.alias.json`: go through the file and set every alias step's
+   hex `$value` deliberately from Step 2.5's design brief — per the Step 3 rule, the values you
+   copied in are the *template's* colors, not a default for this theme, so don't leave any step
+   unedited just because the brief didn't call it out by name; derive it from the brief's
+   overall direction instead. **Unless** `<new>` is the dark counterpart of a day theme you're
+   also creating/already have (see Step 3's light/dark guidance), in which case leave *that*
+   file's values identical to the *day theme you just authored* (not the original template) and
+   do all the work in item 4 below. Keep the exact key set from `_manifest.json` — don't add or
+   remove entries. Update each changed `$description` to read `"Alias for <VALUE>."` exactly —
+   this one **is** guard-checked (`themes.spec.mjs`'s `$description` guard applies to
+   `.alias.json` files only).
+4. Edit `themes/<new>.theme.json`, both the color and non-color tokens:
+   - **Color tokens** (`{color.alias.*}` references): choose which alias step each points to
+     based on the contrast/role it needs to play in *this theme's own new palette* (see
+     `token-model.md`'s "Mapping a design input onto the palette") — don't default to mirroring
+     the template's re-point choices just because they came along with the file you copied. This
+     is also where a dark variant does 100% of its work (re-point text/border/background/shadow
+     tokens to darker steps already present in the unchanged palette).
+   - **Non-color tokens with literal values** — `--kui-border-radius-*`, `--kui-shadow-*`,
+     `--kui-space-*`, and similar scale tokens hold a literal `$value` in the theme file, not an
+     alias reference (see `token-model.md`'s tier description). If Step 2.5's brief said anything
+     about corner rounding, shadow/elevation depth, or density (a screenshot, URL, or ported
+     theme almost always does — see `design-inputs.md`), this is the step where that actually
+     gets applied: edit the specific literal `$value`s the brief called for. Skipping this and
+     only touching color tokens is the most common way a theme "passes" authoring while still
+     rendering with the template's original corner rounding and shadow depth — the guards check
+     completeness and description formatting, not whether a radius/shadow value matches the
+     brief, so this has to be done deliberately here, not caught later.
+
+   Follow the `$description` rules in
    `references/token-model.md` (match the semantic source, stay value-agnostic, omit for pure
    scale tokens — judge by the token's *tier*, not by whether its name contains a scale-sounding
    word: `kui-border-radius-30` omits it, but `kui-button-border-radius-large` and
@@ -224,33 +290,52 @@ guards can't tell the difference), insufficient contrast (not guarded at all —
 gap explicitly, especially when Step 2.5 involved anything beyond an exact hex code the user
 handed you directly.
 
-1. **Confirm the specific values landed correctly.** For each color/value that mattered most in
-   Step 2.5 (primary/accent colors, anything the user explicitly confirmed), grep the compiled
-   output for the exact resolved value and compare it against what was confirmed:
+1. **Confirm the specific values landed correctly — color AND non-color.** For each value that
+   mattered most in Step 2.5 (primary/accent colors, but also any corner-rounding/shadow/density
+   direction the brief established), grep the compiled output for the exact resolved value and
+   compare it against what was confirmed. Don't stop at the color example — repeat this for
+   every token family the brief touched:
    ```sh
    grep -in -- "--kui-color-background-primary:" dist/themes/<new>.css
+   grep -in -- "--kui-border-radius-30:" dist/themes/<new>.css
+   grep -in -- "--kui-shadow-20:" dist/themes/<new>.css
    ```
-   This catches a real, guard-invisible failure mode: a token re-pointed to the wrong (but still
-   on-palette) alias step during Step 4.4 — technically valid, visibly wrong.
-2. **If Step 2.5 involved a screenshot, mockup, or reference URL, do an actual visual
-   comparison.** Build a small throwaway HTML file **outside the repo entirely** (a scratch/tmp
-   directory, not anywhere under `packages/design-tokens/`) that `<link>`s the compiled theme CSS
-   via its **absolute path** (e.g. `<link rel="stylesheet" href="file:///abs/path/to/dist/themes/<new>.css">`),
-   sets `data-kui-theme="<new>"`, and includes a few representative elements (a button, a
-   card-like container, some body text) styled with the theme's `--kui-*` custom properties.
-   Keeping this file outside the repo means it never risks tripping the scope guardrail's
-   `git status` check — there's nothing to remember to delete before Step 6A/6B. Then:
+   (Substitute the actual token names Step 4 edited — these three are illustrative, not
+   exhaustive.) This catches two distinct guard-invisible failure modes: a color token re-pointed
+   to the wrong (but still on-palette) alias step, and a non-color token left at the template's
+   literal value because Step 4's non-color edit was skipped or incomplete — both technically
+   valid, visibly wrong.
+2. **If Step 2.5 involved a screenshot, mockup, reference URL, or a ported theme, do an actual
+   visual comparison — and make sure the test markup can actually show a non-color mismatch.**
+   For a ported theme, the "reference" to compare against is a rendering of the *source* theme
+   itself (its marketplace screenshots, or one you took by installing it) — treat it exactly like
+   a screenshot reference from here on. Build a small throwaway HTML file **outside the repo
+   entirely** (a scratch/tmp directory, not anywhere under `packages/design-tokens/`) that
+   `<link>`s the compiled theme CSS via its **absolute path** (e.g.
+   `<link rel="stylesheet" href="file:///abs/path/to/dist/themes/<new>.css">`), sets
+   `data-kui-theme="<new>"`, and includes a few representative elements (a button, a card-like
+   container, some body text) that explicitly apply the theme's shadow/radius/spacing tokens
+   (`box-shadow: var(--kui-shadow-*)`, `border-radius: var(--kui-border-radius-*)`,
+   `padding: var(--kui-space-*)`), not just color properties — a button or card with only
+   background/text/border color set will render "correctly" even if its radius or shadow is
+   still the template's, because the test markup never asked for those properties. Keeping this
+   file outside the repo means it never risks tripping the scope guardrail's `git status` check —
+   there's nothing to remember to delete before Step 6A/6B. Then:
    - If a browser automation tool is available (see `design-inputs.md`), navigate to the file and
      screenshot it, then view that screenshot next to the original reference (the Read tool
-     renders images) and compare them directly.
-   - If no browser tool is available, at minimum restate the confirmed color/style values next to
-     the original reference in words, and have the user preview the compiled CSS in their own
-     environment before calling the theme finalized — don't declare victory on guard-passing
-     alone when a visual reference exists and you have no way to actually render it.
+     renders images) and compare them directly — explicitly check corner rounding, shadow depth,
+     and padding/density on the button and card elements, not just overall color, since color is
+     the property an eyeballed comparison naturally anchors on first.
+   - If no browser tool is available, at minimum restate the confirmed values next to the
+     original reference in words — **explicitly including** the corner-rounding, shadow, and
+     spacing tokens the brief called for, not only color — and have the user preview the compiled
+     CSS in their own environment before calling the theme finalized. Don't declare victory on
+     guard-passing alone when a visual reference exists and you have no way to actually render it.
 3. **Get sign-off on the rendered result, not just the planned values.** Step 2.5 confirms
    *planned* values before Step 4 runs; this step confirms the *actual, built* result. Present
-   what you found (the grep comparison, the screenshot comparison or its written equivalent) and
-   get the user's confirmation before treating either path (6A or 6B) as done.
+   what you found — the grep comparisons (color and non-color), and the screenshot comparison or
+   its written equivalent (covering shadow/radius/spacing, not just color) — and get the user's
+   confirmation before treating either path (6A or 6B) as done.
 
 ## Step 6A — In-repo path: you're done
 
