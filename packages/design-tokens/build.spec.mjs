@@ -749,7 +749,7 @@ describe('tokens/components/ (source enforcement)', () => {
 // dist/themes/
 // ---------------------------------------------------------------------------
 
-const THEME_NAMES = ['classic-day', 'classic-night', 'konnect-day', 'konnect-night']
+const THEME_NAMES = ['classic-day', 'classic-night', 'konnect-day', 'konnect-night', 'terminal']
 
 describe('dist/themes/', () => {
   /** @type {Record<string, { css: string, mjs: string, dts: string }>} */
@@ -810,6 +810,7 @@ describe('dist/themes/', () => {
       'classic-night': 'classicNight',
       'konnect-day': 'konnectDay',
       'konnect-night': 'konnectNight',
+      terminal: 'terminal',
     }
     for (const name of THEME_NAMES) {
       expect(themes[name].mjs, `${name}.mjs missing named export`).toContain(
@@ -829,7 +830,7 @@ describe('dist/themes/', () => {
     }
   })
 
-  it('index.mjs re-exports all four themes without "Theme" suffix', async () => {
+  it('index.mjs re-exports all five themes without "Theme" suffix', async () => {
     const indexMjs = await distRootFile('themes/index.mjs')
     expect(indexMjs).toContain('classicDay')
     expect(indexMjs).toContain('classicNight')
@@ -839,6 +840,8 @@ describe('dist/themes/', () => {
     expect(indexMjs).toContain('konnectNight')
     expect(indexMjs).not.toContain('konnectDayTheme')
     expect(indexMjs).not.toContain('konnectNightTheme')
+    expect(indexMjs).toContain('terminal')
+    expect(indexMjs).not.toContain('terminalTheme')
   })
 
   it('all themes include the five fixed breakpoint tokens', () => {

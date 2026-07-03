@@ -34,7 +34,7 @@ const ROOT = __dirname
 // "classification" guard below.
 
 /** Themes that MUST contain every themeable token (semantic + component). */
-const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
+const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night', 'terminal']
 
 /**
  * Themes that MUST contain every SEMANTIC token and ZERO component tokens.
