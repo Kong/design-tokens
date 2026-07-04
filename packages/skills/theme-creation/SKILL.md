@@ -13,7 +13,7 @@ visual identity**: not just colors, but component character (button padding/radi
 elevation, input shape, typography). That judgment work is where your attention goes.
 
 The work splits cleanly, and this skill is built around the split:
-- **Mechanical, done by scripts** — scaffolding the two files complete-and-empty, classifying,
+- **Mechanical, done by scripts** — scaffolding the two files complete-and-empty,
   listing the live token set, rendering a real-component preview, tearing down. You don't hand-do
   these, so they can't be forgotten or done half-way.
 - **Judgment, done by you (with the `frontend-design` skill)** — perceiving the source, deriving a
@@ -24,16 +24,16 @@ below are relative to this skill (`../skills/theme-creation/scripts/...` from th
 
 ## Scope guardrail
 
-This skill creates exactly **one new theme** and touches only:
-- `themes/<new>.theme.json` and `tokens/alias/color/<new>.alias.json` (the theme's two files), and
-- one added line in `themes.spec.mjs`'s `EXHAUSTIVE_THEMES` array.
-
-`scaffold.mjs` makes and reverts exactly these changes; you don't edit `themes.spec.mjs` by hand.
+This skill creates exactly **one new theme** and touches only its **two files**:
+`themes/<new>.theme.json` and `tokens/alias/color/<new>.alias.json`. That's the whole footprint —
+`themes.spec.mjs` no longer needs editing, because it treats every theme in `themes/` as exhaustive
+by default (only `classic-day`/`classic-night` are opted out as semantic-only), so a new theme is
+covered by the guards automatically. `scaffold.mjs` makes and reverts exactly these two files.
 Every existing theme/palette file is a read-only reference. Nothing else is in scope — not
-`README.md`, `docs/**`, `config.mjs`, `_manifest.json`, other packages — even if it looks helpful;
-flag it, don't fix it. Generated `dist/themes/<new>.*` output is expected, not a violation. Before
-finishing, `git status` in the repo root: the only source changes should be the two theme files +
-one `EXHAUSTIVE_THEMES` line (in-repo path), or nothing at all (standalone path, after teardown).
+`themes.spec.mjs`, `README.md`, `docs/**`, `config.mjs`, `_manifest.json`, other packages — even if
+it looks helpful; flag it, don't fix it. Generated `dist/themes/<new>.*` output is expected, not a
+violation. Before finishing, `git status` in the repo root: the only source changes should be the
+two theme files (in-repo path), or nothing at all (standalone path, after teardown).
 
 ## Step 0 — Read first
 
@@ -83,9 +83,9 @@ re-ask for what the user already gave — confirm your reading of it.
 Run the scaffold script. It copies `konnect-day`/`konnect-night` (the **exhaustive** structural
 template — every component token present; this skill only ever builds exhaustive themes) for
 structure, generates a fresh palette file with obvious `#FF00FF` placeholders (so no template
-color can silently leak in and an unfinished theme renders screaming magenta), adds the
-`EXHAUSTIVE_THEMES` classification, and prints a component-grouped inventory of every themeable
-token plus the literal-color tokens you'll need to re-express:
+color can silently leak in and an unfinished theme renders screaming magenta), and prints a
+component-grouped inventory of every themeable token plus the literal-color tokens you'll need to
+re-express. (No classification step — the guards treat every theme as exhaustive by default.)
 
 ```sh
 # from packages/design-tokens/  (add --from konnect-night for a dark theme)
@@ -217,8 +217,9 @@ preview the CSS themselves; don't declare victory on guards alone.
 
 ## Step 6A — In-repo: done
 
-`git status` should show exactly the two new files + one `EXHAUSTIVE_THEMES` line — commit those.
-`dist/themes/<new>.*` regenerates on build; nothing to extract. Flag to the user: if the theme
+`git status` should show exactly the two new theme files — commit those (no `themes.spec.mjs`
+change; it classifies the new theme as exhaustive automatically). `dist/themes/<new>.*`
+regenerates on build; nothing to extract. Flag to the user: if the theme
 changes `primary`/`accent` colors, the `kong-konnect/portal` customization plugin may need a
 matching override (outside this skill's scope, but worth knowing).
 

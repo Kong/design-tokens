@@ -2,14 +2,16 @@
 /**
  * scaffold.mjs — deterministic Half-A mechanics for the theme-creation skill.
  *
- * Creates (or tears down) the two files a new @kong/design-tokens theme needs, plus the single
- * EXHAUSTIVE_THEMES classification line, and prints a component-grouped inventory of every
- * themeable token to seed the design spec (SKILL.md Step 3.5).
+ * Creates (or tears down) the two files a new @kong/design-tokens theme needs, and prints a
+ * component-grouped inventory of every themeable token to seed the design spec (SKILL.md Step 3.5).
+ * No classification edit is required: themes.spec.mjs treats every theme in themes/ as exhaustive
+ * by default (only classic-day/classic-night are opted out as semantic-only), so a new theme is
+ * covered by the guards automatically and teardown just deletes files.
  *
  * Why this exists: every one of these steps used to be prose the agent could forget — file
- * completeness, palette value-leak from the template, "derive the token list live," classifying
- * under the right array, reversing it all on teardown. Doing it in code makes those failure
- * modes structurally impossible instead of relying on the agent to remember.
+ * completeness, palette value-leak from the template, "derive the token list live," reversing it
+ * all on teardown. Doing it in code makes those failure modes structurally impossible instead of
+ * relying on the agent to remember.
  *
  * Usage (run from anywhere; paths resolve to the design-tokens package automatically):
  *   node scaffold.mjs <theme-name> [--from konnect-day|konnect-night]   # create
@@ -35,7 +37,6 @@ const PKG = join(SCRIPT_DIR, '..', '..', '..', 'design-tokens')
 const THEMES_DIR = join(PKG, 'themes')
 const ALIAS_DIR = join(PKG, 'tokens', 'alias', 'color')
 const MANIFEST = join(ALIAS_DIR, '_manifest.json')
-const SPEC = join(PKG, 'themes.spec.mjs')
 
 const args = process.argv.slice(2)
 const name = args.find((a) => !a.startsWith('--'))
@@ -52,23 +53,6 @@ if (!name) {
 
 const themeFile = join(THEMES_DIR, `${name}.theme.json`)
 const aliasFile = join(ALIAS_DIR, `${name}.alias.json`)
-
-/** Add or remove `'<name>'` in the EXHAUSTIVE_THEMES array literal (this skill only ever builds exhaustive). */
-function editClassification(add) {
-  let src = readFileSync(SPEC, 'utf8')
-  const re = /const EXHAUSTIVE_THEMES = \[([^\]]*)\]/
-  const m = src.match(re)
-  if (!m) throw new Error('Could not find EXHAUSTIVE_THEMES array in themes.spec.mjs')
-  const entries = m[1].split(',').map((s) => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean)
-  const has = entries.includes(name)
-  if (add && !has) entries.push(name)
-  if (!add) {
-    const idx = entries.indexOf(name)
-    if (idx >= 0) entries.splice(idx, 1)
-  }
-  const rebuilt = `const EXHAUSTIVE_THEMES = [${entries.map((e) => `'${e}'`).join(', ')}]`
-  writeFileSync(SPEC, src.replace(re, rebuilt))
-}
 
 /**
  * Tokens whose $value carries a LITERAL color (not a {color.alias.*} reference) — composite
@@ -150,8 +134,8 @@ if (flag('--teardown')) {
       }
     }
   }
-  editClassification(false)
-  console.log(`removed '${name}' from EXHAUSTIVE_THEMES`)
+  // No spec edit to revert: removing the two files above drops the theme from the derived
+  // exhaustive set automatically (themes.spec.mjs classifies by directory contents).
   console.log('\nTeardown complete. Run `pnpm --filter @kong/design-tokens test` and `git status` to confirm zero residue.')
   process.exit(0)
 }
@@ -200,11 +184,11 @@ const aliasJson = `{\n${I(1)}"color": {\n${I(2)}"$type": "color",\n${I(2)}"alias
 writeFileSync(aliasFile, aliasJson)
 console.log(`created tokens/alias/color/${name}.alias.json  (every step = ${PLACEHOLDER} until you fill it)`)
 
-// 3. classify
-editClassification(true)
-console.log(`added '${name}' to EXHAUSTIVE_THEMES in themes.spec.mjs`)
+// No classification step needed: themes.spec.mjs treats every theme in themes/ as exhaustive by
+// default (only classic-day/classic-night are opted out as semantic-only), so this new theme is
+// covered by the exhaustive drift guard automatically — the skill never edits that file.
 
-// 4. inventory
+// inventory
 printInventory(themeFile)
 
 console.log(`\nNext: fill ${name}.alias.json with the real palette from your Step 3.5 spec, adjust`)

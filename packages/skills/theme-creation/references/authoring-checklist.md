@@ -4,9 +4,10 @@ A linear checkbox form of `SKILL.md`'s flow. Pair with `token-model.md` (the "wh
 `component-tokens.md` (visual-identity taste). The scripts (`scaffold.mjs`, `preview.mjs`) do the
 mechanical steps; this checklist is mostly the judgment work in between.
 
-**Scope:** only ever `themes/<new>.theme.json`, `tokens/alias/color/<new>.alias.json`, and one
-`EXHAUSTIVE_THEMES` line (which `scaffold.mjs` adds/removes for you). Never edit an existing theme
-or palette, or any other repo file — see `SKILL.md`'s Scope guardrail.
+**Scope:** only ever the theme's two files — `themes/<new>.theme.json` and
+`tokens/alias/color/<new>.alias.json`. No `themes.spec.mjs` edit (the guards classify every theme
+as exhaustive by default). Never edit an existing theme or palette, or any other repo file — see
+`SKILL.md`'s Scope guardrail.
 
 ## Before scaffolding
 - [ ] Path chosen: in-repo (committed) vs. standalone (extract + tear down). Asked if unclear.
@@ -18,9 +19,9 @@ or palette, or any other repo file — see `SKILL.md`'s Scope guardrail.
 
 ## Scaffold (deterministic — one command)
 - [ ] `node ../skills/theme-creation/scripts/scaffold.mjs <name> [--from konnect-day|konnect-night]`
-      — copies the exhaustive structural template, writes a placeholder (`#FF00FF`) palette,
-      classifies under `EXHAUSTIVE_THEMES`, and prints the component-grouped token inventory +
-      the literal-color tokens to re-express. Read the inventory.
+      — copies the exhaustive structural template, writes a placeholder (`#FF00FF`) palette, and
+      prints the component-grouped token inventory + the literal-color tokens to re-express. Read
+      the inventory. (No spec edit — the theme is exhaustive by default.)
 
 ## Design spec (SKILL.md Step 3.5 — judgment)
 - [ ] Wrote a structured spec **in chat, not to a file**: colors always actively derived
@@ -57,8 +58,8 @@ or palette, or any other repo file — see `SKILL.md`'s Scope guardrail.
 - [ ] Got the user's sign-off on the rendered result, not just the planned spec.
 
 ## Finish
-- **In-repo:** `git status` shows exactly the two new files + one `EXHAUSTIVE_THEMES` line. Flag
-  the `kong-konnect/portal` note if primary/accent changed (SKILL.md Step 6A).
+- **In-repo:** `git status` shows exactly the two new theme files (no `themes.spec.mjs` change).
+  Flag the `kong-konnect/portal` note if primary/accent changed (SKILL.md Step 6A).
 - **Standalone:** extracted `dist/themes/<new>.css` (verified fully resolved — no `{color.alias…}`,
   no `var(--kui-color-alias…)`, no `: undefined;`), then
   `node ../skills/theme-creation/scripts/scaffold.mjs <name> --teardown`, re-ran tests green, and
@@ -68,6 +69,6 @@ or palette, or any other repo file — see `SKILL.md`'s Scope guardrail.
 - `docs/ALIAS-COLOR-MAPPING-GUIDE.md` links a `COMPONENT-TOKENS-GUIDE.md` that **doesn't exist**.
 - Some generated headers/comments mention a `pnpm build:themes` script that **doesn't exist** —
   theme building is part of `build:tokens` (and `pnpm test`'s pretest).
-- `README.md`/`docs` mention an `UNCHECKED_THEMES` array that **doesn't exist** in
-  `themes.spec.mjs` — only `EXHAUSTIVE_THEMES` and `SEMANTIC_ONLY_THEMES` are real, and this skill
-  only ever uses `EXHAUSTIVE_THEMES`.
+- `docs/ALIAS-COLOR-MAPPING-GUIDE.md` may still mention an `UNCHECKED_THEMES` array that **doesn't
+  exist** in `themes.spec.mjs` — classification is exhaustive-by-default with a `SEMANTIC_ONLY_THEMES`
+  opt-out; there is no third bucket. (The README was corrected; the guide may not be.)

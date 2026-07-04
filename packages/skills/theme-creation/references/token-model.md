@@ -60,22 +60,21 @@ theme that references `{color.alias.*}` with no matching `<name>.alias.json` als
 
 ## Theme classes
 
-Declared explicitly in `themes.spec.mjs` — not derivable from the filename:
+`themes.spec.mjs` defines two token-set policies, and **exhaustive is the default**: every theme
+in `themes/` is treated as exhaustive unless it's explicitly named in the `SEMANTIC_ONLY_THEMES`
+opt-out list.
 
-- **`EXHAUSTIVE_THEMES`** (`konnect-day`, `konnect-night`): must contain **exactly**
-  `KUI_THEMEABLE_TOKENS` — every semantic token *and* every component token. Nothing missing,
-  nothing extra.
-- **`SEMANTIC_ONLY_THEMES`** (`classic-day`, `classic-night`): must contain every semantic
-  token and **zero** component tokens. Components fall through to their semantic default.
+- **Exhaustive** (the default; `konnect-day`, `konnect-night`, and any new theme): must contain
+  **exactly** `KUI_THEMEABLE_TOKENS` — every semantic token *and* every component token. Nothing
+  missing, nothing extra.
+- **`SEMANTIC_ONLY_THEMES`** (the opt-out list — currently only `classic-day`, `classic-night`):
+  must contain every semantic token and **zero** component tokens. Components fall through to their
+  semantic default.
 
-Both classes are real and both are described here for completeness, but **this skill only ever
-authors new themes into `EXHAUSTIVE_THEMES`** — `SEMANTIC_ONLY_THEMES` exists in the real system
-(that's what `classic-day`/`classic-night` are classified as) but isn't a class this skill picks
-for anything it creates, regardless of how the user phrases the request. See `SKILL.md` Step 3
-for the full rule — this section only documents what each class technically enforces.
-
-There is no third "unchecked" bucket in the actual code — every theme file on disk must land in
-exactly one of these two arrays or the classification guard fails the build.
+Because exhaustive is derived from the directory, **this skill authors new themes with no
+classification edit at all** — dropping the two files in `themes/` is enough; the guards cover the
+new theme automatically. Semantic-only isn't a class this skill picks, regardless of how the user
+phrases the request (see `SKILL.md` Step 3). There is no third "unchecked" bucket.
 
 `classic-day` is the default look (identical to the un-themed `:root` export — the main build
 in `config.mjs` resolves against `classic-day.alias.json`). `classic-night` is its dark
@@ -192,11 +191,11 @@ catch a mistake here:
   these, or you're adding a similar brand-derived token, flag that the
   `kong-konnect/portal` customization plugin may need a matching override — this skill doesn't
   touch that repo, but the person merging the theme should know.
-- **Every classified theme file must define its FULL token set — not just the tokens it
-  changes.** This is easy to get backwards: the repo's README describes theme authoring in terms
-  of "override" semantics, but the actual guards in `themes.spec.mjs` require
-  `EXHAUSTIVE_THEMES` to contain exactly every themeable token and `SEMANTIC_ONLY_THEMES` to
-  contain every semantic token — nothing may be missing, in either bucket. In practice this is
+- **Every theme file must define its FULL token set — not just the tokens it changes.** This is
+  easy to get backwards: the repo's README describes theme authoring in terms of "override"
+  semantics, but the actual guards in `themes.spec.mjs` require an exhaustive theme to contain
+  exactly every themeable token and a semantic-only theme to contain every semantic token —
+  nothing may be missing. In practice this is
   handled for you: `scaffold.mjs` (SKILL.md Step 3) starts you from a complete copy of the
   exhaustive template, and you only *edit* the subset of values that should differ. Don't interpret "you only need to change
   what differs" as "you may omit what doesn't differ" — a theme file with tokens missing (rather
