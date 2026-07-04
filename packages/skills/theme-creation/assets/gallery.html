@@ -1,0 +1,144 @@
+<!doctype html>
+<!--
+  Kongponents component gallery for theme-creation previews. Renders REAL @kong/kongponents
+  components from a CDN (no install/build) so the preview is ground truth for how a user's UI
+  responds to the theme.
+
+  preview.mjs substitutes four placeholders: the Kongponents CSS URL and ESM URL (so the version
+  is configurable — default latest, overridable to a canary/PR build that consumes newer tokens),
+  the theme CSS-link slot in <head>, and the body-attribute slot on <body>. The themed panel gets
+  the theme's compiled CSS + a data-kui-theme wrapper; the default panel gets neither.
+
+  IMPORTANT fidelity note: a given Kongponents version only consumes the tokens IT was built to
+  read. If the theme sets granular component tokens (e.g. --kui-button-color-background-primary)
+  that the pinned Kongponents version doesn't consume yet, those won't show here even though the
+  theme sets them correctly — point --kongponents at a version/build that reads them. Requires
+  outbound HTTPS to the CDN at view time.
+-->
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="__KONGPONENTS_CSS__">
+    __THEME_CSS__
+    <script type="importmap">
+{ "imports": { "vue": "https://esm.sh/vue@3.5.13", "vue-router": "https://esm.sh/vue-router@4" } }
+</script>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: var(--kui-font-family-text, system-ui, sans-serif);
+        background: var(--kui-color-background, #fff);
+        color: var(--kui-color-text, #1a1a1a);
+      }
+
+      .label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--kui-color-text-neutral, #888);
+        margin: 22px 0 8px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: var(--kui-font-size-80, 30px);
+        margin: 0 0 4px;
+      }
+
+      .muted {
+        color: var(--kui-color-text-neutral, #6b6b6b);
+        margin: 0 0 8px;
+      }
+
+      .grperr {
+        color: #b00;
+        font-family: monospace;
+        font-size: 11px;
+      }
+    </style>
+  </head>
+
+  <body __THEME_ATTR__>
+    <h1>Aa — the quick brown fox jumps</h1>
+    <p class="muted">Real Kongponents rendered under this theme. States, surfaces, inputs, navigation &amp; feedback
+      below.</p>
+    <div id="app"></div>
+    <script type="module">
+      const {createApp, h, ref} = await import('vue')
+      const K = await import('__KONGPONENTS_ESM__')
+      const app = createApp({
+        setup() {
+          const label = (t) => h('div', {class: 'label'}, t)
+          // Render each group in isolation so one component's prop mismatch can't blank the whole page.
+          const group = (title, fn) => {
+            let body
+            try {body = fn()} catch (e) {body = h('div', {class: 'grperr'}, 'skipped: ' + (e && e.message || e))}
+            return [label(title), h('div', {class: 'row'}, body)]
+          }
+          return () => h('div', [
+            ...group('Buttons — appearances & states', () => [
+              h(K.KButton, {appearance: 'primary'}, () => 'Primary'),
+              h(K.KButton, {appearance: 'secondary'}, () => 'Secondary'),
+              h(K.KButton, {appearance: 'tertiary'}, () => 'Tertiary'),
+              h(K.KButton, {appearance: 'danger'}, () => 'Danger'),
+              h(K.KButton, {appearance: 'primary', disabled: true}, () => 'Disabled'),
+              h(K.KButton, {appearance: 'primary', size: 'small'}, () => 'Small'),
+              h(K.KButton, {appearance: 'primary', size: 'large'}, () => 'Large'),
+            ]),
+            ...group('Surfaces & badges', () => [
+              h(K.KCard, {style: 'max-width:300px'}, {
+                title: () => 'Card title',
+                default: () => h('div', [
+                  h('p', {class: 'muted', style: 'margin:0 0 12px'}, 'A card surface: background, border, radius, padding and shadow from tokens.'),
+                  h('div', {class: 'row'}, [
+                    h(K.KBadge, {appearance: 'info'}, () => 'Info'),
+                    h(K.KBadge, {appearance: 'success'}, () => 'Success'),
+                    h(K.KBadge, {appearance: 'warning'}, () => 'Warning'),
+                    h(K.KBadge, {appearance: 'danger'}, () => 'Danger'),
+                  ]),
+                ]),
+              }),
+            ]),
+            ...group('Inputs & selection', () => [
+              h(K.KInput, {modelValue: 'Text input', style: 'max-width:200px'}),
+              h(K.KSelect, {items: [{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}], style: 'max-width:200px'}),
+              h(K.KCheckbox, {modelValue: true, label: 'Checked'}),
+              h(K.KCheckbox, {modelValue: false, label: 'Unchecked'}),
+            ]),
+            ...group('Navigation', () => [
+              h('div', {style: 'flex:1;min-width:320px'}, [
+                h(K.KTabs, {tabs: [{hash: '#a', title: 'Overview'}, {hash: '#b', title: 'Settings'}, {hash: '#c', title: 'Activity'}]}),
+              ]),
+            ]),
+            ...group('Table', () => [
+              h('div', {style: 'flex:1;min-width:360px'}, [
+                h(K.KTable, {
+                  headers: [{key: 'name', label: 'Name'}, {key: 'role', label: 'Role'}, {key: 'status', label: 'Status'}],
+                  data: [{name: 'Ada Lovelace', role: 'Admin', status: 'Active'}, {name: 'Alan Turing', role: 'Editor', status: 'Invited'}],
+                }),
+              ]),
+            ]),
+            ...group('Feedback', () => [
+              h('div', {style: 'flex:1;min-width:320px'}, [
+                h(K.KAlert, {appearance: 'info', message: 'An informational alert.'}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'danger', message: 'A danger alert.'}),
+              ]),
+            ]),
+          ])
+        },
+      })
+      app.config.errorHandler = () => { }
+      app.mount('#app')
+    </script>
+  </body>
+
+</html>

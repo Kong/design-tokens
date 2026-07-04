@@ -11,12 +11,11 @@ to a different step). Gather this **before** Step 3 (picking a template) — see
 Don't guess at colors or style from a vague request ("make it look nice") — ask. A short set of
 questions gets you further than iterating blind:
 
-- **Light, dark, or a day/night pair?** Determines the template class alongside scope (below).
-- **A full theme (own color system, every component individually overridable by default) or a
-  narrow override** (e.g. "just this customer's primary button")? This decides whether you're
-  heading into Step 3's full template flow (which defaults to exhaustive — don't separately ask
-  whether every component should be overridable) or the "Minimal/partial overrides" shortcut in
-  Step 6B.
+- **Light, dark, or a day/night pair?** Determines which `konnect-*` template(s) to copy.
+- **A full theme (own color system, every component individually overridable) or a narrow
+  override** (e.g. "just this customer's primary button")? This decides whether you're heading
+  into Step 3's full template flow — always exhaustive, nothing to ask about there — or the
+  `minimal-overrides.md` shortcut.
 - **Exact brand/accent colors, if they have them** (hex codes, a brand guideline PDF, a Figma
   library). This is the fastest path — skip straight to plugging real values into the palette
   once you have hex codes; no visual inspection needed.
@@ -41,8 +40,20 @@ same way a person would. When inspecting one, look for:
   `--kui-border-radius-*` step (or component-specific radius token) the theme should re-point to.
 - **Shadow/elevation depth** — flat/flush design vs. heavy drop shadows — maps to
   `--kui-shadow-*` tokens.
-- **Density** — tight vs. generous spacing — maps to `--kui-space-*` tokens, though be cautious
-  changing the space scale globally since it affects layout broadly, not just color.
+- **Typography** — typeface identity (a distinctive brand font vs. a generic system sans),
+  weight, line-height/letter-spacing rhythm. One of the strongest visual identity signals there
+  is, and one it's easy to forget entirely since nothing else about copying a template touches
+  it. A proprietary brand font usually needs a widely-licensed substitute, not a literal copy —
+  flag the substitution explicitly.
+- **Density and component geometry** — padding inside buttons/inputs/cards, gaps between
+  elements, border thickness, icon sizing — not just spacing "in general." A button that's the
+  right color and radius but has the wrong padding still doesn't read as matching the reference.
+
+Don't treat this list as exhaustive — it's a starting prompt for what to look at, not the full
+set of things a theme can change. `SKILL.md` Step 3.5 has you enumerate the *actual, current*
+list of customizable tokens directly from the system before writing the design spec, specifically
+so coverage doesn't depend on this file naming every category correctly (it's already needed
+correcting once, for exactly this reason).
 
 **Be honest about precision.** Visually reading a color off a screenshot gives you a close
 estimate, not a lab-accurate value — screen calibration, compression artifacts, and lighting in
@@ -62,10 +73,14 @@ server exposing `browser_navigate`, `browser_snapshot`, `browser_take_screenshot
 2. Take a screenshot (and/or an accessibility snapshot) and inspect it exactly like an uploaded
    mockup (see above).
 3. If `browser_evaluate` (or equivalent JS-execution access) is available, prefer pulling real
-   `getComputedStyle` values for a few key elements (primary button background, link color, page
-   background, body text color) over eyeballing a screenshot — this gives you actual hex/rgb
-   values instead of an estimate, removing the "be honest about precision" caveat above entirely
-   for whatever you can extract this way.
+   `getComputedStyle` values over eyeballing a screenshot — actual values, not an estimate,
+   removing the "be honest about precision" caveat entirely for whatever you extract this way.
+   Pull one value per Step 3.5 spec section, not just color — at minimum `backgroundColor`/
+   `color`, `borderRadius`, `boxShadow`, `fontFamily`/`fontWeight`, and `padding`/`gap`/
+   `borderWidth`, from the same representative elements (a primary button, a card, body text, a
+   heading). If the extracted font stack is distinctive/branded, it likely can't be legally
+   embedded — pick the closest widely-licensed substitute and say explicitly that it's a
+   substitute, not a claim of identity.
 
 If no browser tool is available, don't guess at a site's visual identity from memory of the
 brand — use a text-fetching tool to confirm you have the right site/page, then ask the user for
@@ -115,14 +130,16 @@ not an exhaustive or authoritative mapping — judge each theme's own key set on
 values are literal, the "be honest about precision" estimate caveat above doesn't apply to
 color — you're not eyeballing a value, you're reading one. What *does* still require visual
 inspection is everything a theme JSON doesn't encode for a web app at all: shadow/elevation
-depth, padding/density on buttons and cards, corner rounding, and the theme's overall feel.
-Render the theme (the extension's marketplace screenshots are usually enough; failing that,
-install it and take one yourself) and read it exactly like an uploaded screenshot — see
-"Screenshots and mockups" above for the property → token-family mapping
-(`--kui-shadow-*`, `--kui-space-*`, `--kui-border-radius-*`). A code editor doesn't really have
-"button padding" or "card elevation" in the first place, so deriving believable values for
-those from a theme's general mood is a `frontend-design`-level judgment call, not extraction —
-flag it as such and confirm with the user rather than presenting a guess as read-off fact.
+depth, padding/density, corner rounding, **and typography** — a VS Code theme's `colors` object
+carries no UI-font information at all (`tokenColors` is syntax highlighting only, no Kong
+equivalent), so a distinctive typeface has to come from the editor's actual rendered appearance
+or be flagged as unspecified, never invented to match a "mood." Render the theme (marketplace
+screenshots are usually enough; failing that, install it and take one yourself) and read it like
+an uploaded screenshot — see "Screenshots and mockups" above for the full property → token-family
+mapping. A code editor doesn't really have "button padding" or "card elevation" in the first
+place, so deriving believable values for those from the theme's general mood is a
+`frontend-design`-level judgment call, not extraction — flag it as such and confirm with the
+user rather than presenting a guess as read-off fact.
 
 **Hand-off.** Once you have concrete colors and a read on the non-color properties, both
 recombine with every other intake path exactly the same way: colors go through
@@ -156,18 +173,21 @@ For those, invoke the **frontend-design** skill rather than relying purely on yo
 it whenever you're doing more than "the user gave me an exact value, I'm plugging it in
 verbatim."
 
+**For a full theme, this judgment call extends beyond the one color the user actually named** —
+a brand hex is the seed for a whole background/surface/border palette, not the whole palette
+itself. See `SKILL.md` Step 3's color-breadth note; this doesn't apply to a narrow override.
+
 ## Confirm before you build
 
-If translating the input involved any judgment call (an estimated color, a derived accent scale,
-a "vibe" → concrete-values translation), summarize the resulting hex values and which tokens
-they'll apply to, and confirm with the user **before** running Step 4's file edits. A
-build+test+lint cycle is cheap to repeat, but re-doing several rounds of guesswork is not — a
-quick confirmation up front is the efficient path.
+Any judgment call made while translating input into values (an estimated color, a derived
+accent scale, a "vibe" → concrete-values translation) needs to survive into the Step 3.5 spec
+and get confirmed there — this isn't a separate round-trip with the user, it's what Step 3.5's
+confirmation *is for*. A build+test+lint cycle is cheap to repeat, but re-doing several rounds
+of guesswork after Step 4 is not, so don't let a judgment call go unconfirmed by treating it as
+"just an intake detail" rather than part of the spec.
 
-This is a pre-build check on the *planned* values, not the finished result — after Step 5's
-build, SKILL.md's Step 5.5 closes the loop with a comparison against the *actual, rendered*
-output (grepping the compiled CSS for the confirmed values, and a real screenshot comparison via
-a throwaway HTML file if you had a visual reference here). Both checks matter: this one catches
-a bad translation before you spend a build cycle on it; Step 5.5 catches everything that can
-still go wrong between a confirmed plan and the compiled result (a mis-pointed token, a step
-picked from the wrong family, etc.).
+This is a pre-build check on the *planned* spec, not the finished result — after Step 5's build,
+SKILL.md's Step 5.5 closes the loop with a comparison against the *actual, rendered* output.
+Both checks matter: Step 3.5 catches a bad translation before you spend a build cycle on it;
+Step 5.5 catches everything that can still go wrong between a confirmed spec and the compiled
+result (a mis-pointed token, a step picked from the wrong family, etc.).

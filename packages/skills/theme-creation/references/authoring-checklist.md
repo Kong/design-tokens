@@ -1,144 +1,73 @@
 # Authoring checklist & gotchas
 
-A linear checklist to run through once you know the theme name and which path (in-repo or
-standalone) you're taking. Pair with `token-model.md` for the "why" behind each rule.
+A linear checkbox form of `SKILL.md`'s flow. Pair with `token-model.md` (the "why") and
+`component-tokens.md` (visual-identity taste). The scripts (`scaffold.mjs`, `preview.mjs`) do the
+mechanical steps; this checklist is mostly the judgment work in between.
 
-**Scope reminder:** this checklist only ever touches two new files
-(`themes/<new>.theme.json`, `tokens/alias/color/<new>.alias.json`) plus a single added/removed
-line in `themes.spec.mjs`. Never edit an existing theme, an existing palette, or any other repo
-file — see the "Scope guardrail" section at the top of `SKILL.md` for the full rule and why.
+**Scope:** only ever `themes/<new>.theme.json`, `tokens/alias/color/<new>.alias.json`, and one
+`EXHAUSTIVE_THEMES` line (which `scaffold.mjs` adds/removes for you). Never edit an existing theme
+or palette, or any other repo file — see `SKILL.md`'s Scope guardrail.
 
-## Before you touch a file
+## Before scaffolding
+- [ ] Path chosen: in-repo (committed) vs. standalone (extract + tear down). Asked if unclear.
+- [ ] Name is kebab-case and not already in `themes/`.
+- [ ] Design brief gathered (SKILL.md Step 2.5): light/dark + full-theme-vs-narrow-override; the
+      source of the look (brand colors / screenshot / URL / theme to port / verbal). For anything
+      beyond an exact hex, worked from `design-inputs.md`. Narrow override → use
+      `minimal-overrides.md`, not this checklist.
 
-- [ ] Design brief gathered (SKILL.md Step 2.5): light/dark + full-theme-vs-override scope,
-      brand/accent colors, a visual reference (screenshot/mockup/URL), an existing theme to
-      port (e.g. a VS Code theme), or explicit verbal guidance — see `design-inputs.md` for how
-      to work from whatever the user provided. Don't skip straight to copying a template on a
-      guess.
-- [ ] Theme name is **kebab-case** (lowercase, hyphen-separated — e.g. `acme-day`, not
-      `AcmeDay` or `acme_day`).
-- [ ] Theme name is **unique** — not already a file in
-      `packages/design-tokens/themes/*.theme.json`. Check with a directory listing, not memory.
-- [ ] You've picked a **template theme** to copy — **default to exhaustive** (`konnect-day` or
-      `konnect-night`) without asking; only use semantic-only (`classic-day` or `classic-night`)
-      if the user's own request says, in substance, that components shouldn't be separately
-      overridable (see `SKILL.md` Step 3 for phrasing calibration — the test is the meaning of
-      what they said, not a match against the exact words "semantic-only").
-      - Building a day/night pair? Copy both of the matching class and treat the night variant
-        as a re-point of a handful of text/border/background/shadow tokens to darker alias
-        steps — not a wholly new palette (mirrors how `classic-night` relates to `classic-day`;
-        verified in the real repo, the day/night `.alias.json` pair in each class is
-        byte-identical). **"Byte-identical" describes the template's own day/night pair, not a
-        license to copy the template's night palette into your new theme** — leave the night
-        variant's palette hex values identical to *the new day theme you just authored*, not to
-        `konnect-night`/`classic-night`'s original template values, and do 100% of the darkening
-        via `.theme.json` re-points (see `SKILL.md` Step 4 item 3).
-      - Only need a handful of tokens overridden, not a full color system or component set?
-        Don't use this checklist at all — see the skill's "Minimal/partial overrides" section
-        (`SKILL.md` Step 6B) for a lighter-weight approach that skips the guarded pipeline
-        entirely.
+## Scaffold (deterministic — one command)
+- [ ] `node ../skills/theme-creation/scripts/scaffold.mjs <name> [--from konnect-day|konnect-night]`
+      — copies the exhaustive structural template, writes a placeholder (`#FF00FF`) palette,
+      classifies under `EXHAUSTIVE_THEMES`, and prints the component-grouped token inventory +
+      the literal-color tokens to re-express. Read the inventory.
 
-## Authoring
+## Design spec (SKILL.md Step 3.5 — judgment)
+- [ ] Wrote a structured spec **in chat, not to a file**: colors always actively derived
+      (backgrounds/surfaces/borders/status, not just the named color); a **component-match row**
+      per key component (source's element → Kong component + tokens), mapping by visual
+      equivalence not role name — the source's dominant CTA becomes Kong's `primary` button and
+      reproduces its exact fill/text/border/radius/padding (see `component-tokens.md`); typography/
+      radius/shadow/spacing where the source shows a direction, else "unchanged"; anything not
+      token-expressible flagged rather than fabricated.
+- [ ] Confirmed the spec with the user before touching values.
 
-- [ ] `cp themes/<from>.theme.json themes/<new>.theme.json`
-- [ ] `cp tokens/alias/color/<from>.alias.json tokens/alias/color/<new>.alias.json` — required
-      for any theme that references `{color.alias.*}` (virtually all of them). Skipping this is
-      a hard build error, not a warning.
-- [ ] Edit palette hex values in `tokens/alias/color/<new>.alias.json` — **the copied-in values
-      are the template's colors, not this theme's defaults**: go through every step and set it
-      deliberately from the design brief, don't leave any step unedited just because the brief
-      didn't name it explicitly (see `SKILL.md` Step 3's "structural donor only" rule). **Skip
-      this step entirely if `<new>` is a night/dark variant of a day theme** (leave it
-      byte-identical to the day theme *you just authored*, not the original template; see
-      above):
-      - `$value` uppercase hex or `transparent`.
-      - `$description` = `"Alias for <VALUE>."` exactly, updated to match the new value. This
-        one is guard-checked (`themes.spec.mjs`'s `$description` guard covers `.alias.json`).
-      - Don't add or remove keys — the set must match `_manifest.json` exactly.
-- [ ] Edit token `$value`s in `themes/<new>.theme.json` — choose each alias step by the
-      contrast/role it needs in *this theme's own new palette*, not by mirroring the template's
-      re-point choices. For a night variant, this is where 100% of the work happens (re-point to
-      already-darker steps in the unchanged palette), not in the alias file above.
-- [ ] Apply the `$description` rules (see `token-model.md`) to any token you touch — judge
-      "pure scale token" by tier, not by whether the name contains a scale-sounding word
-      (`kui-border-radius-30` omits it; `kui-button-border-radius-large` keeps one). **This is
-      convention only — no guard checks a theme token's `$description`**, so get it right up
-      front.
-- [ ] Classify `<new>` in `themes.spec.mjs` — add it to `EXHAUSTIVE_THEMES` or
-      `SEMANTIC_ONLY_THEMES` (whichever matches the template you copied). There is no third
-      "unchecked" bucket in the code — every theme file on disk must be classified into one of
-      these two arrays or the classification guard fails, and **both arrays require every token
-      in their tier to be present** — you're editing values in a complete file, not adding a
-      sparse one. This is a **single added array entry and nothing else** — don't touch any other
-      line in `themes.spec.mjs` (not the other array, not an existing theme's entry, not a test).
-- [ ] Before moving on, confirm with `git status`/`git diff` that the only changes so far are the
-      two new theme files and this one added line — if anything else changed, you've gone out of
-      scope; undo it.
+## Fill in values (SKILL.md Step 4)
+- [ ] `<new>.alias.json`: every `#FF00FF` placeholder replaced with a real value (nothing left
+      magenta); key set unchanged; each changed `$description` = `"Alias for <VALUE>."` exactly.
+      (Night variant: use the finished day-theme palette instead — see SKILL.md Step 3.)
+- [ ] `<new>.theme.json`: color tokens pointed at the right step for *this* palette; for each
+      component-match row, set the component token **and** its semantic fallback so it renders on
+      whatever Kongponents version the user runs; literal tokens (radius/shadow/padding/font/etc.)
+      set per spec; scaffold-flagged literal-color tokens (focus rings, overlays, color-mix
+      shadows) re-expressed with exact palette channels; theme-token `$description`s follow
+      `token-model.md`.
 
-## Build + verify
+## Build + verify (SKILL.md Steps 5, 5.5)
+- [ ] `pnpm --filter @kong/design-tokens test` (runs build + guards) and `lint` both green. A
+      failing guard names the exact token/description/off-source problem.
+- [ ] Grepped compiled `dist/themes/<new>.css` for the key spec values — color AND non-color.
+- [ ] `node ../skills/theme-creation/scripts/preview.mjs <name> --kongponents <version the user runs>`
+      — screenshotted the real-component default-vs-themed gallery (to an absolute path OUTSIDE the
+      repo) and compared against the source **component by component**. Acceptance bar: the themed
+      primary button matches the source's primary CTA (fill, text, border, radius, padding), and
+      likewise secondary/danger/card/input — a visible mismatch on the most prominent component is
+      NOT done. Ruled out version skew (`--kongponents`) as the cause before treating it as a bug,
+      but didn't hide behind it if the target version does consume the tokens.
+- [ ] Got the user's sign-off on the rendered result, not just the planned spec.
 
-Run these from the repo root, filtered to the package (or `cd packages/design-tokens` and drop
-the `--filter` flag):
+## Finish
+- **In-repo:** `git status` shows exactly the two new files + one `EXHAUSTIVE_THEMES` line. Flag
+  the `kong-konnect/portal` note if primary/accent changed (SKILL.md Step 6A).
+- **Standalone:** extracted `dist/themes/<new>.css` (verified fully resolved — no `{color.alias…}`,
+  no `var(--kui-color-alias…)`, no `: undefined;`), then
+  `node ../skills/theme-creation/scripts/scaffold.mjs <name> --teardown`, re-ran tests green, and
+  confirmed `git status` shows no diff in `packages/design-tokens/`.
 
-```sh
-pnpm --filter @kong/design-tokens test    # runs `pretest` (build:tokens) then vitest
-pnpm --filter @kong/design-tokens lint
-```
-
-`pnpm test`'s `pretest` hook already runs `build:tokens` for you — you don't need to build
-separately first.
-
-If tests fail, read the assertion message — the guards in `themes.spec.mjs` name the exact
-missing/extra tokens, mismatched descriptions, or off-source colors, so you rarely need to
-guess.
-
-**The sandbox does not preview a new theme.** `pnpm --filter @kong/design-tokens sandbox` only
-shows the package's base/default token swatches — no theme selector, no per-theme rendering,
-regardless of what's in `themes/`. Don't use it (or suggest it) to visually check this theme;
-see `SKILL.md` Step 5.5 for the actual verification approach (grepping resolved values in
-`dist/themes/<new>.css`, and a real screenshot comparison via a throwaway HTML file if a visual
-reference was provided).
-
-- [ ] **Verify the build matches the design brief** (`SKILL.md` Step 5.5) — passing tests/lint
-      only proves structural compliance, not that the theme looks like what was asked for. Grep
-      the compiled CSS for the key confirmed values, do a screenshot comparison if a visual
-      reference exists, and get the user's sign-off on the rendered result before Step 6A/6B.
-
-## Known documentation discrepancies (don't let these confuse you)
-
-- `docs/ALIAS-COLOR-MAPPING-GUIDE.md` links to a companion `COMPONENT-TOKENS-GUIDE.md` — **that
-  file does not exist** in the repo. Don't go looking for it; the guide + `README.md` cover what
-  you need.
-- Some generated file headers and test comments reference a `pnpm build:themes` command —
-  **there is no such script**. Theme building happens automatically as part of
-  `pnpm build:tokens` (and thus as part of `pnpm test`'s `pretest` hook).
-- `README.md` and `docs/ALIAS-COLOR-MAPPING-GUIDE.md` both instruct classifying a new theme into
-  "`EXHAUSTIVE_THEMES` / `SEMANTIC_ONLY_THEMES` / `UNCHECKED_THEMES`" — **`UNCHECKED_THEMES`
-  does not exist anywhere in `themes.spec.mjs`**, only the first two arrays do (confirmed by
-  reading the file). Don't go looking for a third bucket or a way to mark a theme as a
-  work-in-progress/draft — classify into one of the two real arrays, or don't classify it at all
-  (standalone scaffolds still must be classified during iteration to get real guard feedback,
-  but are un-classified again at tear-down).
-
-## Tear-down (standalone / Path B only)
-
-Once you've extracted the final CSS (and optionally JS) output and the user confirms the theme
-is finalized, remove every trace of the scaffold so the repo returns to a clean state:
-
-- [ ] Delete `themes/<new>.theme.json`
-- [ ] Delete `tokens/alias/color/<new>.alias.json`
-- [ ] Remove `<new>` from whichever classification array you added it to in `themes.spec.mjs`
-- [ ] Delete the generated `dist/themes/<new>.*` files (css/mjs/cjs/d.ts/d.cts) yourself —
-      **verified this does NOT happen automatically**: `build:tokens` only builds
-      currently-discovered themes, it never removes stale output for a theme you've since
-      deleted from `themes/` (only a full `pnpm build`, which runs `build:clean`/`rimraf` first,
-      clears it). `dist/` is gitignored so this won't show up in `git status` either way, but
-      leaving it is still stale, invisible residue — delete it explicitly. `dist/themes/index.*`
-      (the barrel re-exporting every theme) does self-correct on the next `build:tokens`, since
-      it's regenerated from a fresh directory scan each time.
-- [ ] If you classified `<new>` under `SEMANTIC_ONLY_THEMES`, also delete
-      `__snapshots__/themes/<new>.css` — the golden-snapshot test loops over that array and
-      auto-writes a snapshot file for every theme in it (not just `classic-day`/`classic-night`),
-      so a scaffold theme leaves one behind too.
-- [ ] Re-run `pnpm --filter @kong/design-tokens test` and confirm it's green with no reference
-      to `<new>` anywhere (`git status` should show no diff in `packages/design-tokens/`)
+## Known documentation discrepancies (don't chase these)
+- `docs/ALIAS-COLOR-MAPPING-GUIDE.md` links a `COMPONENT-TOKENS-GUIDE.md` that **doesn't exist**.
+- Some generated headers/comments mention a `pnpm build:themes` script that **doesn't exist** —
+  theme building is part of `build:tokens` (and `pnpm test`'s pretest).
+- `README.md`/`docs` mention an `UNCHECKED_THEMES` array that **doesn't exist** in
+  `themes.spec.mjs` — only `EXHAUSTIVE_THEMES` and `SEMANTIC_ONLY_THEMES` are real, and this skill
+  only ever uses `EXHAUSTIVE_THEMES`.

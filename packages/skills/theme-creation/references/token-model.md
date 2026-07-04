@@ -68,12 +68,11 @@ Declared explicitly in `themes.spec.mjs` — not derivable from the filename:
 - **`SEMANTIC_ONLY_THEMES`** (`classic-day`, `classic-night`): must contain every semantic
   token and **zero** component tokens. Components fall through to their semantic default.
 
-These two are described symmetrically above purely as *what each class technically requires* —
-that is **not** the same as saying a new theme should be authored by weighing the two options.
-**When actually authoring a new theme, exhaustive is the default and is not a decision to make
-with the user**; semantic-only is reserved for a theme the user explicitly asked to have
-components fall through to semantic defaults. See `SKILL.md` Step 3 for the full rule — this
-section only documents what each class technically enforces, not which one to pick.
+Both classes are real and both are described here for completeness, but **this skill only ever
+authors new themes into `EXHAUSTIVE_THEMES`** — `SEMANTIC_ONLY_THEMES` exists in the real system
+(that's what `classic-day`/`classic-night` are classified as) but isn't a class this skill picks
+for anything it creates, regardless of how the user phrases the request. See `SKILL.md` Step 3
+for the full rule — this section only documents what each class technically enforces.
 
 There is no third "unchecked" bucket in the actual code — every theme file on disk must land in
 exactly one of these two arrays or the classification guard fails the build.
@@ -198,11 +197,11 @@ catch a mistake here:
   of "override" semantics, but the actual guards in `themes.spec.mjs` require
   `EXHAUSTIVE_THEMES` to contain exactly every themeable token and `SEMANTIC_ONLY_THEMES` to
   contain every semantic token — nothing may be missing, in either bucket. In practice this is
-  handled for you: copying a same-class template in Step 4 gives you a complete file, and you
-  only *edit* the subset of values that should differ. Don't interpret "you only need to change
+  handled for you: `scaffold.mjs` (SKILL.md Step 3) starts you from a complete copy of the
+  exhaustive template, and you only *edit* the subset of values that should differ. Don't interpret "you only need to change
   what differs" as "you may omit what doesn't differ" — a theme file with tokens missing (rather
   than present but unchanged) fails the drift guard. The `[data-kui-theme]` CSS cascade / `var()`
   fallback behavior described elsewhere in this doc governs runtime behavior for *component*
   tokens (which are legitimately absent from semantic-only themes) and for genuinely
-  hand-authored partial CSS outside this guarded pipeline (see the skill's "Minimal/partial
-  overrides" section) — not for a semantic or exhaustive theme file's own completeness.
+  hand-authored partial CSS outside this guarded pipeline (see `minimal-overrides.md`) — not for
+  a semantic or exhaustive theme file's own completeness.
