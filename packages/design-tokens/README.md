@@ -484,8 +484,9 @@ cp themes/$FROM.theme.json themes/$NEW.theme.json
 cp tokens/alias/color/$FROM.alias.json tokens/alias/color/$NEW.alias.json   # every alias-using theme MUST have one
 
 # 2. Edit themes/$NEW.theme.json (token $values) and tokens/alias/color/$NEW.alias.json (palette values) to taste.
-# 3. Classify $NEW in themes.spec.mjs (EXHAUSTIVE_THEMES / SEMANTIC_ONLY_THEMES / UNCHECKED_THEMES).
-# 4. Build + verify — the drift, classification, and off-source guards confirm completeness.
+# 3. Build + verify — the drift and off-source guards confirm completeness.
+#    Classification is automatic: themes.spec.mjs treats every theme as EXHAUSTIVE by default.
+#    Only a *semantic-only* theme needs a one-line edit — add its name to SEMANTIC_ONLY_THEMES.
 pnpm build:tokens && pnpm test
 ```
 
@@ -493,6 +494,14 @@ The build auto-discovers any `themes/*.theme.json` — no code change needed. A 
 follow the `<theme-name>.theme.json` naming convention is a hard build error (and fails `pnpm test`), as is
 an alias-referencing theme with no matching `tokens/alias/color/<name>.alias.json` palette (no silent fallback),
 which is why step 1 copies the palette too. See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./docs/ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
+
+> **Note — theme-creation skill dependency.** The `theme-creation` skill in
+> `packages/skills/theme-creation/` automates this flow (scaffolding, matching a source's look,
+> previewing against Kongponents). Its `scripts/scaffold.mjs` reads structural details of this
+> package: the `SEMANTIC_ONLY_THEMES` name and the exhaustive-by-default rule in `themes.spec.mjs`,
+> the `tokens/alias/color/_manifest.json` shape, and the `konnect-day`/`konnect-night` template
+> names. If you rename or restructure those, update that script too (it will error loudly rather
+> than fail silently, but it will break).
 
 ### Theme `$description` authoring rules
 
