@@ -85,6 +85,47 @@ padding, focus ring), and **badge / alert / tabs** (the accent and status treatm
 answer "what are this reference's buttons, cards, and inputs, in every state," you've captured
 most of its visual identity.
 
+## Propagate the brand across the whole component system
+
+A source shows you a handful of components — buttons, maybe a card, maybe an input. The scaffold
+inventory lists ~100 component groups. The gap between those is the second-most-common miss (after
+recoloring by role name): theming only the components you can literally see and leaving every other
+family — checkbox, radio, input-switch, select, file-upload, tabs, table, pagination, stepper,
+tooltip, toaster, modal, pop, slideout — at Kong's defaults. The result is a theme whose buttons
+are unmistakably the brand and whose form controls are unmistakably Kong. That reads as
+half-finished, and it's wrong: a real design system applies one identity everywhere.
+
+**The fix is inference, not fabrication.** You are not inventing new looks for the unshown
+components — you are *propagating* the identity you already extracted from the shown ones. From the
+components the source did reveal, you can determine a small set of identity signals; carry each into
+every other family:
+
+- **Brand/accent hue for "on" states.** Whatever color the source's primary control uses for its
+  active/selected fill (the primary button's fill, a checked toggle, a selected chip) is the color
+  every other component's *checked / selected / active / in-range* state should use:
+  checkbox/radio `-color-background-checked`, `input-switch-color-background-selected`,
+  `select-item`/`dropdown-item`/`tabs`/`table-row` selected backgrounds, stepper selected, date-
+  picker selected day. Kong's template points these at neutral grays — repoint them to the brand.
+- **Roundedness.** The radius you established on buttons/cards is a system trait: apply the matching
+  step to `input`, `select`, `modal`, `pop`, `tooltip`, `toaster`, `card`, `checkbox` (a pill-
+  button brand usually still wants softly-rounded, not pill, inputs — scale the trait sensibly per
+  component, don't literally copy one radius everywhere).
+- **Focus-ring treatment.** The ring shape you chose (tight vs. soft, and its hue) belongs on every
+  `-shadow-focus` token, not just the button's — inputs, checkboxes, radios, tabs, links all share
+  one focus language in a coherent system.
+- **Density and border weight.** If the source's controls are generously padded or use a heavier
+  border, carry that to inputs, dropzones, and other bordered/padded controls.
+- **Surface hierarchy.** The page/surface/elevated backgrounds and border color you derived apply to
+  every surface component (`card`, `modal`, `pop`, `slideout`, `toaster`, `table`, `input`
+  backgrounds), and the flat-vs-shadowed choice applies to all their `-shadow` tokens.
+
+Go through the scaffold inventory family by family and give each a derived treatment or an explicit
+"neutral — the identity implies no change here." The bar is that **no component family is left
+un-considered by default**. Status/method concept tokens (`--kui-status-*`, `--kui-method-*`) are
+the usual legitimate "neutral" — they encode fixed semantic meaning (HTTP methods, status codes)
+and follow the palette's hue families automatically; you rarely repoint them, but say so rather
+than skipping them silently.
+
 ## Deriving, not inventing — and confirming
 
 Translate the reference into these tokens the same way `design-inputs.md` describes for color:

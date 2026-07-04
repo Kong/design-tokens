@@ -114,17 +114,34 @@ remembering what matters this time. Use `references/component-tokens.md` as the 
   supporting hues, status colors, *not* just the one named brand color. A single hex is a
   starting point for a cohesive palette, never a ceiling. (This is the "one button recolored"
   failure mode — a color-only theme reads as the same UI tinted.)
-- **Component match** — the part that most decides whether it *looks like* the source, and the
-  one that's most often gotten wrong. For each key component the source shows (primary button,
-  secondary button, card, input, badge/alert), write a row: *what the source's element looks like*
-  (fill, text color, border, radius, padding, states) → *which Kong component + tokens reproduce
-  it*. **Map by visual equivalence, not by role name**: the source's most prominent call-to-action
+- **Component match (the components the source shows)** — the part that most decides whether it
+  *looks like* the source, and the one that's most often gotten wrong. For each key component the
+  source shows (especially buttons, cards, input-type elements, badges, alerts, etc.), write a row whose
+  right-hand side names *which Kong component + tokens reproduce it*, and whose left-hand side
+  covers **both** halves of the treatment — never color alone:
+    - *Color*: fill, text, border, and the hover/active/focus/disabled states.
+    - *Geometry* (a REQUIRED field on every row, not an afterthought): `border-radius`,
+      `border-width`, `padding-x`/`padding-y`, `font-size`, `font-weight`, `line-height` — each set
+      to the value you measured (`getComputedStyle`), or the literal word **"unchanged"** if the
+      source genuinely matches the template. A row that lists color but leaves geometry blank is an
+      incomplete row: a button that is the right color and radius but the wrong padding/weight/size
+      still doesn't read as the source (the exact miss that shipped once — color+radius done,
+      `--kui-button-padding-*`/`-font-weight`/`-font-size-*` left at Kong's compact defaults).
+  **Map by visual equivalence, not by role name**: the source's most prominent call-to-action
   becomes Kong's `primary` button and must reproduce that button's exact treatment — even if its
-  color is a bright "accent-looking" one. (The real miss to avoid: a site whose signature CTA is a
-  gold pill routed to navy because "navy is the brand color," producing buttons that look nothing
-  like the site. See `component-tokens.md` — "Match the source's components, don't recolor by role
-  name.") Set both the component token and its semantic fallback so it renders on whatever
-  Kongponents version the user runs (also in `component-tokens.md`).
+  color is a bright "accent-looking" one — see `component-tokens.md` "Match the source's components
+  — don't recolor by role name" for the gold-pill failure this rule prevents. Set both the component
+  token and its semantic fallback so it renders on whatever Kongponents version the user runs (also
+  in `component-tokens.md`).
+- **System propagation (every other component the source does NOT show)** — a REQUIRED spec
+  section, not optional breadth. The scaffold inventory lists ~100 component groups; a source shows
+  a handful. Every remaining family must carry the **same brand character** you just established,
+  *derived* from what the source did let you determine — not left at Kong's defaults (a theme whose
+  buttons are on-brand but whose checkboxes, switches, inputs, and cards are still Kong-gray reads
+  as half-finished). Walk the inventory family by family and give each a derived treatment or an
+  explicit "neutral — unchanged"; no family left un-considered. `component-tokens.md` "Propagate the
+  brand across the whole component system" is the how — the derivation rules (brand hue → all "on"
+  states, roundedness, focus rings, density) and which families to cover.
 - **Typography, radius, shadow, spacing** — a section where the source shows a direction; mark
   "unchanged from the template" explicitly where it doesn't. Inventing a type scale or radius from
   nothing isn't breadth, it's fabrication — but leaving a distinctive one unmatched is the miss.
@@ -148,9 +165,17 @@ The files already exist and are complete; now set values per the confirmed spec.
      *this* palette; don't just keep the template's choices.
    - *Component match*: for each component-match row in the spec, set the component tokens **and**
      the semantic tokens they fall back to (per `component-tokens.md`) so the treatment renders on
-     whatever Kongponents version the user runs — the primary button's fill/text/border/radius/
-     padding must reproduce the source's primary CTA. The scaffold inventory grouped these by
-     component so you can do one component at a time.
+     whatever Kongponents version the user runs. Set the **geometry** tokens alongside the color
+     ones — for a button that means `--kui-button-padding-x/y-*`, `-border-radius-*`,
+     `-font-weight`, `-font-size-*`, `-line-height-*`, not just the color tokens; the primary
+     button's fill/text/border **and** radius/padding/weight/size must reproduce the source's
+     primary CTA. The scaffold inventory grouped these by component so you can do one component at
+     a time.
+   - *System propagation*: work the "every other component" spec section too — set the
+     selected/checked/active fills, focus rings, radii, and densities of the unshown component
+     families to the derived brand values (per `component-tokens.md` "Propagate the brand across
+     the whole component system"). A theme whose buttons are branded but whose checkboxes/switches/
+     inputs/cards are still Kong-default is not finished.
    - *Literal tokens* (radius, shadow, padding, font-family, etc.): set the ones the spec called
      for. Typeface change = global find/replace of the one font-stack string across all
      `-font-family` tokens.
@@ -195,20 +220,32 @@ Structural pass (guards green) ≠ *looks right*. Close the gap with two checks:
 
    **Preview against the Kongponents version the user actually runs.** A version only consumes the
    tokens *it* was built to read — a published version may read only the semantic fallback, so
-   component tokens (button radius/padding, etc.) won't show and a correct theme looks
-   under-changed. Set both tiers (Step 3.5) so it renders either way, and pass
+   component tokens (button radius/padding, per-appearance colors, etc.) won't show and a correct
+   theme looks under-changed. Observed concretely: the published `latest` consumes **none** of the
+   `--kui-button-*` component tokens — not geometry (`-padding-*`/`-border-radius-*`/`-font-*`) and
+   not per-appearance colors (`-secondary`/`-tertiary`) — it hardcodes button geometry and derives
+   secondary/tertiary from the primary semantic tier. So a two-tone brand or a distinct button
+   density **cannot be verified on `latest`**; you must preview against the build that consumes the
+   component tokens. Set both tiers (Step 3.5) so it renders on either, and pass
    `--kongponents <version|tag>` (or `--kongponents-css`/`--kongponents-esm` for a PR/canary build)
-   to match the target. If the source's component character isn't showing, first rule out version
-   skew — don't "fix" a theme that's already right — but don't hide behind it either: if the target
-   version consumes the tokens and it still doesn't match, the theme is wrong.
+   to match the target — ask the user which build they run if you don't know. If the source's
+   component character isn't showing, first rule out version skew — don't "fix" a theme that's
+   already right — but don't hide behind it either: if the target version consumes the tokens and
+   it still doesn't match, the theme is wrong.
 
    **Acceptance bar — this is the check the whole skill exists for.** Put the themed panel next to
    the source and compare the key components directly, component by component: does the themed
-   **primary button** match the source's primary CTA in fill, text color, border, radius, and
-   padding? Secondary/tertiary/danger buttons? Card surface and elevation? Inputs? A "close enough"
-   that leaves the most visible component (usually the primary button) visibly unlike the
-   source — wrong color, wrong shape — is **not done**, not a rendering caveat. Name each mismatch
-   and go back to Step 3.5/4 to fix it (re-map the role, set the missing tier, correct the value).
+   **primary button** match the source's primary CTA in fill, text color, border, **and geometry**
+   (radius, padding, font-weight, font-size)? Confirm geometry by reading it back with
+   `getComputedStyle` on the themed component — a px-for-px check, not an eyeball — because a
+   wrong-density button is easy to miss visually at a glance. Secondary/tertiary/danger buttons?
+   Card surface and elevation? Inputs? Then check the **propagated** components the source never
+   showed — checkbox/radio/switch checked fills, input focus rings, selected tabs/rows — do they
+   carry the brand, or are they still Kong-gray? A "close enough" that leaves the most visible
+   component visibly unlike the source (wrong color, wrong shape, wrong density), or that leaves
+   whole component families un-branded, is **not done**, not a rendering caveat. Name each mismatch
+   and go back to Step 3.5/4 to fix it (re-map the role, set the missing tier, set the geometry,
+   propagate the brand).
 
 **Get the user's sign-off on the rendered result** (the screenshots + grep), not just the planned
 spec, before calling it done. If no browser tool is available, restate the confirmed values —

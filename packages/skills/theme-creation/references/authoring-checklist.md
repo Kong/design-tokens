@@ -28,9 +28,18 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
       (backgrounds/surfaces/borders/status, not just the named color); a **component-match row**
       per key component (source's element → Kong component + tokens), mapping by visual
       equivalence not role name — the source's dominant CTA becomes Kong's `primary` button and
-      reproduces its exact fill/text/border/radius/padding (see `component-tokens.md`); typography/
-      radius/shadow/spacing where the source shows a direction, else "unchanged"; anything not
-      token-expressible flagged rather than fabricated.
+      reproduces its exact treatment. Each row carries **both** color (fill/text/border + states)
+      **and geometry** (`border-radius`, `border-width`, `padding-x`/`padding-y`, `font-size`,
+      `font-weight`, `line-height`) — geometry set to the measured value or explicit "unchanged",
+      never left blank (wrong-density buttons are the miss). See `component-tokens.md`.
+- [ ] Wrote the **System propagation** section: went family by family through the scaffold
+      inventory groups the source did NOT show (form controls, surfaces, feedback, structure) and
+      gave each a treatment DERIVED from the established brand character (brand hue for
+      checked/selected/active fills, matching roundedness, shared focus-ring shape, matching
+      density) — or an explicit "neutral — unchanged". No family left un-considered by default
+      (see `component-tokens.md` "Propagate the brand across the whole component system").
+- [ ] Typography/radius/shadow/spacing where the source shows a direction, else "unchanged";
+      anything not token-expressible flagged rather than fabricated.
 - [ ] Confirmed the spec with the user before touching values.
 
 ## Fill in values (SKILL.md Step 4)
@@ -39,10 +48,13 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
       (Night variant: use the finished day-theme palette instead — see SKILL.md Step 3.)
 - [ ] `<new>.theme.json`: color tokens pointed at the right step for *this* palette; for each
       component-match row, set the component token **and** its semantic fallback so it renders on
-      whatever Kongponents version the user runs; literal tokens (radius/shadow/padding/font/etc.)
-      set per spec; scaffold-flagged literal-color tokens (focus rings, overlays, color-mix
-      shadows) re-expressed with exact palette channels; theme-token `$description`s follow
-      `token-model.md`.
+      whatever Kongponents version the user runs, including the **geometry** tokens
+      (`--kui-button-padding-x/y-*`, `-border-radius-*`, `-font-weight`, `-font-size-*`,
+      `-line-height-*`, etc.), not just color; the propagated families' checked/selected/active
+      fills, focus rings, radii and densities set to the derived brand values; literal tokens
+      (radius/shadow/padding/font/etc.) set per spec; scaffold-flagged literal-color tokens (focus
+      rings, overlays, color-mix shadows) re-expressed with exact palette channels; theme-token
+      `$description`s follow `token-model.md`.
 
 ## Build + verify (SKILL.md Steps 5, 5.5)
 - [ ] `pnpm --filter @kong/design-tokens test` (runs build + guards) and `lint` both green. A
@@ -51,10 +63,16 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
 - [ ] `node ../skills/theme-creation/scripts/preview.mjs <name> --kongponents <version the user runs>`
       — screenshotted the real-component default-vs-themed gallery (to an absolute path OUTSIDE the
       repo) and compared against the source **component by component**. Acceptance bar: the themed
-      primary button matches the source's primary CTA (fill, text, border, radius, padding), and
-      likewise secondary/danger/card/input — a visible mismatch on the most prominent component is
-      NOT done. Ruled out version skew (`--kongponents`) as the cause before treating it as a bug,
-      but didn't hide behind it if the target version does consume the tokens.
+      primary button matches the source's primary CTA in fill, text, border **and geometry**
+      (radius, padding, font-weight, font-size) — confirmed px-for-px via `getComputedStyle`, not
+      just eyeball — and likewise secondary/danger/card/input; AND the **propagated** components
+      (checkbox/radio/switch checked, input focus, selected tabs/rows) carry the brand, not
+      Kong-gray. A visible mismatch on the most prominent component, or whole families left
+      un-branded, is NOT done. Note: published `latest` consumes NO `--kui-button-*` component
+      tokens (geometry or per-appearance color), so button appearance/geometry can only be verified
+      against a **consuming build** — ruled out version skew (`--kongponents <consuming build>`)
+      before treating a miss as a bug, but didn't hide behind it if that build does consume the
+      tokens.
 - [ ] Got the user's sign-off on the rendered result, not just the planned spec.
 
 ## Finish

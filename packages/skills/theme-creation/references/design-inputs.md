@@ -177,6 +177,13 @@ verbatim."
 a brand hex is the seed for a whole background/surface/border palette, not the whole palette
 itself. See `SKILL.md` Step 3's color-breadth note; this doesn't apply to a narrow override.
 
+**The same seed-vs-whole logic applies to components:** the components the source shows are the
+seed for the *entire* component system, not the whole of it. Extract each shown component as a full
+unit (color *and* geometry, from exact `getComputedStyle` reads), then propagate the identity to
+every family the source never showed. The how lives in `component-tokens.md` ("Read a component as a
+unit across its states" + "Propagate the brand across the whole component system"); `SKILL.md`
+Step 3.5 makes both a required spec section.
+
 ## Confirm before you build
 
 Any judgment call made while translating input into values (an estimated color, a derived
