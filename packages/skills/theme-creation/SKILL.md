@@ -256,9 +256,9 @@ preview the CSS themselves; don't declare victory on guards alone.
 
 `git status` should show exactly the two new theme files — commit those (no `themes.spec.mjs`
 change; it classifies the new theme as exhaustive automatically). `dist/themes/<new>.*`
-regenerates on build; nothing to extract. Flag to the user: if the theme
-changes `primary`/`accent` colors, the `kong-konnect/portal` customization plugin may need a
-matching override (outside this skill's scope, but worth knowing).
+regenerates on build; nothing to extract. **No `kong-konnect/portal` override is needed for a
+theme created by this skill** — that concern applies *only* to changes to `classic-day`/
+`classic-night`.
 
 ## Step 6B — Standalone: extract, then tear down
 

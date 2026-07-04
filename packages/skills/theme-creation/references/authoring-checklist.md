@@ -77,7 +77,8 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
 
 ## Finish
 - **In-repo:** `git status` shows exactly the two new theme files (no `themes.spec.mjs` change).
-  Flag the `kong-konnect/portal` note if primary/accent changed (SKILL.md Step 6A).
+  (No `kong-konnect/portal` override is needed for a new theme — that note applies only to
+  `classic-day`/`classic-night` changes, which this skill never makes; see SKILL.md Step 6A.)
 - **Standalone:** extracted `dist/themes/<new>.css` (verified fully resolved — no `{color.alias…}`,
   no `var(--kui-color-alias…)`, no `: undefined;`), then
   `node ../skills/theme-creation/scripts/scaffold.mjs <name> --teardown`, re-ran tests green, and

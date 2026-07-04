@@ -185,12 +185,16 @@ catch a mistake here:
   `.theme.json` file yourself — the drift guard excludes them from what it expects you to have
   written, and CSS custom properties can't be used inside `@media` anyway, so a theme cannot
   override responsive behavior.
-- **`primary` and `accent` colors carry Kong-branded defaults.** `--kui-color-*-primary` and
-  `--kui-color-*-accent` tokens ship a Kong brand color so the Kong Konnect Dev Portal (a
-  customer-branded surface) doesn't leak Kong's brand unless overridden. If a new theme changes
-  these, or you're adding a similar brand-derived token, flag that the
-  `kong-konnect/portal` customization plugin may need a matching override — this skill doesn't
-  touch that repo, but the person merging the theme should know.
+- **`primary` and `accent` colors carry Kong-branded defaults — but the portal only sees
+  `classic-*`.** `--kui-color-*-primary` and `--kui-color-*-accent` tokens ship a Kong brand color
+  so the Kong Konnect Dev Portal (a customer-branded surface) doesn't leak Kong's brand unless
+  overridden. That leak surface is the **default `:root` export**, which resolves against
+  `classic-day` (with `classic-night` as its dark counterpart) — so the `kong-konnect/portal`
+  override concern applies **only when `classic-day`/`classic-night`'s `primary`/`accent` values
+  change**. A theme authored by this skill is a new, scoped `[data-kui-theme="<name>"]` block that
+  should never alter `:root` and that the portal doesn't adopt automatically, so **creating a new theme
+  never requires a portal override** — even if that new theme sets its own `primary`/`accent`.
+  (This skill can't edit `classic-*` regardless.)
 - **Every theme file must define its FULL token set — not just the tokens it changes.** This is
   easy to get backwards: the repo's README describes theme authoring in terms of "override"
   semantics, but the actual guards in `themes.spec.mjs` require an exhaustive theme to contain
