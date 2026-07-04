@@ -28,23 +28,35 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = __dirname
 
 // ── Theme taxonomy ──────────────────────────────────────────────────────────
-// Which themes must contain which token set. This is policy, NOT derivable from the filename
-// (themes/ also holds the semantic-only `classic-day`/`classic-night`
-// so it is declared explicitly and cross-checked against themes/ by the
-// "classification" guard below.
-
-/** Themes that MUST contain every themeable token (semantic + component). */
-const EXHAUSTIVE_THEMES = ['konnect-day', 'konnect-night']
+// Exhaustive is the DEFAULT: every theme in themes/ must contain the full themeable-token set,
+// UNLESS it is explicitly opted out as semantic-only below. A newly added theme is therefore
+// covered by the exhaustive drift guard automatically, with no edit to this file — which is what
+// lets the theme-creation skill's scaffold add a theme without touching themes.spec.mjs.
 
 /**
- * Themes that MUST contain every SEMANTIC token and ZERO component tokens.
+ * The ONLY non-exhaustive themes: they contain every SEMANTIC token and ZERO component tokens.
  *
  * `classic-day` is the default theme (the resolved `:root` exports) and `classic-night` is its dark
  * counterpart — identical alias palette, with a handful of semantic tokens (text/border/background)
  * re-pointed to darker steps. Both deliberately set no component tokens, so every component falls
- * through to its semantic default via the `var()` chain.
+ * through to its semantic default via the `var()` chain. To add another semantic-only theme, list
+ * it here; anything not listed is treated as exhaustive.
  */
 const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
+
+/**
+ * Every theme file on disk (`themes/*.theme.json`, excluding `_`-prefixed partials), minus the
+ * semantic-only opt-outs above, is exhaustive — derived from the directory so classification needs
+ * no manual bookkeeping. "Exhaustive" can't be inferred from a filename, but "everything that
+ * isn't one of the two known semantic-only themes" can, and that is the actual policy.
+ */
+const ALL_THEMES = readdirSync(join(ROOT, 'themes'))
+  .filter(f => f.endsWith('.theme.json') && !f.startsWith('_'))
+  .map(f => f.slice(0, -'.theme.json'.length))
+  .sort()
+
+/** Themes that MUST contain every themeable token (semantic + component). */
+const EXHAUSTIVE_THEMES = ALL_THEMES.filter(t => !SEMANTIC_ONLY_THEMES.includes(t))
 
 // Style Dictionary stamps a volatile `Generated on <date>` line into the main build's file header;
 // neutralize it so the snapshot tracks resolved-value drift, not the clock.
@@ -153,23 +165,14 @@ describe('drift guard: semantic-only themes are semantic-complete and component-
 })
 
 describe('theme classification stays in sync with themes/', () => {
-  // Guards the hard-coded taxonomy above against the actual directory: a newly added theme file
-  // that nobody classified (or a classified theme whose file was removed) fails here instead of
-  // silently going untested. "Exhaustive" itself can't be inferred from the filename — it's policy.
-  it('every themes/*.json is classified exactly once (exhaustive | semantic-only | unchecked)', () => {
-    const onDisk = readdirSync(join(ROOT, 'themes'))
-      .filter(f => f.endsWith('.theme.json') && !f.startsWith('_'))
-      .map(f => f.slice(0, -'.theme.json'.length))
-      .sort()
-    const classified = [...EXHAUSTIVE_THEMES, ...SEMANTIC_ONLY_THEMES].sort()
-
-    const unclassified = onDisk.filter(t => !classified.includes(t))
-    const missing = classified.filter(t => !onDisk.includes(t))
-    const duplicated = classified.filter((t, i) => classified.indexOf(t) !== i)
-
-    expect(unclassified, `Unclassified theme(s) in themes/ — add each to EXHAUSTIVE_THEMES or SEMANTIC_ONLY_THEMES: ${unclassified.join(', ')}`).toEqual([])
-    expect(missing, `Classified theme(s) missing from themes/: ${missing.join(', ')}`).toEqual([])
-    expect(duplicated, `Theme(s) classified in more than one bucket: ${duplicated.join(', ')}`).toEqual([])
+  // With exhaustive as the derived default, a newly added theme can't silently go untested — it's
+  // picked up by the exhaustive drift guard automatically. The only thing that CAN drift is the
+  // semantic-only opt-out list naming a theme that no longer exists on disk (which would then
+  // silently test nothing), so guard exactly that.
+  it('every SEMANTIC_ONLY_THEMES entry exists in themes/', () => {
+    const onDisk = new Set(ALL_THEMES)
+    const missing = SEMANTIC_ONLY_THEMES.filter(t => !onDisk.has(t))
+    expect(missing, `SEMANTIC_ONLY_THEMES names theme(s) not present in themes/: ${missing.join(', ')}`).toEqual([])
   })
 })
 
