@@ -1,0 +1,14 @@
+{
+  "name": "@kong/design-token-skills",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "description": "Claude skills for the Kong design-tokens repository.",
+  "scripts": {
+    "lint": "node -e \"process.exit(0)\""
+  },
+  "engines": {
+    "node": ">=20.19.5",
+    "pnpm": ">=10.28.2"
+  }
+}
