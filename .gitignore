@@ -42,6 +42,9 @@ dist/
 sandbox/dist/
 sandbox/dist-copy/
 
+# theme-creation skill's local preview server output (generated, never committed)
+packages/skills/theme-creation-workspace/
+
 # Vitepress docs
 docs/.vitepress/.temp
 docs/.vitepress/.cache

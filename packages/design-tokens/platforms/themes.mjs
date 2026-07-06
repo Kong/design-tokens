@@ -2,6 +2,7 @@ import StyleDictionary from 'style-dictionary'
 import { logVerbosityLevels } from 'style-dictionary/enums'
 import { writeFile, mkdir, readdir } from 'node:fs/promises'
 import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
 
 const _breakpointSource = JSON.parse(
   readFileSync(new URL('../tokens/source/breakpoint/index.json', import.meta.url), 'utf-8'),
@@ -20,6 +21,23 @@ export const THEME_BREAKPOINTS = Object.fromEntries(
 )
 
 /**
+ * The ONLY non-exhaustive themes: they contain every SEMANTIC token and ZERO component tokens.
+ *
+ * `classic-day` is the default theme (the resolved `:root` exports) and `classic-night` is its dark
+ * counterpart — identical alias palette, with a handful of semantic tokens (text/border/background)
+ * re-pointed to darker steps. Both deliberately set no component tokens, so every component falls
+ * through to its semantic default via the `var()` chain.
+ *
+ * This is the single source of truth for the classification — the drift guard (`themes.spec.mjs`)
+ * and `themes:sync` both import it so a semantic-only theme is never accidentally synced with
+ * component tokens. `theme:scaffold` does NOT import this: every new theme it generates is always
+ * exhaustive by construction (component tokens are genuine per-theme design decisions with no safe
+ * default — see `theme-scaffold.mjs`'s module docstring). Making a scaffolded theme semantic-only
+ * is a deliberate, manual follow-up: delete its component-token entries, then add its name here.
+ */
+export const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
+
+/**
  * Convert a kebab-case theme filename to a camelCase JS export identifier.
  * @param {string} name - Kebab-case name (no .json extension)
  * @returns {string}
@@ -32,26 +50,26 @@ function toExportName(name) {
  * Pure decision for which color-alias palette (if any) a theme build includes — the testable core of
  * `aliasIncludesForTheme` (no filesystem access).
  *
- * Each theme resolves its `{color.alias.*}` references against its OWN palette (`<name>.alias.json`), so
- * themes share step names with theme-specific values. A theme that references aliases but has no
- * palette is a hard error — no silent fallback. A theme with no alias refs
- * needs no palette. Alias usage is detected from token `$value`s (not raw text — avoids false
- * positives from a `{color.alias.*}` mention inside a `$description`).
+ * Each theme resolves its `{color.alias.*}` references against its OWN palette
+ * (`themes/<name>/<name>.alias.color.json`), so themes share step names with theme-specific values.
+ * A theme that references aliases but has no palette is a hard error — no silent fallback. A theme
+ * with no alias refs needs no palette. Alias usage is detected from token `$value`s (not raw text —
+ * avoids false positives from a `{color.alias.*}` mention inside a `$description`).
  *
  * @param {string} name - Theme name.
- * @param {boolean} paletteExists - Whether `tokens/alias/color/<name>.alias.json` exists.
+ * @param {boolean} paletteExists - Whether `themes/<name>/<name>.alias.color.json` exists.
  * @param {Record<string, { $value?: unknown }> | null} themeObj - Parsed theme (only read when no palette).
  * @returns {string[]} Style Dictionary `include` globs (0 or 1 palette file).
  * @throws {Error} when the theme references aliases but has no palette.
  */
 export function aliasIncludesFor(name, paletteExists, themeObj) {
-  if (paletteExists) return [`./tokens/alias/color/${name}.alias.json`]
+  if (paletteExists) return [`./themes/${name}/${name}.alias.color.json`]
   const usesAliases = Object.values(themeObj ?? {}).some(
     entry => entry && typeof entry.$value === 'string' && entry.$value.includes('{color.alias.'),
   )
   if (usesAliases) {
     throw new Error(
-      `Theme "${name}" references {color.alias.*} but tokens/alias/color/${name}.alias.json is missing. ` +
+      `Theme "${name}" references {color.alias.*} but themes/${name}/${name}.alias.color.json is missing. ` +
       'Every alias-using theme must have a matching palette file (see ALIAS-COLOR-MAPPING-GUIDE.md).',
     )
   }
@@ -60,43 +78,48 @@ export function aliasIncludesFor(name, paletteExists, themeObj) {
 
 /**
  * Resolve the color-alias include list for a single theme build (IO wrapper around `aliasIncludesFor`).
- * @param {string} name - Theme name matching `themes/${name}.theme.json`.
+ * @param {string} name - Theme name matching `themes/${name}/${name}.theme.json`.
  * @returns {string[]} Style Dictionary `include` globs (0 or 1 palette file).
  */
 function aliasIncludesForTheme(name) {
-  const paletteExists = existsSync(`./tokens/alias/color/${name}.alias.json`)
-  const themeObj = paletteExists ? null : JSON.parse(readFileSync(`./themes/${name}.theme.json`, 'utf-8'))
+  const paletteExists = existsSync(`./themes/${name}/${name}.alias.color.json`)
+  const themeObj = paletteExists ? null : JSON.parse(readFileSync(`./themes/${name}/${name}.theme.json`, 'utf-8'))
   return aliasIncludesFor(name, paletteExists, themeObj)
 }
 
 /**
- * Auto-discover the theme files in `themes/`. Every theme JSON MUST be named `<theme-name>.theme.json`;
- * files prefixed with `_` are treated as internal/templates and skipped. Adding a conforming
- * `<name>.theme.json` to that directory is sufficient to include it in the next build. A `.json` file
- * that does NOT match the convention is a hard error so it can never be silently skipped or mis-built.
+ * Auto-discover the theme directories in `themes/`. Every theme MUST live at
+ * `themes/<theme-name>/<theme-name>.theme.json`; entries prefixed with `_` (e.g. the shared
+ * `_manifest.alias.color.json` file) are treated as internal and skipped. Adding a conforming
+ * `themes/<name>/<name>.theme.json` is sufficient to include it in the next build. A theme directory
+ * that does NOT contain its matching `<name>.theme.json`, OR a stray non-`_` FILE sitting directly
+ * in `themes/` (e.g. a theme mistakenly authored at the old flat `themes/<name>.theme.json` path),
+ * is a hard error so it can never be silently skipped or mis-built.
+ * @param {string} [themesRoot] - Path to the themes directory (override for testing).
  * @returns {Promise<Array<{ name: string, exportName: string }>>}
- * @throws {Error} when a non-`_` `.json` file does not end in `.theme.json`.
+ * @throws {Error} when a non-`_` entry in `themes/` isn't a conforming theme directory.
  */
-export async function discoverThemes() {
-  const files = await readdir('./themes')
-  const jsonFiles = files.filter(f => f.endsWith('.json') && !f.startsWith('_'))
+export async function discoverThemes(themesRoot = './themes') {
+  const entries = await readdir(themesRoot, { withFileTypes: true })
+  const relevant = entries.filter(e => !e.name.startsWith('_'))
 
-  // Enforce the `<theme-name>.theme.json` naming convention — fail loudly rather than skip/mis-build.
-  const nonConforming = jsonFiles.filter(f => !f.endsWith('.theme.json')).sort()
+  // Enforce the `<theme-name>/<theme-name>.theme.json` convention — fail loudly rather than
+  // skip/mis-build. A stray FILE directly in themes/ (not a directory at all) is exactly as
+  // non-conforming as a directory missing its `<name>.theme.json`, so both are checked and
+  // reported together instead of the file silently never being considered a theme.
+  const nonConforming = relevant
+    .filter(e => !e.isDirectory() || !existsSync(join(themesRoot, e.name, `${e.name}.theme.json`)))
+    .map(e => e.name)
+    .sort()
   if (nonConforming.length) {
     throw new Error(
-      'Theme file(s) do not match the required `<theme-name>.theme.json` naming convention: ' +
-      `${nonConforming.join(', ')}. Rename each (e.g. \`my-theme.theme.json\`). ` +
-      'See README.md "Creating a new theme".',
+      'Entries in themes/ do not follow the required `<theme-name>/<theme-name>.theme.json` layout: ' +
+      `${nonConforming.join(', ')}. See README.md "Creating a new theme".`,
     )
   }
 
-  return jsonFiles
-    .sort()
-    .map(f => {
-      const name = f.slice(0, -'.theme.json'.length)
-      return { name, exportName: toExportName(name) }
-    })
+  const themeDirs = relevant.map(e => e.name).sort()
+  return themeDirs.map(name => ({ name, exportName: toExportName(name) }))
 }
 
 // ── Preprocessor registration ─────────────────────────────────────────────────
@@ -196,48 +219,67 @@ StyleDictionary.registerFormat({
 
 // ── Platform factory ──────────────────────────────────────────────────────────
 
+/** A token belongs in a theme's compiled output: real source data, and an actual value to emit. */
+const isCompiledThemeToken = (token) => token.isSource === true && token.$value !== ''
+
 /**
  * Creates Style Dictionary platform configs for a single named theme.
- * @param {string} name - Theme name matching `themes/${name}.theme.json`
+ *
+ * An unfilled component token (`$value: ''` — a real, expected state for an in-progress exhaustive
+ * theme) is OMITTED from compiled output entirely, never emitted as `--x: ;` or `--x: initial;`.
+ * This matters more than it looks: per the CSS Custom Properties spec, `var(--x, fallback)` only
+ * uses `fallback` when `--x` is the "guaranteed-invalid value" (never declared for that element at
+ * all). An explicitly empty value (`--x: ;`) is a normal value in its own right, so it would NOT
+ * trigger the fallback — the component→semantic fallback chain breaks silently (e.g. `border-radius`
+ * computes to the browser's initial value, not the theme's semantic radius). Writing `--x: initial;`
+ * instead does reach guaranteed-invalid, but as an ACTIVE reset scoped to this theme's rule — it
+ * would override a value a host app, a nested theme, or a spread-in base object legitimately set for
+ * that same property, which is worse. True omission is the only form with no such side effect: it's
+ * exactly what a semantic-only theme (`classic-day`/`classic-night`) already does for every component
+ * token, and it's why that fallthrough has always worked correctly. This was latent until this
+ * refactor: every theme published before now always filled every component token with a real value,
+ * so no compiled theme ever emitted an empty one.
+ * @param {string} name - Theme name matching `themes/${name}/${name}.theme.json`
  * @param {string} exportName - JS identifier for the exported theme object
+ * @param {string} [buildPath] - Where compiled output is written (override for testing).
  * @returns {Record<string, object>} SD `platforms` config object
  */
-export function createThemePlatforms(name, exportName) {
+export function createThemePlatforms(name, exportName, buildPath = 'dist/themes/') {
   return {
     [`theme-css/${name}`]: {
-      buildPath: 'dist/themes/',
+      buildPath,
       files: [{
         destination: `${name}.css`,
         format: 'css/kui-theme',
-        filter: (token) => token.isSource === true,
+        filter: isCompiledThemeToken,
         options: { themeName: name },
       }],
     },
     [`theme-js/${name}`]: {
-      buildPath: 'dist/themes/',
+      buildPath,
       files: [
         {
           destination: `${name}.mjs`,
           format: 'js/kui-theme-esm',
-          filter: (token) => token.isSource === true,
+          filter: isCompiledThemeToken,
           options: { exportName },
         },
         {
           destination: `${name}.d.ts`,
           format: 'typescript/kui-theme-declarations',
-          filter: (token) => token.isSource === true,
+          filter: isCompiledThemeToken,
           options: { exportName },
         },
         {
           destination: `${name}.cjs`,
           format: 'js/kui-theme-cjs',
-          filter: (token) => token.isSource === true,
+          filter: isCompiledThemeToken,
           options: { exportName },
         },
         {
           destination: `${name}.d.cts`,
           format: 'typescript/kui-theme-declarations',
-          filter: (token) => token.isSource === true,
+          filter: isCompiledThemeToken,
           options: { exportName },
         },
       ],
@@ -266,7 +308,7 @@ async function buildAllThemes() {
   for (const { name, exportName } of themes) {
     const sd = new StyleDictionary({
       log: { verbosity: logVerbosityLevels.verbose },
-      source: [`./themes/${name}.theme.json`],
+      source: [`./themes/${name}/${name}.theme.json`],
       include: includesByTheme.get(name),
       preprocessors: ['inject-theme-breakpoints'],
       platforms: createThemePlatforms(name, exportName),

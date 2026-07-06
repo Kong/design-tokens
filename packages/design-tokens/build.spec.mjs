@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { flattenTokenTree } from './utilities/token-tree.mjs'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST_DIR = join(__dirname, 'dist/tokens')
 const DIST_ROOT = join(__dirname, 'dist')
@@ -699,26 +701,6 @@ describe('dist/tokens/themeable-tokens (full themed surface)', () => {
 describe('tokens/components/ (source enforcement)', () => {
   const COMPONENT_DIR = join(__dirname, 'tokens/components')
 
-  /**
-   * Recursively collect every token leaf (object with a `$value` key) from a
-   * parsed DTCG token tree, returning `{ path, value }` pairs.
-   * @param {object} obj
-   * @param {string} filePath - Used in assertion messages.
-   * @param {string[]} path
-   * @param {Array<{ tokenPath: string, value: unknown }>} acc
-   */
-  function collectTokenValues(obj, filePath, path = [], acc = []) {
-    if (typeof obj !== 'object' || obj === null) return acc
-    if ('$value' in obj) {
-      acc.push({ tokenPath: `${filePath}:${path.join('.')}`, value: obj.$value })
-      return acc
-    }
-    for (const [key, child] of Object.entries(obj)) {
-      if (!key.startsWith('$')) collectTokenValues(child, filePath, [...path, key], acc)
-    }
-    return acc
-  }
-
   it('every component token has an empty string $value (value-less by design)', async () => {
     const { readdir } = await import('node:fs/promises')
     const files = await readdir(COMPONENT_DIR)
@@ -729,10 +711,9 @@ describe('tokens/components/ (source enforcement)', () => {
     await Promise.all(
       jsonFiles.map(async file => {
         const parsed = JSON.parse(await readFile(join(COMPONENT_DIR, file), 'utf-8'))
-        const tokens = collectTokenValues(parsed, file)
-        for (const { tokenPath, value } of tokens) {
+        for (const { path, value } of flattenTokenTree(parsed)) {
           if (value !== '') {
-            violations.push(`${tokenPath} → ${JSON.stringify(value)} (must be "")`)
+            violations.push(`${file}:${path.join('.')} → ${JSON.stringify(value)} (must be "")`)
           }
         }
       }),

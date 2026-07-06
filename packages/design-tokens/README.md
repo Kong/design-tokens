@@ -39,7 +39,10 @@ The `@kong/design-tokens` package uses a two-tier exported token taxonomy.
 | **Semantic** | `tokens/source/**` | `--kui-color-background-primary`, `--kui-space-40`, `--kui-border-radius-30`, `--kui-method-color-background-get` | CSS custom properties, SCSS variables, JS constants |
 | **Component** | `tokens/components/**` | `--kui-button-border-radius-medium`, `--kui-button-color-background-primary`, `--kui-button-shadow-focus` | Included in `KUI_THEMEABLE_TOKENS` — **no CSS value** |
 
-> **Alias tokens** (`tokens/alias/**`) form a third internal directory. They hold the raw palette values (hex colors, base sizes) that semantic tokens reference. They are **never exported** — they exist only so Style Dictionary can resolve `{color.alias.blue.100}` references at build time.
+> **Alias tokens** (`themes/<name>/<name>.alias.color.json`, one per theme) form a third internal
+> category. They hold the raw palette values (hex colors) that semantic and component tokens
+> reference. They are **never exported** — they exist only so Style Dictionary can resolve
+> `{color.alias.blue.100}` references at build time.
 
 ### Semantic tokens
 
@@ -410,14 +413,13 @@ pnpm install
 
 ### Directory structure
 
-The package is organized around four top-level source directories:
+The package is organized around three top-level source directories:
 
 | Directory | Purpose |
 |-----------|---------|
-| `tokens/alias/` | **Internal alias palette** — raw CSS values (hex colors, base sizes) that semantic tokens reference via `{color.alias.*}`. Never exported in any build output; only used so Style Dictionary can resolve references at build time. |
 | `tokens/source/` | **Semantic tokens** exported to `custom-properties.css`, SCSS, and JS. Each token family is its own subdirectory: `color/`, `space/`, `shadow/`, `font/`, `border/`, `animation/`, `breakpoint/`, `letter-spacing/`, `line-height/`, plus the concept-named families `method/`, `status/`, `navigation/`, and `icon/` (HTTP methods, status codes, navigation chrome, icons). |
 | `tokens/components/` | **Component tokens** — name-only override slots for Kongponents components (`button/`, `card/`, `input/`, `badge/`, …). All `$value` fields must be `""`. Included in `KUI_THEMEABLE_TOKENS` — no CSS, no SCSS/JS values emitted. |
-| `themes/` | **Named theme override sets** — each `{name}.theme.json` lists the token values that activate for `[data-kui-theme="{name}"]`. The `.theme.json` suffix is required and enforced by the build and tests. Values may be raw hex or `{color.alias.*}` references resolved at build time. |
+| `themes/` | **Named theme override sets**, one directory per theme (`themes/<name>/`), each holding two co-located files: `<name>.theme.json` (the token values that activate for `[data-kui-theme="<name>"]`) and `<name>.alias.color.json` (that theme's color palette — the **internal alias tokens**, never exported, that `<name>.theme.json`'s `{color.alias.*}` references resolve against). Both filenames are required and enforced by the build and tests. `themes/_manifest.alias.color.json` is the names-only contract every palette must match. |
 
 ### Token Requirements
 
@@ -425,7 +427,7 @@ The package is organized around four top-level source directories:
 - The `category` of each token should be its own directory (e.g. `tokens/source/color/`)
 - Each `type` of token should be a file in the `category` directory, named `{type}.json` (e.g. `tokens/source/color/background.json`)
 - If there is only a single `type` of token within a `category`, you **should** name the file `index.json` (e.g. `tokens/source/line-height/index.json`)
-- Alias tokens (`tokens/alias/`) **must not** be exposed/exported from the package exports
+- Alias tokens (`themes/<name>/<name>.alias.color.json`) **must not** be exposed/exported from the package exports
 - Tokens at the "root" of their structure **must** be defined with a key of `"_"` to allow for nested child tokens.
 - Component tokens in `tokens/components/` **must always have `$value: ""`** — they are name-only slots with no CSS value. A non-empty `$value` is a build violation caught by the test suite.
 
@@ -467,41 +469,51 @@ The package is organized around four top-level source directories:
 
 ### Creating a new theme
 
-A new theme is made by **copying an existing one** of the same class — it already carries the full token
-set, descriptions, and a valid, building starting point. Pick the closest existing theme:
+A new theme is scaffolded **directly from the canonical token tree** — not copied from an existing
+theme. `pnpm theme:scaffold <name>` generates `themes/<name>/<name>.theme.json` and
+`themes/<name>/<name>.alias.color.json`:
 
-- **Exhaustive** (every themeable token, incl. component tokens — like `konnect-day`/`konnect-night`).
-- **Semantic-only** (every semantic token, **zero** component tokens — like `classic-day`/`classic-night`;
-  components fall through to their semantic defaults).
+- Every **semantic** token (`tokens/source/**`) is seeded with its real default `{color.alias.*}`
+  mapping — a safe, sensible starting point.
+- Every **component** token (`tokens/components/**`) is seeded as an **empty slot** (`$value: ""`)
+  for you to fill deliberately — a component token's value is a genuine design decision (e.g. an
+  alert's danger background is a light tint, not the strong semantic danger color) and can't be
+  safely defaulted.
+- The **palette** is seeded from `classic-day`'s real neutral values, so the theme builds and
+  renders immediately, rather than from a placeholder.
+
+The result is **exhaustive by construction** — it contains exactly `KUI_THEMEABLE_TOKENS`, with no
+comparison against any other theme required. (For a **semantic-only** theme instead — every
+semantic token, **zero** component tokens, like `classic-day`/`classic-night` — scaffold normally,
+then delete the component-token entries and add the theme's name to `SEMANTIC_ONLY_THEMES` in
+`platforms/themes.mjs`.)
 
 ```sh
-NEW=my-brand
-FROM=konnect-day   # or classic-day for a semantic-only theme
-
-# 1. Copy the theme definition and (for alias-based themes) its companion color palette.
-#    Theme files MUST be named <theme-name>.theme.json (enforced by the build + tests).
-cp themes/$FROM.theme.json themes/$NEW.theme.json
-cp tokens/alias/color/$FROM.alias.json tokens/alias/color/$NEW.alias.json   # every alias-using theme MUST have one
-
-# 2. Edit themes/$NEW.theme.json (token $values) and tokens/alias/color/$NEW.alias.json (palette values) to taste.
-# 3. Build + verify — the drift and off-source guards confirm completeness.
-#    Classification is automatic: themes.spec.mjs treats every theme as EXHAUSTIVE by default.
-#    Only a *semantic-only* theme needs a one-line edit — add its name to SEMANTIC_ONLY_THEMES.
-pnpm build:tokens && pnpm test
+pnpm theme:scaffold my-brand
+# Fill in real palette values (themes/my-brand/my-brand.alias.color.json) and component
+# tokens (themes/my-brand/my-brand.theme.json) to taste.
+pnpm themes:unfilled my-brand   # reports empty component slots and palette families still
+                                # unchanged from the classic-day seed
+pnpm build:tokens && pnpm test  # the drift and off-source guards confirm completeness
 ```
 
-The build auto-discovers any `themes/*.theme.json` — no code change needed. A theme file that does not
-follow the `<theme-name>.theme.json` naming convention is a hard build error (and fails `pnpm test`), as is
-an alias-referencing theme with no matching `tokens/alias/color/<name>.alias.json` palette (no silent fallback),
-which is why step 1 copies the palette too. See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./docs/ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
+The build auto-discovers any `themes/<name>/<name>.theme.json` — no code change needed. A theme
+directory whose `<name>.theme.json` is missing is a hard build error (and fails `pnpm test`), as is
+an alias-referencing theme with no matching `<name>.alias.color.json` palette (no silent fallback).
+See [`ALIAS-COLOR-MAPPING-GUIDE.md`](./docs/ALIAS-COLOR-MAPPING-GUIDE.md) §6, "Adding a future theme".
+
+**Keeping every theme in sync as the token set grows.** Adding a token to `tokens/source/**` or
+`tokens/components/**` doesn't require hand-editing every theme file — run `pnpm themes:sync` to
+add the new token to every theme (semantic tokens get their source default; component tokens get
+an empty slot to fill), or `pnpm themes:unfilled <name>` to check what any one theme still needs.
 
 > **Note — theme-creation skill dependency.** The `theme-creation` skill in
-> `packages/skills/theme-creation/` automates this flow (scaffolding, matching a source's look,
-> previewing against Kongponents). Its `scripts/scaffold.mjs` reads structural details of this
-> package: the `SEMANTIC_ONLY_THEMES` name and the exhaustive-by-default rule in `themes.spec.mjs`,
-> the `tokens/alias/color/_manifest.json` shape, and the `konnect-day`/`konnect-night` template
-> names. If you rename or restructure those, update that script too (it will error loudly rather
-> than fail silently, but it will break).
+> `packages/skills/theme-creation/` automates this flow end-to-end (scaffolding, matching a
+> source's look, previewing against Kongponents). It calls this package's `theme:scaffold` /
+> `themes:sync` / `themes:unfilled` commands directly rather than duplicating their logic, so
+> renaming or restructuring those commands (`scripts/theme-scaffold.mjs`, `scripts/themes-sync.mjs`,
+> `scripts/themes-unfilled.mjs`) only needs updating in one place — the skill won't silently drift
+> out of sync with them.
 
 ### Theme `$description` authoring rules
 
@@ -529,7 +541,15 @@ Every token entry in a theme JSON file may carry an optional `$description` fiel
 }
 ```
 
-**A theme only needs to define tokens it overrides.** Omit any token whose value should remain at its semantic default (from `custom-properties.css`) or at whatever value a base theme already sets. The `[data-kui-theme]` CSS cascade handles the rest — unset tokens fall back through `var()` to the semantic layer automatically.
+**A theme file must define its full token set, not just the tokens it changes.** An exhaustive
+theme must contain exactly `KUI_THEMEABLE_TOKENS` (every semantic *and* component token); a
+semantic-only theme (`SEMANTIC_ONLY_THEMES`) must contain every semantic token and zero component
+tokens — nothing may be missing, even if its value is identical to another theme's. The
+`[data-kui-theme]` CSS cascade / `var()` fallback behavior governs runtime behavior for *component*
+tokens that are legitimately absent from a semantic-only theme (they fall through to the semantic
+layer) — it does not mean a theme file itself may omit tokens whose value happens not to differ.
+`pnpm theme:scaffold` and `pnpm themes:sync` handle this for you: every scaffolded or synced theme
+already contains its full required set.
 
 ### Development Sandbox
 

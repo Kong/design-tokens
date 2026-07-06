@@ -19,6 +19,9 @@
     "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
     "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
     "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
+    "theme:scaffold": "node scripts/theme-scaffold.mjs",
+    "themes:sync": "node scripts/themes-sync.mjs",
+    "themes:unfilled": "node scripts/themes-unfilled.mjs",
     "pretest": "pnpm build:tokens",
     "test": "vitest run --config vitest.config.mjs"
   },
