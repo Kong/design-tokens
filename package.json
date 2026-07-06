@@ -15,8 +15,8 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^20.4.4",
-    "@commitlint/config-conventional": "^20.4.4",
+    "@commitlint/cli": "^20.5.3",
+    "@commitlint/config-conventional": "^20.5.3",
     "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@evilmartians/lefthook": "^2.1.9",
     "@kong/eslint-config-kong-ui": "^1.7.1",
@@ -44,8 +44,8 @@
     "vitest": "^4.1.8",
     "vue": "^3.5.38",
     "vue-eslint-parser": "^10.4.1",
-    "vue-router": "^5.0.7",
-    "vue-tsc": "^3.2.9"
+    "vue-router": "^5.1.0",
+    "vue-tsc": "^3.3.5"
   },
   "config": {
     "commitizen": {
@@ -57,23 +57,12 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@11.9.0",
   "engines": {
     "node": ">=20.19.5",
-    "pnpm": ">=10.28.2"
+    "pnpm": ">=10.28.2 || >=11.9.0"
   },
   "volta": {
     "node": "24.13.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@bundled-es-modules/glob",
-      "@evilmartians/lefthook",
-      "esbuild",
-      "style-dictionary"
-    ],
-    "overrides": {
-      "semver": "^7.6.3"
-    }
   }
 }
