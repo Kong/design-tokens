@@ -36,6 +36,7 @@ export default [
     ...config,
     files: ['packages/design-tokens/themes/**/*.theme.json'],
     rules: {
+      ...config.rules,
       // Ensure themes utilize kebab-case
       'jsonc/key-name-casing': ['error',
         {

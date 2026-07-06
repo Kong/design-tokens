@@ -84,8 +84,8 @@
     "$value": "12px"
   },
   "kui-animation-duration-20": {
-    "$value": "0.2s",
-    "$description": "Default transition timing."
+    "$description": "Default transition timing.",
+    "$value": "0.2s"
   },
   "kui-badge-border-radius": {
     "$description": "Badge border radius.",
@@ -222,12 +222,12 @@
     "$value": "10px"
   },
   "kui-border-radius-circle": {
-    "$value": "50%",
-    "$description": "Circle border radius."
+    "$description": "Circle border radius.",
+    "$value": "50%"
   },
   "kui-border-radius-round": {
-    "$value": "100px",
-    "$description": "Pill-shaped border radius."
+    "$description": "Pill-shaped border radius.",
+    "$value": "100px"
   },
   "kui-border-width-0": {
     "$value": "0px"
@@ -710,28 +710,28 @@
     "$value": "{color.alias.gray.40}"
   },
   "kui-collapse-font-family": {
-    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
-    "$description": "Collapse font family."
+    "$description": "Collapse font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-collapse-title-color-text": {
     "$description": "Collapse title text color.",
     "$value": "{color.alias.gray.70}"
   },
   "kui-collapse-title-font-size": {
-    "$value": "16px",
-    "$description": "Collapse title font size."
+    "$description": "Collapse title font size.",
+    "$value": "16px"
   },
   "kui-collapse-title-font-weight": {
-    "$value": "700",
-    "$description": "Collapse title font weight."
+    "$description": "Collapse title font weight.",
+    "$value": "700"
   },
   "kui-collapse-title-line-height": {
-    "$value": "20px",
-    "$description": "Collapse title line height."
+    "$description": "Collapse title line height.",
+    "$value": "20px"
   },
   "kui-collapse-trigger-border-radius": {
-    "$value": "4px",
-    "$description": "Collapse trigger button border radius."
+    "$description": "Collapse trigger button border radius.",
+    "$value": "4px"
   },
   "kui-collapse-trigger-color-text": {
     "$description": "Collapse trigger button text color.",
@@ -746,16 +746,16 @@
     "$value": "{color.alias.gray.70}"
   },
   "kui-collapse-trigger-font-size": {
-    "$value": "14px",
-    "$description": "Collapse trigger button font size."
+    "$description": "Collapse trigger button font size.",
+    "$value": "14px"
   },
   "kui-collapse-trigger-font-weight": {
-    "$value": "600",
-    "$description": "Collapse trigger button font weight."
+    "$description": "Collapse trigger button font weight.",
+    "$value": "600"
   },
   "kui-collapse-trigger-line-height": {
-    "$value": "20px",
-    "$description": "Collapse trigger button line height."
+    "$description": "Collapse trigger button line height.",
+    "$value": "20px"
   },
   "kui-collapse-trigger-shadow-focus": {
     "$description": "Collapse trigger button focus-visible shadow.",
@@ -798,12 +798,12 @@
     "$value": "{color.alias.red.10}"
   },
   "kui-color-background-decorative-aqua-weakest": {
-    "$value": "{color.alias.aqua.10}",
-    "$description": "Weakest background color for decorative purposes."
+    "$description": "Weakest background color for decorative purposes.",
+    "$value": "{color.alias.aqua.10}"
   },
   "kui-color-background-decorative-purple": {
-    "$value": "{color.alias.purple.60}",
-    "$description": "Background color for decorative purposes."
+    "$description": "Background color for decorative purposes.",
+    "$value": "{color.alias.purple.60}"
   },
   "kui-color-background-decorative-purple-weakest": {
     "$description": "Weakest background color for decorative purposes.",
@@ -906,36 +906,36 @@
     "$value": "{color.alias.gray.10}"
   },
   "kui-color-background-success": {
-    "$value": "{color.alias.green.60}",
-    "$description": "Background color for success elements."
+    "$description": "Background color for success elements.",
+    "$value": "{color.alias.green.60}"
   },
   "kui-color-background-success-strong": {
-    "$value": "{color.alias.green.70}",
-    "$description": "Strong background color for success elements."
+    "$description": "Strong background color for success elements.",
+    "$value": "{color.alias.green.70}"
   },
   "kui-color-background-success-stronger": {
-    "$value": "{color.alias.green.80}",
-    "$description": "Stronger background color for success elements."
+    "$description": "Stronger background color for success elements.",
+    "$value": "{color.alias.green.80}"
   },
   "kui-color-background-success-strongest": {
-    "$value": "{color.alias.green.90}",
-    "$description": "Strongest background color for success elements."
+    "$description": "Strongest background color for success elements.",
+    "$value": "{color.alias.green.90}"
   },
   "kui-color-background-success-weak": {
-    "$value": "{color.alias.green.40}",
-    "$description": "Weak background color for success elements."
+    "$description": "Weak background color for success elements.",
+    "$value": "{color.alias.green.40}"
   },
   "kui-color-background-success-weaker": {
-    "$value": "{color.alias.green.20}",
-    "$description": "Weaker background color for success elements."
+    "$description": "Weaker background color for success elements.",
+    "$value": "{color.alias.green.20}"
   },
   "kui-color-background-success-weakest": {
     "$description": "Weakest background color for success elements.",
     "$value": "{color.alias.green.10}"
   },
   "kui-color-background-transparent": {
-    "$value": "{color.alias.transparent}",
-    "$description": "Transparent background color (transparent)."
+    "$description": "Transparent background color (transparent).",
+    "$value": "{color.alias.transparent}"
   },
   "kui-color-background-warning": {
     "$description": "Background color for warning elements.",
@@ -1002,16 +1002,16 @@
     "$value": "{color.alias.red.10}"
   },
   "kui-color-border-decorative-purple": {
-    "$value": "{color.alias.purple.60}",
-    "$description": "Border color for decorative purposes."
+    "$description": "Border color for decorative purposes.",
+    "$value": "{color.alias.purple.60}"
   },
   "kui-color-border-disabled": {
     "$description": "Border color for disabled elements.",
     "$value": "{color.alias.gray.10}"
   },
   "kui-color-border-inverse": {
-    "$value": "rgba(255, 255, 255, 0.2)",
-    "$description": "Inverse border color."
+    "$description": "Inverse border color.",
+    "$value": "rgba(255, 255, 255, 0.2)"
   },
   "kui-color-border-neutral": {
     "$description": "Border color for neutral elements.",
@@ -1068,8 +1068,8 @@
     "$value": "{color.alias.gray.10}"
   },
   "kui-color-border-transparent": {
-    "$value": "{color.alias.transparent}",
-    "$description": "Transparent border color (transparent)."
+    "$description": "Transparent border color (transparent).",
+    "$value": "{color.alias.transparent}"
   },
   "kui-color-text": {
     "$description": "Default text color.",
@@ -1108,16 +1108,16 @@
     "$value": "{color.alias.red.10}"
   },
   "kui-color-text-decorative-aqua": {
-    "$value": "{color.alias.aqua.50}",
-    "$description": "Text color for decorative purposes."
+    "$description": "Text color for decorative purposes.",
+    "$value": "{color.alias.aqua.50}"
   },
   "kui-color-text-decorative-pink": {
-    "$value": "{color.alias.pink.60}",
-    "$description": "Text color for decorative purposes."
+    "$description": "Text color for decorative purposes.",
+    "$value": "{color.alias.pink.60}"
   },
   "kui-color-text-decorative-purple": {
-    "$value": "{color.alias.purple.60}",
-    "$description": "Text color for decorative purposes."
+    "$description": "Text color for decorative purposes.",
+    "$value": "{color.alias.purple.60}"
   },
   "kui-color-text-decorative-purple-strong": {
     "$description": "Strong text color for decorative purposes.",
@@ -1220,28 +1220,28 @@
     "$value": "{color.alias.green.60}"
   },
   "kui-color-text-success-strong": {
-    "$value": "{color.alias.green.70}",
-    "$description": "Strong text color for success elements."
+    "$description": "Strong text color for success elements.",
+    "$value": "{color.alias.green.70}"
   },
   "kui-color-text-success-stronger": {
-    "$value": "{color.alias.green.80}",
-    "$description": "Stronger text color for success elements."
+    "$description": "Stronger text color for success elements.",
+    "$value": "{color.alias.green.80}"
   },
   "kui-color-text-success-strongest": {
-    "$value": "{color.alias.green.90}",
-    "$description": "Stronger text color for success elements."
+    "$description": "Stronger text color for success elements.",
+    "$value": "{color.alias.green.90}"
   },
   "kui-color-text-success-weak": {
-    "$value": "{color.alias.green.40}",
-    "$description": "Weak text color for success elements."
+    "$description": "Weak text color for success elements.",
+    "$value": "{color.alias.green.40}"
   },
   "kui-color-text-success-weaker": {
-    "$value": "{color.alias.green.20}",
-    "$description": "Weaker text color for success elements."
+    "$description": "Weaker text color for success elements.",
+    "$value": "{color.alias.green.20}"
   },
   "kui-color-text-success-weakest": {
-    "$value": "{color.alias.green.10}",
-    "$description": "Weakest text color for success elements."
+    "$description": "Weakest text color for success elements.",
+    "$value": "{color.alias.green.10}"
   },
   "kui-color-text-warning": {
     "$description": "Text color for warning elements.",
@@ -1268,32 +1268,32 @@
     "$value": "{color.alias.yellow.20}"
   },
   "kui-color-text-warning-weakest": {
-    "$value": "{color.alias.yellow.10}",
-    "$description": "Weakest text color for warning elements."
+    "$description": "Weakest text color for warning elements.",
+    "$value": "{color.alias.yellow.10}"
   },
   "kui-copy-color-text": {
     "$description": "Copy badge label text color (shown before the copyable value when rendered as a badge).",
     "$value": "{color.alias.gray.60}"
   },
   "kui-copy-font-family-code": {
-    "$value": "'JetBrains Mono', Consolas, monospace",
-    "$description": "Copy monospace (code) text font family."
+    "$description": "Copy monospace (code) text font family.",
+    "$value": "'JetBrains Mono', Consolas, monospace"
   },
   "kui-copy-font-size": {
-    "$value": "12px",
-    "$description": "Copy text font size."
+    "$description": "Copy text font size.",
+    "$value": "12px"
   },
   "kui-copy-font-weight-code": {
-    "$value": "400",
-    "$description": "Copy monospace (code) text font weight."
+    "$description": "Copy monospace (code) text font weight.",
+    "$value": "400"
   },
   "kui-copy-icon-color-text-hover": {
     "$description": "Copy-to-clipboard icon text color on hover and focus (non-badge appearance).",
     "$value": "{color.alias.gray.70}"
   },
   "kui-copy-line-height": {
-    "$value": "16px",
-    "$description": "Copy text line height."
+    "$description": "Copy text line height.",
+    "$value": "16px"
   },
   "kui-date-time-picker-day-color-background-hover": {
     "$description": "Date time picker calendar day cell background color on hover and focus.",
@@ -1520,12 +1520,12 @@
     "$value": "{color.alias.gray.60}"
   },
   "kui-file-upload-dropzone-border-radius": {
-    "$value": "6px",
-    "$description": "File upload dropzone border radius."
+    "$description": "File upload dropzone border radius.",
+    "$value": "6px"
   },
   "kui-file-upload-dropzone-border-width": {
-    "$value": "1px",
-    "$description": "File upload dropzone border width."
+    "$description": "File upload dropzone border width.",
+    "$value": "1px"
   },
   "kui-file-upload-dropzone-color-background": {
     "$description": "File upload dropzone background color.",
@@ -1560,16 +1560,16 @@
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-filter-group-clear-border-radius": {
-    "$value": "4px",
-    "$description": "Border radius of the focus highlight around the pill clear button."
+    "$description": "Border radius of the focus highlight around the pill clear button.",
+    "$value": "4px"
   },
   "kui-filter-group-pill-border-radius": {
-    "$value": "4px",
-    "$description": "Filter pill border radius."
+    "$description": "Filter pill border radius.",
+    "$value": "4px"
   },
   "kui-filter-group-pill-border-width": {
-    "$value": "1px",
-    "$description": "Filter pill border width."
+    "$description": "Filter pill border width.",
+    "$value": "1px"
   },
   "kui-filter-group-pill-color-background": {
     "$description": "Filter pill background color (default, no selection).",
@@ -1612,8 +1612,8 @@
     "$value": "{color.alias.gray.80}"
   },
   "kui-filter-group-pill-line-height": {
-    "$value": "16px",
-    "$description": "Filter pill label line height."
+    "$description": "Filter pill label line height.",
+    "$value": "16px"
   },
   "kui-filter-group-pill-shadow-focus": {
     "$description": "Filter pill focus ring shadow.",
@@ -1624,22 +1624,19 @@
     "$value": "{color.alias.gray.60}"
   },
   "kui-font-family-code": {
-    "$value": "'JetBrains Mono', Consolas, monospace",
-    "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text."
+    "$description": "The standard monospace text font family. Typically used for code blocks, inline code, and copyable text.",
+    "$value": "'JetBrains Mono', Consolas, monospace"
   },
   "kui-font-family-heading": {
-    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
-    "$description": "The standard heading text font family."
+    "$description": "The standard heading text font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-font-family-text": {
-    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
-    "$description": "The standard text font family."
+    "$description": "The standard text font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-font-size-10": {
     "$value": "10px"
-  },
-  "kui-font-size-100": {
-    "$value": "48px"
   },
   "kui-font-size-20": {
     "$value": "12px"
@@ -1665,21 +1662,24 @@
   "kui-font-size-90": {
     "$value": "40px"
   },
+  "kui-font-size-100": {
+    "$value": "48px"
+  },
   "kui-font-weight-bold": {
-    "$value": "700",
-    "$description": "700: The bold font weight."
+    "$description": "700: The bold font weight.",
+    "$value": "700"
   },
   "kui-font-weight-medium": {
-    "$value": "500",
-    "$description": "500: The medium font weight."
+    "$description": "500: The medium font weight.",
+    "$value": "500"
   },
   "kui-font-weight-regular": {
-    "$value": "400",
-    "$description": "400: The normal font weight."
+    "$description": "400: The normal font weight.",
+    "$value": "400"
   },
   "kui-font-weight-semibold": {
-    "$value": "600",
-    "$description": "600: The semibold font weight."
+    "$description": "600: The semibold font weight.",
+    "$value": "600"
   },
   "kui-icon-color-danger": {
     "$description": "Danger color for icons.",
@@ -1694,8 +1694,8 @@
     "$value": "{color.alias.blue.50}"
   },
   "kui-icon-color-success": {
-    "$value": "{color.alias.green.50}",
-    "$description": "Success color for icons."
+    "$description": "Success color for icons.",
+    "$value": "{color.alias.green.50}"
   },
   "kui-icon-color-warning": {
     "$description": "Warning color for icons.",
@@ -1894,8 +1894,8 @@
     "$value": "20px"
   },
   "kui-letter-spacing-0": {
-    "$value": "normal",
-    "$description": "Alias for letter-spacing-normal."
+    "$description": "Alias for letter-spacing-normal.",
+    "$value": "normal"
   },
   "kui-letter-spacing-minus-10": {
     "$value": "-0.12px"
@@ -1913,14 +1913,11 @@
     "$value": "-0.48px"
   },
   "kui-letter-spacing-normal": {
-    "$value": "normal",
-    "$description": "normal."
+    "$description": "normal.",
+    "$value": "normal"
   },
   "kui-line-height-10": {
     "$value": "12px"
-  },
-  "kui-line-height-100": {
-    "$value": "56px"
   },
   "kui-line-height-20": {
     "$value": "16px"
@@ -1945,6 +1942,9 @@
   },
   "kui-line-height-90": {
     "$value": "48px"
+  },
+  "kui-line-height-100": {
+    "$value": "56px"
   },
   "kui-link-color-text": {
     "$description": "Link text color.",
@@ -1999,32 +1999,32 @@
     "$value": "{color.alias.gray.20}"
   },
   "kui-method-color-background-patch": {
-    "$value": "{color.alias.aqua.10}",
-    "$description": "Background color for the PATCH method."
+    "$description": "Background color for the PATCH method.",
+    "$value": "{color.alias.aqua.10}"
   },
   "kui-method-color-background-post": {
     "$description": "Background color for the POST method.",
     "$value": "{color.alias.blue.10}"
   },
   "kui-method-color-background-put": {
-    "$value": "{color.alias.yellow.10}",
-    "$description": "Background color for the PUT method."
+    "$description": "Background color for the PUT method.",
+    "$value": "{color.alias.yellow.10}"
   },
   "kui-method-color-background-trace": {
-    "$value": "{color.alias.pink.10}",
-    "$description": "Background color for the TRACE method."
+    "$description": "Background color for the TRACE method.",
+    "$value": "{color.alias.pink.10}"
   },
   "kui-method-color-text-connect": {
-    "$value": "{color.alias.purple.60}",
-    "$description": "Text color for the CONNECT method."
+    "$description": "Text color for the CONNECT method.",
+    "$value": "{color.alias.purple.60}"
   },
   "kui-method-color-text-connect-strong": {
     "$description": "Strong text color for the CONNECT method.",
     "$value": "{color.alias.purple.70}"
   },
   "kui-method-color-text-delete": {
-    "$value": "{color.alias.red.60}",
-    "$description": "Text color for the DELETE method."
+    "$description": "Text color for the DELETE method.",
+    "$value": "{color.alias.red.60}"
   },
   "kui-method-color-text-delete-strong": {
     "$description": "Strong text color for the DELETE method.",
@@ -2055,12 +2055,12 @@
     "$value": "{color.alias.gray.80}"
   },
   "kui-method-color-text-patch": {
-    "$value": "{color.alias.aqua.60}",
-    "$description": "Text color for the PATCH method."
+    "$description": "Text color for the PATCH method.",
+    "$value": "{color.alias.aqua.60}"
   },
   "kui-method-color-text-patch-strong": {
-    "$value": "{color.alias.aqua.70}",
-    "$description": "Strong text color for the PATCH method."
+    "$description": "Strong text color for the PATCH method.",
+    "$value": "{color.alias.aqua.70}"
   },
   "kui-method-color-text-post": {
     "$description": "Text color for the POST method.",
@@ -2079,12 +2079,12 @@
     "$value": "{color.alias.yellow.70}"
   },
   "kui-method-color-text-trace": {
-    "$value": "{color.alias.pink.60}",
-    "$description": "Text color for the TRACE method."
+    "$description": "Text color for the TRACE method.",
+    "$value": "{color.alias.pink.60}"
   },
   "kui-method-color-text-trace-strong": {
-    "$value": "{color.alias.pink.70}",
-    "$description": "Strong text color for the TRACE method."
+    "$description": "Strong text color for the TRACE method.",
+    "$value": "{color.alias.pink.70}"
   },
   "kui-modal-border-radius": {
     "$description": "Modal dialog border radius.",
@@ -2191,8 +2191,8 @@
     "$value": "28px"
   },
   "kui-multiselect-footer-border-width": {
-    "$value": "1px",
-    "$description": "Multiselect dropdown footer top border width."
+    "$description": "Multiselect dropdown footer top border width.",
+    "$value": "1px"
   },
   "kui-multiselect-footer-color-background": {
     "$description": "Multiselect dropdown footer background color.",
@@ -2211,16 +2211,16 @@
     "$value": "{color.alias.gray.60}"
   },
   "kui-multiselect-group-font-family": {
-    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
-    "$description": "Multiselect dropdown group title font family."
+    "$description": "Multiselect dropdown group title font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-multiselect-group-font-weight": {
-    "$value": "500",
-    "$description": "Multiselect dropdown group title font weight."
+    "$description": "Multiselect dropdown group title font weight.",
+    "$value": "500"
   },
   "kui-multiselect-search-border-width": {
-    "$value": "1px",
-    "$description": "Multiselect dropdown search input wrapper bottom border width."
+    "$description": "Multiselect dropdown search input wrapper bottom border width.",
+    "$value": "1px"
   },
   "kui-multiselect-search-color-background": {
     "$description": "Multiselect dropdown search input wrapper background color.",
@@ -2418,8 +2418,8 @@
     "$value": "0px 0px 0px 1px {color.alias.gray.60} inset"
   },
   "kui-radio-shadow-border-hover": {
-    "$value": "0px 0px 0px 1px {color.alias.gray.60} inset",
-    "$description": "Radio border shadow on hover."
+    "$description": "Radio border shadow on hover.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.60} inset"
   },
   "kui-radio-shadow-focus": {
     "$description": "Radio focus ring shadow.",
@@ -2578,8 +2578,8 @@
     "$value": "0px 0px 0px 1px {color.alias.red.60} inset"
   },
   "kui-shadow-border-danger-strong": {
-    "$value": "0px 0px 0px 1px {color.alias.red.70} inset",
-    "$description": "Strong danger state inset border shadow."
+    "$description": "Strong danger state inset border shadow.",
+    "$value": "0px 0px 0px 1px {color.alias.red.70} inset"
   },
   "kui-shadow-border-disabled": {
     "$description": "Disabled state inset border shadow.",
@@ -2590,28 +2590,28 @@
     "$value": "0px 0px 0px 1px {color.alias.gray.60} inset"
   },
   "kui-shadow-border-primary-strongest": {
-    "$value": "0px 0px 0px 1px {color.alias.gray.90} inset",
-    "$description": "Strongest primary state inset border shadow."
+    "$description": "Strongest primary state inset border shadow.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.90} inset"
   },
   "kui-shadow-border-primary-weak": {
-    "$value": "0px 0px 0px 1px {color.alias.gray.60} inset",
-    "$description": "Weak primary state inset border shadow."
+    "$description": "Weak primary state inset border shadow.",
+    "$value": "0px 0px 0px 1px {color.alias.gray.60} inset"
   },
   "kui-shadow-focus": {
     "$description": "Focus ring drop shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
   },
   "kui-skeleton-border-radius": {
-    "$value": "4px",
-    "$description": "Skeleton placeholder box border radius."
+    "$description": "Skeleton placeholder box border radius.",
+    "$value": "4px"
   },
   "kui-skeleton-card-border-radius": {
-    "$value": "6px",
-    "$description": "Card skeleton wrapper border radius."
+    "$description": "Card skeleton wrapper border radius.",
+    "$value": "6px"
   },
   "kui-skeleton-card-border-width": {
-    "$value": "1px",
-    "$description": "Card skeleton wrapper border width."
+    "$description": "Card skeleton wrapper border width.",
+    "$value": "1px"
   },
   "kui-skeleton-card-color-border": {
     "$description": "Card skeleton wrapper border color.",
@@ -2630,8 +2630,8 @@
     "$value": "{color.alias.white}"
   },
   "kui-skeleton-progress-border-radius": {
-    "$value": "8px",
-    "$description": "Fullscreen skeleton progress bar (track and fill) border radius."
+    "$description": "Fullscreen skeleton progress bar (track and fill) border radius.",
+    "$value": "8px"
   },
   "kui-skeleton-progress-color-background": {
     "$description": "Fullscreen skeleton progress bar track background color.",
@@ -2642,8 +2642,8 @@
     "$value": "{color.alias.gray.70}"
   },
   "kui-skeleton-spinner-border-radius": {
-    "$value": "50%",
-    "$description": "Fullscreen generic spinner border radius."
+    "$description": "Fullscreen generic spinner border radius.",
+    "$value": "50%"
   },
   "kui-skeleton-spinner-color-border": {
     "$description": "Fullscreen generic spinner track (inactive) border color.",
@@ -2654,8 +2654,8 @@
     "$value": "{color.alias.gray.40}"
   },
   "kui-skeleton-table-border-width": {
-    "$value": "1px",
-    "$description": "Table skeleton row divider border width."
+    "$description": "Table skeleton row divider border width.",
+    "$value": "1px"
   },
   "kui-skeleton-table-color-border": {
     "$description": "Table skeleton row divider border color.",
@@ -2791,24 +2791,6 @@
   "kui-space-10": {
     "$value": "2px"
   },
-  "kui-space-100": {
-    "$value": "40px"
-  },
-  "kui-space-110": {
-    "$value": "48px"
-  },
-  "kui-space-120": {
-    "$value": "56px"
-  },
-  "kui-space-130": {
-    "$value": "64px"
-  },
-  "kui-space-140": {
-    "$value": "80px"
-  },
-  "kui-space-150": {
-    "$value": "96px"
-  },
   "kui-space-20": {
     "$value": "4px"
   },
@@ -2833,8 +2815,46 @@
   "kui-space-90": {
     "$value": "32px"
   },
+  "kui-space-100": {
+    "$value": "40px"
+  },
+  "kui-space-110": {
+    "$value": "48px"
+  },
+  "kui-space-120": {
+    "$value": "56px"
+  },
+  "kui-space-130": {
+    "$value": "64px"
+  },
+  "kui-space-140": {
+    "$value": "80px"
+  },
+  "kui-space-150": {
+    "$value": "96px"
+  },
   "kui-space-auto": {
     "$value": "auto"
+  },
+  "kui-status-color-1na": {
+    "$description": "Color for unknown response status codes in the 100-199 range.",
+    "$value": "{color.alias.blue.10}"
+  },
+  "kui-status-color-2na": {
+    "$description": "Color for unknown response status codes in the 200-299 range.",
+    "$value": "{color.alias.green.10}"
+  },
+  "kui-status-color-3na": {
+    "$description": "Color for unknown response status codes in the 300-399 range.",
+    "$value": "{color.alias.yellow.10}"
+  },
+  "kui-status-color-4na": {
+    "$description": "Color for unknown response status codes in the 400-499 range.",
+    "$value": "{color.alias.orange.10}"
+  },
+  "kui-status-color-5na": {
+    "$description": "Color for unknown response status codes in the 500-599 range.",
+    "$value": "{color.alias.red.10}"
   },
   "kui-status-color-100": {
     "$description": "Color representing response status code 100.",
@@ -2856,37 +2876,33 @@
     "$description": "Color representing response status code 103.",
     "$value": "{color.alias.blue.50}"
   },
-  "kui-status-color-1na": {
-    "$description": "Color for unknown response status codes in the 100-199 range.",
-    "$value": "{color.alias.blue.10}"
-  },
   "kui-status-color-200": {
-    "$value": "{color.alias.green.20}",
-    "$description": "Color representing response status code 200."
+    "$description": "Color representing response status code 200.",
+    "$value": "{color.alias.green.20}"
   },
   "kui-status-color-200s": {
     "$description": "Color for a group of response status codes in the 200-299 range.",
     "$value": "{color.alias.green.50}"
   },
   "kui-status-color-201": {
-    "$value": "{color.alias.green.30}",
-    "$description": "Color representing response status code 201."
+    "$description": "Color representing response status code 201.",
+    "$value": "{color.alias.green.30}"
   },
   "kui-status-color-202": {
-    "$value": "{color.alias.green.40}",
-    "$description": "Color representing response status code 202."
+    "$description": "Color representing response status code 202.",
+    "$value": "{color.alias.green.40}"
   },
   "kui-status-color-203": {
-    "$value": "{color.alias.green.50}",
-    "$description": "Color representing response status code 203."
+    "$description": "Color representing response status code 203.",
+    "$value": "{color.alias.green.50}"
   },
   "kui-status-color-204": {
-    "$value": "{color.alias.green.60}",
-    "$description": "Color representing response status code 204."
+    "$description": "Color representing response status code 204.",
+    "$value": "{color.alias.green.60}"
   },
   "kui-status-color-205": {
-    "$value": "{color.alias.green.70}",
-    "$description": "Color representing response status code 205."
+    "$description": "Color representing response status code 205.",
+    "$value": "{color.alias.green.70}"
   },
   "kui-status-color-206": {
     "$description": "Color representing response status code 206.",
@@ -2903,10 +2919,6 @@
   "kui-status-color-226": {
     "$description": "Color representing response status code 226.",
     "$value": "{color.alias.green.40}"
-  },
-  "kui-status-color-2na": {
-    "$value": "{color.alias.green.10}",
-    "$description": "Color for unknown response status codes in the 200-299 range."
   },
   "kui-status-color-300": {
     "$description": "Color representing response status code 100.",
@@ -2944,10 +2956,6 @@
     "$description": "Color representing response status code 103.",
     "$value": "{color.alias.yellow.30}"
   },
-  "kui-status-color-3na": {
-    "$value": "{color.alias.yellow.10}",
-    "$description": "Color for unknown response status codes in the 300-399 range."
-  },
   "kui-status-color-400": {
     "$description": "Color representing response status code 400.",
     "$value": "{color.alias.orange.20}"
@@ -2957,8 +2965,8 @@
     "$value": "{color.alias.orange.40}"
   },
   "kui-status-color-401": {
-    "$value": "{color.alias.orange.30}",
-    "$description": "Color representing response status code 401."
+    "$description": "Color representing response status code 401.",
+    "$value": "{color.alias.orange.30}"
   },
   "kui-status-color-402": {
     "$description": "Color representing response status code 402.",
@@ -2969,8 +2977,8 @@
     "$value": "{color.alias.orange.50}"
   },
   "kui-status-color-404": {
-    "$value": "{color.alias.orange.60}",
-    "$description": "Color representing response status code 404."
+    "$description": "Color representing response status code 404.",
+    "$value": "{color.alias.orange.60}"
   },
   "kui-status-color-405": {
     "$description": "Color representing response status code 405.",
@@ -2981,8 +2989,8 @@
     "$value": "{color.alias.orange.20}"
   },
   "kui-status-color-407": {
-    "$value": "{color.alias.orange.30}",
-    "$description": "Color representing response status code 407."
+    "$description": "Color representing response status code 407.",
+    "$value": "{color.alias.orange.30}"
   },
   "kui-status-color-408": {
     "$description": "Color representing response status code 408.",
@@ -2993,8 +3001,8 @@
     "$value": "{color.alias.orange.50}"
   },
   "kui-status-color-410": {
-    "$value": "{color.alias.orange.60}",
-    "$description": "Color representing response status code 410."
+    "$description": "Color representing response status code 410.",
+    "$value": "{color.alias.orange.60}"
   },
   "kui-status-color-411": {
     "$description": "Color representing response status code 411.",
@@ -3005,8 +3013,8 @@
     "$value": "{color.alias.orange.20}"
   },
   "kui-status-color-413": {
-    "$value": "{color.alias.orange.30}",
-    "$description": "Color representing response status code 413."
+    "$description": "Color representing response status code 413.",
+    "$value": "{color.alias.orange.30}"
   },
   "kui-status-color-414": {
     "$description": "Color representing response status code 414.",
@@ -3017,8 +3025,8 @@
     "$value": "{color.alias.orange.50}"
   },
   "kui-status-color-416": {
-    "$value": "{color.alias.orange.60}",
-    "$description": "Color representing response status code 416."
+    "$description": "Color representing response status code 416.",
+    "$value": "{color.alias.orange.60}"
   },
   "kui-status-color-417": {
     "$description": "Color representing response status code 417.",
@@ -3029,8 +3037,8 @@
     "$value": "{color.alias.orange.20}"
   },
   "kui-status-color-421": {
-    "$value": "{color.alias.orange.30}",
-    "$description": "Color representing response status code 421."
+    "$description": "Color representing response status code 421.",
+    "$value": "{color.alias.orange.30}"
   },
   "kui-status-color-422": {
     "$description": "Color representing response status code 422.",
@@ -3041,8 +3049,8 @@
     "$value": "{color.alias.orange.50}"
   },
   "kui-status-color-424": {
-    "$value": "{color.alias.orange.60}",
-    "$description": "Color representing response status code 424."
+    "$description": "Color representing response status code 424.",
+    "$value": "{color.alias.orange.60}"
   },
   "kui-status-color-425": {
     "$description": "Color representing response status code 425.",
@@ -3053,8 +3061,8 @@
     "$value": "{color.alias.orange.20}"
   },
   "kui-status-color-428": {
-    "$value": "{color.alias.orange.30}",
-    "$description": "Color representing response status code 428."
+    "$description": "Color representing response status code 428.",
+    "$value": "{color.alias.orange.30}"
   },
   "kui-status-color-429": {
     "$description": "Color representing response status code 429.",
@@ -3065,12 +3073,8 @@
     "$value": "{color.alias.orange.50}"
   },
   "kui-status-color-451": {
-    "$value": "{color.alias.orange.60}",
-    "$description": "Color representing response status code 451."
-  },
-  "kui-status-color-4na": {
-    "$description": "Color for unknown response status codes in the 400-499 range.",
-    "$value": "{color.alias.orange.10}"
+    "$description": "Color representing response status code 451.",
+    "$value": "{color.alias.orange.60}"
   },
   "kui-status-color-500": {
     "$description": "Color representing response status code 500.",
@@ -3093,8 +3097,8 @@
     "$value": "{color.alias.red.50}"
   },
   "kui-status-color-504": {
-    "$value": "{color.alias.red.60}",
-    "$description": "Color representing response status code 504."
+    "$description": "Color representing response status code 504.",
+    "$value": "{color.alias.red.60}"
   },
   "kui-status-color-505": {
     "$description": "Color representing response status code 505.",
@@ -3117,24 +3121,20 @@
     "$value": "{color.alias.red.50}"
   },
   "kui-status-color-511": {
-    "$value": "{color.alias.red.60}",
-    "$description": "Color representing response status code 511."
-  },
-  "kui-status-color-5na": {
-    "$description": "Color for unknown response status codes in the 500-599 range.",
-    "$value": "{color.alias.red.10}"
+    "$description": "Color representing response status code 511.",
+    "$value": "{color.alias.red.60}"
   },
   "kui-status-color-background-100": {
     "$description": "Background color for http status 100 elements.",
     "$value": "{color.alias.blue.10}"
   },
   "kui-status-color-background-200": {
-    "$value": "{color.alias.green.10}",
-    "$description": "Background color for http status 200 elements."
+    "$description": "Background color for http status 200 elements.",
+    "$value": "{color.alias.green.10}"
   },
   "kui-status-color-background-300": {
-    "$value": "{color.alias.yellow.10}",
-    "$description": "Background color for http status 300 elements."
+    "$description": "Background color for http status 300 elements.",
+    "$value": "{color.alias.yellow.10}"
   },
   "kui-status-color-background-400": {
     "$description": "Background color for http status 400 elements.",
@@ -3149,28 +3149,28 @@
     "$value": "{color.alias.blue.60}"
   },
   "kui-status-color-text-200": {
-    "$value": "{color.alias.green.60}",
-    "$description": "Text color for http status 200 elements."
+    "$description": "Text color for http status 200 elements.",
+    "$value": "{color.alias.green.60}"
   },
   "kui-status-color-text-300": {
     "$description": "Text color for http status 300 elements.",
     "$value": "{color.alias.yellow.60}"
   },
   "kui-status-color-text-400": {
-    "$value": "{color.alias.orange.60}",
-    "$description": "Text color for http status 400 elements."
+    "$description": "Text color for http status 400 elements.",
+    "$value": "{color.alias.orange.60}"
   },
   "kui-status-color-text-500": {
-    "$value": "{color.alias.red.60}",
-    "$description": "Text color for http status 500 elements."
+    "$description": "Text color for http status 500 elements.",
+    "$value": "{color.alias.red.60}"
   },
   "kui-stepper-border-radius": {
-    "$value": "50%",
-    "$description": "Stepper step indicator (circle) border radius."
+    "$description": "Stepper step indicator (circle) border radius.",
+    "$value": "50%"
   },
   "kui-stepper-border-width": {
-    "$value": "1px",
-    "$description": "Stepper step indicator (circle) border width, applied to incomplete (default) steps."
+    "$description": "Stepper step indicator (circle) border width, applied to incomplete (default) steps.",
+    "$value": "1px"
   },
   "kui-stepper-color-background": {
     "$description": "Stepper step indicator (circle) background color for incomplete (default) and pending steps.",
@@ -3217,12 +3217,12 @@
     "$value": "{color.alias.gray.60}"
   },
   "kui-stepper-font-family": {
-    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
-    "$description": "Stepper step label font family."
+    "$description": "Stepper step label font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-stepper-font-weight": {
-    "$value": "600",
-    "$description": "Stepper step number and label font weight."
+    "$description": "Stepper step number and label font weight.",
+    "$value": "600"
   },
   "kui-table-cell-color-text": {
     "$description": "Table body cell text color.",
@@ -3513,12 +3513,12 @@
     "$value": "6px"
   },
   "kui-tree-list-border-radius": {
-    "$value": "4px",
-    "$description": "Tree list item border radius (also applied to the expand/collapse toggle focus ring)."
+    "$description": "Tree list item border radius (also applied to the expand/collapse toggle focus ring).",
+    "$value": "4px"
   },
   "kui-tree-list-border-width": {
-    "$value": "1px",
-    "$description": "Tree list item border width."
+    "$description": "Tree list item border width.",
+    "$value": "1px"
   },
   "kui-tree-list-color-background": {
     "$description": "Tree list item background color.",
@@ -3561,16 +3561,16 @@
     "$value": "{color.alias.gray.70}"
   },
   "kui-tree-list-font-family": {
-    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif",
-    "$description": "Tree list font family."
+    "$description": "Tree list font family.",
+    "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
   "kui-tree-list-font-weight": {
-    "$value": "400",
-    "$description": "Tree list item font weight."
+    "$description": "Tree list item font weight.",
+    "$value": "400"
   },
   "kui-tree-list-padding": {
-    "$value": "6px",
-    "$description": "Tree list item padding."
+    "$description": "Tree list item padding.",
+    "$value": "6px"
   },
   "kui-tree-list-shadow-focus": {
     "$description": "Tree list item focus-visible shadow (focus ring).",

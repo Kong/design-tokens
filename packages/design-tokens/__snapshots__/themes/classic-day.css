@@ -149,7 +149,6 @@
     --kui-font-family-heading: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-font-size-10: 10px;
-    --kui-font-size-100: 48px;
     --kui-font-size-20: 12px;
     --kui-font-size-30: 14px;
     --kui-font-size-40: 16px;
@@ -158,6 +157,7 @@
     --kui-font-size-70: 24px;
     --kui-font-size-80: 32px;
     --kui-font-size-90: 40px;
+    --kui-font-size-100: 48px;
     --kui-font-weight-bold: 700;
     --kui-font-weight-medium: 500;
     --kui-font-weight-regular: 400;
@@ -183,7 +183,6 @@
     --kui-letter-spacing-minus-50: -0.48px;
     --kui-letter-spacing-normal: normal;
     --kui-line-height-10: 12px;
-    --kui-line-height-100: 56px;
     --kui-line-height-20: 16px;
     --kui-line-height-30: 20px;
     --kui-line-height-40: 24px;
@@ -192,6 +191,7 @@
     --kui-line-height-70: 36px;
     --kui-line-height-80: 40px;
     --kui-line-height-90: 48px;
+    --kui-line-height-100: 56px;
     --kui-method-color-background-connect: #F1F0FF;
     --kui-method-color-background-delete: #FFE5E5;
     --kui-method-color-background-get: #EEFAFF;
@@ -242,12 +242,6 @@
     --kui-shadow-focus: 0px 0px 0px 4px rgba(0, 68, 244, 0.2);
     --kui-space-0: 0px;
     --kui-space-10: 2px;
-    --kui-space-100: 40px;
-    --kui-space-110: 48px;
-    --kui-space-120: 56px;
-    --kui-space-130: 64px;
-    --kui-space-140: 80px;
-    --kui-space-150: 96px;
     --kui-space-20: 4px;
     --kui-space-30: 6px;
     --kui-space-40: 8px;
@@ -256,13 +250,23 @@
     --kui-space-70: 20px;
     --kui-space-80: 24px;
     --kui-space-90: 32px;
+    --kui-space-100: 40px;
+    --kui-space-110: 48px;
+    --kui-space-120: 56px;
+    --kui-space-130: 64px;
+    --kui-space-140: 80px;
+    --kui-space-150: 96px;
     --kui-space-auto: auto;
+    --kui-status-color-1na: #EEFAFF;
+    --kui-status-color-2na: #ECFFFB;
+    --kui-status-color-3na: #FFFCE0;
+    --kui-status-color-4na: #FFF1EF;
+    --kui-status-color-5na: #FFE5E5;
     --kui-status-color-100: #BEE2FF;
     --kui-status-color-100s: #5F9AFF;
     --kui-status-color-101: #8FC1FF;
     --kui-status-color-102: #5F9AFF;
     --kui-status-color-103: #306FFF;
-    --kui-status-color-1na: #EEFAFF;
     --kui-status-color-200: #B5FFEE;
     --kui-status-color-200s: #00D6A4;
     --kui-status-color-201: #00FABE;
@@ -274,7 +278,6 @@
     --kui-status-color-207: #00FABE;
     --kui-status-color-208: #B5FFEE;
     --kui-status-color-226: #00A17B;
-    --kui-status-color-2na: #ECFFFB;
     --kui-status-color-300: #FFF296;
     --kui-status-color-300s: #FFC400;
     --kui-status-color-301: #FFE04B;
@@ -284,7 +287,6 @@
     --kui-status-color-305: #804400;
     --kui-status-color-307: #FFF296;
     --kui-status-color-308: #FFE04B;
-    --kui-status-color-3na: #FFFCE0;
     --kui-status-color-400: #FFC2B3;
     --kui-status-color-400s: #FF723C;
     --kui-status-color-401: #FF9877;
@@ -315,7 +317,6 @@
     --kui-status-color-429: #FF723C;
     --kui-status-color-431: #F75008;
     --kui-status-color-451: #D13500;
-    --kui-status-color-4na: #FFF1EF;
     --kui-status-color-500: #FFABAB;
     --kui-status-color-500s: #FF3954;
     --kui-status-color-501: #FF7272;
@@ -328,7 +329,6 @@
     --kui-status-color-508: #FF3954;
     --kui-status-color-510: #F50045;
     --kui-status-color-511: #D60027;
-    --kui-status-color-5na: #FFE5E5;
     --kui-status-color-background-100: #EEFAFF;
     --kui-status-color-background-200: #ECFFFB;
     --kui-status-color-background-300: #FFFCE0;
