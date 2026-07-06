@@ -59,9 +59,27 @@ if (!KEBAB_CASE.test(name)) {
   process.exit(1)
 }
 
+// These three flags are substituted verbatim into gallery.html: kpCss into a double-quoted href
+// attribute, kpEsm into a single-quoted JS string inside a <script type="module"> (see gallery.html
+// lines 22/76). Unvalidated, a value containing `"`, `'`, `<`, or whitespace could break out of
+// that context and inject HTML/JS into the locally-served preview page. Restrict each to a charset
+// that can't escape its context, rather than trying to escape after the fact.
+const DIST_TAG_OR_SEMVER = /^[a-zA-Z0-9][a-zA-Z0-9._-]*$/
 const kpVersion = opt('--kongponents', 'latest')
-const kpCss = opt('--kongponents-css', `https://unpkg.com/@kong/kongponents@${kpVersion}/dist/kongponents.css`)
-const kpEsm = opt('--kongponents-esm', `https://esm.sh/@kong/kongponents@${kpVersion}?external=vue,vue-router`)
+if (!DIST_TAG_OR_SEMVER.test(kpVersion)) {
+  console.error(`--kongponents "${kpVersion}" must be a plain version/dist-tag (letters, digits, dot, hyphen, underscore).`)
+  process.exit(1)
+}
+const SAFE_HTTPS_URL = /^https:\/\/[^\s"'<>`\\]+$/
+function validatedUrl(flag, value) {
+  if (!SAFE_HTTPS_URL.test(value)) {
+    console.error(`${flag} "${value}" must be an https URL with no quotes, angle brackets, or whitespace.`)
+    process.exit(1)
+  }
+  return value
+}
+const kpCss = validatedUrl('--kongponents-css', opt('--kongponents-css', `https://unpkg.com/@kong/kongponents@${kpVersion}/dist/kongponents.css`))
+const kpEsm = validatedUrl('--kongponents-esm', opt('--kongponents-esm', `https://esm.sh/@kong/kongponents@${kpVersion}?external=vue,vue-router`))
 
 const themeCss = join(PKG, 'dist', 'themes', `${name}.css`)
 if (!existsSync(themeCss)) {
