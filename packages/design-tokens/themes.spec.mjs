@@ -5,24 +5,28 @@
  *   - exhaustive themes (konnect-day, konnect-night) contain EXACTLY KUI_THEMEABLE_TOKENS;
  *   - semantic-only themes (classic-day, classic-night) contain every semantic token and ZERO
  *     component tokens;
- *   - every alias palette matches the names-only `_manifest.json` key set, with value-derived
- *     `$description`s, and every compiled theme color traces to that theme's own palette;
- *   - every theme file follows the `<theme-name>.theme.json` naming convention, and every alias
- *     palette its companion `<theme-name>.alias.json` convention;
+ *   - every alias palette matches the names-only `_manifest.alias.color.json` key set, with
+ *     value-derived `$description`s, and every compiled theme color traces to that theme's own palette;
+ *   - every theme file follows the `<theme-name>/<theme-name>.theme.json` naming convention, and every
+ *     alias palette its companion `<theme-name>/<theme-name>.alias.color.json` convention;
  *   - the per-theme alias build wiring throws (never silently falls back) for a misconfigured theme;
  *   - classic-day's and classic-night's resolved output is frozen by golden snapshots.
  *
  * All reads target the repo's own source/dist; nothing on disk is modified by the tests.
  */
 
-import { describe, it, expect, beforeAll } from 'vitest'
-import { readFile } from 'node:fs/promises'
-import { readdirSync } from 'node:fs'
+import { describe, it, expect, beforeAll, beforeEach, afterEach } from 'vitest'
+import StyleDictionary from 'style-dictionary'
+import { logVerbosityLevels } from 'style-dictionary/enums'
+import { readFile, writeFile, mkdir, mkdtemp, rm } from 'node:fs/promises'
+import { readdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { tmpdir } from 'node:os'
 
 import { manifestLeaves, paletteLeaves } from './scripts/alias-manifest.mjs'
-import { aliasIncludesFor, THEME_BREAKPOINTS, injectThemeBreakpoints } from './platforms/themes.mjs'
+import { aliasIncludesFor, THEME_BREAKPOINTS, SEMANTIC_ONLY_THEMES, injectThemeBreakpoints, discoverThemes, createThemePlatforms } from './platforms/themes.mjs'
+import { flattenTokenTree } from './utilities/token-tree.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = __dirname
@@ -34,25 +38,14 @@ const ROOT = __dirname
 // lets the theme-creation skill's scaffold add a theme without touching themes.spec.mjs.
 
 /**
- * The ONLY non-exhaustive themes: they contain every SEMANTIC token and ZERO component tokens.
- *
- * `classic-day` is the default theme (the resolved `:root` exports) and `classic-night` is its dark
- * counterpart — identical alias palette, with a handful of semantic tokens (text/border/background)
- * re-pointed to darker steps. Both deliberately set no component tokens, so every component falls
- * through to its semantic default via the `var()` chain. To add another semantic-only theme, list
- * it here; anything not listed is treated as exhaustive.
- */
-const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
-
-/**
  * Every theme file on disk (`themes/*.theme.json`, excluding `_`-prefixed partials), minus the
  * semantic-only opt-outs above, is exhaustive — derived from the directory so classification needs
  * no manual bookkeeping. "Exhaustive" can't be inferred from a filename, but "everything that
  * isn't one of the two known semantic-only themes" can, and that is the actual policy.
  */
-const ALL_THEMES = readdirSync(join(ROOT, 'themes'))
-  .filter(f => f.endsWith('.theme.json') && !f.startsWith('_'))
-  .map(f => f.slice(0, -'.theme.json'.length))
+const ALL_THEMES = readdirSync(join(ROOT, 'themes'), { withFileTypes: true })
+  .filter(e => e.isDirectory() && !e.name.startsWith('_'))
+  .map(e => e.name)
   .sort()
 
 /** Themes that MUST contain every themeable token (semantic + component). */
@@ -82,19 +75,9 @@ async function getThemeableTokens() {
 async function getComponentTokenNames() {
   const dir = join(ROOT, 'tokens', 'components')
   const names = new Set()
-  const walk = (node, path) => {
-    if (node && node.$value !== undefined) {
-      names.add('kui-' + path.filter(s => s !== '_').map(s => s.replace(/[\W_]+/g, '-')).join('-'))
-      return
-    }
-    if (node && typeof node === 'object') {
-      for (const [key, value] of Object.entries(node)) {
-        if (!key.startsWith('$')) walk(value, [...path, key])
-      }
-    }
-  }
   for (const file of readdirSync(dir).filter(f => f.endsWith('.json'))) {
-    walk(JSON.parse(await readFile(join(dir, file), 'utf-8')), [])
+    const tree = JSON.parse(await readFile(join(dir, file), 'utf-8'))
+    for (const { name } of flattenTokenTree(tree)) names.add(name)
   }
   return names
 }
@@ -107,14 +90,28 @@ beforeAll(async () => {
 })
 
 /**
- * Read a theme file from the repo's own `themes/` directory. Self-contained:
+ * Read a theme file from the repo's own `themes/<name>/` directory. Self-contained:
  * the suite reads only design-tokens' own source, never external artifacts.
  *
  * @param {string} name - Theme name (no extension).
  * @returns {Promise<Record<string, object>>}
  */
 async function loadTheme(name) {
-  return JSON.parse(await readFile(join(ROOT, 'themes', `${name}.theme.json`), 'utf-8'))
+  return JSON.parse(await readFile(join(ROOT, 'themes', name, `${name}.theme.json`), 'utf-8'))
+}
+
+/**
+ * Set-membership diff, sorted for stable/readable assertion failure messages: names `expected`
+ * but absent from `actual` ("missing"), and names in `actual` not in `expected` ("extra").
+ * @param {Set<string>} expected
+ * @param {Set<string>} actual
+ * @returns {{ missing: string[], extra: string[] }}
+ */
+function diffSets(expected, actual) {
+  return {
+    missing: [...expected].filter(k => !actual.has(k)).sort(),
+    extra: [...actual].filter(k => !expected.has(k)).sort(),
+  }
 }
 
 describe('drift guard: exhaustive themes contain exactly KUI_THEMEABLE_TOKENS', () => {
@@ -128,8 +125,7 @@ describe('drift guard: exhaustive themes contain exactly KUI_THEMEABLE_TOKENS', 
       const expected = new Set(themeable.map(t => t.slice(2)).filter(t => !buildInjected.has(t)))
       const actual = new Set(Object.keys(theme))
 
-      const missing = [...expected].filter(k => !actual.has(k)).sort()
-      const extra = [...actual].filter(k => !expected.has(k)).sort()
+      const { missing, extra } = diffSets(expected, actual)
 
       // Surface specific names on failure.
       expect(missing, `MISSING tokens in ${themeName}: ${missing.join(', ')}`).toEqual([])
@@ -151,11 +147,11 @@ describe('drift guard: semantic-only themes are semantic-complete and component-
       const expected = new Set(themeable.map(t => t.slice(2)).filter(t => !componentNames.has(t) && !buildInjected.has(t)))
       const actual = new Set(Object.keys(theme))
 
-      const missing = [...expected].filter(k => !actual.has(k)).sort()
+      const { missing, extra: rawExtra } = diffSets(expected, actual)
       // Component-freeness is the verifiable fallthrough guarantee (the repo can't
       // verify a snapshot equals its semantic fallback
       const componentPresent = [...actual].filter(k => componentNames.has(k)).sort()
-      const extra = [...actual].filter(k => !expected.has(k) && !componentNames.has(k)).sort()
+      const extra = rawExtra.filter(k => !componentNames.has(k))
 
       expect(missing, `MISSING semantic tokens in ${themeName}: ${missing.join(', ')}`).toEqual([])
       expect(componentPresent, `${themeName} must set NO component tokens (fallthrough by omission); found: ${componentPresent.join(', ')}`).toEqual([])
@@ -176,45 +172,92 @@ describe('theme classification stays in sync with themes/', () => {
   })
 })
 
-describe('theme files follow the <theme-name>.theme.json naming convention', () => {
-  // Enforces the same rule the build enforces (platforms/themes.mjs discoverThemes): a stray theme JSON
-  // that does not end in `.theme.json` fails here with its name, instead of being silently skipped by
-  // the build's discovery filter.
-  it('every non-internal .json in themes/ is named <theme-name>.theme.json', () => {
-    const offenders = readdirSync(join(ROOT, 'themes'))
-      .filter(f => f.endsWith('.json') && !f.startsWith('_') && !f.endsWith('.theme.json'))
-      .sort()
-    expect(offenders, `Theme file(s) must be named <theme-name>.theme.json; rename: ${offenders.join(', ')}`).toEqual([])
+describe('theme files follow the <theme-name>/<theme-name>.theme.json naming convention', () => {
+  // Enforces the same rule the build enforces (platforms/themes.mjs discoverThemes): a theme
+  // directory whose matching `<name>.theme.json` is missing fails here with its name, instead of
+  // being silently skipped by the build's discovery filter.
+  it('every non-internal directory in themes/ contains <theme-name>.theme.json', () => {
+    const offenders = ALL_THEMES.filter(name => !existsSync(join(ROOT, 'themes', name, `${name}.theme.json`))).sort()
+    expect(offenders, `Theme directory must contain <theme-name>.theme.json; missing for: ${offenders.join(', ')}`).toEqual([])
   })
 })
 
-const ALIAS_DIR = join(ROOT, 'tokens', 'alias', 'color')
-// Auto-discover every palette file. Palettes are named `<theme-name>.alias.json` to mirror their
-// companion `themes/<theme-name>.theme.json`; `_manifest.json` and any other `_`-prefixed internal
-// file are excluded. A newly added palette is enrolled in these guards without editing this test.
-const PALETTE_FILES = readdirSync(ALIAS_DIR).filter(f => f.endsWith('.alias.json') && !f.startsWith('_'))
+describe('discoverThemes (build-time discovery — direct unit test, isolated temp dir)', () => {
+  // The check above only re-derives ALL_THEMES from directories it already found on disk; it can't
+  // catch discoverThemes() itself failing to reject something that was never a directory in the
+  // first place. A stray file directly in themes/ (e.g. the pre-refactor flat `<name>.theme.json`
+  // convention, authored by habit or an out-of-date doc) must still be a hard build error, not
+  // silently invisible to the build.
+  let themesRoot
 
-describe('alias palettes follow the <theme-name>.alias.json naming convention', () => {
-  // Palettes correspond 1:1 with themes/<theme-name>.theme.json. Enforce the `.alias.json` suffix so a
-  // stray/mis-named palette fails here with its name instead of being silently skipped by the discovery
-  // filter above (which would drop it out of the drift, $description, and off-source guards).
-  it('every non-internal .json in tokens/alias/color/ is named <theme-name>.alias.json', () => {
-    const offenders = readdirSync(ALIAS_DIR)
-      .filter(f => f.endsWith('.json') && !f.startsWith('_') && !f.endsWith('.alias.json'))
-      .sort()
-    expect(offenders, `Alias palette(s) must be named <theme-name>.alias.json; rename: ${offenders.join(', ')}`).toEqual([])
+  beforeEach(async () => {
+    themesRoot = await mkdtemp(join(tmpdir(), 'discover-themes-test-'))
+  })
+
+  afterEach(async () => {
+    await rm(themesRoot, { recursive: true, force: true })
+  })
+
+  it('discovers conforming theme directories, sorted by name', async () => {
+    for (const name of ['zebra', 'acme']) {
+      await mkdir(join(themesRoot, name), { recursive: true })
+      await writeFile(join(themesRoot, name, `${name}.theme.json`), '{}', 'utf-8')
+    }
+    const themes = await discoverThemes(themesRoot)
+    expect(themes.map(t => t.name)).toEqual(['acme', 'zebra'])
+  })
+
+  it('skips `_`-prefixed files and directories without treating them as themes or errors', async () => {
+    await mkdir(join(themesRoot, 'real-theme'), { recursive: true })
+    await writeFile(join(themesRoot, 'real-theme', 'real-theme.theme.json'), '{}', 'utf-8')
+    await writeFile(join(themesRoot, '_manifest.alias.color.json'), '{}', 'utf-8')
+    const themes = await discoverThemes(themesRoot)
+    expect(themes.map(t => t.name)).toEqual(['real-theme'])
+  })
+
+  it('hard-errors on a stray FILE directly in themes/ (e.g. the pre-refactor flat theme.json convention) instead of silently ignoring it', async () => {
+    await writeFile(join(themesRoot, 'stray.theme.json'), '{}', 'utf-8')
+    await expect(discoverThemes(themesRoot)).rejects.toThrow(/stray\.theme\.json/)
+  })
+
+  it('hard-errors on a theme directory missing its <name>.theme.json', async () => {
+    await mkdir(join(themesRoot, 'incomplete'), { recursive: true })
+    await expect(discoverThemes(themesRoot)).rejects.toThrow(/incomplete/)
   })
 })
 
-describe('drift guard: alias palettes contain exactly the _manifest.json key set', () => {
+// Auto-discover every palette file, co-located with its theme at `themes/<name>/<name>.alias.color.json`.
+// A newly added palette is enrolled in these guards without editing this test.
+const PALETTE_FILES = ALL_THEMES
+  .filter(name => existsSync(join(ROOT, 'themes', name, `${name}.alias.color.json`)))
+  .map(name => join(name, `${name}.alias.color.json`))
+const ALIAS_DIR = join(ROOT, 'themes')
+const MANIFEST_PATH = join(ROOT, 'themes', '_manifest.alias.color.json')
+
+describe('alias palettes follow the <theme-name>/<theme-name>.alias.color.json naming convention', () => {
+  // Palettes correspond 1:1 with themes/<theme-name>/<theme-name>.theme.json. Enforce the co-located
+  // `<theme-name>.alias.color.json` name so a stray/mis-named palette fails here with its name instead
+  // of being silently skipped by the discovery filter above (which would drop it out of the drift,
+  // $description, and off-source guards).
+  it('every theme directory that references color aliases has a matching <theme-name>.alias.color.json', () => {
+    const offenders = ALL_THEMES.filter(name => {
+      const files = readdirSync(join(ROOT, 'themes', name))
+      const hasAliasFile = files.includes(`${name}.alias.color.json`)
+      const strayAliasFiles = files.filter(f => f.endsWith('.alias.color.json') && f !== `${name}.alias.color.json`)
+      return strayAliasFiles.length > 0 && !hasAliasFile
+    }).sort()
+    expect(offenders, `Alias palette(s) must be named <theme-name>.alias.color.json; check: ${offenders.join(', ')}`).toEqual([])
+  })
+})
+
+describe('drift guard: alias palettes contain exactly the manifest key set', () => {
   for (const file of PALETTE_FILES) {
     it(`${file} contains exactly the manifest aliases (no missing, no extra)`, async () => {
-      const manifest = JSON.parse(await readFile(join(ALIAS_DIR, '_manifest.json'), 'utf-8'))
+      const manifest = JSON.parse(await readFile(MANIFEST_PATH, 'utf-8'))
       const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
       const expected = manifestLeaves(manifest)
       const actual = paletteLeaves(palette)
-      const missing = [...expected].filter(k => !actual.has(k)).sort()
-      const extra = [...actual].filter(k => !expected.has(k)).sort()
+      const { missing, extra } = diffSets(expected, actual)
       expect(missing, `${file} MISSING aliases: ${missing.join(', ')}`).toEqual([])
       expect(extra, `${file} EXTRA aliases: ${extra.join(', ')}`).toEqual([])
     })
@@ -228,15 +271,10 @@ describe('alias palette $description is value-derived', () => {
     it(`${file} color entries match "Alias for <value>."`, async () => {
       const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
       const stale = []
-      const walk = (node) => {
-        if (node && typeof node === 'object' && node.$value !== undefined) {
-          const expected = `Alias for ${node.$value}.`
-          if (node.$description !== expected) stale.push(`${node.$value}: got "${node.$description}"`)
-          return
-        }
-        if (node && typeof node === 'object') for (const child of Object.values(node)) walk(child)
+      for (const { value, description } of flattenTokenTree(palette.color.alias)) {
+        const expected = `Alias for ${value}.`
+        if (description !== expected) stale.push(`${value}: got "${description}"`)
       }
-      walk(palette.color.alias)
       expect(stale, `${file} non-value-derived $descriptions: ${stale.join('; ')}`).toEqual([])
     })
   }
@@ -255,18 +293,13 @@ describe('every theme color resolves to a value in its own alias palette (no off
   const rgbToHex = (r, g, b) => '#' + [r, g, b].map(x => Number(x).toString(16).padStart(2, '0')).join('')
 
   for (const file of PALETTE_FILES) {
-    const name = file.slice(0, -'.alias.json'.length)
+    const name = file.split('/')[0]
     it(`${name}.css renders only colors present in ${file}`, async () => {
       const palette = JSON.parse(await readFile(join(ALIAS_DIR, file), 'utf-8'))
       const palVals = new Set()
-      const collect = (node) => {
-        if (node && typeof node === 'object' && node.$value !== undefined) {
-          if (typeof node.$value === 'string' && node.$value.startsWith('#')) palVals.add(normalizeColor(node.$value))
-          return
-        }
-        if (node && typeof node === 'object') for (const child of Object.values(node)) collect(child)
+      for (const { value } of flattenTokenTree(palette.color.alias)) {
+        if (typeof value === 'string' && value.startsWith('#')) palVals.add(normalizeColor(value))
       }
-      collect(palette.color.alias)
 
       const css = await readFile(join(ROOT, 'dist', 'themes', `${name}.css`), 'utf-8')
       const off = new Set()
@@ -321,12 +354,61 @@ describe('build wiring: injectThemeBreakpoints preprocessor', () => {
 
 describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => {
   it('includes the per-theme palette when it exists', () => {
-    expect(aliasIncludesFor('konnect-day', true, null)).toEqual(['./tokens/alias/color/konnect-day.alias.json'])
+    expect(aliasIncludesFor('konnect-day', true, null)).toEqual(['./themes/konnect-day/konnect-day.alias.color.json'])
   })
 
   it('throws when an alias-using theme has no palette (no silent fallback)', () => {
     const theme = { 'kui-color-text': { $value: '{color.alias.gray.10}' } }
     expect(() => aliasIncludesFor('konnect-contrast', false, theme)).toThrow(/references \{color\.alias/)
+  })
+})
+
+describe('build wiring: an unfilled component token ($value === \'\') is OMITTED from compiled output, never emitted as `--x: ;` or `--x: initial;`', () => {
+  // Per the CSS Custom Properties spec, var(--x, fallback) only uses `fallback` when --x is
+  // "guaranteed-invalid" (never declared at all). An explicitly empty declaration does NOT reach
+  // that state, so the component→semantic fallback chain would silently break; explicitly setting
+  // `initial` DOES reach it, but as an active reset that could override a value legitimately set by
+  // a host app, a nested theme, or a spread-in base object. True omission has neither problem — see
+  // createThemePlatforms's docstring in platforms/themes.mjs for the full reasoning.
+  let themesRoot, distDir
+
+  beforeEach(async () => {
+    themesRoot = await mkdtemp(join(tmpdir(), 'omit-empty-test-'))
+    distDir = await mkdtemp(join(tmpdir(), 'omit-empty-dist-'))
+  })
+
+  afterEach(async () => {
+    await rm(themesRoot, { recursive: true, force: true })
+    await rm(distDir, { recursive: true, force: true })
+  })
+
+  it('compiles a filled token but completely omits an unfilled ($value: "") one, in both CSS and JS output', async () => {
+    const name = 'omit-empty-test-theme'
+    await mkdir(join(themesRoot, name), { recursive: true })
+    await writeFile(
+      join(themesRoot, name, `${name}.theme.json`),
+      JSON.stringify({
+        'kui-button-border-radius-medium': { $value: '' },
+        'kui-space-40': { $value: '16px' },
+      }, null, 2),
+      'utf-8',
+    )
+
+    const sd = new StyleDictionary({
+      log: { verbosity: logVerbosityLevels.silent }, // don't spam volatile temp-dir paths to test output
+      source: [join(themesRoot, name, `${name}.theme.json`)],
+      preprocessors: ['inject-theme-breakpoints'],
+      platforms: createThemePlatforms(name, 'omitEmptyTestTheme', distDir),
+    })
+    await sd.buildAllPlatforms()
+
+    const css = await readFile(join(distDir, `${name}.css`), 'utf-8')
+    expect(css).toContain('--kui-space-40: 16px;')
+    expect(css).not.toContain('kui-button-border-radius-medium')
+
+    const js = await readFile(join(distDir, `${name}.mjs`), 'utf-8')
+    expect(js).toContain("'--kui-space-40': \"16px\"")
+    expect(js).not.toContain('kui-button-border-radius-medium')
   })
 })
 
@@ -358,5 +440,10 @@ describe('semantic token exports are unchanged (golden snapshot)', () => {
   it('dist/tokens/scss/_variables.scss resolved output remains unchanged', async () => {
     const css = await readFile(join(ROOT, 'dist', 'tokens', 'scss', '_variables.scss'), 'utf-8')
     await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'tokens', 'scss', '_variables.scss'))
+  })
+
+  it('dist/tokens/themeable-tokens/index.mjs resolved output remains unchanged', async () => {
+    const css = await readFile(join(ROOT, 'dist', 'tokens', 'themeable-tokens', 'index.mjs'), 'utf-8')
+    await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'tokens', 'themeable-tokens', 'index.mjs'))
   })
 })

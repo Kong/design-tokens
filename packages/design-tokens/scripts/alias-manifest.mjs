@@ -2,7 +2,7 @@
  * Shared helpers for the color-alias manifest contract, used by the drift guard in `themes.spec.mjs`.
  * Tolerant of malformed nodes so a mis-authored palette surfaces as a named diff, not a crash.
  *
- * Manifest representation (`tokens/alias/color/_manifest.json`, names only):
+ * Manifest representation (`themes/_manifest.alias.color.json`, names only):
  *   - a family mapped to `[]` (empty array) is a single direct-value leaf, e.g. `white` → `color.alias.white`
  *   - a family mapped to a non-empty step-name array lists its stepped leaves, e.g. `gray` → `color.alias.gray.05`
  *   (legacy `null` is also accepted as a singleton for backwards-compatibility)
