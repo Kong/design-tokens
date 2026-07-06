@@ -1,4 +1,4 @@
-# @kong/skills
+# @kong/design-token-skills
 
 Claude skills for the `design-tokens` monorepo. This package is not published — it's a home
 for reusable [Claude Code skills](https://docs.claude.com/en/docs/claude-code/skills) that
