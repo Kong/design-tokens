@@ -97,9 +97,3 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
 ## Known documentation discrepancies (don't chase these)
 - Some generated headers/comments mention a `pnpm build:themes` script that **doesn't exist** —
   theme building is part of `build:tokens` (and `pnpm test`'s pretest).
-- Docs outside this skill (READMEs, other packages) may still describe the pre-refactor
-  layout (`themes/<name>.theme.json` + `tokens/alias/color/<name>.alias.json`, a `konnect-*`
-  scaffold donor, a `#FF00FF` placeholder palette). The current layout is co-located
-  (`themes/<name>/<name>.theme.json` + `themes/<name>/<name>.alias.color.json`), generated from
-  the source token tree, seeded from `classic-day` — see `token-model.md`. Fix the doc if you're
-  already there for another reason; don't go chase it otherwise (see `SKILL.md`'s Scope guardrail).

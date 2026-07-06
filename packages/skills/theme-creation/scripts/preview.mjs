@@ -29,7 +29,7 @@
 
 import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join } from 'node:path'
+import { dirname, join, sep } from 'node:path'
 import { createServer } from 'node:http'
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
@@ -46,6 +46,17 @@ const name = args.find((a, i) => !a.startsWith('--') && !args[i - 1]?.startsWith
 const port = Number(opt('--port', 0)) || 8747
 if (!name) {
   console.error('Usage: node preview.mjs <theme-name> [--port N] [--kongponents <version|tag>]'); process.exit(1)
+}
+
+// `name` flows into a filesystem path (dist/themes/${name}.css below) and, unescaped, into the
+// generated HTML (data-kui-theme="${name}" and the <h2> label) — mirror theme-scaffold.mjs's
+// KEBAB_CASE rule so neither a path-traversal segment nor an HTML/attribute-breaking value can
+// reach either sink. A real theme name is always kebab-case anyway, so this never rejects a
+// legitimate one.
+const KEBAB_CASE = /^[a-z][a-z0-9]*(-[a-z][a-z0-9]*)*$/
+if (!KEBAB_CASE.test(name)) {
+  console.error(`Theme name "${name}" must be kebab-case (lowercase letters/digits, hyphen-separated).`)
+  process.exit(1)
 }
 
 const kpVersion = opt('--kongponents', 'latest')
@@ -87,8 +98,22 @@ writeFileSync(join(OUT, 'index.html'), `<!doctype html><html><head><meta charset
 
 const types = { '.html': 'text/html', '.css': 'text/css' }
 createServer((req, res) => {
-  const file = join(OUT, decodeURIComponent(req.url).replace(/^\//, '').split('?')[0] || 'index.html')
-  if (!file.startsWith(OUT) || !existsSync(file)) {
+  let decoded
+  try {
+    decoded = decodeURIComponent(req.url)
+  } catch {
+    // malformed percent-encoding (e.g. a bare "%") throws URIError — reject instead of crashing
+    // the whole server on one bad request.
+    res.writeHead(400); res.end('bad request'); return
+  }
+  const relative = decoded.replace(/^\//, '').split('?')[0] || 'index.html'
+  if (relative.split('/').includes('..')) {
+    res.writeHead(400); res.end('bad request'); return
+  }
+  const file = join(OUT, relative)
+  // `startsWith(OUT)` alone isn't a real directory-boundary check (it'd also match a sibling dir
+  // like `${OUT}-evil`) — require the resolved path to be OUT itself or nested under it.
+  if ((file !== OUT && !file.startsWith(OUT + sep)) || !existsSync(file)) {
     res.writeHead(404); res.end('not found'); return
   }
   const ext = file.slice(file.lastIndexOf('.'))

@@ -61,9 +61,9 @@ that references `{color.alias.*}` with no matching `<name>.alias.color.json` als
 
 ## Theme classes
 
-`themes.spec.mjs` defines two token-set policies, and **exhaustive is the default**: every theme
-in `themes/` is treated as exhaustive unless it's explicitly named in the `SEMANTIC_ONLY_THEMES`
-opt-out list.
+Two token-set policies exist, and **exhaustive is the default**: every theme in `themes/` is
+treated as exhaustive unless it's explicitly named in the `SEMANTIC_ONLY_THEMES` opt-out list
+(defined in `platforms/themes.mjs`; `themes.spec.mjs` imports it to enforce the policy).
 
 - **Exhaustive** (the default; `konnect-day`, `konnect-night`, and any new theme): must contain
   **exactly** `KUI_THEMEABLE_TOKENS` — every semantic token *and* every component token. Nothing
