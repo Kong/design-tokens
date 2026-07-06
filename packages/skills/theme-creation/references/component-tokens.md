@@ -4,7 +4,7 @@ A theme that only sets semantic color tokens (`--kui-color-*`) recolors the syst
 every component's *shape* — button padding, corner radius, input height, card elevation, the feel
 of a hover or focus state — at the template's defaults. That's why a color-only theme reads as
 "the same UI, tinted" rather than a distinct brand. Component tokens are how you theme the shape.
-This file is the mental model for using them with taste; `scaffold.mjs` prints the actual live
+This file is the mental model for using them with taste; `theme:scaffold` prints the actual live
 list grouped by component (Step 3.5), and `token-model.md` covers the tier mechanics.
 
 ## The two tiers, and how a component resolves a value
@@ -72,12 +72,13 @@ because that's what makes it read as *that* button:
   A brand's buttons are defined as much by how they respond as by their resting color. The token
   names follow a regular pattern — e.g. `--kui-button-color-background-primary`,
   `-primary-hover`, `-primary-active`, `-primary-disabled`, and the matching `-color-text-*` and
-  `-color-border-*`. `scaffold.mjs`'s grouped inventory lists them together per component.
+  `-color-border-*`. `theme:scaffold`'s grouped inventory lists them together per component.
 - **Shape**: `border-radius`, `border-width`, and `padding-x` / `padding-y` (chunky vs. compact).
 - **Type**: `font-size`, `line-height`, and where present `font-family` / weight.
 - **Focus ring**: the `-shadow-focus` token — its color, spread, and offset are a strong identity
-  signal (a tight 2px ring vs. a soft 4px glow), and it's a literal-color token that won't trace
-  to a fresh palette until you re-express it (scaffold flags these).
+  signal (a tight 2px ring vs. a soft 4px glow). It scaffolds as an empty slot with no default to
+  inherit, so you're composing a literal `box-shadow`/`rgba()` value from scratch — build it from
+  an exact channel of a palette step (see below), not an arbitrary tint.
 
 The same lens applies to the other high-signal components: **card / surface** (background,
 border, radius, padding, and the elevation `-shadow`), **input** (background, border, radius,
@@ -137,13 +138,14 @@ mark it "unchanged" rather than inventing it. Two component tokens deserve speci
   them coherently from the resting color (hover usually one step stronger/darker, active one more)
   rather than leaving them at the template's — a themed default button with an un-themed hover is
   a jarring, common miss. This is a `frontend-design` judgment call; lean on that skill.
-- **Elevation and focus rings** carry literal colors in the template; re-express them against the
-  new palette (scaffold lists exactly which tokens) or the build's off-source-color guard rejects
-  them. That guard is strict and worth knowing precisely: every `#hex` or numeric `rgb()/rgba()`
-  a theme token emits must **exactly equal** a hex value present in the theme's own palette (white,
-  black, and `transparent` are always allowed). So a focus ring like `0 0 0 4px rgba(R,G,B,.15)`
-  must use the R,G,B of an actual palette step (e.g. your neutral `gray.90`), not an arbitrary
-  tint — pick the palette color the effect should derive from and use its exact channels.
+- **Elevation and focus rings** have no default to inherit — they scaffold empty, so any literal
+  color you compose for them (a `box-shadow`, an `rgba()` overlay) must derive from the new palette
+  or the build's off-source-color guard rejects it. That guard is strict and worth knowing
+  precisely: every `#hex` or numeric `rgb()/rgba()` a theme token emits must **exactly equal** a
+  hex value present in the theme's own palette (white, black, and `transparent` are always
+  allowed). So a focus ring like `0 0 0 4px rgba(R,G,B,.15)` must use the R,G,B of an actual
+  palette step (e.g. your neutral `gray.90`), not an arbitrary tint — pick the palette color the
+  effect should derive from and use its exact channels.
 
 Because a lot of this is aesthetic judgment (deriving states, matching a "feel"), it's exactly
 what Step 3.5's spec + the Step 5.5 Kongponents preview exist for: decide the component treatments

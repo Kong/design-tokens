@@ -1,27 +1,28 @@
 # Authoring checklist & gotchas
 
 A linear checkbox form of `SKILL.md`'s flow. Pair with `token-model.md` (the "why") and
-`component-tokens.md` (visual-identity taste). The scripts (`scaffold.mjs`, `preview.mjs`) do the
-mechanical steps; this checklist is mostly the judgment work in between.
+`component-tokens.md` (visual-identity taste). The scripts (`theme:scaffold`, `themes:unfilled`,
+`preview.mjs`) do the mechanical steps; this checklist is mostly the judgment work in between.
 
-**Scope:** only ever the theme's two files — `themes/<new>.theme.json` and
-`tokens/alias/color/<new>.alias.json`. No `themes.spec.mjs` edit (the guards classify every theme
+**Scope:** only ever the theme's two co-located files — `themes/<new>/<new>.theme.json` and
+`themes/<new>/<new>.alias.color.json`. No `themes.spec.mjs` edit (the guards classify every theme
 as exhaustive by default). Never edit an existing theme or palette, or any other repo file — see
 `SKILL.md`'s Scope guardrail.
 
 ## Before scaffolding
 - [ ] Path chosen: in-repo (committed) vs. standalone (extract + tear down). Asked if unclear.
 - [ ] Name is kebab-case and not already in `themes/`.
-- [ ] Design brief gathered (SKILL.md Step 2.5): light/dark + full-theme-vs-narrow-override; the
-      source of the look (brand colors / screenshot / URL / theme to port / verbal). For anything
-      beyond an exact hex, worked from `design-inputs.md`. Narrow override → use
-      `minimal-overrides.md`, not this checklist.
+- [ ] Design brief gathered (SKILL.md Step 2.5): light/dark/pair/standalone (independent themes —
+      no structural coupling) + full-theme-vs-narrow-override; the source of the look (brand colors
+      / screenshot / URL / theme to port / verbal). For anything beyond an exact hex, worked from
+      `design-inputs.md`. Narrow override → use `minimal-overrides.md`, not this checklist.
 
 ## Scaffold (deterministic — one command)
-- [ ] `node ../skills/theme-creation/scripts/scaffold.mjs <name> [--from konnect-day|konnect-night]`
-      — copies the exhaustive structural template, writes a placeholder (`#FF00FF`) palette, and
-      prints the component-grouped token inventory + the literal-color tokens to re-express. Read
-      the inventory. (No spec edit — the theme is exhaustive by default.)
+- [ ] `pnpm theme:scaffold <name>` — generates the theme directly from the canonical token tree: every
+      semantic token seeded with its real default value, every component token an empty slot, the
+      palette seeded from `classic-day`'s real colors. No donor theme, no placeholder color. Prints
+      the component-grouped token inventory (re-print anytime with `pnpm theme:scaffold <name>
+      --inventory`). Read the inventory. (No spec edit — the theme is exhaustive by construction.)
 
 ## Design spec (SKILL.md Step 3.5 — judgment)
 - [ ] Wrote a structured spec **in chat, not to a file**: colors always actively derived
@@ -43,18 +44,20 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
 - [ ] Confirmed the spec with the user before touching values.
 
 ## Fill in values (SKILL.md Step 4)
-- [ ] `<new>.alias.json`: every `#FF00FF` placeholder replaced with a real value (nothing left
-      magenta); key set unchanged; each changed `$description` = `"Alias for <VALUE>."` exactly.
-      (Night variant: use the finished day-theme palette instead — see SKILL.md Step 3.)
+- [ ] `<new>.alias.color.json`: seeded classic-day values replaced with the theme's real palette;
+      key set unchanged; each changed `$description` = `"Alias for <VALUE>."` exactly. Ran
+      `pnpm themes:unfilled <name>` — no family left unintentionally identical to the seed. (Night
+      variant: use the finished day-theme palette instead — see SKILL.md Step 3.)
 - [ ] `<new>.theme.json`: color tokens pointed at the right step for *this* palette; for each
       component-match row, set the component token **and** its semantic fallback so it renders on
       whatever Kongponents version the user runs, including the **geometry** tokens
       (`--kui-button-padding-x/y-*`, `-border-radius-*`, `-font-weight`, `-font-size-*`,
       `-line-height-*`, etc.), not just color; the propagated families' checked/selected/active
       fills, focus rings, radii and densities set to the derived brand values; literal tokens
-      (radius/shadow/padding/font/etc.) set per spec; scaffold-flagged literal-color tokens (focus
-      rings, overlays, color-mix shadows) re-expressed with exact palette channels; theme-token
-      `$description`s follow `token-model.md`.
+      (radius/shadow/padding/font/etc.) set per spec; any literal-color tokens you compose (focus
+      rings, overlays, color-mix shadows) built from exact palette channels; theme-token
+      `$description`s follow `token-model.md`. Ran `pnpm themes:unfilled <name>` — zero component
+      slots left empty (or each remaining one accounted for as a deliberate "neutral — unchanged").
 
 ## Build + verify (SKILL.md Steps 5, 5.5)
 - [ ] `pnpm --filter @kong/design-tokens test` (runs build + guards) and `lint` both green. A
@@ -76,18 +79,27 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
 - [ ] Got the user's sign-off on the rendered result, not just the planned spec.
 
 ## Finish
-- **In-repo:** `git status` shows exactly the two new theme files (no `themes.spec.mjs` change).
-  (No `kong-konnect/portal` override is needed for a new theme — that note applies only to
-  `classic-day`/`classic-night` changes, which this skill never makes; see SKILL.md Step 6A.)
+- [ ] `pnpm themes:unfilled <name>` reports clean (0 empty component slots, or each remaining one
+      accounted for in the spec as deliberate). **A good-looking preview does NOT prove this**: an
+      unfilled component token is OMITTED from compiled CSS/JS entirely (never emitted as `--x: ;`
+      or `--x: initial;` — both would break the fallback chain or actively reset an inherited value;
+      see `token-model.md`), so it renders via a graceful semantic-default fallthrough — visually
+      indistinguishable from "deliberately left at the semantic default." The preview can catch a
+      *wrong* value; only `themes:unfilled` catches a *missing* one.
+- **In-repo:** `git status` shows exactly the new `themes/<new>/` directory (its two files); no
+  `themes.spec.mjs` change. (No `kong-konnect/portal` override is needed for a new theme — that
+  note applies only to `classic-day`/`classic-night` changes, which this skill never makes; see
+  SKILL.md Step 6A.)
 - **Standalone:** extracted `dist/themes/<new>.css` (verified fully resolved — no `{color.alias…}`,
-  no `var(--kui-color-alias…)`, no `: undefined;`), then
-  `node ../skills/theme-creation/scripts/scaffold.mjs <name> --teardown`, re-ran tests green, and
-  confirmed `git status` shows no diff in `packages/design-tokens/`.
+  no `var(--kui-color-alias…)`, no `: undefined;`), then `pnpm theme:scaffold <name> --teardown`,
+  re-ran tests green, and confirmed `git status` shows no diff in `packages/design-tokens/`.
 
 ## Known documentation discrepancies (don't chase these)
-- `docs/ALIAS-COLOR-MAPPING-GUIDE.md` links a `COMPONENT-TOKENS-GUIDE.md` that **doesn't exist**.
 - Some generated headers/comments mention a `pnpm build:themes` script that **doesn't exist** —
   theme building is part of `build:tokens` (and `pnpm test`'s pretest).
-- `docs/ALIAS-COLOR-MAPPING-GUIDE.md` may still mention an `UNCHECKED_THEMES` array that **doesn't
-  exist** in `themes.spec.mjs` — classification is exhaustive-by-default with a `SEMANTIC_ONLY_THEMES`
-  opt-out; there is no third bucket. (The README was corrected; the guide may not be.)
+- Docs outside this skill (READMEs, other packages) may still describe the pre-refactor
+  layout (`themes/<name>.theme.json` + `tokens/alias/color/<name>.alias.json`, a `konnect-*`
+  scaffold donor, a `#FF00FF` placeholder palette). The current layout is co-located
+  (`themes/<name>/<name>.theme.json` + `themes/<name>/<name>.alias.color.json`), generated from
+  the source token tree, seeded from `classic-day` — see `token-model.md`. Fix the doc if you're
+  already there for another reason; don't go chase it otherwise (see `SKILL.md`'s Scope guardrail).

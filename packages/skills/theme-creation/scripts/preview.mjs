@@ -100,5 +100,6 @@ createServer((req, res) => {
   console.log(`  themed panel only:  http://localhost:${port}/themed.html`)
   console.log(`\nKongponents:  ${kpVersion}${kpVersion === 'latest' ? ' (published — may not consume newer component tokens; pass --kongponents <build> to preview those)' : ''}`)
   console.log('Screenshot the index URL with a browser tool and compare against the source, or open it.')
-  console.log('Any component rendering magenta (#FF00FF) is an unfilled palette step. Ctrl-C to stop.')
+  console.log('Run `pnpm themes:unfilled <name>` to check for empty component slots or palette families')
+  console.log('still unchanged from the classic-day seed before treating this preview as final. Ctrl-C to stop.')
 })

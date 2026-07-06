@@ -3,18 +3,18 @@
 Most theme requests come with *some* description of the desired look, ranging from an exact
 hex code to "make it feel more premium." This file covers how to turn whatever the user gives
 you into the concrete inputs Step 4 needs (alias hex values, and which tokens should re-point
-to a different step). Gather this **before** Step 3 (picking a template) — see Step 2.5 in
-`SKILL.md`.
+to a different step). Gather this **before** Step 3 (scaffolding) — see Step 2.5 in `SKILL.md`.
 
 ## What to ask for, if the user hasn't already said
 
 Don't guess at colors or style from a vague request ("make it look nice") — ask. A short set of
 questions gets you further than iterating blind:
 
-- **Light, dark, or a day/night pair?** Determines which `konnect-*` template(s) to copy.
+- **Light, dark, a day/night pair, or a single standalone theme?** These are independent themes
+  scaffolded separately — see SKILL.md Step 2.5.
 - **A full theme (own color system, every component individually overridable) or a narrow
   override** (e.g. "just this customer's primary button")? This decides whether you're heading
-  into Step 3's full template flow — always exhaustive, nothing to ask about there — or the
+  into Step 3's full scaffold flow — always exhaustive, nothing to ask about there — or the
   `minimal-overrides.md` shortcut.
 - **Exact brand/accent colors, if they have them** (hex codes, a brand guideline PDF, a Figma
   library). This is the fastest path — skip straight to plugging real values into the palette
@@ -175,7 +175,7 @@ verbatim."
 
 **For a full theme, this judgment call extends beyond the one color the user actually named** —
 a brand hex is the seed for a whole background/surface/border palette, not the whole palette
-itself. See `SKILL.md` Step 3's color-breadth note; this doesn't apply to a narrow override.
+itself. See `SKILL.md` Step 3.5's color-breadth note; this doesn't apply to a narrow override.
 
 **The same seed-vs-whole logic applies to components:** the components the source shows are the
 seed for the *entire* component system, not the whole of it. Extract each shown component as a full

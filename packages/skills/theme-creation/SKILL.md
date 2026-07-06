@@ -1,6 +1,6 @@
 ---
 name: theme-creation
-description: Use this skill whenever the user wants to create, add, author, or scaffold a new theme for the @kong/design-tokens package — including phrases like "add a new theme", "create a theme like konnect-day", "make a dark/light variant", "I need a brand theme for a customer", "a new data-kui-theme", "I need a standalone theme CSS file for another app", "match this screenshot/mockup", "make our theme look like this site/URL", "here are our brand colors", "port/emulate an existing theme", "make a theme like One Dark Pro", or "match this VS Code/editor/terminal theme". Also use it if the user wants to modify how an existing theme relates to tokens (semantic vs component tokens, color aliases/palettes) as part of building a new one, or supplies a screenshot, mockup, reference URL, brand guideline, or the name of an existing published theme (editor, terminal, or otherwise) as the basis for a theme's look. Make sure to trigger this even if the user doesn't say "design-tokens", "Style Dictionary", or "theme" explicitly — a request to reskin, rebrand, or restyle the product to match some visual reference, in the context of Kong's design-tokens theming system, should trigger this skill too.
+description: Use this skill whenever the user wants to create, add, author, or scaffold a new theme for the @kong/design-tokens package — including phrases like "add a new theme", "create a new theme", "make a dark/light theme", "I need a new theme for Kongponents", "a new data-kui-theme", "match this screenshot/mockup", "make our theme look like this site/URL", "here are our brand colors", "port/emulate an existing theme", "make a theme like One Dark Pro", or "match this VS Code/editor/terminal theme". Also use it if the user wants to modify how an existing theme relates to design tokens (semantic vs component tokens, color aliases/palettes) as part of building a new one, or supplies a screenshot, mockup, reference URL, brand guideline, or the name of an existing published theme (editor, terminal, or otherwise) as the basis for a theme's look. Make sure to trigger this even if the user doesn't say "design-tokens", "Style Dictionary", or "theme" explicitly — a request to reskin, rebrand, or restyle the product to match some visual reference, in the context of Kong's design-tokens theming system, should trigger this skill too.
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, WebFetch
 ---
 
@@ -13,27 +13,33 @@ visual identity**: not just colors, but component character (button padding/radi
 elevation, input shape, typography). That judgment work is where your attention goes.
 
 The work splits cleanly, and this skill is built around the split:
-- **Mechanical, done by scripts** — scaffolding the two files complete-and-empty,
-  listing the live token set, rendering a real-component preview, tearing down. You don't hand-do
-  these, so they can't be forgotten or done half-way.
+- **Mechanical, done by scripts** — scaffolding the theme directory exhaustive-and-empty directly
+  from the canonical token tree (no donor theme, no placeholder colors), listing the live token
+  set, rendering a real-component preview, tracking what's still unfilled, tearing down. You don't
+  hand-do these, so they can't be forgotten or done half-way.
 - **Judgment, done by you (with the `frontend-design` skill)** — perceiving the source, deriving a
   cohesive palette + component treatments with taste, and confirming the *rendered* result matches.
 
-All paths assume the working directory is `packages/design-tokens/` unless noted. Script paths
-below are relative to this skill (`../skills/theme-creation/scripts/...` from the package dir).
+All paths assume the working directory is `packages/design-tokens/` unless noted. The scaffold and
+unfilled-report commands (`pnpm theme:scaffold`, `pnpm themes:unfilled`) are what this flow uses;
+the preview script is `node ../skills/theme-creation/scripts/preview.mjs` (relative to the package
+dir). `pnpm themes:sync` exists too, but it's a repo-maintenance command for reconciling *existing*
+themes when a token is added to `tokens/source/**`/`tokens/components/**` — out of scope for
+creating one new theme (see the Scope guardrail below), so this flow never calls it.
 
 ## Scope guardrail
 
-This skill creates exactly **one new theme** and touches only its **two files**:
-`themes/<new>.theme.json` and `tokens/alias/color/<new>.alias.json`. That's the whole footprint —
-`themes.spec.mjs` no longer needs editing, because it treats every theme in `themes/` as exhaustive
-by default (only `classic-day`/`classic-night` are opted out as semantic-only), so a new theme is
-covered by the guards automatically. `scaffold.mjs` makes and reverts exactly these two files.
-Every existing theme/palette file is a read-only reference. Nothing else is in scope — not
-`themes.spec.mjs`, `README.md`, `docs/**`, `config.mjs`, `_manifest.json`, other packages — even if
-it looks helpful; flag it, don't fix it. Generated `dist/themes/<new>.*` output is expected, not a
-violation. Before finishing, `git status` in the repo root: the only source changes should be the
-two theme files (in-repo path), or nothing at all (standalone path, after teardown).
+This skill creates exactly **one new theme** and touches only its **two co-located files**:
+`themes/<new>/<new>.theme.json` and `themes/<new>/<new>.alias.color.json`. That's the whole
+footprint — `themes.spec.mjs` no longer needs editing, because it treats every theme in `themes/`
+as exhaustive by default (only `classic-day`/`classic-night` are opted out as semantic-only), so a
+new theme is covered by the guards automatically. `theme:scaffold` makes exactly these two files;
+`theme:scaffold <name> --teardown` reverts them. Every existing theme/palette file is a read-only
+reference. Nothing else is in scope — not `themes.spec.mjs`, `README.md`, `docs/**`, `config.mjs`,
+`_manifest.alias.color.json`, other packages — even if it looks helpful; flag it, don't fix it.
+Generated `dist/themes/<new>.*` output is expected, not a violation. Before finishing, `git status`
+in the repo root: the only source changes should be the two theme files (in-repo path), or nothing
+at all (standalone path, after teardown).
 
 ## Step 0 — Read first
 
@@ -59,15 +65,19 @@ If unclear, ask: "Committed into the design-tokens repo, or a standalone CSS fil
 
 ## Step 2 — Validate the name
 
-Kebab-case (`acme-day`, not `AcmeDay`/`acme_day`), and not already present in `themes/`. If either
-fails, ask for a different name — don't rename silently or clobber an existing theme.
+Kebab-case (`acme-day`, not `AcmeDay`/`acme_day`), and not already present in `themes/`. The
+scaffold command enforces both and errors clearly if either fails — but check up front so you don't
+walk the user through Step 2.5's design brief before discovering the name is taken.
 
 ## Step 2.5 — Gather the design brief
 
 Get concrete design intent before scaffolding — a vague sense produces a "close enough" theme that
 misses the request. Establish (from what the user said, or by asking):
-- **Light, dark, or a day/night pair**, and **full theme vs. narrow override** (a handful of
-  tokens → use `references/minimal-overrides.md` instead of this flow).
+- **Light, dark, or a day/night pair, or a single standalone theme** — these are independent
+  themes; there is no structural coupling between a "day" and "night" name. A day/night pair is
+  just two full themes you choose to author together and (usually, not necessarily) share a
+  palette between. Also establish **full theme vs. narrow override** (a handful of tokens → use
+  `references/minimal-overrides.md` instead of this flow).
 - **The source of the look** — exact brand colors, a screenshot/mockup, a URL to emulate, an
   existing published theme to port (VS Code/editor/terminal — fetch its real source, never
   reconstruct from memory), or verbal direction ("dark, moody, high-contrast"). Any of these is
@@ -80,28 +90,34 @@ re-ask for what the user already gave — confirm your reading of it.
 
 ## Step 3 — Scaffold (deterministic)
 
-Run the scaffold script. It copies `konnect-day`/`konnect-night` (the **exhaustive** structural
-template — every component token present; this skill only ever builds exhaustive themes) for
-structure, generates a fresh palette file with obvious `#FF00FF` placeholders (so no template
-color can silently leak in and an unfinished theme renders screaming magenta), and prints a
-component-grouped inventory of every themeable token plus the literal-color tokens you'll need to
-re-express. (No classification step — the guards treat every theme as exhaustive by default.)
+Run the scaffold command. It generates the new theme **directly from the canonical token tree** —
+no donor theme copied, no `#FF00FF` placeholder:
+- every **semantic** token (`tokens/source/**`) is seeded with its real default value — a safe,
+  sensible starting point;
+- every **component** token (`tokens/components/**`) is seeded as an **empty slot** for you to fill
+  deliberately — a component token's value is a genuine design decision (e.g. an alert's danger
+  background is a light tint, not the strong semantic danger color) and can't be safely defaulted;
+- the **palette** is seeded from `classic-day`'s real neutral values, so the theme builds, renders,
+  and can publish to the preview npm channel immediately.
+
+The result is exhaustive by construction — no classification step, no template to compare against.
 
 ```sh
-# from packages/design-tokens/  (add --from konnect-night for a dark theme)
-node ../skills/theme-creation/scripts/scaffold.mjs <name> [--from konnect-day|konnect-night]
+# from packages/design-tokens/
+pnpm theme:scaffold <name>
 ```
 
-The template is a **structural donor only** — its token key set and re-point *relationships*, not
-its values. The palette starts as placeholders precisely so you derive real values rather than
-inherit Kong's. (One exception: if the user explicitly asked to *literally reuse* a specific
-theme's values — "base the palette on konnect-day but shift to slate" — read that theme's
-`.alias.json` as a design input in Step 4. Still scaffold from `konnect-*`; "feels like X" is
-verbal direction, not literal reuse — see `design-inputs.md`.)
+This also prints the component-grouped token inventory (re-print anytime with
+`pnpm theme:scaffold <name> --inventory`) — use it as the backbone of the Step 3.5 design spec.
+`pnpm themes:unfilled <name>` reports every component slot still empty and every palette family
+still identical to the seed, so nothing gets forgotten silently.
 
-For a **day/night pair**: scaffold the day theme, author it fully, then scaffold the night
-variant and copy *the new day theme's* finished palette into it (not the template's) — the
-day/night difference is 100% token re-points to darker steps, per `token-model.md`.
+For a **day/night pair**: scaffold both names independently, author the day theme fully, then —
+since dark mode is typically the same palette with a handful of tokens re-pointed to darker
+steps (`token-model.md`) — copy the finished day theme's palette into the night theme's
+`<name>.alias.color.json` as a starting point, and re-point only the tokens that should change.
+This is a convenience, not a requirement: if the user wants genuinely different palettes for day
+and night, author each independently.
 
 ## Step 3.5 — Write the design spec, and confirm it
 
@@ -156,13 +172,16 @@ calls (deriving a palette from one hex, matching a "vibe," state derivation, con
 
 The files already exist and are complete; now set values per the confirmed spec.
 
-1. **`tokens/alias/color/<new>.alias.json`** — replace every `#FF00FF` placeholder with the real
-   palette value. Nothing should stay magenta. Keep the exact key set; set each changed
-   `$description` to `"Alias for <VALUE>."` exactly (this one *is* guard-checked). (Skip for a
-   night variant — use the day theme's finished palette per Step 3.)
-2. **`themes/<new>.theme.json`** — set values across every dimension the spec addressed:
+1. **`themes/<new>/<new>.alias.color.json`** — replace the seeded classic-day values with the
+   theme's real palette. Keep the exact key set; set each changed `$description` to
+   `"Alias for <VALUE>."` exactly (this one *is* guard-checked). Run
+   `pnpm themes:unfilled <name>` to see which families are still unchanged from the seed — nothing
+   should be left unintentionally identical to classic-day's neutrals. (Skip for a night variant —
+   use the day theme's finished palette per Step 3.)
+2. **`themes/<new>/<new>.theme.json`** — set values across every dimension the spec addressed:
    - *Color tokens* (`{color.alias.*}` refs): point each at the step whose role/contrast fits
-     *this* palette; don't just keep the template's choices.
+     *this* palette — the scaffolded value is `tokens/source`'s shared default mapping, not a
+     decision specific to this theme; don't just keep it unexamined.
    - *Component match*: for each component-match row in the spec, set the component tokens **and**
      the semantic tokens they fall back to (per `component-tokens.md`) so the treatment renders on
      whatever Kongponents version the user runs. Set the **geometry** tokens alongside the color
@@ -170,7 +189,8 @@ The files already exist and are complete; now set values per the confirmed spec.
      `-font-weight`, `-font-size-*`, `-line-height-*`, not just the color tokens; the primary
      button's fill/text/border **and** radius/padding/weight/size must reproduce the source's
      primary CTA. The scaffold inventory grouped these by component so you can do one component at
-     a time.
+     a time. `pnpm themes:unfilled <name>` lists every component slot still empty — work it down to
+     zero (or a deliberate "neutral — unchanged" you've accounted for in the spec).
    - *System propagation*: work the "every other component" spec section too — set the
      selected/checked/active fills, focus rings, radii, and densities of the unshown component
      families to the derived brand values (per `component-tokens.md` "Propagate the brand across
@@ -179,9 +199,12 @@ The files already exist and are complete; now set values per the confirmed spec.
    - *Literal tokens* (radius, shadow, padding, font-family, etc.): set the ones the spec called
      for. Typeface change = global find/replace of the one font-stack string across all
      `-font-family` tokens.
-   - *Literal-color tokens* the scaffold flagged (focus rings, overlays, `color-mix` shadows):
-     re-express against the new palette (exact palette channels — see `component-tokens.md`), or
-     the off-source-color guard rejects the build.
+   - *Literal colors you introduce* (focus rings, overlays, shadows) must derive from the new
+     palette (exact palette channels — see `component-tokens.md`). For a literal hex or numeric
+     `rgb()`/`rgba()`, the off-source-color guard rejects an off-palette value at build time — but
+     it does **not** parse `color-mix()`, `hsl()`, or CSS color keywords, so a `color-mix()` shadow
+     specifically needs the same care without that safety net (see `token-model.md` "Other
+     invariants" for exactly what the guard does and doesn't catch).
    - Follow the `$description` rules in `token-model.md` (nothing guards theme-token descriptions,
      so get them right up front).
 
@@ -214,9 +237,12 @@ Structural pass (guards green) ≠ *looks right*. Close the gap with two checks:
    ```
    It serves a side-by-side **default vs. themed** gallery of real `@kong/kongponents` components
    (buttons in every state, cards, inputs, select, tabs, table, alerts) loaded from a CDN — no
-   install. Navigate a browser tool to the printed `http://localhost:<port>/index.html`, screenshot
-   it **to an absolute path outside the repo** (e.g. the skill workspace — a screenshot written to
-   the repo root is a scope leak), and view it next to the source.
+   install. (Its own generated files land in `packages/skills/theme-creation-workspace/preview/`,
+   which is gitignored — you don't need to clean those up.) Navigate a browser tool to the printed
+   `http://localhost:<port>/index.html`, screenshot it **to a path outside the repo entirely**
+   (e.g. your scratch/tmp directory) — a screenshot saved anywhere inside the repo tree, even a
+   gitignored one, is still a scope leak an agent should avoid creating — and view it next to the
+   source.
 
    **Preview against the Kongponents version the user actually runs.** A version only consumes the
    tokens *it* was built to read — a published version may read only the semantic fallback, so
@@ -252,13 +278,19 @@ spec, before calling it done. If no browser tool is available, restate the confi
 color *and* component/typography, component by component against the source — and have the user
 preview the CSS themselves; don't declare victory on guards alone.
 
+**A good preview does not prove completeness.** An unfilled component token compiles to nothing at
+all (never `--x: ;` or `--x: initial;`), so it falls through to its semantic default exactly as
+gracefully as a *deliberately* unbranded family would — the preview can't tell those two cases
+apart. Run `pnpm themes:unfilled <name>` before calling it done; it's the only check that actually
+distinguishes "still empty" from "intentionally at the default."
+
 ## Step 6A — In-repo: done
 
-`git status` should show exactly the two new theme files — commit those (no `themes.spec.mjs`
-change; it classifies the new theme as exhaustive automatically). `dist/themes/<new>.*`
-regenerates on build; nothing to extract. **No `kong-konnect/portal` override is needed for a
-theme created by this skill** — that concern applies *only* to changes to `classic-day`/
-`classic-night`.
+`git status` should show exactly the new `themes/<new>/` directory (its two files) — commit those
+(no `themes.spec.mjs` change; it classifies the new theme as exhaustive automatically).
+`dist/themes/<new>.*` regenerates on build; nothing to extract. **No `kong-konnect/portal`
+override is needed for a theme created by this skill** — that concern applies *only* to changes to
+`classic-day`/`classic-night`.
 
 ## Step 6B — Standalone: extract, then tear down
 
@@ -269,7 +301,7 @@ theme created by this skill** — that concern applies *only* to changes to `cla
    no `var(--kui-color-alias…)`, no `: undefined;`; if any appear, rebuild before handing off.
 3. **Tear down** — leave the repo exactly as it started:
    ```sh
-   node ../skills/theme-creation/scripts/scaffold.mjs <name> --teardown
+   pnpm theme:scaffold <name> --teardown
    pnpm --filter @kong/design-tokens test   # confirm green
    ```
    Then `git status` — no lingering diff in `packages/design-tokens/`.

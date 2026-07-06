@@ -16,12 +16,13 @@ Authoritative sources (in the `packages/design-tokens/` directory):
 
 ```
 primitive alias palette   →   semantic tokens         →   component tokens
-tokens/alias/color/**         tokens/source/**             tokens/components/**
+themes/<name>/<name>          tokens/source/**             tokens/components/**
+  .alias.color.json
 (hex values, per-theme)       ({color.alias.*} refs)       (names only, $value: "")
 never exported                exported to CSS/SCSS/JS      override slots, no CSS value
 ```
 
-1. **Alias tokens** (`tokens/alias/color/<theme>.alias.json`) hold raw hex values behind a
+1. **Alias tokens** (`themes/<theme>/<theme>.alias.color.json`) hold raw hex values behind a
    standardized set of names, e.g. `color.alias.gray.60 = "#..."`. They're never emitted as
    `--kui-*` custom properties — they only exist so Style Dictionary can resolve references at
    build time.
@@ -41,21 +42,21 @@ never exported                exported to CSS/SCSS/JS      override slots, no CS
 
 ## What a theme actually is
 
-A theme = **two files sharing a base name**:
+A theme = **a directory holding two co-located files**, `themes/<name>/`:
 
 | File | Role |
 |---|---|
-| `themes/<name>.theme.json` | Flat map of `--kui-*` token → `{ $value, $description }`. Values are literal (scale tokens) or reference a standardized alias step (color tokens), e.g. `"{color.alias.electric_lime.60}"`. |
-| `tokens/alias/color/<name>.alias.json` | The theme's color **palette** — maps every standardized alias step to a concrete hex value for this theme. |
+| `themes/<name>/<name>.theme.json` | Flat map of `--kui-*` token → `{ $value, $description }`. Values are literal (scale tokens) or reference a standardized alias step (color tokens), e.g. `"{color.alias.electric_lime.60}"`. |
+| `themes/<name>/<name>.alias.color.json` | The theme's color **palette** — maps every standardized alias step to a concrete hex value for this theme. |
 
 Two themes can share token→step mappings but differ in palette (different colors behind the
 same step names), or share a palette but differ in which steps tokens point to (that's how
 `classic-day`/`classic-night` differ — see below). The `.theme.json` file says *which step*;
-the `.alias.json` file says *what hex that step is* for this theme.
+the `.alias.color.json` file says *what hex that step is* for this theme.
 
-Both filename suffixes are **enforced literally** by the build and by `themes.spec.mjs` — a
-`.json` in `themes/` not ending in `.theme.json` (and not `_`-prefixed) is a hard build error; a
-theme that references `{color.alias.*}` with no matching `<name>.alias.json` also hard-errors
+Both filenames are **enforced literally** by the build and by `themes.spec.mjs` — a theme
+directory (not `_`-prefixed) whose `<name>.theme.json` is missing is a hard build error; a theme
+that references `{color.alias.*}` with no matching `<name>.alias.color.json` also hard-errors
 (no silent fallback).
 
 ## Theme classes
@@ -66,31 +67,37 @@ opt-out list.
 
 - **Exhaustive** (the default; `konnect-day`, `konnect-night`, and any new theme): must contain
   **exactly** `KUI_THEMEABLE_TOKENS` — every semantic token *and* every component token. Nothing
-  missing, nothing extra.
+  missing, nothing extra. The scaffold produces this by construction — it isn't derived from
+  another theme.
 - **`SEMANTIC_ONLY_THEMES`** (the opt-out list — currently only `classic-day`, `classic-night`):
   must contain every semantic token and **zero** component tokens. Components fall through to their
   semantic default.
 
 Because exhaustive is derived from the directory, **this skill authors new themes with no
-classification edit at all** — dropping the two files in `themes/` is enough; the guards cover the
-new theme automatically. Semantic-only isn't a class this skill picks, regardless of how the user
-phrases the request (see `SKILL.md` Step 3). There is no third "unchecked" bucket.
+classification edit at all** — dropping the theme directory in `themes/` is enough; the guards
+cover the new theme automatically. Semantic-only isn't a class this skill picks, regardless of how
+the user phrases the request (see `SKILL.md` Step 3). There is no third "unchecked" bucket, and no
+theme (including `konnect-day`/`konnect-night`) is a required *comparison point* for this
+classification — it's decided purely by token-name-set membership against the generated
+`KUI_THEMEABLE_TOKENS` registry.
 
 `classic-day` is the default look (identical to the un-themed `:root` export — the main build
-in `config.mjs` resolves against `classic-day.alias.json`). `classic-night` is its dark
+in `config.mjs` resolves against `classic-day`'s `alias.color.json`). `classic-night` is its dark
 counterpart: an **identical palette** to `classic-day`, with ~20 text/border/background tokens
 in the theme file re-pointed to darker alias steps. Dark mode here is a *semantic re-point*, not
 a new set of colors — prefer that pattern for day/night pairs over inventing new palette values.
 
-This isn't unique to the semantic-only pair: verified directly against the repo's own files,
-`konnect-day.alias.json` and `konnect-night.alias.json` are likewise byte-identical — the
-exhaustive class follows the same day/night convention (re-point `.theme.json` tokens, keep the
-`.alias.json` palette unchanged) even though it isn't called out separately in
-`docs/ALIAS-COLOR-MAPPING-GUIDE.md`, which only narrates the `classic-*` pair explicitly.
+The shared-palette pattern is a *convention* worth defaulting to, not a rule every day/night pair
+follows — `konnect-day` and `konnect-night` are the counter-example: verified directly against the
+repo's own files, their `alias.color.json` palettes are **not** identical (most stepped values
+genuinely differ — konnect-night is its own distinct dark palette, not a semantic re-point of
+konnect-day's). Don't assume a shared palette without checking; state which pattern a new day/night
+pair follows in the Step 3.5 design spec rather than defaulting to an assumption. Nothing requires
+a new theme to have a day/night sibling at all (see `SKILL.md` Step 2.5).
 
 ## The standardized alias step set
 
-Defined by `tokens/alias/color/_manifest.json` — **names only**, no values. 13 groups / 113
+Defined by `themes/_manifest.alias.color.json` — **names only**, no values. 13 groups / 113
 keys total:
 
 - Stepped families (11 steps each: `05, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100`): `aqua`,
@@ -99,9 +106,9 @@ keys total:
 - Direct-value singletons (no steps): `black`, `white`, `transparent`.
 
 Every palette file must contain **exactly** this key set — no missing, no extra (the "manifest
-drift" guard). Adding a wholly new color family or step requires updating `_manifest.json` *and*
-every existing palette, which is out of scope for "add a new theme" — a new theme reuses the
-existing step set with new values.
+drift" guard). Adding a wholly new color family or step requires updating
+`_manifest.alias.color.json` *and* every existing palette, which is out of scope for "add a new
+theme" — a new theme reuses the existing step set with new values.
 
 ### Mapping a design input onto the palette
 
@@ -109,10 +116,10 @@ Once you have a concrete color (from a hex code, a screenshot estimate, a `getCo
 read, or a value pulled from a ported theme's source — see `design-inputs.md`), you're
 choosing a **family** and a **step** within that family's
 existing 11-step ramp (or a singleton), not inventing a new key. This applies just as much to
-the palette file you copied as a Step 3 template: its shipped values are a structural
-placeholder, not a source for this section's family/step decisions (see `SKILL.md` Step 3) —
-every value below should trace back to the design brief, not to whatever the template already
-had at that key.
+the palette the scaffold seeds from `classic-day` (Step 3): those are real, valid neutral
+colors — not a placeholder — but they're **classic-day's** colors, not this theme's. Every value
+below should trace back to the design brief, not to whatever the seed already had at that key
+(`pnpm themes:unfilled <name>` flags any palette family still identical to the seed).
 
 - **Pick the family by hue category**, not by which family a competing theme happens to use for
   a similar purpose. The family names (`blue`, `red`, `green`, `orange`, etc.) are just labels,
@@ -196,15 +203,18 @@ catch a mistake here:
   never requires a portal override** — even if that new theme sets its own `primary`/`accent`.
   (This skill can't edit `classic-*` regardless.)
 - **Every theme file must define its FULL token set — not just the tokens it changes.** This is
-  easy to get backwards: the repo's README describes theme authoring in terms of "override"
-  semantics, but the actual guards in `themes.spec.mjs` require an exhaustive theme to contain
-  exactly every themeable token and a semantic-only theme to contain every semantic token —
-  nothing may be missing. In practice this is
-  handled for you: `scaffold.mjs` (SKILL.md Step 3) starts you from a complete copy of the
-  exhaustive template, and you only *edit* the subset of values that should differ. Don't interpret "you only need to change
-  what differs" as "you may omit what doesn't differ" — a theme file with tokens missing (rather
-  than present but unchanged) fails the drift guard. The `[data-kui-theme]` CSS cascade / `var()`
-  fallback behavior described elsewhere in this doc governs runtime behavior for *component*
-  tokens (which are legitimately absent from semantic-only themes) and for genuinely
-  hand-authored partial CSS outside this guarded pipeline (see `minimal-overrides.md`) — not for
-  a semantic or exhaustive theme file's own completeness.
+  easy to get backwards, since a theme's own *design* is usually reasoned about in terms of what
+  differs from another theme — but the actual guards in `themes.spec.mjs` require an exhaustive
+  theme to contain exactly every themeable token and a semantic-only theme to contain every
+  semantic token — nothing may be missing. In practice this is handled for you: `theme:scaffold`
+  (SKILL.md Step 3)
+  generates the full set directly from `tokens/source/**` + `tokens/components/**` — semantic
+  tokens with real default values, component tokens as empty slots — so the file is exhaustive the
+  moment it's created, and you only *edit* the values that should differ from the defaults. Don't
+  interpret "you only need to change what differs" as "you may omit what doesn't differ" — a theme
+  file with tokens missing (rather than present but unchanged, or present-but-empty for an unfilled
+  component slot) fails the drift guard. The `[data-kui-theme]` CSS cascade / `var()` fallback
+  behavior described elsewhere in this doc governs runtime behavior for *component* tokens (which
+  are legitimately absent from semantic-only themes) and for genuinely hand-authored partial CSS
+  outside this guarded pipeline (see `minimal-overrides.md`) — not for a semantic or exhaustive
+  theme file's own completeness.
