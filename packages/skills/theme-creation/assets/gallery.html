@@ -136,7 +136,7 @@
           ])
         },
       })
-      app.config.errorHandler = () => { }
+      app.config.errorHandler = (err) => { console.error(err) }
       app.mount('#app')
     </script>
   </body>
