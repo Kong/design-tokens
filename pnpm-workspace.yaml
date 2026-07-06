@@ -7,7 +7,18 @@ minimumReleaseAgeExclude:
   - '@kong/*'
   - '@kong-ui/*'
   - '@kong-ui-public/*'
-  # Renovate security update: vite@8.0.16
-  - vite@8.0.16
+
 # When set to no-downgrade, pnpm will fail if a package's trust level has decreased compared to previous releases
 trustPolicy: no-downgrade
+overrides:
+  semver: ^7.6.3
+shamefullyHoist: true
+strictPeerDependencies: false
+autoInstallPeers: true
+sideEffectsCache: false
+allowBuilds:
+  '@bundled-es-modules/glob': true
+  '@evilmartians/lefthook': true
+  esbuild: true
+  style-dictionary: true
+pmOnFail: download

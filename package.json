@@ -57,23 +57,12 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@11.9.0",
   "engines": {
     "node": ">=20.19.5",
-    "pnpm": ">=10.28.2"
+    "pnpm": ">=10.28.2 || >=11.9.0"
   },
   "volta": {
     "node": "24.13.1"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@bundled-es-modules/glob",
-      "@evilmartians/lefthook",
-      "esbuild",
-      "style-dictionary"
-    ],
-    "overrides": {
-      "semver": "^7.6.3"
-    }
   }
 }
