@@ -29,7 +29,7 @@
 
 import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join, sep } from 'node:path'
+import { dirname, join } from 'node:path'
 import { createServer } from 'node:http'
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url))
@@ -114,6 +114,18 @@ writeFileSync(join(OUT, 'index.html'), `<!doctype html><html><head><meta charset
   </div>
 </body></html>\n`)
 
+// This server only ever needs to hand back these four generated files. Rather than building a
+// filesystem path out of the request URL (tainted input) and then trying to prove the result can't
+// escape OUT, route by exact lookup against a fixed table of real paths computed here, at startup,
+// from constants — no request data ever reaches a path-construction or filesystem call, so there's
+// no path-injection flow to sanitize away in the first place.
+const ROUTES = new Map([
+  ['', join(OUT, 'index.html')],
+  ['index.html', join(OUT, 'index.html')],
+  ['default.html', join(OUT, 'default.html')],
+  ['themed.html', join(OUT, 'themed.html')],
+  ['theme.css', join(OUT, 'theme.css')],
+])
 const types = { '.html': 'text/html', '.css': 'text/css' }
 createServer((req, res) => {
   let decoded
@@ -124,14 +136,9 @@ createServer((req, res) => {
     // the whole server on one bad request.
     res.writeHead(400); res.end('bad request'); return
   }
-  const relative = decoded.replace(/^\//, '').split('?')[0] || 'index.html'
-  if (relative.split('/').includes('..')) {
-    res.writeHead(400); res.end('bad request'); return
-  }
-  const file = join(OUT, relative)
-  // `startsWith(OUT)` alone isn't a real directory-boundary check (it'd also match a sibling dir
-  // like `${OUT}-evil`) — require the resolved path to be OUT itself or nested under it.
-  if ((file !== OUT && !file.startsWith(OUT + sep)) || !existsSync(file)) {
+  const key = decoded.split('?')[0].replace(/^\/+/, '')
+  const file = ROUTES.get(key)
+  if (!file || !existsSync(file)) {
     res.writeHead(404); res.end('not found'); return
   }
   const ext = file.slice(file.lastIndexOf('.'))
