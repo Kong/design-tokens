@@ -10,7 +10,7 @@
  *     `SEMANTIC_ONLY_THEMES` (e.g. `classic-day`/`classic-night`), which only ever gains semantic
  *     tokens, since those themes must contain zero component tokens;
  *   - a token already present is NEVER touched — an existing value (including a deliberate
- *     theme-specific override, e.g. konnect-day's `kui-color-background-primary` diverging from its
+ *     theme-specific override, e.g. electric-lime-day's `kui-color-background-primary` diverging from its
  *     semantic default) is never regenerated or overwritten;
  *   - a token present in the theme but no longer canonical (including a stray component token on a
  *     semantic-only theme) is REPORTED as `extra`, never silently removed — the existing

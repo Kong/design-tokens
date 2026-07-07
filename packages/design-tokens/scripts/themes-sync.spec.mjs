@@ -26,7 +26,7 @@ describe('reconcileTheme (pure)', () => {
   })
 
   it('never overwrites an existing token — a deliberate theme-specific override survives sync', () => {
-    // konnect-day sets kui-color-background-primary to gray.70, deliberately overriding the blue.60
+    // electric-lime-day sets kui-color-background-primary to gray.70, deliberately overriding the blue.60
     // source default. Sync must never regenerate a value that's already present.
     const existing = {
       'kui-color-background': { $value: '{color.alias.white}', $description: 'BG.' },

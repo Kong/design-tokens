@@ -65,7 +65,7 @@ Two token-set policies exist, and **exhaustive is the default**: every theme in 
 treated as exhaustive unless it's explicitly named in the `SEMANTIC_ONLY_THEMES` opt-out list
 (defined in `platforms/themes.mjs`; `themes.spec.mjs` imports it to enforce the policy).
 
-- **Exhaustive** (the default; `konnect-day`, `konnect-night`, and any new theme): must contain
+- **Exhaustive** (the default; `electric-lime-day`, `electric-lime-night`, and any new theme): must contain
   **exactly** `KUI_THEMEABLE_TOKENS` — every semantic token *and* every component token. Nothing
   missing, nothing extra. The scaffold produces this by construction — it isn't derived from
   another theme.
@@ -77,7 +77,7 @@ Because exhaustive is derived from the directory, **this skill authors new theme
 classification edit at all** — dropping the theme directory in `themes/` is enough; the guards
 cover the new theme automatically. Semantic-only isn't a class this skill picks, regardless of how
 the user phrases the request (see `SKILL.md` Step 3). There is no third "unchecked" bucket, and no
-theme (including `konnect-day`/`konnect-night`) is a required *comparison point* for this
+theme (including `electric-lime-day`/`electric-lime-night`) is a required *comparison point* for this
 classification — it's decided purely by token-name-set membership against the generated
 `KUI_THEMEABLE_TOKENS` registry.
 
@@ -88,10 +88,10 @@ in the theme file re-pointed to darker alias steps. Dark mode here is a *semanti
 a new set of colors — prefer that pattern for day/night pairs over inventing new palette values.
 
 The shared-palette pattern is a *convention* worth defaulting to, not a rule every day/night pair
-follows — `konnect-day` and `konnect-night` are the counter-example: verified directly against the
+follows — `electric-lime-day` and `electric-lime-night` are the counter-example: verified directly against the
 repo's own files, their `alias.color.json` palettes are **not** identical (most stepped values
-genuinely differ — konnect-night is its own distinct dark palette, not a semantic re-point of
-konnect-day's). Don't assume a shared palette without checking; state which pattern a new day/night
+genuinely differ — electric-lime-night is its own distinct dark palette, not a semantic re-point of
+electric-lime-day's). Don't assume a shared palette without checking; state which pattern a new day/night
 pair follows in the Step 3.5 design spec rather than defaulting to an assumption. Nothing requires
 a new theme to have a day/night sibling at all (see `SKILL.md` Step 2.5).
 

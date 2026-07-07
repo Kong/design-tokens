@@ -28,12 +28,12 @@ themes/
     classic-night.alias.color.json   ← `classic-night` theme's palette. IDENTICAL values to
                                         classic-day — dark mode is a semantic override (see §7),
                                         not a different palette.
-  konnect-day/
-    konnect-day.theme.json
-    konnect-day.alias.color.json     ← konnect-day (light) palette: standardized steps, day values.
-  konnect-night/
-    konnect-night.theme.json
-    konnect-night.alias.color.json   ← konnect-night (dark) palette: standardized steps, night values.
+  electric-lime-day/
+    electric-lime-day.theme.json
+    electric-lime-day.alias.color.json     ← electric-lime-day (light) palette: standardized steps, day values.
+  electric-lime-night/
+    electric-lime-night.theme.json
+    electric-lime-night.alias.color.json   ← electric-lime-night (dark) palette: standardized steps, night values.
 ```
 
 - **Three tiers:** primitive alias palette → semantic tokens (`tokens/source/**`) → component tokens

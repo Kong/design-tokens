@@ -4,6 +4,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { flattenTokenTree } from './utilities/token-tree.mjs'
+import { discoverThemes } from './platforms/themes.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const DIST_DIR = join(__dirname, 'dist/tokens')
@@ -730,15 +731,16 @@ describe('tokens/components/ (source enforcement)', () => {
 // dist/themes/
 // ---------------------------------------------------------------------------
 
-const THEME_NAMES = ['classic-day', 'classic-night', 'konnect-day', 'konnect-night']
-
 describe('dist/themes/', () => {
+  /** @type {Array<{ name: string, exportName: string }>} */
+  let THEMES = []
   /** @type {Record<string, { css: string, mjs: string, dts: string }>} */
   const themes = {}
 
   beforeAll(async () => {
+    THEMES = await discoverThemes()
     await Promise.all(
-      THEME_NAMES.map(async (name) => {
+      THEMES.map(async ({ name }) => {
         const [css, mjs, dts] = await Promise.all([
           distRootFile(`themes/${name}.css`),
           distRootFile(`themes/${name}.mjs`),
@@ -755,7 +757,7 @@ describe('dist/themes/', () => {
   })
 
   it('generates CSS, MJS, and d.ts for each theme', () => {
-    for (const name of THEME_NAMES) {
+    for (const { name } of THEMES) {
       expect(themes[name].css.length, `${name}.css is empty`).toBeGreaterThan(0)
       expect(themes[name].mjs.length, `${name}.mjs is empty`).toBeGreaterThan(0)
       expect(themes[name].dts.length, `${name}.d.ts is empty`).toBeGreaterThan(0)
@@ -763,14 +765,14 @@ describe('dist/themes/', () => {
   })
 
   it('CSS files use @layer kui.theme with [data-kui-theme] selector', () => {
-    for (const name of THEME_NAMES) {
+    for (const { name } of THEMES) {
       expect(themes[name].css, `${name}.css missing @layer`).toContain('@layer kui.theme {')
       expect(themes[name].css, `${name}.css missing data-kui-theme selector`).toContain(`[data-kui-theme="${name}"]`)
     }
   })
 
   it('CSS files contain only resolved values (no DTCG references or var() calls)', () => {
-    for (const name of THEME_NAMES) {
+    for (const { name } of THEMES) {
       expect(themes[name].css, `${name}.css has unresolved {…} DTCG reference`).not.toMatch(/\{[a-z]/)
       expect(themes[name].css, `${name}.css has residual var(--kui-color-alias`).not.toContain('var(--kui-color-alias')
       expect(themes[name].css, `${name}.css has undefined values (token.$value not token.value)`).not.toContain(': undefined;')
@@ -778,7 +780,9 @@ describe('dist/themes/', () => {
   })
 
   it('CSS files contain concrete token values (spot-check)', () => {
-    const css = themes['konnect-day'].css
+    // Pick the first non-classic theme (first exhaustive theme in sorted order) for the spot-check.
+    const { name } = THEMES.find(t => !['classic-day', 'classic-night'].includes(t.name)) ?? THEMES[0]
+    const css = themes[name].css
     // At least some color values should be hex
     expect(css).toMatch(/#[0-9a-fA-F]{3,8}/)
     // At least some size values should be px or rem
@@ -786,40 +790,30 @@ describe('dist/themes/', () => {
   })
 
   it('MJS files export the named theme object (no "Theme" suffix)', () => {
-    const expectedExportNames = {
-      'classic-day': 'classicDay',
-      'classic-night': 'classicNight',
-      'konnect-day': 'konnectDay',
-      'konnect-night': 'konnectNight',
-    }
-    for (const name of THEME_NAMES) {
+    for (const { name, exportName } of THEMES) {
       expect(themes[name].mjs, `${name}.mjs missing named export`).toContain(
-        `export const ${expectedExportNames[name]}`,
+        `export const ${exportName}`,
       )
       expect(themes[name].mjs, `${name}.mjs should not use "Theme" suffix`).not.toContain(
-        `export const ${expectedExportNames[name]}Theme`,
+        `export const ${exportName}Theme`,
       )
     }
   })
 
   it('d.ts files declare the theme as Readonly<Record<string, string>>', () => {
-    for (const name of THEME_NAMES) {
+    for (const { name } of THEMES) {
       expect(themes[name].dts, `${name}.d.ts missing type declaration`).toContain(
         'Readonly<Record<string, string>>',
       )
     }
   })
 
-  it('index.mjs re-exports all four themes without "Theme" suffix', async () => {
+  it('index.mjs re-exports all themes without "Theme" suffix', async () => {
     const indexMjs = await distRootFile('themes/index.mjs')
-    expect(indexMjs).toContain('classicDay')
-    expect(indexMjs).toContain('classicNight')
-    expect(indexMjs).not.toContain('classicDayTheme')
-    expect(indexMjs).not.toContain('classicNightTheme')
-    expect(indexMjs).toContain('konnectDay')
-    expect(indexMjs).toContain('konnectNight')
-    expect(indexMjs).not.toContain('konnectDayTheme')
-    expect(indexMjs).not.toContain('konnectNightTheme')
+    for (const { exportName } of THEMES) {
+      expect(indexMjs, `index.mjs missing ${exportName}`).toContain(exportName)
+      expect(indexMjs, `index.mjs should not use "Theme" suffix for ${exportName}`).not.toContain(`${exportName}Theme`)
+    }
   })
 
   it('all themes include the five fixed breakpoint tokens', () => {
@@ -830,7 +824,7 @@ describe('dist/themes/', () => {
       '--kui-breakpoint-laptop',
       '--kui-breakpoint-desktop',
     ]
-    for (const name of THEME_NAMES) {
+    for (const { name } of THEMES) {
       for (const bp of BREAKPOINTS) {
         expect(themes[name].css, `${name}.css missing ${bp}`).toContain(bp)
         expect(themes[name].mjs, `${name}.mjs missing ${bp}`).toContain(bp)

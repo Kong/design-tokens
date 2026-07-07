@@ -8,7 +8,7 @@ const config = {
   },
   // Resolve COLOR aliases against the default (classic-day) palette ONLY. classic-day's alias.color.json
   // is the source of truth for the exported semantic output (SCSS/JS/TS/CSS). The other themes'
-  // palette files (themes/classic-night/, themes/konnect-*/) and the names-only manifest
+  // palette files (themes/classic-night/, themes/electric-lime-*/) and the names-only manifest
   // (themes/_manifest.alias.color.json) must NOT be included here — they would collide on shared
   // step names. Aliases are filtered from output via token.isSource.
   // (A missing alias reference fails the build loudly, so an omission errors rather than mis-resolving.)

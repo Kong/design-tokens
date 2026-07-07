@@ -86,18 +86,18 @@ Pre-built theme CSS files activate a complete set of token overrides via a `data
 
 ```html
 <!-- In your HTML template or equivalent -->
-<html data-kui-theme="konnect-day">
+<html data-kui-theme="electric-lime-day">
 ```
 
 ```ts
 // Load the theme CSS — webpack/Vite will bundle it
-import '@kong/design-tokens/themes/konnect-day.css'
+import '@kong/design-tokens/themes/electric-lime-day.css'
 
 // Switch the active theme at runtime
-document.documentElement.setAttribute('data-kui-theme', 'konnect-night')
+document.documentElement.setAttribute('data-kui-theme', 'electric-lime-night')
 ```
 
-Available themes: `classic-day`, `classic-night`, `konnect-day`, `konnect-night`.
+Available themes: `classic-day`, `classic-night`, `electric-lime-day`, `electric-lime-night`.
 `classic-day` is the default look (identical to the unthemed `:root` exports); `classic-night` is its dark counterpart.
 
 Each theme CSS file uses `@layer kui.theme { [data-kui-theme="name"] { ... } }`. This means customer `:root {}` overrides (which are **unlayered**) beat the theme automatically — no `!important` or special selectors needed.
@@ -107,7 +107,7 @@ To respond to the system dark-mode preference, listen to the `prefers-color-sche
 ```ts
 const mq = window.matchMedia('(prefers-color-scheme: dark)')
 const applyColorScheme = (dark: boolean) =>
-  document.documentElement.setAttribute('data-kui-theme', dark ? 'konnect-night' : 'konnect-day')
+  document.documentElement.setAttribute('data-kui-theme', dark ? 'electric-lime-night' : 'electric-lime-day')
 
 applyColorScheme(mq.matches)
 mq.addEventListener('change', e => applyColorScheme(e.matches))
@@ -116,7 +116,7 @@ mq.addEventListener('change', e => applyColorScheme(e.matches))
 You can also import the theme objects as JavaScript for runtime composition or for use with Kongponents' `applyTheme` / `defineKongponentsTheme`:
 
 ```ts
-import { konnectDay, konnectNight, classicDay, classicNight } from '@kong/design-tokens/themes'
+import { electricLimeDay, electricLimeNight, classicDay, classicNight } from '@kong/design-tokens/themes'
 ```
 
 ## Tokens
@@ -341,11 +341,11 @@ Typically, a host application should only utilize the SCSS and/or JavaScript var
 
 ```ts
 // my-app-theme.ts
-import { konnectDay } from '@kong/design-tokens/themes'
+import { electricLimeDay } from '@kong/design-tokens/themes'
 import { defineKongponentsTheme } from '@kong/kongponents'
 
 export const myTheme = defineKongponentsTheme({
-  ...konnectDay,           // spread the base theme
+  ...electricLimeDay,           // spread the base theme
   '--kui-button-border-radius-medium': '999px',  // then override specific tokens
 })
 ```
@@ -378,10 +378,10 @@ For per-tenant runtime composition (e.g. theme values fetched from an API), use 
 
 ```ts
 import { applyTheme } from '@kong/kongponents'
-import { konnectDay } from '@kong/design-tokens/themes'
+import { electricLimeDay } from '@kong/design-tokens/themes'
 
 // Merge the base theme with tenant-specific overrides, then apply to :root
-applyTheme({ ...konnectDay, ...tenantOverrides })
+applyTheme({ ...electricLimeDay, ...tenantOverrides })
 ```
 
 #### Server-Side Rendering (SSR)

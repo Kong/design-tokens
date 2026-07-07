@@ -42,7 +42,7 @@ export const SEMANTIC_ONLY_THEMES = ['classic-day', 'classic-night']
  * @param {string} name - Kebab-case name (no .json extension)
  * @returns {string}
  */
-function toExportName(name) {
+export function toExportName(name) {
   return name.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
 }
 

@@ -2,7 +2,7 @@
  * Theme drift guards.
  *
  * Verifies every theme contains the right token set and resolves to the right values:
- *   - exhaustive themes (konnect-day, konnect-night) contain EXACTLY KUI_THEMEABLE_TOKENS;
+ *   - exhaustive themes (electric-lime-day, electric-lime-night) contain EXACTLY KUI_THEMEABLE_TOKENS;
  *   - semantic-only themes (classic-day, classic-night) contain every semantic token and ZERO
  *     component tokens;
  *   - every alias palette matches the names-only `_manifest.alias.color.json` key set, with
@@ -354,12 +354,12 @@ describe('build wiring: injectThemeBreakpoints preprocessor', () => {
 
 describe('build wiring: aliasIncludesFor (per-theme palette resolution)', () => {
   it('includes the per-theme palette when it exists', () => {
-    expect(aliasIncludesFor('konnect-day', true, null)).toEqual(['./themes/konnect-day/konnect-day.alias.color.json'])
+    expect(aliasIncludesFor('electric-lime-day', true, null)).toEqual(['./themes/electric-lime-day/electric-lime-day.alias.color.json'])
   })
 
   it('throws when an alias-using theme has no palette (no silent fallback)', () => {
     const theme = { 'kui-color-text': { $value: '{color.alias.gray.10}' } }
-    expect(() => aliasIncludesFor('konnect-contrast', false, theme)).toThrow(/references \{color\.alias/)
+    expect(() => aliasIncludesFor('missing-palette', false, theme)).toThrow(/references \{color\.alias/)
   })
 })
 
@@ -415,7 +415,7 @@ describe('build wiring: an unfilled component token ($value === \'\') is OMITTED
 describe('classic-day / classic-night themes are unchanged (golden snapshot)', () => {
   // classic-day is the default palette + theme; classic-night is its fixed dark counterpart. Both are
   // deterministic (no designer tuning), so their resolved output is frozen — any change fails here and
-  // must be accepted explicitly (`vitest -u`). konnect day/night are intentionally NOT snapshotted —
+  // must be accepted explicitly (`vitest -u`). electric-lime-day/night are intentionally NOT snapshotted —
   // they evolve with tuning; their guarantees are structural (drift guard + off-source + $description).
 
   for (const themeName of SEMANTIC_ONLY_THEMES) {

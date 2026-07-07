@@ -95,7 +95,7 @@ describe('buildComponentTokenSlots', () => {
     )
   })
 
-  it('never contains a konnect-specific or placeholder color value', async () => {
+  it('never contains a theme-specific or placeholder color value', async () => {
     const slots = await buildComponentTokenSlots()
     for (const { value } of slots.values()) {
       expect(value).toBe('')
