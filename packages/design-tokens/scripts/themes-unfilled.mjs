@@ -4,7 +4,7 @@
  * palette families that are still byte-identical to the classic-day seed the scaffold started from.
  *
  * Non-blocking by design — an in-progress theme still builds and can publish to the preview npm
- * channel (empty component values resolve to `initial`; a seeded palette is a valid, real palette).
+ * channel (empty component values are omitted; a seeded palette is a valid, real palette).
  * This report is a checklist, not a build gate; completion is enforced by review, not automation.
  *
  * Usage: node scripts/themes-unfilled.mjs <theme-name>
