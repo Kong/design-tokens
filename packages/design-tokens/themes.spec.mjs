@@ -426,6 +426,15 @@ describe('classic-day / classic-night themes are unchanged (golden snapshot)', (
   }
 })
 
+describe('Exhaustive themes are unchanged (golden snapshot)', () => {
+  for (const themeName of EXHAUSTIVE_THEMES) {
+    it(`dist/themes/${themeName}.css resolved output remains unchanged`, async () => {
+      const css = await readFile(join(ROOT, 'dist', 'themes', `${themeName}.css`), 'utf-8')
+      await expect(stripTimestamp(css)).toMatchFileSnapshot(join(ROOT, '__snapshots__', 'themes', `${themeName}.css`))
+    })
+  }
+})
+
 describe('semantic token exports are unchanged (golden snapshot)', () => {
   it('dist/tokens/css/custom-properties.css resolved output remains unchanged', async () => {
     const css = await readFile(join(ROOT, 'dist', 'tokens', 'css', 'custom-properties.css'), 'utf-8')
