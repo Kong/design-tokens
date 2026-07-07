@@ -14,6 +14,14 @@
   that the pinned Kongponents version doesn't consume yet, those won't show here even though the
   theme sets them correctly — point --kongponents at a version/build that reads them. Requires
   outbound HTTPS to the CDN at view time.
+
+  MAINTENANCE: see the theme-creation/CLAUDE.md in this skill directory for the render contract
+  (h()-only, group() error isolation, required props) and the checklist for fixing this file when
+  the pinned Kongponents version changes.
+
+  Overlays (modal, prompt, slideout) and the tooltip render behind triggers — they don't appear in
+  a single default screenshot. Click the trigger buttons / hover the tooltip trigger with a browser
+  tool to reveal and screenshot their themed surfaces.
 -->
 <html lang="en">
 
@@ -68,11 +76,11 @@
 
   <body __THEME_ATTR__>
     <h1>Aa — the quick brown fox jumps</h1>
-    <p class="muted">Real Kongponents rendered under this theme. States, surfaces, inputs, navigation &amp; feedback
-      below.</p>
+    <p class="muted">Real Kongponents rendered under this theme. Feedback, states, surfaces, inputs,
+      selection, dates, code, navigation, filters, tables, overlays &amp; tooltips below.</p>
     <div id="app"></div>
     <script type="module">
-      const {createApp, h, ref} = await import('vue')
+      const {createApp, h, ref, computed} = await import('vue')
       const K = await import('__KONGPONENTS_ESM__')
       const app = createApp({
         setup() {
@@ -83,7 +91,45 @@
             try {body = fn()} catch (e) {body = h('div', {class: 'grperr'}, 'skipped: ' + (e && e.message || e))}
             return [label(title), h('div', {class: 'row'}, body)]
           }
+
+          // Reactive state for interactive examples (overlays + paginated table).
+          const modalVisible = ref(false)
+          const promptVisible = ref(false)
+          const slideoutVisible = ref(false)
+          const activeTab = ref('#a')
+
+          const tableRows = Array.from({length: 25}, (_, i) => ({
+            id: i + 1,
+            name: ['Ada Lovelace', 'Alan Turing', 'Grace Hopper', 'Katherine Johnson', 'Margaret Hamilton'][i % 5] + ' ' + (i + 1),
+            role: ['Admin', 'Editor', 'Viewer'][i % 3],
+            status: ['Active', 'Invited', 'Suspended'][i % 3],
+          }))
+          const tablePage = ref(1)
+          const tablePageSize = ref(10)
+          const pagedRows = computed(() => {
+            const start = (tablePage.value - 1) * tablePageSize.value
+            return tableRows.slice(start, start + tablePageSize.value)
+          })
+
+          const radioValue = ref('b')
+          const radioCardValue = ref('vertical-a')
+          const multiselectValue = ref(['a'])
+          const filterValue = ref({})
+
           return () => h('div', [
+            ...group('Feedback — alerts', () => [
+              h('div', {style: 'flex:1;min-width:360px'}, [
+                h(K.KAlert, {appearance: 'info', title: 'Heads up', message: 'An informational alert.', showIcon: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'success', title: 'Success', message: 'Your changes were saved.', showIcon: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'warning', title: 'Careful', message: 'This action can\'t be undone.', showIcon: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'danger', message: 'A danger alert.', dismissible: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'decorative', message: 'A decorative alert.'}),
+              ]),
+            ]),
             ...group('Buttons — appearances & states', () => [
               h(K.KButton, {appearance: 'primary'}, () => 'Primary'),
               h(K.KButton, {appearance: 'secondary'}, () => 'Secondary'),
@@ -93,45 +139,143 @@
               h(K.KButton, {appearance: 'primary', size: 'small'}, () => 'Small'),
               h(K.KButton, {appearance: 'primary', size: 'large'}, () => 'Large'),
             ]),
-            ...group('Surfaces & badges', () => [
+            ...group('Badges — appearances & sizes', () => [
+              h(K.KBadge, {appearance: 'info'}, () => 'Info'),
+              h(K.KBadge, {appearance: 'success'}, () => 'Success'),
+              h(K.KBadge, {appearance: 'warning'}, () => 'Warning'),
+              h(K.KBadge, {appearance: 'danger'}, () => 'Danger'),
+              h(K.KBadge, {appearance: 'neutral'}, () => 'Neutral'),
+              h(K.KBadge, {appearance: 'decorative'}, () => 'Decorative'),
+              h(K.KBadge, {appearance: 'info', size: 'small'}, () => 'Small info'),
+            ]),
+            ...group('Surfaces — card', () => [
               h(K.KCard, {style: 'max-width:300px'}, {
                 title: () => 'Card title',
-                default: () => h('div', [
-                  h('p', {class: 'muted', style: 'margin:0 0 12px'}, 'A card surface: background, border, radius, padding and shadow from tokens.'),
-                  h('div', {class: 'row'}, [
-                    h(K.KBadge, {appearance: 'info'}, () => 'Info'),
-                    h(K.KBadge, {appearance: 'success'}, () => 'Success'),
-                    h(K.KBadge, {appearance: 'warning'}, () => 'Warning'),
-                    h(K.KBadge, {appearance: 'danger'}, () => 'Danger'),
-                  ]),
-                ]),
+                default: () => h('p', {class: 'muted', style: 'margin:0'}, 'A card surface: background, border, radius, padding and shadow from tokens.'),
               }),
             ]),
             ...group('Inputs & selection', () => [
-              h(K.KInput, {modelValue: 'Text input', style: 'max-width:200px'}),
-              h(K.KSelect, {items: [{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}], style: 'max-width:200px'}),
+              h('div', {style: 'max-width:200px'}, [h(K.KInput, {modelValue: 'Text input'})]),
+              h('div', {style: 'max-width:200px'}, [h(K.KSelect, {items: [{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}]})]),
               h(K.KCheckbox, {modelValue: true, label: 'Checked'}),
               h(K.KCheckbox, {modelValue: false, label: 'Unchecked'}),
+              h(K.KInputSwitch, {modelValue: true, label: 'Enabled'}),
+              h(K.KInputSwitch, {modelValue: false, label: 'Large, disabled', size: 'large', disabled: true}),
             ]),
-            ...group('Navigation', () => [
-              h('div', {style: 'flex:1;min-width:320px'}, [
-                h(K.KTabs, {tabs: [{hash: '#a', title: 'Overview'}, {hash: '#b', title: 'Settings'}, {hash: '#c', title: 'Activity'}]}),
+            ...group('Radio & radio cards', () => [
+              h('div', {style: 'display:flex;flex-direction:column;gap:6px'}, [
+                h(K.KRadio, {modelValue: radioValue.value, selectedValue: 'a', name: 'gallery-radio', label: 'Option A', description: 'First choice', 'onUpdate:modelValue': (v) => radioValue.value = v}),
+                h(K.KRadio, {modelValue: radioValue.value, selectedValue: 'b', name: 'gallery-radio', label: 'Option B', description: 'Second choice', 'onUpdate:modelValue': (v) => radioValue.value = v}),
+                h(K.KRadio, {modelValue: radioValue.value, selectedValue: 'c', name: 'gallery-radio', label: 'Option C (disabled)', disabled: true}),
               ]),
+              h(K.KRadio, {modelValue: radioCardValue.value, selectedValue: 'vertical-a', name: 'gallery-radio-card-v', card: true, cardOrientation: 'vertical', label: 'Vertical card', description: 'Selected state', 'onUpdate:modelValue': (v) => radioCardValue.value = v}),
+              h(K.KRadio, {modelValue: radioCardValue.value, selectedValue: 'vertical-b', name: 'gallery-radio-card-v', card: true, cardOrientation: 'vertical', label: 'Vertical card', description: 'Unselected state', 'onUpdate:modelValue': (v) => radioCardValue.value = v}),
+              h(K.KRadio, {modelValue: 'horizontal-a', selectedValue: 'horizontal-a', name: 'gallery-radio-card-h', card: true, cardOrientation: 'horizontal', label: 'Horizontal card', description: 'Selected state'}),
             ]),
-            ...group('Table', () => [
+            ...group('Multiselect', () => [
+              h(K.KMultiselect, {
+                modelValue: multiselectValue.value,
+                items: [{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}, {label: 'Option C', value: 'c'}],
+                label: 'Choose options',
+                style: 'max-width:260px',
+                'onUpdate:modelValue': (v) => multiselectValue.value = v,
+              }),
+            ]),
+            ...group('Textarea — help & error text', () => [
+              h(K.KTextArea, {modelValue: 'Some notes about this record.', label: 'Notes', help: 'Optional context for the team.', style: 'max-width:280px'}),
+              h(K.KTextArea, {modelValue: '', label: 'Description', error: true, help: 'Description is required.', style: 'max-width:280px'}),
+            ]),
+            ...group('Date & time', () => [
+              h(K.KDateTimePicker, {mode: 'date', modelValue: {start: new Date(), end: null}}),
+              h(K.KDateTimePicker, {mode: 'dateTime', modelValue: {start: new Date(), end: null}}),
+            ]),
+            ...group('Code', () => [
               h('div', {style: 'flex:1;min-width:360px'}, [
-                h(K.KTable, {
-                  headers: [{key: 'name', label: 'Name'}, {key: 'role', label: 'Role'}, {key: 'status', label: 'Status'}],
-                  data: [{name: 'Ada Lovelace', role: 'Admin', status: 'Active'}, {name: 'Alan Turing', role: 'Editor', status: 'Invited'}],
+                h(K.KCodeBlock, {
+                  id: 'gallery-code-block',
+                  code: '{\n  "appearance": "primary",\n  "size": "medium"\n}',
+                  language: 'json',
+                  searchable: true,
                 }),
               ]),
             ]),
-            ...group('Feedback', () => [
+            ...group('Navigation', () => [
               h('div', {style: 'flex:1;min-width:320px'}, [
-                h(K.KAlert, {appearance: 'info', message: 'An informational alert.'}),
-                h('div', {style: 'height:8px'}),
-                h(K.KAlert, {appearance: 'danger', message: 'A danger alert.'}),
+                h(K.KTabs, {
+                  tabs: [{hash: '#a', title: 'Overview'}, {hash: '#b', title: 'Settings'}, {hash: '#c', title: 'Activity'}],
+                  modelValue: activeTab.value,
+                  'onUpdate:modelValue': (v) => activeTab.value = v,
+                }, {
+                  a: () => h('p', {class: 'muted'}, 'Overview panel content.'),
+                  b: () => h('p', {class: 'muted'}, 'Settings panel content.'),
+                  c: () => h('p', {class: 'muted'}, 'Activity panel content.'),
+                }),
               ]),
+              h(K.KExternalLink, {href: 'https://konghq.com'}, () => 'External link'),
+            ]),
+            ...group('Filters', () => [
+              h(K.KFilterGroup, {
+                filters: {
+                  name: {label: 'Name'},
+                  status: {label: 'Status', options: [{label: 'Active', value: 'active'}, {label: 'Invited', value: 'invited'}]},
+                },
+                modelValue: filterValue.value,
+                'onUpdate:modelValue': (v) => filterValue.value = v,
+              }),
+            ]),
+            ...group('Table', () => [
+              h('div', {style: 'flex:1;min-width:420px'}, [
+                h(K.KTableView, {
+                  headers: [{key: 'name', label: 'Name', sortable: true}, {key: 'role', label: 'Role'}, {key: 'status', label: 'Status'}],
+                  data: pagedRows.value,
+                  rowKey: 'id',
+                  paginationAttributes: {
+                    totalCount: tableRows.length,
+                    pageSizes: [10, 15, 25],
+                    currentPage: tablePage.value,
+                    initialPageSize: tablePageSize.value,
+                  },
+                  onPageChange: ({page}) => { tablePage.value = page },
+                  onPageSizeChange: ({pageSize}) => { tablePageSize.value = pageSize; tablePage.value = 1 },
+                }),
+              ]),
+            ]),
+            ...group('Overlays — modal, prompt & slideout (click trigger to reveal)', () => [
+              h('div', [
+                h(K.KButton, {appearance: 'primary', onClick: () => { modalVisible.value = true }}, () => 'Open modal'),
+                h(K.KModal, {
+                  visible: modalVisible.value,
+                  title: 'Modal title',
+                  onProceed: () => { modalVisible.value = false },
+                  onCancel: () => { modalVisible.value = false },
+                }, {default: () => h('p', {class: 'muted'}, 'Modal body content, themed background/border/buttons.')}),
+              ]),
+              h('div', [
+                h(K.KButton, {appearance: 'danger', onClick: () => { promptVisible.value = true }}, () => 'Delete…'),
+                h(K.KPrompt, {
+                  visible: promptVisible.value,
+                  title: 'Confirm deletion',
+                  message: 'This action cannot be undone.',
+                  onProceed: () => { promptVisible.value = false },
+                  onCancel: () => { promptVisible.value = false },
+                }),
+              ]),
+              h('div', [
+                h(K.KButton, {appearance: 'secondary', onClick: () => { slideoutVisible.value = true }}, () => 'Open slideout'),
+                h(K.KSlideout, {
+                  visible: slideoutVisible.value,
+                  title: 'Slideout title',
+                  onClose: () => { slideoutVisible.value = false },
+                }, {default: () => h('p', {class: 'muted'}, 'Slideout panel content, themed background/border.')}),
+              ]),
+            ]),
+            ...group('Tooltip (hover trigger to reveal)', () => [
+              h(K.KTooltip, {text: 'Tooltip content, placement: top', placement: 'top'}, {
+                default: () => h(K.KButton, {appearance: 'tertiary', tabindex: '0'}, () => 'Hover me (top)'),
+              }),
+              h(K.KTooltip, {text: 'Tooltip content, placement: bottom', placement: 'bottom'}, {
+                default: () => h(K.KButton, {appearance: 'tertiary', tabindex: '0'}, () => 'Hover me (bottom)'),
+              }),
             ]),
           ])
         },

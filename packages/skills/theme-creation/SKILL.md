@@ -236,13 +236,17 @@ Structural pass (guards green) ≠ *looks right*. Close the gap with two checks:
    node ../skills/theme-creation/scripts/preview.mjs <name> [--port 8747] [--kongponents <ver>]
    ```
    It serves a side-by-side **default vs. themed** gallery of real `@kong/kongponents` components
-   (buttons in every state, cards, inputs, select, tabs, table, alerts) loaded from a CDN — no
-   install. (Its own generated files land in `packages/skills/theme-creation-workspace/preview/`,
-   which is gitignored — you don't need to clean those up.) Navigate a browser tool to the printed
-   `http://localhost:<port>/index.html`, screenshot it **to a path outside the repo entirely**
-   (e.g. your scratch/tmp directory) — a screenshot saved anywhere inside the repo tree, even a
-   gitignored one, is still a scope leak an agent should avoid creating — and view it next to the
-   source.
+   (buttons in every state, badges, cards, inputs, radios/switch, multiselect, textarea, date
+   picker, code block, tabs, external link, filter group, a paginated table, modals/prompts/
+   slideouts, tooltips, and alerts) loaded from a CDN — no install. (Its own generated files land
+   in `packages/skills/theme-creation-workspace/preview/`, which is gitignored — you don't need to
+   clean those up.) Navigate a browser tool to the printed `http://localhost:<port>/index.html`,
+   screenshot it **to a path outside the repo entirely** (e.g. your scratch/tmp directory) — a
+   screenshot saved anywhere inside the repo tree, even a gitignored one, is still a scope leak an
+   agent should avoid creating — and view it next to the source. The modal, prompt, and slideout
+   examples render behind trigger buttons, and the tooltip examples behind hover triggers — a
+   single default screenshot only shows the closed triggers, so click/hover them with the browser
+   tool to reveal and screenshot the themed overlay surfaces too.
 
    **Preview against the Kongponents version the user actually runs.** A version only consumes the
    tokens *it* was built to read — a published version may read only the semantic fallback, so
