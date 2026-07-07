@@ -1664,6 +1664,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: "rgba(0, 0, 0, 0)",
   },
   {
+    name: "--kui-color-brand",
+    description: "Default brand color for the theme.",
+    category: "color",
+    value: "#0044f4",
+  },
+  {
     name: "--kui-color-text",
     description: "Default text color (blue.100).",
     category: "color",

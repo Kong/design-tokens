@@ -86,6 +86,7 @@
   --kui-color-border-primary-weaker: #bee2ff; /** Weaker border color for primary actions or messages (blue.20). */
   --kui-color-border-primary-weakest: #eefaff; /** Weakest border color for primary actions or messages (blue.10). */
   --kui-color-border-transparent: rgba(0, 0, 0, 0); /** Transparent border color (transparent). */
+  --kui-color-brand: #0044f4; /** Default brand color for the theme. */
   --kui-color-text: #000933; /** Default text color (blue.100). */
   --kui-color-text-accent: #0044f4; /** Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
   --kui-color-text-danger: #d60027; /** Text color for danger actions or messages (red.60). */

@@ -1071,6 +1071,10 @@
     "$description": "Transparent border color (transparent).",
     "$value": "{color.alias.transparent}"
   },
+  "kui-color-brand": {
+    "$description": "Default brand color for the theme.",
+    "$value": "{color.alias.electric_lime.60}"
+  },
   "kui-color-text": {
     "$description": "Default text color.",
     "$value": "{color.alias.gray.30}"

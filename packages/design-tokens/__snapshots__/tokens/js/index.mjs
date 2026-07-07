@@ -85,6 +85,7 @@ export const KUI_COLOR_BORDER_PRIMARY_WEAK = "#5f9aff"; // Weak border color for
 export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#bee2ff"; // Weaker border color for primary actions or messages (blue.20).
 export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff"; // Weakest border color for primary actions or messages (blue.10).
 export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)"; // Transparent border color (transparent).
+export const KUI_COLOR_BRAND = "#0044f4"; // Default brand color for the theme.
 export const KUI_COLOR_TEXT = "#000933"; // Default text color (blue.100).
 export const KUI_COLOR_TEXT_ACCENT = "#0044f4"; // Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 export const KUI_COLOR_TEXT_DANGER = "#d60027"; // Text color for danger actions or messages (red.60).
