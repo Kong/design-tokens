@@ -175,6 +175,8 @@ $kui-color-border-primary-weaker: #bee2ff;
 $kui-color-border-primary-weakest: #eefaff;
 /* Transparent border color (transparent). */
 $kui-color-border-transparent: rgba(0, 0, 0, 0);
+/* Default brand color for the theme. */
+$kui-color-brand: #0044f4;
 /* Default text color (blue.100). */
 $kui-color-text: #000933;
 /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
@@ -857,6 +859,8 @@ $tokens-map: (
   'kui-color-border-primary-weakest': #eefaff,
   /* Transparent border color (transparent). */
   'kui-color-border-transparent': rgba(0, 0, 0, 0),
+  /* Default brand color for the theme. */
+  'kui-color-brand': #0044f4,
   /* Default text color (blue.100). */
   'kui-color-text': #000933,
   /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
@@ -1543,6 +1547,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-border-primary-weakest: #eefaff;
 /* Transparent border color (transparent). */
 --kui-color-border-transparent: rgba(0, 0, 0, 0);
+/* Default brand color for the theme. */
+--kui-color-brand: #0044f4;
 /* Default text color (blue.100). */
 --kui-color-text: #000933;
 /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
@@ -3401,6 +3407,8 @@ export const KUI_COLOR_BORDER_PRIMARY_WEAKER = "#bee2ff";
 export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff";
 /* Transparent border color (transparent). */
 export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)";
+/* Default brand color for the theme. */
+export const KUI_COLOR_BRAND = "#0044f4";
 /* Default text color (blue.100). */
 export const KUI_COLOR_TEXT = "#000933";
 /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
@@ -5584,6 +5592,12 @@ export const KUI_THEMEABLE_TOKENS = [
     description: "Transparent border color (transparent).",
     category: "color",
     value: "rgba(0, 0, 0, 0)",
+  },
+  {
+    name: "--kui-color-brand",
+    description: "Default brand color for the theme.",
+    category: "color",
+    value: "#0044f4",
   },
   {
     name: "--kui-color-text",
@@ -9546,6 +9560,7 @@ export const KUI_THEMEABLE_TOKENS = [
   "kui_color_border_primary_weaker": "#bee2ff",
   "kui_color_border_primary_weakest": "#eefaff",
   "kui_color_border_transparent": "rgba(0, 0, 0, 0)",
+  "kui_color_brand": "#0044f4",
   "kui_color_text": "#000933",
   "kui_color_text_accent": "#0044f4",
   "kui_color_text_danger": "#d60027",

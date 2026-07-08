@@ -7,32 +7,35 @@ import { flattenTokenTree } from './utilities/token-tree.mjs'
 import { discoverThemes } from './platforms/themes.mjs'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DIST_DIR = join(__dirname, 'dist/tokens')
 const DIST_ROOT = join(__dirname, 'dist')
 
 /** @param {string} relativePath */
 async function distFile(relativePath) {
-  return readFile(join(DIST_DIR, relativePath), 'utf-8')
-}
-
-/** @param {string} relativePath */
-async function distRootFile(relativePath) {
   return readFile(join(DIST_ROOT, relativePath), 'utf-8')
 }
 
 const EXPECTED_DIST_FILES = [
-  'css/custom-properties.css',
-  'css/custom-properties-list.css',
-  'scss/_variables.scss',
-  'scss/_map.scss',
-  'scss/_mixins.scss',
-  'js/index.mjs',
-  'js/index.d.ts',
-  'js/tokens.json',
-  'js/cjs/index.js',
-  'js/cjs/index.d.ts',
-  'js/cjs/package.json',
-  'README.md',
+  'tokens/css/custom-properties.css',
+  'tokens/css/custom-properties-list.css',
+  'tokens/scss/_variables.scss',
+  'tokens/scss/_map.scss',
+  'tokens/scss/_mixins.scss',
+  'tokens/js/index.mjs',
+  'tokens/js/index.d.ts',
+  'tokens/js/tokens.json',
+  'tokens/js/cjs/index.js',
+  'tokens/js/cjs/index.d.ts',
+  'tokens/js/cjs/package.json',
+  'tokens/themeable-tokens/index.mjs',
+  'tokens/themeable-tokens/index.d.ts',
+  'tokens/README.md',
+  // Themes
+  'themes/index.mjs',
+  'themes/index.d.ts',
+  'themes/classic-day.css',
+  'themes/classic-night.css',
+  'themes/electric-lime-day.css',
+  'themes/electric-lime-night.css',
 ]
 
 
@@ -60,21 +63,24 @@ describe('@kong/design-tokens build artifacts', () => {
 
   beforeAll(async () => {
     [cssVars, cssVarsList, scssVars, scssMap, scssMixins, jsEsm, jsDts, jsonTokens, cjsJs, cjsDts] = await Promise.all([
-      distFile('css/custom-properties.css'),
-      distFile('css/custom-properties-list.css'),
-      distFile('scss/_variables.scss'),
-      distFile('scss/_map.scss'),
-      distFile('scss/_mixins.scss'),
-      distFile('js/index.mjs'),
-      distFile('js/index.d.ts'),
-      distFile('js/tokens.json'),
-      distFile('js/cjs/index.js'),
-      distFile('js/cjs/index.d.ts'),
+      distFile('tokens/css/custom-properties.css'),
+      distFile('tokens/css/custom-properties-list.css'),
+      distFile('tokens/scss/_variables.scss'),
+      distFile('tokens/scss/_map.scss'),
+      distFile('tokens/scss/_mixins.scss'),
+      distFile('tokens/js/index.mjs'),
+      distFile('tokens/js/index.d.ts'),
+      distFile('tokens/js/tokens.json'),
+      distFile('tokens/js/cjs/index.js'),
+      distFile('tokens/js/cjs/index.d.ts'),
     ]).catch((err) => {
       if (err.code === 'ENOENT') {
-        throw new Error(`Build artifacts not found. Run 'pnpm build' before running tests.\n\nMissing: ${err.path}`)
+        throw new Error(
+          `Build artifacts not found — run 'pnpm build' first.\n\nMissing: ${err.path}`,
+          { cause: err },
+        )
       }
-      throw err
+      throw new Error(`Failed to load token build artifacts: ${err.message}`, { cause: err })
     })
   })
 
@@ -83,7 +89,7 @@ describe('@kong/design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('output files', () => {
-    it.each(EXPECTED_DIST_FILES)('generates dist/tokens/%s', async (file) => {
+    it.each(EXPECTED_DIST_FILES)('generates dist/%s', async (file) => {
       await expect(distFile(file)).resolves.toBeTruthy()
     })
   })
@@ -580,15 +586,18 @@ describe('dist/tokens/themeable-tokens (full themed surface)', () => {
 
   beforeAll(async () => {
     ;[themeableTokensMjs, themeableTokensCjs, themeableTokensDts, themeableTokensDcts] = await Promise.all([
-      distFile('themeable-tokens/index.mjs'),
-      distFile('themeable-tokens/index.cjs'),
-      distFile('themeable-tokens/index.d.ts'),
-      distFile('themeable-tokens/index.d.cts'),
+      distFile('tokens/themeable-tokens/index.mjs'),
+      distFile('tokens/themeable-tokens/index.cjs'),
+      distFile('tokens/themeable-tokens/index.d.ts'),
+      distFile('tokens/themeable-tokens/index.d.cts'),
     ]).catch((err) => {
       if (err.code === 'ENOENT') {
-        throw new Error(`dist/tokens/themeable-tokens/index.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
+        throw new Error(
+          `dist/tokens/themeable-tokens/index.* not found — run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`,
+          { cause: err },
+        )
       }
-      throw err
+      throw new Error(`Failed to load themeable-tokens artifacts: ${err.message}`, { cause: err })
     })
   })
 
@@ -742,14 +751,17 @@ describe('dist/themes/', () => {
     await Promise.all(
       THEMES.map(async ({ name }) => {
         const [css, mjs, dts] = await Promise.all([
-          distRootFile(`themes/${name}.css`),
-          distRootFile(`themes/${name}.mjs`),
-          distRootFile(`themes/${name}.d.ts`),
+          distFile(`themes/${name}.css`),
+          distFile(`themes/${name}.mjs`),
+          distFile(`themes/${name}.d.ts`),
         ]).catch((err) => {
           if (err.code === 'ENOENT') {
-            throw new Error(`dist/themes/${name}.* not found. Run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`)
+            throw new Error(
+              `dist/themes/${name}.* not found — run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`,
+              { cause: err },
+            )
           }
-          throw err
+          throw new Error(`Failed to load theme artifacts for '${name}': ${err.message}`, { cause: err })
         })
         themes[name] = { css, mjs, dts }
       }),
@@ -809,7 +821,7 @@ describe('dist/themes/', () => {
   })
 
   it('index.mjs re-exports all themes without "Theme" suffix', async () => {
-    const indexMjs = await distRootFile('themes/index.mjs')
+    const indexMjs = await distFile('themes/index.mjs')
     for (const { exportName } of THEMES) {
       expect(indexMjs, `index.mjs missing ${exportName}`).toContain(exportName)
       expect(indexMjs, `index.mjs should not use "Theme" suffix for ${exportName}`).not.toContain(`${exportName}Theme`)
