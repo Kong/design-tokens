@@ -1,5 +1,6 @@
 import { computed, ref } from 'vue'
 import * as rawTokens from '@tokens/js'
+import { KUI_THEMEABLE_TOKENS } from '@tokens/themeable-tokens'
 
 /**
  * Token category string. Known values: color, space, font, border, shadow,
@@ -15,7 +16,12 @@ export interface TokenEntry {
   key: string
   /** Derived CSS custom property name, e.g. `--kui-color-background` */
   cssVar: string
-  /** Resolved token value, e.g. `#ffffff` */
+  /**
+   * Resolved token value, e.g. `#ffffff`.
+   * Empty string for component tokens that have no default value — they inherit
+   * from the semantic fallback chain at runtime and are omitted from CSS export
+   * until overridden.
+   */
   value: string
   /** Broad category used for tab grouping and preview rendering */
   category: TokenCategory
@@ -32,20 +38,11 @@ export interface TokenSection {
 }
 
 /**
- * Component sub-categories derived from filenames in `tokens/source/components/`.
- * Adding a new JSON file there (e.g. `tooltip.json`) automatically registers
- * `TOOLTIP` as a component subcategory at next build — no code change required.
- */
-const _componentModules = import.meta.glob('../../tokens/source/components/*.json', { eager: false })
-const COMPONENT_SUBCATS = new Set(
-  Object.keys(_componentModules).map((p) => p.split('/').pop()!.replace('.json', '').toUpperCase()),
-)
-
-/**
  * Categories that are subdivided into named sections within their tab.
- * The section name is derived from the second key segment after dropping `KUI`.
+ * `'components'` sections by component name (button, alert, …) rather than by
+ * token property type, so each component's tokens form their own collapsed group.
  */
-export const SECTIONED_CATEGORIES = new Set<TokenCategory>(['color', 'font', 'border', 'shadow'])
+export const SECTIONED_CATEGORIES = new Set<TokenCategory>(['color', 'font', 'border', 'shadow', 'components'])
 
 /**
  * Normalizes a search string for separator-agnostic matching.
@@ -57,18 +54,17 @@ export function normalize(s: string): string {
 }
 
 /**
- * Derives the category and optional subcategory from a screaming-snake-case token key.
+ * Derives the category and optional subcategory from a screaming-snake-case token key
+ * for tokens sourced from the `@tokens/js` scalar export (semantic and scale tokens only).
  *
  * `KUI_LETTER_SPACING_*` and `KUI_LINE_HEIGHT_*` have two-word prefixes that must be
  * matched before the generic single-word fallback, otherwise they collapse to 'letter' / 'line'.
+ * Component tokens are sourced separately from `KUI_THEMEABLE_TOKENS` and bypass this function.
  */
-function parseCategory(key: string): { category: TokenCategory, subcategory?: string } {
+function parseCategory(key: string): { category: TokenCategory } {
   const parts = key.split('_').slice(1) // drop 'KUI'
   if (parts[0] === 'LETTER' && parts[1] === 'SPACING') return { category: 'letter-spacing' }
   if (parts[0] === 'LINE' && parts[1] === 'HEIGHT') return { category: 'line-height' }
-  if (COMPONENT_SUBCATS.has(parts[0])) {
-    return { category: 'components', subcategory: parts[0].toLowerCase() }
-  }
   return { category: parts[0].toLowerCase() }
 }
 
@@ -94,18 +90,39 @@ export function tokenDisplayName(cssVar: string): string {
 }
 
 /**
- * All token entries derived from the flat `@tokens/js` export, sorted with natural numeric ordering
- * so `_10, _20 ... _100, _110` stays in numeric sequence rather than lexicographic.
+ * All token entries: semantic/scale tokens from the flat `@tokens/js` export, plus
+ * component tokens from `KUI_THEMEABLE_TOKENS` (empty value = unset by default;
+ * the semantic fallback chain resolves the actual rendered value at CSS runtime).
+ *
+ * Sorted with natural numeric ordering so `_10, _20 ... _100, _110` stays in
+ * numeric sequence rather than lexicographic.
  *
  * Exported so other composables (e.g. `useTokenCustomizer`) can iterate all tokens
  * without creating a separate reactive search state via `useTokens()`.
  */
-export const ALL_ENTRIES: TokenEntry[] = Object.entries(rawTokens as Record<string, string>)
-  .map(([key, value]) => {
-    const { category, subcategory } = parseCategory(key)
-    return { key, cssVar: toCssVar(key), value, category, subcategory }
-  })
-  .sort((a, b) => a.key.localeCompare(b.key, undefined, { numeric: true }))
+export const ALL_ENTRIES: TokenEntry[] = [
+  // Semantic and scale tokens — sourced from the resolved SCSS/JS export
+  ...Object.entries(rawTokens as Record<string, string>)
+    .map(([key, value]) => {
+      const { category } = parseCategory(key)
+      return { key, cssVar: toCssVar(key), value, category } satisfies TokenEntry
+    }),
+
+  // Component tokens — sourced from the themeable-token registry (value: null → empty string).
+  // Empty value = no default emitted in CSS; the component relies on its semantic fallback chain.
+  // Grouped under the 'components' category and sub-sectioned by component name.
+  ...KUI_THEMEABLE_TOKENS
+    .filter((t) => t.category === 'component')
+    .map((t) => ({
+      // Convert --kui-button-color-background → KUI_BUTTON_COLOR_BACKGROUND (for sorting parity)
+      key: t.name.slice(2).toUpperCase().replace(/-/g, '_'),
+      cssVar: t.name,
+      value: t.value ?? '',
+      category: 'components' as TokenCategory,
+      // First path segment after `--kui-` is the component name, e.g. 'button' from '--kui-button-color-*'
+      subcategory: t.name.slice(6).split('-')[0],
+    }) satisfies TokenEntry),
+].sort((a, b) => a.key.localeCompare(b.key, undefined, { numeric: true }))
 
 
 /**
@@ -120,11 +137,16 @@ export function categoryLabel(cat: string): string {
  * Derives the within-category section name for a token.
  * Only sectionable categories return a value; others return null.
  *
+ * - `'components'` sections by component name (subcategory), e.g. `'button'`, `'alert'`.
+ * - Other sectionable categories section by the second key segment, e.g. `'background'`, `'size'`.
+ *
  * @example `KUI_COLOR_BACKGROUND_DANGER` → `'background'`
  * @example `KUI_FONT_SIZE_30` → `'size'`
+ * @example `--kui-button-color-background-primary` (category 'components') → `'button'`
  */
 function getTokenSection(entry: TokenEntry): string | null {
   if (!SECTIONED_CATEGORIES.has(entry.category)) return null
+  if (entry.category === 'components') return entry.subcategory ?? null
   const parts = entry.key.split('_').slice(1) // drop 'KUI'
   return parts[1]?.toLowerCase() ?? null
 }

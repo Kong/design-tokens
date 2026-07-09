@@ -102,7 +102,12 @@ export function previewProxyPlugin(): Plugin {
             const safeOrigin = origin.replace(/["'<>&]/g, (c) => `&#${c.charCodeAt(0)};`)
             let html = await upstream.text()
 
-            const originalPath = finalUrl.pathname + finalUrl.search + finalUrl.hash
+            // Use the hash from the *original* urlParam: Node.js fetch() strips fragment
+            // identifiers (they're never sent to the server), so finalUrl.hash is always empty.
+            // If the user passed e.g. https://example.com/#/button we must restore #/button so
+            // SPA hash-mode routers see the correct initial route.
+            const requestedHash = (() => { try { return new URL(urlParam).hash } catch { return '' } })()
+            const originalPath = finalUrl.pathname + finalUrl.search + (requestedHash || finalUrl.hash)
 
             // Importmap key must be absolute (not `/assets/`) because relative keys are normalized
             // against document.baseURI (our <base> tag → target origin), but import() in a module
@@ -160,14 +165,23 @@ export function previewProxyPlugin(): Plugin {
     var a=Array.prototype.slice.call(arguments);a[1]=typeof u==='string'?_p(u):u;return _x.apply(this,a);
   };
 
-  // Strip SRI integrity at the DOM level. The proxy rewrites JS/CSS content which changes
-  // their hashes, causing integrity checks to fail on dynamically-created elements
-  // (e.g. Nuxt/Next route-chunk <script> tags built from a manifest at runtime).
-  // Two layers: setAttribute intercept (covers .setAttribute('integrity',…)) and
-  // prototype property override (covers direct .integrity = '…' assignments).
+  // Route dynamically-created <script src> and <link href> elements through the proxy.
+  // Vite's __vitePreload creates these elements at runtime (route-chunk lazy loading).
+  // The URLs resolve against document.baseURI (<base href> = target origin) so they become
+  // absolute cross-origin URLs that CORS would block.
+  // Two layers: setAttribute intercept (covers .setAttribute('src'|'href',…)) and
+  // prototype property override (covers direct .src/.href = '…' assignments).
   var _sa=Element.prototype.setAttribute;
   Element.prototype.setAttribute=function(n,v){
-    if(n.toLowerCase()==='integrity')return;
+    var nl=n.toLowerCase();
+    if(nl==='integrity')return;
+    var tag=this.tagName?this.tagName.toUpperCase():'';
+    if(typeof v==='string'){
+      if(nl==='src'&&(tag==='SCRIPT'||tag==='IMG'||tag==='VIDEO'||tag==='AUDIO'||tag==='SOURCE'||tag==='IFRAME'))
+        return _sa.call(this,n,_p(v));
+      if(nl==='href'&&tag==='LINK')
+        return _sa.call(this,n,_p(v));
+    }
     return _sa.call(this,n,v);
   };
   try{
@@ -176,6 +190,55 @@ export function previewProxyPlugin(): Plugin {
     Object.defineProperty(HTMLScriptElement.prototype,'integrity',{set:_noop,get:_empty,configurable:true});
     Object.defineProperty(HTMLLinkElement.prototype,'integrity',{set:_noop,get:_empty,configurable:true});
   }catch(e){}
+  try{
+    var _sd=Object.getOwnPropertyDescriptor(HTMLScriptElement.prototype,'src');
+    if(_sd&&_sd.set)Object.defineProperty(HTMLScriptElement.prototype,'src',{
+      set:function(v){_sd.set.call(this,typeof v==='string'?_p(v):v);},get:_sd.get,configurable:true
+    });
+  }catch(e){}
+  try{
+    var _ld=Object.getOwnPropertyDescriptor(HTMLLinkElement.prototype,'href');
+    if(_ld&&_ld.set)Object.defineProperty(HTMLLinkElement.prototype,'href',{
+      set:function(v){_ld.set.call(this,typeof v==='string'?_p(v):v);},get:_ld.get,configurable:true
+    });
+  }catch(e){}
+
+  // Intercept window.location navigation so the proxied page cannot escape the proxy.
+  // SPA routers (Vue Router, React Router…) sometimes call location.replace/assign or
+  // set location.href when their base URL initialization detects a mismatch — without
+  // these interceptors the page navigates out of the proxy to the original origin.
+  //
+  // For cross-origin URLs that contain a hash fragment (e.g. https://netlify.app/#/route),
+  // we extract just the hash so that hash-mode routers continue to work without triggering
+  // a full page reload. Cross-origin URLs without a hash are routed through the proxy.
+  function _pn(u){
+    if(typeof u!=='string')return u;
+    if(/^https?:\\/\\//i.test(u)&&u.indexOf(_b)!==0){
+      var hi=u.indexOf('#');return hi!==-1?u.slice(hi):_b+'/preview-proxy?url='+encodeURIComponent(u);
+    }
+    if(u.indexOf('//')=== 0)return _b+'/preview-proxy?url='+encodeURIComponent('https:'+u);
+    if(u.charAt(0)==='/')return _b+'/preview-proxy?url='+encodeURIComponent(_o+u);
+    return u;
+  }
+  try{var _lr=window.location.replace.bind(window.location);window.location.replace=function(u){_lr(_pn(u));};}catch(e){}
+  try{var _la=window.location.assign.bind(window.location);window.location.assign=function(u){_la(_pn(u));};}catch(e){}
+  try{
+    var _hd=Object.getOwnPropertyDescriptor(Location.prototype,'href');
+    if(_hd&&_hd.set)Object.defineProperty(Location.prototype,'href',{set:function(u){_hd.set.call(this,_pn(u));},get:_hd.get,configurable:true});
+  }catch(e){}
+
+  // Intercept history.replaceState/pushState: cross-origin absolute URLs with a hash
+  // (e.g. https://netlify.app/#/route) are collapsed to just the hash so hash-mode
+  // routers stay on the proxy URL. Other cross-origin URLs are proxied via _p().
+  function _ph(u){
+    if(typeof u!=='string'||!u)return u;
+    if(/^https?:\\/\\//i.test(u)&&u.indexOf(_b)!==0){
+      var hi=u.indexOf('#');return hi!==-1?u.slice(hi):_p(u);
+    }
+    return u;
+  }
+  try{var _hR=history.replaceState.bind(history);history.replaceState=function(s,t,u){try{_hR(s,t,_ph(u));}catch(e){}};} catch(e){}
+  try{var _hP=history.pushState.bind(history);history.pushState=function(s,t,u){try{_hP(s,t,_ph(u));}catch(e){}};} catch(e){}
 })();</script>`
 
             // <base> first (relative URL base), then importmap (must precede all module scripts)
@@ -308,7 +371,7 @@ function rewriteHtmlResources(html: string, pageUrl: string, proxyBase: string):
 
   html = html.replace(
     /<script([^>]*)>([\s\S]*?)<\/script[^>]*>/gi,
-    (match, attrs: string, body: string) => {
+    (_match, attrs: string, body: string) => {
       const hasSrc = /\ssrc\s*=\s*["'][^"']*["']/i.test(attrs)
       let rewrittenAttrs = attrs
       if (hasSrc) {

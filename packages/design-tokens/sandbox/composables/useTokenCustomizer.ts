@@ -50,6 +50,11 @@ function buildCss(entries: typeof ALL_ENTRIES, overrideMap: Record<string, strin
 
   for (const entry of entries) {
     const value = overrideMap[entry.cssVar] ?? entry.value
+    // Skip entries with no resolved value — component tokens that have never been overridden
+    // default to empty string. Emitting `--kui-…: ;` would be invalid CSS and would prevent
+    // the semantic fallback chain from resolving (the CSS spec only falls back for the
+    // "guaranteed-invalid value", not for an explicit empty declaration).
+    if (!value) continue
     const label = categoryLabel(entry.category)
     if (!linesByCat[label]) {
       linesByCat[label] = []
@@ -312,7 +317,9 @@ export function importFromCss(css: string): boolean {
  */
 export function useTokenCustomizer() {
   const filterQuery = ref('')
-  const collapsed = reactive<Record<string, boolean>>({ [CUSTOM_GROUP_KEY]: true })
+  // 'components' starts collapsed — it has ~580 rows across many sub-sections, so eagerly
+  // rendering it on first open would cause a noticeable layout/paint pause.
+  const collapsed = reactive<Record<string, boolean>>({ [CUSTOM_GROUP_KEY]: true, components: true })
   /** When true, the editor shows only tokens that have active overrides. */
   const showOnlyModified = ref(false)
 
