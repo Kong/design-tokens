@@ -36,8 +36,7 @@ export function buildRecords(dictionary) {
     // Component tokens are value-less by design; everything else carries a resolved value.
     const isComponent = token.$type === 'component'
     const rawValue = token.$value
-    const value = rawValue === '' || rawValue == null ? null : String(rawValue)
-
+    const value = isComponent ? null : (rawValue === '' || rawValue == null ? null : String(rawValue))
     byName.set(name, {
       name,
       description: String(token.$description ?? ''),
