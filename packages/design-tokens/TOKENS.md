@@ -2902,10 +2902,6 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-segmented-control-padding-x-large: initial;
 /* Segmented control button focus-visible shadow. */
 --kui-segmented-control-shadow-focus: initial;
-/* Select dropdown popover border radius. */
---kui-select-border-radius: initial;
-/* Select dropdown popover border color. */
---kui-select-color-border: initial;
 /* Select item background color. */
 --kui-select-item-color-background: initial;
 /* Select item background color on hover. */
@@ -7810,18 +7806,6 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-segmented-control-shadow-focus",
     description: "Segmented control button focus-visible shadow.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-select-border-radius",
-    description: "Select dropdown popover border radius.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-select-color-border",
-    description: "Select dropdown popover border color.",
     category: "component",
     value: null,
   },

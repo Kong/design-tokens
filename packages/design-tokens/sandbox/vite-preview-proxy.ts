@@ -106,7 +106,13 @@ export function previewProxyPlugin(): Plugin {
             // identifiers (they're never sent to the server), so finalUrl.hash is always empty.
             // If the user passed e.g. https://example.com/#/button we must restore #/button so
             // SPA hash-mode routers see the correct initial route.
-            const requestedHash = (() => { try { return new URL(urlParam).hash } catch { return '' } })()
+            const requestedHash = (() => {
+              try {
+                return new URL(urlParam).hash
+              } catch {
+                return ''
+              }
+            })()
             const originalPath = finalUrl.pathname + finalUrl.search + (requestedHash || finalUrl.hash)
 
             // Importmap key must be absolute (not `/assets/`) because relative keys are normalized
