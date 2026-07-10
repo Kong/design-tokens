@@ -251,7 +251,7 @@
   },
   "kui-breadcrumbs-divider-color-text": {
     "$description": "Breadcrumbs divider (separator) color.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-breadcrumbs-divider-font-weight": {
     "$description": "Breadcrumbs divider (separator) font weight.",
@@ -407,7 +407,7 @@
   },
   "kui-button-color-border-secondary-disabled": {
     "$description": "Secondary button border color when disabled.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-button-color-border-secondary-hover": {
     "$description": "Secondary button border color on hover.",
@@ -599,7 +599,7 @@
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-card-footer-gap": {
     "$description": "Gap between card footer items.",
@@ -651,7 +651,7 @@
   },
   "kui-checkbox-shadow-border": {
     "$description": "Checkbox default border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
   },
   "kui-checkbox-shadow-border-checked": {
     "$description": "Checkbox border shadow when checked or indeterminate.",
@@ -671,7 +671,7 @@
   },
   "kui-code-block-actions-color-border": {
     "$description": "Code block actions toolbar bottom border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-code-block-actions-color-border-dark": {
     "$description": "Code block actions toolbar bottom border color in the dark theme.",
@@ -707,7 +707,7 @@
   },
   "kui-code-block-line-number-color-text-dark": {
     "$description": "Code block line number text color in the dark theme.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-collapse-font-family": {
     "$description": "Collapse font family.",
@@ -967,7 +967,7 @@
   },
   "kui-color-border": {
     "$description": "Default border color for containers.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-color-border-accent": {
     "$description": "Accent border color for emphasis on non-primary UI. Distinct from the primary action color.",
@@ -1007,7 +1007,7 @@
   },
   "kui-color-border-disabled": {
     "$description": "Border color for disabled elements.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-color-border-inverse": {
     "$description": "Inverse border color.",
@@ -1033,7 +1033,7 @@
   },
   "kui-color-border-neutral-weaker": {
     "$description": "Weaker border color for neutral elements.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-color-border-neutral-weakest": {
     "$description": "Weakest border color for neutral elements.",
@@ -1041,7 +1041,7 @@
   },
   "kui-color-border-primary": {
     "$description": "Border color for primary actions or messages.",
-    "$value": "{color.alias.gray.05}"
+    "$value": "{color.alias.gray.30}"
   },
   "kui-color-border-primary-strong": {
     "$description": "Strong border color for primary actions or messages.",
@@ -1061,7 +1061,7 @@
   },
   "kui-color-border-primary-weaker": {
     "$description": "Weaker border color for primary actions or messages.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-color-border-primary-weakest": {
     "$description": "Weakest border color for primary actions or messages.",
@@ -1101,15 +1101,15 @@
   },
   "kui-color-text-danger-weak": {
     "$description": "Weak text color for danger actions or messages.",
-    "$value": "{color.alias.red.50}"
+    "$value": "{color.alias.red.60}"
   },
   "kui-color-text-danger-weaker": {
     "$description": "Weaker text color for danger actions or messages.",
-    "$value": "{color.alias.red.50}"
+    "$value": "{color.alias.red.70}"
   },
   "kui-color-text-danger-weakest": {
     "$description": "Weakest text color for danger actions or messages.",
-    "$value": "{color.alias.red.50}"
+    "$value": "{color.alias.red.80}"
   },
   "kui-color-text-decorative-aqua": {
     "$description": "Text color for decorative purposes.",
@@ -1125,7 +1125,7 @@
   },
   "kui-color-text-decorative-purple-strong": {
     "$description": "Strong text color for decorative purposes.",
-    "$value": "{color.alias.purple.50}"
+    "$value": "{color.alias.purple.70}"
   },
   "kui-color-text-disabled": {
     "$description": "Text color for disabled elements.",
@@ -1153,11 +1153,11 @@
   },
   "kui-color-text-info-weaker": {
     "$description": "Weaker text color for info elements.",
-    "$value": "{color.alias.blue.50}"
+    "$value": "{color.alias.blue.70}"
   },
   "kui-color-text-info-weakest": {
     "$description": "Weakest text color for info elements.",
-    "$value": "{color.alias.blue.50}"
+    "$value": "{color.alias.blue.80}"
   },
   "kui-color-text-inverse": {
     "$description": "Inverse text color.",
@@ -1181,15 +1181,15 @@
   },
   "kui-color-text-neutral-weak": {
     "$description": "Weak text color for neutral elements.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-text-neutral-weaker": {
     "$description": "Weaker text color for neutral elements.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-color-text-neutral-weakest": {
     "$description": "Weakest text color for neutral elements.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-color-text-primary": {
     "$description": "Text color for primary actions or messages.",
@@ -1209,15 +1209,15 @@
   },
   "kui-color-text-primary-weak": {
     "$description": "Weak text color for primary actions or messages.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-text-primary-weaker": {
     "$description": "Weaker text color for primary actions or messages.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-color-text-primary-weakest": {
     "$description": "Weakest text color for primary actions or messages.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-color-text-success": {
     "$description": "Text color for success elements.",
@@ -1241,11 +1241,11 @@
   },
   "kui-color-text-success-weaker": {
     "$description": "Weaker text color for success elements.",
-    "$value": "{color.alias.green.40}"
+    "$value": "{color.alias.green.60}"
   },
   "kui-color-text-success-weakest": {
     "$description": "Weakest text color for success elements.",
-    "$value": "{color.alias.green.40}"
+    "$value": "{color.alias.green.70}"
   },
   "kui-color-text-warning": {
     "$description": "Text color for warning elements.",
@@ -1269,11 +1269,11 @@
   },
   "kui-color-text-warning-weaker": {
     "$description": "Weaker text color for warning elements.",
-    "$value": "{color.alias.yellow.60}"
+    "$value": "{color.alias.yellow.70}"
   },
   "kui-color-text-warning-weakest": {
     "$description": "Weakest text color for warning elements.",
-    "$value": "{color.alias.yellow.60}"
+    "$value": "{color.alias.yellow.80}"
   },
   "kui-copy-color-text": {
     "$description": "Copy badge label text color (shown before the copyable value when rendered as a badge).",
@@ -1341,7 +1341,7 @@
   },
   "kui-dropdown-color-border": {
     "$description": "Dropdown popover border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-dropdown-item-color-background": {
     "$description": "Dropdown item background color.",
@@ -1373,7 +1373,7 @@
   },
   "kui-dropdown-item-color-border-divider": {
     "$description": "Dropdown item divider border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-dropdown-item-color-text": {
     "$description": "Dropdown item text color.",
@@ -1433,7 +1433,7 @@
   },
   "kui-empty-state-footer-color-border": {
     "$description": "Empty state footer top border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-empty-state-footer-color-text": {
     "$description": "Empty state footer text color.",
@@ -1541,11 +1541,11 @@
   },
   "kui-file-upload-dropzone-color-border": {
     "$description": "File upload dropzone border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-file-upload-dropzone-color-border-disabled": {
     "$description": "File upload dropzone border color when disabled.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-file-upload-dropzone-color-border-error": {
     "$description": "File upload dropzone border color in error state.",
@@ -1553,7 +1553,7 @@
   },
   "kui-file-upload-dropzone-color-border-hover": {
     "$description": "File upload dropzone border color on hover, drag-over, and focus (coordinated).",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-file-upload-dropzone-color-text": {
     "$description": "File upload dropzone text color.",
@@ -1593,7 +1593,7 @@
   },
   "kui-filter-group-pill-color-border": {
     "$description": "Filter pill border color (default, no selection).",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-filter-group-pill-color-border-hover": {
     "$description": "Filter pill border color on hover and focus.",
@@ -1787,7 +1787,7 @@
   },
   "kui-input-shadow-border": {
     "$description": "Input border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
   },
   "kui-input-shadow-border-disabled": {
     "$description": "Input border shadow when disabled.",
@@ -1859,11 +1859,11 @@
   },
   "kui-input-switch-thumb-color-border": {
     "$description": "Input switch thumb ring border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-input-switch-thumb-color-border-hover": {
     "$description": "Input switch thumb ring border color on hover.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-input-switch-thumb-shadow-border": {
     "$description": "Input switch thumb border shadow.",
@@ -2024,7 +2024,7 @@
   },
   "kui-method-color-text-connect-strong": {
     "$description": "Strong text color for the CONNECT method.",
-    "$value": "{color.alias.purple.40}"
+    "$value": "{color.alias.purple.50}"
   },
   "kui-method-color-text-delete": {
     "$description": "Text color for the DELETE method.",
@@ -2032,15 +2032,15 @@
   },
   "kui-method-color-text-delete-strong": {
     "$description": "Strong text color for the DELETE method.",
-    "$value": "{color.alias.red.30}"
+    "$value": "{color.alias.red.50}"
   },
   "kui-method-color-text-get": {
     "$description": "Text color for the GET method.",
-    "$value": "{color.alias.green.20}"
+    "$value": "{color.alias.green.30}"
   },
   "kui-method-color-text-get-strong": {
     "$description": "Strong text color for the GET method.",
-    "$value": "{color.alias.green.20}"
+    "$value": "{color.alias.green.30}"
   },
   "kui-method-color-text-head": {
     "$description": "Text color for the HEAD method.",
@@ -2064,7 +2064,7 @@
   },
   "kui-method-color-text-patch-strong": {
     "$description": "Strong text color for the PATCH method.",
-    "$value": "{color.alias.aqua.30}"
+    "$value": "{color.alias.aqua.60}"
   },
   "kui-method-color-text-post": {
     "$description": "Text color for the POST method.",
@@ -2072,7 +2072,7 @@
   },
   "kui-method-color-text-post-strong": {
     "$description": "Strong text color for the POST method.",
-    "$value": "{color.alias.blue.30}"
+    "$value": "{color.alias.blue.40}"
   },
   "kui-method-color-text-put": {
     "$description": "Text color for the PUT method.",
@@ -2088,7 +2088,7 @@
   },
   "kui-method-color-text-trace-strong": {
     "$description": "Strong text color for the TRACE method.",
-    "$value": "{color.alias.pink.30}"
+    "$value": "{color.alias.pink.40}"
   },
   "kui-modal-border-radius": {
     "$description": "Modal dialog border radius.",
@@ -2116,7 +2116,7 @@
   },
   "kui-modal-color-border": {
     "$description": "Modal dialog border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-modal-color-text": {
     "$description": "Modal dialog text color (custom content).",
@@ -2204,7 +2204,7 @@
   },
   "kui-multiselect-footer-color-border": {
     "$description": "Multiselect dropdown footer top border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-multiselect-footer-color-text": {
     "$description": "Multiselect dropdown footer text color.",
@@ -2232,7 +2232,7 @@
   },
   "kui-multiselect-search-color-border": {
     "$description": "Multiselect dropdown search input wrapper bottom border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-navigation-color-background": {
     "$description": "blue.100.",
@@ -2299,7 +2299,7 @@
   },
   "kui-pagination-color-border": {
     "$description": "Pagination page button border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-pagination-color-border-hover": {
     "$description": "Pagination page button border color on hover and focus.",
@@ -2359,7 +2359,7 @@
   },
   "kui-pop-color-border": {
     "$description": "Popover container border color (also used for the caret border).",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-pop-color-text": {
     "$description": "Popover content text color.",
@@ -2415,7 +2415,7 @@
   },
   "kui-radio-shadow-border": {
     "$description": "Radio default border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
   },
   "kui-radio-shadow-border-checked": {
     "$description": "Radio border shadow when checked.",
@@ -2451,7 +2451,7 @@
   },
   "kui-segmented-control-color-border": {
     "$description": "Segmented control button border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-segmented-control-color-border-active": {
     "$description": "Segmented control button border color when active (pressed).",
@@ -2459,7 +2459,7 @@
   },
   "kui-segmented-control-color-border-disabled": {
     "$description": "Segmented control button border color when disabled.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-segmented-control-color-border-hover": {
     "$description": "Segmented control button border color on hover.",
@@ -2517,6 +2517,14 @@
     "$description": "Segmented control button focus-visible shadow.",
     "$value": "0px 0px 0px 4px rgba(241, 243, 241, 0.15)"
   },
+  "kui-select-border-radius": {
+    "$description": "Select dropdown popover border radius.",
+    "$value": "6px"
+  },
+  "kui-select-color-border": {
+    "$description": "Select dropdown popover border color.",
+    "$value": "{color.alias.gray.80}"
+  },
   "kui-select-item-color-background": {
     "$description": "Select item background color.",
     "$value": "{color.alias.gray.90}"
@@ -2567,7 +2575,7 @@
   },
   "kui-shadow-border": {
     "$description": "Default inset border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-shadow-border-danger": {
     "$description": "Danger state inset border shadow.",
@@ -2579,7 +2587,7 @@
   },
   "kui-shadow-border-disabled": {
     "$description": "Disabled state inset border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
   },
   "kui-shadow-border-primary": {
     "$description": "Primary state inset border shadow.",
@@ -2611,7 +2619,7 @@
   },
   "kui-skeleton-card-color-border": {
     "$description": "Card skeleton wrapper border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-skeleton-color-background": {
     "$description": "Skeleton placeholder base background color (the resting/non-highlighted gradient stops of the shimmer).",
@@ -2643,7 +2651,7 @@
   },
   "kui-skeleton-spinner-color-border": {
     "$description": "Fullscreen generic spinner track (inactive) border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-skeleton-spinner-color-border-active": {
     "$description": "Fullscreen generic spinner active (leading) segment border color.",
@@ -2655,7 +2663,7 @@
   },
   "kui-skeleton-table-color-border": {
     "$description": "Table skeleton row divider border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-slideout-border-width": {
     "$description": "Slideout panel left border width.",
@@ -2679,7 +2687,7 @@
   },
   "kui-slideout-color-border": {
     "$description": "Slideout panel left border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-slideout-color-text": {
     "$description": "Slideout content text color.",
@@ -3186,7 +3194,7 @@
   },
   "kui-stepper-color-border": {
     "$description": "Stepper step indicator (circle) border color for incomplete (default) steps.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-stepper-color-text": {
     "$description": "Stepper step number text color inside the step indicator (circle) for incomplete (default) and pending steps.",
@@ -3250,7 +3258,7 @@
   },
   "kui-table-header-color-border": {
     "$description": "Table header bottom border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-table-header-color-text": {
     "$description": "Table header text color.",
@@ -3298,7 +3306,7 @@
   },
   "kui-table-row-color-border": {
     "$description": "Table row divider (bottom border) color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
@@ -3326,7 +3334,7 @@
   },
   "kui-tabs-color-border": {
     "$description": "Tabs container bottom border color (default appearance).",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-tabs-color-border-selected": {
     "$description": "Tabs current (selected) tab bottom border color — the active-tab underline (default appearance).",
@@ -3534,15 +3542,15 @@
   },
   "kui-tree-list-color-border": {
     "$description": "Tree list item border color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-tree-list-color-border-connector": {
     "$description": "Tree list connecting line color (the lines linking parent and child items).",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-tree-list-color-border-selected": {
     "$description": "Tree list item border color when selected.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-tree-list-color-text": {
     "$description": "Tree list item text color.",

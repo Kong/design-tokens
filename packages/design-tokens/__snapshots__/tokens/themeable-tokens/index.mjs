@@ -3884,6 +3884,18 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-select-border-radius",
+    description: "Select dropdown popover border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-select-color-border",
+    description: "Select dropdown popover border color.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-select-item-color-background",
     description: "Select item background color.",
     category: "component",

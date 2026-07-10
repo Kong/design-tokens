@@ -1,6 +1,18 @@
 {
   "select": {
     "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Select dropdown popover border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "border": {
+        "$description": "Select dropdown popover border color.",
+        "$value": ""
+      }
+    },
     "item": {
       "color": {
         "background": {
