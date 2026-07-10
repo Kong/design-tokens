@@ -251,7 +251,7 @@
   },
   "kui-breadcrumbs-divider-color-text": {
     "$description": "Breadcrumbs divider (separator) color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.40}"
   },
   "kui-breadcrumbs-divider-font-weight": {
     "$description": "Breadcrumbs divider (separator) font weight.",
@@ -599,7 +599,7 @@
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-card-footer-gap": {
     "$description": "Gap between card footer items.",
@@ -671,7 +671,7 @@
   },
   "kui-code-block-actions-color-border": {
     "$description": "Code block actions toolbar bottom border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-code-block-actions-color-border-dark": {
     "$description": "Code block actions toolbar bottom border color in the dark theme.",
@@ -967,7 +967,7 @@
   },
   "kui-color-border": {
     "$description": "Default border color for containers.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-color-border-accent": {
     "$description": "Accent border color for emphasis on non-primary UI. Distinct from the primary action color.",
@@ -1033,7 +1033,7 @@
   },
   "kui-color-border-neutral-weaker": {
     "$description": "Weaker border color for neutral elements.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-color-border-neutral-weakest": {
     "$description": "Weakest border color for neutral elements.",
@@ -1061,7 +1061,7 @@
   },
   "kui-color-border-primary-weaker": {
     "$description": "Weaker border color for primary actions or messages.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-color-border-primary-weakest": {
     "$description": "Weakest border color for primary actions or messages.",
@@ -1433,7 +1433,7 @@
   },
   "kui-empty-state-footer-color-border": {
     "$description": "Empty state footer top border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-empty-state-footer-color-text": {
     "$description": "Empty state footer text color.",
@@ -2116,7 +2116,7 @@
   },
   "kui-modal-color-border": {
     "$description": "Modal dialog border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-modal-color-text": {
     "$description": "Modal dialog text color (custom content).",
@@ -2611,7 +2611,7 @@
   },
   "kui-skeleton-card-color-border": {
     "$description": "Card skeleton wrapper border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-skeleton-color-background": {
     "$description": "Skeleton placeholder base background color (the resting/non-highlighted gradient stops of the shimmer).",
@@ -2643,7 +2643,7 @@
   },
   "kui-skeleton-spinner-color-border": {
     "$description": "Fullscreen generic spinner track (inactive) border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-skeleton-spinner-color-border-active": {
     "$description": "Fullscreen generic spinner active (leading) segment border color.",
@@ -2655,7 +2655,7 @@
   },
   "kui-skeleton-table-color-border": {
     "$description": "Table skeleton row divider border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-slideout-border-width": {
     "$description": "Slideout panel left border width.",
@@ -3186,7 +3186,7 @@
   },
   "kui-stepper-color-border": {
     "$description": "Stepper step indicator (circle) border color for incomplete (default) steps.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-stepper-color-text": {
     "$description": "Stepper step number text color inside the step indicator (circle) for incomplete (default) and pending steps.",
@@ -3250,7 +3250,7 @@
   },
   "kui-table-header-color-border": {
     "$description": "Table header bottom border color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-table-header-color-text": {
     "$description": "Table header text color.",
@@ -3298,7 +3298,7 @@
   },
   "kui-table-row-color-border": {
     "$description": "Table row divider (bottom border) color.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
