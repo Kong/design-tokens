@@ -20,10 +20,12 @@ The work splits cleanly, and this skill is built around the split:
 - **Judgment, done by you (with the `frontend-design` skill)** — perceiving the source, deriving a
   cohesive palette + component treatments with taste, and confirming the *rendered* result matches.
 
-All paths assume the working directory is `packages/design-tokens/` unless noted. The scaffold and
-unfilled-report commands (`pnpm theme:scaffold`, `pnpm themes:unfilled`) are what this flow uses;
-the preview script is `node ../skills/theme-creation/scripts/preview.mjs` (relative to the package
-dir). `pnpm themes:sync` exists too, but it's a repo-maintenance command for reconciling *existing*
+All paths assume the working directory is `packages/design-tokens/` unless noted. The scaffold,
+preview, and unfilled-report commands (`pnpm theme:scaffold`, `pnpm theme:preview --`,
+`pnpm themes:unfilled`) are what this flow uses. `theme:preview` is a `package.json` convenience
+alias for the skill's own `scripts/preview.mjs` — the script lives in and is owned by this skill,
+not the package, so it stays portable if the skill is ever used standalone.
+`pnpm themes:sync` exists too, but it's a repo-maintenance command for reconciling *existing*
 themes when a token is added to `tokens/source/**`/`tokens/components/**` — out of scope for
 creating one new theme (see the Scope guardrail below), so this flow never calls it.
 
@@ -117,7 +119,8 @@ since dark mode is typically the same palette with a handful of tokens re-pointe
 steps (`token-model.md`) — copy the finished day theme's palette into the night theme's
 `<name>.alias.color.json` as a starting point, and re-point only the tokens that should change.
 This is a convenience, not a requirement: if the user wants genuinely different palettes for day
-and night, author each independently.
+and night, author each independently. Once both are built, Step 5.5's preview can render the pair
+together — `Original | <day> | <night>` in one page — instead of previewing each separately.
 
 ## Step 3.5 — Write the design spec, and confirm it
 
@@ -233,14 +236,25 @@ Structural pass (guards green) ≠ *looks right*. Close the gap with two checks:
 2. **Render real components under the theme and compare.** This is the check that actually proves
    fidelity, and it now works reliably:
    ```sh
-   node ../skills/theme-creation/scripts/preview.mjs <name> [--port 8747] [--kongponents <ver>]
+   pnpm theme:preview -- <name...> [--port 8747] [--kongponents <ver>]
+   # equivalent: node ../skills/theme-creation/scripts/preview.mjs <name...> [--port 8747] [--kongponents <ver>]
    ```
-   It serves a side-by-side **default vs. themed** gallery of real `@kong/kongponents` components
+   (`theme:preview` is a `design-tokens/package.json` convenience alias for the skill's own
+   `preview.mjs` — the script itself lives in and is owned by this skill, not the package, since
+   it's a skill-verification tool with no correctness contract worth unit-testing, not a
+   tokens/themes build artifact. `--` is required so pnpm forwards the theme name(s) and flags
+   instead of consuming them itself.)
+
+   It serves a side-by-side **Original vs. themed** gallery of real `@kong/kongponents` components
    (buttons in every state, badges, cards, inputs, radios/switch, multiselect, textarea, date
    picker, code block, tabs, external link, filter group, a paginated table, modals/prompts/
-   slideouts, tooltips, and alerts) loaded from a CDN — no install. (Its own generated files land
-   in `packages/skills/theme-creation-workspace/preview/`, which is gitignored — you don't need to
-   clean those up.) Navigate a browser tool to the printed `http://localhost:<port>/index.html`,
+   slideouts, tooltips, and alerts) loaded from a CDN — no install. Pass more than one theme name to
+   compare them together — e.g. a day/night pair with
+   `preview.mjs acme-day acme-night` renders `Original | acme-day | acme-night` as three columns on
+   one page, which is the common case since a pair is usually eyeballed side by side rather than one
+   theme at a time. (Its own generated files land in
+   `packages/skills/theme-creation-workspace/preview/<port>/`, which is gitignored — you don't need
+   to clean those up.) Navigate a browser tool to the printed `http://localhost:<port>/index.html`,
    screenshot it **to a path outside the repo entirely** (e.g. your scratch/tmp directory) — a
    screenshot saved anywhere inside the repo tree, even a gitignored one, is still a scope leak an
    agent should avoid creating — and view it next to the source. The modal, prompt, and slideout

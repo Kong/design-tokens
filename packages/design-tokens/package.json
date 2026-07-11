@@ -20,6 +20,7 @@
     "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
     "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
     "theme:scaffold": "node scripts/theme-scaffold.mjs",
+    "theme:preview": "node ../skills/theme-creation/scripts/preview.mjs",
     "themes:sync": "node scripts/themes-sync.mjs",
     "themes:unfilled": "node scripts/themes-unfilled.mjs",
     "pretest": "pnpm build:tokens",

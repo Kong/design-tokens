@@ -13,6 +13,14 @@ theme's compiled CSS can be checked against ground truth. See `SKILL.md` Step 5.
 use it and for the version-skew caveat (a Kongponents build only consumes the tokens it was built
 to read).
 
+`gallery.html` itself only ever renders **one** theme at a time — its four placeholders don't
+change when previewing multiple themes together. `preview.mjs` accepts one or more theme names and
+composes the multi-theme view one level up: it renders `gallery.html` once per name into its own
+`themed-<name>.html` (plus an always-present unthemed `default.html`), then generates an
+`index.html` that lays those out as `Original | <name> | <name> | ...` iframe columns on one page.
+If you're editing the render contract below, you're editing what shows up in *every* column, not
+per-column composition.
+
 ## Render contract — read before editing
 
 - **No build step.** Components are authored with Vue's `h()` render function only — never SFC

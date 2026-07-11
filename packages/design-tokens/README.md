@@ -21,6 +21,7 @@ Kong Design Tokens for Konnect, via [Style Dictionary](https://github.com/amzn/s
   - [Directory structure](#directory-structure)
   - [Token Requirements](#token-requirements)
   - [Creating a new theme](#creating-a-new-theme)
+  - [Previewing a theme](#previewing-a-theme)
   - [Theme `$description` authoring rules](#theme-description-authoring-rules)
   - [Development Sandbox](#development-sandbox)
   - [Lint and fix](#lint-and-fix)
@@ -513,7 +514,46 @@ an empty slot to fill), or `pnpm themes:unfilled <name>` to check what any one t
 > `themes:sync` / `themes:unfilled` commands directly rather than duplicating their logic, so
 > renaming or restructuring those commands (`scripts/theme-scaffold.mjs`, `scripts/themes-sync.mjs`,
 > `scripts/themes-unfilled.mjs`) only needs updating in one place — the skill won't silently drift
-> out of sync with them.
+> out of sync with them. The relationship runs the other way for previewing: `theme:preview` (see
+> [Previewing a theme](#previewing-a-theme)) is this package aliasing *into* the skill's own
+> `scripts/preview.mjs`, not the reverse — that script is a verification tool owned by the skill.
+
+### Previewing a theme
+
+`pnpm theme:preview -- <name> [<name>...] [--port 8747] [--kongponents <version|tag>]` renders a
+theme against **real `@kong/kongponents` components** (buttons in every state, badges, cards,
+inputs, radios/switch, multiselect, date picker, tabs, a paginated table, modals/prompts/slideouts,
+tooltips, alerts, and more) loaded from a CDN — no local install or build. It serves a local HTTP
+gallery and prints the URL to open:
+
+```sh
+pnpm build:tokens                              # theme:preview reads dist/themes/<name>.css
+pnpm theme:preview -- my-brand
+# Preview serving at:  http://localhost:8747/index.html
+```
+
+Pass more than one theme name to compare them side by side in one page — the common case for a
+day/night pair, since they're usually eyeballed together rather than one at a time:
+
+```sh
+pnpm theme:preview -- my-brand-day my-brand-night
+# renders Original (unthemed) | my-brand-day | my-brand-night as three columns on one page
+```
+
+By default it renders against the `latest` published `@kong/kongponents`, which does not yet
+consume every component token (e.g. button geometry/per-appearance colors) — pass
+`--kongponents <version|tag>` (or `--kongponents-css <url>`/`--kongponents-esm <url>` for a
+canary/PR build not on the normal registry path) to preview against the build that actually reads
+the tokens your theme sets:
+
+```sh
+pnpm theme:preview -- my-brand --kongponents 9.60.6
+```
+
+`theme:preview` is a convenience alias for `packages/skills/theme-creation/scripts/preview.mjs` —
+the script itself is owned by, and lives in, the `theme-creation` skill (see that skill's
+`CLAUDE.md`), not this package, since it's a verification tool with no build/test contract of its
+own. `pnpm --filter @kong/design-tokens theme:preview -- ...` works the same from the repo root.
 
 ### Theme `$description` authoring rules
 
