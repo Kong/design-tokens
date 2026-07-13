@@ -1,0 +1,11 @@
+{
+  "color": {
+    "$type": "color",
+    "brand": {
+      "_": {
+        "$description": "Default brand color for the theme.",
+        "$value": "{color.alias.blue.60}"
+      }
+    }
+  }
+}

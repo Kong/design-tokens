@@ -3,27 +3,39 @@ import { readFile } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { flattenTokenTree } from './utilities/token-tree.mjs'
+import { discoverThemes } from './platforms/themes.mjs'
+
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const DIST_DIR = join(__dirname, 'dist/tokens')
+const DIST_ROOT = join(__dirname, 'dist')
 
 /** @param {string} relativePath */
 async function distFile(relativePath) {
-  return readFile(join(DIST_DIR, relativePath), 'utf-8')
+  return readFile(join(DIST_ROOT, relativePath), 'utf-8')
 }
 
 const EXPECTED_DIST_FILES = [
-  'css/custom-properties.css',
-  'css/custom-properties-list.css',
-  'scss/_variables.scss',
-  'scss/_map.scss',
-  'scss/_mixins.scss',
-  'less/variables.less',
-  'js/index.mjs',
-  'js/index.d.ts',
-  'js/tokens.json',
-  'js/cjs/index.js',
-  'js/cjs/index.d.ts',
-  'README.md',
+  'tokens/css/custom-properties.css',
+  'tokens/css/custom-properties-list.css',
+  'tokens/scss/_variables.scss',
+  'tokens/scss/_map.scss',
+  'tokens/scss/_mixins.scss',
+  'tokens/js/index.mjs',
+  'tokens/js/index.d.ts',
+  'tokens/js/tokens.json',
+  'tokens/js/cjs/index.js',
+  'tokens/js/cjs/index.d.ts',
+  'tokens/js/cjs/package.json',
+  'tokens/themeable-tokens/index.mjs',
+  'tokens/themeable-tokens/index.d.ts',
+  'tokens/README.md',
+  // Themes
+  'themes/index.mjs',
+  'themes/index.d.ts',
+  'themes/classic-day.css',
+  'themes/classic-night.css',
+  'themes/electric-lime-day.css',
+  'themes/electric-lime-night.css',
 ]
 
 
@@ -39,8 +51,6 @@ describe('@kong/design-tokens build artifacts', () => {
   /** @type {string} */
   let scssMixins
   /** @type {string} */
-  let lessVars
-  /** @type {string} */
   let jsEsm
   /** @type {string} */
   let jsDts
@@ -52,23 +62,25 @@ describe('@kong/design-tokens build artifacts', () => {
   let cjsDts
 
   beforeAll(async () => {
-    [cssVars, cssVarsList, scssVars, scssMap, scssMixins, lessVars, jsEsm, jsDts, jsonTokens, cjsJs, cjsDts] = await Promise.all([
-      distFile('css/custom-properties.css'),
-      distFile('css/custom-properties-list.css'),
-      distFile('scss/_variables.scss'),
-      distFile('scss/_map.scss'),
-      distFile('scss/_mixins.scss'),
-      distFile('less/variables.less'),
-      distFile('js/index.mjs'),
-      distFile('js/index.d.ts'),
-      distFile('js/tokens.json'),
-      distFile('js/cjs/index.js'),
-      distFile('js/cjs/index.d.ts'),
+    [cssVars, cssVarsList, scssVars, scssMap, scssMixins, jsEsm, jsDts, jsonTokens, cjsJs, cjsDts] = await Promise.all([
+      distFile('tokens/css/custom-properties.css'),
+      distFile('tokens/css/custom-properties-list.css'),
+      distFile('tokens/scss/_variables.scss'),
+      distFile('tokens/scss/_map.scss'),
+      distFile('tokens/scss/_mixins.scss'),
+      distFile('tokens/js/index.mjs'),
+      distFile('tokens/js/index.d.ts'),
+      distFile('tokens/js/tokens.json'),
+      distFile('tokens/js/cjs/index.js'),
+      distFile('tokens/js/cjs/index.d.ts'),
     ]).catch((err) => {
       if (err.code === 'ENOENT') {
-        throw new Error(`Build artifacts not found. Run 'pnpm build' before running tests.\n\nMissing: ${err.path}`)
+        throw new Error(
+          `Build artifacts not found — run 'pnpm build' first.\n\nMissing: ${err.path}`,
+          { cause: err },
+        )
       }
-      throw err
+      throw new Error(`Failed to load token build artifacts: ${err.message}`, { cause: err })
     })
   })
 
@@ -77,7 +89,7 @@ describe('@kong/design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('output files', () => {
-    it.each(EXPECTED_DIST_FILES)('generates dist/tokens/%s', async (file) => {
+    it.each(EXPECTED_DIST_FILES)('generates dist/%s', async (file) => {
       await expect(distFile(file)).resolves.toBeTruthy()
     })
   })
@@ -85,7 +97,7 @@ describe('@kong/design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
   // Source-driven coverage
   // Uses tokens.json (fully resolved, flat) as ground truth and derives the
-  // expected name/value for every token in CSS, SCSS, LESS, and ESM.
+  // expected name/value for every token in CSS, SCSS, and ESM.
   // Zero maintenance: adding or changing a token automatically updates these
   // assertions on the next build.
   // ---------------------------------------------------------------------------
@@ -109,13 +121,6 @@ describe('@kong/design-tokens build artifacts', () => {
       for (const [key, value] of tokenEntries) {
         const name = `$${key.replaceAll('_', '-')}`
         expect(scssVars, `${name} missing or has wrong value`).toContain(`${name}: ${value} !default;`)
-      }
-    })
-
-    it('every token has a LESS variable with the correct resolved value', () => {
-      for (const [key, value] of tokenEntries) {
-        const name = `@${key.replaceAll('_', '-')}`
-        expect(lessVars, `${name} missing or has wrong value`).toContain(`${name}: ${value};`)
       }
     })
 
@@ -319,45 +324,6 @@ describe('@kong/design-tokens build artifacts', () => {
   })
 
   // ---------------------------------------------------------------------------
-  // less/variables.less
-  // ---------------------------------------------------------------------------
-
-  describe('less/variables.less', () => {
-    it('uses line-comment style file header (// not /* */)', () => {
-      expect(lessVars).toMatch(/^\/\/ Do not edit directly/m)
-    })
-
-    it('includes product name in file header', () => {
-      expect(lessVars).toContain('Kong Konnect Design Tokens')
-    })
-
-    it('includes GitHub URL in file header', () => {
-      expect(lessVars).toContain('GitHub: https://github.com/Kong/design-tokens/tree/main/packages/design-tokens')
-    })
-
-    it('uses @kui- prefixed kebab-case variables', () => {
-      expect(lessVars).toMatch(/^@kui-[a-z][a-z0-9-]+:/m)
-    })
-
-    it('exports at least 330 variables', () => {
-      const count = (lessVars.match(/^@kui-[a-z]/gm) || []).length
-      expect(count).toBeGreaterThanOrEqual(330)
-    })
-
-    it('does not expose alias tokens', () => {
-      expect(lessVars).not.toMatch(/@kui-color-alias/)
-    })
-
-    it('resolves font-family with embedded single quotes correctly', () => {
-      expect(lessVars).toContain("@kui-font-family-text: 'Inter', Roboto, Helvetica, sans-serif;")
-    })
-
-    it('resolves negative letter-spacing correctly', () => {
-      expect(lessVars).toContain('@kui-letter-spacing-minus-10: -0.12px;')
-    })
-  })
-
-  // ---------------------------------------------------------------------------
   // js/index.mjs  (ESM)
   // ---------------------------------------------------------------------------
 
@@ -465,8 +431,9 @@ describe('@kong/design-tokens build artifacts', () => {
   // ---------------------------------------------------------------------------
 
   describe('js/cjs/index.d.ts', () => {
-    it('exports a default tokens object', () => {
-      expect(cjsDts).toContain('export default tokens;')
+    it('exports the tokens object via `export =` (CommonJS interop, not `export default`)', () => {
+      expect(cjsDts).toContain('export = tokens;')
+      expect(cjsDts).not.toContain('export default tokens;')
     })
 
     it('declares a DesignToken interface', () => {
@@ -539,16 +506,30 @@ describe('@kong/design-tokens build artifacts', () => {
   // Cross-format consistency
   // ---------------------------------------------------------------------------
 
+  describe('component tokens are excluded from semantic outputs', () => {
+    it('component tokens do not appear in custom-properties.css', () => {
+      expect(cssVars).not.toMatch(/--kui-button-/)
+      expect(cssVars).not.toMatch(/--kui-card-/)
+      expect(cssVars).not.toMatch(/--kui-input-/)
+      expect(cssVars).not.toMatch(/--kui-badge-/)
+    })
+
+    it('component tokens do not appear in js/index.mjs', () => {
+      expect(jsEsm).not.toMatch(/KUI_BUTTON_/)
+      expect(jsEsm).not.toMatch(/KUI_CARD_/)
+      expect(jsEsm).not.toMatch(/KUI_INPUT_/)
+      expect(jsEsm).not.toMatch(/KUI_BADGE_/)
+    })
+  })
+
   describe('cross-format consistency', () => {
     it('all formats export the same number of tokens', () => {
       const cssCount = (cssVars.match(/^\s+--kui-[a-z]/gm) || []).length
       const scssVarCount = (scssVars.match(/^\$kui-[a-z]/gm) || []).length
-      const lessCount = (lessVars.match(/^@kui-[a-z]/gm) || []).length
       const esmCount = (jsEsm.match(/^export const KUI_/gm) || []).length
       const jsonCount = Object.keys(JSON.parse(jsonTokens)).length
 
       expect(scssVarCount).toBe(cssCount)
-      expect(lessCount).toBe(cssCount)
       expect(esmCount).toBe(cssCount)
       expect(jsonCount).toBe(cssCount)
     })
@@ -556,7 +537,6 @@ describe('@kong/design-tokens build artifacts', () => {
     it('kui-color-background resolves to #ffffff in every format', () => {
       expect(cssVars).toContain('--kui-color-background: #ffffff;')
       expect(scssVars).toContain('$kui-color-background: #ffffff !default;')
-      expect(lessVars).toContain('@kui-color-background: #ffffff;')
       expect(jsEsm).toContain('export const KUI_COLOR_BACKGROUND = "#ffffff";')
       expect(JSON.parse(jsonTokens).kui_color_background).toBe('#ffffff')
     })
@@ -564,7 +544,6 @@ describe('@kong/design-tokens build artifacts', () => {
     it('kui-space-10 resolves to 2px in every format', () => {
       expect(cssVars).toContain('--kui-space-10: 2px;')
       expect(scssVars).toContain('$kui-space-10: 2px !default;')
-      expect(lessVars).toContain('@kui-space-10: 2px;')
       expect(jsEsm).toContain('export const KUI_SPACE_10 = "2px";')
       expect(JSON.parse(jsonTokens).kui_space_10).toBe('2px')
     })
@@ -573,7 +552,6 @@ describe('@kong/design-tokens build artifacts', () => {
       const shadowValue = '0px 4px 20px 0px rgba(0, 0, 0, 0.08)'
       expect(cssVars).toContain(`--kui-shadow: ${shadowValue};`)
       expect(scssVars).toContain(`$kui-shadow: ${shadowValue} !default;`)
-      expect(lessVars).toContain(`@kui-shadow: ${shadowValue};`)
       expect(jsEsm).toContain(`export const KUI_SHADOW = "${shadowValue}";`)
       expect(JSON.parse(jsonTokens).kui_shadow).toBe(shadowValue)
     })
@@ -589,5 +567,280 @@ describe('@kong/design-tokens build artifacts', () => {
       const dtsCount = (jsDts.match(/^export const KUI_/gm) || []).length
       expect(dtsCount).toBe(esmCount)
     })
+  })
+})
+
+// ---------------------------------------------------------------------------
+// dist/tokens/themeable-tokens/index.{mjs,cjs,d.ts,d.cts}
+// ---------------------------------------------------------------------------
+
+describe('dist/tokens/themeable-tokens (full themed surface)', () => {
+  /** @type {string} */
+  let themeableTokensMjs
+  /** @type {string} */
+  let themeableTokensCjs
+  /** @type {string} */
+  let themeableTokensDts
+  /** @type {string} */
+  let themeableTokensDcts
+
+  beforeAll(async () => {
+    ;[themeableTokensMjs, themeableTokensCjs, themeableTokensDts, themeableTokensDcts] = await Promise.all([
+      distFile('tokens/themeable-tokens/index.mjs'),
+      distFile('tokens/themeable-tokens/index.cjs'),
+      distFile('tokens/themeable-tokens/index.d.ts'),
+      distFile('tokens/themeable-tokens/index.d.cts'),
+    ]).catch((err) => {
+      if (err.code === 'ENOENT') {
+        throw new Error(
+          `dist/tokens/themeable-tokens/index.* not found — run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`,
+          { cause: err },
+        )
+      }
+      throw new Error(`Failed to load themeable-tokens artifacts: ${err.message}`, { cause: err })
+    })
+  })
+
+  it('ESM exports KUI_THEMEABLE_TOKENS as a named const', () => {
+    expect(themeableTokensMjs).toContain('export const KUI_THEMEABLE_TOKENS = [')
+  })
+
+  it('CJS exports KUI_THEMEABLE_TOKENS via module.exports', () => {
+    expect(themeableTokensCjs).toContain('module.exports = { KUI_THEMEABLE_TOKENS }')
+  })
+
+  it('d.ts declares KUI_THEMEABLE_TOKENS as a typed readonly tuple (not string[])', () => {
+    expect(themeableTokensDts).toContain('export declare const KUI_THEMEABLE_TOKENS: readonly [')
+    expect(themeableTokensDts).not.toContain('readonly string[]')
+  })
+
+  it('emits a CJS-flavored d.cts (for the require condition) matching the d.ts', () => {
+    expect(themeableTokensDcts).toContain('export declare const KUI_THEMEABLE_TOKENS: readonly [')
+    expect(themeableTokensDcts).toEqual(themeableTokensDts)
+  })
+
+  it('contains semantic tokens', () => {
+    expect(themeableTokensMjs).toContain('--kui-color-text-primary')
+    expect(themeableTokensMjs).toContain('--kui-border-radius-30')
+    expect(themeableTokensMjs).toContain('--kui-shadow-focus')
+  })
+
+  it('contains component tokens', () => {
+    expect(themeableTokensMjs).toContain('--kui-button-')
+    expect(themeableTokensMjs).toContain('--kui-card-')
+    expect(themeableTokensMjs).toContain('--kui-input-')
+    expect(themeableTokensMjs).toContain('--kui-badge-')
+  })
+
+  it('each entry is an object exposing name, description, category, and value', () => {
+    // Field lines are 4-space indented under a 2-space-indented object literal.
+    const nameCount = (themeableTokensMjs.match(/\n {4}name: "--kui-/g) || []).length
+    const descCount = (themeableTokensMjs.match(/\n {4}description: /g) || []).length
+    const catCount = (themeableTokensMjs.match(/\n {4}category: "/g) || []).length
+    const valCount = (themeableTokensMjs.match(/\n {4}value: /g) || []).length
+
+    expect(nameCount).toBeGreaterThan(0)
+    expect(descCount).toBe(nameCount)
+    expect(catCount).toBe(nameCount)
+    expect(valCount).toBe(nameCount)
+  })
+
+  it('value-less component tokens carry category "component" and a null value', () => {
+    expect(themeableTokensMjs).toMatch(
+      /name: "--kui-badge-border-radius",\n {4}description: ".*",\n {4}category: "component",\n {4}value: null,/,
+    )
+  })
+
+  it('semantic tokens carry their token family as the category and a non-null value', () => {
+    expect(themeableTokensMjs).toMatch(
+      /name: "--kui-breakpoint-mobile",\n {4}description: ".*",\n {4}category: "breakpoint",\n {4}value: "[^"]+",/,
+    )
+    expect(themeableTokensMjs).toMatch(
+      /name: "--kui-color-text-primary",\n {4}description: ".*",\n {4}category: "color",\n {4}value: "[^"]+",/,
+    )
+  })
+
+  it('contains no duplicate token names', () => {
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-[^"]+)"/g)].map(([, n]) => n)
+    expect(new Set(names).size).toBe(names.length)
+  })
+
+  it('includes the 5 breakpoint tokens', () => {
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-breakpoint-[^"]+)"/g)].map(([, n]) => n)
+
+    expect(names).toHaveLength(5)
+    expect(names).toEqual(expect.arrayContaining([
+      '--kui-breakpoint-mobile',
+      '--kui-breakpoint-phablet',
+      '--kui-breakpoint-tablet',
+      '--kui-breakpoint-laptop',
+      '--kui-breakpoint-desktop',
+    ]))
+  })
+
+  it('all entries follow the --kui-* naming convention', () => {
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-[^"]+)"/g)].map(([, n]) => n)
+    expect(names.length).toBeGreaterThan(0)
+    for (const name of names) {
+      expect(name, `"${name}" does not start with --kui-`).toMatch(/^--kui-[a-z]/)
+    }
+  })
+
+  it('list is alphabetically sorted by name', () => {
+    const names = [...themeableTokensMjs.matchAll(/name: "(--kui-[^"]+)"/g)].map(([, n]) => n)
+    const sorted = [...names].sort((a, b) => a.localeCompare(b))
+    expect(names).toEqual(sorted)
+  })
+
+  it('d.ts types name and category as literals with a string|null value', () => {
+    expect(themeableTokensDts).toContain('readonly name: "--kui-')
+    expect(themeableTokensDts).toContain('readonly category: "')
+    expect(themeableTokensDts).toContain('readonly description: string')
+    expect(themeableTokensDts).toContain('readonly value: string | null')
+  })
+
+  it('d.ts documents the breakpoint exclusion reason', () => {
+    expect(themeableTokensDts).toContain('@media feature queries')
+  })
+})
+
+// ---------------------------------------------------------------------------
+// tokens/components/ — source-level enforcement
+// ---------------------------------------------------------------------------
+
+describe('tokens/components/ (source enforcement)', () => {
+  const COMPONENT_DIR = join(__dirname, 'tokens/components')
+
+  it('every component token has an empty string $value (value-less by design)', async () => {
+    const { readdir } = await import('node:fs/promises')
+    const files = await readdir(COMPONENT_DIR)
+    const jsonFiles = files.filter(f => f.endsWith('.json'))
+    expect(jsonFiles.length, 'no component token files found').toBeGreaterThan(0)
+
+    const violations = []
+    await Promise.all(
+      jsonFiles.map(async file => {
+        const parsed = JSON.parse(await readFile(join(COMPONENT_DIR, file), 'utf-8'))
+        for (const { path, value } of flattenTokenTree(parsed)) {
+          if (value !== '') {
+            violations.push(`${file}:${path.join('.')} → ${JSON.stringify(value)} (must be "")`)
+          }
+        }
+      }),
+    )
+
+    expect(
+      violations,
+      `Component tokens must be value-less (empty string $value). Violations:\n${violations.join('\n')}`,
+    ).toHaveLength(0)
+  })
+})
+
+// ---------------------------------------------------------------------------
+// dist/themes/
+// ---------------------------------------------------------------------------
+
+describe('dist/themes/', () => {
+  /** @type {Array<{ name: string, exportName: string }>} */
+  let THEMES = []
+  /** @type {Record<string, { css: string, mjs: string, dts: string }>} */
+  const themes = {}
+
+  beforeAll(async () => {
+    THEMES = await discoverThemes()
+    await Promise.all(
+      THEMES.map(async ({ name }) => {
+        const [css, mjs, dts] = await Promise.all([
+          distFile(`themes/${name}.css`),
+          distFile(`themes/${name}.mjs`),
+          distFile(`themes/${name}.d.ts`),
+        ]).catch((err) => {
+          if (err.code === 'ENOENT') {
+            throw new Error(
+              `dist/themes/${name}.* not found — run 'pnpm build:tokens' first.\n\nMissing: ${err.path}`,
+              { cause: err },
+            )
+          }
+          throw new Error(`Failed to load theme artifacts for '${name}': ${err.message}`, { cause: err })
+        })
+        themes[name] = { css, mjs, dts }
+      }),
+    )
+  })
+
+  it('generates CSS, MJS, and d.ts for each theme', () => {
+    for (const { name } of THEMES) {
+      expect(themes[name].css.length, `${name}.css is empty`).toBeGreaterThan(0)
+      expect(themes[name].mjs.length, `${name}.mjs is empty`).toBeGreaterThan(0)
+      expect(themes[name].dts.length, `${name}.d.ts is empty`).toBeGreaterThan(0)
+    }
+  })
+
+  it('CSS files use @layer kui.theme with [data-kui-theme] selector', () => {
+    for (const { name } of THEMES) {
+      expect(themes[name].css, `${name}.css missing @layer`).toContain('@layer kui.theme {')
+      expect(themes[name].css, `${name}.css missing data-kui-theme selector`).toContain(`[data-kui-theme="${name}"]`)
+    }
+  })
+
+  it('CSS files contain only resolved values (no DTCG references or var() calls)', () => {
+    for (const { name } of THEMES) {
+      expect(themes[name].css, `${name}.css has unresolved {…} DTCG reference`).not.toMatch(/\{[a-z]/)
+      expect(themes[name].css, `${name}.css has residual var(--kui-color-alias`).not.toContain('var(--kui-color-alias')
+      expect(themes[name].css, `${name}.css has undefined values (token.$value not token.value)`).not.toContain(': undefined;')
+    }
+  })
+
+  it('CSS files contain concrete token values (spot-check)', () => {
+    // Pick the first non-classic theme (first exhaustive theme in sorted order) for the spot-check.
+    const { name } = THEMES.find(t => !['classic-day', 'classic-night'].includes(t.name)) ?? THEMES[0]
+    const css = themes[name].css
+    // At least some color values should be hex
+    expect(css).toMatch(/#[0-9a-fA-F]{3,8}/)
+    // At least some size values should be px or rem
+    expect(css).toMatch(/\d+px|\d+rem/)
+  })
+
+  it('MJS files export the named theme object (no "Theme" suffix)', () => {
+    for (const { name, exportName } of THEMES) {
+      expect(themes[name].mjs, `${name}.mjs missing named export`).toContain(
+        `export const ${exportName}`,
+      )
+      expect(themes[name].mjs, `${name}.mjs should not use "Theme" suffix`).not.toContain(
+        `export const ${exportName}Theme`,
+      )
+    }
+  })
+
+  it('d.ts files declare the theme as Readonly<Record<string, string>>', () => {
+    for (const { name } of THEMES) {
+      expect(themes[name].dts, `${name}.d.ts missing type declaration`).toContain(
+        'Readonly<Record<string, string>>',
+      )
+    }
+  })
+
+  it('index.mjs re-exports all themes without "Theme" suffix', async () => {
+    const indexMjs = await distFile('themes/index.mjs')
+    for (const { exportName } of THEMES) {
+      expect(indexMjs, `index.mjs missing ${exportName}`).toContain(exportName)
+      expect(indexMjs, `index.mjs should not use "Theme" suffix for ${exportName}`).not.toContain(`${exportName}Theme`)
+    }
+  })
+
+  it('all themes include the five fixed breakpoint tokens', () => {
+    const BREAKPOINTS = [
+      '--kui-breakpoint-mobile',
+      '--kui-breakpoint-phablet',
+      '--kui-breakpoint-tablet',
+      '--kui-breakpoint-laptop',
+      '--kui-breakpoint-desktop',
+    ]
+    for (const { name } of THEMES) {
+      for (const bp of BREAKPOINTS) {
+        expect(themes[name].css, `${name}.css missing ${bp}`).toContain(bp)
+        expect(themes[name].mjs, `${name}.mjs missing ${bp}`).toContain(bp)
+      }
+    }
   })
 })

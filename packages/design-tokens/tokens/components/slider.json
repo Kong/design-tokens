@@ -1,0 +1,89 @@
+{
+  "slider": {
+    "$type": "component",
+    "fill": {
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Slider filled (progress) track background color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Slider filled (progress) track background color when disabled.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "mark": {
+      "color": {
+        "text": {
+          "$description": "Slider mark label text color.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "family": {
+          "$description": "Slider mark label font family.",
+          "$value": ""
+        },
+        "size": {
+          "$description": "Slider mark label font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Slider mark label font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Slider mark label line height.",
+        "$value": ""
+      }
+    },
+    "thumb": {
+      "border": {
+        "radius": {
+          "$description": "Slider thumb (handle) border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Slider thumb (handle) background color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Slider thumb (handle) background color when disabled.",
+            "$value": ""
+          }
+        }
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Slider thumb (handle) focus-visible shadow.",
+          "$value": ""
+        }
+      },
+      "size": {
+        "$description": "Slider thumb (handle) height and width.",
+        "$value": ""
+      }
+    },
+    "track": {
+      "border": {
+        "radius": {
+          "$description": "Slider track border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "$description": "Slider track (unfilled) background color.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

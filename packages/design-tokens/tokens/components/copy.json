@@ -1,0 +1,43 @@
+{
+  "copy": {
+    "$type": "component",
+    "color": {
+      "text": {
+        "$description": "Copy value text color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "code": {
+          "$description": "Copy value font family when displayed as code (monospace).",
+          "$value": ""
+        }
+      },
+      "size": {
+        "$description": "Copy text font size.",
+        "$value": ""
+      },
+      "weight": {
+        "code": {
+          "$description": "Copy value font weight when displayed as code (monospace).",
+          "$value": ""
+        }
+      }
+    },
+    "icon": {
+      "color": {
+        "text": {
+          "hover": {
+            "$description": "Copy-to-clipboard icon text color on hover and focus (non-badge appearance).",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "line_height": {
+      "$description": "Copy text line height.",
+      "$value": ""
+    }
+  }
+}

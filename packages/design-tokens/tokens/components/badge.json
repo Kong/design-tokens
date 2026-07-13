@@ -1,0 +1,149 @@
+{
+  "badge": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Badge border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "danger": {
+          "$description": "Danger badge background color.",
+          "$value": ""
+        },
+        "decorative": {
+          "$description": "Decorative badge background color.",
+          "$value": ""
+        },
+        "info": {
+          "$description": "Info badge background color.",
+          "$value": ""
+        },
+        "neutral": {
+          "$description": "Neutral badge background color.",
+          "$value": ""
+        },
+        "success": {
+          "$description": "Success badge background color.",
+          "$value": ""
+        },
+        "warning": {
+          "$description": "Warning badge background color.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "danger": {
+          "_": {
+            "$description": "Danger badge text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Danger badge text color on hover.",
+            "$value": ""
+          }
+        },
+        "decorative": {
+          "_": {
+            "$description": "Decorative badge text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Decorative badge text color on hover.",
+            "$value": ""
+          }
+        },
+        "disabled": {
+          "$description": "Disabled badge text color.",
+          "$value": ""
+        },
+        "info": {
+          "_": {
+            "$description": "Info badge text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Info badge text color on hover.",
+            "$value": ""
+          }
+        },
+        "neutral": {
+          "_": {
+            "$description": "Neutral badge text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Neutral badge text color on hover.",
+            "$value": ""
+          }
+        },
+        "success": {
+          "_": {
+            "$description": "Success badge text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Success badge text color on hover.",
+            "$value": ""
+          }
+        },
+        "warning": {
+          "_": {
+            "$description": "Warning badge text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Warning badge text color on hover.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Badge font family.",
+        "$value": ""
+      },
+      "size": {
+        "$description": "Badge font size.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Badge font weight.",
+        "$value": ""
+      }
+    },
+    "icon": {
+      "gap": {
+        "$description": "Gap between the badge icon and text.",
+        "$value": ""
+      }
+    },
+    "line_height": {
+      "$description": "Badge line height.",
+      "$value": ""
+    },
+    "padding": {
+      "small": {
+        "$description": "Reduced padding for small inline badges.",
+        "$value": ""
+      },
+      "x": {
+        "$description": "Badge horizontal padding.",
+        "$value": ""
+      },
+      "y": {
+        "$description": "Badge vertical padding.",
+        "$value": ""
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Badge focus ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

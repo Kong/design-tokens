@@ -5,21 +5,23 @@
       v-if="isColorEntry"
       class="cust-swatch-wrap"
     >
-      <!-- Hex or transparent tokens get a native color picker overlaid on the visible swatch -->
-      <!-- Transparent uses #000000 as the picker starting point since the native input can't hold 'transparent' -->
+      <!-- Hex, transparent, or unset color tokens get a native color picker overlaid on the swatch.
+           Unset (empty-default component color tokens) seed the picker at #000000 so the user can
+           pick without needing to type a value first; once picked the value becomes hex and takes the
+           normal path. Transparent also seeds at #000000 since the native input can't hold 'transparent'. -->
       <input
-        v-if="isHex || isTransparent"
+        v-if="isHex || isTransparent || isEmpty"
         :aria-label="`Pick color for ${entry.cssVar}`"
         class="cust-color-input"
         :title="`Pick color for ${entry.cssVar}`"
         type="color"
-        :value="isTransparent ? '#000000' : (isValidColor ? localValue : entry.value)"
+        :value="(isTransparent || isEmpty) ? '#000000' : (isValidColor ? localValue : entry.value)"
         @input="(e) => handleColorInput((e.target as HTMLInputElement).value)"
       >
-      <!-- Show default value in swatch when current input is invalid -->
+      <!-- Show default value in swatch when current input is invalid; checkerboard for transparent or unset -->
       <div
-        :class="['cust-swatch', { 'cust-swatch--no-pick': !isHex && !isTransparent, 'cust-swatch--transparent': isTransparent }]"
-        :style="isTransparent ? {} : { background: isValidColor ? localValue : entry.value }"
+        :class="['cust-swatch', { 'cust-swatch--no-pick': !isHex && !isTransparent && !isEmpty, 'cust-swatch--transparent': isTransparent || isEmpty }]"
+        :style="(isTransparent || isEmpty) ? {} : { background: isValidColor ? localValue : entry.value }"
       />
     </div>
 
@@ -34,7 +36,7 @@
         :aria-label="`Value for ${entry.cssVar}`"
         class="cust-value-input"
         :class="{ 'cust-value-input--invalid': showInvalid }"
-        :placeholder="entry.value"
+        :placeholder="entry.value || 'unset'"
         type="text"
         :value="localValue"
         @input="(e) => handleInput((e.target as HTMLInputElement).value)"
@@ -74,7 +76,7 @@
     <button
       class="cust-reset-btn"
       :style="{ visibility: isOverridden || localValue !== toUpperHex(entry.value) ? 'visible' : 'hidden' }"
-      :title="`Reset to ${entry.value}`"
+      :title="entry.value ? `Reset to ${entry.value}` : 'Clear override'"
       @click="handleReset"
     >
       ✕
@@ -136,6 +138,14 @@ const isColorEntry = computed(() =>
 
 /** True when the current input value is the keyword `transparent`. */
 const isTransparent = computed(() => localValue.value.trim().toLowerCase() === 'transparent')
+
+/**
+ * True when this is a color token with no value at all — i.e. a component token
+ * whose default is empty (it inherits from the semantic fallback chain at runtime).
+ * These get the same color-picker treatment as transparent: a checkerboard swatch
+ * and a picker seeded at #000000 so the user can pick without typing first.
+ */
+const isEmpty = computed(() => isColorEntry.value && localValue.value === '')
 
 /**
  * True when the current input is a valid CSS color, using browser-native validation.

@@ -1,0 +1,49 @@
+{
+  "navigation": {
+    "color": {
+      "$type": "color",
+      "background": {
+        "_": {
+          "$description": "blue.100",
+          "$value": "{color.alias.blue.100}"
+        },
+        "selected": {
+          "$description": "The background color of a selected navigation item.",
+          "$value": "rgba(255, 255, 255, 0.12)"
+        }
+      },
+      "border": {
+        "_": {
+          "$description": "rgba(255, 255, 255, 0.12)",
+          "$value": "rgba(255, 255, 255, 0.12)"
+        },
+        "child": {
+          "$description": "The border color for a selected child navigation item.",
+          "$value": "{color.alias.green.30}"
+        },
+        "divider": {
+          "$description": "The color of the navigation section divider.",
+          "$value": "rgba(255, 255, 255, 0.24)"
+        }
+      },
+      "text": {
+        "_": {
+          "$description": "Navigation link and icon color.",
+          "$value": "{color.alias.blue.20}"
+        },
+        "focus": {
+          "$description": "Navigation link and icon focus-visible color.",
+          "$value": "{color.alias.white}"
+        },
+        "hover": {
+          "$description": "Navigation link and icon hover color.",
+          "$value": "{color.alias.blue.10}"
+        },
+        "selected": {
+          "$description": "Navigation link and icon selected color.",
+          "$value": "{color.alias.green.30}"
+        }
+      }
+    }
+  }
+}

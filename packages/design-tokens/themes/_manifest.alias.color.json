@@ -1,0 +1,140 @@
+{
+  "$description": "NAMES-ONLY canonical color-alias key set. Every palette in themes/<name>/<name>.alias.color.json must contain EXACTLY these leaves (enforced by the drift guard in themes.spec.mjs). `[]` = a single direct-value alias (no steps, e.g. white); a non-empty array lists step names. Values live in the per-theme palette files, NEVER here. To add a step or group: add it here AND to every palette with that theme’s value (or run `pnpm themes:sync`). See ALIAS-COLOR-MAPPING-GUIDE.md.",
+  "color": {
+    "alias": {
+      "aqua": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "black": [],
+      "blue": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "electric_lime": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "gray": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "green": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "orange": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "pink": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "purple": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "red": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ],
+      "transparent": [],
+      "white": [],
+      "yellow": [
+        "05",
+        "10",
+        "20",
+        "30",
+        "40",
+        "50",
+        "60",
+        "70",
+        "80",
+        "90",
+        "100"
+      ]
+    }
+  }
+}

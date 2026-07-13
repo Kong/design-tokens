@@ -1,0 +1,137 @@
+{
+  "method": {
+    "color": {
+      "$type": "color",
+      "background": {
+        "connect": {
+          "$description": "Background color for the CONNECT method (purple.10).",
+          "$value": "{color.alias.purple.10}"
+        },
+        "delete": {
+          "$description": "Background color for the DELETE method (red.10).",
+          "$value": "{color.alias.red.10}"
+        },
+        "get": {
+          "$description": "Background color for the GET method (blue.10).",
+          "$value": "{color.alias.blue.10}"
+        },
+        "head": {
+          "$description": "Background color for the HEAD method (gray.70).",
+          "$value": "{color.alias.gray.70}"
+        },
+        "options": {
+          "$description": "Background color for the OPTIONS method (gray.20).",
+          "$value": "{color.alias.gray.20}"
+        },
+        "patch": {
+          "$description": "Background color for the PATCH method (aqua.10).",
+          "$value": "{color.alias.aqua.10}"
+        },
+        "post": {
+          "$description": "Background color for the POST method (green.10).",
+          "$value": "{color.alias.green.10}"
+        },
+        "put": {
+          "$description": "Background color for the PUT method (yellow.10).",
+          "$value": "{color.alias.yellow.10}"
+        },
+        "trace": {
+          "$description": "Background color for the TRACE method (pink.10).",
+          "$value": "{color.alias.pink.10}"
+        }
+      },
+      "text": {
+        "connect": {
+          "_": {
+            "$description": "Text color for the CONNECT method (purple.60).",
+            "$value": "{color.alias.purple.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the CONNECT method (purple.70).",
+            "$value": "{color.alias.purple.70}"
+          }
+        },
+        "delete": {
+          "_": {
+            "$description": "Text color for the DELETE method (red.60).",
+            "$value": "{color.alias.red.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the DELETE method (red.70).",
+            "$value": "{color.alias.red.70}"
+          }
+        },
+        "get": {
+          "_": {
+            "$description": "Text color for the GET method (blue.60).",
+            "$value": "{color.alias.blue.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the GET method (blue.70).",
+            "$value": "{color.alias.blue.70}"
+          }
+        },
+        "head": {
+          "_": {
+            "$description": "Text color for the HEAD method (gray.20).",
+            "$value": "{color.alias.gray.20}"
+          },
+          "strong": {
+            "$description": "Strong text color for the HEAD method (gray.40).",
+            "$value": "{color.alias.gray.40}"
+          }
+        },
+        "options": {
+          "_": {
+            "$description": "Text color for the OPTIONS method (gray.70).",
+            "$value": "{color.alias.gray.70}"
+          },
+          "strong": {
+            "$description": "Strong text color for the OPTIONS method (gray.80).",
+            "$value": "{color.alias.gray.80}"
+          }
+        },
+        "patch": {
+          "_": {
+            "$description": "Text color for the PATCH method (aqua.60).",
+            "$value": "{color.alias.aqua.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the PATCH method (aqua.70).",
+            "$value": "{color.alias.aqua.70}"
+          }
+        },
+        "post": {
+          "_": {
+            "$description": "Text color for the POST method (green.60).",
+            "$value": "{color.alias.green.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the POST method (green.70).",
+            "$value": "{color.alias.green.70}"
+          }
+        },
+        "put": {
+          "_": {
+            "$description": "Text color for the PUT method (yellow.60).",
+            "$value": "{color.alias.yellow.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the PUT method (yellow.70).",
+            "$value": "{color.alias.yellow.70}"
+          }
+        },
+        "trace": {
+          "_": {
+            "$description": "Text color for the TRACE method (pink.60).",
+            "$value": "{color.alias.pink.60}"
+          },
+          "strong": {
+            "$description": "Strong text color for the TRACE method (pink.70).",
+            "$value": "{color.alias.pink.70}"
+          }
+        }
+      }
+    }
+  }
+}

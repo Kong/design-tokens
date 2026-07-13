@@ -53,13 +53,13 @@ export default {
       format: 'css/variables/custom/initial-values',
       destination: 'custom-properties-list.css',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
     {
       format: 'css/variables',
       destination: 'custom-properties.css',
       // Exclude alias tokens and asset tokens compiled in a separate file
-      filter: (token) => token.isSource === true && token.attributes.category !== 'asset',
+      filter: (token) => token.isSource === true && token.attributes.category !== 'asset' && token.$type !== 'component',
     },
   ],
 }

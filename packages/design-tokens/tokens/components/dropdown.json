@@ -1,0 +1,113 @@
+{
+  "dropdown": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Dropdown popover border radius.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "border": {
+        "$description": "Dropdown popover border color.",
+        "$value": ""
+      }
+    },
+    "item": {
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Dropdown item background color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Dropdown item background color when active.",
+            "$value": ""
+          },
+          "danger": {
+            "active": {
+              "$description": "Danger dropdown item background color when active.",
+              "$value": ""
+            },
+            "hover": {
+              "$description": "Danger dropdown item background color on hover.",
+              "$value": ""
+            }
+          },
+          "hover": {
+            "$description": "Dropdown item background color on hover.",
+            "$value": ""
+          },
+          "selected": {
+            "_": {
+              "$description": "Selected dropdown item background color.",
+              "$value": ""
+            },
+            "disabled": {
+              "$description": "Selected and disabled dropdown item background color.",
+              "$value": ""
+            }
+          }
+        },
+        "border": {
+          "divider": {
+            "$description": "Dropdown item divider border color.",
+            "$value": ""
+          }
+        },
+        "text": {
+          "_": {
+            "$description": "Dropdown item text color.",
+            "$value": ""
+          },
+          "danger": {
+            "$description": "Danger dropdown item text color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Disabled dropdown item text color.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Selected dropdown item text color.",
+            "$value": ""
+          }
+        }
+      },
+      "font": {
+        "family": {
+          "$description": "Dropdown item font family.",
+          "$value": ""
+        },
+        "size": {
+          "$description": "Dropdown item font size.",
+          "$value": ""
+        },
+        "weight": {
+          "$description": "Dropdown item font weight.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Dropdown item line height.",
+        "$value": ""
+      },
+      "padding": {
+        "x": {
+          "$description": "Dropdown item horizontal padding.",
+          "$value": ""
+        },
+        "y": {
+          "$description": "Dropdown item vertical padding.",
+          "$value": ""
+        }
+      },
+      "shadow": {
+        "focus": {
+          "$description": "Dropdown item focus ring shadow.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

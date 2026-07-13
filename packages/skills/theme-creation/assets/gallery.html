@@ -1,0 +1,288 @@
+<!doctype html>
+<!--
+  Kongponents component gallery for theme-creation previews. Renders REAL @kong/kongponents
+  components from a CDN (no install/build) so the preview is ground truth for how a user's UI
+  responds to the theme.
+
+  preview.mjs substitutes four placeholders: the Kongponents CSS URL and ESM URL (so the version
+  is configurable — default latest, overridable to a canary/PR build that consumes newer tokens),
+  the theme CSS-link slot in <head>, and the body-attribute slot on <body>. The themed panel gets
+  the theme's compiled CSS + a data-kui-theme wrapper; the default panel gets neither.
+
+  IMPORTANT fidelity note: a given Kongponents version only consumes the tokens IT was built to
+  read. If the theme sets granular component tokens (e.g. --kui-button-color-background-primary)
+  that the pinned Kongponents version doesn't consume yet, those won't show here even though the
+  theme sets them correctly — point --kongponents at a version/build that reads them. Requires
+  outbound HTTPS to the CDN at view time.
+
+  MAINTENANCE: see the theme-creation/CLAUDE.md in this skill directory for the render contract
+  (h()-only, group() error isolation, required props) and the checklist for fixing this file when
+  the pinned Kongponents version changes.
+
+  Overlays (modal, prompt, slideout) and the tooltip render behind triggers — they don't appear in
+  a single default screenshot. Click the trigger buttons / hover the tooltip trigger with a browser
+  tool to reveal and screenshot their themed surfaces.
+-->
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="__KONGPONENTS_CSS__">
+    __THEME_CSS__
+    <script type="importmap">
+{ "imports": { "vue": "https://esm.sh/vue@3.5.13", "vue-router": "https://esm.sh/vue-router@4" } }
+</script>
+    <style>
+      body {
+        margin: 0;
+        padding: 24px;
+        font-family: var(--kui-font-family-text, system-ui, sans-serif);
+        background: var(--kui-color-background, #fff);
+        color: var(--kui-color-text, #1a1a1a);
+      }
+
+      .label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: var(--kui-color-text-neutral, #888);
+        margin: 22px 0 8px;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: var(--kui-font-size-80, 30px);
+        margin: 0 0 4px;
+      }
+
+      .muted {
+        color: var(--kui-color-text-neutral, #6b6b6b);
+        margin: 0 0 8px;
+      }
+
+      .grperr {
+        color: #b00;
+        font-family: monospace;
+        font-size: 11px;
+      }
+    </style>
+  </head>
+
+  <body __THEME_ATTR__>
+    <h1>Aa — the quick brown fox jumps</h1>
+    <p class="muted">Real Kongponents rendered under this theme. Feedback, states, surfaces, inputs,
+      selection, dates, code, navigation, filters, tables, overlays &amp; tooltips below.</p>
+    <div id="app"></div>
+    <script type="module">
+      const {createApp, h, ref, computed} = await import('vue')
+      const K = await import('__KONGPONENTS_ESM__')
+      const app = createApp({
+        setup() {
+          const label = (t) => h('div', {class: 'label'}, t)
+          // Render each group in isolation so one component's prop mismatch can't blank the whole page.
+          const group = (title, fn) => {
+            let body
+            try {body = fn()} catch (e) {body = h('div', {class: 'grperr'}, 'skipped: ' + (e && e.message || e))}
+            return [label(title), h('div', {class: 'row'}, body)]
+          }
+
+          // Reactive state for interactive examples (overlays + paginated table).
+          const modalVisible = ref(false)
+          const promptVisible = ref(false)
+          const slideoutVisible = ref(false)
+          const activeTab = ref('#a')
+
+          const tableRows = Array.from({length: 25}, (_, i) => ({
+            id: i + 1,
+            name: ['Ada Lovelace', 'Alan Turing', 'Grace Hopper', 'Katherine Johnson', 'Margaret Hamilton'][i % 5] + ' ' + (i + 1),
+            role: ['Admin', 'Editor', 'Viewer'][i % 3],
+            status: ['Active', 'Invited', 'Suspended'][i % 3],
+          }))
+          const tablePage = ref(1)
+          const tablePageSize = ref(10)
+          const pagedRows = computed(() => {
+            const start = (tablePage.value - 1) * tablePageSize.value
+            return tableRows.slice(start, start + tablePageSize.value)
+          })
+
+          const radioValue = ref('b')
+          const radioCardValue = ref('vertical-a')
+          const multiselectValue = ref(['a'])
+          const filterValue = ref({})
+
+          return () => h('div', [
+            ...group('Feedback — alerts', () => [
+              h('div', {style: 'flex:1;min-width:360px'}, [
+                h(K.KAlert, {appearance: 'info', title: 'Heads up', message: 'An informational alert.', showIcon: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'success', title: 'Success', message: 'Your changes were saved.', showIcon: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'warning', title: 'Careful', message: 'This action can\'t be undone.', showIcon: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'danger', message: 'A danger alert.', dismissible: true}),
+                h('div', {style: 'height:8px'}),
+                h(K.KAlert, {appearance: 'decorative', message: 'A decorative alert.'}),
+              ]),
+            ]),
+            ...group('Buttons — appearances & states', () => [
+              h(K.KButton, {appearance: 'primary'}, () => 'Primary'),
+              h(K.KButton, {appearance: 'secondary'}, () => 'Secondary'),
+              h(K.KButton, {appearance: 'tertiary'}, () => 'Tertiary'),
+              h(K.KButton, {appearance: 'danger'}, () => 'Danger'),
+              h(K.KButton, {appearance: 'primary', disabled: true}, () => 'Disabled'),
+              h(K.KButton, {appearance: 'primary', size: 'small'}, () => 'Small'),
+              h(K.KButton, {appearance: 'primary', size: 'large'}, () => 'Large'),
+            ]),
+            ...group('Badges — appearances & sizes', () => [
+              h(K.KBadge, {appearance: 'info'}, () => 'Info'),
+              h(K.KBadge, {appearance: 'success'}, () => 'Success'),
+              h(K.KBadge, {appearance: 'warning'}, () => 'Warning'),
+              h(K.KBadge, {appearance: 'danger'}, () => 'Danger'),
+              h(K.KBadge, {appearance: 'neutral'}, () => 'Neutral'),
+              h(K.KBadge, {appearance: 'decorative'}, () => 'Decorative'),
+              h(K.KBadge, {appearance: 'info', size: 'small'}, () => 'Small info'),
+            ]),
+            ...group('Surfaces — card', () => [
+              h(K.KCard, {style: 'max-width:300px'}, {
+                title: () => 'Card title',
+                default: () => h('p', {class: 'muted', style: 'margin:0'}, 'A card surface: background, border, radius, padding and shadow from tokens.'),
+              }),
+            ]),
+            ...group('Inputs & selection', () => [
+              h('div', {style: 'max-width:200px'}, [h(K.KInput, {modelValue: 'Text input'})]),
+              h('div', {style: 'max-width:200px'}, [h(K.KSelect, {items: [{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}]})]),
+              h(K.KCheckbox, {modelValue: true, label: 'Checked'}),
+              h(K.KCheckbox, {modelValue: false, label: 'Unchecked'}),
+              h(K.KInputSwitch, {modelValue: true, label: 'Enabled'}),
+              h(K.KInputSwitch, {modelValue: false, label: 'Large, disabled', size: 'large', disabled: true}),
+            ]),
+            ...group('Radio & radio cards', () => [
+              h('div', {style: 'display:flex;flex-direction:column;gap:6px'}, [
+                h(K.KRadio, {modelValue: radioValue.value, selectedValue: 'a', name: 'gallery-radio', label: 'Option A', description: 'First choice', 'onUpdate:modelValue': (v) => radioValue.value = v}),
+                h(K.KRadio, {modelValue: radioValue.value, selectedValue: 'b', name: 'gallery-radio', label: 'Option B', description: 'Second choice', 'onUpdate:modelValue': (v) => radioValue.value = v}),
+                h(K.KRadio, {modelValue: radioValue.value, selectedValue: 'c', name: 'gallery-radio', label: 'Option C (disabled)', disabled: true}),
+              ]),
+              h(K.KRadio, {modelValue: radioCardValue.value, selectedValue: 'vertical-a', name: 'gallery-radio-card-v', card: true, cardOrientation: 'vertical', label: 'Vertical card', description: 'Selected state', 'onUpdate:modelValue': (v) => radioCardValue.value = v}),
+              h(K.KRadio, {modelValue: radioCardValue.value, selectedValue: 'vertical-b', name: 'gallery-radio-card-v', card: true, cardOrientation: 'vertical', label: 'Vertical card', description: 'Unselected state', 'onUpdate:modelValue': (v) => radioCardValue.value = v}),
+              h(K.KRadio, {modelValue: 'horizontal-a', selectedValue: 'horizontal-a', name: 'gallery-radio-card-h', card: true, cardOrientation: 'horizontal', label: 'Horizontal card', description: 'Selected state'}),
+            ]),
+            ...group('Multiselect', () => [
+              h(K.KMultiselect, {
+                modelValue: multiselectValue.value,
+                items: [{label: 'Option A', value: 'a'}, {label: 'Option B', value: 'b'}, {label: 'Option C', value: 'c'}],
+                label: 'Choose options',
+                style: 'max-width:260px',
+                'onUpdate:modelValue': (v) => multiselectValue.value = v,
+              }),
+            ]),
+            ...group('Textarea — help & error text', () => [
+              h(K.KTextArea, {modelValue: 'Some notes about this record.', label: 'Notes', help: 'Optional context for the team.', style: 'max-width:280px'}),
+              h(K.KTextArea, {modelValue: '', label: 'Description', error: true, help: 'Description is required.', style: 'max-width:280px'}),
+            ]),
+            ...group('Date & time', () => [
+              h(K.KDateTimePicker, {mode: 'date', modelValue: {start: new Date(), end: null}}),
+              h(K.KDateTimePicker, {mode: 'dateTime', modelValue: {start: new Date(), end: null}}),
+            ]),
+            ...group('Code', () => [
+              h('div', {style: 'flex:1;min-width:360px'}, [
+                h(K.KCodeBlock, {
+                  id: 'gallery-code-block',
+                  code: '{\n  "appearance": "primary",\n  "size": "medium"\n}',
+                  language: 'json',
+                  searchable: true,
+                }),
+              ]),
+            ]),
+            ...group('Navigation', () => [
+              h('div', {style: 'flex:1;min-width:320px'}, [
+                h(K.KTabs, {
+                  tabs: [{hash: '#a', title: 'Overview'}, {hash: '#b', title: 'Settings'}, {hash: '#c', title: 'Activity'}],
+                  modelValue: activeTab.value,
+                  'onUpdate:modelValue': (v) => activeTab.value = v,
+                }, {
+                  a: () => h('p', {class: 'muted'}, 'Overview panel content.'),
+                  b: () => h('p', {class: 'muted'}, 'Settings panel content.'),
+                  c: () => h('p', {class: 'muted'}, 'Activity panel content.'),
+                }),
+              ]),
+              h(K.KExternalLink, {href: 'https://konghq.com'}, () => 'External link'),
+            ]),
+            ...group('Filters', () => [
+              h(K.KFilterGroup, {
+                filters: {
+                  name: {label: 'Name'},
+                  status: {label: 'Status', options: [{label: 'Active', value: 'active'}, {label: 'Invited', value: 'invited'}]},
+                },
+                modelValue: filterValue.value,
+                'onUpdate:modelValue': (v) => filterValue.value = v,
+              }),
+            ]),
+            ...group('Table', () => [
+              h('div', {style: 'flex:1;min-width:420px'}, [
+                h(K.KTableView, {
+                  headers: [{key: 'name', label: 'Name', sortable: true}, {key: 'role', label: 'Role'}, {key: 'status', label: 'Status'}],
+                  data: pagedRows.value,
+                  rowKey: 'id',
+                  paginationAttributes: {
+                    totalCount: tableRows.length,
+                    pageSizes: [10, 15, 25],
+                    currentPage: tablePage.value,
+                    initialPageSize: tablePageSize.value,
+                  },
+                  onPageChange: ({page}) => { tablePage.value = page },
+                  onPageSizeChange: ({pageSize}) => { tablePageSize.value = pageSize; tablePage.value = 1 },
+                }),
+              ]),
+            ]),
+            ...group('Overlays — modal, prompt & slideout (click trigger to reveal)', () => [
+              h('div', [
+                h(K.KButton, {appearance: 'primary', onClick: () => { modalVisible.value = true }}, () => 'Open modal'),
+                h(K.KModal, {
+                  visible: modalVisible.value,
+                  title: 'Modal title',
+                  onProceed: () => { modalVisible.value = false },
+                  onCancel: () => { modalVisible.value = false },
+                }, {default: () => h('p', {class: 'muted'}, 'Modal body content, themed background/border/buttons.')}),
+              ]),
+              h('div', [
+                h(K.KButton, {appearance: 'danger', onClick: () => { promptVisible.value = true }}, () => 'Delete…'),
+                h(K.KPrompt, {
+                  visible: promptVisible.value,
+                  title: 'Confirm deletion',
+                  message: 'This action cannot be undone.',
+                  onProceed: () => { promptVisible.value = false },
+                  onCancel: () => { promptVisible.value = false },
+                }),
+              ]),
+              h('div', [
+                h(K.KButton, {appearance: 'secondary', onClick: () => { slideoutVisible.value = true }}, () => 'Open slideout'),
+                h(K.KSlideout, {
+                  visible: slideoutVisible.value,
+                  title: 'Slideout title',
+                  onClose: () => { slideoutVisible.value = false },
+                }, {default: () => h('p', {class: 'muted'}, 'Slideout panel content, themed background/border.')}),
+              ]),
+            ]),
+            ...group('Tooltip (hover trigger to reveal)', () => [
+              h(K.KTooltip, {text: 'Tooltip content, placement: top', placement: 'top'}, {
+                default: () => h(K.KButton, {appearance: 'tertiary', tabindex: '0'}, () => 'Hover me (top)'),
+              }),
+              h(K.KTooltip, {text: 'Tooltip content, placement: bottom', placement: 'bottom'}, {
+                default: () => h(K.KButton, {appearance: 'tertiary', tabindex: '0'}, () => 'Hover me (bottom)'),
+              }),
+            ]),
+          ])
+        },
+      })
+      app.config.errorHandler = (err) => { console.error(err) }
+      app.mount('#app')
+    </script>
+  </body>
+
+</html>

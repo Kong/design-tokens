@@ -1,0 +1,85 @@
+{
+  "tree_list": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Tree list item border radius (also applied to the expand/collapse toggle focus ring).",
+        "$value": ""
+      },
+      "width": {
+        "$description": "Tree list item border width.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Tree list item background color.",
+          "$value": ""
+        },
+        "drag_indicator": {
+          "$description": "Tree list drag indicator bar background color, shown when dragging an item to a drop location.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Tree list item background color on hover, focus, and focus-visible.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Tree list item background color when selected.",
+          "$value": ""
+        }
+      },
+      "border": {
+        "_": {
+          "$description": "Tree list item border color.",
+          "$value": ""
+        },
+        "connector": {
+          "$description": "Tree list connecting line color (the lines linking parent and child items).",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Tree list item border color when selected.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "_": {
+          "$description": "Tree list item text color.",
+          "$value": ""
+        },
+        "icon": {
+          "_": {
+            "$description": "Tree list item leading icon color.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Tree list item leading icon color when selected.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Tree list font family.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Tree list item font weight.",
+        "$value": ""
+      }
+    },
+    "padding": {
+      "$description": "Tree list item padding.",
+      "$value": ""
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Tree list item focus-visible shadow (focus ring).",
+        "$value": ""
+      }
+    }
+  }
+}

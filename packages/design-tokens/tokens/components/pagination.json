@@ -1,0 +1,65 @@
+{
+  "pagination": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Pagination page button border radius.",
+        "$value": ""
+      },
+      "width": {
+        "$description": "Pagination page button border width.",
+        "$value": ""
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Pagination page button background color.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Pagination current (selected) page button background color.",
+          "$value": ""
+        }
+      },
+      "border": {
+        "_": {
+          "$description": "Pagination page button border color.",
+          "$value": ""
+        },
+        "hover": {
+          "$description": "Pagination page button border color on hover and focus.",
+          "$value": ""
+        },
+        "selected": {
+          "$description": "Pagination current (selected) page button border color.",
+          "$value": ""
+        }
+      },
+      "text": {
+        "$description": "Pagination page button text color.",
+        "$value": ""
+      }
+    },
+    "font": {
+      "family": {
+        "$description": "Pagination font family.",
+        "$value": ""
+      },
+      "weight": {
+        "$description": "Pagination page button font weight.",
+        "$value": ""
+      }
+    },
+    "padding": {
+      "$description": "Pagination page button inner padding.",
+      "$value": ""
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Pagination page button focus-visible shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

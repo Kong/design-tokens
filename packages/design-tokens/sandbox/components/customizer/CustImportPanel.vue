@@ -27,7 +27,7 @@
       <input
         v-model="inputValue"
         class="cust-import-input"
-        placeholder="Paste share URL or state code…"
+        placeholder="Paste share URL, state code, or CSS…"
         spellcheck="false"
         type="text"
         @keydown.enter="applyFromInput"
@@ -37,7 +37,7 @@
     <div class="cust-import-actions">
       <label
         class="cust-import-file-btn"
-        title="Import from a .css file containing CSS custom property declarations"
+        title="Import from a .css file — accepts raw overrides or a @kong/design-tokens theme file (e.g. electric-lime-day.css)"
       >
         <input
           ref="fileInputEl"
@@ -89,12 +89,22 @@ function showFeedback(msg: string, type: 'success' | 'error') {
 async function applyFromInput() {
   const raw = inputValue.value.trim()
   if (!raw) return
-  const ok = await importFromCode(raw)
+  // Auto-detect: if the text contains a CSS custom property declaration (--var: value),
+  // parse it as CSS. Otherwise treat it as a share URL or state code.
+  // This lets users paste a `:root { --kui-…: …; }` block or a full @kong/design-tokens
+  // theme file directly into the input without needing the file-upload button.
+  const looksLikeCss = /--[\w-]+\s*:/.test(raw)
+  const ok = looksLikeCss ? importFromCss(raw) : await importFromCode(raw)
   if (ok) {
     inputValue.value = ''
     showFeedback('Customizations applied.', 'success')
   } else {
-    showFeedback('Nothing decoded — check that the URL or state code is correct.', 'error')
+    showFeedback(
+      looksLikeCss
+        ? 'No CSS custom properties found — check your input.'
+        : 'Nothing decoded — check that the URL or state code is correct.',
+      'error',
+    )
   }
 }
 

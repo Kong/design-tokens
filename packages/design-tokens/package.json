@@ -15,10 +15,15 @@
     "typecheck:sandbox": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
     "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
-    "sandbox:watch": "chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
+    "sandbox:watch": "chokidar \"tokens/**/*.json\" \"themes/**/*.json\" -c \"pnpm build\"",
     "sandbox:build": "BUILD_SANDBOX=true vite build -c ./sandbox/vite.config.ts -m production",
     "sandbox:preview": "BUILD_SANDBOX=true vite preview -c ./sandbox/vite.config.ts",
     "watch:tokens": "pnpm build && chokidar \"tokens/**/*.json\" -c \"pnpm build\"",
+    "theme:scaffold": "node scripts/theme-scaffold.mjs",
+    "theme:preview": "node ../skills/theme-creation/scripts/preview.mjs",
+    "themes:sync": "node scripts/themes-sync.mjs",
+    "themes:unfilled": "node scripts/themes-unfilled.mjs",
+    "pretest": "pnpm build:tokens",
     "test": "vitest run --config vitest.config.mjs"
   },
   "publishConfig": {
@@ -40,6 +45,37 @@
       "require": {
         "types": "./dist/tokens/js/cjs/index.d.ts",
         "default": "./dist/tokens/js/cjs/index.js"
+      }
+    },
+    "./themes": {
+      "import": {
+        "types": "./dist/themes/index.d.ts",
+        "default": "./dist/themes/index.mjs"
+      },
+      "require": {
+        "types": "./dist/themes/index.d.cts",
+        "default": "./dist/themes/index.cjs"
+      }
+    },
+    "./themes/*.css": "./dist/themes/*.css",
+    "./themes/*": {
+      "import": {
+        "types": "./dist/themes/*.d.ts",
+        "default": "./dist/themes/*.mjs"
+      },
+      "require": {
+        "types": "./dist/themes/*.d.cts",
+        "default": "./dist/themes/*.cjs"
+      }
+    },
+    "./tokens/themeable-tokens": {
+      "import": {
+        "types": "./dist/tokens/themeable-tokens/index.d.ts",
+        "default": "./dist/tokens/themeable-tokens/index.mjs"
+      },
+      "require": {
+        "types": "./dist/tokens/themeable-tokens/index.d.cts",
+        "default": "./dist/tokens/themeable-tokens/index.cjs"
       }
     },
     "./tokens/*": "./dist/tokens/*",

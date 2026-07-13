@@ -1,0 +1,53 @@
+{
+  "date_time_picker": {
+    "$type": "component",
+    "day": {
+      "color": {
+        "background": {
+          "hover": {
+            "$description": "Date-time picker calendar day background color on hover.",
+            "$value": ""
+          },
+          "in_range": {
+            "$description": "Date-time picker calendar day background color for days within the selected range.",
+            "$value": ""
+          },
+          "selected": {
+            "_": {
+              "$description": "Date-time picker calendar day background color when selected.",
+              "$value": ""
+            },
+            "hover": {
+              "$description": "Date-time picker calendar day background color when selected, on hover.",
+              "$value": ""
+            }
+          },
+          "today": {
+            "$description": "Date-time picker calendar day background color for today.",
+            "$value": ""
+          }
+        },
+        "text": {
+          "_": {
+            "$description": "Date-time picker calendar day text color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Date-time picker calendar day text color when disabled.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Date-time picker calendar day text color when selected.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "shadow": {
+      "focus": {
+        "$description": "Date-time picker calendar day focus-visible ring shadow.",
+        "$value": ""
+      }
+    }
+  }
+}

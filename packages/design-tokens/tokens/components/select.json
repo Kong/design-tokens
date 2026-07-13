@@ -1,0 +1,63 @@
+{
+  "select": {
+    "$type": "component",
+    "item": {
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Select item background color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Select item background color on hover.",
+            "$value": ""
+          },
+          "selected": {
+            "_": {
+              "$description": "Selected select item background color.",
+              "$value": ""
+            },
+            "disabled": {
+              "$description": "Selected and disabled select item background color.",
+              "$value": ""
+            }
+          }
+        },
+        "text": {
+          "_": {
+            "$description": "Select item text color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Disabled select item text color.",
+            "$value": ""
+          },
+          "selected": {
+            "$description": "Selected select item text color.",
+            "$value": ""
+          }
+        }
+      },
+      "font": {
+        "size": {
+          "$description": "Select item font size.",
+          "$value": ""
+        }
+      },
+      "line_height": {
+        "$description": "Select item line height.",
+        "$value": ""
+      },
+      "padding": {
+        "x": {
+          "$description": "Select item horizontal padding.",
+          "$value": ""
+        },
+        "y": {
+          "$description": "Select item vertical padding.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

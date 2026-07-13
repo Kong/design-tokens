@@ -1,0 +1,103 @@
+{
+  "skeleton": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "$description": "Skeleton placeholder box border radius.",
+        "$value": ""
+      }
+    },
+    "card": {
+      "border": {
+        "radius": {
+          "$description": "Card skeleton wrapper border radius.",
+          "$value": ""
+        },
+        "width": {
+          "$description": "Card skeleton wrapper border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "border": {
+          "$description": "Card skeleton wrapper border color.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Skeleton placeholder base background color (the resting/non-highlighted gradient stops of the shimmer).",
+          "$value": ""
+        },
+        "shimmer": {
+          "$description": "Skeleton placeholder animated shimmer/highlight color (the moving bright gradient stop).",
+          "$value": ""
+        }
+      }
+    },
+    "fullscreen": {
+      "color": {
+        "background": {
+          "$description": "Fullscreen skeleton loader backdrop/overlay background color.",
+          "$value": ""
+        }
+      }
+    },
+    "progress": {
+      "border": {
+        "radius": {
+          "$description": "Fullscreen skeleton progress bar (track and fill) border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Fullscreen skeleton progress bar track background color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Fullscreen skeleton progress bar fill (completed progress) background color.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "spinner": {
+      "border": {
+        "radius": {
+          "$description": "Fullscreen generic spinner border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "border": {
+          "_": {
+            "$description": "Fullscreen generic spinner track (inactive) border color.",
+            "$value": ""
+          },
+          "active": {
+            "$description": "Fullscreen generic spinner active (leading) segment border color.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "table": {
+      "border": {
+        "width": {
+          "$description": "Table skeleton row divider border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "border": {
+          "$description": "Table skeleton row divider border color.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}
