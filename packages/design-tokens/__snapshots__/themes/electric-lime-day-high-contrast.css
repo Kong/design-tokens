@@ -108,7 +108,7 @@
     --kui-button-color-border-primary-hover: transparent;
     --kui-button-color-border-secondary: #4E594E;
     --kui-button-color-border-secondary-active: #4E594E;
-    --kui-button-color-border-secondary-disabled: #FAFBFA;
+    --kui-button-color-border-secondary-disabled: #E5E9E5;
     --kui-button-color-border-secondary-hover: #4E594E;
     --kui-button-color-border-tertiary: transparent;
     --kui-button-color-border-tertiary-active: transparent;
@@ -181,7 +181,7 @@
     --kui-code-block-color-background: #F9FBF9;
     --kui-code-block-color-background-dark: #090D09;
     --kui-code-block-color-text: #181B18;
-    --kui-code-block-color-text-dark: #FAFBFA;
+    --kui-code-block-color-text-dark: #E5E9E5;
     --kui-code-block-line-number-color-text: #3D443D;
     --kui-code-block-line-number-color-text-dark: #9DA99D;
     --kui-collapse-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
@@ -223,7 +223,7 @@
     --kui-color-background-neutral-stronger: #242824;
     --kui-color-background-neutral-strongest: #181B18;
     --kui-color-background-neutral-weak: #9DA99D;
-    --kui-color-background-neutral-weaker: #FAFBFA;
+    --kui-color-background-neutral-weaker: #E5E9E5;
     --kui-color-background-neutral-weakest: #FAFBFA;
     --kui-color-background-overlay: rgba(9, 13, 9, 0.6);
     --kui-color-background-primary: #3D443D;
@@ -231,7 +231,7 @@
     --kui-color-background-primary-stronger: #181B18;
     --kui-color-background-primary-strongest: #090D09;
     --kui-color-background-primary-weak: #9DA99D;
-    --kui-color-background-primary-weaker: #FAFBFA;
+    --kui-color-background-primary-weaker: #E5E9E5;
     --kui-color-background-primary-weakest: #FAFBFA;
     --kui-color-background-success: #006049;
     --kui-color-background-success-strong: #004B39;
@@ -344,7 +344,7 @@
     --kui-dropdown-border-radius: 6px;
     --kui-dropdown-color-border: #4E594E;
     --kui-dropdown-item-color-background: #FFFFFF;
-    --kui-dropdown-item-color-background-active: #FAFBFA;
+    --kui-dropdown-item-color-background-active: #E5E9E5;
     --kui-dropdown-item-color-background-danger-active: #FFBDC9;
     --kui-dropdown-item-color-background-danger-hover: #FFE5EA;
     --kui-dropdown-item-color-background-hover: #FAFBFA;
@@ -468,14 +468,14 @@
     --kui-input-switch-border-radius-small: 100px;
     --kui-input-switch-color-background: #FAFBFA;
     --kui-input-switch-color-background-disabled: #FAFBFA;
-    --kui-input-switch-color-background-hover: #FAFBFA;
+    --kui-input-switch-color-background-hover: #E5E9E5;
     --kui-input-switch-color-background-selected: #181B18;
     --kui-input-switch-color-background-selected-hover: #3D443D;
     --kui-input-switch-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
     --kui-input-switch-thumb-border-radius: 100px;
     --kui-input-switch-thumb-border-width: 2px;
     --kui-input-switch-thumb-color-background: #FFFFFF;
-    --kui-input-switch-thumb-color-background-disabled: #FAFBFA;
+    --kui-input-switch-thumb-color-background-disabled: #E5E9E5;
     --kui-input-switch-thumb-color-border: #4E594E;
     --kui-input-switch-thumb-color-border-hover: #4E594E;
     --kui-input-switch-thumb-shadow-border: 0px 0px 0px 1px #D2D7D2 inset;
@@ -515,7 +515,7 @@
     --kui-method-color-background-delete: #FFE5EA;
     --kui-method-color-background-get: #ECFFFB;
     --kui-method-color-background-head: #3D443D;
-    --kui-method-color-background-options: #FAFBFA;
+    --kui-method-color-background-options: #E5E9E5;
     --kui-method-color-background-patch: #ECFCFF;
     --kui-method-color-background-post: #EEF6FF;
     --kui-method-color-background-put: #FFFCE0;
@@ -526,7 +526,7 @@
     --kui-method-color-text-delete-strong: #850018;
     --kui-method-color-text-get: #00372B;
     --kui-method-color-text-get-strong: #004B39;
-    --kui-method-color-text-head: #FAFBFA;
+    --kui-method-color-text-head: #E5E9E5;
     --kui-method-color-text-head-strong: #3D443D;
     --kui-method-color-text-options: #000000;
     --kui-method-color-text-options-strong: #3D443D;
@@ -697,8 +697,8 @@
     --kui-slideout-title-font-size: 20px;
     --kui-slideout-title-font-weight: 700;
     --kui-slideout-title-line-height: 28px;
-    --kui-slider-fill-color-background: #FAFBFA;
-    --kui-slider-fill-color-background-disabled: #FAFBFA;
+    --kui-slider-fill-color-background: #E5E9E5;
+    --kui-slider-fill-color-background-disabled: #E5E9E5;
     --kui-slider-mark-color-text: #4E594E;
     --kui-slider-mark-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-slider-mark-font-size: 14px;
@@ -706,7 +706,7 @@
     --kui-slider-mark-line-height: 16px;
     --kui-slider-thumb-border-radius: 50%;
     --kui-slider-thumb-color-background: #4E594E;
-    --kui-slider-thumb-color-background-disabled: #FAFBFA;
+    --kui-slider-thumb-color-background-disabled: #E5E9E5;
     --kui-slider-thumb-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
     --kui-slider-thumb-size: 16px;
     --kui-slider-track-border-radius: 4px;
@@ -813,7 +813,7 @@
     --kui-stepper-border-radius: 50%;
     --kui-stepper-border-width: 1px;
     --kui-stepper-color-background: #FFFFFF;
-    --kui-stepper-color-background-completed: #FAFBFA;
+    --kui-stepper-color-background-completed: #E5E9E5;
     --kui-stepper-color-background-error: #FFF9FA;
     --kui-stepper-color-background-selected: #4E594E;
     --kui-stepper-color-border: #4E594E;
@@ -829,7 +829,7 @@
     --kui-table-cell-font-size: 14px;
     --kui-table-cell-font-weight: 400;
     --kui-table-cell-line-height: 20px;
-    --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #FAFBFA inset;
+    --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #E5E9E5 inset;
     --kui-table-color-background: #FFFFFF;
     --kui-table-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-table-header-color-border: #4E594E;
@@ -869,7 +869,7 @@
     --kui-tabs-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
     --kui-toaster-border-radius: 6px;
     --kui-toaster-close-border-radius: 4px;
-    --kui-toaster-close-color-text-hover: #FAFBFA;
+    --kui-toaster-close-color-text-hover: #E5E9E5;
     --kui-toaster-close-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
     --kui-toaster-color-background: #090D09;
     --kui-toaster-color-text: #FFFFFF;
@@ -900,7 +900,7 @@
     --kui-tree-list-border-radius: 4px;
     --kui-tree-list-border-width: 1px;
     --kui-tree-list-color-background: #FFFFFF;
-    --kui-tree-list-color-background-drag-indicator: #FAFBFA;
+    --kui-tree-list-color-background-drag-indicator: #E5E9E5;
     --kui-tree-list-color-background-hover: #FAFBFA;
     --kui-tree-list-color-background-selected: #FAFBFA;
     --kui-tree-list-color-border: #4E594E;
