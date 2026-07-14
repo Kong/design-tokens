@@ -13,6 +13,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   id-token: write
   contents: write
@@ -43,12 +47,24 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          changed=$(pnpm lerna changed --since "origin/${BASE_REF}" --json 2>/dev/null || echo '[]')
-          changed=$(echo "$changed" | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+          # lerna list [--since <ref>] always exits 0 with JSON (`[]` if nothing changed);
+          # a non-zero exit is a real failure and should fail the job, not silently skip previews.
+          detect_packages() {
+            local err out
+            err="$(mktemp)"
+            if ! out=$(pnpm -s lerna list "$@" --json 2>"${err}"); then
+              echo "::error::lerna list $* failed:" >&2
+              cat "${err}" >&2
+              return 1
+            fi
+            rm -f "${err}"
+            printf '%s' "${out}" | jq -c '[.[].name]'
+          }
 
-          # If any critical root-level files changed, force preview publish for all packages.
-          # Only include files that genuinely affect build output; lint/ts config and the lockfile
-          # do not change dist artifacts and should not trigger unnecessary publishes.
+          changed=$(detect_packages --since "origin/${BASE_REF}")
+
+          # Force a preview for every package when a root file that affects every build
+          # changes (skip the lockfile/lint config - they don't touch dist output).
           critical_files="pnpm-workspace.yaml package.json"
           changed_files=$(git diff --name-only "origin/${BASE_REF}...HEAD")
           force_all=false
@@ -60,10 +76,9 @@ jobs:
           done
           if [ "$force_all" = "true" ]; then
             echo "Critical root-level file(s) changed - forcing CI for all packages"
-            changed=$(pnpm lerna ls --json 2>/dev/null | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+            changed=$(detect_packages)
           fi
 
-          # Echo the packages to the console and set it as an output for the next job
           echo "changed=${changed}"
           echo "changed=${changed}" >> "$GITHUB_OUTPUT"
 
@@ -156,14 +171,18 @@ jobs:
 
   preview-complete:
     name: Preview Complete
-    needs: [preview]
+    needs: [detect, preview]
     if: always() && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Check preview result
         run: |
-          if [[ "${{ needs.preview.result }}" == "failure" ]]; then
-            echo "One or more preview jobs failed."
+          if [[ "${{ needs.detect.result }}" != "success" && "${{ needs.detect.result }}" != "skipped" ]]; then
+            echo "Detect changed packages did not complete successfully (${{ needs.detect.result }})."
+            exit 1
+          fi
+          if [[ "${{ needs.preview.result }}" != "success" && "${{ needs.preview.result }}" != "skipped" ]]; then
+            echo "One or more preview jobs did not complete successfully (${{ needs.preview.result }})."
             exit 1
           fi
           echo "Preview jobs passed or were skipped."
