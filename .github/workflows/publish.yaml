@@ -13,6 +13,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   id-token: write
   contents: write
@@ -173,12 +177,12 @@ jobs:
     steps:
       - name: Check preview result
         run: |
-          if [[ "${{ needs.detect.result }}" == "failure" ]]; then
-            echo "Detect changed packages failed."
+          if [[ "${{ needs.detect.result }}" != "success" && "${{ needs.detect.result }}" != "skipped" ]]; then
+            echo "Detect changed packages did not complete successfully (${{ needs.detect.result }})."
             exit 1
           fi
-          if [[ "${{ needs.preview.result }}" == "failure" ]]; then
-            echo "One or more preview jobs failed."
+          if [[ "${{ needs.preview.result }}" != "success" && "${{ needs.preview.result }}" != "skipped" ]]; then
+            echo "One or more preview jobs did not complete successfully (${{ needs.preview.result }})."
             exit 1
           fi
           echo "Preview jobs passed or were skipped."
