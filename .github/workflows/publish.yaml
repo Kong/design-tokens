@@ -43,30 +43,24 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          # Ask lerna which packages changed since the PR's base ref. Unlike `lerna changed`,
-          # `lerna list --since` uses the same diff detection but always exits 0 with valid JSON
-          # (including `[]` for "nothing changed") - no log-text matching is needed to tell a real
-          # failure (bad ref, transient git error) apart from a legitimate empty result, and any
-          # non-zero exit here is a genuine failure that must fail the job loudly instead of
-          # silently skipping every preview job downstream.
-          lerna_err="$(mktemp)"
-          set +e
-          lerna_out=$(pnpm -s lerna list --since "origin/${BASE_REF}" --json 2>"${lerna_err}")
-          lerna_exit=$?
-          set -e
-          echo "lerna list --since exit=${lerna_exit}"
-          echo "--- lerna stderr ---"
-          cat "${lerna_err}"
+          # lerna list [--since <ref>] always exits 0 with JSON (`[]` if nothing changed);
+          # a non-zero exit is a real failure and should fail the job, not silently skip previews.
+          detect_packages() {
+            local err out
+            err="$(mktemp)"
+            if ! out=$(pnpm -s lerna list "$@" --json 2>"${err}"); then
+              echo "::error::lerna list $* failed:" >&2
+              cat "${err}" >&2
+              return 1
+            fi
+            rm -f "${err}"
+            printf '%s' "${out}" | jq -c '[.[].name]'
+          }
 
-          if [ "${lerna_exit}" -ne 0 ]; then
-            echo "::error::lerna list --since failed (exit ${lerna_exit}) - see stderr above"
-            exit 1
-          fi
-          changed=$(printf '%s' "${lerna_out}" | jq -c '[.[].name]')
+          changed=$(detect_packages --since "origin/${BASE_REF}")
 
-          # If any critical root-level files changed, force preview publish for all packages.
-          # Only include files that genuinely affect build output; lint/ts config and the lockfile
-          # do not change dist artifacts and should not trigger unnecessary publishes.
+          # Force a preview for every package when a root file that affects every build
+          # changes (skip the lockfile/lint config - they don't touch dist output).
           critical_files="pnpm-workspace.yaml package.json"
           changed_files=$(git diff --name-only "origin/${BASE_REF}...HEAD")
           force_all=false
@@ -78,22 +72,9 @@ jobs:
           done
           if [ "$force_all" = "true" ]; then
             echo "Critical root-level file(s) changed - forcing CI for all packages"
-            ls_err="$(mktemp)"
-            set +e
-            ls_out=$(pnpm -s lerna ls --json 2>"${ls_err}")
-            ls_exit=$?
-            set -e
-            echo "lerna ls exit=${ls_exit}"
-            echo "--- lerna stderr ---"
-            cat "${ls_err}"
-            if [ "${ls_exit}" -ne 0 ]; then
-              echo "::error::lerna ls failed (exit ${ls_exit}) - see stderr above"
-              exit 1
-            fi
-            changed=$(printf '%s' "${ls_out}" | jq -c '[.[].name]')
+            changed=$(detect_packages)
           fi
 
-          # Echo the packages to the console and set it as an output for the next job
           echo "changed=${changed}"
           echo "changed=${changed}" >> "$GITHUB_OUTPUT"
 
