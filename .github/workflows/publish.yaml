@@ -43,8 +43,26 @@ jobs:
         env:
           BASE_REF: ${{ github.base_ref }}
         run: |
-          changed=$(pnpm lerna changed --since "origin/${BASE_REF}" --json 2>/dev/null || echo '[]')
-          changed=$(echo "$changed" | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+          # Ask lerna which packages changed since the PR's base ref. Unlike `lerna changed`,
+          # `lerna list --since` uses the same diff detection but always exits 0 with valid JSON
+          # (including `[]` for "nothing changed") - no log-text matching is needed to tell a real
+          # failure (bad ref, transient git error) apart from a legitimate empty result, and any
+          # non-zero exit here is a genuine failure that must fail the job loudly instead of
+          # silently skipping every preview job downstream.
+          lerna_err="$(mktemp)"
+          set +e
+          lerna_out=$(pnpm exec lerna list --since "origin/${BASE_REF}" --json 2>"${lerna_err}")
+          lerna_exit=$?
+          set -e
+          echo "lerna list --since exit=${lerna_exit}"
+          echo "--- lerna stderr ---"
+          cat "${lerna_err}"
+
+          if [ "${lerna_exit}" -ne 0 ]; then
+            echo "::error::lerna list --since failed (exit ${lerna_exit}) - see stderr above"
+            exit 1
+          fi
+          changed=$(printf '%s' "${lerna_out}" | jq -c '[.[].name]')
 
           # If any critical root-level files changed, force preview publish for all packages.
           # Only include files that genuinely affect build output; lint/ts config and the lockfile
@@ -60,7 +78,19 @@ jobs:
           done
           if [ "$force_all" = "true" ]; then
             echo "Critical root-level file(s) changed - forcing CI for all packages"
-            changed=$(pnpm lerna ls --json 2>/dev/null | jq -c '[.[].name]' 2>/dev/null || echo '[]')
+            ls_err="$(mktemp)"
+            set +e
+            ls_out=$(pnpm exec lerna ls --json 2>"${ls_err}")
+            ls_exit=$?
+            set -e
+            echo "lerna ls exit=${ls_exit}"
+            echo "--- lerna stderr ---"
+            cat "${ls_err}"
+            if [ "${ls_exit}" -ne 0 ]; then
+              echo "::error::lerna ls failed (exit ${ls_exit}) - see stderr above"
+              exit 1
+            fi
+            changed=$(printf '%s' "${ls_out}" | jq -c '[.[].name]')
           fi
 
           # Echo the packages to the console and set it as an output for the next job
@@ -156,12 +186,16 @@ jobs:
 
   preview-complete:
     name: Preview Complete
-    needs: [preview]
+    needs: [detect, preview]
     if: always() && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Check preview result
         run: |
+          if [[ "${{ needs.detect.result }}" == "failure" ]]; then
+            echo "Detect changed packages failed."
+            exit 1
+          fi
           if [[ "${{ needs.preview.result }}" == "failure" ]]; then
             echo "One or more preview jobs failed."
             exit 1

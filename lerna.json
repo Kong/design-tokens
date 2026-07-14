@@ -7,7 +7,8 @@
   "command": {
     "version": {
       "conventionalCommits": true,
-      "message": "chore(release): {version} [skip ci]"
+      "createRelease": "github",
+      "message": "chore(release): publish [skip ci]"
     },
     "publish": {
       "registry": "https://registry.npmjs.org"
