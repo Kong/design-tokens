@@ -51,7 +51,7 @@ jobs:
           # silently skipping every preview job downstream.
           lerna_err="$(mktemp)"
           set +e
-          lerna_out=$(pnpm exec lerna list --since "origin/${BASE_REF}" --json 2>"${lerna_err}")
+          lerna_out=$(pnpm -s lerna list --since "origin/${BASE_REF}" --json 2>"${lerna_err}")
           lerna_exit=$?
           set -e
           echo "lerna list --since exit=${lerna_exit}"
@@ -80,7 +80,7 @@ jobs:
             echo "Critical root-level file(s) changed - forcing CI for all packages"
             ls_err="$(mktemp)"
             set +e
-            ls_out=$(pnpm exec lerna ls --json 2>"${ls_err}")
+            ls_out=$(pnpm -s lerna ls --json 2>"${ls_err}")
             ls_exit=$?
             set -e
             echo "lerna ls exit=${ls_exit}"
