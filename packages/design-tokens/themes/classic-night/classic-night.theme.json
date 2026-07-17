@@ -443,7 +443,7 @@
   },
   "kui-color-text-inverse": {
     "$description": "Inverse text color.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.black}"
   },
   "kui-color-text-neutral": {
     "$description": "Text color for neutral elements.",
