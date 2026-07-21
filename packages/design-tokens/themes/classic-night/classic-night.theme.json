@@ -91,7 +91,7 @@
   },
   "kui-color-background-disabled": {
     "$description": "Background color for disabled elements.",
-    "$value": "{color.alias.gray.20}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-color-background-info": {
     "$description": "Background color for info elements.",
@@ -411,7 +411,7 @@
   },
   "kui-color-text-disabled": {
     "$description": "Text color for disabled elements.",
-    "$value": "{color.alias.gray.80}"
+    "$value": "{color.alias.gray.30}"
   },
   "kui-color-text-info": {
     "$description": "Text color for info elements.",
@@ -443,7 +443,7 @@
   },
   "kui-color-text-inverse": {
     "$description": "Inverse text color.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.black}"
   },
   "kui-color-text-neutral": {
     "$description": "Text color for neutral elements.",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.2...@kong/design-tokens@3.0.3) (2026-07-17)
+
+### Bug Fixes
+
+* **classic-night:** color-text-inverse to black ([#691](https://github.com/Kong/design-tokens/issues/691)) ([0e51b18](https://github.com/Kong/design-tokens/commit/0e51b18997f9b199d10d43bb666a4bab2edfb8b0))
+
+## [3.0.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.1...@kong/design-tokens@3.0.2) (2026-07-16)
+
+### Bug Fixes
+
+* **themes:** classic night colors ([#690](https://github.com/Kong/design-tokens/issues/690)) ([a9e4f49](https://github.com/Kong/design-tokens/commit/a9e4f490db7d802b14adf2a05bee7a958cd2d40a))
+
 ## [3.0.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.0...@kong/design-tokens@3.0.1) (2026-07-14)
 
 **Note:** Version bump only for package @kong/design-tokens
