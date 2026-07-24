@@ -145,7 +145,7 @@ const missing = uniqueNames
   .map((n) => join(PKG, 'dist', 'themes', `${n}.css`))
   .filter((p) => !existsSync(p))
 if (missing.length) {
-  console.error(`Missing compiled theme CSS — run \`pnpm --filter @kong/design-tokens build:tokens\` first:`)
+  console.error('Missing compiled theme CSS — run `pnpm --filter @kong/design-tokens build:tokens` first:')
   missing.forEach((p) => console.error(`  ${p}`))
   process.exit(1)
 }
@@ -245,13 +245,31 @@ server.listen(port, '127.0.0.1', () => {
     process.exit(1)
   }
 
-  console.log(`\nPreview serving at:  http://localhost:${port}/index.html`)
-  console.log(`  original panel only: http://localhost:${port}/default.html`)
-  for (const name of uniqueNames) {
-    console.log(`  ${name} panel only:  http://localhost:${port}/themed-${name}.html`)
+  const c = {
+    bold: s => `\x1b[1m${s}\x1b[22m`,
+    dim: s => `\x1b[2m${s}\x1b[22m`,
+    cyan: s => `\x1b[36m${s}\x1b[39m`,
+    green: s => `\x1b[32m${s}\x1b[39m`,
+    yellow: s => `\x1b[33m${s}\x1b[39m`,
+    url: s => `\x1b[36m\x1b[4m${s}\x1b[24m\x1b[39m`,
   }
-  console.log(`\nKongponents:  ${kpVersion}${kpVersion === 'latest' ? ' (published — may not consume newer component tokens; pass --kongponents <build> to preview those)' : ''}`)
-  console.log('Screenshot the index URL with a browser tool and compare against the source, or open it.')
-  console.log('Run `pnpm themes:unfilled <name>` to check for empty component slots or palette families')
-  console.log('still unchanged from the classic-day seed before treating this preview as final. Ctrl-C to stop.')
+  const themeLines = uniqueNames.map(name =>
+    `  ${c.bold(name)}:  ${c.url(`http://localhost:${port}/themed-${name}.html`)}`,
+  )
+  const kpLines = [
+    `${c.bold('Kongponents:')}  ${c.green(kpVersion)}`,
+    ...(kpVersion === 'latest' ? [c.yellow('  Pass --kongponents <version|tag> to preview against a specific version.')] : []),
+  ]
+  process.stdout.write([
+    c.bold('Preview serving at:'),
+    `  side-by-side:        ${c.url(`http://localhost:${port}/index.html`)}`,
+    `  original only:       ${c.url(`http://localhost:${port}/default.html`)}`,
+    ...themeLines,
+    ' ',
+    ...kpLines,
+    c.dim('Screenshot the index URL with a browser tool and compare against the source, or open it.'),
+    c.dim('Run `pnpm themes:unfilled <name>` to check for empty component slots or palette families '),
+    c.dim('still unchanged from the classic-day seed before treating this preview as final.'),
+    ' ',
+  ].join('\n'))
 })
