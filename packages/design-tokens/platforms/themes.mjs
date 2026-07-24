@@ -101,7 +101,7 @@ function aliasIncludesForTheme(name) {
  */
 export async function discoverThemes(themesRoot = './themes') {
   const entries = await readdir(themesRoot, { withFileTypes: true })
-  const relevant = entries.filter(e => !e.name.startsWith('_'))
+  const relevant = entries.filter(e => !e.name.startsWith('_') && !e.name.startsWith('.'))
 
   // Enforce the `<theme-name>/<theme-name>.theme.json` convention — fail loudly rather than
   // skip/mis-build. A stray FILE directly in themes/ (not a directory at all) is exactly as
