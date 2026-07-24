@@ -261,6 +261,7 @@ server.listen(port, '127.0.0.1', () => {
     ...(kpVersion === 'latest' ? [c.yellow('  Pass --kongponents <version|tag> to preview against a specific version.')] : []),
   ]
   process.stdout.write([
+    ' ',
     c.bold('Preview serving at:'),
     `  side-by-side:        ${c.url(`http://localhost:${port}/index.html`)}`,
     `  original only:       ${c.url(`http://localhost:${port}/default.html`)}`,
@@ -268,8 +269,6 @@ server.listen(port, '127.0.0.1', () => {
     ' ',
     ...kpLines,
     c.dim('Screenshot the index URL with a browser tool and compare against the source, or open it.'),
-    c.dim('Run `pnpm themes:unfilled <name>` to check for empty component slots or palette families '),
-    c.dim('still unchanged from the classic-day seed before treating this preview as final.'),
     ' ',
   ].join('\n'))
 })
