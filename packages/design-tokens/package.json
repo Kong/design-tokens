@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Kong Design Tokens and style dictionary",
   "private": false,
   "type": "module",

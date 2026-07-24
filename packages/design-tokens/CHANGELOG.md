@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.4](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.3...@kong/design-tokens@3.0.4) (2026-07-24)
+
+### Bug Fixes
+
+* **design-tokens:** tweak classic-dark primary token ([#695](https://github.com/Kong/design-tokens/issues/695)) ([168892e](https://github.com/Kong/design-tokens/commit/168892e9fd9e9a63af9433d3d701df0ec26510f1))
+
 ## [3.0.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.2...@kong/design-tokens@3.0.3) (2026-07-17)
 
 ### Bug Fixes
