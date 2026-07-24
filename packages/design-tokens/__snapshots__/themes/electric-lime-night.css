@@ -51,7 +51,7 @@
     --kui-badge-font-weight: 600;
     --kui-badge-icon-gap: 8px;
     --kui-badge-line-height: 16px;
-    --kui-badge-padding-small: 2px;
+    --kui-badge-padding-small: 1px 6px;
     --kui-badge-padding-x: 12px;
     --kui-badge-padding-y: 4px;
     --kui-badge-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);

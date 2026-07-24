@@ -189,7 +189,7 @@
   },
   "kui-badge-padding-small": {
     "$description": "Reduced padding for small inline badges.",
-    "$value": "2px"
+    "$value": "1px 6px"
   },
   "kui-badge-padding-x": {
     "$description": "Badge horizontal padding.",
