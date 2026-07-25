@@ -251,7 +251,7 @@
   },
   "kui-breadcrumbs-divider-color-text": {
     "$description": "Breadcrumbs divider (separator) color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-breadcrumbs-divider-font-weight": {
     "$description": "Breadcrumbs divider (separator) font weight.",
@@ -599,7 +599,7 @@
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-card-footer-gap": {
     "$description": "Gap between card footer items.",
@@ -671,7 +671,7 @@
   },
   "kui-code-block-actions-color-border": {
     "$description": "Code block actions toolbar bottom border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-code-block-actions-color-border-dark": {
     "$description": "Code block actions toolbar bottom border color in the dark theme.",
@@ -967,7 +967,7 @@
   },
   "kui-color-border": {
     "$description": "Default border color for containers.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-border-accent": {
     "$description": "Accent border color for emphasis on non-primary UI. Distinct from the primary action color.",
@@ -1015,21 +1015,21 @@
   },
   "kui-color-border-neutral": {
     "$description": "Border color for neutral elements.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-border-neutral-strong": {
     "$description": "Strong border color for neutral elements.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-border-neutral-stronger": {
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-border-neutral-strongest": {
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-border-neutral-weak": {
     "$description": "Weak border color for neutral elements.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-border-neutral-weaker": {
     "$description": "Weaker border color for neutral elements.",
@@ -1341,7 +1341,7 @@
   },
   "kui-dropdown-color-border": {
     "$description": "Dropdown popover border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-dropdown-item-color-background": {
     "$description": "Dropdown item background color.",
@@ -2116,7 +2116,7 @@
   },
   "kui-modal-color-border": {
     "$description": "Modal dialog border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-modal-color-text": {
     "$description": "Modal dialog text color (custom content).",
@@ -2359,7 +2359,7 @@
   },
   "kui-pop-color-border": {
     "$description": "Popover container border color (also used for the caret border).",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-pop-color-text": {
     "$description": "Popover content text color.",
@@ -2679,7 +2679,7 @@
   },
   "kui-slideout-color-border": {
     "$description": "Slideout panel left border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-slideout-color-text": {
     "$description": "Slideout content text color.",
@@ -3186,7 +3186,7 @@
   },
   "kui-stepper-color-border": {
     "$description": "Stepper step indicator (circle) border color for incomplete (default) steps.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-stepper-color-text": {
     "$description": "Stepper step number text color inside the step indicator (circle) for incomplete (default) and pending steps.",
@@ -3250,7 +3250,7 @@
   },
   "kui-table-header-color-border": {
     "$description": "Table header bottom border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-table-header-color-text": {
     "$description": "Table header text color.",
@@ -3326,7 +3326,7 @@
   },
   "kui-tabs-color-border": {
     "$description": "Tabs container bottom border color (default appearance).",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-tabs-color-border-selected": {
     "$description": "Tabs current (selected) tab bottom border color — the active-tab underline (default appearance).",

@@ -69,7 +69,7 @@
     --kui-border-width-30: 4px;
     --kui-breadcrumbs-color-text: #D2D7D2;
     --kui-breadcrumbs-color-text-hover: #D2D7D2;
-    --kui-breadcrumbs-divider-color-text: #697769;
+    --kui-breadcrumbs-divider-color-text: #4E594E;
     --kui-breadcrumbs-divider-font-weight: 400;
     --kui-breadcrumbs-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-breadcrumbs-font-size: 14px;
@@ -156,7 +156,7 @@
     --kui-card-border-radius: 6px;
     --kui-card-border-width: 1px;
     --kui-card-color-background: #0D0F0D;
-    --kui-card-color-border: #697769;
+    --kui-card-color-border: #4E594E;
     --kui-card-footer-gap: 6px;
     --kui-card-gap: 20px;
     --kui-card-header-gap: 12px;
@@ -174,7 +174,7 @@
     --kui-checkbox-shadow-border-hover: 0px 0px 0px 1px #F1F3F1 inset;
     --kui-checkbox-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-code-block-actions-border-width: 1px;
-    --kui-code-block-actions-color-border: #697769;
+    --kui-code-block-actions-color-border: #4E594E;
     --kui-code-block-actions-color-border-dark: rgba(255, 255, 255, 0.4);
     --kui-code-block-actions-padding: 4px 8px;
     --kui-code-block-border-radius: 8px;
@@ -248,7 +248,7 @@
     --kui-color-background-warning-weak: #998A00;
     --kui-color-background-warning-weaker: #403B0F;
     --kui-color-background-warning-weakest: #332E00;
-    --kui-color-border: #697769;
+    --kui-color-border: #4E594E;
     --kui-color-border-accent: #CCFF00;
     --kui-color-border-danger: #FFE5EA;
     --kui-color-border-danger-strong: #FFE5EA;
@@ -260,11 +260,11 @@
     --kui-color-border-decorative-purple: #F5F0FF;
     --kui-color-border-disabled: #242824;
     --kui-color-border-inverse: rgba(0, 0, 0, 0.5);
-    --kui-color-border-neutral: #697769;
-    --kui-color-border-neutral-strong: #697769;
-    --kui-color-border-neutral-stronger: #697769;
-    --kui-color-border-neutral-strongest: #697769;
-    --kui-color-border-neutral-weak: #697769;
+    --kui-color-border-neutral: #4E594E;
+    --kui-color-border-neutral-strong: #4E594E;
+    --kui-color-border-neutral-stronger: #4E594E;
+    --kui-color-border-neutral-strongest: #4E594E;
+    --kui-color-border-neutral-weak: #4E594E;
     --kui-color-border-neutral-weaker: #4E594E;
     --kui-color-border-neutral-weakest: #4E594E;
     --kui-color-border-primary: #F1F3F1;
@@ -342,7 +342,7 @@
     --kui-date-time-picker-day-color-text-selected: #070807;
     --kui-date-time-picker-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-dropdown-border-radius: 6px;
-    --kui-dropdown-color-border: #697769;
+    --kui-dropdown-color-border: #4E594E;
     --kui-dropdown-item-color-background: #0D0F0D;
     --kui-dropdown-item-color-background-active: #4E594E;
     --kui-dropdown-item-color-background-danger-active: #6F2432;
@@ -544,7 +544,7 @@
     --kui-modal-close-color-text-hover: #D2D7D2;
     --kui-modal-close-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-modal-color-background: #0D0F0D;
-    --kui-modal-color-border: #697769;
+    --kui-modal-color-border: #4E594E;
     --kui-modal-color-text: #D2D7D2;
     --kui-modal-content-color-background: #070807;
     --kui-modal-content-color-text: #E3E8E3;
@@ -605,7 +605,7 @@
     --kui-pop-close-color-text-hover: #D2D7D2;
     --kui-pop-close-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-pop-color-background: #0D0F0D;
-    --kui-pop-color-border: #697769;
+    --kui-pop-color-border: #4E594E;
     --kui-pop-color-text: #E3E8E3;
     --kui-pop-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-pop-font-size: 12px;
@@ -685,7 +685,7 @@
     --kui-slideout-close-color-text-hover: #D2D7D2;
     --kui-slideout-close-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-slideout-color-background: #0D0F0D;
-    --kui-slideout-color-border: #697769;
+    --kui-slideout-color-border: #4E594E;
     --kui-slideout-color-text: #D2D7D2;
     --kui-slideout-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-slideout-font-size: 14px;
@@ -816,7 +816,7 @@
     --kui-stepper-color-background-completed: #4E594E;
     --kui-stepper-color-background-error: #330009;
     --kui-stepper-color-background-selected: #9DA99D;
-    --kui-stepper-color-border: #697769;
+    --kui-stepper-color-border: #4E594E;
     --kui-stepper-color-text: #9DA99D;
     --kui-stepper-color-text-label: #9DA99D;
     --kui-stepper-color-text-label-selected: #E3E8E3;
@@ -832,7 +832,7 @@
     --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #242824 inset;
     --kui-table-color-background: #0D0F0D;
     --kui-table-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
-    --kui-table-header-color-border: #697769;
+    --kui-table-header-color-border: #4E594E;
     --kui-table-header-color-text: #9DA99D;
     --kui-table-header-color-text-active-sort: #D2D7D2;
     --kui-table-header-font-size: 14px;
@@ -851,7 +851,7 @@
     --kui-tabs-border-width: 1px;
     --kui-tabs-border-width-selected: 2px;
     --kui-tabs-color-background-hover: #242824;
-    --kui-tabs-color-border: #697769;
+    --kui-tabs-color-border: #4E594E;
     --kui-tabs-color-border-selected: #E3E8E3;
     --kui-tabs-color-text: #9DA99D;
     --kui-tabs-color-text-disabled: #9DA99D;
