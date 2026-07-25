@@ -1,5 +1,5 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
-import { ALL_ENTRIES, categoryLabel, normalize } from './useTokens'
+import { ALL_ENTRIES, categoryLabel, fuzzyMatchTokens, normalize } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
 import { getHashParam, setHashParams } from '../lib/hashRouteQuery'
 
@@ -340,7 +340,7 @@ export function useTokenCustomizer() {
     return catOrder
       .map((cat) => {
         let entries = ALL_ENTRIES.filter((e) => e.category === cat)
-        if (q) entries = entries.filter((e) => normalize(e.cssVar).includes(normalize(q)) || normalize(e.value).includes(normalize(q)))
+        if (q) entries = entries.filter((e) => fuzzyMatchTokens(q, e.cssVar, e.value))
         if (onlyModified) entries = entries.filter((e) => !!overrides[e.cssVar])
         const overrideCount = entries.filter((e) => overrides[e.cssVar]).length
         return { category: cat, entries, overrideCount }

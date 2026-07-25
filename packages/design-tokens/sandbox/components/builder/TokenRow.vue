@@ -1,0 +1,115 @@
+<template>
+  <div class="token-row">
+    <div class="tr-main">
+      <code class="tr-name">{{ token.cssVar }}</code>
+      <span
+        v-if="token.source === 'overridden'"
+        class="tr-badge tr-badge--overridden"
+      >modified</span>
+    </div>
+
+    <div class="tr-control">
+      <template v-if="token.isColor">
+        <button
+          class="tr-color-btn"
+          @click="open = !open"
+        >
+          <span
+            class="tr-swatch"
+            :style="{ background: token.derivedValue || 'transparent' }"
+          />
+          <span class="tr-color-text">{{ currentRef || 'pick alias' }}</span>
+        </button>
+        <button
+          v-if="token.source === 'overridden'"
+          class="tr-reset"
+          title="Reset to theme default"
+          @click="emit('reset', token.key)"
+        >
+          ↺
+        </button>
+        <div
+          v-if="open"
+          class="tr-popover"
+        >
+          <AliasPicker
+            :alias-flat="aliasFlat"
+            :selected-key="selectedKey"
+            @reset="onReset"
+            @select="onSelect"
+          />
+        </div>
+      </template>
+      <template v-else>
+        <input
+          class="tr-text"
+          :placeholder="token.source === 'empty' ? 'unset' : ''"
+          spellcheck="false"
+          :value="token.rawValue"
+          @change="onText"
+        >
+        <button
+          v-if="token.source === 'overridden'"
+          class="tr-reset"
+          title="Reset to theme default"
+          @click="emit('reset', token.key)"
+        >
+          ↺
+        </button>
+      </template>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import AliasPicker from './AliasPicker.vue'
+import { parseAliasRef } from '@/lib/themeBuilderUtils'
+import type { AliasFlatEntry, BuilderToken } from '@/lib/themeBuilderUtils'
+
+const props = defineProps<{ token: BuilderToken, aliasFlat: AliasFlatEntry[] }>()
+const emit = defineEmits<{ set: [key: string, value: string], reset: [key: string] }>()
+
+const open = ref(false)
+
+/** The current alias ref string, if the raw value is one. */
+const currentRef = computed(() => {
+  const ref = parseAliasRef(props.token.rawValue)
+  return ref ? props.token.rawValue : ''
+})
+
+/** The `family.step` key of the current ref, for highlighting in the picker. */
+const selectedKey = computed(() => {
+  const ref = parseAliasRef(props.token.rawValue)
+  if (!ref) return null
+  return ref.step ? `${ref.family}.${ref.step}` : ref.family
+})
+
+function onSelect(refStr: string) {
+  emit('set', props.token.key, refStr)
+  open.value = false
+}
+function onReset() {
+  emit('reset', props.token.key)
+  open.value = false
+}
+function onText(e: Event) {
+  emit('set', props.token.key, (e.target as HTMLInputElement).value)
+}
+</script>
+
+<style lang="scss" scoped>
+@use '@/assets/tb-vars' as *;
+
+.token-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 12px; border-bottom: 1px solid $tb-border; }
+.tr-main { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.tr-name { font-family: $tb-mono; font-size: 11px; color: $tb-text; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-badge { font-size: 10px; font-family: $tb-mono; &--overridden { color: $tb-accent; font-weight: 600; } }
+.tr-control { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: 6px; }
+.tr-color-btn { display: flex; align-items: center; gap: 6px; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 3px 8px; cursor: pointer; }
+.tr-swatch { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.15); }
+.tr-color-text { font-family: $tb-mono; font-size: 10px; color: $tb-text-dim; }
+.tr-popover { position: absolute; top: calc(100% + 4px); right: 0; z-index: 50; }
+.tr-text { width: 120px; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 3px 8px; font-family: $tb-mono; font-size: 11px; color: $tb-text; &:focus-visible { border-color: $tb-accent; outline: none; } }
+.tr-reset { background: none; border: 1px solid $tb-border; border-radius: 5px; padding: 2px 6px; cursor: pointer; color: $tb-text-muted; &:hover { color: $tb-text; } }
+</style>

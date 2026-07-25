@@ -259,7 +259,14 @@
           :href="bookmarkletHref"
           @click.prevent
         >
-          🔖 Design Token Customizer
+          🔖 Token Customizer
+        </a>
+        <a
+          class="bookmarklet-link"
+          :href="themeBuilderBookmarkletHref"
+          @click.prevent
+        >
+          🎨 Theme Builder
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
@@ -338,7 +345,13 @@ const bridge = usePreviewBridge(effectiveCss)
  */
 const bookmarkletHref = (() => {
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
+})()
+
+/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
+const themeBuilderBookmarkletHref = (() => {
+  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
 })()
 
 /** True when serving from localhost — bookmarklet baked with a local URL won't work on external sites. */

@@ -108,6 +108,21 @@
           >
             Customize →
           </button>
+          <router-link
+            v-if="isDevMode"
+            class="nav-link"
+            to="/theme-builder"
+          >
+            Theme Builder →
+          </router-link>
+          <button
+            v-else
+            class="nav-link nav-link--btn"
+            type="button"
+            @click="showBookmarkletModal = true"
+          >
+            Theme Builder →
+          </button>
         </div>
       </div>
     </header>
@@ -299,6 +314,7 @@
     <BookmarkletModal
       v-model="showBookmarkletModal"
       :bookmarklet-href="bookmarkletHref"
+      :theme-builder-href="themeBuilderBookmarkletHref"
     />
   </div>
 </template>
@@ -324,7 +340,14 @@ const showBookmarkletModal = ref(false)
 const bookmarkletHref = (() => {
   if (typeof window === 'undefined') return '#'
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
+})()
+
+/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
+const themeBuilderBookmarkletHref = (() => {
+  if (typeof window === 'undefined') return '#'
+  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
 })()
 
 const appVersion = pkg.version

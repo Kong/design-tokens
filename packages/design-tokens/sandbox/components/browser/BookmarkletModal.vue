@@ -32,14 +32,23 @@
             Your existing browser session is preserved, so authenticated pages work as-is.
           </p>
           <div class="bm-drag-row">
-            <a
-              class="bm-drag-link"
-              :href="bookmarkletHref"
-              @click.prevent
-            >
-              🔖 Design Token Customizer
-            </a>
-            <span class="bm-drag-hint">← drag this to your bookmarks bar</span>
+            <div class="bm-drag-links">
+              <a
+                class="bm-drag-link"
+                :href="bookmarkletHref"
+                @click.prevent
+              >
+                🔖 Token Customizer
+              </a>
+              <a
+                class="bm-drag-link"
+                :href="themeBuilderHref"
+                @click.prevent
+              >
+                🎨 Theme Builder
+              </a>
+            </div>
+            <span class="bm-drag-hint">← drag either to your bookmarks bar</span>
           </div>
           <ol class="bm-steps">
             <li>Drag the link above to your browser's bookmarks bar</li>
@@ -70,6 +79,8 @@ defineProps<{
   modelValue: boolean
   /** The `javascript:` bookmarklet href for the drag link. */
   bookmarkletHref: string
+  /** The `javascript:` bookmarklet href for the Theme Builder drag link. */
+  themeBuilderHref: string
 }>()
 
 const emit = defineEmits<{
@@ -146,6 +157,14 @@ const emit = defineEmits<{
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.bm-drag-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .bm-drag-link {

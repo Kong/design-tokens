@@ -54,6 +54,25 @@ export function normalize(s: string): string {
 }
 
 /**
+ * Multi-term fuzzy matcher for token filtering. Splits `query` into terms on
+ * whitespace and hyphens; returns true when EVERY term is found within the
+ * combined target text, comparing separator-agnostically (hyphens, underscores
+ * and spaces are stripped on both sides via {@link normalize}).
+ *
+ * A single-term query behaves like a plain separator-agnostic substring test,
+ * so this is a strict superset of the previous filter behavior.
+ * @param query - The raw user filter string.
+ * @param targets - One or more strings to match against (e.g. css var, value).
+ * @example fuzzyMatchTokens('button primary', '--kui-button-color-background-primary') // true
+ */
+export function fuzzyMatchTokens(query: string, ...targets: string[]): boolean {
+  const terms = query.toLowerCase().split(/[\s-]+/).filter(Boolean)
+  if (!terms.length) return true
+  const hay = targets.map((t) => normalize(t)).join(' ')
+  return terms.every((term) => hay.includes(normalize(term)))
+}
+
+/**
  * Derives the category and optional subcategory from a screaming-snake-case token key
  * for tokens sourced from the `@tokens/js` scalar export (semantic and scale tokens only).
  *
@@ -229,16 +248,12 @@ export function useTokens() {
    * all match the same tokens (hyphens, underscores, and spaces are stripped before comparison).
    */
   const globalSearchResults = computed(() => {
-    const q = normalize(search.value.trim())
-    if (!q) return null
+    if (!search.value.trim()) return null
 
     const results: Array<{ category: TokenCategory, entries: TokenEntry[] }> = []
     for (const cat of categories.value) {
       const matches = (byCategory.value.get(cat) ?? []).filter(
-        (e) =>
-          normalize(e.key).includes(q) ||
-          normalize(e.cssVar).includes(q) ||
-          normalize(e.value).includes(q),
+        (e) => fuzzyMatchTokens(search.value, e.key, e.cssVar, e.value),
       )
       if (matches.length > 0) results.push({ category: cat, entries: matches })
     }

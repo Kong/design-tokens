@@ -1,16 +1,24 @@
 /**
  * Template for the bookmarklet. `__CUSTOMIZER_URL__` is replaced at runtime in
- * `CustPreviewPanel.vue` with the absolute URL of the customizer in embedded mode,
- * derived from the deployment's own origin so it works in both dev and on GitHub Pages.
+ * `CustPreviewPanel.vue` / `TokenBrowser.vue` with the absolute URL of the embedded
+ * app (customizer or theme builder), derived from the deployment's own origin so it
+ * works in both dev and on GitHub Pages. `__STORAGE_NS__` is replaced with a
+ * namespace (`'customizer'` or `'theme-builder'`) so the two bookmarklets keep
+ * separate localStorage state on the target page instead of clobbering each other.
  *
  * When the designer clicks this on any target page it:
  *  1. Injects `<style id="kong-design-token-overrides">` into the page
  *  2. Shows a loading overlay, then injects a 560px fixed sidebar `<iframe>` pointing
- *     to the customizer (`/#/customize?embedded=1`). The loading overlay is removed on
- *     first CSS message; times out to an error state after 8 s.
- *  3. Persists the last-used customizer URL (with encoded overrides) in localStorage
- *     keyed by the target page's hostname, so re-clicking after navigation restores state.
- *  4. Re-clicking the bookmarklet toggles the sidebar. A `▶` / `◀` tab stays visible
+ *     to the embedded app (`/#/customize?embedded=1` or `/#/theme-builder?embedded=1`).
+ *     The loading overlay is removed on first CSS message; times out to an error
+ *     state after 8 s.
+ *  3. Persists the last-used iframe URL (with encoded overrides) in localStorage
+ *     under the namespaced key `kong-<ns>-url:<hostname>`, so re-clicking after
+ *     navigation restores state without colliding with the other bookmarklet's key.
+ *  4. Appends the target page's hostname to the iframe src as `&host=<hostname>` so
+ *     the embedded app — which cannot read the parent's location cross-origin — can
+ *     key its own (sandbox-origin) state storage per target site.
+ *  5. Re-clicking the bookmarklet toggles the sidebar. A `▶` / `◀` tab stays visible
  *     at the right edge so the user can always restore it.
  */
 export const BOOKMARKLET_TEMPLATE = `(()=>{
@@ -18,7 +26,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   var FRAME_ID='kong-customizer-sidebar';
   var OVERLAY_ID='kong-customizer-overlay';
   var TAB_ID='kong-customizer-tab';
-  var STORAGE_KEY='kong-customizer-url:'+location.hostname;
+  var STORAGE_KEY='kong-__STORAGE_NS__-url:'+location.hostname;
   var WIDTH='560px';
 
   // Ensure the override style tag exists
@@ -63,6 +71,8 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   // Restore URL from last session for this hostname, else use the baked-in default
   var src='__CUSTOMIZER_URL__';
   try{var saved=localStorage.getItem(STORAGE_KEY);if(saved)src=saved;}catch(x){}
+  // Pass the target page's hostname to the embedded app (both bookmarklet URLs already contain "?embedded=1", so "&host=" is always valid). Idempotent: only add it once.
+  if(src.indexOf('host=')===-1){src+='&host='+encodeURIComponent(location.hostname);}
 
   // Inject animation keyframes for the loading spinner
   var spinStyle=document.createElement('style');
