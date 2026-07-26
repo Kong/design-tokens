@@ -1,95 +1,328 @@
 <template>
-  <div class="customizer">
-    <!-- Sticky header: navigation + override status + export actions -->
-    <header
-      ref="headerEl"
-      class="cust-header"
-    >
-      <div class="cust-header-left">
-        <router-link
-          v-if="!isEmbedded"
-          class="back-link"
-          to="/"
-        >
-          ← Browse
-        </router-link>
-        <h1 class="cust-title">
-          Design Token Customizer
-        </h1>
-        <span
-          v-if="hasOverrides"
-          class="override-badge"
-        >
-          {{ overrideCount }} override{{ overrideCount === 1 ? '' : 's' }}
-        </span>
-      </div>
-      <div class="cust-header-right">
-        <a
-          aria-label="Kong Design Tokens website"
-          class="cust-btn cust-btn--github"
-          href="https://kong.github.io/design-tokens/#/"
-          rel="noopener noreferrer"
-          target="_blank"
-          title="Open design tokens site"
-        >
-          <svg
-            fill="none"
-            height="16"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-            />
-            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-          </svg>
-        </a>
-        <a
-          aria-label="Kong Design Tokens on GitHub"
-          class="cust-btn cust-btn--github"
-          href="https://github.com/Kong/design-tokens"
-          rel="noopener noreferrer"
-          target="_blank"
-          title="View on GitHub"
-        >
-          <svg
-            fill="currentColor"
-            height="16"
-            viewBox="0 0 24 24"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-          </svg>
-        </a>
-        <!-- Close button: only shown when running as an embedded sidebar on the target page -->
-        <button
-          v-if="isEmbedded"
-          aria-label="Close sidebar"
-          class="cust-btn cust-btn--close"
-          title="Close sidebar"
-          @click="closeEmbedded"
-        >
-          ✕
-        </button>
-      </div>
-    </header>
+  <SandboxShell
+    :embedded="isEmbedded"
+    title="Design Token Customizer"
+    @close="handleClose"
+  >
+    <template #title-extra>
+      <span
+        v-if="hasOverrides"
+        class="override-badge"
+      >
+        {{ overrideCount }} override{{ overrideCount === 1 ? '' : 's' }}
+      </span>
+    </template>
 
-    <div :class="['cust-layout', !isEmbedded && 'cust-layout--with-preview', !editorOpen && 'cust-layout--editor-collapsed']">
+    <template #header-actions>
+      <a
+        aria-label="Kong Design Tokens website"
+        class="cust-btn cust-btn--github"
+        href="https://kong.github.io/design-tokens/#/"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="Open design tokens site"
+      >
+        <svg
+          fill="none"
+          height="16"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+          />
+          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        </svg>
+      </a>
+      <a
+        aria-label="Kong Design Tokens on GitHub"
+        class="cust-btn cust-btn--github"
+        href="https://github.com/Kong/design-tokens"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="View on GitHub"
+      >
+        <svg
+          fill="currentColor"
+          height="16"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+        </svg>
+      </a>
+    </template>
+
+    <!-- Embedded mode: tabbed Tokens / Export view -->
+    <template
+      v-if="isEmbedded"
+      #tabs
+    >
+      <SandboxTabs
+        v-model="embeddedTab"
+        :tabs="embeddedTabs"
+      />
+    </template>
+
+    <template v-if="isEmbedded">
+      <div class="cust-embedded-body">
+        <!-- Tokens tab: embed toolbar + token editor -->
+        <div
+          v-show="embeddedTab === 'tokens'"
+          class="cust-editor-content cust-editor-content--embedded"
+        >
+          <div class="embed-toolbar">
+            <!-- Row 1: inject mode toggle -->
+            <div class="embed-toolbar-row">
+              <div class="embed-mode-group">
+                <button
+                  :class="['embed-mode-btn', { 'embed-mode-btn--active': !embeddedInjectAll }]"
+                  title="Inject only your changed values; the site uses its own defaults for everything else"
+                  @click="embeddedInjectAll = false"
+                >
+                  Overrides only
+                </button>
+                <button
+                  :class="['embed-mode-btn', { 'embed-mode-btn--active': embeddedInjectAll }]"
+                  title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
+                  @click="embeddedInjectAll = true"
+                >
+                  All tokens
+                </button>
+              </div>
+            </div>
+            <!-- Row 2: CSS selector -->
+            <div class="embed-toolbar-row">
+              <label
+                class="embed-selector-label"
+                for="embed-selector"
+              >
+                Selector
+              </label>
+              <input
+                id="embed-selector"
+                v-model="embeddedSelector"
+                class="embed-selector-input"
+                placeholder=":root"
+                spellcheck="false"
+                type="text"
+              >
+              <span class="embed-tip-wrap">
+                <span
+                  aria-label="About selector"
+                  class="embed-tip-icon"
+                  tabindex="0"
+                >?</span>
+                <span
+                  class="embed-tip-body"
+                  role="tooltip"
+                >
+                  Override which CSS selector receives the token variables. Example:
+                  <br><code>:root[data-portal-color-mode="light"]</code>
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="cust-search-wrap">
+            <svg
+              aria-hidden="true"
+              class="cust-search-icon"
+              fill="none"
+              height="13"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="13"
+            >
+              <circle
+                cx="11"
+                cy="11"
+                r="8"
+              /><path d="m21 21-4.35-4.35" />
+            </svg>
+            <input
+              ref="filterInputEl"
+              v-model="localFilter"
+              aria-label="Filter tokens"
+              class="cust-search"
+              placeholder="Filter tokens…"
+              type="search"
+            >
+            <button
+              v-if="localFilter"
+              aria-label="Clear search"
+              class="cust-search-clear"
+              type="button"
+              @click="localFilter = ''"
+            >
+              <svg
+                fill="none"
+                height="12"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                viewBox="0 0 24 24"
+                width="12"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Filter bar: section collapse/expand + show-only-modified toggle -->
+          <div class="cust-collapse-bar">
+            <button
+              v-if="visibleGroups.length > 1 || allCollapsed"
+              class="cust-collapse-btn"
+              @click="allCollapsed ? expandAll() : collapseAll()"
+            >
+              <svg
+                v-if="allCollapsed"
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="14"
+              >
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="3"
+                />
+                <line
+                  x1="12"
+                  x2="12"
+                  y1="8"
+                  y2="16"
+                />
+                <line
+                  x1="8"
+                  x2="16"
+                  y1="12"
+                  y2="12"
+                />
+              </svg>
+              <svg
+                v-else
+                fill="none"
+                height="14"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="14"
+              >
+                <rect
+                  height="18"
+                  rx="2"
+                  width="18"
+                  x="3"
+                  y="3"
+                />
+                <line
+                  x1="8"
+                  x2="16"
+                  y1="12"
+                  y2="12"
+                />
+              </svg>
+              {{ allCollapsed ? 'Expand all' : 'Collapse all' }}
+            </button>
+            <button
+              :aria-pressed="showOnlyModified"
+              :class="['cust-modified-btn', { 'cust-modified-btn--active': showOnlyModified }]"
+              :disabled="!hasOverrides && !showOnlyModified"
+              :title="showOnlyModified ? 'Show all tokens' : 'Show only modified tokens'"
+              @click="showOnlyModified = !showOnlyModified"
+            >
+              {{ showOnlyModified ? `✕ Modified only (${overrideCount})` : `Show modified (${overrideCount})` }}
+            </button>
+            <button
+              v-if="hasOverrides"
+              class="cust-reset-btn"
+              title="Clear all overrides"
+              @click="handleResetAll"
+            >
+              Reset all
+            </button>
+          </div>
+
+          <CustCustomPropsGroup
+            v-if="customPropsGroup"
+            :group="customPropsGroup"
+            :is-collapsed="!!collapsed[CUSTOM_GROUP_KEY]"
+            @toggle="collapsed[CUSTOM_GROUP_KEY] = !collapsed[CUSTOM_GROUP_KEY]"
+          />
+
+          <CustTokenGroup
+            v-for="group in visibleGroups"
+            :key="group.category"
+            :group="group"
+            :is-collapsed="!!collapsed[group.category]"
+            :overrides="overrides"
+            @change="(cssVar, value, defaultValue) => setOverride(cssVar, value, defaultValue)"
+            @reset="(cssVar, defaultValue) => setOverride(cssVar, '', defaultValue)"
+            @toggle="toggleGroup"
+          />
+
+          <div
+            v-if="visibleGroups.length === 0 && !customPropsGroup"
+            class="cust-empty"
+          >
+            No tokens match "{{ localFilter }}"
+          </div>
+        </div>
+
+        <!-- Export tab: share + import + output -->
+        <aside
+          v-show="embeddedTab === 'export'"
+          class="cust-aside"
+        >
+          <CustImportPanel />
+          <CustSharePanel
+            :copied="copiedShareLink"
+            :copied-code="copiedStateCode"
+            :override-count="overrideCount"
+            :state-code="stateCode"
+            @copy="copyShareLink"
+            @copy-code="copyStateCode"
+          />
+          <CustOutputPanel
+            :copied="copiedOverrides"
+            :css="displayCss"
+            :label="outputLabel"
+            :placeholder="placeholderCss"
+            @copy="copyOverrides"
+            @download="downloadFull"
+          />
+        </aside>
+      </div>
+    </template>
+
+    <!-- Standalone mode: unchanged 3-column editor | preview | aside layout -->
+    <div
+      v-else
+      :class="['cust-layout', 'cust-layout--with-preview', !editorOpen && 'cust-layout--editor-collapsed']"
+    >
       <!-- Left: collapsible token editor panel (slideout) -->
       <div :class="['cust-editor', { 'cust-editor--collapsed': !editorOpen }]">
-        <!-- Collapse toggle strip — hidden in embedded sidebar mode -->
-        <div
-          v-if="!isEmbedded"
-          class="editor-toggle-strip"
-        >
+        <!-- Collapse toggle strip -->
+        <div class="editor-toggle-strip">
           <button
             :aria-expanded="editorOpen"
             :aria-label="editorOpen ? 'Collapse token editor' : 'Expand token editor'"
@@ -125,62 +358,6 @@
           v-show="editorOpen"
           class="cust-editor-content"
         >
-          <!-- Embedded toolbar: share link + inject settings, shown above the token list -->
-          <template v-if="isEmbedded">
-            <div class="embed-toolbar">
-              <!-- Row 1: inject mode toggle -->
-              <div class="embed-toolbar-row">
-                <div class="embed-mode-group">
-                  <button
-                    :class="['embed-mode-btn', { 'embed-mode-btn--active': !embeddedInjectAll }]"
-                    title="Inject only your changed values; the site uses its own defaults for everything else"
-                    @click="embeddedInjectAll = false"
-                  >
-                    Overrides only
-                  </button>
-                  <button
-                    :class="['embed-mode-btn', { 'embed-mode-btn--active': embeddedInjectAll }]"
-                    title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
-                    @click="embeddedInjectAll = true"
-                  >
-                    All tokens
-                  </button>
-                </div>
-              </div>
-              <!-- Row 2: CSS selector -->
-              <div class="embed-toolbar-row">
-                <label
-                  class="embed-selector-label"
-                  for="embed-selector"
-                >
-                  Selector
-                </label>
-                <input
-                  id="embed-selector"
-                  v-model="embeddedSelector"
-                  class="embed-selector-input"
-                  placeholder=":root"
-                  spellcheck="false"
-                  type="text"
-                >
-                <span class="embed-tip-wrap">
-                  <span
-                    aria-label="About selector"
-                    class="embed-tip-icon"
-                    tabindex="0"
-                  >?</span>
-                  <span
-                    class="embed-tip-body"
-                    role="tooltip"
-                  >
-                    Override which CSS selector receives the token variables. Example:
-                    <br><code>:root[data-portal-color-mode="light"]</code>
-                  </span>
-                </span>
-              </div>
-            </div>
-          </template>
-
           <div class="cust-search-wrap">
             <svg
               aria-hidden="true"
@@ -341,10 +518,7 @@
       </div>
 
       <!-- Center: live URL preview panel (dev: iframe proxy; hosted: bookmarklet sidebar) -->
-      <div
-        v-if="!isEmbedded"
-        class="cust-preview-column"
-      >
+      <div class="cust-preview-column">
         <CustPreviewPanel
           v-model:custom-selector="customSelector"
           v-model:inject-all-tokens="injectAllTokens"
@@ -355,7 +529,6 @@
 
       <!-- Right: share link + override CSS output -->
       <aside class="cust-aside">
-        <CustImportPanel v-if="isEmbedded" />
         <CustSharePanel
           :copied="copiedShareLink"
           :copied-code="copiedStateCode"
@@ -364,7 +537,7 @@
           @copy="copyShareLink"
           @copy-code="copyStateCode"
         />
-        <CustImportPanel v-if="!isEmbedded" />
+        <CustImportPanel />
         <CustOutputPanel
           :copied="copiedOverrides"
           :css="displayCss"
@@ -375,17 +548,19 @@
         />
       </aside>
     </div>
-  </div>
+  </SandboxShell>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useTokenCustomizer, encodeOverrides, CUSTOM_GROUP_KEY } from '@/composables/useTokenCustomizer'
 import { useClipboard } from '@/composables/useClipboard'
-import { useHeaderHeight } from '@/composables/useHeaderHeight'
+import { useEmbeddedBridge } from '@/composables/useEmbeddedBridge'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
 import { applySelector } from '@/lib/cssUtils'
+import SandboxShell from '@/components/shared/SandboxShell.vue'
+import SandboxTabs from '@/components/shared/SandboxTabs.vue'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustCustomPropsGroup from './CustCustomPropsGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
@@ -456,35 +631,34 @@ const {
 // Encode overrides and write all URL params atomically so `src` in the postMessage
 // always reflects the current state (avoids the race where the overrides watcher's
 // async `encodeOverrides` hasn't settled before we read `window.location.href`).
-async function postEmbeddedCss() {
-  await nextTick()
-  const encoded = isEmbedded ? await encodeOverrides({ ...overrides, ...customProps }) : ''
-  const sel = embeddedSelector.value.trim()
-  const src = setHashParams({
-    o: encoded || null,
-    selector: (sel && sel !== ':root') ? sel : null,
-    inject: embeddedInjectAll.value ? 'all' : null,
-  })
-  window.parent.postMessage({
-    type: 'kui-token-override',
-    css: embeddedEffectiveCss.value,
-    src,
-  }, '*')
+const { post: postEmbedded, close: closeEmbedded } = useEmbeddedBridge({
+  isEmbedded,
+  css: embeddedEffectiveCss,
+  buildSrc: async () => {
+    await nextTick()
+    const encoded = await encodeOverrides({ ...overrides, ...customProps })
+    const sel = customSelector.value.trim()
+    return setHashParams({
+      o: encoded || null,
+      selector: (sel && sel !== ':root') ? sel : null,
+      inject: injectAllTokens.value ? 'all' : null,
+    })
+  },
+})
+
+/** Flushes latest state to the parent, then asks the bookmarklet to close. */
+async function handleClose() {
+  await postEmbedded()
+  closeEmbedded()
 }
 
-if (isEmbedded) {
-  onMounted(postEmbeddedCss)
-  watch(embeddedEffectiveCss, postEmbeddedCss)
-}
-
-/** Tells the bookmarklet on the target page to remove the sidebar iframe. */
-async function closeEmbedded() {
-  await postEmbeddedCss() // flush latest state to sessionStorage before iframe is removed
-  window.parent.postMessage({ type: 'kui-close' }, '*')
-}
-
-const headerEl = ref<HTMLElement | null>(null)
-useHeaderHeight(headerEl)
+/** Which embedded tab (Tokens / Export) is active — only relevant when `isEmbedded`. */
+type EmbeddedTab = 'tokens' | 'export'
+const embeddedTabs: Array<{ id: EmbeddedTab, label: string }> = [
+  { id: 'tokens', label: 'Tokens' },
+  { id: 'export', label: 'Export' },
+]
+const embeddedTab = ref<EmbeddedTab>('tokens')
 
 const filterInputEl = ref<HTMLInputElement | null>(null)
 useSearchShortcut(filterInputEl)
@@ -589,55 +763,6 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.customizer {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: $tb-bg;
-  color: $tb-text;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-// Header────
-.cust-header {
-  flex-shrink: 0;
-  z-index: 20;
-  background: $tb-surface;
-  border-bottom: 1px solid $tb-border;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-}
-
-.cust-header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.back-link {
-  font-size: 13px;
-  font-weight: 500;
-  color: $tb-accent;
-  text-decoration: none;
-  border-radius: 3px;
-
-  &:hover { text-decoration: underline; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 3px; }
-}
-
-.cust-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
-  color: $tb-text;
-}
-
 .override-badge {
   font-size: 12px;
   background: $tb-accent-subtle;
@@ -645,13 +770,6 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   border-radius: 10px;
   padding: 2px 8px;
   font-weight: 500;
-}
-
-.cust-header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
 }
 
 .cust-btn {
@@ -671,21 +789,6 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   &:hover:not(:disabled) { opacity: 0.85; }
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 
-  &--secondary {
-    background: $tb-surface;
-    color: $tb-text-dim;
-    border-color: $tb-border-active;
-  }
-
-  &--close {
-    background: $tb-surface;
-    color: $tb-text-muted;
-    border-color: $tb-border-active;
-    padding: 5px 9px;
-
-    &:hover:not(:disabled) { background: rgba(239, 68, 68, 0.08); color: #ef4444; border-color: rgba(239, 68, 68, 0.3); opacity: 1; }
-  }
-
   &--github {
     background: $tb-surface;
     color: $tb-text-muted;
@@ -697,6 +800,25 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
     &:hover { color: $tb-text; opacity: 1; }
   }
+}
+
+// Embedded body: single-pane, tab-switched content (fills the shell body)────
+.cust-embedded-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  > * {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+.cust-editor-content--embedded {
+  border-right: none;
 }
 
 // Layout────

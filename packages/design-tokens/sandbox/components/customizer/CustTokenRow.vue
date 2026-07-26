@@ -86,6 +86,7 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch } from 'vue'
+import { normalizeColor } from '@/lib/colorUtils'
 import type { TokenEntry } from '@/composables/useTokens'
 
 const props = defineProps<{
@@ -189,9 +190,21 @@ function handleInput(value: string) {
   localValue.value = value
   clearTimeout(debounceTimer)
   debounceTimer = setTimeout(() => {
-    validatedValue.value = value
     const v = value.trim()
-    const emitValue = isColorEntry.value && v && !CSS.supports('color', v) ? '' : value
+    let emitValue = value
+    if (isColorEntry.value && v) {
+      const norm = normalizeColor(v)
+      if (norm) {
+        // Recognized hex/rgb color → store canonical hex (designers work in hex)
+        emitValue = norm
+        localValue.value = norm
+      } else if (!CSS.supports('color', v)) {
+        // Not a valid CSS color at all → clear the override (existing behavior)
+        emitValue = ''
+      }
+      // else: a valid CSS color normalizeColor doesn't canonicalize (hsl, named) → keep as typed
+    }
+    validatedValue.value = localValue.value
     emit('change', props.entry.cssVar, emitValue, props.entry.value)
   }, 300)
 }

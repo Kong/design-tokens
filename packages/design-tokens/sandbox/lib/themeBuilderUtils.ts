@@ -25,10 +25,11 @@ const ALIAS_REF = /^\{color\.alias\.([a-z_]+)(?:\.([0-9]+))?\}$/i
 
 /**
  * Parses an alias reference string into its family and optional step.
- * @param raw - A candidate value such as `{color.alias.blue.50}`.
+ * @param raw - A candidate value such as `{color.alias.blue.50}`. Non-string input (e.g. `undefined`/`null` from a malformed token) yields null.
  * @returns `{ family, step }` (step is null for singletons), or null if not a ref.
  */
-export function parseAliasRef(raw: string): { family: string, step: string | null } | null {
+export function parseAliasRef(raw: unknown): { family: string, step: string | null } | null {
+  if (typeof raw !== 'string') return null
   const m = ALIAS_REF.exec(raw.trim())
   if (!m) return null
   return { family: m[1], step: m[2] ?? null }
@@ -76,6 +77,9 @@ function toCssVar(key: string): string {
  * @param aliasJson - The loaded alias palette.
  * @param aliasOverrides - Layer 1 overrides keyed by `family.step` or `family`.
  * @param tokenOverrides - Layer 2 overrides keyed by token key (no `--` prefix).
+ * Values containing CSS-structural characters (`{`, `}`, `;`) — which can only come from
+ * malformed/adversarial input, never a valid single declaration value — are skipped rather
+ * than emitted, so they can't break out of the declaration or inject additional rules.
  * @returns A `:root { … }` string, or `''` when no token resolves to a value.
  */
 export function deriveEffectiveCss(
@@ -86,10 +90,14 @@ export function deriveEffectiveCss(
 ): string {
   const lines: string[] = []
   for (const [key, entry] of Object.entries(themeJson)) {
-    const raw = tokenOverrides[key] ?? entry.$value
+    const raw = tokenOverrides[key] ?? entry?.$value
     if (!raw) continue
     const resolved = resolveValue(raw, aliasJson, aliasOverrides)
     if (!resolved) continue
+    // A valid single CSS declaration value never contains these characters; their presence
+    // means the (likely hand-edited) value is trying to break out of the declaration or
+    // inject additional rules, so drop it instead of emitting it.
+    if (/[{};]/.test(resolved)) continue
     lines.push(`  ${toCssVar(key)}: ${resolved};`)
   }
   if (!lines.length) return ''
@@ -108,8 +116,8 @@ export interface AliasFlatEntry {
   baseHex: string
 }
 
-/** True when a raw token value is an alias reference (i.e. a color token). */
-export function isColorToken(rawValue: string): boolean {
+/** True when a raw token value is an alias reference (i.e. a color token). Non-string input returns false. */
+export function isColorToken(rawValue: unknown): boolean {
   return parseAliasRef(rawValue) !== null
 }
 
@@ -146,8 +154,68 @@ export function exportThemeJson(themeJson: ThemeJson, tokenOverrides: Record<str
 }
 
 /**
+ * Serializes a value to pretty-printed JSON text, honoring the insertion
+ * order of `Map` entries verbatim instead of the plain-object enumeration
+ * order JS engines force on integer-like string keys (which would put
+ * `'10'`..`'100'` ahead of a leading-zero key like `'05'` regardless of
+ * insertion order). Only `Map`, array, and plain-object/primitive values
+ * are expected; anything else falls back to `JSON.stringify`.
+ * @param value - The value to serialize.
+ * @param indentLevel - Current nesting depth, used to compute indentation.
+ */
+function stringifyOrdered(value: unknown, indentLevel: number): string {
+  const pad = '  '.repeat(indentLevel)
+  const padIn = '  '.repeat(indentLevel + 1)
+  if (value instanceof Map) {
+    if (!value.size) return '{}'
+    const lines = [...value.entries()].map(
+      ([k, v]) => `${padIn}${JSON.stringify(String(k))}: ${stringifyOrdered(v, indentLevel + 1)}`,
+    )
+    return `{\n${lines.join(',\n')}\n${pad}}`
+  }
+  if (Array.isArray(value)) {
+    if (!value.length) return '[]'
+    const lines = value.map((v) => `${padIn}${stringifyOrdered(v, indentLevel + 1)}`)
+    return `[\n${lines.join(',\n')}\n${pad}]`
+  }
+  if (value && typeof value === 'object') {
+    const entries = Object.entries(value as Record<string, unknown>)
+    if (!entries.length) return '{}'
+    const lines = entries.map(([k, v]) => `${padIn}${JSON.stringify(k)}: ${stringifyOrdered(v, indentLevel + 1)}`)
+    return `{\n${lines.join(',\n')}\n${pad}}`
+  }
+  return JSON.stringify(value)
+}
+
+/**
+ * Rebuilds a stepped alias family as a `Map` with its step keys in canonical
+ * ascending numeric order (e.g. `05, 10, 20, …, 100`). A `Map` is used
+ * because plain JS objects always enumerate integer-like keys ('10'..'100')
+ * ascending ahead of leading-zero keys ('05'), regardless of insertion
+ * order — which is exactly what makes the repo's jsonc sort-keys lint flag
+ * these files until `eslint --fix` reorders them. Non-stepped families
+ * (singletons with `$value`/`$description` directly) are returned unchanged.
+ * @param fam - A family entry, either a singleton leaf or a step map.
+ */
+function sortedStepFamily(fam: AliasEntry): AliasEntry | Map<string, AliasLeaf> {
+  const stepKeys = Object.keys(fam).filter((k) => /^\d+$/.test(k))
+  if (!stepKeys.length) return fam
+  const out = new Map<string, AliasLeaf>()
+  for (const k of stepKeys.sort((a, b) => Number(a) - Number(b))) {
+    out.set(k, (fam as Record<string, AliasLeaf>)[k])
+  }
+  for (const k of Object.keys(fam)) {
+    if (!/^\d+$/.test(k)) out.set(k, (fam as Record<string, AliasLeaf>)[k])
+  }
+  return out
+}
+
+/**
  * Serializes the alias palette with Layer 1 overrides applied.
- * Output is pretty-printed 2-space JSON.
+ * Output is pretty-printed 2-space JSON with step keys in canonical
+ * ascending numeric order (see {@link sortedStepFamily}); a custom
+ * serializer ({@link stringifyOrdered}) is used because `JSON.stringify`
+ * would otherwise re-reorder integer-like keys itself.
  * @param aliasJson - The loaded alias palette.
  * @param aliasOverrides - Layer 1 overrides keyed by `family.step` or `family`.
  */
@@ -164,7 +232,16 @@ export function exportAliasJson(aliasJson: AliasJson, aliasOverrides: Record<str
       (entry as AliasLeaf).$value = hex
     }
   }
-  return JSON.stringify(clone, null, 2)
+  const aliasMap = new Map<string, AliasEntry | Map<string, AliasLeaf>>()
+  for (const [family, entry] of Object.entries(clone.color.alias)) {
+    aliasMap.set(family, sortedStepFamily(entry))
+  }
+  const root = new Map<string, unknown>()
+  root.set('color', new Map<string, unknown>([
+    ...(clone.color.$type !== undefined ? [['$type', clone.color.$type] as [string, unknown]] : []),
+    ['alias', aliasMap],
+  ]))
+  return stringifyOrdered(root, 0)
 }
 
 /** A token row prepared for the builder token list. */

@@ -32,10 +32,15 @@ import { ref } from 'vue'
 import { useClipboard } from '@/composables/useClipboard'
 
 const props = defineProps<{
+  /** Serialized theme JSON to download on export. */
   themeJsonOut: string
+  /** Serialized alias color JSON to download on export. */
   aliasJsonOut: string
+  /** Filename used for the downloaded theme JSON file. */
   themeFileName: string
+  /** Filename used for the downloaded alias color JSON file. */
   aliasFileName: string
+  /** Computed CSS output to preview and copy to the clipboard. */
   css: string
 }>()
 

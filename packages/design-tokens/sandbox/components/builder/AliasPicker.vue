@@ -36,7 +36,9 @@ import { computed, ref } from 'vue'
 import type { AliasFlatEntry } from '@/lib/themeBuilderUtils'
 
 const props = defineProps<{
+  /** Flattened alias entries to render as swatches. */
   aliasFlat: AliasFlatEntry[]
+  /** The `family.step` key of the currently selected alias, for highlighting. */
   selectedKey?: string | null
 }>()
 const emit = defineEmits<{ select: [ref: string], reset: [] }>()

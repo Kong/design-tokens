@@ -40,7 +40,12 @@ import TokenRow from './TokenRow.vue'
 import { fuzzyMatchTokens } from '@/composables/useTokens'
 import type { AliasFlatEntry, BuilderToken } from '@/lib/themeBuilderUtils'
 
-const props = defineProps<{ tokens: BuilderToken[], aliasFlat: AliasFlatEntry[] }>()
+const props = defineProps<{
+  /** Builder tokens to list, in their current (overridden or default) state. */
+  tokens: BuilderToken[]
+  /** Flattened alias entries passed through to each row's alias picker. */
+  aliasFlat: AliasFlatEntry[]
+}>()
 const emit = defineEmits<{ set: [key: string, value: string], reset: [key: string] }>()
 
 /** Current text entered in the search input, used for fuzzy-matching against token CSS var names. */

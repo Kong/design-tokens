@@ -1,93 +1,90 @@
 <template>
-  <div class="theme-builder">
-    <header class="tb-header">
-      <div class="tb-header-left">
-        <router-link
-          v-if="!isEmbedded"
-          class="tb-back"
-          to="/"
+  <SandboxShell
+    :embedded="isEmbedded"
+    title="Theme Builder"
+    @close="close"
+  >
+    <template #header-actions>
+      <button
+        v-if="isLoaded"
+        class="tb-load-different"
+        title="Load a different theme"
+        type="button"
+        @click="loadDifferent"
+      >
+        ↻ Load different theme
+      </button>
+      <a
+        aria-label="Kong Design Tokens on GitHub"
+        class="tb-github"
+        href="https://github.com/Kong/design-tokens"
+        rel="noopener noreferrer"
+        target="_blank"
+        title="View on GitHub"
+      >
+        <svg
+          fill="currentColor"
+          height="16"
+          viewBox="0 0 24 24"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          ← Browse
-        </router-link>
-        <h1 class="tb-title">
-          Theme Builder
-        </h1>
-      </div>
-      <div class="tb-header-right">
-        <button
-          v-if="isLoaded"
-          class="tb-load-different"
-          title="Load a different theme"
-          @click="loadDifferent"
-        >
-          ↻ Load different theme
-        </button>
-        <button
-          v-if="isEmbedded"
-          class="tb-close"
-          title="Close"
-          @click="closeEmbedded"
-        >
-          ✕
-        </button>
-      </div>
-    </header>
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+        </svg>
+      </a>
+    </template>
+
+    <template
+      v-if="isLoaded"
+      #tabs
+    >
+      <SandboxTabs
+        v-model="activeTab"
+        :tabs="tabs"
+      />
+    </template>
 
     <FileLoader
       v-if="!isLoaded"
       :error="loadError"
       @load="onLoad"
     />
-
-    <template v-else>
-      <nav
-        class="tb-tabs"
-        role="tablist"
-      >
-        <button
-          v-for="t in tabs"
-          :key="t.id"
-          :aria-selected="activeTab === t.id"
-          :class="['tb-tab', { 'tb-tab--active': activeTab === t.id }]"
-          role="tab"
-          type="button"
-          @click="activeTab = t.id"
-        >
-          {{ t.label }}
-        </button>
-      </nav>
-
-      <div class="tb-tabpanel">
-        <PalettePanel
-          v-show="activeTab === 'aliases'"
-          :alias-flat="aliasFlat"
-          :alias-overrides="aliasOverrides"
-          @change="setAliasOverride"
-        />
-        <TokenList
-          v-show="activeTab === 'tokens'"
-          :alias-flat="aliasFlat"
-          :tokens="builderTokens"
-          @reset="resetTokenOverride"
-          @set="setTokenOverride"
-        />
-        <OutputPanel
-          v-show="activeTab === 'export'"
-          :alias-file-name="aliasFileName"
-          :alias-json-out="aliasJsonOut"
-          :css="effectiveCss"
-          :theme-file-name="themeFileName"
-          :theme-json-out="themeJsonOut"
-        />
-      </div>
-    </template>
-  </div>
+    <div
+      v-else
+      class="tb-tabpanel"
+    >
+      <PalettePanel
+        v-show="activeTab === 'aliases'"
+        :alias-flat="aliasFlat"
+        :alias-overrides="aliasOverrides"
+        @change="setAliasOverride"
+      />
+      <TokenList
+        v-show="activeTab === 'tokens'"
+        :alias-flat="aliasFlat"
+        :tokens="builderTokens"
+        @reset="resetTokenOverride"
+        @set="setTokenOverride"
+      />
+      <OutputPanel
+        v-show="activeTab === 'export'"
+        :alias-file-name="aliasFileName"
+        :alias-json-out="aliasJsonOut"
+        :css="effectiveCss"
+        :theme-file-name="themeFileName"
+        :theme-json-out="themeJsonOut"
+      />
+    </div>
+  </SandboxShell>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { ref } from 'vue'
 import { useThemeBuilder } from '@/composables/useThemeBuilder'
+import { useEmbeddedBridge } from '@/composables/useEmbeddedBridge'
 import { getHashParam } from '@/lib/hashRouteQuery'
+import SandboxShell from '@/components/shared/SandboxShell.vue'
+import SandboxTabs from '@/components/shared/SandboxTabs.vue'
 import FileLoader from './FileLoader.vue'
 import PalettePanel from './PalettePanel.vue'
 import TokenList from './TokenList.vue'
@@ -113,6 +110,12 @@ const {
   themeFileName, aliasFileName, initPersistence,
 } = useThemeBuilder()
 
+// Restore persisted state synchronously in setup so the embedded bridge's on-mount
+// post reflects any restored theme. Keyed by target host in embedded mode, else 'standalone'.
+initPersistence(isEmbedded ? (getHashParam('host') ?? undefined) : undefined)
+
+const { close } = useEmbeddedBridge({ isEmbedded, css: effectiveCss })
+
 /** Parses the uploaded files and surfaces any validation error. */
 function onLoad(payload: { themeText: string, aliasText: string, themeName?: string, aliasName?: string }) {
   const result = loadFiles(payload.themeText, payload.aliasText, payload.themeName, payload.aliasName)
@@ -124,56 +127,13 @@ function loadDifferent() {
   if (hasOverrides.value && !window.confirm('Discard your current changes and load a different theme? Your unsaved edits will be lost.')) return
   unload()
 }
-
-/** Posts the current derived CSS to the parent page (embedded/bookmarklet mode). */
-function postEmbeddedCss() {
-  if (!isEmbedded) return
-  window.parent.postMessage({
-    type: 'kui-token-override',
-    css: effectiveCss.value,
-    src: window.location.href,
-  }, '*')
-}
-
-/** Tells the bookmarklet to remove the sidebar iframe. */
-function closeEmbedded() {
-  window.parent.postMessage({ type: 'kui-close' }, '*')
-}
-
-onMounted(() => {
-  // Restore persisted state first (keyed by target host in embedded mode, else 'standalone'),
-  // then push the resulting CSS to the parent so a restored theme is applied immediately.
-  initPersistence(isEmbedded ? (getHashParam('host') ?? undefined) : undefined)
-  postEmbeddedCss()
-})
-
-if (isEmbedded) {
-  watch(effectiveCss, postEmbeddedCss)
-}
 </script>
 
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.theme-builder { height: 100vh; display: flex; flex-direction: column; overflow: hidden; background: $tb-bg; color: $tb-text; font-family: 'Inter', system-ui, sans-serif; }
-.tb-header { flex-shrink: 0; background: $tb-surface; border-bottom: 1px solid $tb-border; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
-.tb-header-left { display: flex; align-items: center; gap: 12px; }
-.tb-back { font-size: 13px; color: $tb-accent; text-decoration: none; &:hover { text-decoration: underline; } }
-.tb-title { font-size: 16px; font-weight: 600; margin: 0; }
-.tb-header-right { display: flex; align-items: center; gap: 8px; }
 .tb-load-different { background: $tb-surface; color: $tb-text-muted; border: 1px solid $tb-border-active; border-radius: 5px; padding: 5px 9px; font-size: 12px; cursor: pointer; &:hover { color: $tb-text; border-color: $tb-accent; } }
-.tb-close { background: $tb-surface; color: $tb-text-muted; border: 1px solid $tb-border-active; border-radius: 5px; padding: 5px 9px; cursor: pointer; }
-
-.tb-tabs { flex-shrink: 0; display: flex; gap: 2px; background: $tb-surface; border-bottom: 1px solid $tb-border; padding: 0 12px; }
-.tb-tab {
-  background: none; border: none; border-bottom: 2px solid transparent;
-  padding: 10px 14px; font-family: inherit; font-size: 13px; font-weight: 500;
-  color: $tb-text-muted; cursor: pointer;
-  &:hover { color: $tb-text-dim; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
-  &--active { color: $tb-accent; border-bottom-color: $tb-accent; }
-}
-
+.tb-github { display: inline-flex; align-items: center; background: $tb-surface; color: $tb-text-muted; border: 1px solid $tb-border-active; border-radius: 5px; padding: 5px 9px; text-decoration: none; &:hover { color: $tb-text; border-color: $tb-accent; } &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; } }
 .tb-tabpanel {
   flex: 1; min-height: 0; display: flex;
   > * { flex: 1; min-height: 0; overflow-y: auto; }

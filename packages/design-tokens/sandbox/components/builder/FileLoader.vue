@@ -8,7 +8,14 @@
       then load its two source files here.
     </p>
 
-    <label class="fl-drop">
+    <label
+      class="fl-drop"
+      :class="{ 'fl-drop--dragover': themeDragOver }"
+      @dragenter.prevent="themeDragOver = true"
+      @dragleave.prevent="themeDragOver = false"
+      @dragover.prevent="themeDragOver = true"
+      @drop.prevent="onThemeDrop"
+    >
       <input
         accept=".json,application/json"
         type="file"
@@ -21,7 +28,14 @@
       >✓</span>
     </label>
 
-    <label class="fl-drop">
+    <label
+      class="fl-drop"
+      :class="{ 'fl-drop--dragover': aliasDragOver }"
+      @dragenter.prevent="aliasDragOver = true"
+      @dragleave.prevent="aliasDragOver = false"
+      @dragover.prevent="aliasDragOver = true"
+      @drop.prevent="onAliasDrop"
+    >
       <input
         accept=".json,application/json"
         type="file"
@@ -54,26 +68,53 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 
-defineProps<{ error?: string }>()
+defineProps<{
+  /** Error message to display below the drop zones, if a load attempt failed. */
+  error?: string
+}>()
 const emit = defineEmits<{ load: [{ themeText: string, aliasText: string, themeName: string, aliasName: string }] }>()
 
 const themeName = ref('')
 const aliasName = ref('')
 const themeText = ref('')
 const aliasText = ref('')
+const themeDragOver = ref(false)
+const aliasDragOver = ref(false)
 
 const canLoad = computed(() => !!themeText.value && !!aliasText.value)
 
-/** Reads a selected file into text and stores it with its name. */
-async function readInto(e: Event, nameRef: typeof themeName, textRef: typeof themeText) {
-  const file = (e.target as HTMLInputElement).files?.[0]
-  if (!file) return
+/** Reads a file's text into the given refs and stores its name. */
+async function readFile(file: File, nameRef: typeof themeName, textRef: typeof themeText) {
   nameRef.value = file.name
   textRef.value = await file.text()
 }
 
+/** Reads a selected (change event) file into text and stores it with its name. */
+async function readInto(e: Event, nameRef: typeof themeName, textRef: typeof themeText) {
+  const file = (e.target as HTMLInputElement).files?.[0]
+  if (!file) return
+  await readFile(file, nameRef, textRef)
+}
+
+/** Reads a dropped file into text and stores it with its name. */
+async function readDropped(e: DragEvent, nameRef: typeof themeName, textRef: typeof themeText) {
+  const file = e.dataTransfer?.files?.[0]
+  if (!file) return
+  await readFile(file, nameRef, textRef)
+}
+
 const onTheme = (e: Event) => readInto(e, themeName, themeText)
 const onAlias = (e: Event) => readInto(e, aliasName, aliasText)
+
+function onThemeDrop(e: DragEvent) {
+  themeDragOver.value = false
+  readDropped(e, themeName, themeText)
+}
+
+function onAliasDrop(e: DragEvent) {
+  aliasDragOver.value = false
+  readDropped(e, aliasName, aliasText)
+}
 
 function emitLoad() {
   if (!canLoad.value) return
@@ -87,7 +128,8 @@ function emitLoad() {
 .file-loader { max-width: 460px; margin: 60px auto; padding: 0 20px; font-family: 'Inter', system-ui, sans-serif; color: $tb-text; }
 .fl-title { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
 .fl-hint { font-size: 13px; color: $tb-text-dim; margin: 0 0 24px; line-height: 1.5; code { font-family: $tb-mono; font-size: 12px; background: $tb-surface-2; padding: 1px 5px; border-radius: 3px; } }
-.fl-drop { display: flex; align-items: center; gap: 10px; border: 1px dashed $tb-border-active; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer; font-size: 13px; color: $tb-text-dim; input { display: none; } &:hover { border-color: $tb-accent; } }
+.fl-drop { display: flex; align-items: center; gap: 10px; border: 1px dashed $tb-border-active; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer; font-size: 13px; color: $tb-text-dim; input { display: none; } > * { pointer-events: none; } &:hover { border-color: $tb-accent; } }
+.fl-drop--dragover { border-color: $tb-accent; background: $tb-surface-2; }
 .fl-check { margin-left: auto; color: $tb-accent; font-weight: 700; }
 .fl-error { color: #ef4444; font-size: 13px; margin: 4px 0 12px; }
 .fl-btn { width: 100%; background: $tb-accent; color: #fff; border: none; border-radius: 6px; padding: 10px; font-size: 14px; font-weight: 600; cursor: pointer; &:disabled { opacity: 0.4; cursor: default; } }

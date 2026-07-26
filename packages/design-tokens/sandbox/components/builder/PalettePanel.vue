@@ -36,23 +36,19 @@
           :key="entry.key"
           class="pp-chip-wrap"
         >
-          <label
+          <button
             class="pp-chip"
             :title="entry.key"
+            type="button"
+            @click="toggle(entry.key)"
           >
             <span
               class="pp-swatch"
               :class="{ 'pp-swatch--modified': entry.key in aliasOverrides }"
               :style="{ background: aliasOverrides[entry.key] || entry.baseHex }"
             />
-            <input
-              class="pp-color-input"
-              type="color"
-              :value="aliasOverrides[entry.key] || entry.baseHex"
-              @input="onInput(entry.key, $event)"
-            >
             <span class="pp-step">{{ entry.step ?? entry.family }}</span>
-          </label>
+          </button>
           <button
             v-if="entry.key in aliasOverrides"
             class="pp-reset-btn"
@@ -62,6 +58,13 @@
           >
             ↺
           </button>
+          <ColorEditor
+            v-if="openKey === entry.key"
+            class="pp-editor"
+            :model-value="aliasOverrides[entry.key] || entry.baseHex"
+            @close="openKey = null"
+            @update:model-value="(v) => emit('change', entry.key, v)"
+          />
         </div>
       </div>
     </div>
@@ -72,9 +75,12 @@
 import { computed, ref } from 'vue'
 import { fuzzyMatchTokens } from '@/composables/useTokens'
 import type { AliasFlatEntry } from '@/lib/themeBuilderUtils'
+import ColorEditor from './ColorEditor.vue'
 
 const props = defineProps<{
+  /** Flattened alias entries to render as swatches, grouped by family. */
   aliasFlat: AliasFlatEntry[]
+  /** Map of alias key to overridden hex value, keyed for quick lookup. */
   aliasOverrides: Record<string, string>
 }>()
 const emit = defineEmits<{ change: [key: string, hex: string] }>()
@@ -87,6 +93,14 @@ const showOnlyModified = ref(false)
 
 /** Number of active alias overrides, shown in the modified-only toggle label. */
 const overrideCount = computed(() => Object.keys(props.aliasOverrides).length)
+
+/** Key of the alias entry whose ColorEditor popover is currently open, or null when closed. */
+const openKey = ref<string | null>(null)
+
+/** Opens the popover for `key`, or closes it if already open. */
+function toggle(key: string) {
+  openKey.value = openKey.value === key ? null : key
+}
 
 /** Alias entries after applying the search filter and (if active) the modified-only filter. */
 const visibleEntries = computed(() => {
@@ -109,10 +123,6 @@ const families = computed(() => {
   }
   return [...map.entries()].map(([name, entries]) => ({ name, entries }))
 })
-
-function onInput(key: string, e: Event) {
-  emit('change', key, (e.target as HTMLInputElement).value.toUpperCase())
-}
 
 /** Clears an alias override, falling back to the palette default (empty hex signals delete). */
 function onReset(key: string) {
@@ -165,10 +175,10 @@ function onReset(key: string) {
 .pp-family { margin-bottom: 14px; }
 .pp-family-name { font-size: 12px; font-weight: 600; color: $tb-text-dim; text-transform: capitalize; margin-bottom: 6px; }
 .pp-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.pp-chip-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.pp-chip { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; }
+.pp-chip-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pp-chip { background: none; border: none; padding: 0; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; border-radius: 5px; } }
 .pp-swatch { width: 26px; height: 26px; border-radius: 5px; border: 1px solid rgba(0, 0, 0, 0.15); display: block; &--modified { box-shadow: 0 0 0 2px $tb-accent; } }
-.pp-color-input { position: absolute; top: 0; left: 0; width: 26px; height: 26px; opacity: 0; cursor: pointer; }
+.pp-editor { position: absolute; top: calc(100% + 4px); left: 0; z-index: 50; }
 .pp-step { font-size: 9px; color: $tb-text-muted; font-family: $tb-mono; }
 .pp-reset-btn {
   background: none;

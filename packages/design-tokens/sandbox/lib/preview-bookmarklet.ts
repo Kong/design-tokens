@@ -5,6 +5,12 @@
  * works in both dev and on GitHub Pages. `__STORAGE_NS__` is replaced with a
  * namespace (`'customizer'` or `'theme-builder'`) so the two bookmarklets keep
  * separate localStorage state on the target page instead of clobbering each other.
+ * The DOM element IDs (`FRAME_ID`/`OVERLAY_ID`/`TAB_ID`, e.g. `kong-customizer-sidebar`
+ * or `kong-theme-builder-sidebar`) and the global listener guard flag are likewise
+ * namespaced with `__STORAGE_NS__` so both bookmarklets can be active on the same
+ * page without colliding. `STYLE_ID` (`kong-design-token-overrides`) is intentionally
+ * shared — only one sidebar is meant to be open at a time, and the target page needs
+ * a single override style tag.
  *
  * When the designer clicks this on any target page it:
  *  1. Injects `<style id="kong-design-token-overrides">` into the page
@@ -23,9 +29,9 @@
  */
 export const BOOKMARKLET_TEMPLATE = `(()=>{
   var STYLE_ID='kong-design-token-overrides';
-  var FRAME_ID='kong-customizer-sidebar';
-  var OVERLAY_ID='kong-customizer-overlay';
-  var TAB_ID='kong-customizer-tab';
+  var FRAME_ID='kong-__STORAGE_NS__-sidebar';
+  var OVERLAY_ID='kong-__STORAGE_NS__-overlay';
+  var TAB_ID='kong-__STORAGE_NS__-tab';
   var STORAGE_KEY='kong-__STORAGE_NS__-url:'+location.hostname;
   var WIDTH='560px';
 
@@ -37,8 +43,8 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   }
 
   // Register message listener only once (guard against bookmarklet re-clicks)
-  if(!window.__kongCustListener){
-    window.__kongCustListener=true;
+  if(!window['__kongListener_'+'__STORAGE_NS__']){
+    window['__kongListener_'+'__STORAGE_NS__']=true;
     window.addEventListener('message',function(e){
       if(!e.data)return;
       if(e.data.type==='kui-token-override'){

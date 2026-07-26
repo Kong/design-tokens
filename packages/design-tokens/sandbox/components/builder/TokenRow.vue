@@ -1,11 +1,7 @@
 <template>
-  <div class="token-row">
+  <div :class="['token-row', { 'token-row--modified': token.source === 'overridden' }]">
     <div class="tr-main">
       <code class="tr-name">{{ token.cssVar }}</code>
-      <span
-        v-if="token.source === 'overridden'"
-        class="tr-badge tr-badge--overridden"
-      >modified</span>
     </div>
 
     <div class="tr-control">
@@ -46,7 +42,7 @@
           :placeholder="token.source === 'empty' ? 'unset' : ''"
           spellcheck="false"
           :value="token.rawValue"
-          @change="onText"
+          @input="onText"
         >
         <button
           v-if="token.source === 'overridden'"
@@ -62,12 +58,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onUnmounted, ref } from 'vue'
 import AliasPicker from './AliasPicker.vue'
 import { parseAliasRef } from '@/lib/themeBuilderUtils'
 import type { AliasFlatEntry, BuilderToken } from '@/lib/themeBuilderUtils'
 
-const props = defineProps<{ token: BuilderToken, aliasFlat: AliasFlatEntry[] }>()
+const props = defineProps<{
+  /** The token this row edits. */
+  token: BuilderToken
+  /** Flattened alias entries passed through to the alias picker popover. */
+  aliasFlat: AliasFlatEntry[]
+}>()
 const emit = defineEmits<{ set: [key: string, value: string], reset: [key: string] }>()
 
 const open = ref(false)
@@ -93,18 +94,28 @@ function onReset() {
   emit('reset', props.token.key)
   open.value = false
 }
+// Debounce the non-color text input so the live (bookmarklet) preview updates as the
+// user types rather than only on blur, without posting on every keystroke.
+let debounceTimer: ReturnType<typeof setTimeout>
+onUnmounted(() => clearTimeout(debounceTimer))
 function onText(e: Event) {
-  emit('set', props.token.key, (e.target as HTMLInputElement).value)
+  const value = (e.target as HTMLInputElement).value
+  clearTimeout(debounceTimer)
+  debounceTimer = setTimeout(() => emit('set', props.token.key, value), 200)
 }
 </script>
 
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.token-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 12px; border-bottom: 1px solid $tb-border; }
+.token-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 6px 12px; border-bottom: 1px solid $tb-border;
+  // Modified rows get a left accent bar + subtle tint (no layout shift) instead of a text label
+  &--modified { background: $tb-accent-subtle; box-shadow: inset 3px 0 0 $tb-accent; }
+}
 .tr-main { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .tr-name { font-family: $tb-mono; font-size: 11px; color: $tb-text; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tr-badge { font-size: 10px; font-family: $tb-mono; &--overridden { color: $tb-accent; font-weight: 600; } }
 .tr-control { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: 6px; }
 .tr-color-btn { display: flex; align-items: center; gap: 6px; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 3px 8px; cursor: pointer; }
 .tr-swatch { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.15); }

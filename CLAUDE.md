@@ -136,12 +136,22 @@ Build-time Style Dictionary utilities live in `packages/design-tokens/utilities/
 
 ## Sandbox (`packages/design-tokens/sandbox/`)
 
-Vue dev app — the **Design Token Customizer**. Runs at `localhost:5173` via `pnpm sandbox:design-tokens`.
+Vue dev app. Runs at `localhost:5173` via `pnpm sandbox:design-tokens`. Two independent modes, each with a standalone route and an `?embedded=1` bookmarklet-sidebar variant:
 
-Key composables:
-- `useTokens.ts` — `ALL_ENTRIES`: all 920 customizable tokens (semantic from `@tokens/js` + component from `KUI_THEMEABLE_TOKENS`); source of truth for the UI, export, and import routing
+- **Mode 1 — Token Customizer** (`/#/customize`): freeform editing of individual CSS custom properties. Any hex/value allowed. State is encoded into the URL (`?o=`, deflate+base64) so share links and bookmarklet localStorage restore work.
+- **Mode 2 — Theme Builder** (`/#/theme-builder`): designer-oriented editing of a theme's **source files** (`*.theme.json` + `*.alias.color.json`, loaded via file picker/drag-drop, one theme at a time). Two-layer reactive state — alias palette overrides (cascade) beat theme-file values; explicit token overrides beat the alias cascade. **Color tokens are alias-only** (no freeform hex — picked via `AliasPicker`); non-color tokens are freeform text. Exports the two edited source files (theme.json preserves `{color.alias.x.y}` refs; alias steps re-sorted to canonical order). Tabbed UI (Color aliases / Tokens / Export) in both standalone and embedded.
+
+Token Customizer composables:
+- `useTokens.ts` — `ALL_ENTRIES`: all 920 customizable tokens (semantic from `@tokens/js` + component from `KUI_THEMEABLE_TOKENS`); source of truth for the UI, export, and import routing. `fuzzyMatchTokens(query, ...targets)` — shared multi-term separator-agnostic filter used by both modes.
 - `useTokenCustomizer.ts` — override map, `buildCss` (skips empty values to avoid emitting invalid `--kui-…: ;`), `importFromCss`, share-code encoding
 - `usePreviewBridge.ts` — bridges token overrides to an iframe via postMessage (`kui-inject-css`) or a bookmarklet popup; DEV mode uses the Vite proxy
+
+Theme Builder (`components/builder/`, `composables/useThemeBuilder.ts`, `lib/themeBuilderUtils.ts`):
+- `themeBuilderUtils.ts` — **pure, Style-Dictionary-free** functions (unit-tested in `themeBuilderUtils.spec.mjs`): `resolveValue`/`parseAliasRef` (one-level `{color.alias.x.y}` lookup), `deriveEffectiveCss`, `flattenAliases`, `isColorToken`, `exportThemeJson`/`exportAliasJson`, plus `BuilderToken` (single source of truth for the type).
+- `useThemeBuilder.ts` — module-scoped two-layer state; `effectiveCss`; `initPersistence(host)` restores + debounced-persists full state (theme+alias+overrides+filenames) to `localStorage['kui-theme-builder-state:<host|standalone>']`.
+- Embedded mode reuses the **same** `kui-token-override` postMessage contract as Mode 1 — no bookmarklet-script change needed for injection.
+
+Bookmarklet (`lib/preview-bookmarklet.ts`): one shared template with two placeholders — `__CUSTOMIZER_URL__` (the embedded route) and `__STORAGE_NS__` (`customizer` vs `theme-builder`, so the two bookmarklets use **separate** localStorage keys `kong-<ns>-url:<hostname>` and don't clobber each other). The template appends `&host=<target-hostname>` to the iframe src so the embedded Theme Builder can key its own per-host persistence (the iframe can't read the cross-origin parent's hostname otherwise).
 
 `vite-preview-proxy.ts` — Vite dev-only middleware that proxies arbitrary target URLs through `/preview-proxy?url=<encoded>`:
 - Strips CSP/X-Frame-Options headers so the page renders in an iframe

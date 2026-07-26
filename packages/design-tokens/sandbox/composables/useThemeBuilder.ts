@@ -66,6 +66,24 @@ export function useThemeBuilder() {
     ) {
       return { ok: false, error: 'Alias file must contain a color.alias tree.' }
     }
+    // The names-only manifest (`themes/_manifest.alias.color.json`) also has a `color.alias`
+    // object, but its family values are arrays of step-name strings rather than `{ $value }`
+    // leaves — it would pass the check above and then render silently-empty swatches. Reject
+    // it unless at least one family looks like a real palette (leniently, so any one valid
+    // family lets a real palette through).
+    const families = Object.values((alias as AliasJson).color.alias)
+    const looksLikePalette = families.some((fam) => {
+      if (fam && typeof fam === 'object' && !Array.isArray(fam)) {
+        if (typeof (fam as { $value?: unknown }).$value === 'string') return true
+        return Object.values(fam as Record<string, unknown>).some(
+          (leaf) => leaf && typeof leaf === 'object' && !Array.isArray(leaf) && typeof (leaf as { $value?: unknown }).$value === 'string',
+        )
+      }
+      return false
+    })
+    if (!looksLikePalette) {
+      return { ok: false, error: 'Alias file has no color values — did you load the names-only manifest by mistake?' }
+    }
     for (const k in aliasOverrides) delete aliasOverrides[k]
     for (const k in tokenOverrides) delete tokenOverrides[k]
     themeJson.value = theme as ThemeJson

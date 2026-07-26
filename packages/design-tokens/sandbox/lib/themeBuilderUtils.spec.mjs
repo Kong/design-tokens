@@ -22,6 +22,10 @@ describe('parseAliasRef', () => {
   it('returns null for a non-ref', () => {
     expect(parseAliasRef('6px')).toBeNull()
   })
+  it('returns null for non-string input without throwing', () => {
+    expect(parseAliasRef(undefined)).toBeNull()
+    expect(parseAliasRef(null)).toBeNull()
+  })
 })
 
 describe('resolveValue', () => {
@@ -69,6 +73,21 @@ describe('deriveEffectiveCss', () => {
   it('returns empty string when nothing resolves', () => {
     expect(deriveEffectiveCss({ 'kui-empty-slot': { $value: '' } }, aliasJson, {}, {})).toBe('')
   })
+  it('does not throw and omits a token whose $value is undefined', () => {
+    const malformed = { ...themeJson, 'kui-malformed': {} }
+    let css
+    expect(() => {
+      css = deriveEffectiveCss(malformed, aliasJson, {}, {})
+    }).not.toThrow()
+    expect(css).not.toContain('kui-malformed')
+  })
+  it('omits a token override value containing CSS-structural characters', () => {
+    const css = deriveEffectiveCss(themeJson, aliasJson, {}, {
+      'kui-alert-border-radius': '0}body{color:red',
+    })
+    expect(css).not.toContain('kui-alert-border-radius')
+    expect(css).not.toContain('body{color:red')
+  })
 })
 
 describe('flattenAliases', () => {
@@ -110,5 +129,34 @@ describe('exportAliasJson', () => {
     const out = JSON.parse(exportAliasJson(aliasJson, { 'blue.50': '#00BFFF', black: '#111111' }))
     expect(out.color.alias.blue['50'].$value).toBe('#00BFFF')
     expect(out.color.alias.black.$value).toBe('#111111')
+  })
+
+  it('emits stepped family keys in canonical ascending numeric order (raw text) even when input is out of order', () => {
+    // NB: JS engines always enumerate integer-like keys ('10','50','100') ascending
+    // ahead of non-canonical string keys ('05'), regardless of insertion order or
+    // source JSON text order — so Object.keys() after JSON.parse can never reflect
+    // '05' before '10'. What the lint (and humans reading the file) actually care
+    // about is the ORDER OF KEYS IN THE SERIALIZED TEXT, so assert on that directly.
+    const unordered = {
+      color: {
+        alias: {
+          gray: {
+            '100': { $value: '#111111' },
+            '10': { $value: '#eeeeee' },
+            '05': { $value: '#ffffff' },
+            '50': { $value: '#888888' },
+          },
+          black: { $value: '#000000' },
+        },
+      },
+    }
+    const text = exportAliasJson(unordered, {})
+    const parsed = JSON.parse(text)
+    expect(parsed.color.alias.gray['05'].$value).toBe('#ffffff')
+    expect(parsed.color.alias.black.$value).toBe('#000000')
+
+    const keyOrder = ['"05"', '"10"', '"50"', '"100"'].map((k) => text.indexOf(k))
+    expect(keyOrder).toEqual([...keyOrder].sort((a, b) => a - b))
+    expect(keyOrder.every((i) => i !== -1)).toBe(true)
   })
 })
