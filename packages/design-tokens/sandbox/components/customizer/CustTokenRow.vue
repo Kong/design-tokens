@@ -117,11 +117,13 @@ const localValue = ref(toUpperHex(props.overriddenValue ?? props.entry.value))
 const validatedValue = ref(localValue.value)
 
 /**
- * Syncs the local display value when the override is cleared externally,
- * e.g. when "Reset all" is triggered from the header.
+ * Syncs the local display value when the override is cleared externally
+ * (e.g. "Reset all") or when the token's own default changes — e.g. switching the
+ * customizer's starting theme, which changes `entry.value` while `overriddenValue`
+ * stays undefined for any token that isn't explicitly overridden.
  */
-watch(() => props.overriddenValue, (val) => {
-  const resolved = toUpperHex(val ?? props.entry.value)
+watch(() => [props.overriddenValue, props.entry.value] as const, ([val, entryValue]) => {
+  const resolved = toUpperHex(val ?? entryValue)
   localValue.value = resolved
   validatedValue.value = resolved
 })

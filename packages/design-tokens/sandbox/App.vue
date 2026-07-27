@@ -1,9 +1,20 @@
 <template>
   <router-view v-slot="{ Component, route }">
+    <!--
+      Keying on the full route (including every query param) used to force a remount whenever
+      ANY query changed — e.g. the token browser's search box or theme picker updating `?q=`/
+      `?theme=` via `router.replace` on every keystroke, which destroyed and recreated the
+      search input and threw away its focus mid-type. `embedded`/`host` are the only query
+      params whose value is read once at setup (`getHashParam('embedded'|'host')` in
+      TokenCustomizer/ThemeBuilder) and would otherwise go stale without a remount — see the
+      standalone↔embedded staleness this key was originally added for. Every other query param
+      (`q`, `theme`, `o`, `selector`, `inject`, …) is already reactive within the mounted
+      instance and doesn't need one.
+    -->
     <keep-alive :max="10">
       <component
         :is="Component"
-        :key="route.fullPath"
+        :key="`${route.path}?embedded=${route.query.embedded ?? ''}&host=${route.query.host ?? ''}`"
       />
     </keep-alive>
   </router-view>

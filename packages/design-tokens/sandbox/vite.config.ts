@@ -21,6 +21,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './'),
       '@tokens': path.resolve(__dirname, '../dist/tokens/'),
+      '@themes': path.resolve(__dirname, '../dist/themes/'),
     },
   },
   css: {

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { resolveValue, parseAliasRef } from './themeBuilderUtils.ts'
 import { deriveEffectiveCss } from './themeBuilderUtils.ts'
-import { exportThemeJson, exportAliasJson, flattenAliases, isColorToken } from './themeBuilderUtils.ts'
+import { exportThemeJson, exportAliasJson, flattenAliases, isColorToken, isValidThemeJson } from './themeBuilderUtils.ts'
 
 const aliasJson = {
   color: {
@@ -121,6 +121,18 @@ describe('exportThemeJson', () => {
     expect(out['kui-a'].$value).toBe('{color.alias.blue.60}')
     expect(out['kui-a'].$description).toBe('A')
   })
+
+  it('does not throw when an entry is a bare string instead of a { $value } record', () => {
+    // Regression: a hand-edited or corrupted theme file can have `"kui-space-40": "16px"`
+    // instead of `{ "$value": "16px" }`. Assigning `.$value` onto a string primitive throws
+    // in strict-mode ESM — exportThemeJson must coerce rather than crash.
+    const malformed = { 'kui-space-40': '16px' }
+    let out
+    expect(() => {
+      out = JSON.parse(exportThemeJson(malformed, { 'kui-space-40': '24px' }))
+    }).not.toThrow()
+    expect(out['kui-space-40'].$value).toBe('24px')
+  })
 })
 
 describe('exportAliasJson', () => {
@@ -158,5 +170,34 @@ describe('exportAliasJson', () => {
     const keyOrder = ['"05"', '"10"', '"50"', '"100"'].map((k) => text.indexOf(k))
     expect(keyOrder).toEqual([...keyOrder].sort((a, b) => a - b))
     expect(keyOrder.every((i) => i !== -1)).toBe(true)
+  })
+
+  it('does not throw when a family or step entry is malformed (not a { $value } record)', () => {
+    const malformed = {
+      color: { alias: { blue: '#3094FF', gray: { '10': 'not-an-object' } } },
+    }
+    expect(() => exportAliasJson(malformed, { blue: '#00BFFF', 'gray.10': '#eee' })).not.toThrow()
+  })
+})
+
+describe('isValidThemeJson', () => {
+  it('accepts a theme where every entry is a { $value } record', () => {
+    expect(isValidThemeJson({ 'kui-a': { $value: '4px' }, 'kui-b': { $value: '', $description: 'x' } })).toBe(true)
+  })
+
+  it('rejects a theme with a bare-string entry', () => {
+    expect(isValidThemeJson({ 'kui-a': { $value: '4px' }, 'kui-b': '16px' })).toBe(false)
+  })
+
+  it('rejects a theme with a null entry', () => {
+    expect(isValidThemeJson({ 'kui-a': null })).toBe(false)
+  })
+
+  it('rejects an entry missing $value entirely', () => {
+    expect(isValidThemeJson({ 'kui-a': { $description: 'no value here' } })).toBe(false)
+  })
+
+  it('accepts an empty theme object', () => {
+    expect(isValidThemeJson({})).toBe(true)
   })
 })

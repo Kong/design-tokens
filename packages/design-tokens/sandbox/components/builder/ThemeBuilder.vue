@@ -34,46 +34,43 @@
       </a>
     </template>
 
-    <template
-      v-if="isLoaded"
-      #tabs
-    >
+    <template #tabs>
       <SandboxTabs
         v-model="activeTab"
         :tabs="tabs"
       />
     </template>
 
-    <FileLoader
-      v-if="!isLoaded"
-      :error="loadError"
-      @load="onLoad"
-    />
-    <div
-      v-else
-      class="tb-tabpanel"
-    >
-      <PalettePanel
-        v-show="activeTab === 'aliases'"
-        :alias-flat="aliasFlat"
-        :alias-overrides="aliasOverrides"
-        @change="setAliasOverride"
+    <div class="tb-tabpanel">
+      <InstructionsPanel v-show="activeTab === 'instructions'" />
+      <FileLoader
+        v-if="!isLoaded && activeTab !== 'instructions'"
+        :error="loadError"
+        @load="onLoad"
       />
-      <TokenList
-        v-show="activeTab === 'tokens'"
-        :alias-flat="aliasFlat"
-        :tokens="builderTokens"
-        @reset="resetTokenOverride"
-        @set="setTokenOverride"
-      />
-      <OutputPanel
-        v-show="activeTab === 'export'"
-        :alias-file-name="aliasFileName"
-        :alias-json-out="aliasJsonOut"
-        :css="effectiveCss"
-        :theme-file-name="themeFileName"
-        :theme-json-out="themeJsonOut"
-      />
+      <template v-else-if="isLoaded">
+        <PalettePanel
+          v-show="activeTab === 'aliases'"
+          :alias-flat="aliasFlat"
+          :alias-overrides="aliasOverrides"
+          @change="setAliasOverride"
+        />
+        <TokenList
+          v-show="activeTab === 'tokens'"
+          :alias-flat="aliasFlat"
+          :tokens="builderTokens"
+          @reset="resetTokenOverride"
+          @set="setTokenOverride"
+        />
+        <OutputPanel
+          v-show="activeTab === 'export'"
+          :alias-file-name="aliasFileName"
+          :alias-json-out="aliasJsonOut"
+          :css="effectiveCss"
+          :theme-file-name="themeFileName"
+          :theme-json-out="themeJsonOut"
+        />
+      </template>
     </div>
   </SandboxShell>
 </template>
@@ -86,6 +83,7 @@ import { getHashParam } from '@/lib/hashRouteQuery'
 import SandboxShell from '@/components/shared/SandboxShell.vue'
 import SandboxTabs from '@/components/shared/SandboxTabs.vue'
 import FileLoader from './FileLoader.vue'
+import InstructionsPanel from './InstructionsPanel.vue'
 import PalettePanel from './PalettePanel.vue'
 import TokenList from './TokenList.vue'
 import OutputPanel from './OutputPanel.vue'
@@ -94,14 +92,15 @@ import OutputPanel from './OutputPanel.vue'
 const isEmbedded = getHashParam('embedded') === '1'
 const loadError = ref('')
 
-/** The three builder tabs. */
-type TabId = 'aliases' | 'tokens' | 'export'
+/** The builder tabs. Instructions is first and the default so a new user sees it immediately. */
+type TabId = 'instructions' | 'aliases' | 'tokens' | 'export'
 const tabs: Array<{ id: TabId, label: string }> = [
+  { id: 'instructions', label: 'Instructions' },
   { id: 'aliases', label: 'Color aliases' },
   { id: 'tokens', label: 'Tokens' },
   { id: 'export', label: 'Export' },
 ]
-const activeTab = ref<TabId>('aliases')
+const activeTab = ref<TabId>('instructions')
 
 const {
   isLoaded, loadFiles, aliasFlat, aliasOverrides, builderTokens,

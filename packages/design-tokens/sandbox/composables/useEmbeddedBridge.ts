@@ -18,11 +18,19 @@ interface EmbeddedBridgeOptions {
  * sidebar. No-op posting when not embedded.
  */
 export function useEmbeddedBridge(opts: EmbeddedBridgeOptions) {
+  // `buildSrc` (e.g. the customizer's async share-code encoding) can take variable time, so
+  // overlapping post() calls could otherwise resolve out of order and leave a stale message
+  // as the last one applied. A generation counter lets a post() detect it's been superseded
+  // and drop its own (now-stale) message instead of sending it.
+  let generation = 0
+
   /** Posts the current CSS (and computed src) to the parent window. */
   async function post() {
     if (!opts.isEmbedded) return
+    const thisGeneration = ++generation
     const css = opts.css.value
     const src = opts.buildSrc ? await opts.buildSrc() : window.location.href
+    if (thisGeneration !== generation) return
     window.parent.postMessage({ type: 'kui-token-override', css, src }, '*')
   }
 

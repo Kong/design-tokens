@@ -63,6 +63,20 @@ export function resolveValue(
 /** Parsed `*.theme.json` shape: token key → value record. */
 export type ThemeJson = Record<string, { $value: string, $description?: string }>
 
+/**
+ * True when every entry in a parsed theme file is a `{ $value }` record — the
+ * shape all downstream code (`exportThemeJson`, `builderTokens`, `deriveEffectiveCss`)
+ * assumes. A hand-edited or corrupted file can have a bare-string entry
+ * (`"kui-space-40": "16px"`) instead; letting that in causes `exportThemeJson`
+ * to throw when writing `$value` onto a string primitive.
+ * @param value - The parsed JSON to check (already known to be a non-null object).
+ */
+export function isValidThemeJson(value: Record<string, unknown>): value is ThemeJson {
+  return Object.values(value).every(
+    (entry) => entry !== null && typeof entry === 'object' && typeof (entry as { $value?: unknown }).$value === 'string',
+  )
+}
+
 /** Converts a theme.json token key to its CSS custom property name. */
 function toCssVar(key: string): string {
   return `--${key}`
@@ -148,7 +162,11 @@ export function flattenAliases(aliasJson: AliasJson): AliasFlatEntry[] {
 export function exportThemeJson(themeJson: ThemeJson, tokenOverrides: Record<string, string>): string {
   const clone: ThemeJson = JSON.parse(JSON.stringify(themeJson))
   for (const [key, value] of Object.entries(tokenOverrides)) {
-    if (clone[key]) clone[key].$value = value
+    // Guard against a malformed entry (e.g. a bare string instead of `{ $value }`) reaching
+    // here via a path that bypassed loadFiles's validation, such as a corrupted localStorage
+    // restore — assigning a property onto a string primitive throws in strict mode.
+    if (clone[key] && typeof clone[key] === 'object') clone[key].$value = value
+    else clone[key] = { $value: value }
   }
   return JSON.stringify(clone, null, 2)
 }
@@ -224,11 +242,11 @@ export function exportAliasJson(aliasJson: AliasJson, aliasOverrides: Record<str
   for (const [key, hex] of Object.entries(aliasOverrides)) {
     const [family, step] = key.split('.')
     const entry = clone.color.alias[family]
-    if (!entry) continue
+    if (!entry || typeof entry !== 'object') continue
     if (step) {
       const leaf = (entry as Record<string, AliasLeaf>)[step]
-      if (leaf) leaf.$value = hex
-    } else {
+      if (leaf && typeof leaf === 'object') leaf.$value = hex
+    } else if (typeof (entry as AliasLeaf).$value === 'string') {
       (entry as AliasLeaf).$value = hex
     }
   }

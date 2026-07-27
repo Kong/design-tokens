@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import * as rawTokens from '@tokens/js'
 import { KUI_THEMEABLE_TOKENS } from '@tokens/themeable-tokens'
+import { classicDay, classicNight, electricLimeDay, electricLimeNight } from '@themes'
 
 /**
  * Token category string. Known values: color, space, font, border, shadow,
@@ -152,6 +153,54 @@ export function categoryLabel(cat: string): string {
   return cat.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 }
 
+/** A theme available for live preview in the token browser. */
+export interface ThemeOption {
+  /** Kebab-case theme id, matching the `themes/<id>/` directory and dist filename. */
+  id: string
+  /** Human-readable label for the picker. */
+  label: string
+  /** CSS custom property name → value, for every token the theme declares. */
+  tokens: Readonly<Record<string, string>>
+}
+
+/**
+ * Every theme exposed by the repo, in display order. `classic-day` is first and is the
+ * sandbox's default — its values equal the base `@tokens/js` export, so selecting it
+ * reproduces the token browser's un-themed defaults exactly.
+ */
+export const THEMES: ThemeOption[] = [
+  { id: 'classic-day', label: 'Classic Day', tokens: classicDay },
+  { id: 'classic-night', label: 'Classic Night', tokens: classicNight },
+  { id: 'electric-lime-day', label: 'Electric Lime Day', tokens: electricLimeDay },
+  { id: 'electric-lime-night', label: 'Electric Lime Night', tokens: electricLimeNight },
+]
+
+/** The default theme id, used when no theme is selected or an invalid id is restored. */
+export const DEFAULT_THEME_ID = THEMES[0].id
+
+/** True when `id` matches a known theme in {@link THEMES}. */
+export function isThemeId(id: string): boolean {
+  return THEMES.some((t) => t.id === id)
+}
+
+/**
+ * Resolves `entries` against a theme's declared overrides.
+ * A theme only declares the tokens it actually overrides (semantic-only themes
+ * declare no component tokens at all); any token the theme doesn't mention keeps
+ * its base value — the same fallback-to-semantic-default behavior the real `var()`
+ * chain exhibits at runtime for an undeclared custom property.
+ * @param entries - The base entries to resolve against the theme.
+ * @param themeId - A theme id from {@link THEMES}; falls back to the first theme if unknown.
+ */
+export function resolveThemedEntries(entries: TokenEntry[], themeId: string): TokenEntry[] {
+  const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0]
+  if (theme.id === DEFAULT_THEME_ID) return entries
+  return entries.map((entry) => {
+    const themed = theme.tokens[entry.cssVar]
+    return themed === undefined ? entry : { ...entry, value: themed }
+  })
+}
+
 /**
  * Derives the within-category section name for a token.
  * Only sectionable categories return a value; others return null.
@@ -195,11 +244,21 @@ export function buildSections(entries: TokenEntry[]): TokenSection[] | null {
 export function useTokens() {
   const search = ref('')
   const activeCategory = ref<TokenCategory>('color')
+  const activeTheme = ref<string>(DEFAULT_THEME_ID)
 
-  /** All token entries grouped by category. */
+  /**
+   * All token entries with their `value` resolved against the active theme's declared
+   * overrides. A theme only declares the tokens it actually overrides (semantic-only themes
+   * declare no component tokens at all); any token the theme doesn't mention keeps its base
+   * `@tokens/js` value — the same fallback-to-semantic-default behavior the real `var()` chain
+   * exhibits at runtime for an undeclared custom property.
+   */
+  const themedEntries = computed((): TokenEntry[] => resolveThemedEntries(ALL_ENTRIES, activeTheme.value))
+
+  /** All token entries (themed) grouped by category. */
   const byCategory = computed(() => {
     const map = new Map<TokenCategory, TokenEntry[]>()
-    for (const entry of ALL_ENTRIES) {
+    for (const entry of themedEntries.value) {
       if (!map.has(entry.category)) map.set(entry.category, [])
       map.get(entry.category)!.push(entry)
     }
@@ -275,6 +334,8 @@ export function useTokens() {
   return {
     search,
     activeCategory,
+    activeTheme,
+    byCategory,
     categories,
     componentSubcategories,
     componentsBySubcat,

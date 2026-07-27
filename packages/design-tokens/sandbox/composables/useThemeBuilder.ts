@@ -6,6 +6,7 @@ import {
   exportThemeJson,
   flattenAliases,
   isColorToken,
+  isValidThemeJson,
   resolveValue,
 } from '../lib/themeBuilderUtils'
 import type { AliasFlatEntry, AliasJson, BuilderToken, ThemeJson } from '../lib/themeBuilderUtils'
@@ -59,6 +60,9 @@ export function useThemeBuilder() {
     }
     if (typeof theme !== 'object' || theme === null) {
       return { ok: false, error: 'Theme file has an unexpected shape.' }
+    }
+    if (!isValidThemeJson(theme as Record<string, unknown>)) {
+      return { ok: false, error: 'Theme file has one or more entries that are not `{ $value }` records.' }
     }
     if (
       typeof alias !== 'object' || alias === null ||
@@ -194,7 +198,10 @@ export function useThemeBuilder() {
       const raw = localStorage.getItem(storageKey)
       if (raw) {
         const d = JSON.parse(raw)
-        if (d && typeof d === 'object' && d.themeJson && d.aliasJson) {
+        if (
+          d && typeof d === 'object' && d.themeJson && d.aliasJson &&
+          isValidThemeJson(d.themeJson as Record<string, unknown>)
+        ) {
           themeJson.value = d.themeJson as ThemeJson
           aliasJson.value = d.aliasJson as AliasJson
           for (const k in aliasOverrides) delete aliasOverrides[k]

@@ -80,26 +80,7 @@
           class="cust-editor-content cust-editor-content--embedded"
         >
           <div class="embed-toolbar">
-            <!-- Row 1: inject mode toggle -->
-            <div class="embed-toolbar-row">
-              <div class="embed-mode-group">
-                <button
-                  :class="['embed-mode-btn', { 'embed-mode-btn--active': !embeddedInjectAll }]"
-                  title="Inject only your changed values; the site uses its own defaults for everything else"
-                  @click="embeddedInjectAll = false"
-                >
-                  Overrides only
-                </button>
-                <button
-                  :class="['embed-mode-btn', { 'embed-mode-btn--active': embeddedInjectAll }]"
-                  title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
-                  @click="embeddedInjectAll = true"
-                >
-                  All tokens
-                </button>
-              </div>
-            </div>
-            <!-- Row 2: CSS selector -->
+            <!-- CSS selector -->
             <div class="embed-toolbar-row">
               <label
                 class="embed-selector-label"
@@ -180,6 +161,22 @@
 
           <!-- Filter bar: section collapse/expand + show-only-modified toggle -->
           <div class="cust-collapse-bar">
+            <label class="cust-theme-picker">
+              <span class="cust-theme-picker-label">Starting theme</span>
+              <select
+                class="cust-theme-select"
+                :value="startingThemeId"
+                @change="setStartingTheme(($event.target as HTMLSelectElement).value)"
+              >
+                <option
+                  v-for="theme in THEMES"
+                  :key="theme.id"
+                  :value="theme.id"
+                >
+                  {{ theme.label }}
+                </option>
+              </select>
+            </label>
             <button
               v-if="visibleGroups.length > 1 || allCollapsed"
               class="cust-collapse-btn"
@@ -305,7 +302,7 @@
           <CustOutputPanel
             :copied="copiedOverrides"
             :css="displayCss"
-            :label="outputLabel"
+            label="All tokens CSS"
             :placeholder="placeholderCss"
             @copy="copyOverrides"
             @download="downloadFull"
@@ -406,6 +403,22 @@
 
           <!-- Filter bar: section collapse/expand + show-only-modified toggle -->
           <div class="cust-collapse-bar">
+            <label class="cust-theme-picker">
+              <span class="cust-theme-picker-label">Starting theme</span>
+              <select
+                class="cust-theme-select"
+                :value="startingThemeId"
+                @change="setStartingTheme(($event.target as HTMLSelectElement).value)"
+              >
+                <option
+                  v-for="theme in THEMES"
+                  :key="theme.id"
+                  :value="theme.id"
+                >
+                  {{ theme.label }}
+                </option>
+              </select>
+            </label>
             <button
               v-if="visibleGroups.length > 1 || allCollapsed"
               class="cust-collapse-btn"
@@ -521,9 +534,7 @@
       <div class="cust-preview-column">
         <CustPreviewPanel
           v-model:custom-selector="customSelector"
-          v-model:inject-all-tokens="injectAllTokens"
           :all-tokens-css="fullExportCss"
-          :overrides-css="overridesCss"
         />
       </div>
 
@@ -541,7 +552,7 @@
         <CustOutputPanel
           :copied="copiedOverrides"
           :css="displayCss"
-          :label="outputLabel"
+          label="All tokens CSS"
           :placeholder="placeholderCss"
           @copy="copyOverrides"
           @download="downloadFull"
@@ -554,6 +565,7 @@
 <script setup lang="ts">
 import { computed, nextTick, ref, watch } from 'vue'
 import { useTokenCustomizer, encodeOverrides, CUSTOM_GROUP_KEY } from '@/composables/useTokenCustomizer'
+import { DEFAULT_THEME_ID, THEMES } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
 import { useEmbeddedBridge } from '@/composables/useEmbeddedBridge'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
@@ -572,13 +584,6 @@ import CustImportPanel from './CustImportPanel.vue'
 const isEmbedded = getHashParam('embedded') === '1'
 
 /**
- * Whether to inject all tokens or only overrides.
- * In embedded mode: controls what is posted to the parent page.
- * In normal mode: controls what the preview panel injects and what the output panel shows.
- */
-const injectAllTokens = ref(getHashParam('inject') === 'all')
-
-/**
  * CSS selector to use in place of `:root` (e.g. `[data-theme="dark"]`).
  * In embedded mode: scopes the CSS posted to the parent page.
  * In normal mode: scopes what the preview panel injects and what the output panel shows.
@@ -586,23 +591,13 @@ const injectAllTokens = ref(getHashParam('inject') === 'all')
 const customSelector = ref(getHashParam('selector') ?? '')
 
 // Alias used only in embedded mode for clarity.
-const embeddedInjectAll = injectAllTokens
 const embeddedSelector = customSelector
 
-/** Effective CSS to display/post: applies selector and inject-all choice. */
-const embeddedEffectiveCss = computed(() => {
-  const base = injectAllTokens.value ? fullExportCss.value : overridesCss.value
-  return applySelector(base, customSelector.value)
-})
+/** Effective CSS to display/post: all tokens (overrides applied) with the selector applied. */
+const embeddedEffectiveCss = computed(() => applySelector(fullExportCss.value, customSelector.value))
 
 /** CSS shown in the output panel and used by the copy/download actions. */
 const displayCss = computed(() => embeddedEffectiveCss.value)
-
-/** Label for the output panel reflecting what CSS is displayed. */
-const outputLabel = computed(() => {
-  if (injectAllTokens.value) return 'All tokens CSS'
-  return displayCss.value ? 'Override patch CSS' : 'No overrides yet'
-})
 
 /** Controls whether the token editor panel is expanded (true) or collapsed to a narrow strip. */
 const editorOpen = ref(true)
@@ -610,6 +605,8 @@ const editorOpen = ref(true)
 const {
   overrides,
   customProps,
+  startingThemeId,
+  setStartingTheme,
   overrideCount,
   hasOverrides,
   filterQuery,
@@ -623,7 +620,6 @@ const {
   expandAll,
   setOverride,
   resetAll,
-  overridesCss,
   fullExportCss,
   shareUrl,
 } = useTokenCustomizer()
@@ -641,7 +637,7 @@ const { post: postEmbedded, close: closeEmbedded } = useEmbeddedBridge({
     return setHashParams({
       o: encoded || null,
       selector: (sel && sel !== ':root') ? sel : null,
-      inject: injectAllTokens.value ? 'all' : null,
+      theme: startingThemeId.value !== DEFAULT_THEME_ID ? startingThemeId.value : null,
     })
   },
 })
@@ -708,14 +704,14 @@ async function copyOverrides() {
 async function copyShareLink() {
   let url = shareUrl.value
   if (isEmbedded) {
-    // Build a clean standalone URL: preserve o/selector/inject, drop embedded=1
+    // Build a clean standalone URL: preserve o/selector/theme, drop embedded=1
     const params = new URLSearchParams()
     const encoded = getHashParam('o')
     const selector = getHashParam('selector')
-    const inject = getHashParam('inject')
+    const theme = getHashParam('theme')
     if (encoded) params.set('o', encoded)
     if (selector) params.set('selector', selector)
-    if (inject) params.set('inject', inject)
+    if (theme) params.set('theme', theme)
     const qs = params.toString()
     url = window.location.origin + window.location.pathname + '#/customize' + (qs ? '?' + qs : '')
   }
@@ -739,7 +735,7 @@ async function copyStateCode() {
   }, 1500)
 }
 
-/** Downloads the currently displayed CSS (respects the overrides-only / all-tokens setting and custom selector). */
+/** Downloads the currently displayed CSS (all tokens with overrides applied, respecting the custom selector). */
 function downloadFull() {
   const blob = new Blob([displayCss.value], { type: 'text/css' })
   const url = URL.createObjectURL(blob)
@@ -1009,33 +1005,6 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   &:last-child { border-bottom: none; }
 }
 
-.embed-mode-group {
-  display: flex;
-  background: $tb-surface-2;
-  border: 1px solid $tb-border;
-  border-radius: 5px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.embed-mode-btn {
-  background: none;
-  border: none;
-  padding: 3px 8px;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 500;
-  color: $tb-text-muted;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.1s, color 0.1s;
-
-  &:hover:not(.embed-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
-  &--active { background: $tb-accent; color: #fff; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
-}
-
-
 .embed-selector-label {
   font-size: 11px;
   font-weight: 500;
@@ -1141,6 +1110,43 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   justify-content: space-between;
   gap: 8px;
   min-height: 32px;
+}
+
+.cust-theme-picker {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 6px;
+  padding: 0 4px 0 10px;
+  flex-shrink: 0;
+
+  &:focus-within { border-color: $tb-accent; box-shadow: 0 0 0 3px $tb-accent-subtle; }
+}
+
+.cust-theme-picker-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  white-space: nowrap;
+}
+
+.cust-theme-select {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 6px 20px 6px 2px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: $tb-text;
+  cursor: pointer;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 12px;
 }
 
 .cust-collapse-btn {

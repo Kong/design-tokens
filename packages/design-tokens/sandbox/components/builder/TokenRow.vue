@@ -4,7 +4,10 @@
       <code class="tr-name">{{ token.cssVar }}</code>
     </div>
 
-    <div class="tr-control">
+    <div
+      ref="controlEl"
+      class="tr-control"
+    >
       <template v-if="token.isColor">
         <button
           class="tr-color-btn"
@@ -27,6 +30,7 @@
         <div
           v-if="open"
           class="tr-popover"
+          @keydown.esc.stop.prevent="open = false"
         >
           <AliasPicker
             :alias-flat="aliasFlat"
@@ -58,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue'
 import AliasPicker from './AliasPicker.vue'
 import { parseAliasRef } from '@/lib/themeBuilderUtils'
 import type { AliasFlatEntry, BuilderToken } from '@/lib/themeBuilderUtils'
@@ -72,6 +76,14 @@ const props = defineProps<{
 const emit = defineEmits<{ set: [key: string, value: string], reset: [key: string] }>()
 
 const open = ref(false)
+const controlEl = ref<HTMLElement | null>(null)
+
+/** Closes the alias picker popover when a pointer press lands outside it. */
+function onDocPointer(e: PointerEvent) {
+  if (open.value && controlEl.value && !controlEl.value.contains(e.target as Node)) open.value = false
+}
+onMounted(() => document.addEventListener('pointerdown', onDocPointer, true))
+onBeforeUnmount(() => document.removeEventListener('pointerdown', onDocPointer, true))
 
 /** The current alias ref string, if the raw value is one. */
 const currentRef = computed(() => {

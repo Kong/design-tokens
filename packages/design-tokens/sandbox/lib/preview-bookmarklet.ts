@@ -47,6 +47,11 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     window['__kongListener_'+'__STORAGE_NS__']=true;
     window.addEventListener('message',function(e){
       if(!e.data)return;
+      // Only accept messages from the sidebar iframe we created — otherwise any other
+      // frame/script on the page could post a fake kui-token-override and inject CSS.
+      var f=document.getElementById(FRAME_ID);
+      if(!f||!f.src)return;
+      try{if(e.origin!==new URL(f.src).origin)return;}catch(x){return;}
       if(e.data.type==='kui-token-override'){
         var el=document.getElementById(STYLE_ID);
         if(el)el.textContent=e.data.css||'';
