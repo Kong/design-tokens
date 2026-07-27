@@ -262,16 +262,21 @@ describe('useTokens composable', () => {
     })
 
     it('falls back to unmodified base values for a token the theme does not declare', () => {
-      // electric-lime-day is exhaustive but the fixture asserts the general contract: any
-      // token absent from theme.tokens keeps ALL_ENTRIES' base value, not an empty string.
-      const themed = THEMES.find((t) => t.id === 'electric-lime-day')
-      const untouchedEntry = ALL_ENTRIES.find((e) => e.category !== 'components' && !(e.cssVar in themed.tokens))
-      if (untouchedEntry) {
-        const { activeTheme, byCategory } = useTokens()
-        activeTheme.value = 'electric-lime-day'
-        const entry = (byCategory.value.get(untouchedEntry.category) ?? []).find((e) => e.key === untouchedEntry.key)
-        expect(entry.value).toBe(untouchedEntry.value)
-      }
+      // classic-night is semantic-only — it declares zero component tokens, so a component
+      // entry's cssVar is guaranteed absent from theme.tokens. This exercises the
+      // fallback-to-base branch unconditionally instead of depending on the theme
+      // happening to leave some entry undeclared (electric-lime-day is exhaustive and
+      // declares everything, which silently skipped this assertion before).
+      const theme = THEMES.find((t) => t.id === 'classic-night')
+      if (!theme) throw new Error('classic-night theme not found')
+      const untouchedEntry = ALL_ENTRIES.find((e) => e.category === 'components')
+      if (!untouchedEntry) throw new Error('no component entry found in ALL_ENTRIES')
+      expect(untouchedEntry.cssVar in theme.tokens).toBe(false)
+
+      const { activeTheme, byCategory } = useTokens()
+      activeTheme.value = 'classic-night'
+      const entry = (byCategory.value.get(untouchedEntry.category) ?? []).find((e) => e.key === untouchedEntry.key)
+      expect(entry?.value).toBe(untouchedEntry.value)
     })
   })
 })

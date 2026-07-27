@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { defineComponent, h } from 'vue'
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import type { VueWrapper } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import {
@@ -119,11 +119,11 @@ describe('useTokenCustomizer — hash round-trip', () => {
   it('writes theme=<id> for a non-default theme and omits it for the default', async () => {
     mountCustomizer()
     setStartingTheme('classic-night')
-    await new Promise((resolve) => setTimeout(resolve, 0))
+    await flushPromises()
     expect(getHashParam('theme')).toBe('classic-night')
 
     setStartingTheme(DEFAULT_THEME_ID)
-    await new Promise((resolve) => setTimeout(resolve, 0))
+    await flushPromises()
     expect(getHashParam('theme')).toBeNull()
   })
 
@@ -182,5 +182,7 @@ describe('importFromCss', () => {
     const applied = importFromCss(':root {\n  --kui-color-background: #000000;\n  --my-custom-var: red;\n}')
     expect(applied).toBe(true)
     expect(composable.startingThemeId.value).toBe('classic-night')
+    expect(composable.overrides['--kui-color-background']).toBe('#000000')
+    expect(composable.customProps['--my-custom-var']).toBe('red')
   })
 })
