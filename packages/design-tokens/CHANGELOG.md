@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.5...@kong/design-tokens@3.0.6) (2026-07-27)
+
+### Bug Fixes
+
+* **design-tokens:** icon-color-warning ([#699](https://github.com/Kong/design-tokens/issues/699)) ([7de64cb](https://github.com/Kong/design-tokens/commit/7de64cb6bdb79f36321bc6f9e80e486c11bf9ba2))
+
 ## [3.0.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.4...@kong/design-tokens@3.0.5) (2026-07-24)
 
 **Note:** Version bump only for package @kong/design-tokens
