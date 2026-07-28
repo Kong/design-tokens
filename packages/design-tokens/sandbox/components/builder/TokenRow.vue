@@ -154,6 +154,7 @@ function onText(e: Event) {
   display: flex;
   flex: 1;
   gap: 6px;
+  justify-content: flex-end;
   min-width: 0;
   position: relative;
 }
@@ -199,6 +200,7 @@ function onText(e: Event) {
   font-size: 11px;
   min-width: 0;
   padding: 3px 8px;
+  text-align: right;
 
   &:focus-visible {
     border-color: $tb-accent;
