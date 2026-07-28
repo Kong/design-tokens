@@ -14,9 +14,6 @@ function mountModal(props: Partial<InstanceType<typeof BookmarkletModal>['$props
       themeBuilderHref: THEME_BUILDER_HREF,
       ...props,
     },
-    global: {
-      stubs: { RouterLink: RouterLinkStub },
-    },
   })
 }
 
