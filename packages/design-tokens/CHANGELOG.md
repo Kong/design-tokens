@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.7](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.6...@kong/design-tokens@3.0.7) (2026-07-28)
+
+### Bug Fixes
+
+* **code-block:** use night colors in night theme ([#688](https://github.com/Kong/design-tokens/issues/688)) ([68019fb](https://github.com/Kong/design-tokens/commit/68019fb60f7935492b520305399c6ec645c2988f))
+
 ## [3.0.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.5...@kong/design-tokens@3.0.6) (2026-07-27)
 
 ### Bug Fixes
