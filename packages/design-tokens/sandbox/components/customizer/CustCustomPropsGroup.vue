@@ -158,30 +158,31 @@ function tryAdd() {
 .ccp-group { border-bottom: 1px solid $tb-border; }
 
 .ccp-group-header {
-  width: 100%;
+  align-items: center;
   background: $tb-bg;
   border: none;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: $tb-text-muted;
   cursor: pointer;
+  display: flex;
   font-family: inherit;
   font-size: 12px;
   font-weight: 600;
-  color: $tb-text-muted;
+  gap: 8px;
+  letter-spacing: 0.05em;
+  padding: 8px 16px;
   text-align: left;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  width: 100%;
 
   &:hover { background: #eaecf1; color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
 .group-chevron {
+  color: $tb-text-muted;
   flex-shrink: 0;
   transition: transform 0.15s;
-  color: $tb-text-muted;
 
   &--open { transform: rotate(90deg); }
 }
@@ -191,14 +192,14 @@ function tryAdd() {
 .group-count {
   background: $tb-surface-2;
   border-radius: 8px;
-  padding: 1px 6px;
   font-weight: 500;
+  padding: 1px 6px;
 }
 
 .group-modified-badge {
   background: $tb-accent-subtle;
-  color: $tb-accent;
   border-radius: 8px;
+  color: $tb-accent;
   padding: 1px 6px;
 }
 
@@ -208,18 +209,18 @@ function tryAdd() {
 }
 
 .ccp-row {
-  display: flex;
   align-items: center;
+  border-top: 1px solid $tb-border;
+  display: flex;
   gap: 6px;
   padding: 5px 16px;
-  border-top: 1px solid $tb-border;
 }
 
 .ccp-var-name {
-  font-family: $tb-mono;
-  font-size: 11px;
   color: $tb-text-dim;
   flex: 1;
+  font-family: $tb-mono;
+  font-size: 11px;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -230,13 +231,13 @@ function tryAdd() {
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 4px;
-  padding: 3px 7px;
+  color: $tb-text;
+  flex-shrink: 0;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text;
   outline: none;
+  padding: 3px 7px;
   width: 120px;
-  flex-shrink: 0;
 
   &:focus-visible { border-color: $tb-accent; }
 }
@@ -247,71 +248,76 @@ function tryAdd() {
   border-radius: 3px;
   color: $tb-text-muted;
   cursor: pointer;
-  font-size: 10px;
-  padding: 2px 5px;
   flex-shrink: 0;
+  font-size: 10px;
   line-height: 1;
+  padding: 2px 5px;
   transition: color 0.1s, background 0.1s, border-color 0.1s;
 
-  &:hover { color: #ef4444; background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.3); }
+  &:hover { background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.3); color: #ef4444; }
+
   &:focus-visible { outline: 2px solid #ef4444; outline-offset: 2px; }
 }
 
 .ccp-no-match {
-  padding: 8px 16px;
-  font-size: 12px;
-  color: $tb-text-muted;
   border-top: 1px solid $tb-border;
+  color: $tb-text-muted;
+  font-size: 12px;
+  padding: 8px 16px;
 }
 
 .ccp-add-row {
+  align-items: center;
+  border-top: 1px solid $tb-border;
   display: flex;
   gap: 4px;
-  align-items: center;
   padding: 8px 16px 4px;
-  border-top: 1px solid $tb-border;
 }
 
 .ccp-add-input {
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 4px;
-  padding: 4px 7px;
+  color: $tb-text;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text;
-  outline: none;
   min-width: 0;
+  outline: none;
+  padding: 4px 7px;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible { border-color: $tb-accent; }
 
   &--var { flex: 2; }
+
   &--val { flex: 1; }
 }
 
 .ccp-add-btn {
   background: $tb-accent;
-  color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 4px 10px;
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
   font-family: inherit;
   font-size: 11px;
   font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
+  padding: 4px 10px;
   transition: opacity 0.12s;
+  white-space: nowrap;
 
-  &:disabled { opacity: 0.4; cursor: default; }
+  &:disabled { cursor: default; opacity: 0.4; }
+
   &:hover:not(:disabled) { opacity: 0.85; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
 .ccp-error {
-  font-size: 11px;
   color: #ef4444;
+  font-size: 11px;
   margin: 0;
   padding: 0 16px 6px;
 }

@@ -125,12 +125,29 @@ function emitLoad() {
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.file-loader { max-width: 460px; margin: 60px auto; padding: 0 20px; font-family: 'Inter', system-ui, sans-serif; color: $tb-text; }
+.file-loader { color: $tb-text; font-family: 'Inter', system-ui, sans-serif; margin: 60px auto; max-width: 460px; padding: 0 20px; }
+
 .fl-title { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
-.fl-hint { font-size: 13px; color: $tb-text-dim; margin: 0 0 24px; line-height: 1.5; code { font-family: $tb-mono; font-size: 12px; background: $tb-surface-2; padding: 1px 5px; border-radius: 3px; } }
-.fl-drop { display: flex; align-items: center; gap: 10px; border: 1px dashed $tb-border-active; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; cursor: pointer; font-size: 13px; color: $tb-text-dim; input { display: none; } > * { pointer-events: none; } &:hover { border-color: $tb-accent; } }
-.fl-drop--dragover { border-color: $tb-accent; background: $tb-surface-2; }
-.fl-check { margin-left: auto; color: $tb-accent; font-weight: 700; }
+
+.fl-hint { color: $tb-text-dim; font-size: 13px; line-height: 1.5; margin: 0 0 24px;
+
+  code { background: $tb-surface-2; border-radius: 3px; font-family: $tb-mono; font-size: 12px; padding: 1px 5px; } }
+
+.fl-drop { align-items: center; border: 1px dashed $tb-border-active; border-radius: 8px; color: $tb-text-dim; cursor: pointer; display: flex; font-size: 13px; gap: 10px; margin-bottom: 12px; padding: 14px 16px;
+
+  input { display: none; }
+
+  > * { pointer-events: none; }
+
+  &:hover { border-color: $tb-accent; } }
+
+.fl-drop--dragover { background: $tb-surface-2; border-color: $tb-accent; }
+
+.fl-check { color: $tb-accent; font-weight: 700; margin-left: auto; }
+
 .fl-error { color: #ef4444; font-size: 13px; margin: 4px 0 12px; }
-.fl-btn { width: 100%; background: $tb-accent; color: #fff; border: none; border-radius: 6px; padding: 10px; font-size: 14px; font-weight: 600; cursor: pointer; &:disabled { opacity: 0.4; cursor: default; } }
+
+.fl-btn { background: $tb-accent; border: none; border-radius: 6px; color: #fff; cursor: pointer; font-size: 14px; font-weight: 600; padding: 10px; width: 100%;
+
+  &:disabled { cursor: default; opacity: 0.4; } }
 </style>

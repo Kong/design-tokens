@@ -760,38 +760,40 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 @use '@/assets/tb-vars' as *;
 
 .override-badge {
-  font-size: 12px;
   background: $tb-accent-subtle;
-  color: $tb-accent;
   border-radius: 10px;
-  padding: 2px 8px;
+  color: $tb-accent;
+  font-size: 12px;
   font-weight: 500;
+  padding: 2px 8px;
 }
 
 .cust-btn {
   background: $tb-accent;
-  color: #fff;
   border: 1px solid $tb-accent;
   border-radius: 5px;
-  padding: 5px 12px;
+  color: #fff;
+  cursor: pointer;
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
+  padding: 5px 12px;
   transition: opacity 0.12s;
+  white-space: nowrap;
 
-  &:disabled { opacity: 0.4; cursor: default; }
+  &:disabled { cursor: default; opacity: 0.4; }
+
   &:hover:not(:disabled) { opacity: 0.85; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 
   &--github {
-    background: $tb-surface;
-    color: $tb-text-muted;
-    border-color: $tb-border-active;
-    padding: 5px 9px;
-    display: inline-flex;
     align-items: center;
+    background: $tb-surface;
+    border-color: $tb-border-active;
+    color: $tb-text-muted;
+    display: inline-flex;
+    padding: 5px 9px;
     text-decoration: none;
 
     &:hover { color: $tb-text; opacity: 1; }
@@ -800,10 +802,10 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
 // Embedded body: single-pane, tab-switched content (fills the shell body)────
 .cust-embedded-body {
-  flex: 1;
-  min-height: 0;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-height: 0;
   overflow: hidden;
 
   > * {
@@ -820,13 +822,14 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 // Layout────
 .cust-layout {
   display: grid;
-  grid-template-columns: 1fr;
   flex: 1;
+  grid-template-columns: 1fr;
   min-height: 0; // allow flex child to shrink below content height
 
   @media (min-width: 900px) {
     // Two-column default: editor | aside
     grid-template-columns: 1fr minmax(360px, 360px);
+
     .cust-preview-column { display: none; }
   }
 
@@ -835,6 +838,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
     @media (min-width: 1080px) {
       grid-template-columns: minmax(540px, 540px) 1fr minmax(360px, 360px);
       transition: grid-template-columns 0.2s ease;
+
       .cust-preview-column { display: flex; }
     }
   }
@@ -856,9 +860,9 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
 // Preview column────
 .cust-preview-column {
+  border-right: 1px solid $tb-border;
   display: none;
   flex-direction: column;
-  border-right: 1px solid $tb-border;
   overflow: hidden; // preview panel manages its own scroll
 }
 
@@ -878,115 +882,119 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
 // Narrow strip containing the toggle button (always visible regardless of open/closed)
 .editor-toggle-strip {
+  align-items: center;
+  background: $tb-surface;
+  border-right: 1px solid $tb-border;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 8px 0 0;
   flex-shrink: 0;
+  padding: 8px 0 0;
   width: 40px;
-  border-right: 1px solid $tb-border;
-  background: $tb-surface;
 }
 
 .editor-toggle-btn {
+  align-items: center;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 6px;
   border-radius: 4px;
   color: $tb-text-muted;
+  cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding: 6px;
   transition: transform 0.2s ease;
 
   svg { transition: transform 0.2s ease; }
+
   &:hover { background: $tb-surface-2; color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
 .editor-collapsed-label {
-  margin-top: 12px;
+  color: $tb-text-muted;
   font-size: 11px;
   font-weight: 600;
-  color: $tb-text-muted;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
-  writing-mode: vertical-rl;
+  margin-top: 12px;
+  text-transform: uppercase;
   transform: rotate(180deg);
   user-select: none;
+  writing-mode: vertical-rl;
 }
 
 // Scrollable content within the editor strip
 .cust-editor-content {
-  flex: 1;
-  min-width: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
   display: flex;
+  flex: 1;
   flex-direction: column;
+  min-width: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .cust-search-wrap {
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  padding: 12px 16px;
   position: sticky;
   top: 0;
   z-index: 10;
-  background: $tb-surface;
-  padding: 12px 16px;
-  border-bottom: 1px solid $tb-border;
 }
 
 .cust-search-icon {
-  position: absolute;
+  color: $tb-text-muted;
   left: 28px;
+  pointer-events: none;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: $tb-text-muted;
-  pointer-events: none;
 }
 
 .cust-search {
-  width: 100%;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 5px;
-  padding: 6px 28px 6px 28px;
+  box-sizing: border-box;
+  color: $tb-text;
   font-family: inherit;
   font-size: 13px;
-  color: $tb-text;
   outline: none;
-  box-sizing: border-box;
+  padding: 6px 28px 6px 28px;
+  width: 100%;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible { border-color: $tb-accent; }
   // Hide the browser-native clear button — we use our own
   &::-webkit-search-cancel-button { display: none; }
 }
 
 .cust-search-clear {
-  position: absolute;
-  right: 28px;
-  top: 50%;
-  transform: translateY(-50%);
+  align-items: center;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
   border-radius: 3px;
   color: $tb-text-muted;
   cursor: pointer;
-  padding: 2px 3px;
   display: flex;
-  align-items: center;
   line-height: 1;
+  padding: 2px 3px;
+  position: absolute;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
 
   &:hover { background: $tb-border; color: $tb-text; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
 }
 
 .cust-empty {
-  padding: 40px 20px;
-  text-align: center;
   color: $tb-text-muted;
   font-size: 14px;
+  padding: 40px 20px;
+  text-align: center;
 }
 
 // Embedded toolbar (share + inject settings)────
@@ -996,94 +1004,95 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 }
 
 .embed-toolbar-row {
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid $tb-border;
+  display: flex;
   gap: 8px;
   padding: 7px 12px;
-  border-bottom: 1px solid $tb-border;
 
   &:last-child { border-bottom: none; }
 }
 
 .embed-selector-label {
+  color: $tb-text-muted;
+  flex-shrink: 0;
   font-size: 11px;
   font-weight: 500;
-  color: $tb-text-muted;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .embed-selector-input {
-  flex: 1;
-  min-width: 80px;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 4px;
-  padding: 3px 7px;
+  color: $tb-text;
+  flex: 1;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text;
+  min-width: 80px;
   outline: none;
+  padding: 3px 7px;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible { border-color: $tb-accent; }
 }
 
 .embed-tip-wrap {
-  position: relative;
-  display: inline-flex;
   align-items: center;
+  display: inline-flex;
   flex-shrink: 0;
+  position: relative;
 }
 
 .embed-tip-icon {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
-  font-size: 10px;
-  font-weight: 700;
+  border-radius: 50%;
   color: $tb-text-muted;
   cursor: default;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 700;
+  height: 16px;
+  justify-content: center;
   user-select: none;
+  width: 16px;
 
   &:hover, &:focus-visible { background: $tb-border; color: $tb-text-dim; outline: none; }
 }
 
 .embed-tip-body {
-  display: none;
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  width: 240px;
   background: $tb-text;
-  color: $tb-bg;
   border-radius: 6px;
-  padding: 10px 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  color: $tb-bg;
+  display: none;
   font-size: 11px;
   line-height: 1.55;
-  z-index: 100;
+  padding: 10px 12px;
   pointer-events: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  width: 240px;
+  z-index: 100;
 
   &::after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    right: 4px;
     border: 5px solid transparent;
     border-bottom-color: $tb-text;
+    bottom: 100%;
+    content: '';
+    position: absolute;
+    right: 4px;
   }
 
   code {
+    color: rgba(255, 255, 255, 0.75);
     display: block;
     font-family: $tb-mono;
     font-size: 10px;
-    color: rgba(255, 255, 255, 0.75);
     margin-top: 2px;
   }
 }
@@ -1102,70 +1111,71 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 
 // Collapse bar
 .cust-collapse-bar {
-  padding: 5px 16px;
-  border-bottom: 1px solid $tb-border;
-  background: $tb-surface;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  display: flex;
   gap: 8px;
+  justify-content: space-between;
   min-height: 32px;
+  padding: 5px 16px;
 }
 
 .cust-theme-picker {
-  display: flex;
   align-items: center;
-  gap: 6px;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
   border-radius: 6px;
-  padding: 0 4px 0 10px;
+  display: flex;
   flex-shrink: 0;
+  gap: 6px;
+  padding: 0 4px 0 10px;
 
   &:focus-within { border-color: $tb-accent; box-shadow: 0 0 0 3px $tb-accent-subtle; }
 }
 
 .cust-theme-picker-label {
+  color: $tb-text-muted;
   font-size: 11px;
   font-weight: 500;
-  color: $tb-text-muted;
   white-space: nowrap;
 }
 
 .cust-theme-select {
   appearance: none;
   background: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 2px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
   border: none;
-  padding: 6px 20px 6px 2px;
+  color: $tb-text;
+  cursor: pointer;
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
-  color: $tb-text;
-  cursor: pointer;
   outline: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 2px center;
-  background-size: 12px;
+  padding: 6px 20px 6px 2px;
 }
 
 .cust-collapse-btn {
+  align-items: center;
   background: none;
   border: 1px solid $tb-border;
   border-radius: 10px;
-  font-size: 11px;
-  font-weight: 500;
   color: $tb-text-muted;
   cursor: pointer;
-  padding: 2px 8px;
-  font-family: inherit;
   display: flex;
-  align-items: center;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
   gap: 5px;
-  white-space: nowrap;
+  padding: 2px 8px;
   transition: background 0.12s, color 0.12s, border-color 0.12s;
+  white-space: nowrap;
 
-  &:hover { color: $tb-text-dim; border-color: $tb-border-active; }
+  &:hover { border-color: $tb-border-active; color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
@@ -1173,23 +1183,26 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   background: none;
   border: 1px solid $tb-border;
   border-radius: 10px;
-  font-size: 11px;
-  font-weight: 500;
   color: $tb-text-muted;
   cursor: pointer;
-  padding: 2px 8px;
   font-family: inherit;
-  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 500;
   margin-left: auto;
+  padding: 2px 8px;
   transition: background 0.12s, color 0.12s, border-color 0.12s;
+  white-space: nowrap;
 
-  &:disabled { opacity: 0.35; cursor: default; }
-  &:hover:not(:disabled):not(.cust-modified-btn--active) { color: $tb-text-dim; border-color: $tb-border-active; }
+  &:disabled { cursor: default; opacity: 0.35; }
+
+  &:hover:not(:disabled):not(.cust-modified-btn--active) { border-color: $tb-border-active; color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+
   &--active {
     background: $tb-accent-subtle;
-    color: $tb-accent;
     border-color: rgba(0, 68, 244, 0.25);
+    color: $tb-accent;
   }
 }
 
@@ -1197,16 +1210,17 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   background: none;
   border: 1px solid $tb-border;
   border-radius: 10px;
-  font-size: 11px;
-  font-weight: 500;
   color: #ef4444;
   cursor: pointer;
-  padding: 2px 8px;
   font-family: inherit;
-  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
   transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
 
   &:hover { background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.35); }
+
   &:focus-visible { outline: 2px solid #ef4444; outline-offset: 2px; }
 }
 

@@ -58,12 +58,23 @@ useHeaderHeight(headerEl)
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.sandbox-shell { height: 100vh; display: flex; flex-direction: column; overflow: hidden; background: $tb-bg; color: $tb-text; font-family: 'Inter', system-ui, sans-serif; }
-.ss-header { flex-shrink: 0; background: $tb-surface; border-bottom: 1px solid $tb-border; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-.ss-header-left { display: flex; align-items: center; gap: 12px; }
-.ss-header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.ss-back { font-size: 13px; color: $tb-accent; text-decoration: none; &:hover { text-decoration: underline; } }
+.sandbox-shell { background: $tb-bg; color: $tb-text; display: flex; flex-direction: column; font-family: 'Inter', system-ui, sans-serif; height: 100vh; overflow: hidden; }
+
+.ss-header { align-items: center; background: $tb-surface; border-bottom: 1px solid $tb-border; display: flex; flex-shrink: 0; flex-wrap: wrap; gap: 10px; justify-content: space-between; padding: 10px 20px; }
+
+.ss-header-left { align-items: center; display: flex; gap: 12px; }
+
+.ss-header-right { align-items: center; display: flex; flex-wrap: wrap; gap: 8px; }
+
+.ss-back { color: $tb-accent; font-size: 13px; text-decoration: none;
+
+  &:hover { text-decoration: underline; } }
+
 .ss-title { font-size: 16px; font-weight: 600; margin: 0; }
-.ss-close { background: $tb-surface; color: $tb-text-muted; border: 1px solid $tb-border-active; border-radius: 5px; padding: 5px 9px; cursor: pointer; &:hover { color: $tb-text; border-color: $tb-accent; } }
-.ss-body { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+.ss-close { background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 5px; color: $tb-text-muted; cursor: pointer; padding: 5px 9px;
+
+  &:hover { border-color: $tb-accent; color: $tb-text; } }
+
+.ss-body { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; }
 </style>

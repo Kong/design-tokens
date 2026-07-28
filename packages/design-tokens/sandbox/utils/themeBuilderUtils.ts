@@ -23,6 +23,9 @@ export interface AliasJson {
 /** Matches a one-level alias reference `{color.alias.family[.step]}`. */
 const ALIAS_REF = /^\{color\.alias\.([a-z_]+)(?:\.([0-9]+))?\}$/i
 
+/** Matches alias references embedded anywhere in a value string. */
+const EMBEDDED_ALIAS_REF = /\{color\.alias\.([a-z_]+)(?:\.([0-9]+))?\}/gi
+
 /**
  * Parses an alias reference string into its family and optional step.
  * @param raw - A candidate value such as `{color.alias.blue.50}`. Non-string input (e.g. `undefined`/`null` from a malformed token) yields null.
@@ -58,6 +61,33 @@ export function resolveValue(
     return leaf?.$value ?? raw
   }
   return (entry as AliasLeaf).$value ?? raw
+}
+
+/**
+ * Resolves all alias refs embedded anywhere in a value string, honoring
+ * `aliasOverrides` first. Refs that cannot be resolved (unknown family/step)
+ * are left as-is so the `{};` guard in `deriveEffectiveCss` can still drop them.
+ * For pure alias refs this produces the same result as `resolveValue`.
+ * @param raw - The raw token value, which may contain zero or more alias refs.
+ * @param aliasJson - The loaded alias palette.
+ * @param aliasOverrides - Layer 1 overrides keyed by `family.step` or `family`.
+ */
+export function resolveEmbeddedRefs(
+  raw: string,
+  aliasJson: AliasJson,
+  aliasOverrides: Record<string, string>,
+): string {
+  return raw.replace(EMBEDDED_ALIAS_REF, (match, family, step) => {
+    const key = step ? `${family}.${step}` : family
+    if (aliasOverrides[key]) return aliasOverrides[key]
+    const entry = aliasJson.color.alias[family]
+    if (!entry) return match
+    if (step) {
+      const leaf = (entry as Record<string, AliasLeaf>)[step]
+      return leaf?.$value ?? match
+    }
+    return (entry as AliasLeaf).$value ?? match
+  })
 }
 
 /** Parsed `*.theme.json` shape: token key → value record. */
@@ -106,7 +136,7 @@ export function deriveEffectiveCss(
   for (const [key, entry] of Object.entries(themeJson)) {
     const raw = tokenOverrides[key] ?? entry?.$value
     if (!raw) continue
-    const resolved = resolveValue(raw, aliasJson, aliasOverrides)
+    const resolved = resolveEmbeddedRefs(raw, aliasJson, aliasOverrides)
     if (!resolved) continue
     // A valid single CSS declaration value never contains these characters; their presence
     // means the (likely hand-edited) value is trying to break out of the declaration or

@@ -198,8 +198,8 @@ const breakpointBarWidth = computed(() => {
 @use '@/assets/tb-vars' as *;
 
 .token-preview {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   min-height: 64px;
   overflow: hidden;
@@ -209,21 +209,21 @@ const breakpointBarWidth = computed(() => {
 }
 
 .preview-color-swatch {
-  width: 100%;
   height: 100%;
   min-height: 100px;
+  width: 100%;
 }
 
 .preview-swatch-sm {
-  width: 52px;
-  height: 52px;
-  border-radius: 4px;
   border: 1px solid $tb-border;
+  border-radius: 4px;
+  height: 52px;
+  width: 52px;
 }
 
 .preview-center {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   padding: 12px;
   width: 100%;
@@ -231,21 +231,20 @@ const breakpointBarWidth = computed(() => {
 
 // Space / breakpoint bar
 .preview-bar-wrap {
-  width: 100%;
-  padding: 12px 16px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 12px 16px;
+  width: 100%;
 }
 
 .space-bar {
-  height: 5px;
   background: $tb-accent;
   border-radius: 3px;
+  height: 5px;
   min-width: 2px;
 
   &--auto {
-    width: 100% !important;
     background: repeating-linear-gradient(
       90deg,
       $tb-accent 0px,
@@ -253,113 +252,114 @@ const breakpointBarWidth = computed(() => {
       transparent 5px,
       transparent 10px
     );
+    width: 100% !important;
   }
 }
 
 .breakpoint-bar { background: color-mix(in srgb, $tb-accent 60%, transparent); }
 
 .bar-value {
+  color: $tb-text-dim;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text-dim;
 }
 
 // Shadow stage on a white background so the shadow is visible regardless of theme
 .preview-shadow-stage {
+  align-items: center;
   background: $tb-surface-2;
   border-radius: 6px;
-  padding: 16px;
-  margin: 12px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin: 12px;
+  padding: 16px;
 }
 
 .shadow-demo-box {
-  width: 52px;
-  height: 52px;
   background: white;
   border-radius: 4px;
+  height: 52px;
+  width: 52px;
 }
 
 .border-radius-demo {
-  width: 52px;
-  height: 52px;
   background: $tb-accent;
+  height: 52px;
   opacity: 0.7;
+  width: 52px;
 }
 
 .border-width-demo {
-  width: 100%;
   background: $tb-accent;
   border-radius: 1px;
   min-height: 1px;
+  width: 100%;
 }
 
 .preview-font {
-  padding: 12px 16px;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
-  width: 100%;
   min-height: 72px;
+  padding: 12px 16px;
+  width: 100%;
 }
 
 .font-sample {
   color: $tb-text;
   font-size: 32px;
   line-height: 1.2;
+  max-width: 100%;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 100%;
-  text-align: center;
 }
 
 .preview-letter-spacing {
-  padding: 12px 16px;
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
+  padding: 12px 16px;
   width: 100%;
 
   span {
+    color: $tb-text;
     font-size: 18px;
     font-weight: 500;
-    color: $tb-text;
+    max-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 100%;
   }
 }
 
 .preview-line-height {
-  padding: 10px 16px;
+  color: $tb-text;
   display: flex;
   flex-direction: column;
-  width: 100%;
   font-size: 12px;
-  color: $tb-text;
+  height: auto;
   // Allow the container to grow so multi-line previews aren't clipped
   min-height: 72px;
-  height: auto;
   overflow: visible;
+  padding: 10px 16px;
+  width: 100%;
 
   span { display: block; }
 }
 
 // Simple value badge for animation, unknown, and component non-color tokens
 .value-badge {
-  font-family: $tb-mono;
-  font-size: 11px;
-  color: $tb-text-dim;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
   border-radius: 4px;
-  padding: 4px 8px;
+  color: $tb-text-dim;
+  font-family: $tb-mono;
+  font-size: 11px;
   max-width: calc(100% - 24px);
   overflow: hidden;
+  padding: 4px 8px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

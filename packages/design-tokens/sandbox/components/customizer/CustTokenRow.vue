@@ -239,118 +239,121 @@ function handleReset() {
 @use '@/assets/tb-vars' as *;
 
 .cust-row {
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 10, 60, 0.04);
   display: grid;
+  gap: 8px;
   // Four columns: swatch | var name | text input | reset button
   grid-template-columns: 28px 1fr auto auto;
-  align-items: center;
-  gap: 8px;
   padding: 6px 16px;
-  border-bottom: 1px solid rgba(0, 10, 60, 0.04);
 
   &:last-child { border-bottom: none; }
+
   &--modified { background: $tb-accent-subtle; }
+
   &--invalid { background: rgba(239, 68, 68, 0.07); }
   // Non-color tokens skip the swatch column
   &--no-swatch { grid-template-columns: 1fr auto auto; }
 }
 
 .cust-swatch-wrap {
+  flex-shrink: 0;
+  height: 24px;
   position: relative;
   width: 24px;
-  height: 24px;
-  flex-shrink: 0;
 
   // Grow + shadow on hover signals the swatch is clickable (like the token cards)
   &:hover .cust-swatch:not(.cust-swatch--no-pick) {
-    transform: scale(1.15);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+    transform: scale(1.15);
   }
 }
 
 // Invisible <input type="color"> overlaid on the swatch to capture clicks
 .cust-color-input {
-  position: absolute;
+  border: none;
+  cursor: pointer;
+  height: 100%;
   inset: 0;
   opacity: 0;
-  cursor: pointer;
-  width: 100%;
-  height: 100%;
   padding: 0;
-  border: none;
+  position: absolute;
+  width: 100%;
 }
 
 .cust-swatch {
-  width: 22px;
-  height: 22px;
-  border-radius: 4px;
   border: 1px solid $tb-border-active;
+  border-radius: 4px;
+  height: 22px;
   pointer-events: none;
   transition: transform 0.12s, box-shadow 0.12s;
+  width: 22px;
 
   // Read-only color display (non-hex colors like rgba/hsl don't open a picker)
   &--no-pick { cursor: default; }
 
   // Checkerboard pattern signals a transparent value
   &--transparent {
-    background:
-      repeating-conic-gradient(#bbb 0% 25%, white 0% 50%)
+    background: repeating-conic-gradient(#bbb 0% 25%, white 0% 50%)
       0 0 / 8px 8px;
   }
 }
 
 .cust-var-name {
+  color: $tb-text-dim;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text-dim;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  min-width: 0;
 }
 
 .cust-value-input {
-  font-family: $tb-mono;
-  font-size: 11px;
-  color: $tb-text;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 4px;
+  box-sizing: border-box;
+  color: $tb-text;
+  font-family: $tb-mono;
+  font-size: 11px;
   padding: 3px 7px;
   width: 96px;
-  box-sizing: border-box;
 
   &:focus-visible { border-color: $tb-accent; outline: none; }
+
   &--invalid { border-color: #e53e3e; padding-right: 24px; }
 
   @media (max-width: 640px) { width: 80px; }
 }
 
 .cust-value-wrap {
-  position: relative;
-  display: inline-flex;
   align-items: center;
+  display: inline-flex;
+  position: relative;
 }
 
 .cust-error-icon {
-  position: absolute;
-  right: 6px;
-  display: inline-flex;
   align-items: center;
   color: #e53e3e;
   cursor: default;
+  display: inline-flex;
+  position: absolute;
+  right: 6px;
 }
 
 .cust-reset-btn {
   background: none;
   border: none;
+  border-radius: 3px;
   color: $tb-text-muted;
   cursor: pointer;
   font-size: 11px;
-  padding: 2px 4px;
-  border-radius: 3px;
   line-height: 1;
+  padding: 2px 4px;
 
-  &:hover { color: $tb-text; background: $tb-surface-2; }
+  &:hover { background: $tb-surface-2; color: $tb-text; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 </style>

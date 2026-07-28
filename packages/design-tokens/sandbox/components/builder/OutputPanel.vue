@@ -83,23 +83,33 @@ async function copyCss() {
 @use '@/assets/tb-vars' as *;
 
 .output-panel { display: flex; flex-direction: column; height: 100%; min-height: 0; padding: 16px; }
-.op-heading { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: $tb-text-muted; margin: 0 0 12px; }
+
+.op-heading { align-items: center; color: $tb-text-muted; display: flex; font-size: 13px; font-weight: 600; justify-content: space-between; letter-spacing: 0.05em; margin: 0 0 12px; text-transform: uppercase; }
+
 .op-heading--css { margin-top: 20px; }
-.op-btn { display: block; width: 100%; margin-bottom: 6px; background: $tb-accent; color: #fff; border: none; border-radius: 6px; padding: 9px; font-size: 13px; font-weight: 600; cursor: pointer; &:hover { opacity: 0.9; } }
-.op-note { margin: 0 0 12px; font-size: 12px; color: $tb-text-muted; }
-.op-copy-btn { text-transform: none; letter-spacing: normal; background: $tb-surface-2; color: $tb-text-dim; border: 1px solid $tb-border; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 600; cursor: pointer; &:hover { opacity: 0.85; } }
+
+.op-btn { background: $tb-accent; border: none; border-radius: 6px; color: #fff; cursor: pointer; display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; padding: 9px; width: 100%;
+
+  &:hover { opacity: 0.9; } }
+
+.op-note { color: $tb-text-muted; font-size: 12px; margin: 0 0 12px; }
+
+.op-copy-btn { background: $tb-surface-2; border: 1px solid $tb-border; border-radius: 4px; color: $tb-text-dim; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: normal; padding: 3px 8px; text-transform: none;
+
+  &:hover { opacity: 0.85; } }
+
 .op-code {
-  margin: 0;
+  background: #1e1e2e;
+  border-radius: 6px;
+  color: #cdd6f4;
+  flex: 1;
   font-family: $tb-mono;
   font-size: 12px;
   line-height: 1.5;
-  color: #cdd6f4;
-  background: #1e1e2e;
-  border-radius: 6px;
-  padding: 10px;
-  flex: 1;
+  margin: 0;
   min-height: 0;
   overflow: auto;
+  padding: 10px;
   white-space: pre-wrap;
   word-break: break-all;
 }

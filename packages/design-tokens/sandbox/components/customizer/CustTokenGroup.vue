@@ -98,30 +98,31 @@ const sections = computed(() =>
 .cust-group { border-bottom: 1px solid $tb-border; }
 
 .cust-group-header {
-  width: 100%;
+  align-items: center;
   background: $tb-bg;
   border: none;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  color: $tb-text-muted;
   cursor: pointer;
+  display: flex;
   font-family: inherit;
   font-size: 12px;
   font-weight: 600;
-  color: $tb-text-muted;
+  gap: 8px;
+  letter-spacing: 0.05em;
+  padding: 8px 16px;
   text-align: left;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  width: 100%;
 
   &:hover { background: #eaecf1; color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
 .group-chevron {
+  color: $tb-text-muted;
   flex-shrink: 0;
   transition: transform 0.15s;
-  color: $tb-text-muted;
 
   &--open { transform: rotate(90deg); }
 }
@@ -131,14 +132,14 @@ const sections = computed(() =>
 .group-count {
   background: $tb-surface-2;
   border-radius: 8px;
-  padding: 1px 6px;
   font-weight: 500;
+  padding: 1px 6px;
 }
 
 .group-modified-badge {
   background: $tb-accent-subtle;
-  color: $tb-accent;
   border-radius: 8px;
+  color: $tb-accent;
   padding: 1px 6px;
 }
 
@@ -148,13 +149,13 @@ const sections = computed(() =>
 .cust-subsection { border-top: 1px solid $tb-border; }
 
 .cust-subsection-header {
-  padding: 5px 16px 4px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: $tb-text-muted;
   background: $tb-surface-2;
   border-bottom: 1px solid $tb-border;
+  color: $tb-text-muted;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 5px 16px 4px;
+  text-transform: uppercase;
 }
 </style>
