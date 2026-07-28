@@ -1,7 +1,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 import { ALL_ENTRIES } from './useTokens'
-import { getHashParam } from '../lib/hashRouteQuery'
+import { getHashParam } from '../utils/hashRouteQuery'
 
 /**
  * One entry in the breakpoint preset list.

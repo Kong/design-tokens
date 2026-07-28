@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest'
-import { resolveValue, parseAliasRef } from './themeBuilderUtils.ts'
-import { deriveEffectiveCss } from './themeBuilderUtils.ts'
-import { exportThemeJson, exportAliasJson, flattenAliases, isColorToken, isValidThemeJson } from './themeBuilderUtils.ts'
+import { resolveValue, parseAliasRef } from './themeBuilderUtils'
+import { deriveEffectiveCss } from './themeBuilderUtils'
+import { exportThemeJson, exportAliasJson, flattenAliases, isColorToken, isValidThemeJson } from './themeBuilderUtils'
+import type { ThemeJson, AliasJson } from './themeBuilderUtils'
 
 const aliasJson = {
   color: {
@@ -74,7 +75,10 @@ describe('deriveEffectiveCss', () => {
     expect(deriveEffectiveCss({ 'kui-empty-slot': { $value: '' } }, aliasJson, {}, {})).toBe('')
   })
   it('does not throw and omits a token whose $value is undefined', () => {
-    const malformed = { ...themeJson, 'kui-malformed': {} }
+    // Deliberately malformed: a corrupted theme file can have an entry missing `$value`
+    // entirely, bypassing the `isValidThemeJson` guard upstream (e.g. via a corrupted
+    // localStorage restore) — cast to the declared type to exercise that defensive path.
+    const malformed = { ...themeJson, 'kui-malformed': {} } as unknown as ThemeJson
     let css
     expect(() => {
       css = deriveEffectiveCss(malformed, aliasJson, {}, {})
@@ -126,11 +130,12 @@ describe('exportThemeJson', () => {
     // Regression: a hand-edited or corrupted theme file can have `"kui-space-40": "16px"`
     // instead of `{ "$value": "16px" }`. Assigning `.$value` onto a string primitive throws
     // in strict-mode ESM — exportThemeJson must coerce rather than crash.
-    const malformed = { 'kui-space-40': '16px' }
-    let out
+    const malformed = { 'kui-space-40': '16px' } as unknown as ThemeJson
+    let out: Record<string, { $value: string }> | undefined
     expect(() => {
       out = JSON.parse(exportThemeJson(malformed, { 'kui-space-40': '24px' }))
     }).not.toThrow()
+    if (!out) throw new Error('Expected exportThemeJson output to parse successfully')
     expect(out['kui-space-40'].$value).toBe('24px')
   })
 })
@@ -175,7 +180,7 @@ describe('exportAliasJson', () => {
   it('does not throw when a family or step entry is malformed (not a { $value } record)', () => {
     const malformed = {
       color: { alias: { blue: '#3094FF', gray: { '10': 'not-an-object' } } },
-    }
+    } as unknown as AliasJson
     expect(() => exportAliasJson(malformed, { blue: '#00BFFF', 'gray.10': '#eee' })).not.toThrow()
   })
 })

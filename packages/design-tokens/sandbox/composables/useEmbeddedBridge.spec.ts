@@ -8,9 +8,15 @@ import { useEmbeddedBridge } from './useEmbeddedBridge'
  * `useEmbeddedBridge` calls `onMounted`, so it must run inside a real component's setup —
  * a bare composable-under-test wrapper mounted via Vue Test Utils.
  */
-function mountBridge(options) {
+interface MountBridgeOptions {
+  isEmbedded: boolean
+  initialCss?: string
+  buildSrc?: () => string | Promise<string>
+}
+
+function mountBridge(options: MountBridgeOptions) {
   const css = ref(options.initialCss ?? '')
-  let bridge
+  let bridge: ReturnType<typeof useEmbeddedBridge> | undefined
   const wrapper = mount(defineComponent({
     setup() {
       bridge = useEmbeddedBridge({ isEmbedded: options.isEmbedded, css, buildSrc: options.buildSrc })
@@ -18,12 +24,13 @@ function mountBridge(options) {
     },
   }))
   return { wrapper, css, get bridge() {
-    return bridge
+    return bridge!
   } }
 }
 
 describe('useEmbeddedBridge', () => {
-  let postMessageSpy
+  let postMessageSpy: ReturnType<typeof vi.spyOn>
+
 
   beforeEach(() => {
     postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
@@ -100,7 +107,7 @@ describe('useEmbeddedBridge', () => {
   })
 
   it('drops a stale post that resolves after a newer post has already superseded it', async () => {
-    let resolveStale
+    let resolveStale: ((value: string) => void) | undefined
     const buildSrc = vi.fn()
       // The automatic on-mount post resolves immediately — not under test here.
       .mockResolvedValueOnce('mount-src')
@@ -122,6 +129,7 @@ describe('useEmbeddedBridge', () => {
       '*',
     )
 
+    if (!resolveStale) throw new Error('Expected buildSrc to have captured resolveStale')
     resolveStale('stale-src')
     await stale
 

@@ -71,7 +71,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
-import { normalizeColor, toPickerHex, toRgbString } from '@/lib/colorUtils'
+import { normalizeColor, toPickerHex, toRgbString } from '@/utils/colorUtils'
 
 const props = defineProps<{
   /** Current color value: canonical hex (#RRGGBB / #RRGGBBAA) or `transparent`. */

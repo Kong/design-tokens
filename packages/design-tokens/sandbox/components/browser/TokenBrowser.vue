@@ -342,7 +342,7 @@ import { useTokens, categoryLabel, buildSections, THEMES, DEFAULT_THEME_ID, isTh
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
-import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
+import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
 import TokenCard from './TokenCard.vue'
 import BookmarkletModal from './BookmarkletModal.vue'
 import pkg from '../../../package.json'

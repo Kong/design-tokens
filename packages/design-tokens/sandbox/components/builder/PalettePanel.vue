@@ -74,7 +74,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { fuzzyMatchTokens } from '@/composables/useTokens'
-import type { AliasFlatEntry } from '@/lib/themeBuilderUtils'
+import type { AliasFlatEntry } from '@/utils/themeBuilderUtils'
 import ColorEditor from './ColorEditor.vue'
 
 const props = defineProps<{

@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import FileLoader from './FileLoader.vue'
 
-function makeFile(name, text) {
+function makeFile(name: string, text: string) {
   const file = new File([text], name, { type: 'application/json' })
   return file
 }

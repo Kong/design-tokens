@@ -265,9 +265,9 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
-import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
-import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
-import { applySelector } from '@/lib/cssUtils'
+import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
+import { getHashParam, setHashParams } from '@/utils/hashRouteQuery'
+import { applySelector } from '@/utils/cssUtils'
 
 const props = defineProps<{
   /** Complete `:root { … }` block with all tokens (overrides applied). */

@@ -2,6 +2,13 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { useThemeBuilder } from './useThemeBuilder'
 
+/** Finds a token by key, throwing if it isn't present — narrows away `undefined` for tests. */
+function findToken<T extends { key: string }>(tokens: T[], key: string): T {
+  const token = tokens.find((t) => t.key === key)
+  if (!token) throw new Error(`Expected to find token with key "${key}"`)
+  return token
+}
+
 const VALID_ALIAS = JSON.stringify({
   color: {
     alias: {
@@ -118,7 +125,7 @@ describe('useThemeBuilder', () => {
 
     it('resolves an alias-ref token to the alias palette default', () => {
       const { builderTokens } = useThemeBuilder()
-      const token = builderTokens.value.find((t) => t.key === 'kui-color-background-primary')
+      const token = findToken(builderTokens.value, 'kui-color-background-primary')
       expect(token.source).toBe('inherited')
       expect(token.derivedValue).toBe('#3B82F6')
     })
@@ -126,7 +133,7 @@ describe('useThemeBuilder', () => {
     it('an alias override (Layer 1) cascades into every token referencing that alias', () => {
       const builder = useThemeBuilder()
       builder.setAliasOverride('blue.30', '#00FF00')
-      const token = builder.builderTokens.value.find((t) => t.key === 'kui-color-background-primary')
+      const token = findToken(builder.builderTokens.value, 'kui-color-background-primary')
       expect(token.derivedValue).toBe('#00FF00')
       // The token itself is not "overridden" — only the alias it points to changed.
       expect(token.source).toBe('inherited')
@@ -136,7 +143,7 @@ describe('useThemeBuilder', () => {
       const builder = useThemeBuilder()
       builder.setAliasOverride('blue.30', '#00FF00')
       builder.setTokenOverride('kui-color-background-primary', '{color.alias.gray.10}')
-      const token = builder.builderTokens.value.find((t) => t.key === 'kui-color-background-primary')
+      const token = findToken(builder.builderTokens.value, 'kui-color-background-primary')
       expect(token.source).toBe('overridden')
       expect(token.derivedValue).toBe('#F3F4F6')
 
@@ -150,7 +157,7 @@ describe('useThemeBuilder', () => {
       builder.setAliasOverride('blue.30', '#00FF00')
       builder.setTokenOverride('kui-color-background-primary', '{color.alias.gray.10}')
       builder.resetTokenOverride('kui-color-background-primary')
-      const token = builder.builderTokens.value.find((t) => t.key === 'kui-color-background-primary')
+      const token = findToken(builder.builderTokens.value, 'kui-color-background-primary')
       expect(token.source).toBe('inherited')
       expect(token.derivedValue).toBe('#00FF00')
     })
@@ -165,7 +172,7 @@ describe('useThemeBuilder', () => {
 
     it('a token with no default value is reported as "empty" until overridden', () => {
       const { builderTokens } = useThemeBuilder()
-      const token = builderTokens.value.find((t) => t.key === 'kui-button-border-radius')
+      const token = findToken(builderTokens.value, 'kui-button-border-radius')
       expect(token.source).toBe('empty')
       expect(token.derivedValue).toBe('')
     })

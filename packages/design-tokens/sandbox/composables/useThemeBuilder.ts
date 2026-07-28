@@ -8,10 +8,10 @@ import {
   isColorToken,
   isValidThemeJson,
   resolveValue,
-} from '../lib/themeBuilderUtils'
-import type { AliasFlatEntry, AliasJson, BuilderToken, ThemeJson } from '../lib/themeBuilderUtils'
+} from '../utils/themeBuilderUtils'
+import type { AliasFlatEntry, AliasJson, BuilderToken, ThemeJson } from '../utils/themeBuilderUtils'
 
-export type { BuilderToken } from '../lib/themeBuilderUtils'
+export type { BuilderToken } from '../utils/themeBuilderUtils'
 
 /** Module-scoped state so it survives route re-mounts within a session. */
 const themeJson = ref<ThemeJson | null>(null)

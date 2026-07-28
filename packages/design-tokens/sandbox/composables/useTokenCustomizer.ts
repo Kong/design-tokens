@@ -1,7 +1,7 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { ALL_ENTRIES, categoryLabel, DEFAULT_THEME_ID, fuzzyMatchTokens, isThemeId, normalize, resolveThemedEntries } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
-import { getHashParam, setHashParams } from '../lib/hashRouteQuery'
+import { getHashParam, setHashParams } from '../utils/hashRouteQuery'
 
 /**
  * Module-level reactive map of CSS variable overrides.

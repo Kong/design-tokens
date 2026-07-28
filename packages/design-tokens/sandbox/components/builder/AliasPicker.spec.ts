@@ -59,7 +59,7 @@ describe('AliasPicker', () => {
 
   it('emits select with a family-only alias ref for a stepless (singleton) entry', async () => {
     const wrapper = mount(AliasPicker, { props: { aliasFlat: ALIAS_FLAT } })
-    const blackItem = wrapper.findAll('.ap-item').find((i) => i.find('.ap-label').text() === 'black')
+    const blackItem = wrapper.findAll('.ap-item').find((i) => i.find('.ap-label').text() === 'black')!
     await blackItem.trigger('click')
     expect(wrapper.emitted('select')).toEqual([['{color.alias.black}']])
   })

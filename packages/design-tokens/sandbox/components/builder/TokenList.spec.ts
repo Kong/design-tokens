@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
 import TokenList from './TokenList.vue'
 import TokenRow from './TokenRow.vue'
-import type { BuilderToken } from '../../lib/themeBuilderUtils'
+import type { BuilderToken } from '../../utils/themeBuilderUtils'
 
 function makeToken(overrides: Partial<BuilderToken> = {}): BuilderToken {
   return {

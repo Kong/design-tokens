@@ -3,13 +3,14 @@ import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import TokenRow from './TokenRow.vue'
 import AliasPicker from './AliasPicker.vue'
+import type { BuilderToken } from '../../utils/themeBuilderUtils'
 
 const ALIAS_FLAT = [
   { key: 'blue.30', family: 'blue', step: '30', baseHex: '#3B82F6' },
   { key: 'gray.10', family: 'gray', step: '10', baseHex: '#F3F4F6' },
 ]
 
-function makeToken(overrides = {}) {
+function makeToken(overrides: Partial<BuilderToken> = {}): BuilderToken {
   return {
     key: 'kui-color-background-primary',
     cssVar: '--kui-color-background-primary',
@@ -131,13 +132,13 @@ describe('TokenRow', () => {
   })
 
   describe('non-color tokens', () => {
-    function makeTextToken(overrides = {}) {
+    function makeTextToken(overrides: Partial<BuilderToken> = {}) {
       return makeToken({ key: 'kui-space-40', cssVar: '--kui-space-40', isColor: false, rawValue: '16px', ...overrides })
     }
 
     it('renders a text input seeded with the raw value', () => {
       const wrapper = mount(TokenRow, { props: { token: makeTextToken(), aliasFlat: [] } })
-      expect(wrapper.find('.tr-text').element.value).toBe('16px')
+      expect(wrapper.find<HTMLInputElement>('.tr-text').element.value).toBe('16px')
     })
 
     it('shows an "unset" placeholder for empty-source tokens', () => {

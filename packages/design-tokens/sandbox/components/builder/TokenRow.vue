@@ -64,8 +64,8 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, onUnmounted, ref } from 'vue'
 import AliasPicker from './AliasPicker.vue'
-import { parseAliasRef } from '@/lib/themeBuilderUtils'
-import type { AliasFlatEntry, BuilderToken } from '@/lib/themeBuilderUtils'
+import { parseAliasRef } from '@/utils/themeBuilderUtils'
+import type { AliasFlatEntry, BuilderToken } from '@/utils/themeBuilderUtils'
 
 const props = defineProps<{
   /** The token this row edits. */

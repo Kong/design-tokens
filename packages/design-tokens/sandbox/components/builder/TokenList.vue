@@ -38,7 +38,7 @@
 import { computed, ref } from 'vue'
 import TokenRow from './TokenRow.vue'
 import { fuzzyMatchTokens } from '@/composables/useTokens'
-import type { AliasFlatEntry, BuilderToken } from '@/lib/themeBuilderUtils'
+import type { AliasFlatEntry, BuilderToken } from '@/utils/themeBuilderUtils'
 
 const props = defineProps<{
   /** Builder tokens to list, in their current (overridden or default) state. */

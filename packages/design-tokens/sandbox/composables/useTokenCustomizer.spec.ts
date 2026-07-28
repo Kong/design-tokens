@@ -12,7 +12,7 @@ import {
 } from './useTokenCustomizer'
 import { ALL_ENTRIES, DEFAULT_THEME_ID } from './useTokens'
 import type { TokenEntry } from './useTokens'
-import { getHashParam } from '../lib/hashRouteQuery'
+import { getHashParam } from '../utils/hashRouteQuery'
 
 type Customizer = ReturnType<typeof useTokenCustomizer>
 

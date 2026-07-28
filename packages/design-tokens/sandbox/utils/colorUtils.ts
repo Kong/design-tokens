@@ -13,9 +13,10 @@ function toHex2(n: number): string {
  * Accepts `#abc`, `#aabbcc`, `#aabbccdd`, the same without a leading `#`,
  * `rgb(r,g,b)`, `rgba(r,g,b,a)`, and bare `r,g,b` / `r,g,b,a`. Passes `transparent` through.
  * Returns `#RRGGBB` (or `#RRGGBBAA` when alpha < 1) uppercase, or null if unparseable.
- * @param input - The raw color string (any case; surrounding whitespace ignored).
+ * @param input - The raw color string (any case; surrounding whitespace ignored). Accepts
+ * `null`/`undefined` defensively (e.g. from optional token values) and returns `null` for them.
  */
-export function normalizeColor(input: string): string | null {
+export function normalizeColor(input: string | null | undefined): string | null {
   if (typeof input !== 'string') return null
   const s = input.trim()
   if (!s) return null

@@ -2,7 +2,26 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { BOOKMARKLET_TEMPLATE } from './preview-bookmarklet'
 
+/**
+ * The bookmarklet script sets a global guard flag namespaced by storage namespace
+ * (e.g. `__kongListener_customizer`) to avoid registering its `message` listener twice.
+ * Declared here (test-only) since the flag is set dynamically via bracket notation
+ * inside the plain-JS bookmarklet template, not by any typed module.
+ */
+declare global {
+  interface Window {
+    __kongListener_customizer?: boolean
+  }
+}
+
 const FRAME_SRC = 'https://sandbox.example.com/#/customize?embedded=1'
+
+/** Gets an element by id, throwing if it isn't present — narrows away `null` for tests. */
+function getElement<T extends HTMLElement = HTMLElement>(id: string): T {
+  const el = document.getElementById(id)
+  if (!el) throw new Error(`Expected to find element with id "${id}"`)
+  return el as unknown as T
+}
 
 /**
  * Runs the bookmarklet IIFE in the current jsdom `window`/`document`, namespaced as the
@@ -30,7 +49,7 @@ describe('preview-bookmarklet (executed script)', () => {
 
   it('injects the override style tag and the sidebar iframe pointed at the resolved URL', () => {
     runBookmarklet()
-    const frame = document.getElementById('kong-customizer-sidebar')
+    const frame = getElement<HTMLIFrameElement>('kong-customizer-sidebar')
     expect(frame).toBeTruthy()
     expect(frame.tagName).toBe('IFRAME')
     expect(frame.src.startsWith(FRAME_SRC)).toBe(true)
@@ -39,14 +58,14 @@ describe('preview-bookmarklet (executed script)', () => {
 
   it('applies CSS from a kui-token-override message whose origin matches the iframe src', () => {
     runBookmarklet()
-    const frameOrigin = new URL(document.getElementById('kong-customizer-sidebar').src).origin
+    const frameOrigin = new URL(getElement<HTMLIFrameElement>('kong-customizer-sidebar').src).origin
 
     window.dispatchEvent(new MessageEvent('message', {
       origin: frameOrigin,
       data: { type: 'kui-token-override', css: ':root { --x: 1px; }', src: 'https://sandbox.example.com/state' },
     }))
 
-    expect(document.getElementById('kong-design-token-overrides').textContent).toBe(':root { --x: 1px; }')
+    expect(getElement('kong-design-token-overrides').textContent).toBe(':root { --x: 1px; }')
   })
 
   it('ignores a kui-token-override message from an origin other than the sidebar iframe', () => {
@@ -57,7 +76,7 @@ describe('preview-bookmarklet (executed script)', () => {
       data: { type: 'kui-token-override', css: ':root { --x: 999px; }' },
     }))
 
-    expect(document.getElementById('kong-design-token-overrides').textContent).toBe('')
+    expect(getElement('kong-design-token-overrides').textContent).toBe('')
   })
 
   it('ignores a kui-close message from an untrusted origin (does not remove the sidebar)', () => {
@@ -73,7 +92,7 @@ describe('preview-bookmarklet (executed script)', () => {
 
   it('removes the sidebar on a kui-close message from the trusted iframe origin', () => {
     runBookmarklet()
-    const frameOrigin = new URL(document.getElementById('kong-customizer-sidebar').src).origin
+    const frameOrigin = new URL(getElement<HTMLIFrameElement>('kong-customizer-sidebar').src).origin
 
     window.dispatchEvent(new MessageEvent('message', {
       origin: frameOrigin,
@@ -87,8 +106,8 @@ describe('preview-bookmarklet (executed script)', () => {
     runBookmarklet()
     runBookmarklet()
 
-    const frames = document.querySelectorAll('#kong-customizer-sidebar')
+    const frames = document.querySelectorAll<HTMLElement>('#kong-customizer-sidebar')
     expect(frames).toHaveLength(1)
-    expect(frames[0].style.display).toBe('none')
+    expect(frames[0]?.style.display).toBe('none')
   })
 })

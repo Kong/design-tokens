@@ -116,7 +116,11 @@ describe('ALL_ENTRIES', () => {
       .filter((k) => /_(\d+)$/.test(k))
       .filter((k) => k.startsWith('KUI_FONT_SIZE_'))
     if (scaleKeys.length > 2) {
-      const numbers = scaleKeys.map((k) => Number(k.match(/_(\d+)$/)[1]))
+      const numbers = scaleKeys.map((k) => {
+        const match = k.match(/_(\d+)$/)
+        if (!match) throw new Error(`Expected key "${k}" to match the scale-number pattern`)
+        return Number(match[1])
+      })
       const sorted = [...numbers].sort((a, b) => a - b)
       expect(numbers).toEqual(sorted)
     }
@@ -138,7 +142,7 @@ describe('buildSections', () => {
       { key: 'KUI_COLOR_BORDER', cssVar: '--kui-color-border', value: '#000', category: 'color' },
     ]
     const sections = buildSections(entries)
-    expect(sections).not.toBeNull()
+    if (!sections) throw new Error('Expected buildSections to return sections')
     const names = sections.map((s) => s.section).sort()
     expect(names).toEqual(['background', 'border'])
   })
@@ -149,6 +153,7 @@ describe('buildSections', () => {
       { key: 'KUI_ALERT_COLOR_BACKGROUND', cssVar: '--kui-alert-color-background', value: '', category: 'components', subcategory: 'alert' },
     ]
     const sections = buildSections(entries)
+    if (!sections) throw new Error('Expected buildSections to return sections')
     const names = sections.map((s) => s.section).sort()
     expect(names).toEqual(['alert', 'button'])
   })
@@ -181,9 +186,10 @@ describe('useTokens composable', () => {
   it('globalSearchResults groups matches by category and excludes non-matching categories', () => {
     const { search, globalSearchResults } = useTokens()
     search.value = 'button'
-    expect(globalSearchResults.value).not.toBeNull()
-    expect(globalSearchResults.value.length).toBeGreaterThan(0)
-    for (const group of globalSearchResults.value) {
+    const results = globalSearchResults.value
+    if (!results) throw new Error('Expected globalSearchResults to be populated')
+    expect(results.length).toBeGreaterThan(0)
+    for (const group of results) {
       for (const entry of group.entries) {
         expect(fuzzyMatchTokens('button', entry.key, entry.cssVar, entry.value)).toBe(true)
       }

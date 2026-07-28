@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { AliasFlatEntry } from '@/lib/themeBuilderUtils'
+import type { AliasFlatEntry } from '@/utils/themeBuilderUtils'
 
 const props = defineProps<{
   /** Flattened alias entries to render as swatches. */

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { normalizeColor, toRgbString, isValidColor, toPickerHex } from './colorUtils.ts'
+import { normalizeColor, toRgbString, isValidColor, toPickerHex } from './colorUtils'
 
 describe('normalizeColor', () => {
   it('expands a 3-digit hex', () => {

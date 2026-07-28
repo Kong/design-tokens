@@ -79,7 +79,7 @@
 import { ref } from 'vue'
 import { useThemeBuilder } from '@/composables/useThemeBuilder'
 import { useEmbeddedBridge } from '@/composables/useEmbeddedBridge'
-import { getHashParam } from '@/lib/hashRouteQuery'
+import { getHashParam } from '@/utils/hashRouteQuery'
 import SandboxShell from '@/components/shared/SandboxShell.vue'
 import SandboxTabs from '@/components/shared/SandboxTabs.vue'
 import FileLoader from './FileLoader.vue'

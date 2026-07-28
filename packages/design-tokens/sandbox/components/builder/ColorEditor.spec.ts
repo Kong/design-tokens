@@ -38,22 +38,22 @@ describe('ColorEditor', () => {
 
   it('switches the draft text between hex and rgb formats without changing the underlying value', async () => {
     const wrapper = mount(ColorEditor, { props: { modelValue: '#3B82F6' } })
-    expect(wrapper.find('.ce-text').element.value).toBe('#3B82F6')
+    expect(wrapper.find<HTMLInputElement>('.ce-text').element.value).toBe('#3B82F6')
 
-    const rgbBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'RGB')
+    const rgbBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'RGB')!
     await rgbBtn.trigger('click')
-    expect(wrapper.find('.ce-text').element.value).toBe('rgb(59, 130, 246)')
+    expect(wrapper.find<HTMLInputElement>('.ce-text').element.value).toBe('rgb(59, 130, 246)')
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
 
-    const hexBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'HEX')
+    const hexBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'HEX')!
     await hexBtn.trigger('click')
-    expect(wrapper.find('.ce-text').element.value).toBe('#3B82F6')
+    expect(wrapper.find<HTMLInputElement>('.ce-text').element.value).toBe('#3B82F6')
   })
 
   it('marks the active format button with the active class and aria-selected', async () => {
     const wrapper = mount(ColorEditor, { props: { modelValue: '#3B82F6' } })
-    const hexBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'HEX')
-    const rgbBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'RGB')
+    const hexBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'HEX')!
+    const rgbBtn = wrapper.findAll('.ce-format-btn').find((b) => b.text() === 'RGB')!
     expect(hexBtn.classes()).toContain('ce-format-btn--active')
     expect(hexBtn.attributes('aria-selected')).toBe('true')
     expect(rgbBtn.classes()).not.toContain('ce-format-btn--active')
@@ -63,7 +63,7 @@ describe('ColorEditor', () => {
     const wrapper = mount(ColorEditor, { props: { modelValue: '#FF0000' } })
     await wrapper.find('.ce-text').setValue('#00ff00')
     await wrapper.find('.ce-text').trigger('keydown.enter')
-    expect(wrapper.emitted('update:modelValue').at(-1)).toEqual(['#00FF00'])
+    expect(wrapper.emitted('update:modelValue')!.at(-1)).toEqual(['#00FF00'])
     expect(wrapper.emitted('close')).toHaveLength(1)
   })
 

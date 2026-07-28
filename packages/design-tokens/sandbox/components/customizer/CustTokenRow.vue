@@ -86,7 +86,7 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch } from 'vue'
-import { normalizeColor } from '@/lib/colorUtils'
+import { normalizeColor } from '@/utils/colorUtils'
 import type { TokenEntry } from '@/composables/useTokens'
 
 const props = defineProps<{
