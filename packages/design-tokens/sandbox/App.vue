@@ -1,7 +1,10 @@
 <template>
-  <router-view v-slot="{ Component }">
-    <keep-alive>
-      <component :is="Component" />
+  <router-view v-slot="{ Component, route }">
+    <keep-alive :max="10">
+      <component
+        :is="Component"
+        :key="`${route.path}?embedded=${route.query.embedded ?? ''}&host=${route.query.host ?? ''}`"
+      />
     </keep-alive>
   </router-view>
 </template>

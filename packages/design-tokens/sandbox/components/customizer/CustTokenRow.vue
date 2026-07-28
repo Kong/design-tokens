@@ -86,6 +86,7 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch } from 'vue'
+import { normalizeColor } from '@/utils/colorUtils'
 import type { TokenEntry } from '@/composables/useTokens'
 
 const props = defineProps<{
@@ -116,11 +117,13 @@ const localValue = ref(toUpperHex(props.overriddenValue ?? props.entry.value))
 const validatedValue = ref(localValue.value)
 
 /**
- * Syncs the local display value when the override is cleared externally,
- * e.g. when "Reset all" is triggered from the header.
+ * Syncs the local display value when the override is cleared externally
+ * (e.g. "Reset all") or when the token's own default changes — e.g. switching the
+ * customizer's starting theme, which changes `entry.value` while `overriddenValue`
+ * stays undefined for any token that isn't explicitly overridden.
  */
-watch(() => props.overriddenValue, (val) => {
-  const resolved = toUpperHex(val ?? props.entry.value)
+watch(() => [props.overriddenValue, props.entry.value] as const, ([val, entryValue]) => {
+  const resolved = toUpperHex(val ?? entryValue)
   localValue.value = resolved
   validatedValue.value = resolved
 })
@@ -189,9 +192,21 @@ function handleInput(value: string) {
   localValue.value = value
   clearTimeout(debounceTimer)
   debounceTimer = setTimeout(() => {
-    validatedValue.value = value
     const v = value.trim()
-    const emitValue = isColorEntry.value && v && !CSS.supports('color', v) ? '' : value
+    let emitValue = value
+    if (isColorEntry.value && v) {
+      const norm = normalizeColor(v)
+      if (norm) {
+        // Recognized hex/rgb color → store canonical hex (designers work in hex)
+        emitValue = norm
+        localValue.value = norm
+      } else if (!CSS.supports('color', v)) {
+        // Not a valid CSS color at all → clear the override (existing behavior)
+        emitValue = ''
+      }
+      // else: a valid CSS color normalizeColor doesn't canonicalize (hsl, named) → keep as typed
+    }
+    validatedValue.value = localValue.value
     emit('change', props.entry.cssVar, emitValue, props.entry.value)
   }, 300)
 }

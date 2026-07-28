@@ -76,24 +76,6 @@
 
     <!-- Inject settings -->
     <div class="inject-settings">
-      <!-- Mode toggle: overrides only (default) vs. all tokens -->
-      <div class="inject-mode-group">
-        <button
-          :class="['inject-mode-btn', { 'inject-mode-btn--active': !injectAllTokens }]"
-          title="Inject only your changed values; the site uses its own defaults for everything else"
-          @click="injectAllTokens = false"
-        >
-          Overrides only
-        </button>
-        <button
-          :class="['inject-mode-btn', { 'inject-mode-btn--active': injectAllTokens }]"
-          title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
-          @click="injectAllTokens = true"
-        >
-          All tokens
-        </button>
-      </div>
-
       <!-- Custom selector input -->
       <div class="inject-selector-wrap">
         <label
@@ -126,11 +108,7 @@
         </span>
       </div>
 
-      <!-- Mode description: shown when "all tokens" is active -->
-      <span
-        v-if="injectAllTokens"
-        class="inject-mode-note"
-      >All {{ allTokensCount }} tokens injected</span>
+      <span class="inject-mode-note">All {{ allTokensCount }} tokens injected</span>
     </div>
 
     <!-- Mode A: iframe preview (dev only) -->
@@ -259,7 +237,14 @@
           :href="bookmarkletHref"
           @click.prevent
         >
-          🔖 Design Token Customizer
+          🔖 Token Customizer
+        </a>
+        <a
+          class="bookmarklet-link"
+          :href="themeBuilderBookmarkletHref"
+          @click.prevent
+        >
+          🎨 Theme Builder
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
@@ -280,17 +265,13 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
-import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
-import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
-import { applySelector } from '@/lib/cssUtils'
+import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
+import { getHashParam, setHashParams } from '@/utils/hashRouteQuery'
+import { applySelector } from '@/utils/cssUtils'
 
 const props = defineProps<{
-  /** Minimal `:root { … }` block containing only changed tokens. */
-  overridesCss: string
   /** Complete `:root { … }` block with all tokens (overrides applied). */
   allTokensCss: string
-  /** Whether to inject all tokens or only overrides. Owned by parent; synced to `?inject=` URL param here. */
-  injectAllTokens: boolean
   /**
    * CSS selector to scope token injection (e.g. `[data-theme="dark"]`).
    * Empty string means `:root`. Owned by parent; synced to `?selector=` URL param here.
@@ -299,15 +280,10 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  'update:injectAllTokens': [value: boolean]
   'update:customSelector': [value: string]
 }>()
 
-// Local writable aliases so template v-model bindings work without prop mutation.
-const injectAllTokens = computed({
-  get: () => props.injectAllTokens,
-  set: (v) => emit('update:injectAllTokens', v),
-})
+// Local writable alias so the template v-model binding works without prop mutation.
 const customSelector = computed({
   get: () => props.customSelector,
   set: (v) => emit('update:customSelector', v),
@@ -319,17 +295,8 @@ const allTokensCount = computed(() => {
   return m ? m.length : 0
 })
 
-/**
- * The CSS actually injected into the iframe.
- * Source: overrides-only (default) or all tokens.
- * Selector: `:root` (default) or the user-supplied custom selector.
- */
-const effectiveCss = computed(() =>
-  applySelector(
-    injectAllTokens.value ? props.allTokensCss : props.overridesCss,
-    customSelector.value,
-  ),
-)
+/** The CSS actually injected into the iframe: all tokens, with the selector applied. */
+const effectiveCss = computed(() => applySelector(props.allTokensCss, customSelector.value))
 
 const bridge = usePreviewBridge(effectiveCss)
 /**
@@ -338,26 +305,30 @@ const bridge = usePreviewBridge(effectiveCss)
  */
 const bookmarkletHref = (() => {
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
+})()
+
+/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
+const themeBuilderBookmarkletHref = (() => {
+  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
 })()
 
 /** True when serving from localhost — bookmarklet baked with a local URL won't work on external sites. */
 const isLocalhost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
 const currentOrigin = window.location.origin
 
-/** Writes `selector`, `url`, and `inject` params to the address bar, removing them at defaults. */
+/** Writes `selector` and `url` params to the address bar, removing them at defaults. */
 function syncUrlParams() {
   const sel = customSelector.value.trim()
   setHashParams({
     selector: (sel && sel !== ':root') ? sel : null,
     url: bridge.loadedUrl.value || null,
-    inject: injectAllTokens.value ? 'all' : null,
   })
 }
 
 watch(customSelector, syncUrlParams)
 watch(bridge.loadedUrl, syncUrlParams)
-watch(injectAllTokens, syncUrlParams)
 
 /** Ref to the outer scrollable frame container — used to measure available width. */
 const frameOuterEl = ref<HTMLDivElement | null>(null)
@@ -534,32 +505,6 @@ function handleLoad() {
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
   flex-wrap: wrap;
-}
-
-.inject-mode-group {
-  display: flex;
-  background: $tb-surface-2;
-  border: 1px solid $tb-border;
-  border-radius: 5px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.inject-mode-btn {
-  background: none;
-  border: none;
-  padding: 3px 8px;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 500;
-  color: $tb-text-muted;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.1s, color 0.1s;
-
-  &:hover:not(.inject-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
-  &--active { background: $tb-accent; color: #fff; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
 .inject-selector-wrap {

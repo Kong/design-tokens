@@ -7,6 +7,12 @@
       ],
       "@tokens/*": [
         "../dist/tokens/*"
+      ],
+      "@themes": [
+        "../dist/themes"
+      ],
+      "@themes/*": [
+        "../dist/themes/*"
       ]
     },
   },

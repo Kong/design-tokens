@@ -90,4 +90,6 @@ xcuserdata/
 __tests__/__output
 .playwright-mcp/
 
-.claude/
+# Claude
+*.claude/**/*local.json
+.claude/worktrees/

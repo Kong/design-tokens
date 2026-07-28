@@ -63,6 +63,22 @@
           </button>
         </div>
         <div class="controls-row">
+          <label class="theme-select-wrap">
+            <span class="theme-select-label">Theme</span>
+            <select
+              v-model="activeTheme"
+              aria-label="Preview theme"
+              class="theme-select"
+            >
+              <option
+                v-for="theme in THEMES"
+                :key="theme.id"
+                :value="theme.id"
+              >
+                {{ theme.label }}
+              </option>
+            </select>
+          </label>
           <div
             aria-label="Copy format"
             class="format-toggle"
@@ -107,6 +123,21 @@
             @click="showBookmarkletModal = true"
           >
             Customize →
+          </button>
+          <router-link
+            v-if="isDevMode"
+            class="nav-link"
+            to="/theme-builder"
+          >
+            Theme Builder →
+          </router-link>
+          <button
+            v-else
+            class="nav-link nav-link--btn"
+            type="button"
+            @click="showBookmarkletModal = true"
+          >
+            Theme Builder →
           </button>
         </div>
       </div>
@@ -299,6 +330,7 @@
     <BookmarkletModal
       v-model="showBookmarkletModal"
       :bookmarklet-href="bookmarkletHref"
+      :theme-builder-href="themeBuilderBookmarkletHref"
     />
   </div>
 </template>
@@ -306,11 +338,11 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useTokens, categoryLabel, buildSections, type TokenCategory } from '@/composables/useTokens'
+import { useTokens, categoryLabel, buildSections, THEMES, DEFAULT_THEME_ID, isThemeId, type TokenCategory } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
-import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
+import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
 import TokenCard from './TokenCard.vue'
 import BookmarkletModal from './BookmarkletModal.vue'
 import pkg from '../../../package.json'
@@ -324,7 +356,14 @@ const showBookmarkletModal = ref(false)
 const bookmarkletHref = (() => {
   if (typeof window === 'undefined') return '#'
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
+})()
+
+/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
+const themeBuilderBookmarkletHref = (() => {
+  if (typeof window === 'undefined') return '#'
+  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
 })()
 
 const appVersion = pkg.version
@@ -335,6 +374,7 @@ const router = useRouter()
 const {
   search,
   activeCategory,
+  activeTheme,
   categories,
   componentSubcategories,
   componentsBySubcat,
@@ -378,22 +418,41 @@ onMounted(() => {
     localSearch.value = q
     search.value = q
   }
+  const theme = route.query.theme
+  if (typeof theme === 'string' && isThemeId(theme)) {
+    activeTheme.value = theme
+  }
 })
+
+/** Builds the query object reflecting current search + theme state, omitting defaults. */
+function buildQuery(searchVal: string): Record<string, string> {
+  return {
+    ...(searchVal ? { q: searchVal } : {}),
+    ...(activeTheme.value !== DEFAULT_THEME_ID ? { theme: activeTheme.value } : {}),
+  }
+}
 
 watch(localSearch, (val) => {
   clearTimeout(searchDebounce)
   searchDebounce = setTimeout(() => {
     search.value = val
-    router.replace({ query: val ? { q: val } : {} })
+    router.replace({ query: buildQuery(val) })
   }, 300)
 })
 
-/** Resets search and active tab, navigating back to the default browse view. */
+// Reflect the selected preview theme in the URL immediately (no debounce needed — a
+// dropdown change, unlike typed search, isn't a rapid-fire event) so the current view is
+// shareable and survives a reload.
+watch(activeTheme, () => {
+  router.replace({ query: buildQuery(search.value) })
+})
+
+/** Resets search and active tab, navigating back to the default browse view. Preserves the selected preview theme. */
 function handleLogoClick() {
   localSearch.value = ''
   search.value = ''
   activeCategory.value = 'color'
-  router.push('/')
+  router.push({ path: '/', query: buildQuery('') })
 }
 
 /** Switches to a category tab; separate function so we can add sub-state resets here if needed. */
@@ -547,6 +606,43 @@ function handleCopy(key: string, text: string) {
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+}
+
+.theme-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 6px;
+  padding: 0 4px 0 10px;
+
+  &:focus-within { border-color: $tb-accent; box-shadow: 0 0 0 3px $tb-accent-subtle; }
+}
+
+.theme-select-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: $tb-text-muted;
+  white-space: nowrap;
+}
+
+.theme-select {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 6px 20px 6px 2px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  color: $tb-text;
+  cursor: pointer;
+  outline: none;
+  // Minimal chevron so the select doesn't rely on the browser's native affordance
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  background-size: 12px;
 }
 
 .format-toggle {

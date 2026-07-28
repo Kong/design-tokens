@@ -136,18 +136,13 @@ Build-time Style Dictionary utilities live in `packages/design-tokens/utilities/
 
 ## Sandbox (`packages/design-tokens/sandbox/`)
 
-Vue dev app — the **Design Token Customizer**. Runs at `localhost:5173` via `pnpm sandbox:design-tokens`.
+Vue dev app (Token Browser, Token Customizer, Theme Builder). Runs at `localhost:5173` via
+`pnpm sandbox:design-tokens`.
 
-Key composables:
-- `useTokens.ts` — `ALL_ENTRIES`: all 920 customizable tokens (semantic from `@tokens/js` + component from `KUI_THEMEABLE_TOKENS`); source of truth for the UI, export, and import routing
-- `useTokenCustomizer.ts` — override map, `buildCss` (skips empty values to avoid emitting invalid `--kui-…: ;`), `importFromCss`, share-code encoding
-- `usePreviewBridge.ts` — bridges token overrides to an iframe via postMessage (`kui-inject-css`) or a bookmarklet popup; DEV mode uses the Vite proxy
-
-`vite-preview-proxy.ts` — Vite dev-only middleware that proxies arbitrary target URLs through `/preview-proxy?url=<encoded>`:
-- Strips CSP/X-Frame-Options headers so the page renders in an iframe
-- Injects a `networkOverrideScript` that intercepts `fetch`, `XHR`, `history.*`, `location.*`, `<script src>`, `<link href>` to route all sub-resources through the proxy and prevent SPA routers from escaping the proxy origin
-- Injects a `headScript` that posts `kui-frame-ready` to the parent and listens for `kui-inject-css` to update the `<style id="kong-design-token-overrides">` tag
-- Preserves hash fragments from the original URL param (Node.js `fetch()` strips them before forwarding)
+**Before creating, modifying, or reviewing anything under `packages/design-tokens/sandbox/`**,
+read `.claude/references/design-tokens-sandbox-and-theme-builder.md` first — it covers the three
+surfaces, shared infrastructure (bookmarklet, preview proxy, embedded bridge), module-scoped
+state gotchas, and testing conventions specific to this app. Not relevant to any other package.
 
 ## Publishing
 

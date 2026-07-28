@@ -1,7 +1,7 @@
 import { computed, onMounted, reactive, ref, watch } from 'vue'
-import { ALL_ENTRIES, categoryLabel, normalize } from './useTokens'
+import { ALL_ENTRIES, categoryLabel, DEFAULT_THEME_ID, fuzzyMatchTokens, isThemeId, normalize, resolveThemedEntries } from './useTokens'
 import type { TokenCategory, TokenEntry } from './useTokens'
-import { getHashParam, setHashParams } from '../lib/hashRouteQuery'
+import { getHashParam, setHashParams } from '../utils/hashRouteQuery'
 
 /**
  * Module-level reactive map of CSS variable overrides.
@@ -15,6 +15,24 @@ const overrides = reactive<Record<string, string>>({})
  * Kept separate from `overrides` because these are user-defined, not from the token set.
  */
 const customProps = reactive<Record<string, string>>({})
+
+/**
+ * Module-level starting theme id for the customizer's baseline values.
+ * Overrides/custom props are absolute values layered on top and remain valid
+ * against any baseline, so switching this never clears them.
+ */
+const startingThemeId = ref<string>(DEFAULT_THEME_ID)
+
+/**
+ * Sets the customizer's starting theme baseline. Invalid ids are ignored.
+ * @param id - A theme id from {@link THEMES}.
+ * @returns `true` when `id` was a valid theme id and was applied.
+ */
+export function setStartingTheme(id: string): boolean {
+  if (!isThemeId(id)) return false
+  startingThemeId.value = id
+  return true
+}
 
 /**
  * Sets or updates a custom CSS property value.
@@ -245,9 +263,10 @@ async function decodeOverrides(encoded: string): Promise<DecodedOverrides> {
 }
 
 /**
- * Applies overrides from a share URL or bare state code, replacing the current session.
- * Accepts a full share URL (extracts `?o=`), a hash fragment, or a bare encoded string.
- * Returns `true` when at least one valid override was decoded.
+ * Applies overrides and/or a starting theme from a share URL or bare state code, replacing
+ * the current session. Accepts a full share URL (extracts `?o=` and `?theme=`), a hash
+ * fragment, or a bare encoded string (treated as the `o=` value; no theme).
+ * Returns `true` when at least one valid override was decoded or a valid theme was recognized.
  * @param raw - Share URL, hash fragment, or bare encoded `o=` value.
  */
 export async function importFromCode(raw: string): Promise<boolean> {
@@ -255,24 +274,31 @@ export async function importFromCode(raw: string): Promise<boolean> {
   if (!trimmed) return false
 
   let encoded = trimmed
-  // Try extracting `o=` from a URL or query string
-  const oParam = (() => {
+  let themeParam: string | null = null
+  // Try extracting `o=` and `theme=` from a URL or query string
+  const params = (() => {
     try {
       const url = new URL(trimmed)
       const qi = url.hash.indexOf('?')
-      if (qi >= 0) return new URLSearchParams(url.hash.slice(qi + 1)).get('o')
+      if (qi >= 0) return new URLSearchParams(url.hash.slice(qi + 1))
     } catch { /* not a full URL */ }
     const qi = trimmed.indexOf('?')
-    if (qi >= 0) return new URLSearchParams(trimmed.slice(qi + 1)).get('o')
+    if (qi >= 0) return new URLSearchParams(trimmed.slice(qi + 1))
     return null
   })()
 
-  if (oParam !== null) encoded = oParam
-  if (!encoded) return false
+  if (params) {
+    encoded = params.get('o') ?? ''
+    themeParam = params.get('theme')
+  }
+
+  const applied = themeParam ? setStartingTheme(themeParam) : false
+
+  if (!encoded) return applied
 
   const decoded = await decodeOverrides(encoded)
   const hasAny = Object.keys(decoded.overrides).length > 0 || Object.keys(decoded.customProps).length > 0
-  if (!hasAny) return false
+  if (!hasAny) return applied
 
   for (const key in overrides) delete overrides[key]
   for (const key in customProps) delete customProps[key]
@@ -317,6 +343,8 @@ export function importFromCss(css: string): boolean {
  */
 export function useTokenCustomizer() {
   const filterQuery = ref('')
+  /** Base token entries resolved against the current starting theme. */
+  const themedBaseEntries = computed((): TokenEntry[] => resolveThemedEntries(ALL_ENTRIES, startingThemeId.value))
   // 'components' starts collapsed — it has ~580 rows across many sub-sections, so eagerly
   // rendering it on first open would cause a noticeable layout/paint pause.
   const collapsed = reactive<Record<string, boolean>>({ [CUSTOM_GROUP_KEY]: true, components: true })
@@ -335,12 +363,12 @@ export function useTokenCustomizer() {
   const visibleGroups = computed((): CustGroup[] => {
     const q = filterQuery.value.toLowerCase().trim()
     const onlyModified = showOnlyModified.value
-    const catOrder = [...new Set(ALL_ENTRIES.map((e) => e.category))]
+    const catOrder = [...new Set(themedBaseEntries.value.map((e) => e.category))]
 
     return catOrder
       .map((cat) => {
-        let entries = ALL_ENTRIES.filter((e) => e.category === cat)
-        if (q) entries = entries.filter((e) => normalize(e.cssVar).includes(normalize(q)) || normalize(e.value).includes(normalize(q)))
+        let entries = themedBaseEntries.value.filter((e) => e.category === cat)
+        if (q) entries = entries.filter((e) => fuzzyMatchTokens(q, e.cssVar, e.value))
         if (onlyModified) entries = entries.filter((e) => !!overrides[e.cssVar])
         const overrideCount = entries.filter((e) => overrides[e.cssVar]).length
         return { category: cat, entries, overrideCount }
@@ -418,24 +446,11 @@ export function useTokenCustomizer() {
   const hasOverrides = computed(() => overrideCount.value > 0)
 
   /**
-   * Minimal `:root { ... }` block containing only the changed tokens and custom properties.
-   * Suitable for dropping into a site's existing CSS without replacing defaults.
-   */
-  const overridesCss = computed(() => {
-    const lines = [
-      ...Object.entries(overrides).map(([k, v]) => `  ${k}: ${v};`),
-      ...Object.entries(customProps).map(([k, v]) => `  ${k}: ${v};`),
-    ]
-    if (!lines.length) return ''
-    return `:root {\n${lines.join('\n')}\n}`
-  })
-
-  /**
    * Complete `:root { ... }` block with all tokens, overrides applied, and custom properties appended.
    * Suitable as a standalone stylesheet for sites that don't already load KUI tokens.
    */
   const fullExportCss = computed(() => {
-    const base = buildCss(ALL_ENTRIES, overrides)
+    const base = buildCss(themedBaseEntries.value, overrides)
     const extraLines = Object.entries(customProps).map(([k, v]) => `  ${k}: ${v};`)
     if (!extraLines.length) return base
     return base + `\n\n/* Custom properties */\n:root {\n${extraLines.join('\n')}\n}`
@@ -447,22 +462,36 @@ export function useTokenCustomizer() {
    */
   const shareUrl = ref(typeof window !== 'undefined' ? window.location.href : '/#/customize')
 
+  // `encodeOverrides` awaits variable-latency compression, so overlapping runs (rapid edits)
+  // could otherwise resolve out of order and clobber shareUrl with stale data. A generation
+  // counter lets a run detect it's been superseded and drop its own stale write.
+  let shareUrlGeneration = 0
+
   // deep: true required — reactive plain objects don't trigger on property add/delete otherwise.
   watch(
-    [overrides, customProps],
+    [overrides, customProps, startingThemeId],
     async () => {
+      const thisGeneration = ++shareUrlGeneration
       const encoded = await encodeOverrides({ ...overrides, ...customProps })
+      if (thisGeneration !== shareUrlGeneration) return
       // setHashParams preserves other hash query params (e.g. ?url=, ?selector=) managed by CustPreviewPanel.
-      shareUrl.value = setHashParams({ o: encoded || null })
+      shareUrl.value = setHashParams({
+        o: encoded || null,
+        theme: startingThemeId.value !== DEFAULT_THEME_ID ? startingThemeId.value : null,
+      })
     },
     { deep: true },
   )
 
   /**
-   * Reads the `?o=` query param on mount and applies any valid overrides found there.
+   * Reads the `?theme=` and `?o=` query params on mount and applies any valid
+   * theme/overrides found there.
    * Stale/renamed token vars are silently ignored so share links survive token changes.
    */
   onMounted(async () => {
+    const themeParam = getHashParam('theme')
+    if (themeParam) setStartingTheme(themeParam)
+
     const encoded = getHashParam('o')
     if (!encoded) return
     const decoded = await decodeOverrides(encoded)
@@ -499,6 +528,8 @@ export function useTokenCustomizer() {
   return {
     overrides,
     customProps,
+    startingThemeId,
+    setStartingTheme,
     overrideCount,
     hasOverrides,
     filterQuery,
@@ -512,7 +543,6 @@ export function useTokenCustomizer() {
     expandAll,
     setOverride,
     resetAll,
-    overridesCss,
     fullExportCss,
     shareUrl,
   }
