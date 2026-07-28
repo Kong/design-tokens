@@ -51,7 +51,7 @@
     --kui-badge-font-weight: 600;
     --kui-badge-icon-gap: 8px;
     --kui-badge-line-height: 16px;
-    --kui-badge-padding-small: 2px;
+    --kui-badge-padding-small: 1px 6px;
     --kui-badge-padding-x: 12px;
     --kui-badge-padding-y: 4px;
     --kui-badge-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
@@ -435,7 +435,7 @@
     --kui-icon-color-neutral: #697769;
     --kui-icon-color-primary: #3094FF;
     --kui-icon-color-success: #00A17B;
-    --kui-icon-color-warning: #FFE500;
+    --kui-icon-color-warning: #807300;
     --kui-icon-size-10: 10px;
     --kui-icon-size-20: 12px;
     --kui-icon-size-30: 16px;

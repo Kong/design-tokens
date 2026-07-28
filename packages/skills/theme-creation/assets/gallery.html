@@ -115,6 +115,8 @@
           const radioCardValue = ref('vertical-a')
           const multiselectValue = ref(['a'])
           const filterValue = ref({})
+          const segmentedValue = ref('a')
+          const segmentedValueLarge = ref('b')
 
           return () => h('div', [
             ...group('Feedback — alerts', () => [
@@ -171,6 +173,26 @@
               h(K.KRadio, {modelValue: radioCardValue.value, selectedValue: 'vertical-a', name: 'gallery-radio-card-v', card: true, cardOrientation: 'vertical', label: 'Vertical card', description: 'Selected state', 'onUpdate:modelValue': (v) => radioCardValue.value = v}),
               h(K.KRadio, {modelValue: radioCardValue.value, selectedValue: 'vertical-b', name: 'gallery-radio-card-v', card: true, cardOrientation: 'vertical', label: 'Vertical card', description: 'Unselected state', 'onUpdate:modelValue': (v) => radioCardValue.value = v}),
               h(K.KRadio, {modelValue: 'horizontal-a', selectedValue: 'horizontal-a', name: 'gallery-radio-card-h', card: true, cardOrientation: 'horizontal', label: 'Horizontal card', description: 'Selected state'}),
+            ]),
+            ...group('Segmented control', () => [
+              h('div', {style: 'display:flex;flex-direction:column;gap:16px'}, [
+                h(K.KSegmentedControl, {
+                  modelValue: segmentedValue.value,
+                  options: [{label: 'Item 1', value: 'a'}, {label: 'Item 2', value: 'b'}, {label: 'Item 3', value: 'c'}],
+                  'onUpdate:modelValue': (v) => segmentedValue.value = v,
+                }),
+                h(K.KSegmentedControl, {
+                  modelValue: segmentedValueLarge.value,
+                  options: [{label: 'Item 1', value: 'a'}, {label: 'Item 2', value: 'b'}, {label: 'Item 3', value: 'c'}, {label: 'Item 4', value: 'd'}],
+                  size: 'large',
+                  'onUpdate:modelValue': (v) => segmentedValueLarge.value = v,
+                }),
+                h(K.KSegmentedControl, {
+                  modelValue: 'a',
+                  options: [{label: 'Disabled selected', value: 'a'}, {label: 'Disabled', value: 'b'}],
+                  disabled: true,
+                }),
+              ]),
             ]),
             ...group('Multiselect', () => [
               h(K.KMultiselect, {

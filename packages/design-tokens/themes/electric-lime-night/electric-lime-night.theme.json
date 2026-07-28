@@ -189,7 +189,7 @@
   },
   "kui-badge-padding-small": {
     "$description": "Reduced padding for small inline badges.",
-    "$value": "2px"
+    "$value": "1px 6px"
   },
   "kui-badge-padding-x": {
     "$description": "Badge horizontal padding.",
@@ -1703,7 +1703,7 @@
   },
   "kui-icon-color-warning": {
     "$description": "Warning color for icons.",
-    "$value": "{color.alias.yellow.40}"
+    "$value": "{color.alias.yellow.70}"
   },
   "kui-icon-size-10": {
     "$value": "10px"

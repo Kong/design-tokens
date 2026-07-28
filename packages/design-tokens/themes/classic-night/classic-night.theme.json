@@ -183,7 +183,7 @@
   },
   "kui-color-background-primary-weakest": {
     "$description": "Weakest background color for primary actions or messages.",
-    "$value": "{color.alias.blue.10}"
+    "$value": "{color.alias.blue.30}"
   },
   "kui-color-background-success": {
     "$description": "Background color for success elements.",
