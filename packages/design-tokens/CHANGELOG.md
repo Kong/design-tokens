@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.7...@kong/design-tokens@3.1.0) (2026-07-28)
+
+### Features
+
+* **design-tokens:** sandbox theme builder ([#700](https://github.com/Kong/design-tokens/issues/700)) ([042cedb](https://github.com/Kong/design-tokens/commit/042cedb626cbf728068f9f6a92cb9d89549ead1a))
+
 ## [3.0.7](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.6...@kong/design-tokens@3.0.7) (2026-07-28)
 
 ### Bug Fixes
