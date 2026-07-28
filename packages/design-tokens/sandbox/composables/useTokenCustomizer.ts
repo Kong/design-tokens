@@ -23,6 +23,9 @@ const customProps = reactive<Record<string, string>>({})
  */
 const startingThemeId = ref<string>(DEFAULT_THEME_ID)
 
+/** Resolves once the on-mount `?theme=`/`?o=` load (see `onMounted` below) has settled. */
+let initialLoadPromise: Promise<void> = Promise.resolve()
+
 /**
  * Sets the customizer's starting theme baseline. Invalid ids are ignored.
  * @param id - A theme id from {@link THEMES}.
@@ -488,19 +491,21 @@ export function useTokenCustomizer() {
    * theme/overrides found there.
    * Stale/renamed token vars are silently ignored so share links survive token changes.
    */
-  onMounted(async () => {
-    const themeParam = getHashParam('theme')
-    if (themeParam) setStartingTheme(themeParam)
+  onMounted(() => {
+    initialLoadPromise = (async () => {
+      const themeParam = getHashParam('theme')
+      if (themeParam) setStartingTheme(themeParam)
 
-    const encoded = getHashParam('o')
-    if (!encoded) return
-    const decoded = await decodeOverrides(encoded)
-    for (const [cssVar, value] of Object.entries(decoded.overrides)) {
-      overrides[cssVar] = value
-    }
-    for (const [cssVar, value] of Object.entries(decoded.customProps)) {
-      customProps[cssVar] = value
-    }
+      const encoded = getHashParam('o')
+      if (!encoded) return
+      const decoded = await decodeOverrides(encoded)
+      for (const [cssVar, value] of Object.entries(decoded.overrides)) {
+        overrides[cssVar] = value
+      }
+      for (const [cssVar, value] of Object.entries(decoded.customProps)) {
+        customProps[cssVar] = value
+      }
+    })()
   })
 
   /**
@@ -545,5 +550,6 @@ export function useTokenCustomizer() {
     resetAll,
     fullExportCss,
     shareUrl,
+    getInitialLoadPromise: () => initialLoadPromise,
   }
 }
