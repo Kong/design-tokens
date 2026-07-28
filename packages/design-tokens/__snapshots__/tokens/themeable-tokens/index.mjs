@@ -1064,12 +1064,6 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-code-block-actions-color-border-dark",
-    description: "Code block actions toolbar bottom border color in the dark theme.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-code-block-actions-padding",
     description: "Code block actions toolbar inner padding.",
     category: "component",
@@ -1088,32 +1082,14 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-code-block-color-background-dark",
-    description: "Code block background color in the dark theme.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-code-block-color-text",
     description: "Code block code text color.",
     category: "component",
     value: null,
   },
   {
-    name: "--kui-code-block-color-text-dark",
-    description: "Code block code text color in the dark theme.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-code-block-line-number-color-text",
     description: "Code block line number text color.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-code-block-line-number-color-text-dark",
-    description: "Code block line number text color in the dark theme.",
     category: "component",
     value: null,
   },

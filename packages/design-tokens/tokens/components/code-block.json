@@ -10,14 +10,8 @@
       },
       "color": {
         "border": {
-          "_": {
-            "$description": "Code block actions toolbar bottom border color.",
-            "$value": ""
-          },
-          "dark": {
-            "$description": "Code block actions toolbar bottom border color in the dark theme.",
-            "$value": ""
-          }
+          "$description": "Code block actions toolbar bottom border color.",
+          "$value": ""
         }
       },
       "padding": {
@@ -33,37 +27,19 @@
     },
     "color": {
       "background": {
-        "_": {
-          "$description": "Code block background color.",
-          "$value": ""
-        },
-        "dark": {
-          "$description": "Code block background color in the dark theme.",
-          "$value": ""
-        }
+        "$description": "Code block background color.",
+        "$value": ""
       },
       "text": {
-        "_": {
-          "$description": "Code block code text color.",
-          "$value": ""
-        },
-        "dark": {
-          "$description": "Code block code text color in the dark theme.",
-          "$value": ""
-        }
+        "$description": "Code block code text color.",
+        "$value": ""
       }
     },
     "line_number": {
       "color": {
         "text": {
-          "_": {
-            "$description": "Code block line number text color.",
-            "$value": ""
-          },
-          "dark": {
-            "$description": "Code block line number text color in the dark theme.",
-            "$value": ""
-          }
+          "$description": "Code block line number text color.",
+          "$value": ""
         }
       }
     }
