@@ -2392,24 +2392,16 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-code-block-actions-border-width: initial;
 /* Code block actions toolbar bottom border color. */
 --kui-code-block-actions-color-border: initial;
-/* Code block actions toolbar bottom border color in the dark theme. */
---kui-code-block-actions-color-border-dark: initial;
 /* Code block actions toolbar inner padding. */
 --kui-code-block-actions-padding: initial;
 /* Code block border radius. */
 --kui-code-block-border-radius: initial;
 /* Code block background color. */
 --kui-code-block-color-background: initial;
-/* Code block background color in the dark theme. */
---kui-code-block-color-background-dark: initial;
 /* Code block code text color. */
 --kui-code-block-color-text: initial;
-/* Code block code text color in the dark theme. */
---kui-code-block-color-text-dark: initial;
 /* Code block line number text color. */
 --kui-code-block-line-number-color-text: initial;
-/* Code block line number text color in the dark theme. */
---kui-code-block-line-number-color-text-dark: initial;
 /* Collapse font family. */
 --kui-collapse-font-family: initial;
 /* Collapse title text color. */
@@ -4990,12 +4982,6 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-code-block-actions-color-border-dark",
-    description: "Code block actions toolbar bottom border color in the dark theme.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-code-block-actions-padding",
     description: "Code block actions toolbar inner padding.",
     category: "component",
@@ -5014,32 +5000,14 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-code-block-color-background-dark",
-    description: "Code block background color in the dark theme.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-code-block-color-text",
     description: "Code block code text color.",
     category: "component",
     value: null,
   },
   {
-    name: "--kui-code-block-color-text-dark",
-    description: "Code block code text color in the dark theme.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-code-block-line-number-color-text",
     description: "Code block line number text color.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-code-block-line-number-color-text-dark",
-    description: "Code block line number text color in the dark theme.",
     category: "component",
     value: null,
   },
