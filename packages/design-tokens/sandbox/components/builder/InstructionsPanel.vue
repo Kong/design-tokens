@@ -4,7 +4,10 @@
       What this is
     </h3>
     <p class="ip-text">
-      The Theme Builder edits a theme's two source files — <code>*.theme.json</code> and
+      The Theme Builder edits a <a
+        href="https://github.com/Kong/design-tokens/tree/main/packages/design-tokens"
+        target="_blank"
+      >@kong/design-tokens</a> theme's two source files — <code>*.theme.json</code> and
       <code>*.alias.color.json</code> — with a live preview, no token rebuild required. It has two
       override layers: editing a <strong>color alias</strong> (Color aliases tab) cascades into every
       token that references it; overriding an individual <strong>token</strong> (Tokens tab) wins over
