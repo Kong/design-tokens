@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { defineComponent, h } from 'vue'
-import { flushPromises, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import type { VueWrapper } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import TokenCustomizer from './TokenCustomizer.vue'
@@ -86,16 +86,6 @@ function findRow(wrapper: VueWrapper, cssVar: string) {
 /** Reads the text currently shown in the "All tokens CSS" output panel. */
 function outputText(wrapper: VueWrapper): string {
   return wrapper.findComponent(CustOutputPanel).find('.cust-output-code').text()
-}
-
-/**
- * `decodeOverrides` (used by the composable's on-mount `?o=` handling) goes through
- * `DecompressionStream`, which resolves over several real event-loop turns rather than a
- * single microtask batch. A single `flushPromises()` is not reliably enough to drain it, so
- * poll a few rounds instead of hard-coding a timeout.
- */
-async function settleAsyncDecode() {
-  for (let i = 0; i < 5; i++) await flushPromises()
 }
 
 describe('TokenCustomizer', () => {
@@ -253,10 +243,10 @@ describe('TokenCustomizer', () => {
       history.replaceState(null, '', window.location.pathname + `#/customize?o=${encoded}`)
 
       const wrapper = mountCustomizer()
-      await settleAsyncDecode()
+      const composable = useTokenCustomizer()
+      await composable.getInitialLoadPromise()
       await wrapper.vm.$nextTick()
 
-      const composable = useTokenCustomizer()
       expect(composable.overrides[target.cssVar]).toBe('#654321')
 
       const row = findRow(wrapper, target.cssVar)
@@ -274,10 +264,10 @@ describe('TokenCustomizer', () => {
       )
 
       const wrapper = mountCustomizer()
-      await settleAsyncDecode()
+      const composable = useTokenCustomizer()
+      await composable.getInitialLoadPromise()
       await wrapper.vm.$nextTick()
 
-      const composable = useTokenCustomizer()
       expect(composable.startingThemeId.value).toBe('electric-lime-night')
       expect(composable.overrides[target.cssVar]).toBe('#111111')
       expect(wrapper.find<HTMLSelectElement>('.cust-theme-select').element.value).toBe('electric-lime-night')

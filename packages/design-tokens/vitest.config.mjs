@@ -21,5 +21,6 @@ export default defineConfig({
     // under sandbox/ that mount Vue components or touch the DOM opt into jsdom individually
     // via a `// @vitest-environment jsdom` docblock at the top of the file.
     environment: 'node',
+    setupFiles: ['./vitest.setup.ts'],
   },
 })

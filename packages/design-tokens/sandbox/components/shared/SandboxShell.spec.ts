@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { mount } from '@vue/test-utils'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 import { createRouter, createMemoryHistory } from 'vue-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import SandboxShell from './SandboxShell.vue'
@@ -58,7 +58,9 @@ describe('SandboxShell', () => {
       const back = wrapper.find('.ss-back')
       expect(back.exists()).toBe(true)
       expect(back.text()).toBe('← Browse')
-      expect(back.attributes('href')).toContain('/')
+      // `RouterLink` is globally stubbed with `RouterLinkStub` (vitest.setup.ts), which never
+      // renders a real `href` — assert against the stub's `to` prop instead.
+      expect(wrapper.findComponent(RouterLinkStub).props('to')).toBe('/')
     })
 
     it('does not show the close button', async () => {
