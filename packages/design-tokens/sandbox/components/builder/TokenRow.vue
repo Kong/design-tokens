@@ -121,18 +121,101 @@ function onText(e: Event) {
 @use '@/assets/tb-vars' as *;
 
 .token-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 6px 12px; border-bottom: 1px solid $tb-border;
+  align-items: center;
+  border-bottom: 1px solid $tb-border;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 6px 12px;
+
   // Modified rows get a left accent bar + subtle tint (no layout shift) instead of a text label
-  &--modified { background: $tb-accent-subtle; box-shadow: inset 3px 0 0 $tb-accent; }
+  &--modified {
+    background: $tb-accent-subtle;
+    box-shadow: inset 3px 0 0 $tb-accent;
+  }
 }
-.tr-main { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.tr-name { font-family: $tb-mono; font-size: 11px; color: $tb-text; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tr-control { position: relative; flex-shrink: 0; display: flex; align-items: center; gap: 6px; }
-.tr-color-btn { display: flex; align-items: center; gap: 6px; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 3px 8px; cursor: pointer; }
-.tr-swatch { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.15); }
-.tr-color-text { font-family: $tb-mono; font-size: 10px; color: $tb-text-dim; }
-.tr-popover { position: absolute; top: calc(100% + 4px); right: 0; z-index: 50; }
-.tr-text { width: 120px; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 3px 8px; font-family: $tb-mono; font-size: 11px; color: $tb-text; &:focus-visible { border-color: $tb-accent; outline: none; } }
-.tr-reset { background: none; border: 1px solid $tb-border; border-radius: 5px; padding: 2px 6px; cursor: pointer; color: $tb-text-muted; &:hover { color: $tb-text; } }
+
+.tr-main {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.tr-name {
+  color: $tb-text;
+  font-family: $tb-mono;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.tr-control {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  min-width: 0;
+  position: relative;
+}
+
+.tr-color-btn {
+  align-items: center;
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  gap: 6px;
+  padding: 3px 8px;
+}
+
+.tr-swatch {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  height: 16px;
+  width: 16px;
+}
+
+.tr-color-text {
+  color: $tb-text-dim;
+  font-family: $tb-mono;
+  font-size: 10px;
+}
+
+.tr-popover {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 50;
+}
+
+.tr-text {
+  background: $tb-bg;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  color: $tb-text;
+  flex: 1;
+  font-family: $tb-mono;
+  font-size: 11px;
+  min-width: 0;
+  padding: 3px 8px;
+
+  &:focus-visible {
+    border-color: $tb-accent;
+    outline: none;
+  }
+}
+
+.tr-reset {
+  background: none;
+  border: 1px solid $tb-border;
+  border-radius: 5px;
+  color: $tb-text-muted;
+  cursor: pointer;
+  padding: 2px 6px;
+
+  &:hover {
+    color: $tb-text;
+  }
+}
 </style>

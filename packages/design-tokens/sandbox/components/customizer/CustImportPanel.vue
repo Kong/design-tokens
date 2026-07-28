@@ -42,7 +42,7 @@
         <input
           ref="fileInputEl"
           accept=".css,text/css"
-          style="display:none"
+          style="display: none"
           type="file"
           @change="applyFromFile"
         >
@@ -137,15 +137,15 @@ function applyFromFile(event: Event) {
 }
 
 .cust-import-label {
-  display: flex;
   align-items: center;
-  gap: 6px;
+  color: $tb-text-muted;
+  display: flex;
   font-size: 11px;
   font-weight: 700;
-  text-transform: uppercase;
+  gap: 6px;
   letter-spacing: 0.07em;
-  color: $tb-text-muted;
   margin-bottom: 8px;
+  text-transform: uppercase;
 
   svg { flex-shrink: 0; }
 }
@@ -155,18 +155,19 @@ function applyFromFile(event: Event) {
 }
 
 .cust-import-input {
-  width: 100%;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 5px;
-  padding: 6px 10px;
+  box-sizing: border-box;
+  color: $tb-text;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text;
   outline: none;
-  box-sizing: border-box;
+  padding: 6px 10px;
+  width: 100%;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible { border-color: $tb-accent; }
 }
 
@@ -181,33 +182,35 @@ function applyFromFile(event: Event) {
   border-radius: 4px;
   color: $tb-text-dim;
   cursor: pointer;
+  flex-shrink: 0;
   font-family: inherit;
   font-size: 11px;
   font-weight: 500;
-  padding: 4px 9px;
-  white-space: nowrap;
-  flex-shrink: 0;
   line-height: 1.5;
+  padding: 4px 9px;
   transition: background 0.1s, border-color 0.1s, color 0.1s;
+  white-space: nowrap;
 
   &:hover { background: $tb-border; color: $tb-text; }
 }
 
 .cust-import-apply-btn {
-  flex: 1;
   background: $tb-surface-2;
   border: 1px solid $tb-border-active;
   border-radius: 4px;
   color: $tb-text-dim;
   cursor: pointer;
+  flex: 1;
   font-family: inherit;
   font-size: 11px;
   font-weight: 600;
   padding: 4px 12px;
   transition: background 0.1s, color 0.1s, border-color 0.1s;
 
-  &:disabled { opacity: 0.35; cursor: default; }
-  &:hover:not(:disabled) { background: $tb-accent; color: #fff; border-color: $tb-accent; }
+  &:disabled { cursor: default; opacity: 0.35; }
+
+  &:hover:not(:disabled) { background: $tb-accent; border-color: $tb-accent; color: #fff; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
@@ -216,6 +219,7 @@ function applyFromFile(event: Event) {
   margin: 6px 0 0;
 
   &--success { color: $tb-success; }
+
   &--error { color: #ef4444; }
 }
 </style>

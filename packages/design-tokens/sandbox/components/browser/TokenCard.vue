@@ -83,28 +83,28 @@ function handleCopy() {
 @use '@/assets/tb-vars' as *;
 
 .token-card {
-  position: relative;
   // Button reset: override UA defaults so the card looks identical to the old div
   appearance: none;
-  padding: 0;
-  text-align: left;
-  font: inherit;
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 8px;
-  overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s;
   // Subgrid: card spans 2 parent tracks (preview row + info row) and passes them
   // through to its children so every card in a row has identical preview/info heights.
   display: grid;
+  font: inherit;
   grid-row: span 2;
   grid-template-rows: subgrid;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: left;
+  transition: border-color 0.15s, transform 0.12s, box-shadow 0.15s;
 
   &:hover {
     border-color: $tb-border-active;
-    transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
 
     .card-copy-indicator { opacity: 1; }
   }
@@ -113,19 +113,19 @@ function handleCopy() {
     border-color: $tb-success;
 
     .card-copy-indicator {
-      opacity: 1;
-      color: $tb-success;
       background: rgba(5, 150, 105, 0.08);
       border-color: $tb-success;
+      color: $tb-success;
+      opacity: 1;
     }
   }
 }
 
 .card-color-aura {
-  position: absolute;
   inset: 0;
   opacity: 0.05;
   pointer-events: none;
+  position: absolute;
   transition: opacity 0.2s;
 
   .token-card:hover & { opacity: 0.1; }
@@ -133,47 +133,47 @@ function handleCopy() {
 
 // Token name and value — allow wrapping so full names are always readable
 .card-info {
-  padding: 10px 12px 9px;
+  border-top: 1px solid $tb-border;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  border-top: 1px solid $tb-border;
+  padding: 10px 12px 9px;
 }
 
 .card-token-name {
+  color: $tb-text;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text;
   line-height: 1.5;
-  word-break: break-all;
   overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 .card-token-value {
+  color: $tb-text-dim;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text-dim;
-  word-break: break-all;
   overflow-wrap: anywhere;
+  word-break: break-all;
 }
 
 // Copy indicator: hidden until hover, top-right corner
 .card-copy-indicator {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 22px;
-  height: 22px;
+  align-items: center;
   background: $tb-surface;
   border: 1px solid $tb-border-active;
   border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
   color: $tb-text-dim;
+  display: flex;
+  font-size: 12px;
+  height: 22px;
+  justify-content: center;
   opacity: 0;
-  transition: opacity 0.12s, color 0.12s, background 0.12s;
   pointer-events: none;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  transition: opacity 0.12s, color 0.12s, background 0.12s;
+  width: 22px;
 }
 </style>

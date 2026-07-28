@@ -131,10 +131,19 @@ function loadDifferent() {
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.tb-load-different { background: $tb-surface; color: $tb-text-muted; border: 1px solid $tb-border-active; border-radius: 5px; padding: 5px 9px; font-size: 12px; cursor: pointer; &:hover { color: $tb-text; border-color: $tb-accent; } }
-.tb-github { display: inline-flex; align-items: center; background: $tb-surface; color: $tb-text-muted; border: 1px solid $tb-border-active; border-radius: 5px; padding: 5px 9px; text-decoration: none; &:hover { color: $tb-text; border-color: $tb-accent; } &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; } }
-.tb-tabpanel {
-  flex: 1; min-height: 0; display: flex;
+.tb-load-different { background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 5px; color: $tb-text-muted; cursor: pointer; font-size: 12px; padding: 5px 9px;
+
+  &:hover { border-color: $tb-accent; color: $tb-text; } }
+
+.tb-github { align-items: center; background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 5px; color: $tb-text-muted; display: inline-flex; padding: 5px 9px; text-decoration: none;
+
+  &:hover { border-color: $tb-accent; color: $tb-text; }
+
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; } }
+
+.tb-tabpanel { display: flex;
+  flex: 1; min-height: 0;
+
   > * { flex: 1; min-height: 0; overflow-y: auto; }
 }
 </style>

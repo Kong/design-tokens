@@ -162,22 +162,41 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onDocPointer, 
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.color-editor { width: 210px; background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 8px; padding: 10px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18); display: flex; flex-direction: column; gap: 8px; }
+.color-editor { background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 8px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18); display: flex; flex-direction: column; gap: 8px; padding: 10px; width: 210px; }
 
-.ce-preview { height: 34px; border-radius: 6px; overflow: hidden; border: 1px solid $tb-border; }
+.ce-preview { border: 1px solid $tb-border; border-radius: 6px; height: 34px; overflow: hidden; }
+
 .ce-preview--alpha { background: repeating-conic-gradient(#bbb 0% 25%, #fff 0% 50%) 0 0 / 10px 10px; }
-.ce-preview-fill { display: block; width: 100%; height: 100%; }
 
-.ce-row { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.ce-preview-fill { display: block; height: 100%; width: 100%; }
 
-.ce-native { position: relative; display: inline-flex; align-items: center; gap: 6px; border: 1px solid $tb-border; border-radius: 5px; padding: 3px 8px; cursor: pointer; font-size: 11px; color: $tb-text-dim; &:hover { border-color: $tb-accent; } }
-.ce-native-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0, 0, 0, 0.15); }
-.ce-native-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; border: none; padding: 0; }
+.ce-row { align-items: center; display: flex; gap: 8px; justify-content: space-between; }
+
+.ce-native { align-items: center; border: 1px solid $tb-border; border-radius: 5px; color: $tb-text-dim; cursor: pointer; display: inline-flex; font-size: 11px; gap: 6px; padding: 3px 8px; position: relative;
+
+  &:hover { border-color: $tb-accent; } }
+
+.ce-native-swatch { border: 1px solid rgba(0, 0, 0, 0.15); border-radius: 3px; height: 14px; width: 14px; }
+
+.ce-native-input { border: none; cursor: pointer; height: 100%; inset: 0; opacity: 0; padding: 0; position: absolute; width: 100%; }
+
 .ce-native-label { font-weight: 500; }
 
-.ce-format { display: inline-flex; background: $tb-surface-2; border: 1px solid $tb-border; border-radius: 5px; overflow: hidden; }
-.ce-format-btn { background: none; border: none; padding: 3px 9px; font-family: inherit; font-size: 10px; font-weight: 600; letter-spacing: 0.03em; color: $tb-text-muted; cursor: pointer; &:hover:not(&--active) { color: $tb-text-dim; } &--active { background: $tb-accent; color: #fff; } &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; } }
+.ce-format { background: $tb-surface-2; border: 1px solid $tb-border; border-radius: 5px; display: inline-flex; overflow: hidden; }
 
-.ce-text { width: 100%; box-sizing: border-box; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 5px 8px; font-family: $tb-mono; font-size: 12px; color: $tb-text; &:focus-visible { border-color: $tb-accent; outline: none; } &--invalid { border-color: #e53e3e; } }
-.ce-hint { margin: 0; font-size: 10px; color: #e53e3e; line-height: 1.4; }
+.ce-format-btn { background: none; border: none; color: $tb-text-muted; cursor: pointer; font-family: inherit; font-size: 10px; font-weight: 600; letter-spacing: 0.03em; padding: 3px 9px;
+
+  &:hover:not(&--active) { color: $tb-text-dim; }
+
+  &--active { background: $tb-accent; color: #fff; }
+
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; } }
+
+.ce-text { background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; box-sizing: border-box; color: $tb-text; font-family: $tb-mono; font-size: 12px; padding: 5px 8px; width: 100%;
+
+  &:focus-visible { border-color: $tb-accent; outline: none; }
+
+  &--invalid { border-color: #e53e3e; } }
+
+.ce-hint { color: #e53e3e; font-size: 10px; line-height: 1.4; margin: 0; }
 </style>

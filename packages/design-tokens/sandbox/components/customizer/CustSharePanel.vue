@@ -118,80 +118,84 @@ const emit = defineEmits<{
 }
 
 .cust-share-label {
-  display: flex;
   align-items: center;
-  gap: 6px;
+  color: $tb-text-muted;
+  display: flex;
   font-size: 11px;
   font-weight: 700;
-  text-transform: uppercase;
+  gap: 6px;
   letter-spacing: 0.07em;
-  color: $tb-text-muted;
   margin-bottom: 8px;
+  text-transform: uppercase;
 
   svg { flex-shrink: 0; }
 }
 
 .share-badge {
   background: $tb-accent-subtle;
-  color: $tb-accent;
   border-radius: 8px;
-  padding: 1px 6px;
+  color: $tb-accent;
   font-weight: 600;
-  text-transform: none;
   letter-spacing: 0;
+  padding: 1px 6px;
+  text-transform: none;
 }
 
 .cust-share-copy-btn {
-  width: 100%;
+  align-items: center;
   background: $tb-accent;
-  color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 8px 16px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
   font-family: inherit;
   font-size: 13px;
   font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 7px;
+  justify-content: center;
+  padding: 8px 16px;
   transition: opacity 0.12s, background 0.15s;
   white-space: nowrap;
+  width: 100%;
 
   &:hover { opacity: 0.85; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+
   &--copied { background: $tb-success; }
 }
 
 .cust-share-code-btn {
-  width: 100%;
-  margin-top: 6px;
+  align-items: center;
   background: $tb-surface-2;
-  color: $tb-text-dim;
   border: 1px solid $tb-border-active;
   border-radius: 5px;
-  padding: 6px 16px;
+  color: $tb-text-dim;
+  cursor: pointer;
+  display: flex;
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 6px;
+  justify-content: center;
+  margin-top: 6px;
+  padding: 6px 16px;
   transition: background 0.12s, color 0.12s, border-color 0.12s;
   white-space: nowrap;
+  width: 100%;
 
   &:hover { background: $tb-border; color: $tb-text; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
-  &--copied { background: $tb-success; color: #fff; border-color: $tb-success; }
+
+  &--copied { background: $tb-success; border-color: $tb-success; color: #fff; }
 }
 
 .cust-share-hint {
-  font-size: 12px;
   color: $tb-text-muted;
-  margin: 8px 0 0;
+  font-size: 12px;
   line-height: 1.55;
+  margin: 8px 0 0;
 }
 </style>

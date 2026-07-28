@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { resolveValue, parseAliasRef } from './themeBuilderUtils'
+import { resolveValue, parseAliasRef, resolveEmbeddedRefs } from './themeBuilderUtils'
 import { deriveEffectiveCss } from './themeBuilderUtils'
 import { exportThemeJson, exportAliasJson, flattenAliases, isColorToken, isValidThemeJson } from './themeBuilderUtils'
 import type { ThemeJson, AliasJson } from './themeBuilderUtils'
@@ -26,6 +26,35 @@ describe('parseAliasRef', () => {
   it('returns null for non-string input without throwing', () => {
     expect(parseAliasRef(undefined)).toBeNull()
     expect(parseAliasRef(null)).toBeNull()
+  })
+})
+
+describe('resolveEmbeddedRefs', () => {
+  it('resolves a pure alias ref (same as resolveValue)', () => {
+    expect(resolveEmbeddedRefs('{color.alias.blue.50}', aliasJson, {})).toBe('#3094FF')
+  })
+  it('resolves a singleton alias ref', () => {
+    expect(resolveEmbeddedRefs('{color.alias.black}', aliasJson, {})).toBe('#000000')
+  })
+  it('resolves an alias ref embedded in a shadow value', () => {
+    expect(resolveEmbeddedRefs('0px 1px 1px {color.alias.blue.50} inset', aliasJson, {}))
+      .toBe('0px 1px 1px #3094FF inset')
+  })
+  it('resolves multiple embedded refs in one value', () => {
+    const aj = { color: { alias: { blue: { '50': { $value: '#3094FF' } }, black: { $value: '#000000' } } } }
+    expect(resolveEmbeddedRefs('{color.alias.blue.50} 0px 0px {color.alias.black}', aj, {}))
+      .toBe('#3094FF 0px 0px #000000')
+  })
+  it('returns a literal with no refs unchanged', () => {
+    expect(resolveEmbeddedRefs('0px 4px 8px rgba(0,0,0,0.2)', aliasJson, {})).toBe('0px 4px 8px rgba(0,0,0,0.2)')
+  })
+  it('leaves an unresolvable ref as-is (unknown family)', () => {
+    expect(resolveEmbeddedRefs('0px 1px {color.alias.unknown.10}', aliasJson, {}))
+      .toBe('0px 1px {color.alias.unknown.10}')
+  })
+  it('honors alias overrides over base palette', () => {
+    expect(resolveEmbeddedRefs('0px 1px 1px {color.alias.blue.50} inset', aliasJson, { 'blue.50': '#00BFFF' }))
+      .toBe('0px 1px 1px #00BFFF inset')
   })
 })
 
@@ -91,6 +120,28 @@ describe('deriveEffectiveCss', () => {
     })
     expect(css).not.toContain('kui-alert-border-radius')
     expect(css).not.toContain('body{color:red')
+  })
+  it('resolves an alias ref embedded in a shadow token value', () => {
+    const theme = {
+      ...themeJson,
+      'kui-shadow-border-disabled': { $value: '0px 1px 1px {color.alias.blue.50} inset' },
+    }
+    const css = deriveEffectiveCss(theme, aliasJson, {}, {})
+    expect(css).toContain('--kui-shadow-border-disabled: 0px 1px 1px #3094FF inset;')
+  })
+  it('resolves an embedded alias ref that is a token override', () => {
+    const css = deriveEffectiveCss(themeJson, aliasJson, {}, {
+      'kui-alert-border-radius': '0px 0px 0px 1px {color.alias.blue.50}',
+    })
+    expect(css).toContain('--kui-alert-border-radius: 0px 0px 0px 1px #3094FF;')
+  })
+  it('omits a shadow token whose embedded ref cannot be resolved', () => {
+    const theme = {
+      ...themeJson,
+      'kui-shadow-border-disabled': { $value: '0px 1px 1px {color.alias.unknown.10} inset' },
+    }
+    const css = deriveEffectiveCss(theme, aliasJson, {}, {})
+    expect(css).not.toContain('--kui-shadow-border-disabled')
   })
 })
 

@@ -65,11 +65,25 @@ function pick(entry: AliasFlatEntry) {
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.alias-picker { width: 280px; background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 8px; padding: 10px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18); }
-.ap-search { width: 100%; box-sizing: border-box; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 6px 8px; font-size: 12px; color: $tb-text; margin-bottom: 8px; &:focus-visible { border-color: $tb-accent; outline: none; } }
-.ap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; max-height: 260px; overflow-y: auto; }
-.ap-item { display: flex; align-items: center; gap: 6px; background: none; border: 1px solid transparent; border-radius: 5px; padding: 4px 6px; cursor: pointer; text-align: left; &:hover { background: $tb-surface-2; } &--selected { border-color: $tb-accent; background: $tb-accent-subtle; } }
-.ap-swatch { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.15); flex-shrink: 0; }
-.ap-label { font-family: $tb-mono; font-size: 10px; color: $tb-text-dim; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ap-reset { width: 100%; margin-top: 8px; background: none; border: 1px solid $tb-border; border-radius: 5px; padding: 5px; font-size: 11px; color: $tb-text-muted; cursor: pointer; &:hover { color: $tb-text; border-color: $tb-border-active; } }
+.alias-picker { background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 8px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18); padding: 10px; width: 280px; }
+
+.ap-search { background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; box-sizing: border-box; color: $tb-text; font-size: 12px; margin-bottom: 8px; padding: 6px 8px; width: 100%;
+
+  &:focus-visible { border-color: $tb-accent; outline: none; } }
+
+.ap-grid { display: grid; gap: 4px; grid-template-columns: repeat(2, 1fr); max-height: 260px; overflow-y: auto; }
+
+.ap-item { align-items: center; background: none; border: 1px solid transparent; border-radius: 5px; cursor: pointer; display: flex; gap: 6px; padding: 4px 6px; text-align: left;
+
+  &:hover { background: $tb-surface-2; }
+
+  &--selected { background: $tb-accent-subtle; border-color: $tb-accent; } }
+
+.ap-swatch { border: 1px solid rgba(0, 0, 0, 0.15); border-radius: 4px; flex-shrink: 0; height: 16px; width: 16px; }
+
+.ap-label { color: $tb-text-dim; font-family: $tb-mono; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.ap-reset { background: none; border: 1px solid $tb-border; border-radius: 5px; color: $tb-text-muted; cursor: pointer; font-size: 11px; margin-top: 8px; padding: 5px; width: 100%;
+
+  &:hover { border-color: $tb-border-active; color: $tb-text; } }
 </style>

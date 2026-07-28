@@ -67,48 +67,49 @@
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.instructions-panel { padding: 20px; max-width: 640px; overflow-y: auto; height: 100%; box-sizing: border-box; }
+.instructions-panel { box-sizing: border-box; height: 100%; max-width: 640px; overflow-y: auto; padding: 20px; }
 
 .ip-heading {
+  color: $tb-text-muted;
   font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: $tb-text-muted;
   margin: 24px 0 10px;
+  text-transform: uppercase;
 
   &:first-child { margin-top: 0; }
 }
 
 .ip-text {
-  margin: 0 0 8px;
+  color: $tb-text;
   font-size: 13px;
   line-height: 1.6;
-  color: $tb-text;
+  margin: 0 0 8px;
 
-  code { font-family: $tb-mono; font-size: 12px; background: $tb-surface-2; padding: 1px 5px; border-radius: 3px; }
+  code { background: $tb-surface-2; border-radius: 3px; font-family: $tb-mono; font-size: 12px; padding: 1px 5px; }
 }
 
 .ip-steps, .ip-list {
-  margin: 0;
-  padding-left: 20px;
+  color: $tb-text;
   font-size: 13px;
   line-height: 1.6;
-  color: $tb-text;
+  margin: 0;
+  padding-left: 20px;
 
   li { margin-bottom: 10px; }
-  code { font-family: $tb-mono; font-size: 12px; background: $tb-surface-2; padding: 1px 5px; border-radius: 3px; }
+
+  code { background: $tb-surface-2; border-radius: 3px; font-family: $tb-mono; font-size: 12px; padding: 1px 5px; }
 }
 
 .ip-code {
-  margin: 6px 0;
-  font-family: $tb-mono;
-  font-size: 12px;
-  color: $tb-text;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 5px;
-  padding: 8px 10px;
+  color: $tb-text;
+  font-family: $tb-mono;
+  font-size: 12px;
+  margin: 6px 0;
   overflow-x: auto;
+  padding: 8px 10px;
 }
 </style>

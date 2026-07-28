@@ -68,29 +68,38 @@ const visible = computed(() => props.tokens.filter((t) => {
 @use '@/assets/tb-vars' as *;
 
 .token-list { display: flex; flex-direction: column; }
-.tl-search-wrap { position: sticky; top: 0; display: flex; align-items: center; gap: 8px; background: $tb-surface; padding: 10px 12px; border-bottom: 1px solid $tb-border; z-index: 5; }
-.tl-search { flex: 1; width: 100%; box-sizing: border-box; background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; padding: 6px 10px; font-size: 13px; color: $tb-text; &:focus-visible { border-color: $tb-accent; outline: none; } }
+
+.tl-search-wrap { align-items: center; background: $tb-surface; border-bottom: 1px solid $tb-border; display: flex; gap: 8px; padding: 10px 12px; position: sticky; top: 0; z-index: 5; }
+
+.tl-search { background: $tb-bg; border: 1px solid $tb-border; border-radius: 5px; box-sizing: border-box; color: $tb-text; flex: 1; font-size: 13px; padding: 6px 10px; width: 100%;
+
+  &:focus-visible { border-color: $tb-accent; outline: none; } }
+
 .tl-modified-btn {
   background: none;
   border: 1px solid $tb-border;
   border-radius: 10px;
-  font-size: 11px;
-  font-weight: 500;
   color: $tb-text-muted;
   cursor: pointer;
-  padding: 2px 8px;
   font-family: inherit;
-  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
   transition: background 0.12s, color 0.12s, border-color 0.12s;
+  white-space: nowrap;
 
-  &:disabled { opacity: 0.35; cursor: default; }
-  &:hover:not(:disabled):not(.tl-modified-btn--active) { color: $tb-text-dim; border-color: $tb-border-active; }
+  &:disabled { cursor: default; opacity: 0.35; }
+
+  &:hover:not(:disabled):not(.tl-modified-btn--active) { border-color: $tb-border-active; color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+
   &--active {
     background: $tb-accent-subtle;
-    color: $tb-accent;
     border-color: rgba(0, 68, 244, 0.25);
+    color: $tb-accent;
   }
 }
-.tl-empty { padding: 40px 20px; text-align: center; color: $tb-text-muted; font-size: 14px; }
+
+.tl-empty { color: $tb-text-muted; font-size: 14px; padding: 40px 20px; text-align: center; }
 </style>

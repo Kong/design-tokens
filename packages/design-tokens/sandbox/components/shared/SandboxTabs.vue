@@ -37,13 +37,17 @@ const emit = defineEmits<{ 'update:modelValue': [id: string] }>()
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.sandbox-tabs { flex-shrink: 0; display: flex; gap: 2px; background: $tb-surface; border-bottom: 1px solid $tb-border; padding: 0 12px; }
+.sandbox-tabs { background: $tb-surface; border-bottom: 1px solid $tb-border; display: flex; flex-shrink: 0; gap: 2px; padding: 0 12px; }
+
 .st-tab {
   background: none; border: none; border-bottom: 2px solid transparent;
-  padding: 10px 14px; font-family: inherit; font-size: 13px; font-weight: 500;
-  color: $tb-text-muted; cursor: pointer;
+  color: $tb-text-muted; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500;
+  padding: 10px 14px;
+
   &:hover { color: $tb-text-dim; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
-  &--active { color: $tb-accent; border-bottom-color: $tb-accent; }
+
+  &--active { border-bottom-color: $tb-accent; color: $tb-accent; }
 }
 </style>
