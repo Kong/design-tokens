@@ -61,24 +61,24 @@ const emit = defineEmits<{
 }
 
 .cust-output-header {
-  padding: 10px 16px 8px;
+  align-items: center;
   border-bottom: 1px solid $tb-border;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  padding: 10px 16px 8px;
 }
 
 .cust-output-label {
+  color: $tb-text-muted;
   font-size: 11px;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: $tb-text-muted;
+  text-transform: uppercase;
 }
 
 .cust-output-actions {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 4px;
 }
 
@@ -91,35 +91,36 @@ const emit = defineEmits<{
   font-family: inherit;
   font-size: 11px;
   font-weight: 500;
-  padding: 2px 7px;
-  white-space: nowrap;
   line-height: 1.5;
+  padding: 2px 7px;
   transition: color 0.1s, border-color 0.1s, background 0.1s;
+  white-space: nowrap;
 
-  &:hover { color: $tb-accent; border-color: $tb-accent; background: $tb-accent-subtle; }
+  &:hover { background: $tb-accent-subtle; border-color: $tb-accent; color: $tb-accent; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
 .cust-output-code {
-  font-family: $tb-mono;
-  font-size: 11px;
   background: #1e1e2e;
   color: #cdd6f4;
+  font-family: $tb-mono;
+  font-size: 11px;
+  line-height: 1.6;
   margin: 0;
-  padding: 12px 16px;
-  overflow-x: auto;
   max-height: 220px;
+  overflow-x: auto;
   overflow-y: auto;
+  padding: 12px 16px;
   scrollbar-gutter: stable;
   white-space: pre;
-  line-height: 1.6;
 }
 
 .cust-output-hint {
-  font-size: 12px;
   color: $tb-text-muted;
+  font-size: 12px;
+  line-height: 1.5;
   margin: 0;
   padding: 8px 16px;
-  line-height: 1.5;
 }
 </style>

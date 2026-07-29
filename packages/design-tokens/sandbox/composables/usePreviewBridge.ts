@@ -1,7 +1,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 import { ALL_ENTRIES } from './useTokens'
-import { getHashParam } from '../lib/hashRouteQuery'
+import { getHashParam } from '../utils/hashRouteQuery'
 
 /**
  * One entry in the breakpoint preset list.
@@ -36,7 +36,7 @@ const PRESET_HEIGHTS: Record<string, number | undefined> = {
 }
 
 /**
- * Mode-aware composable that bridges the customizer's token overrides to an external page.
+ * Mode-aware composable that bridges the customizer's tokens to an external page.
  *
  * - **`iframe-proxy`** (dev only): loads the target URL through the Vite `/preview-proxy`
  *   middleware, making it same-origin so `contentDocument` injection works directly.
@@ -46,9 +46,9 @@ const PRESET_HEIGHTS: Record<string, number | undefined> = {
  * - **`bookmarklet-popup`** (hosted): opens the target URL in a popup; the designer clicks
  *   a bookmarklet on that page which sets up a `postMessage` listener and pings us back.
  *
- * @param overridesCss - Reactive string containing the full `:root { … }` override block.
+ * @param css - Reactive string containing the full `:root { … }` block to inject.
  */
-export function usePreviewBridge(overridesCss: Ref<string>) {
+export function usePreviewBridge(css: Ref<string>) {
   // DEV → iframe proxy; production → bookmarklet popup.
   // ?preview=bookmarklet forces bookmarklet mode on dev for local testing.
   const forceBookmarklet = typeof window !== 'undefined' && getHashParam('preview') === 'bookmarklet'
@@ -100,7 +100,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
   }
 
   /**
-   * Pushes the current override CSS into the proxied iframe via `postMessage`.
+   * Pushes the current CSS into the proxied iframe via `postMessage`.
    * The proxied page's injected script listens for `kui-inject-css` and writes it to
    * the `<style id="kong-design-token-overrides">` tag. Preferred over direct `contentDocument`
    * access because it works reliably across all navigation events.
@@ -108,7 +108,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
   function sendCssToFrame() {
     const win = iframeEl.value?.contentWindow
     if (!win) return
-    win.postMessage({ type: 'kui-inject-css', css: overridesCss.value }, '*')
+    win.postMessage({ type: 'kui-inject-css', css: css.value }, '*')
   }
 
   /**
@@ -127,7 +127,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
         s.id = 'kong-design-token-overrides'
         ;(doc.head ?? doc.documentElement).appendChild(s)
       }
-      s.textContent = overridesCss.value
+      s.textContent = css.value
       return true
     } catch {
       // Cross-origin access denied — proxy failed to make the frame same-origin
@@ -183,7 +183,7 @@ export function usePreviewBridge(overridesCss: Ref<string>) {
   })
 
   // iframe-proxy only — bookmarklet mode pushes on postMessage receipt in useEmbeddedBridge
-  watch(overridesCss, () => {
+  watch(css, () => {
     if (mode === 'iframe-proxy' && loadedUrl.value) {
       sendCssToFrame()
       injectIntoIframe()

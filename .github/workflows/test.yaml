@@ -58,5 +58,8 @@ jobs:
       - name: Typecheck
         run: pnpm --filter "${{ matrix.package }}" --if-present typecheck
 
+      - name: Stylelint
+        run: pnpm --filter "${{ matrix.package }}" --if-present stylelint
+
       - name: Test
         run: pnpm --filter "${{ matrix.package }}" --if-present test

@@ -1,6 +1,6 @@
 {
   "name": "@kong/design-tokens",
-  "version": "3.0.7",
+  "version": "3.1.6",
   "description": "Kong Design Tokens and style dictionary",
   "private": false,
   "type": "module",
@@ -13,6 +13,8 @@
     "lint:fix": "eslint --fix",
     "typecheck": "pnpm typecheck:sandbox",
     "typecheck:sandbox": "vue-tsc --project ./sandbox/tsconfig.json --noEmit",
+    "stylelint": "stylelint --allow-empty-input './sandbox/**/*.{css,scss,vue}'",
+    "stylelint:fix": "stylelint --allow-empty-input './sandbox/**/*.{css,scss,sass,vue}' --fix",
     "sandbox": "pnpm build && run-p sandbox:open sandbox:watch",
     "sandbox:open": "vite sandbox -c ./sandbox/vite.config.ts",
     "sandbox:watch": "chokidar \"tokens/**/*.json\" \"themes/**/*.json\" -c \"pnpm build\"",

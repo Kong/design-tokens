@@ -32,14 +32,23 @@
             Your existing browser session is preserved, so authenticated pages work as-is.
           </p>
           <div class="bm-drag-row">
-            <a
-              class="bm-drag-link"
-              :href="bookmarkletHref"
-              @click.prevent
-            >
-              🔖 Design Token Customizer
-            </a>
-            <span class="bm-drag-hint">← drag this to your bookmarks bar</span>
+            <div class="bm-drag-links">
+              <a
+                class="bm-drag-link"
+                :href="bookmarkletHref"
+                @click.prevent
+              >
+                🔖 Token Customizer
+              </a>
+              <a
+                class="bm-drag-link"
+                :href="themeBuilderHref"
+                @click.prevent
+              >
+                🎨 Theme Builder
+              </a>
+            </div>
+            <span class="bm-drag-hint">← drag either to your bookmarks bar</span>
           </div>
           <ol class="bm-steps">
             <li>Drag the link above to your browser's bookmarks bar</li>
@@ -70,6 +79,8 @@ defineProps<{
   modelValue: boolean
   /** The `javascript:` bookmarklet href for the drag link. */
   bookmarkletHref: string
+  /** The `javascript:` bookmarklet href for the Theme Builder drag link. */
+  themeBuilderHref: string
 }>()
 
 const emit = defineEmits<{
@@ -81,14 +92,14 @@ const emit = defineEmits<{
 @use '@/assets/tb-vars' as *;
 
 .bm-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 1000;
-  display: flex;
   align-items: center;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  inset: 0;
   justify-content: center;
   padding: 20px;
+  position: fixed;
+  z-index: 1000;
 }
 
 .bm-modal {
@@ -96,37 +107,38 @@ const emit = defineEmits<{
   border: 1px solid $tb-border;
   border-radius: 10px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
-  width: 100%;
-  max-width: 480px;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  max-width: 480px;
+  width: 100%;
 }
 
 .bm-header {
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid $tb-border;
+  display: flex;
   justify-content: space-between;
   padding: 16px 20px 14px;
-  border-bottom: 1px solid $tb-border;
 }
 
 .bm-title {
+  color: $tb-text;
   font-size: 15px;
   font-weight: 600;
-  color: $tb-text;
   margin: 0;
 }
 
 .bm-close {
   background: none;
   border: none;
+  border-radius: 4px;
+  color: $tb-text-muted;
   cursor: pointer;
   font-size: 13px;
-  color: $tb-text-muted;
-  padding: 4px 6px;
-  border-radius: 4px;
   line-height: 1;
+  padding: 4px 6px;
 
   &:hover { background: $tb-surface-2; color: $tb-text; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
@@ -135,55 +147,64 @@ const emit = defineEmits<{
 }
 
 .bm-desc {
-  font-size: 13px;
   color: $tb-text-dim;
-  margin: 0 0 16px;
+  font-size: 13px;
   line-height: 1.6;
+  margin: 0 0 16px;
 }
 
 .bm-drag-row {
-  display: flex;
   align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 16px;
 }
 
+.bm-drag-links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .bm-drag-link {
-  display: inline-block;
   background: $tb-accent-subtle;
-  color: $tb-accent;
   border: 1px solid rgba(0, 68, 244, 0.2);
   border-radius: 6px;
-  padding: 7px 14px;
+  color: $tb-accent;
+  cursor: grab;
+  display: inline-block;
+  flex-shrink: 0;
   font-size: 13px;
   font-weight: 500;
+  padding: 7px 14px;
   text-decoration: none;
-  cursor: grab;
   user-select: none;
-  flex-shrink: 0;
 
   &:active { cursor: grabbing; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
 .bm-drag-hint {
-  font-size: 12px;
   color: $tb-text-muted;
+  font-size: 12px;
 }
 
 .bm-steps {
+  color: $tb-text-dim;
+  font-size: 13px;
+  line-height: 1.8;
   margin: 0 0 16px;
   padding-left: 20px;
-  font-size: 13px;
-  color: $tb-text-dim;
-  line-height: 1.8;
 
   code {
     background: $tb-surface-2;
     border-radius: 3px;
-    padding: 1px 4px;
     font-family: $tb-mono;
     font-size: 11px;
+    padding: 1px 4px;
   }
 }
 
@@ -194,24 +215,25 @@ const emit = defineEmits<{
 }
 
 .bm-standalone-row {
-  display: flex;
   align-items: center;
-  gap: 10px;
+  display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .bm-standalone-label {
-  font-size: 12px;
   color: $tb-text-muted;
+  font-size: 12px;
 }
 
 .bm-standalone-link {
+  color: $tb-accent;
   font-size: 13px;
   font-weight: 500;
-  color: $tb-accent;
   text-decoration: none;
 
   &:hover { text-decoration: underline; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; border-radius: 2px; }
+
+  &:focus-visible { border-radius: 2px; outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 </style>

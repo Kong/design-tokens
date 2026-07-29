@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 import HomeView from './pages/HomeView.vue'
 import CustomizerView from './pages/CustomizerView.vue'
+import ThemeBuilderView from './pages/ThemeBuilderView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -15,6 +16,12 @@ const routes: RouteRecordRaw[] = [
     name: 'customize',
     component: CustomizerView,
     meta: { title: 'Customize' },
+  },
+  {
+    path: '/theme-builder',
+    name: 'theme-builder',
+    component: ThemeBuilderView,
+    meta: { title: 'Theme Builder' },
   },
 ]
 

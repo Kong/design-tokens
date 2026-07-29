@@ -63,6 +63,22 @@
           </button>
         </div>
         <div class="controls-row">
+          <label class="theme-select-wrap">
+            <span class="theme-select-label">Theme</span>
+            <select
+              v-model="activeTheme"
+              aria-label="Preview theme"
+              class="theme-select"
+            >
+              <option
+                v-for="theme in THEMES"
+                :key="theme.id"
+                :value="theme.id"
+              >
+                {{ theme.label }}
+              </option>
+            </select>
+          </label>
           <div
             aria-label="Copy format"
             class="format-toggle"
@@ -107,6 +123,21 @@
             @click="showBookmarkletModal = true"
           >
             Customize →
+          </button>
+          <router-link
+            v-if="isDevMode"
+            class="nav-link"
+            to="/theme-builder"
+          >
+            Theme Builder →
+          </router-link>
+          <button
+            v-else
+            class="nav-link nav-link--btn"
+            type="button"
+            @click="showBookmarkletModal = true"
+          >
+            Theme Builder →
           </button>
         </div>
       </div>
@@ -299,6 +330,7 @@
     <BookmarkletModal
       v-model="showBookmarkletModal"
       :bookmarklet-href="bookmarkletHref"
+      :theme-builder-href="themeBuilderBookmarkletHref"
     />
   </div>
 </template>
@@ -306,11 +338,11 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useTokens, categoryLabel, buildSections, type TokenCategory } from '@/composables/useTokens'
+import { useTokens, categoryLabel, buildSections, THEMES, DEFAULT_THEME_ID, isThemeId, type TokenCategory } from '@/composables/useTokens'
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
-import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
+import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
 import TokenCard from './TokenCard.vue'
 import BookmarkletModal from './BookmarkletModal.vue'
 import pkg from '../../../package.json'
@@ -324,7 +356,14 @@ const showBookmarkletModal = ref(false)
 const bookmarkletHref = (() => {
   if (typeof window === 'undefined') return '#'
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
+})()
+
+/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
+const themeBuilderBookmarkletHref = (() => {
+  if (typeof window === 'undefined') return '#'
+  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
 })()
 
 const appVersion = pkg.version
@@ -335,6 +374,7 @@ const router = useRouter()
 const {
   search,
   activeCategory,
+  activeTheme,
   categories,
   componentSubcategories,
   componentsBySubcat,
@@ -378,22 +418,41 @@ onMounted(() => {
     localSearch.value = q
     search.value = q
   }
+  const theme = route.query.theme
+  if (typeof theme === 'string' && isThemeId(theme)) {
+    activeTheme.value = theme
+  }
 })
+
+/** Builds the query object reflecting current search + theme state, omitting defaults. */
+function buildQuery(searchVal: string): Record<string, string> {
+  return {
+    ...(searchVal ? { q: searchVal } : {}),
+    ...(activeTheme.value !== DEFAULT_THEME_ID ? { theme: activeTheme.value } : {}),
+  }
+}
 
 watch(localSearch, (val) => {
   clearTimeout(searchDebounce)
   searchDebounce = setTimeout(() => {
     search.value = val
-    router.replace({ query: val ? { q: val } : {} })
+    router.replace({ query: buildQuery(val) })
   }, 300)
 })
 
-/** Resets search and active tab, navigating back to the default browse view. */
+// Reflect the selected preview theme in the URL immediately (no debounce needed — a
+// dropdown change, unlike typed search, isn't a rapid-fire event) so the current view is
+// shareable and survives a reload.
+watch(activeTheme, () => {
+  router.replace({ query: buildQuery(search.value) })
+})
+
+/** Resets search and active tab, navigating back to the default browse view. Preserves the selected preview theme. */
 function handleLogoClick() {
   localSearch.value = ''
   search.value = ''
   activeCategory.value = 'color'
-  router.push('/')
+  router.push({ path: '/', query: buildQuery('') })
 }
 
 /** Switches to a category tab; separate function so we can add sub-state resets here if needed. */
@@ -412,46 +471,46 @@ function handleCopy(key: string, text: string) {
 
 // Root
 .token-browser {
-  min-height: 100vh;
   background: $tb-bg;
   color: $tb-text;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
 }
 
 // Header
 .browser-header {
+  align-items: center;
+  background: $tb-surface;
+  border-bottom: 1px solid $tb-border;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 20px;
   position: sticky;
   top: 0;
   z-index: 20;
-  background: $tb-surface;
-  border-bottom: 1px solid $tb-border;
-  padding: 12px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
 // On mobile the brand takes the full width, pushing controls to the next row
 .browser-brand {
-  display: flex;
   align-items: baseline;
-  gap: 8px;
+  display: flex;
   flex-shrink: 0;
+  gap: 8px;
 
   @media (max-width: 639px) { width: 100%; }
 }
 
 .brand-btn {
-  display: flex;
   align-items: baseline;
-  gap: 8px;
   background: none;
   border: none;
-  padding: 0;
-  cursor: pointer;
   border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  padding: 0;
 
   &:focus-visible {
     outline: 2px solid $tb-accent;
@@ -460,60 +519,61 @@ function handleCopy(key: string, text: string) {
 }
 
 .brand-title {
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: -0.01em;
   color: $tb-text;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1;
 }
 
 .brand-version {
-  font-size: 11px;
   color: $tb-text-muted;
+  font-family: $tb-mono;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0;
-  font-family: $tb-mono;
 }
 
 // Controls always lay out as a row (search + toggle + link side-by-side)
 .browser-controls {
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  display: flex;
   flex: 1;
+  flex-direction: row;
+  gap: 8px;
   min-width: 0;
 }
 
 .search-wrap {
-  position: relative;
   flex: 1;
   min-width: 0;
+  position: relative;
 
   .search-icon {
-    position: absolute;
+    color: $tb-text-muted;
     left: 10px;
+    pointer-events: none;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: $tb-text-muted;
-    pointer-events: none;
   }
 }
 
 .search-input {
-  width: 100%;
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 6px;
-  padding: 7px 32px 7px 32px;
+  box-sizing: border-box;
+  color: $tb-text;
   font-family: inherit;
   font-size: 13px;
-  color: $tb-text;
   outline: none;
+  padding: 7px 32px 7px 32px;
   transition: border-color 0.15s, box-shadow 0.15s;
-  box-sizing: border-box;
+  width: 100%;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible {
     border-color: $tb-accent;
     box-shadow: 0 0 0 3px $tb-accent-subtle;
@@ -523,67 +583,108 @@ function handleCopy(key: string, text: string) {
 }
 
 .search-clear {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
+  align-items: center;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
   border-radius: 4px;
   color: $tb-text-muted;
   cursor: pointer;
-  padding: 2px 4px;
   display: flex;
-  align-items: center;
   line-height: 1;
+  padding: 2px 4px;
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   transition: background 0.1s, color 0.1s;
 
   &:hover { background: $tb-border; color: $tb-text; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
 }
 
 .controls-row {
-  display: flex;
   align-items: center;
-  gap: 8px;
+  display: flex;
   flex-shrink: 0;
+  gap: 8px;
 }
 
-.format-toggle {
-  display: flex;
+.theme-select-wrap {
+  align-items: center;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
   border-radius: 6px;
+  display: flex;
+  gap: 6px;
+  padding: 0 4px 0 10px;
+
+  &:focus-within { border-color: $tb-accent; box-shadow: 0 0 0 3px $tb-accent-subtle; }
+}
+
+.theme-select-label {
+  color: $tb-text-muted;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.theme-select {
+  appearance: none;
+  background: none;
+  // Minimal chevron so the select doesn't rely on the browser's native affordance
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 2px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  border: none;
+  color: $tb-text;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  padding: 6px 20px 6px 2px;
+}
+
+.format-toggle {
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 6px;
+  display: flex;
   overflow: hidden;
 }
 
 .format-btn {
   background: none;
   border: none;
-  padding: 5px 10px;
+  color: $tb-text-muted;
+  cursor: pointer;
   font-family: $tb-mono;
   font-size: 11px;
   font-weight: 500;
-  color: $tb-text-muted;
-  cursor: pointer;
+  padding: 5px 10px;
   transition: background 0.12s, color 0.12s;
   white-space: nowrap;
 
-  &:hover:not(.format-btn--active) { color: $tb-text-dim; background: rgba(0, 0, 0, 0.04); }
+  &:hover:not(.format-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+
   &--active { background: $tb-accent; color: #fff; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
 .nav-link {
+  border-radius: 3px;
+  color: $tb-accent;
   font-size: 13px;
   font-weight: 500;
-  color: $tb-accent;
+  padding: 5px 2px;
   text-decoration: none;
   white-space: nowrap;
-  padding: 5px 2px;
-  border-radius: 3px;
 
   &:hover { text-decoration: underline; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 3px; }
 
   &--btn {
@@ -596,150 +697,154 @@ function handleCopy(key: string, text: string) {
 
 // Category tabs─
 .category-tabs-wrap {
-  position: sticky;
-  top: var(--header-h, 57px);
-  z-index: 10;
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
   // Overflow must be visible so the ::after pseudo-element can overlay content outside the border
   overflow: visible;
+  position: sticky;
+  top: var(--header-h, 57px);
+  z-index: 10;
 
   // Overlay gradient using ::after instead of mask-image so the background stays fully opaque.
   // mask-image makes the background itself transparent, letting scroll content bleed through
   // the fade zone on narrow screens.
   &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 48px;
     background: linear-gradient(to right, transparent, $tb-surface);
+    bottom: 0;
+    content: '';
     pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 48px;
     z-index: 1;
   }
 }
 
 .category-tabs {
   display: flex;
-  padding: 0 20px;
   overflow-x: auto;
+  padding: 0 20px;
   scrollbar-width: none;
 
   &::-webkit-scrollbar { display: none; }
 }
 
 .tab-btn {
+  align-items: center;
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  padding: 10px 12px 8px;
+  color: $tb-text-muted;
+  cursor: pointer;
+  display: flex;
   font-family: inherit;
   font-size: 13px;
   font-weight: 500;
-  color: $tb-text-muted;
-  cursor: pointer;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
   gap: 5px;
-  transition: color 0.12s, border-color 0.12s;
   margin-bottom: -1px;
+  padding: 10px 12px 8px;
+  transition: color 0.12s, border-color 0.12s;
+  white-space: nowrap;
 
   &:hover { color: $tb-text-dim; }
+
   &--active {
-    color: $tb-text;
     border-bottom-color: $tb-accent;
+    color: $tb-text;
   }
+
   &:focus-visible {
+    border-radius: 3px;
     outline: 2px solid $tb-accent;
     outline-offset: -2px;
-    border-radius: 3px;
   }
 }
 
 .tab-count {
-  font-size: 11px;
-  color: $tb-text-muted;
   background: $tb-surface-2;
   border-radius: 10px;
+  color: $tb-text-muted;
+  font-size: 11px;
   padding: 1px 6px;
 
   .tab-btn--active & {
-    color: $tb-accent;
     background: $tb-accent-subtle;
+    color: $tb-accent;
   }
 }
 
 // Token sections─
 .token-section {
-  padding: 16px 20px;
   border-bottom: 1px solid $tb-border;
+  padding: 16px 20px;
 
   &:last-child { border-bottom: none; }
 }
 
 .token-section-header {
-  display: flex;
   align-items: center;
+  background: $tb-surface-2;
+  border-bottom: 1px solid $tb-border;
+  display: flex;
   gap: 8px;
   // Escape the parent section's padding to span the full width, then add padding back
   margin: -16px -20px 16px;
   padding: 9px 20px;
-  background: $tb-surface-2;
-  border-bottom: 1px solid $tb-border;
 
   &--collapsible {
     cursor: pointer;
     user-select: none;
+
     &:hover { background: $tb-border; }
   }
 }
 
 .section-collapse-btn {
-  display: flex;
   align-items: center;
   background: none;
   border: none;
-  padding: 0;
   color: $tb-text-muted;
   cursor: pointer;
+  display: flex;
   flex-shrink: 0;
+  padding: 0;
 
   svg { transition: transform 0.15s; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; border-radius: 3px; }
+
+  &:focus-visible { border-radius: 3px; outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
 .token-section-name {
+  color: $tb-text-dim;
   font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: $tb-text-dim;
+  text-transform: uppercase;
 }
 
 .token-section-count {
-  font-size: 11px;
-  font-weight: 500;
-  color: $tb-text-muted;
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 10px;
-  padding: 1px 7px;
+  color: $tb-text-muted;
+  font-size: 11px;
+  font-weight: 500;
   letter-spacing: 0;
+  padding: 1px 7px;
   text-transform: none;
 }
 
 // Token grid─
 .token-grid {
-  padding: 20px;
   display: grid;
   gap: 12px;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   // Two-row bands per card: preview row (1fr) + info row (auto).
   // With CSS subgrid on each card, all cards in the same row band share
   // equal preview height AND equal info height regardless of content length.
   grid-auto-rows: 1fr auto;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  padding: 20px;
 
   &--color { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
 
@@ -762,36 +867,36 @@ function handleCopy(key: string, text: string) {
 }
 
 .search-section-header {
-  display: flex;
   align-items: center;
-  gap: 8px;
+  border-bottom: 1px solid $tb-border;
+  color: $tb-text-muted;
+  display: flex;
   font-size: 12px;
   font-weight: 600;
-  text-transform: uppercase;
+  gap: 8px;
   letter-spacing: 0.06em;
-  color: $tb-text-muted;
-  padding: 0 0 10px;
-  border-bottom: 1px solid $tb-border;
   margin-bottom: 12px;
+  padding: 0 0 10px;
+  text-transform: uppercase;
 }
 
 .search-section-count {
   background: $tb-surface-2;
-  color: $tb-text-muted;
   border-radius: 10px;
-  padding: 1px 7px;
+  color: $tb-text-muted;
   font-size: 11px;
   font-weight: 500;
+  padding: 1px 7px;
 }
 
 .empty-state {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 64px 24px;
   color: $tb-text-muted;
   font-size: 14px;
+  grid-column: 1 / -1;
+  padding: 64px 24px;
+  text-align: center;
 
-  em { font-style: normal; color: $tb-text-dim; }
+  em { color: $tb-text-dim; font-style: normal; }
 }
 
 </style>

@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.5...@kong/design-tokens@3.1.6) (2026-07-29)
+
+### Bug Fixes
+
+* **design-tokens:** color text neutral weak tokens ([#704](https://github.com/Kong/design-tokens/issues/704)) ([fb10a41](https://github.com/Kong/design-tokens/commit/fb10a416be692ecfe39928ac218f3d5aeb9e0e71))
+
+## [3.1.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.4...@kong/design-tokens@3.1.5) (2026-07-28)
+
+**Note:** Version bump only for package @kong/design-tokens
+
+## [3.1.4](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.3...@kong/design-tokens@3.1.4) (2026-07-28)
+
+**Note:** Version bump only for package @kong/design-tokens
+
+## [3.1.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.2...@kong/design-tokens@3.1.3) (2026-07-28)
+
+**Note:** Version bump only for package @kong/design-tokens
+
+## [3.1.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.1...@kong/design-tokens@3.1.2) (2026-07-28)
+
+### Bug Fixes
+
+* **code-block:** remove dark tokens ([#701](https://github.com/Kong/design-tokens/issues/701)) ([483f607](https://github.com/Kong/design-tokens/commit/483f6079fdd42440994d083291f1889b4b2ce42e))
+
+## [3.1.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.0...@kong/design-tokens@3.1.1) (2026-07-28)
+
+**Note:** Version bump only for package @kong/design-tokens
+
+# [3.1.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.7...@kong/design-tokens@3.1.0) (2026-07-28)
+
+### Features
+
+* **design-tokens:** sandbox theme builder ([#700](https://github.com/Kong/design-tokens/issues/700)) ([042cedb](https://github.com/Kong/design-tokens/commit/042cedb626cbf728068f9f6a92cb9d89549ead1a))
+
 ## [3.0.7](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.0.6...@kong/design-tokens@3.0.7) (2026-07-28)
 
 ### Bug Fixes

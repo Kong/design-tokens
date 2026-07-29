@@ -76,24 +76,6 @@
 
     <!-- Inject settings -->
     <div class="inject-settings">
-      <!-- Mode toggle: overrides only (default) vs. all tokens -->
-      <div class="inject-mode-group">
-        <button
-          :class="['inject-mode-btn', { 'inject-mode-btn--active': !injectAllTokens }]"
-          title="Inject only your changed values; the site uses its own defaults for everything else"
-          @click="injectAllTokens = false"
-        >
-          Overrides only
-        </button>
-        <button
-          :class="['inject-mode-btn', { 'inject-mode-btn--active': injectAllTokens }]"
-          title="Inject all token defaults with your overrides applied — use this if the site doesn't define these tokens"
-          @click="injectAllTokens = true"
-        >
-          All tokens
-        </button>
-      </div>
-
       <!-- Custom selector input -->
       <div class="inject-selector-wrap">
         <label
@@ -126,11 +108,7 @@
         </span>
       </div>
 
-      <!-- Mode description: shown when "all tokens" is active -->
-      <span
-        v-if="injectAllTokens"
-        class="inject-mode-note"
-      >All {{ allTokensCount }} tokens injected</span>
+      <span class="inject-mode-note">All {{ allTokensCount }} tokens injected</span>
     </div>
 
     <!-- Mode A: iframe preview (dev only) -->
@@ -259,7 +237,14 @@
           :href="bookmarkletHref"
           @click.prevent
         >
-          🔖 Design Token Customizer
+          🔖 Token Customizer
+        </a>
+        <a
+          class="bookmarklet-link"
+          :href="themeBuilderBookmarkletHref"
+          @click.prevent
+        >
+          🎨 Theme Builder
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
@@ -280,17 +265,13 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
-import { BOOKMARKLET_TEMPLATE } from '@/lib/preview-bookmarklet'
-import { getHashParam, setHashParams } from '@/lib/hashRouteQuery'
-import { applySelector } from '@/lib/cssUtils'
+import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
+import { getHashParam, setHashParams } from '@/utils/hashRouteQuery'
+import { applySelector } from '@/utils/cssUtils'
 
 const props = defineProps<{
-  /** Minimal `:root { … }` block containing only changed tokens. */
-  overridesCss: string
   /** Complete `:root { … }` block with all tokens (overrides applied). */
   allTokensCss: string
-  /** Whether to inject all tokens or only overrides. Owned by parent; synced to `?inject=` URL param here. */
-  injectAllTokens: boolean
   /**
    * CSS selector to scope token injection (e.g. `[data-theme="dark"]`).
    * Empty string means `:root`. Owned by parent; synced to `?selector=` URL param here.
@@ -299,15 +280,10 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  'update:injectAllTokens': [value: boolean]
   'update:customSelector': [value: string]
 }>()
 
-// Local writable aliases so template v-model bindings work without prop mutation.
-const injectAllTokens = computed({
-  get: () => props.injectAllTokens,
-  set: (v) => emit('update:injectAllTokens', v),
-})
+// Local writable alias so the template v-model binding works without prop mutation.
 const customSelector = computed({
   get: () => props.customSelector,
   set: (v) => emit('update:customSelector', v),
@@ -319,17 +295,8 @@ const allTokensCount = computed(() => {
   return m ? m.length : 0
 })
 
-/**
- * The CSS actually injected into the iframe.
- * Source: overrides-only (default) or all tokens.
- * Selector: `:root` (default) or the user-supplied custom selector.
- */
-const effectiveCss = computed(() =>
-  applySelector(
-    injectAllTokens.value ? props.allTokensCss : props.overridesCss,
-    customSelector.value,
-  ),
-)
+/** The CSS actually injected into the iframe: all tokens, with the selector applied. */
+const effectiveCss = computed(() => applySelector(props.allTokensCss, customSelector.value))
 
 const bridge = usePreviewBridge(effectiveCss)
 /**
@@ -338,26 +305,30 @@ const bridge = usePreviewBridge(effectiveCss)
  */
 const bookmarkletHref = (() => {
   const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl))}`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
+})()
+
+/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
+const themeBuilderBookmarkletHref = (() => {
+  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
+  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
 })()
 
 /** True when serving from localhost — bookmarklet baked with a local URL won't work on external sites. */
 const isLocalhost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)
 const currentOrigin = window.location.origin
 
-/** Writes `selector`, `url`, and `inject` params to the address bar, removing them at defaults. */
+/** Writes `selector` and `url` params to the address bar, removing them at defaults. */
 function syncUrlParams() {
   const sel = customSelector.value.trim()
   setHashParams({
     selector: (sel && sel !== ':root') ? sel : null,
     url: bridge.loadedUrl.value || null,
-    inject: injectAllTokens.value ? 'all' : null,
   })
 }
 
 watch(customSelector, syncUrlParams)
 watch(bridge.loadedUrl, syncUrlParams)
-watch(injectAllTokens, syncUrlParams)
 
 /** Ref to the outer scrollable frame container — used to measure available width. */
 const frameOuterEl = ref<HTMLDivElement | null>(null)
@@ -417,66 +388,70 @@ function handleLoad() {
 @use '@/assets/tb-vars' as *;
 
 .preview-panel {
+  background: $tb-bg;
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: $tb-bg;
 }
 
 // URL bar────
 .preview-url-bar {
-  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 10px 12px;
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
+  display: flex;
+  gap: 6px;
+  padding: 10px 12px;
   position: sticky;
   top: 0;
   z-index: 5;
 
   .url-icon {
-    flex-shrink: 0;
     color: $tb-text-muted;
+    flex-shrink: 0;
   }
 }
 
 .url-input {
-  flex: 1;
-  min-width: 0;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 5px;
-  padding: 5px 10px;
+  color: $tb-text;
+  flex: 1;
   font-family: $tb-mono;
   font-size: 12px;
-  color: $tb-text;
+  min-width: 0;
   outline: none;
+  padding: 5px 10px;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible { border-color: $tb-accent; }
 }
 
 .url-btn {
+  align-items: center;
   background: $tb-accent;
-  color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 5px 12px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: opacity 0.12s;
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
   gap: 5px;
+  padding: 5px 12px;
+  transition: opacity 0.12s;
+  white-space: nowrap;
 
-  &:disabled { opacity: 0.4; cursor: default; }
+  &:disabled { cursor: default; opacity: 0.4; }
+
   &:hover:not(:disabled) { opacity: 0.85; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
+
   &--loading { cursor: wait; }
 }
 
@@ -491,166 +466,143 @@ function handleLoad() {
 
 // Viewport controls────
 .preview-controls {
-  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
+  display: flex;
   flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 12px;
 }
 
 .bp-group {
-  display: flex;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
   border-radius: 5px;
+  display: flex;
   overflow: hidden;
 }
 
 .bp-btn {
   background: none;
   border: none;
-  padding: 3px 8px;
+  color: $tb-text-muted;
+  cursor: pointer;
   font-family: $tb-mono;
   font-size: 11px;
   font-weight: 500;
-  color: $tb-text-muted;
-  cursor: pointer;
-  white-space: nowrap;
+  padding: 3px 8px;
   transition: background 0.1s, color 0.1s;
+  white-space: nowrap;
 
   &:hover:not(.bp-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
+
   &--active { background: $tb-accent; color: #fff; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 }
 
 // Inject settings───
 .inject-settings {
-  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
-  flex-wrap: wrap;
-}
-
-.inject-mode-group {
   display: flex;
-  background: $tb-surface-2;
-  border: 1px solid $tb-border;
-  border-radius: 5px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.inject-mode-btn {
-  background: none;
-  border: none;
-  padding: 3px 8px;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 500;
-  color: $tb-text-muted;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.1s, color 0.1s;
-
-  &:hover:not(.inject-mode-btn--active) { background: rgba(0, 0, 0, 0.04); color: $tb-text-dim; }
-  &--active { background: $tb-accent; color: #fff; }
-  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 12px;
 }
 
 .inject-selector-wrap {
-  display: flex;
   align-items: center;
-  gap: 4px;
+  display: flex;
   flex: 1;
+  gap: 4px;
   min-width: 0;
 }
 
 .inject-selector-label {
+  color: $tb-text-muted;
+  flex-shrink: 0;
   font-size: 11px;
   font-weight: 500;
-  color: $tb-text-muted;
   white-space: nowrap;
-  flex-shrink: 0;
 }
 
 .inject-selector-input {
-  flex: 1;
-  min-width: 80px;
-  max-width: 220px;
   background: $tb-bg;
   border: 1px solid $tb-border;
   border-radius: 4px;
-  padding: 3px 7px;
+  color: $tb-text;
+  flex: 1;
   font-family: $tb-mono;
   font-size: 11px;
-  color: $tb-text;
+  max-width: 220px;
+  min-width: 80px;
   outline: none;
+  padding: 3px 7px;
 
   &::placeholder { color: $tb-text-muted; }
+
   &:focus-visible { border-color: $tb-accent; }
 }
 
 .inject-tip-wrap {
-  position: relative;
-  display: inline-flex;
   align-items: center;
+  display: inline-flex;
   flex-shrink: 0;
+  position: relative;
 }
 
 .inject-tip-icon {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
   background: $tb-surface-2;
   border: 1px solid $tb-border;
-  font-size: 10px;
-  font-weight: 700;
+  border-radius: 50%;
   color: $tb-text-muted;
   cursor: default;
+  display: inline-flex;
+  font-size: 10px;
+  font-weight: 700;
+  height: 16px;
+  justify-content: center;
   user-select: none;
+  width: 16px;
 
   &:hover, &:focus-visible { background: $tb-border; color: $tb-text-dim; outline: none; }
 }
 
 .inject-tip-body {
-  display: none;
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  width: 240px;
   background: $tb-text;
-  color: $tb-bg;
   border-radius: 6px;
-  padding: 10px 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  color: $tb-bg;
+  display: none;
   font-size: 11px;
   line-height: 1.55;
-  z-index: 100;
+  padding: 10px 12px;
   pointer-events: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  width: 240px;
+  z-index: 100;
 
   // Arrow pointing up toward the icon
   &::after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    right: 4px;
     border: 5px solid transparent;
     border-bottom-color: $tb-text;
+    bottom: 100%;
+    content: '';
+    position: absolute;
+    right: 4px;
   }
 
   code {
+    color: rgba(255, 255, 255, 0.75);
     display: block;
     font-family: $tb-mono;
     font-size: 10px;
-    color: rgba(255, 255, 255, 0.75);
     margin-top: 2px;
   }
 
@@ -661,186 +613,194 @@ function handleLoad() {
 .inject-tip-icon:focus-visible + .inject-tip-body { display: block; }
 
 .inject-mode-note {
-  font-size: 11px;
   color: $tb-text-muted;
+  font-size: 11px;
   margin-left: auto;
   white-space: nowrap;
 }
 
 // Iframe frame area────
 .preview-frame-outer {
-  flex: 1;
-  overflow: auto;
-  scrollbar-gutter: stable;
-  padding: 12px;
+  align-items: flex-start;
   background: $tb-surface-2;
   display: flex;
+  flex: 1;
   justify-content: center;
-  align-items: flex-start;
+  overflow: auto;
+  padding: 12px;
+  scrollbar-gutter: stable;
 }
 
 .preview-frame-chrome {
-  // Width set dynamically via :style
-  min-width: 320px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px $tb-border-active;
   background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15), 0 0 0 1px $tb-border-active;
   display: flex;
   flex-direction: column;
   // Height: fill the outer container minus padding
   height: calc(100vh - var(--header-h, 57px) - 120px);
   min-height: 400px;
+  // Width set dynamically via :style
+  min-width: 320px;
+  overflow: hidden;
 }
 
 .chrome-bar {
-  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
   background: $tb-surface-2;
   border-bottom: 1px solid $tb-border;
+  display: flex;
   flex-shrink: 0;
+  gap: 6px;
+  padding: 8px 12px;
 }
 
 .chrome-dot {
-  width: 10px;
-  height: 10px;
   border-radius: 50%;
   flex-shrink: 0;
+  height: 10px;
+  width: 10px;
 
   &--close { background: #ff5f57; }
-  &--min   { background: #ffbd2e; }
-  &--max   { background: #28c840; }
+
+  &--min { background: #ffbd2e; }
+
+  &--max { background: #28c840; }
 }
 
 .preview-iframe {
-  flex: 1;
   border: none;
+  flex: 1;
   width: 100%;
 }
 
 // Empty state────
 .preview-empty {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  color: $tb-text-muted;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  font-size: 13px;
   gap: 8px;
+  justify-content: center;
   padding: 32px 20px;
   text-align: center;
-  color: $tb-text-muted;
-  font-size: 13px;
 
   svg { margin-bottom: 4px; }
 }
 
 .preview-empty-note {
-  font-size: 11px;
   color: $tb-text-muted;
+  font-size: 11px;
   opacity: 0.7;
 }
 
 // Status bar────
 .preview-status {
-  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
   background: $tb-surface;
   border-top: 1px solid $tb-border;
-  font-size: 11px;
+  display: flex;
   flex-shrink: 0;
+  font-size: 11px;
+  gap: 6px;
+  padding: 6px 12px;
 }
 
 .status-dot {
-  width: 7px;
-  height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
+  height: 7px;
+  width: 7px;
 
-  &--idle    { background: $tb-border-active; }
+  &--idle { background: $tb-border-active; }
+
   &--loading { background: #f59e0b; }
+
   &--connected { background: $tb-success; }
-  &--error   { background: #ef4444; }
+
+  &--error { background: #ef4444; }
 }
 
 .status-label { color: $tb-text-dim; font-weight: 500; }
-.status-note  { color: $tb-text-muted; margin-left: auto; }
+
+.status-note { color: $tb-text-muted; margin-left: auto; }
 
 // Bookmarklet setup card─────
 .bookmarklet-card {
-  margin: 16px 12px;
-  padding: 16px;
   background: $tb-surface;
   border: 1px solid $tb-border;
   border-radius: 8px;
+  margin: 16px 12px;
+  padding: 16px;
 }
 
 .bookmarklet-localhost-warning {
   background: #fffbeb;
   border: 1px solid #f59e0b;
   border-radius: 5px;
-  padding: 8px 10px;
-  font-size: 11px;
   color: #92400e;
-  margin-bottom: 12px;
+  font-size: 11px;
   line-height: 1.5;
+  margin-bottom: 12px;
+  padding: 8px 10px;
 
   strong { font-weight: 600; }
-  code { font-family: $tb-mono; background: rgba(0,0,0,0.06); border-radius: 2px; padding: 0 3px; }
+
+  code { background: rgba(0,0,0,0.06); border-radius: 2px; font-family: $tb-mono; padding: 0 3px; }
 }
 
 .bookmarklet-heading {
+  color: $tb-text-dim;
   font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: $tb-text-dim;
   margin: 0 0 12px;
+  text-transform: uppercase;
 }
 
 .bookmarklet-link {
-  display: inline-block;
   background: $tb-accent-subtle;
-  color: $tb-accent;
   border: 1px solid rgba(0, 68, 244, 0.2);
   border-radius: 6px;
-  padding: 7px 14px;
+  color: $tb-accent;
+  cursor: grab;
+  display: inline-block;
   font-size: 13px;
   font-weight: 500;
-  text-decoration: none;
-  cursor: grab;
-  user-select: none;
   margin-bottom: 14px;
+  padding: 7px 14px;
+  text-decoration: none;
+  user-select: none;
 
   &:active { cursor: grabbing; }
+
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 2px; }
 }
 
 .bookmarklet-steps {
+  color: $tb-text-dim;
+  font-size: 12px;
+  line-height: 1.8;
   margin: 0 0 12px;
   padding-left: 20px;
-  font-size: 12px;
-  color: $tb-text-dim;
-  line-height: 1.8;
 
   strong { color: $tb-text; }
 }
 
 .bookmarklet-note {
-  font-size: 11px;
   color: $tb-text-muted;
-  margin: 0;
+  font-size: 11px;
   line-height: 1.55;
+  margin: 0;
 
   code {
     background: $tb-surface-2;
     border-radius: 3px;
-    padding: 1px 4px;
     font-family: $tb-mono;
     font-size: 10px;
+    padding: 1px 4px;
   }
 }
 
