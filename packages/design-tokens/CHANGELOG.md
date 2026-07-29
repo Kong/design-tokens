@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.5...@kong/design-tokens@3.1.6) (2026-07-29)
+
+### Bug Fixes
+
+* **design-tokens:** color text neutral weak tokens ([#704](https://github.com/Kong/design-tokens/issues/704)) ([fb10a41](https://github.com/Kong/design-tokens/commit/fb10a416be692ecfe39928ac218f3d5aeb9e0e71))
+
 ## [3.1.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.4...@kong/design-tokens@3.1.5) (2026-07-28)
 
 **Note:** Version bump only for package @kong/design-tokens
