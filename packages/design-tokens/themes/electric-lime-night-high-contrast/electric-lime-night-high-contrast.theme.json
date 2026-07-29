@@ -1169,11 +1169,11 @@
   },
   "kui-color-text-neutral-strong": {
     "$description": "Strong text color for neutral elements.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-color-text-neutral-stronger": {
     "$description": "Stronger text color for neutral elements.",
-    "$value": "{color.alias.gray.20}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-color-text-neutral-strongest": {
     "$description": "Strongest text color for neutral elements.",
@@ -1181,15 +1181,15 @@
   },
   "kui-color-text-neutral-weak": {
     "$description": "Weak text color for neutral elements.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.gray.40}"
   },
   "kui-color-text-neutral-weaker": {
     "$description": "Weaker text color for neutral elements.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.gray.50}"
   },
   "kui-color-text-neutral-weakest": {
     "$description": "Weakest text color for neutral elements.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-color-text-primary": {
     "$description": "Text color for primary actions or messages.",
