@@ -175,15 +175,11 @@
     --kui-checkbox-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
     --kui-code-block-actions-border-width: 1px;
     --kui-code-block-actions-color-border: #9DA99D;
-    --kui-code-block-actions-color-border-dark: rgba(255, 255, 255, 0.4);
     --kui-code-block-actions-padding: 4px 8px;
     --kui-code-block-border-radius: 8px;
     --kui-code-block-color-background: #F9FBF9;
-    --kui-code-block-color-background-dark: #090D09;
     --kui-code-block-color-text: #181B18;
-    --kui-code-block-color-text-dark: #E5E9E5;
     --kui-code-block-line-number-color-text: #3D443D;
-    --kui-code-block-line-number-color-text-dark: #9DA99D;
     --kui-collapse-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-collapse-title-color-text: #3D443D;
     --kui-collapse-title-font-size: 16px;
@@ -302,9 +298,9 @@
     --kui-color-text-neutral-strong: #3D443D;
     --kui-color-text-neutral-stronger: #242824;
     --kui-color-text-neutral-strongest: #181B18;
-    --kui-color-text-neutral-weak: #000000;
-    --kui-color-text-neutral-weaker: #000000;
-    --kui-color-text-neutral-weakest: #000000;
+    --kui-color-text-neutral-weak: #697769;
+    --kui-color-text-neutral-weaker: #9DA99D;
+    --kui-color-text-neutral-weakest: #D2D7D2;
     --kui-color-text-primary: #3D443D;
     --kui-color-text-primary-strong: #3D443D;
     --kui-color-text-primary-stronger: #242824;
