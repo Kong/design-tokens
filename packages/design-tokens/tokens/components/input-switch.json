@@ -39,6 +39,34 @@
         }
       }
     },
+    "icon": {
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Input switch icon background color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Input switch icon background color when disabled.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "_": {
+            "$description": "Input switch icon border color.",
+            "$value": ""
+          },
+          "disabled": {
+            "$description": "Input switch icon border color when disabled.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Input switch icon border color on hover.",
+            "$value": ""
+          }
+        }
+      }
+    },
     "shadow": {
       "focus": {
         "$description": "Input switch focus ring shadow.",
@@ -64,16 +92,6 @@
           },
           "disabled": {
             "$description": "Input switch thumb background color when disabled.",
-            "$value": ""
-          }
-        },
-        "border": {
-          "_": {
-            "$description": "Input switch thumb ring border color.",
-            "$value": ""
-          },
-          "hover": {
-            "$description": "Input switch thumb ring border color on hover.",
             "$value": ""
           }
         }

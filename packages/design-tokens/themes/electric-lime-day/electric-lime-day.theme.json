@@ -651,7 +651,7 @@
   },
   "kui-checkbox-shadow-border": {
     "$description": "Checkbox default border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-checkbox-shadow-border-checked": {
     "$description": "Checkbox border shadow when checked or indeterminate.",
@@ -1113,7 +1113,7 @@
   },
   "kui-color-text-disabled": {
     "$description": "Text color for disabled elements.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.40}"
   },
   "kui-color-text-info": {
     "$description": "Text color for info elements.",
@@ -1803,7 +1803,7 @@
   },
   "kui-input-switch-color-background": {
     "$description": "Input switch track background color.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.gray.40}"
   },
   "kui-input-switch-color-background-disabled": {
     "$description": "Input switch track background color when disabled.",
@@ -1815,11 +1815,31 @@
   },
   "kui-input-switch-color-background-selected": {
     "$description": "Input switch track background color when on.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-input-switch-color-background-selected-hover": {
     "$description": "Input switch track background color when on and hovered.",
     "$value": "{color.alias.gray.70}"
+  },
+  "kui-input-switch-icon-color-background": {
+    "$description": "Input switch icon background color.",
+    "$value": "{color.alias.gray.10}"
+  },
+  "kui-input-switch-icon-color-background-disabled": {
+    "$description": "Input switch icon background color when disabled.",
+    "$value": "{color.alias.gray.40}"
+  },
+  "kui-input-switch-icon-color-border": {
+    "$description": "Input switch icon border color.",
+    "$value": "{color.alias.gray.10}"
+  },
+  "kui-input-switch-icon-color-border-disabled": {
+    "$description": "Input switch icon border color when disabled.",
+    "$value": "{color.alias.gray.40}"
+  },
+  "kui-input-switch-icon-color-border-hover": {
+    "$description": "Input switch icon border color on hover.",
+    "$value": "{color.alias.gray.10}"
   },
   "kui-input-switch-shadow-focus": {
     "$description": "Input switch focus ring shadow.",
@@ -1839,27 +1859,19 @@
   },
   "kui-input-switch-thumb-color-background-disabled": {
     "$description": "Input switch thumb background color when disabled.",
-    "$value": "{color.alias.gray.20}"
-  },
-  "kui-input-switch-thumb-color-border": {
-    "$description": "Input switch thumb ring border color.",
-    "$value": "{color.alias.gray.50}"
-  },
-  "kui-input-switch-thumb-color-border-hover": {
-    "$description": "Input switch thumb ring border color on hover.",
-    "$value": "{color.alias.gray.60}"
+    "$value": "{color.alias.white}"
   },
   "kui-input-switch-thumb-shadow-border": {
     "$description": "Input switch thumb border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-input-switch-thumb-shadow-border-disabled": {
     "$description": "Input switch thumb border shadow when disabled.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-input-switch-thumb-shadow-border-selected": {
     "$description": "Input switch thumb border shadow when on.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
   },
   "kui-label-color-text": {
     "$description": "Label text color.",
@@ -2399,7 +2411,7 @@
   },
   "kui-radio-shadow-border": {
     "$description": "Radio default border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-radio-shadow-border-checked": {
     "$description": "Radio border shadow when checked.",
