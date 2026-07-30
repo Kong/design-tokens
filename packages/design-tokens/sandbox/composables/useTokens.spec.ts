@@ -288,10 +288,17 @@ describe('useTokens composable', () => {
 })
 
 describe('THEMES', () => {
-  it('lists all 4 repo themes with classic-day first (the default)', () => {
-    expect(THEMES).toHaveLength(4)
+  it('lists all 6 repo themes with classic-day first (the default)', () => {
+    expect(THEMES).toHaveLength(6)
     expect(THEMES[0].id).toBe('classic-day')
-    expect(THEMES.map((t) => t.id)).toEqual(['classic-day', 'classic-night', 'electric-lime-day', 'electric-lime-night'])
+    expect(THEMES.map((t) => t.id)).toEqual([
+      'classic-day',
+      'classic-night',
+      'electric-lime-day',
+      'electric-lime-day-high-contrast',
+      'electric-lime-night',
+      'electric-lime-night-high-contrast',
+    ])
   })
 
   it('gives every theme a non-empty label and a non-empty token map', () => {
