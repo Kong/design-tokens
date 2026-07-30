@@ -1811,7 +1811,7 @@
   },
   "kui-input-switch-color-background-hover": {
     "$description": "Input switch track background color on hover.",
-    "$value": "{color.alias.gray.60}"
+    "$value": "{color.alias.gray.50}"
   },
   "kui-input-switch-color-background-selected": {
     "$description": "Input switch track background color when on.",
