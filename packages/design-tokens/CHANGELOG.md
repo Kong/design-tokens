@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.7...@kong/design-tokens@3.2.0) (2026-07-30)
+
+### Features
+
+* **design-tokens:** electric-lime high contrast themes ([#697](https://github.com/Kong/design-tokens/issues/697)) ([b685bf0](https://github.com/Kong/design-tokens/commit/b685bf07c540edac1d4eb042a6b1779de52e4824))
+
 ## [3.1.7](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.6...@kong/design-tokens@3.1.7) (2026-07-30)
 
 ### Bug Fixes
