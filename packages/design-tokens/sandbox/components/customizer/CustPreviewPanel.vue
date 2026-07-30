@@ -267,7 +267,7 @@ import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
 import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
 import { getHashParam, setHashParams } from '@/utils/hashRouteQuery'
-import { applySelector } from '@/utils/cssUtils'
+import { applySelector, hardenCssPrecedence } from '@/utils/cssUtils'
 
 const props = defineProps<{
   /** Complete `:root { … }` block with all tokens (overrides applied). */
@@ -295,8 +295,13 @@ const allTokensCount = computed(() => {
   return m ? m.length : 0
 })
 
-/** The CSS actually injected into the iframe: all tokens, with the selector applied. */
-const effectiveCss = computed(() => applySelector(props.allTokensCss, customSelector.value))
+/**
+ * The CSS actually injected into the iframe/target page: all tokens, with the selector
+ * applied and precedence-hardened (`!important` + `:root:root`) so it wins over the target
+ * page's own token declarations. The token-count badge reads `props.allTokensCss` directly,
+ * so hardening here doesn't affect it.
+ */
+const effectiveCss = computed(() => hardenCssPrecedence(applySelector(props.allTokensCss, customSelector.value)))
 
 const bridge = usePreviewBridge(effectiveCss)
 /**

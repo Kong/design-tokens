@@ -163,8 +163,27 @@ non-color tokens are freeform text.
 - **`composables/useEmbeddedBridge.ts`** — the bookmarklet-sidebar-side counterpart:
   `post()`/`close()`, posts `kui-token-override`/`kui-close` to `window.parent`. Has the
   generation-counter async-race guard mentioned above — reuse this pattern, don't reinvent it.
-- **`lib/cssUtils.ts`** (`applySelector`) — rewrites a `:root { ... }` block to a different
-  selector for custom-scoped injection (e.g. `[data-theme="dark"]`).
+- **`lib/cssUtils.ts`** — `applySelector` rewrites a `:root { ... }` block to a different
+  selector for custom-scoped injection (e.g. `[data-theme="dark"]`). `hardenCssPrecedence`
+  makes injected tokens win the cascade on an arbitrary target page: `!important` on every
+  declaration + a specificity bump `:root` → `:root:root` (kept on the document root so tokens
+  still inherit to teleported KModal/KToaster/etc.; deliberately *not* `:root body` or a bigger
+  hammer). **Injection-only** — applied to the CSS pushed to the bookmarklet
+  (`TokenCustomizer`/`ThemeBuilder` `injectedCss`) and the dev iframe preview
+  (`CustPreviewPanel`), never to the copyable/exported block (which stays clean, no
+  `!important`). Doesn't cover a target rule that sets a *consuming* property important without
+  `var()`, or `@layer`ed important declarations.
+- **Preview enable/disable toggle** — `components/shared/SandboxPreviewToggle.vue` (a `role=switch`
+  v-model boolean) sits at the top of both embedded panels. It gates `injectedCss`:
+  `previewEnabled ? hardenCssPrecedence(css) : ''`. Posting `''` clears the bookmarklet's
+  `<style id="kong-design-token-overrides">` (the injected listener already coalesces
+  `e.data.css||''`), reverting the page to its native tokens *without touching overrides*;
+  flipping back re-posts via the bridge's existing `watch(css)`. Default on. In
+  `TokenCustomizer` the toggle must be excluded from `.cust-embedded-body > * { flex: 1 }`
+  (it's a fixed-height header, not a growing tab pane) — see the `> .preview-toggle` override.
+  Testing postMessage content requires draining the bridge's async `buildSrc` under
+  `flushPromises`: stub `CompressionStream` to `undefined` so `encodeOverrides` takes the
+  synchronous uncompressed path (the deflate stream is a macrotask the flush can't await).
 
 ## State-management patterns & gotchas
 

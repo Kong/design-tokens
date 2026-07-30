@@ -2816,6 +2816,36 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-input-switch-icon-color-background",
+    description: "Input switch icon background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-input-switch-icon-color-background-disabled",
+    description: "Input switch icon background color when disabled.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-input-switch-icon-color-border",
+    description: "Input switch icon border color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-input-switch-icon-color-border-disabled",
+    description: "Input switch icon border color when disabled.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-input-switch-icon-color-border-hover",
+    description: "Input switch icon border color on hover.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-input-switch-shadow-focus",
     description: "Input switch focus ring shadow.",
     category: "component",
@@ -2842,18 +2872,6 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-input-switch-thumb-color-background-disabled",
     description: "Input switch thumb background color when disabled.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-input-switch-thumb-color-border",
-    description: "Input switch thumb ring border color.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-input-switch-thumb-color-border-hover",
-    description: "Input switch thumb ring border color on hover.",
     category: "component",
     value: null,
   },

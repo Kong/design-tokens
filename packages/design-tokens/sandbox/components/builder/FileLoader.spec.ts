@@ -29,7 +29,7 @@ describe('FileLoader', () => {
 
   it('enables Load Theme and emits load with both files\' text and names once both are chosen', async () => {
     const wrapper = mount(FileLoader)
-    const [themeInput, aliasInput] = wrapper.findAll('input[type="file"]')
+    const [aliasInput, themeInput] = wrapper.findAll('input[type="file"]')
 
     const themeFile = makeFile('electric-lime-day.theme.json', '{"kui-space-40":{"$value":"16px"}}')
     const aliasFile = makeFile('electric-lime-day.alias.color.json', '{"color":{"alias":{}}}')

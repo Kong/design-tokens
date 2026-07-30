@@ -74,6 +74,9 @@
 
     <template v-if="isEmbedded">
       <div class="cust-embedded-body">
+        <!-- Top-level switch: apply/unapply the injected stylesheet on the target page -->
+        <SandboxPreviewToggle v-model="previewEnabled" />
+
         <!-- Tokens tab: embed toolbar + token editor -->
         <div
           v-show="embeddedTab === 'tokens'"
@@ -570,9 +573,10 @@ import { useClipboard } from '@/composables/useClipboard'
 import { useEmbeddedBridge } from '@/composables/useEmbeddedBridge'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
 import { getHashParam, setHashParams } from '@/utils/hashRouteQuery'
-import { applySelector } from '@/utils/cssUtils'
+import { applySelector, hardenCssPrecedence } from '@/utils/cssUtils'
 import SandboxShell from '@/components/shared/SandboxShell.vue'
 import SandboxTabs from '@/components/shared/SandboxTabs.vue'
+import SandboxPreviewToggle from '@/components/shared/SandboxPreviewToggle.vue'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustCustomPropsGroup from './CustCustomPropsGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
@@ -598,6 +602,20 @@ const embeddedEffectiveCss = computed(() => applySelector(fullExportCss.value, c
 
 /** CSS shown in the output panel and used by the copy/download actions. */
 const displayCss = computed(() => embeddedEffectiveCss.value)
+
+/**
+ * Whether the injected stylesheet is applied on the target page. Toggled from the top of
+ * the embedded panel so designers can compare before/after without clearing overrides.
+ */
+const previewEnabled = ref(true)
+
+/**
+ * CSS actually pushed to the host page: precedence-hardened so it wins over the page's own
+ * token declarations, or empty when preview is toggled off (reverts the page to its native
+ * tokens without losing overrides). Kept separate from `displayCss` so the exported/copyable
+ * block stays clean (no `!important`).
+ */
+const injectedCss = computed(() => previewEnabled.value ? hardenCssPrecedence(embeddedEffectiveCss.value) : '')
 
 /** Controls whether the token editor panel is expanded (true) or collapsed to a narrow strip. */
 const editorOpen = ref(true)
@@ -629,7 +647,7 @@ const {
 // async `encodeOverrides` hasn't settled before we read `window.location.href`).
 const { post: postEmbedded, close: closeEmbedded } = useEmbeddedBridge({
   isEmbedded,
-  css: embeddedEffectiveCss,
+  css: injectedCss,
   buildSrc: async () => {
     await nextTick()
     const encoded = await encodeOverrides({ ...overrides, ...customProps })
@@ -812,6 +830,12 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
     flex: 1;
     min-height: 0;
     overflow-y: auto;
+  }
+
+  // The preview toggle is a fixed-height header, not a growing tab pane.
+  > .preview-toggle {
+    flex: 0 0 auto;
+    overflow: visible;
   }
 }
 

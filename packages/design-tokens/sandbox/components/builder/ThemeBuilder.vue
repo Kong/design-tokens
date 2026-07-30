@@ -41,6 +41,12 @@
       />
     </template>
 
+    <!-- Top-level switch: apply/unapply the injected stylesheet on the target page -->
+    <SandboxPreviewToggle
+      v-if="isEmbedded"
+      v-model="previewEnabled"
+    />
+
     <div class="tb-tabpanel">
       <InstructionsPanel v-show="activeTab === 'instructions'" />
       <FileLoader
@@ -76,12 +82,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useThemeBuilder } from '@/composables/useThemeBuilder'
 import { useEmbeddedBridge } from '@/composables/useEmbeddedBridge'
 import { getHashParam } from '@/utils/hashRouteQuery'
+import { hardenCssPrecedence } from '@/utils/cssUtils'
 import SandboxShell from '@/components/shared/SandboxShell.vue'
 import SandboxTabs from '@/components/shared/SandboxTabs.vue'
+import SandboxPreviewToggle from '@/components/shared/SandboxPreviewToggle.vue'
 import FileLoader from './FileLoader.vue'
 import InstructionsPanel from './InstructionsPanel.vue'
 import PalettePanel from './PalettePanel.vue'
@@ -113,7 +121,20 @@ const {
 // post reflects any restored theme. Keyed by target host in embedded mode, else 'standalone'.
 initPersistence(isEmbedded ? (getHashParam('host') ?? undefined) : undefined)
 
-const { close } = useEmbeddedBridge({ isEmbedded, css: effectiveCss })
+/**
+ * Whether the injected stylesheet is applied on the target page. Toggled from the top of
+ * the embedded panel so designers can compare before/after without unloading the theme.
+ */
+const previewEnabled = ref(true)
+
+/**
+ * CSS pushed to the host page: precedence-hardened so it wins over the page's own token
+ * declarations, or empty when preview is toggled off. The Export panel keeps showing the
+ * clean `effectiveCss`.
+ */
+const injectedCss = computed(() => previewEnabled.value ? hardenCssPrecedence(effectiveCss.value) : '')
+
+const { close } = useEmbeddedBridge({ isEmbedded, css: injectedCss })
 
 /** Parses the uploaded files and surfaces any validation error. */
 function onLoad(payload: { themeText: string, aliasText: string, themeName?: string, aliasName?: string }) {
