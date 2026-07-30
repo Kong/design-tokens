@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.1...@kong/design-tokens@3.2.2) (2026-07-30)
+
+### Bug Fixes
+
+* **design-tokens:** revert card-color-border electric-lime-night ([#707](https://github.com/Kong/design-tokens/issues/707)) ([246e6f0](https://github.com/Kong/design-tokens/commit/246e6f0121bc02c0c1996d7c5e973b71fd62b436))
+
 ## [3.2.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.0...@kong/design-tokens@3.2.1) (2026-07-30)
 
 **Note:** Version bump only for package @kong/design-tokens
