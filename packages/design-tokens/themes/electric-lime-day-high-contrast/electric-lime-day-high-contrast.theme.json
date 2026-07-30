@@ -1821,6 +1821,26 @@
     "$description": "Input switch track background color when on and hovered.",
     "$value": "{color.alias.gray.70}"
   },
+  "kui-input-switch-icon-color-background": {
+    "$description": "Input switch icon background color.",
+    "$value": "{color.alias.gray.10}"
+  },
+  "kui-input-switch-icon-color-background-disabled": {
+    "$description": "Input switch icon background color when disabled.",
+    "$value": "{color.alias.gray.40}"
+  },
+  "kui-input-switch-icon-color-border": {
+    "$description": "Input switch icon border color.",
+    "$value": "{color.alias.gray.10}"
+  },
+  "kui-input-switch-icon-color-border-disabled": {
+    "$description": "Input switch icon border color when disabled.",
+    "$value": "{color.alias.gray.40}"
+  },
+  "kui-input-switch-icon-color-border-hover": {
+    "$description": "Input switch icon border color on hover.",
+    "$value": "{color.alias.gray.10}"
+  },
   "kui-input-switch-shadow-focus": {
     "$description": "Input switch focus ring shadow.",
     "$value": "0px 0px 0px 4px rgba(24, 27, 24, 0.15)"
@@ -1839,15 +1859,7 @@
   },
   "kui-input-switch-thumb-color-background-disabled": {
     "$description": "Input switch thumb background color when disabled.",
-    "$value": "{color.alias.gray.20}"
-  },
-  "kui-input-switch-thumb-color-border": {
-    "$description": "Input switch thumb ring border color.",
-    "$value": "{color.alias.gray.60}"
-  },
-  "kui-input-switch-thumb-color-border-hover": {
-    "$description": "Input switch thumb ring border color on hover.",
-    "$value": "{color.alias.gray.60}"
+    "$value": "{color.alias.white}"
   },
   "kui-input-switch-thumb-shadow-border": {
     "$description": "Input switch thumb border shadow.",
@@ -1855,7 +1867,7 @@
   },
   "kui-input-switch-thumb-shadow-border-disabled": {
     "$description": "Input switch thumb border shadow when disabled.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
   },
   "kui-input-switch-thumb-shadow-border-selected": {
     "$description": "Input switch thumb border shadow when on.",
@@ -2563,7 +2575,7 @@
   },
   "kui-shadow-border-disabled": {
     "$description": "Disabled state inset border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-shadow-border-primary": {
     "$description": "Primary state inset border shadow.",
