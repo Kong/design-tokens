@@ -2575,7 +2575,7 @@
   },
   "kui-shadow-border-disabled": {
     "$description": "Disabled state inset border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.20} inset"
   },
   "kui-shadow-border-primary": {
     "$description": "Primary state inset border shadow.",
