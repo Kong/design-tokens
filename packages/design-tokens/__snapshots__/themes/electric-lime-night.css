@@ -169,9 +169,9 @@
     --kui-checkbox-color-background: #0D0F0D;
     --kui-checkbox-color-background-checked: #9DA99D;
     --kui-checkbox-color-icon: #070807;
-    --kui-checkbox-shadow-border: 0px 0px 0px 1px #4E594E inset;
-    --kui-checkbox-shadow-border-checked: 0px 0px 0px 1px #9DA99D inset;
-    --kui-checkbox-shadow-border-hover: 0px 0px 0px 1px #9DA99D inset;
+    --kui-checkbox-shadow-border: 0px 0px 0px 1px #9DA99D inset;
+    --kui-checkbox-shadow-border-checked: 0px 0px 0px 1px #D2D7D2 inset;
+    --kui-checkbox-shadow-border-hover: 0px 0px 0px 1px #D2D7D2 inset;
     --kui-checkbox-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-code-block-actions-border-width: 1px;
     --kui-code-block-actions-color-border: #3D443D;
@@ -618,9 +618,9 @@
     --kui-pop-title-line-height: 20px;
     --kui-radio-color-background: #0D0F0D;
     --kui-radio-color-background-checked: #9DA99D;
-    --kui-radio-shadow-border: 0px 0px 0px 1px #4E594E inset;
-    --kui-radio-shadow-border-checked: 0px 0px 0px 1px #9DA99D inset;
-    --kui-radio-shadow-border-hover: 0px 0px 0px 1px #9DA99D inset;
+    --kui-radio-shadow-border: 0px 0px 0px 1px #9DA99D inset;
+    --kui-radio-shadow-border-checked: 0px 0px 0px 1px #D2D7D2 inset;
+    --kui-radio-shadow-border-hover: 0px 0px 0px 1px #D2D7D2 inset;
     --kui-radio-shadow-focus: 0px 0px 0px 4px rgba(241, 243, 241, 0.15);
     --kui-segmented-control-border-radius: 6px;
     --kui-segmented-control-border-width: 1px;

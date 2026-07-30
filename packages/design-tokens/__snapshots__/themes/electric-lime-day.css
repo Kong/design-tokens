@@ -169,7 +169,7 @@
     --kui-checkbox-color-background: #FFFFFF;
     --kui-checkbox-color-background-checked: #4E594E;
     --kui-checkbox-color-icon: #FFFFFF;
-    --kui-checkbox-shadow-border: 0px 0px 0px 1px #E3E8E3 inset;
+    --kui-checkbox-shadow-border: 0px 0px 0px 1px #9DA99D inset;
     --kui-checkbox-shadow-border-checked: 0px 0px 0px 1px #4E594E inset;
     --kui-checkbox-shadow-border-hover: 0px 0px 0px 1px #4E594E inset;
     --kui-checkbox-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);
@@ -618,7 +618,7 @@
     --kui-pop-title-line-height: 20px;
     --kui-radio-color-background: #FFFFFF;
     --kui-radio-color-background-checked: #4E594E;
-    --kui-radio-shadow-border: 0px 0px 0px 1px #E3E8E3 inset;
+    --kui-radio-shadow-border: 0px 0px 0px 1px #9DA99D inset;
     --kui-radio-shadow-border-checked: 0px 0px 0px 1px #4E594E inset;
     --kui-radio-shadow-border-hover: 0px 0px 0px 1px #4E594E inset;
     --kui-radio-shadow-focus: 0px 0px 0px 4px rgba(24, 27, 24, 0.15);

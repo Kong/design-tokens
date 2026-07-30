@@ -651,15 +651,15 @@
   },
   "kui-checkbox-shadow-border": {
     "$description": "Checkbox default border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.60} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
   },
   "kui-checkbox-shadow-border-checked": {
     "$description": "Checkbox border shadow when checked or indeterminate.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
   },
   "kui-checkbox-shadow-border-hover": {
     "$description": "Checkbox border shadow on hover.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
   },
   "kui-checkbox-shadow-focus": {
     "$description": "Checkbox focus ring shadow.",
@@ -2411,15 +2411,15 @@
   },
   "kui-radio-shadow-border": {
     "$description": "Radio default border shadow.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.60} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
   },
   "kui-radio-shadow-border-checked": {
     "$description": "Radio border shadow when checked.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
   },
   "kui-radio-shadow-border-hover": {
     "$description": "Radio border shadow on hover.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.30} inset"
   },
   "kui-radio-shadow-focus": {
     "$description": "Radio focus ring shadow.",
