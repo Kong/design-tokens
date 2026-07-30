@@ -599,7 +599,7 @@
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
-    "$value": "{color.alias.gray.60}"
+    "$value": "{color.alias.gray.80}"
   },
   "kui-card-footer-gap": {
     "$description": "Gap between card footer items.",
