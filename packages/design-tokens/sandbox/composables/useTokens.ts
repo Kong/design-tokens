@@ -1,7 +1,7 @@
 import { computed, ref } from 'vue'
 import * as rawTokens from '@tokens/js'
 import { KUI_THEMEABLE_TOKENS } from '@tokens/themeable-tokens'
-import { classicDay, classicNight, electricLimeDay, electricLimeNight } from '@themes'
+import { classicDay, classicNight, electricLimeDay, electricLimeNight, electricLimeDayHighContrast, electricLimeNightHighContrast } from '@themes'
 
 /**
  * Token category string. Known values: color, space, font, border, shadow,
@@ -172,7 +172,9 @@ export const THEMES: ThemeOption[] = [
   { id: 'classic-day', label: 'Classic Day', tokens: classicDay },
   { id: 'classic-night', label: 'Classic Night', tokens: classicNight },
   { id: 'electric-lime-day', label: 'Electric Lime Day', tokens: electricLimeDay },
+  { id: 'electric-lime-day-high-contrast', label: 'Electric Lime Day High Contrast', tokens: electricLimeDayHighContrast },
   { id: 'electric-lime-night', label: 'Electric Lime Night', tokens: electricLimeNight },
+  { id: 'electric-lime-night-high-contrast', label: 'Electric Lime Night High Contrast', tokens: electricLimeNightHighContrast },
 ]
 
 /** The default theme id, used when no theme is selected or an invalid id is restored. */
