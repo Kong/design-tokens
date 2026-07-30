@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { defineComponent, h } from 'vue'
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import type { VueWrapper } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import TokenCustomizer from './TokenCustomizer.vue'
@@ -28,6 +28,13 @@ vi.stubGlobal('ResizeObserver', MockResizeObserver)
 // A permissive stub is fine here — this spec doesn't exercise invalid-color states,
 // that belongs to CustTokenRow's own spec.
 vi.stubGlobal('CSS', { supports: () => true })
+
+// Force the uncompressed share-code path. `encodeOverrides` (awaited by the embedded
+// bridge's async `buildSrc`) resolves on a microtask without CompressionStream, so
+// `flushPromises()` drains it deterministically — otherwise the deflate stream is a
+// macrotask the flush can't await, and postMessage assertions race. decodeOverrides
+// still round-trips the uncompressed format, so the existing share-link tests are unaffected.
+vi.stubGlobal('CompressionStream', undefined)
 
 /**
  * A token whose default value actually differs between classic-day and classic-night —
@@ -220,6 +227,55 @@ describe('TokenCustomizer', () => {
 
       expect((wrapper.find('.cust-editor-content--embedded').element as HTMLElement).style.display).toBe('none')
       expect((exportPane as HTMLElement).style.display).not.toBe('none')
+    })
+  })
+
+  describe('preview enable/disable toggle (embedded)', () => {
+    /** css from the most recent `kui-token-override` postMessage call. */
+    function lastPostedCss(spy: ReturnType<typeof vi.spyOn>): string | undefined {
+      const calls = spy.mock.calls.filter((c: unknown[]) => (c[0] as { type?: string })?.type === 'kui-token-override')
+      return (calls.at(-1)?.[0] as { css?: string } | undefined)?.css
+    }
+
+    it('is not rendered in standalone mode', () => {
+      const wrapper = mountCustomizer()
+      expect(wrapper.find('.preview-toggle-switch').exists()).toBe(false)
+    })
+
+    it('defaults on and posts precedence-hardened CSS to the parent', async () => {
+      const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
+      const wrapper = mountCustomizer()
+      await flushPromises()
+
+      const toggle = wrapper.find('.preview-toggle-switch')
+      expect(toggle.exists()).toBe(true)
+      expect(toggle.attributes('aria-checked')).toBe('true')
+
+      const css = lastPostedCss(postMessageSpy)
+      expect(css).toContain('--kui-space-10: 99px !important;')
+      expect(css).toContain(':root:root {')
+    })
+
+    it('posts empty CSS when toggled off, then re-posts hardened CSS when toggled back on', async () => {
+      const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
+      const wrapper = mountCustomizer()
+      await flushPromises()
+
+      const toggle = wrapper.find('.preview-toggle-switch')
+
+      await toggle.trigger('click')
+      await flushPromises()
+      expect(toggle.attributes('aria-checked')).toBe('false')
+      expect(lastPostedCss(postMessageSpy)).toBe('')
+
+      await toggle.trigger('click')
+      await flushPromises()
+      expect(toggle.attributes('aria-checked')).toBe('true')
+      expect(lastPostedCss(postMessageSpy)).toContain('--kui-space-10: 99px !important;')
     })
   })
 

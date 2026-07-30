@@ -70,7 +70,7 @@ Categories: `animation`, `border`, `breakpoint`, `color`, `font`, `icon`, `lette
 
 ### KUI_THEMEABLE_TOKENS registry (`dist/tokens/themeable-tokens/`)
 
-Array of `{ name, description, category, value }` records exported from the build. Currently **920 tokens total**: ~341 semantic (real `value`) + 579 component (`value: null`). Consumed by the design-token customizer sandbox and by Kongponents' typed theme contract.
+Array of `{ name, description, category, value }` records exported from the build — semantic tokens (real `value`) plus component tokens (`value: null`). Consumed by the design-token customizer sandbox and by Kongponents' typed theme contract.
 
 ## Theme architecture
 

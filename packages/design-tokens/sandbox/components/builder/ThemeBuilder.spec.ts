@@ -305,5 +305,33 @@ describe('ThemeBuilder', () => {
       wrapper = mount(ThemeBuilder)
       expect(wrapper.find('.ss-close').exists()).toBe(false)
     })
+
+    it('preview toggle defaults on, posts empty CSS when off, and hardened CSS when back on', async () => {
+      /** css from the most recent `kui-token-override` postMessage call. */
+      const lastPostedCss = (spy: ReturnType<typeof vi.spyOn>): string | undefined => {
+        const calls = spy.mock.calls.filter((c: unknown[]) => (c[0] as { type?: string })?.type === 'kui-token-override')
+        return (calls.at(-1)?.[0] as { css?: string } | undefined)?.css
+      }
+
+      const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
+      wrapper = mount(ThemeBuilder)
+      await switchTab(wrapper, 'tokens')
+      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
+      await flushPromises()
+
+      const toggle = wrapper.find('.preview-toggle-switch')
+      expect(toggle.exists()).toBe(true)
+      expect(toggle.attributes('aria-checked')).toBe('true')
+      expect(lastPostedCss(postMessageSpy)).toContain('--kui-space-40: 16px !important;')
+
+      await toggle.trigger('click')
+      await flushPromises()
+      expect(toggle.attributes('aria-checked')).toBe('false')
+      expect(lastPostedCss(postMessageSpy)).toBe('')
+
+      await toggle.trigger('click')
+      await flushPromises()
+      expect(lastPostedCss(postMessageSpy)).toContain(':root:root {')
+    })
   })
 })
