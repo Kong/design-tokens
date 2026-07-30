@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.7](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.6...@kong/design-tokens@3.1.7) (2026-07-30)
+
+### Bug Fixes
+
+* **design-tokens:** form controls and disabled tokens ([#705](https://github.com/Kong/design-tokens/issues/705)) ([a80e1d2](https://github.com/Kong/design-tokens/commit/a80e1d29a1b14700c36fdd0aa543bbeb1de3eb30))
+
 ## [3.1.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.1.5...@kong/design-tokens@3.1.6) (2026-07-29)
 
 ### Bug Fixes
