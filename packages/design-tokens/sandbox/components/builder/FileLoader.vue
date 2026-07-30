@@ -10,26 +10,6 @@
 
     <label
       class="fl-drop"
-      :class="{ 'fl-drop--dragover': themeDragOver }"
-      @dragenter.prevent="themeDragOver = true"
-      @dragleave.prevent="themeDragOver = false"
-      @dragover.prevent="themeDragOver = true"
-      @drop.prevent="onThemeDrop"
-    >
-      <input
-        accept=".json,application/json"
-        type="file"
-        @change="onTheme"
-      >
-      <span>{{ themeName || 'Choose *.theme.json' }}</span>
-      <span
-        v-if="themeName"
-        class="fl-check"
-      >✓</span>
-    </label>
-
-    <label
-      class="fl-drop"
       :class="{ 'fl-drop--dragover': aliasDragOver }"
       @dragenter.prevent="aliasDragOver = true"
       @dragleave.prevent="aliasDragOver = false"
@@ -44,6 +24,26 @@
       <span>{{ aliasName || 'Choose *.alias.color.json' }}</span>
       <span
         v-if="aliasName"
+        class="fl-check"
+      >✓</span>
+    </label>
+
+    <label
+      class="fl-drop"
+      :class="{ 'fl-drop--dragover': themeDragOver }"
+      @dragenter.prevent="themeDragOver = true"
+      @dragleave.prevent="themeDragOver = false"
+      @dragover.prevent="themeDragOver = true"
+      @drop.prevent="onThemeDrop"
+    >
+      <input
+        accept=".json,application/json"
+        type="file"
+        @change="onTheme"
+      >
+      <span>{{ themeName || 'Choose *.theme.json' }}</span>
+      <span
+        v-if="themeName"
         class="fl-check"
       >✓</span>
     </label>
