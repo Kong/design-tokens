@@ -126,7 +126,8 @@ function onKeydown(e: KeyboardEvent) {
 
   // One continuous pill: square off the touching inner edges, round only the outer ones.
   &:first-child { border-radius: 6px 0 0 6px; }
-  &:last-child { border-radius: 0 6px 6px 0; border-left-width: 0; }
+
+  &:last-child { border-left-width: 0; border-radius: 0 6px 6px 0; }
 
   &:hover { color: $tb-text-dim; }
 

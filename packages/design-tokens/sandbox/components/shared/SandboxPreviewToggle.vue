@@ -143,6 +143,7 @@ const emit = defineEmits<{
   white-space: nowrap;
 
   strong.is-on { color: $tb-accent; }
+
   strong.is-off { color: $tb-text-muted; }
 }
 
