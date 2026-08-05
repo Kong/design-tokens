@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.5...@kong/design-tokens@3.2.6) (2026-08-05)
+
+### Bug Fixes
+
+* date time picker disabled tokens [KHCP-21429] ([#711](https://github.com/Kong/design-tokens/issues/711)) ([0757461](https://github.com/Kong/design-tokens/commit/0757461be9fb054de9ba36b71d93eceb58f6ec82))
+
 ## [3.2.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.4...@kong/design-tokens@3.2.5) (2026-08-05)
 
 **Note:** Version bump only for package @kong/design-tokens
