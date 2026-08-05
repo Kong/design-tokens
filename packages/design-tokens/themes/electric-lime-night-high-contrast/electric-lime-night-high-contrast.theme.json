@@ -1309,7 +1309,7 @@
   },
   "kui-date-time-picker-day-color-text-disabled": {
     "$description": "Date time picker calendar disabled day cell text color.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.gray.50}"
   },
   "kui-date-time-picker-day-color-text-selected": {
     "$description": "Date time picker calendar inverse text color (used for content rendered on top of accent/selected backgrounds).",
