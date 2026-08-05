@@ -67,4 +67,29 @@ describe('SandboxTabs', () => {
       expect(wrapper.find('.st-tab-dot-tooltip').text()).toBe('Modified')
     })
   })
+
+  describe('disabled tab', () => {
+    it('sets the native disabled attribute and a disabled class on a disabled tab, but not on others', () => {
+      const tabs = [
+        { id: 'aliases', label: 'Color aliases', disabled: true },
+        { id: 'tokens', label: 'Tokens' },
+      ]
+      const wrapper = mount(SandboxTabs, { props: { tabs, modelValue: 'tokens' } })
+      const buttons = wrapper.findAll('.st-tab')
+      expect(buttons[0].attributes('disabled')).toBeDefined()
+      expect(buttons[0].classes()).toContain('st-tab--disabled')
+      expect(buttons[1].attributes('disabled')).toBeUndefined()
+      expect(buttons[1].classes()).not.toContain('st-tab--disabled')
+    })
+
+    it('does not emit update:modelValue when a disabled tab is clicked', async () => {
+      const tabs = [
+        { id: 'aliases', label: 'Color aliases', disabled: true },
+        { id: 'tokens', label: 'Tokens' },
+      ]
+      const wrapper = mount(SandboxTabs, { props: { tabs, modelValue: 'tokens' } })
+      await wrapper.findAll('.st-tab')[0].trigger('click')
+      expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+    })
+  })
 })

@@ -6,15 +6,6 @@
     @close="close"
   >
     <template #header-actions>
-      <button
-        v-if="isLoaded"
-        class="tb-load-different"
-        title="Load a different theme"
-        type="button"
-        @click="loadDifferent"
-      >
-        ↻ Load different theme
-      </button>
       <a
         aria-label="Kong Design Tokens on GitHub"
         class="tb-github"
@@ -60,13 +51,53 @@
     </p>
 
     <div class="tb-tabpanel">
-      <InstructionsPanel v-show="activeTab === 'instructions'" />
-      <FileLoader
-        v-if="!isLoaded && activeTab !== 'instructions'"
-        :error="loadError"
-        @load="onLoad"
+      <InstructionsPanel
+        v-show="activeTab === 'instructions'"
+        @go-to-theme="activeTab = 'theme'"
       />
-      <template v-else-if="isLoaded">
+      <div
+        v-show="activeTab === 'theme'"
+        class="tb-theme-tab"
+      >
+        <FileLoader
+          v-if="!isLoaded"
+          :error="loadError"
+          @load="onLoad"
+        />
+        <div
+          v-else
+          class="tb-theme-loaded"
+        >
+          <h2 class="tb-theme-loaded-title">
+            Theme loaded
+          </h2>
+          <ul class="tb-theme-loaded-list">
+            <li>
+              <span
+                aria-hidden="true"
+                class="tb-theme-loaded-check"
+              >✓</span>
+              <code>{{ themeFileName }}</code>
+            </li>
+            <li>
+              <span
+                aria-hidden="true"
+                class="tb-theme-loaded-check"
+              >✓</span>
+              <code>{{ aliasFileName }}</code>
+            </li>
+          </ul>
+          <button
+            class="tb-load-different"
+            title="Load a different theme"
+            type="button"
+            @click="loadDifferent"
+          >
+            ↻ Load different theme
+          </button>
+        </div>
+      </div>
+      <template v-if="isLoaded">
         <PalettePanel
           v-show="activeTab === 'aliases'"
           :alias-flat="aliasFlat"
@@ -132,7 +163,7 @@ const isEmbedded = getHashParam('embedded') === '1'
 const loadError = ref('')
 
 /** The builder tabs. Instructions is first and the default so a new user sees it immediately. */
-type TabId = 'instructions' | 'aliases' | 'tokens' | 'export'
+type TabId = 'instructions' | 'theme' | 'aliases' | 'tokens' | 'export'
 const activeTab = ref<TabId>('instructions')
 
 const {
@@ -147,21 +178,24 @@ const hasAliasOverrides = computed(() => Object.keys(aliasOverrides).length > 0)
 /** True once at least one token has been overridden from the uploaded file's value. */
 const hasTokenOverrides = computed(() => Object.keys(tokenOverrides).length > 0)
 
-const tabs = computed<Array<{ id: TabId, label: string, modified?: boolean, modifiedTooltip?: string }>>(() => [
+const tabs = computed<Array<{ id: TabId, label: string, modified?: boolean, modifiedTooltip?: string, disabled?: boolean }>>(() => [
   { id: 'instructions', label: 'Instructions' },
+  { id: 'theme', label: 'Theme' },
   {
     id: 'aliases',
     label: 'Color aliases',
+    disabled: !isLoaded.value,
     modified: hasAliasOverrides.value,
     modifiedTooltip: 'One or more color aliases have been modified from the uploaded file.',
   },
   {
     id: 'tokens',
     label: 'Tokens',
+    disabled: !isLoaded.value,
     modified: hasTokenOverrides.value,
     modifiedTooltip: 'One or more tokens have been modified from the uploaded file.',
   },
-  { id: 'export', label: 'Export' },
+  { id: 'export', label: 'Export', disabled: !isLoaded.value },
 ])
 
 // Restore persisted state synchronously in setup so the embedded bridge's on-mount
@@ -214,25 +248,55 @@ const { close } = useEmbeddedBridge({ isEmbedded: bridgeEnabled, css: injectedCs
 // SandboxUnifiedEmbed's delegation doesn't need to special-case "this tool has no custom buildSrc".
 defineExpose({ injectedCss, buildSrc: () => window.location.href })
 
-/** Parses the uploaded files and surfaces any validation error. */
+/**
+ * Parses the uploaded files and surfaces any validation error. On success, advances off the
+ * Theme tab straight to Color aliases — staying on Theme would just show the loaded-file
+ * summary, which isn't where editing happens.
+ */
 function onLoad(payload: { themeText: string, aliasText: string, themeName?: string, aliasName?: string }) {
   const result = loadFiles(payload.themeText, payload.aliasText, payload.themeName, payload.aliasName)
-  loadError.value = result.ok ? '' : (result.error ?? 'Failed to load files.')
+  if (result.ok) {
+    loadError.value = ''
+    activeTab.value = 'aliases'
+  } else {
+    loadError.value = result.error ?? 'Failed to load files.'
+  }
 }
 
-/** Returns to the file loader; warns first if the user has unsaved overrides. */
+/**
+ * Returns to the file loader; always confirms first, since loading a different theme discards
+ * the current one (and any unsaved overrides) regardless of whether changes were made. Also
+ * moves back to the Theme tab — Aliases/Tokens/Export are disabled once unloaded, so staying on
+ * whichever of those was active would leave the user on a now-disabled tab.
+ */
 function loadDifferent() {
-  if (hasOverrides.value && !window.confirm('Discard your current changes and load a different theme? Your unsaved edits will be lost.')) return
+  const message = hasOverrides.value
+    ? 'Discard your current changes and load a different theme? Your unsaved edits will be lost.'
+    : 'Load a different theme? Your currently loaded theme will be cleared.'
+  if (!window.confirm(message)) return
   unload()
+  activeTab.value = 'theme'
 }
 </script>
 
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.tb-load-different { background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 5px; color: $tb-text-muted; cursor: pointer; font-size: 12px; padding: 5px 9px;
+.tb-theme-loaded { color: $tb-text; margin: 60px auto; max-width: 460px; padding: 0 20px; }
 
-  &:hover { border-color: $tb-accent; color: $tb-text; } }
+.tb-theme-loaded-title { font-size: 20px; font-weight: 600; margin: 0 0 16px; }
+
+.tb-theme-loaded-list { list-style: none; margin: 0 0 24px; padding: 0;
+
+  li { align-items: center; display: flex; font-size: 13px; gap: 8px; margin-bottom: 8px; }
+
+  code { background: $tb-surface-2; border-radius: 3px; font-family: $tb-mono; font-size: 12px; padding: 1px 5px; } }
+
+.tb-theme-loaded-check { color: $tb-accent; font-weight: 700; }
+
+.tb-load-different { background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 6px; color: $tb-text; cursor: pointer; font-size: 13px; font-weight: 600; padding: 10px; width: 100%;
+
+  &:hover { border-color: $tb-accent; } }
 
 .tb-github { align-items: center; background: $tb-surface; border: 1px solid $tb-border-active; border-radius: 5px; color: $tb-text-muted; display: inline-flex; padding: 5px 9px; text-decoration: none;
 

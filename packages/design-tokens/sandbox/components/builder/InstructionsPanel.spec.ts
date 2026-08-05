@@ -50,13 +50,14 @@ describe('InstructionsPanel', () => {
     expect(wrapper.findAll('.ip-steps li')).toHaveLength(2)
   })
 
-  it('renders three list items describing the editing panels', () => {
+  it('renders four list items describing the tabs', () => {
     const wrapper = mount(InstructionsPanel)
     const items = wrapper.findAll('.ip-list li').map((li) => li.text())
-    expect(items).toHaveLength(3)
-    expect(items[0]).toContain('Color aliases')
-    expect(items[1]).toContain('Tokens')
-    expect(items[2]).toContain('Export')
+    expect(items).toHaveLength(4)
+    expect(items[0]).toContain('Theme')
+    expect(items[1]).toContain('Color aliases')
+    expect(items[2]).toContain('Tokens')
+    expect(items[3]).toContain('Export')
   })
 
   it('renders two code blocks (scaffold command and build+test command)', () => {
@@ -66,5 +67,11 @@ describe('InstructionsPanel', () => {
       'node scripts/theme-scaffold.mjs <name>',
       'pnpm build:tokens && pnpm test',
     ])
+  })
+
+  it('emits "go-to-theme" when the Theme tab link is clicked', async () => {
+    const wrapper = mount(InstructionsPanel)
+    await wrapper.find('.ip-link').trigger('click')
+    expect(wrapper.emitted('go-to-theme')).toHaveLength(1)
   })
 })
