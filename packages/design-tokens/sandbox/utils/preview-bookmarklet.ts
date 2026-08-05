@@ -1,38 +1,43 @@
 /**
- * Template for the bookmarklet. `__CUSTOMIZER_URL__` is replaced at runtime in
- * `CustPreviewPanel.vue` / `TokenBrowser.vue` with the absolute URL of the embedded
- * app (customizer or theme builder), derived from the deployment's own origin so it
- * works in both dev and on GitHub Pages. `__STORAGE_NS__` is replaced with a
- * namespace (`'customizer'` or `'theme-builder'`) so the two bookmarklets keep
- * separate localStorage state on the target page instead of clobbering each other.
- * The DOM element IDs (`FRAME_ID`/`OVERLAY_ID`/`TAB_ID`, e.g. `kong-customizer-sidebar`
- * or `kong-theme-builder-sidebar`) and the global listener guard flag are likewise
- * namespaced with `__STORAGE_NS__` so both bookmarklets can be active on the same
- * page without colliding. `STYLE_ID` (`kong-design-token-overrides`) is intentionally
- * shared — only one sidebar is meant to be open at a time, and the target page needs
- * a single override style tag.
+ * Template for the single, unified bookmarklet. `__EMBED_URL__` is replaced at runtime in
+ * `buildBookmarkletHref.ts` with the absolute URL of the embedded sandbox route
+ * (`/#/embedded?embedded=1`), derived from the deployment's own origin so it works in both dev
+ * and on GitHub Pages. There is only ever one bookmarklet/sidebar now — the sidebar itself hosts
+ * a Customizer / Theme Builder tab switcher plus a separate live-preview on/off toggle
+ * (`SandboxUnifiedEmbed.vue`), so the DOM
+ * element ids (`kong-sidebar`, `kong-sidebar-overlay`, `kong-sidebar-tab`), the global listener
+ * guard flag (`__kongListener`), and the localStorage restore key (`kong-sidebar-url:<hostname>`)
+ * are all unnamespaced. `STYLE_ID` (`kong-design-token-overrides`) is the single override style
+ * tag injected into the target page.
  *
  * When the designer clicks this on any target page it:
  *  1. Injects `<style id="kong-design-token-overrides">` into the page
- *  2. Shows a loading overlay, then injects a 560px fixed sidebar `<iframe>` pointing
- *     to the embedded app (`/#/customize?embedded=1` or `/#/theme-builder?embedded=1`).
- *     The loading overlay is removed on first CSS message; times out to an error
- *     state after 8 s.
- *  3. Persists the last-used iframe URL (with encoded overrides) in localStorage
- *     under the namespaced key `kong-<ns>-url:<hostname>`, so re-clicking after
- *     navigation restores state without colliding with the other bookmarklet's key.
- *  4. Appends the target page's hostname to the iframe src as `&host=<hostname>` so
- *     the embedded app — which cannot read the parent's location cross-origin — can
- *     key its own (sandbox-origin) state storage per target site.
- *  5. Re-clicking the bookmarklet toggles the sidebar. A `▶` / `◀` tab stays visible
- *     at the right edge so the user can always restore it.
+ *  2. Shows a loading overlay, then injects a 560px fixed sidebar `<iframe>` pointing to the
+ *     embedded sandbox (`/#/embedded?embedded=1`). The loading overlay is removed on first CSS
+ *     message; times out to an error state after 8 s.
+ *  3. Persists the last-used iframe URL (mode + encoded overrides included) in localStorage
+ *     under `kong-sidebar-url:<hostname>`, so re-clicking on the same hostname restores whichever
+ *     mode (Customizer / Theme Builder / Off) and state were last active there.
+ *  4. Appends the target page's hostname to the iframe src as `&host=<hostname>` so the embedded
+ *     app — which cannot read the parent's location cross-origin — can key its own (sandbox-
+ *     origin) state storage per target site.
+ *  5. Re-clicking the bookmarklet toggles the sidebar. A `▶` / `◀` tab stays visible at the right
+ *     edge so the user can always restore it.
+ *
+ * The message listener validates both the sender's origin (`e.origin` must match the sidebar
+ * iframe's own origin) and the sender's identity (`e.source` must be the sidebar iframe's own
+ * `contentWindow`) before applying `e.data.css`/`e.data.src` or acting on `kui-close`. The
+ * `e.source` check specifically guards against a legacy pre-unification bookmarklet (which used
+ * per-tool namespacing) still being present in a user's bookmarks bar: two same-origin sidebars
+ * open at once would otherwise let either one's listener accept the other's messages, which was
+ * the root cause of the "clicking one bookmarklet opens the other tool" bug this replaces.
  */
 export const BOOKMARKLET_TEMPLATE = `(()=>{
   var STYLE_ID='kong-design-token-overrides';
-  var FRAME_ID='kong-__STORAGE_NS__-sidebar';
-  var OVERLAY_ID='kong-__STORAGE_NS__-overlay';
-  var TAB_ID='kong-__STORAGE_NS__-tab';
-  var STORAGE_KEY='kong-__STORAGE_NS__-url:'+location.hostname;
+  var FRAME_ID='kong-sidebar';
+  var OVERLAY_ID='kong-sidebar-overlay';
+  var TAB_ID='kong-sidebar-tab';
+  var STORAGE_KEY='kong-sidebar-url:'+location.hostname;
   var WIDTH='560px';
 
   // Ensure the override style tag exists
@@ -43,19 +48,22 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   }
 
   // Register message listener only once (guard against bookmarklet re-clicks)
-  if(!window['__kongListener_'+'__STORAGE_NS__']){
-    window['__kongListener_'+'__STORAGE_NS__']=true;
+  if(!window.__kongListener){
+    window.__kongListener=true;
     window.addEventListener('message',function(e){
       if(!e.data)return;
-      // Only accept messages from the sidebar iframe we created — otherwise any other
-      // frame/script on the page could post a fake kui-token-override and inject CSS.
+      // Only accept messages from the sidebar iframe we created — checks both its origin and
+      // that the message actually came from that iframe's own window (not just same-origin),
+      // so any other frame/script on the page (or a stale legacy bookmarklet's sidebar) can't
+      // post a fake kui-token-override into this one.
       var f=document.getElementById(FRAME_ID);
       if(!f||!f.src)return;
       try{if(e.origin!==new URL(f.src).origin)return;}catch(x){return;}
+      if(e.source!==f.contentWindow)return;
       if(e.data.type==='kui-token-override'){
         var el=document.getElementById(STYLE_ID);
         if(el)el.textContent=e.data.css||'';
-        if(e.data.src)try{localStorage.setItem(STORAGE_KEY,e.data.src);}catch(x){}
+        if(e.data.src)try{localStorage.setItem(STORAGE_KEY,e.data.src);}catch(x){console.warn('[Kong design tokens] Could not save sidebar state — storage full or unavailable; this bookmarklet will not restore where you left off next time.',x);}
         // First postMessage confirms the sidebar loaded — remove the loading overlay
         var ov=document.getElementById(OVERLAY_ID);if(ov)ov.remove();
       }
@@ -80,8 +88,8 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   }
 
   // Restore URL from last session for this hostname, else use the baked-in default
-  var src='__CUSTOMIZER_URL__';
-  try{var saved=localStorage.getItem(STORAGE_KEY);if(saved)src=saved;}catch(x){}
+  var src='__EMBED_URL__';
+  try{var saved=localStorage.getItem(STORAGE_KEY);if(saved)src=saved;}catch(x){console.warn('[Kong design tokens] Could not read saved sidebar state — storage unavailable; opening with defaults.',x);}
   // Pass the target page's hostname to the embedded app (both bookmarklet URLs already contain "?embedded=1", so "&host=" is always valid). Idempotent: only add it once.
   if(src.indexOf('host=')===-1){src+='&host='+encodeURIComponent(location.hostname);}
 
@@ -97,7 +105,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   var spinner=document.createElement('div');
   spinner.style.cssText='width:22px;height:22px;border:2.5px solid #dde;border-top-color:#0044f4;border-radius:50%;animation:_kongSpin .8s linear infinite';
   var loadMsg=document.createElement('span');
-  loadMsg.textContent='Loading token customizer…';
+  loadMsg.textContent='Loading Kong design tokens…';
   overlay.appendChild(spinner);
   overlay.appendChild(loadMsg);
   document.body.appendChild(overlay);
@@ -116,7 +124,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
     errTitle.textContent='Failed to load';
     var errHint=document.createElement('span');
     errHint.style.cssText='font-size:11px;color:#999;text-align:center;max-width:300px;padding:0 24px';
-    errHint.textContent='The customizer may be blocked by mixed content (HTTP vs HTTPS), X-Frame-Options, or a network issue. Try re-dragging the bookmarklet from the deployed site.';
+    errHint.textContent='The sandbox may be blocked by mixed content (HTTP vs HTTPS), X-Frame-Options, or a network issue. Try re-dragging the bookmarklet from the deployed site.';
     ov.appendChild(errIcon);
     ov.appendChild(errTitle);
     ov.appendChild(errHint);
@@ -132,7 +140,7 @@ export const BOOKMARKLET_TEMPLATE = `(()=>{
   // Persistent toggle tab: ▶ = sidebar visible (click to close), ◀ = hidden (click to open)
   tab=document.createElement('button');
   tab.id=TAB_ID;
-  tab.title='Toggle Kong Design Token Customizer';
+  tab.title='Toggle Kong Design Token Sandbox';
   tab.textContent='\\u25B6';
   tab.style.cssText='position:fixed;top:16px;right:'+WIDTH+';z-index:2147483647;background:#0044f4;color:#fff;border:none;border-radius:4px 0 0 4px;width:20px;padding:12px 0;cursor:pointer;font-size:11px;box-shadow:-2px 0 8px rgba(0,0,0,0.15)';
   tab.onclick=function(){

@@ -330,7 +330,6 @@
     <BookmarkletModal
       v-model="showBookmarkletModal"
       :bookmarklet-href="bookmarkletHref"
-      :theme-builder-href="themeBuilderBookmarkletHref"
     />
   </div>
 </template>
@@ -342,7 +341,7 @@ import { useTokens, categoryLabel, buildSections, THEMES, DEFAULT_THEME_ID, isTh
 import { useClipboard } from '@/composables/useClipboard'
 import { useHeaderHeight } from '@/composables/useHeaderHeight'
 import { useSearchShortcut } from '@/composables/useSearchShortcut'
-import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
+import { buildBookmarkletHref } from '@/utils/buildBookmarkletHref'
 import TokenCard from './TokenCard.vue'
 import BookmarkletModal from './BookmarkletModal.vue'
 import pkg from '../../../package.json'
@@ -352,19 +351,8 @@ const isDevMode = import.meta.env.DEV
 /** Controls the bookmarklet setup modal (production only). */
 const showBookmarkletModal = ref(false)
 
-/** Bookmarklet href computed at runtime so `__CUSTOMIZER_URL__` resolves to the actual origin. */
-const bookmarkletHref = (() => {
-  if (typeof window === 'undefined') return '#'
-  const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
-})()
-
-/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
-const themeBuilderBookmarkletHref = (() => {
-  if (typeof window === 'undefined') return '#'
-  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
-})()
+/** Bookmarklet href, computed at runtime so it resolves to the actual deployment origin. */
+const bookmarkletHref = buildBookmarkletHref()
 
 const appVersion = pkg.version
 

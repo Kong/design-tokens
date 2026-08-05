@@ -179,15 +179,12 @@ describe('CustPreviewPanel', () => {
       expect(wrapper.find('.bookmarklet-card').exists()).toBe(true)
     })
 
-    it('renders both bookmarklet drag-links pointing at javascript: hrefs', () => {
+    it('renders a single bookmarklet drag-link pointing at a javascript: href', () => {
       const wrapper = mountPanel()
       const links = wrapper.findAll('.bookmarklet-link')
-      expect(links).toHaveLength(2)
-      for (const link of links) {
-        expect(link.attributes('href')).toMatch(/^javascript:/)
-      }
-      expect(links[0].text()).toContain('Token Customizer')
-      expect(links[1].text()).toContain('Theme Builder')
+      expect(links).toHaveLength(1)
+      expect(links[0].attributes('href')).toMatch(/^javascript:/)
+      expect(links[0].text()).toContain('Kong Design Tokens')
     })
 
     it('shows the localhost warning when served from a local origin', () => {

@@ -136,11 +136,11 @@ Build-time Style Dictionary utilities live in `packages/design-tokens/utilities/
 
 ## Sandbox (`packages/design-tokens/sandbox/`)
 
-Vue dev app (Token Browser, Token Customizer, Theme Builder). Runs at `localhost:5173` via
-`pnpm sandbox:design-tokens`.
+Vue dev app (Token Browser, Token Customizer, Theme Builder, and the unified bookmarklet sidebar
+that hosts the latter two). Runs at `localhost:5173` via `pnpm sandbox:design-tokens`.
 
 **Before creating, modifying, or reviewing anything under `packages/design-tokens/sandbox/`**,
-read `.claude/references/design-tokens-sandbox-and-theme-builder.md` first — it covers the three
+read `.claude/references/design-tokens-sandbox-and-theme-builder.md` first — it covers all four
 surfaces, shared infrastructure (bookmarklet, preview proxy, embedded bridge), module-scoped
 state gotchas, and testing conventions specific to this app. Not relevant to any other package.
 

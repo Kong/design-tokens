@@ -38,27 +38,20 @@
                 :href="bookmarkletHref"
                 @click.prevent
               >
-                🔖 Token Customizer
-              </a>
-              <a
-                class="bm-drag-link"
-                :href="themeBuilderHref"
-                @click.prevent
-              >
-                🎨 Theme Builder
+                🔖 Kong Design Tokens
               </a>
             </div>
-            <span class="bm-drag-hint">← drag either to your bookmarks bar</span>
+            <span class="bm-drag-hint">← drag to your bookmarks bar</span>
           </div>
           <ol class="bm-steps">
             <li>Drag the link above to your browser's bookmarks bar</li>
             <li>Navigate to the page you want to customize</li>
-            <li>Click the bookmarklet — a token editor panel opens on the page</li>
-            <li>Edit tokens; changes apply live</li>
+            <li>Click the bookmarklet — a panel opens on the page</li>
+            <li>Switch between Customizer and Theme Builder from the tabs inside the panel; edit tokens and changes apply live</li>
           </ol>
           <hr class="bm-divider">
           <div class="bm-standalone-row">
-            <span class="bm-standalone-label">For standalone use (share links, CSS export):</span>
+            <span class="bm-standalone-label">For standalone use (live preview, CSS export/import):</span>
             <router-link
               class="bm-standalone-link"
               to="/customize"
@@ -77,10 +70,8 @@
 defineProps<{
   /** Controls visibility; use with v-model. */
   modelValue: boolean
-  /** The `javascript:` bookmarklet href for the drag link. */
+  /** The single unified bookmarklet's `javascript:` href for the drag link. */
   bookmarkletHref: string
-  /** The `javascript:` bookmarklet href for the Theme Builder drag link. */
-  themeBuilderHref: string
 }>()
 
 const emit = defineEmits<{

@@ -50,7 +50,7 @@
         <strong>Tokens</strong> — every token in the theme file. Color tokens can only be pointed
         at an alias (no freeform hex); everything else is a plain text value.
       </li>
-      <li><strong>Export</strong> — preview the computed CSS, or download both edited source files.</li>
+      <li><strong>Export</strong> — download both edited source files, or export/copy the computed CSS.</li>
     </ul>
 
     <h3 class="ip-heading">

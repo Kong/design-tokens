@@ -63,6 +63,13 @@ describe('CustImportPanel', () => {
     expect(wrapper.find('.cust-import-apply-btn').attributes('disabled')).toBeDefined()
   })
 
+  it('leads the placeholder with CSS, not the removed share-link feature', () => {
+    const wrapper = mount(CustImportPanel)
+    expect(wrapper.find('.cust-import-input').attributes('placeholder')).toBe(
+      'Paste CSS (or a legacy share URL/state code)…',
+    )
+  })
+
   describe('CSS text import', () => {
     it('applies a valid :root CSS block, actually mutating overrides/customProps, and shows success feedback', async () => {
       const target = ALL_ENTRIES[0]
@@ -96,7 +103,7 @@ describe('CustImportPanel', () => {
     it('applies a valid share link, mutating startingThemeId and overrides, and shows success feedback', async () => {
       const target = ALL_ENTRIES[0]
       const encoded = await encodeOverrides({ [target.cssVar]: '#112233' })
-      const link = `http://localhost/#/customize?o=${encoded}&theme=electric-lime-day`
+      const link = `http://localhost/#/customize?o=${encoded}&startTheme=electric-lime-day`
 
       const wrapper = mount(CustImportPanel)
       await wrapper.find('.cust-import-input').setValue(link)
@@ -107,6 +114,21 @@ describe('CustImportPanel', () => {
       expect(composable.overrides[target.cssVar]).toBe('#112233')
       expect(wrapper.find('.cust-import-feedback').text()).toBe('Customizations applied.')
       expect(wrapper.find('.cust-import-feedback').classes()).toContain('cust-import-feedback--success')
+    })
+
+    it('still applies a legacy share link using the pre-rename ?theme= key', async () => {
+      const target = ALL_ENTRIES[1]
+      const encoded = await encodeOverrides({ [target.cssVar]: '#445566' })
+      const legacyLink = `http://localhost/#/customize?o=${encoded}&theme=electric-lime-night`
+
+      const wrapper = mount(CustImportPanel)
+      await wrapper.find('.cust-import-input').setValue(legacyLink)
+      await wrapper.find('.cust-import-apply-btn').trigger('click')
+      await wrapper.vm.$nextTick()
+
+      expect(composable.startingThemeId.value).toBe('electric-lime-night')
+      expect(composable.overrides[target.cssVar]).toBe('#445566')
+      expect(wrapper.find('.cust-import-feedback--success').exists()).toBe(true)
     })
 
     it('shows an error and leaves state untouched for a garbage code/URL that decodes to nothing', async () => {

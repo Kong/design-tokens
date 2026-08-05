@@ -3,10 +3,12 @@
   "private": true,
   "scripts": {
     "build": "FORCE_COLOR=1 pnpm -r build",
-    "lint": "FORCE_COLOR=1 pnpm -r lint",
-    "lint:fix": "FORCE_COLOR=1 pnpm -r lint:fix",
-    "typecheck": "FORCE_COLOR=1 pnpm -r typecheck",
-    "test": "FORCE_COLOR=1 pnpm -r --reporter append-only test",
+    "lint": "FORCE_COLOR=1 pnpm -r --if-present lint",
+    "lint:fix": "FORCE_COLOR=1 pnpm -r --if-present lint:fix",
+    "stylelint": "FORCE_COLOR=1 pnpm -r --if-present stylelint",
+    "stylelint:fix": "FORCE_COLOR=1 pnpm -r --if-present stylelint:fix",
+    "typecheck": "FORCE_COLOR=1 pnpm -r --if-present typecheck",
+    "test": "FORCE_COLOR=1 pnpm -r --if-present --reporter append-only test",
     "sandbox:design-tokens": "FORCE_COLOR=1 pnpm --filter @kong/design-tokens sandbox",
     "sandbox:design-tokens:build": "FORCE_COLOR=1 pnpm --filter @kong/design-tokens sandbox:build",
     "commit": "cz"
