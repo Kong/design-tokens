@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.4](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.3...@kong/design-tokens@3.2.4) (2026-08-05)
+
+### Bug Fixes
+
+* update dropdown item color text danger tokens [KHCP-21429] ([#710](https://github.com/Kong/design-tokens/issues/710)) ([2492d69](https://github.com/Kong/design-tokens/commit/2492d694313cadca839faf9508d9eae77fe813ff))
+
+## [3.2.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.2...@kong/design-tokens@3.2.3) (2026-08-05)
+
+**Note:** Version bump only for package @kong/design-tokens
+
 ## [3.2.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.1...@kong/design-tokens@3.2.2) (2026-07-30)
 
 ### Bug Fixes
