@@ -17,8 +17,10 @@ export function buildBookmarkletHref(): string {
  * Returns true only if `href` is a `javascript:` URI, after stripping the ASCII
  * whitespace/control characters browsers ignore when parsing a URL scheme (the
  * classic `jav\tascript:` / leading-newline bypass for naive prefix checks).
+ * Explicitly rejects other executable schemes (`data:` and `vbscript:`).
  */
 export function isJavascriptScheme(href: string): boolean {
   const normalized = href.replace(/[\t\n\r ]/g, '').toLowerCase()
+  if (normalized.startsWith('data:') || normalized.startsWith('vbscript:')) return false
   return normalized.startsWith('javascript:')
 }
