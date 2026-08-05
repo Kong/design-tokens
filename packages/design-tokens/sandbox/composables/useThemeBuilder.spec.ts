@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useThemeBuilder } from './useThemeBuilder'
 
 /** Finds a token by key, throwing if it isn't present — narrows away `undefined` for tests. */
@@ -293,6 +293,64 @@ describe('useThemeBuilder', () => {
       const builder = useThemeBuilder()
       expect(() => builder.initPersistence('malformed-host')).not.toThrow()
       expect(builder.isLoaded.value).toBe(false)
+    })
+  })
+
+  describe('storage error handling', () => {
+    let setItemSpy: ReturnType<typeof vi.spyOn>
+    let warnSpy: ReturnType<typeof vi.spyOn>
+
+    afterEach(() => {
+      setItemSpy?.mockRestore()
+      warnSpy?.mockRestore()
+    })
+
+    it('sets persistError and warns, without throwing, when localStorage.setItem fails (quota exceeded/unavailable)', async () => {
+      setItemSpy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+        throw new DOMException('The quota has been exceeded.', 'QuotaExceededError')
+      })
+      warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+      const builder = useThemeBuilder()
+      builder.initPersistence('quota-host')
+      expect(() => builder.loadFiles(VALID_THEME, VALID_ALIAS)).not.toThrow()
+
+      await new Promise((resolve) => setTimeout(resolve, 300))
+
+      expect(builder.persistError.value).toBeTruthy()
+      expect(warnSpy).toHaveBeenCalled()
+    })
+
+    it('clears persistError once a subsequent write succeeds', async () => {
+      setItemSpy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+        throw new Error('storage unavailable')
+      })
+      warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+      const builder = useThemeBuilder()
+      builder.initPersistence('recovers-host')
+      builder.loadFiles(VALID_THEME, VALID_ALIAS)
+      await new Promise((resolve) => setTimeout(resolve, 300))
+      expect(builder.persistError.value).toBeTruthy()
+
+      setItemSpy.mockRestore()
+      builder.setTokenOverride('kui-space-40', '24px')
+      await new Promise((resolve) => setTimeout(resolve, 300))
+      expect(builder.persistError.value).toBeNull()
+    })
+
+    it('does not throw and starts fresh when localStorage.getItem itself throws (storage disabled entirely)', () => {
+      const getItemSpy = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+        throw new Error('storage disabled')
+      })
+      warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+      const builder = useThemeBuilder()
+      expect(() => builder.initPersistence('disabled-host')).not.toThrow()
+      expect(builder.isLoaded.value).toBe(false)
+      expect(warnSpy).toHaveBeenCalled()
+
+      getItemSpy.mockRestore()
     })
   })
 })

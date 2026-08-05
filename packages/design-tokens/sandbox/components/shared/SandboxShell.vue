@@ -1,6 +1,7 @@
 <template>
-  <div class="sandbox-shell">
+  <div :class="['sandbox-shell', { 'sandbox-shell--chromeless': chromeless }]">
     <header
+      v-if="!chromeless"
       ref="headerEl"
       class="ss-header"
     >
@@ -48,6 +49,13 @@ defineProps<{
   title: string
   /** When true, hides the Browse link and shows the close (✕) button. */
   embedded: boolean
+  /**
+   * When true, suppresses this shell's own header (title + close button) entirely and fills
+   * its container's height instead of the full viewport. Used when hosted inside
+   * `SandboxUnifiedEmbed.vue`, which owns a single header/close button for the whole sidebar.
+   * The `#tabs` slot still renders — that's each tool's own internal navigation, not chrome.
+   */
+  chromeless?: boolean
 }>()
 const emit = defineEmits<{ close: [] }>()
 
@@ -58,7 +66,12 @@ useHeaderHeight(headerEl)
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
 
-.sandbox-shell { background: $tb-bg; color: $tb-text; display: flex; flex-direction: column; font-family: 'Inter', system-ui, sans-serif; height: 100vh; overflow: hidden; }
+.sandbox-shell { background: $tb-bg; color: $tb-text; display: flex; flex-direction: column; font-family: 'Inter', system-ui, sans-serif; height: 100vh; overflow: hidden;
+
+  // Hosted inside SandboxUnifiedEmbed: fill the flex space it's given instead of re-claiming
+  // the whole viewport a second time (the unified shell's own root already does that).
+  &--chromeless { height: 100%; }
+}
 
 .ss-header { align-items: center; background: $tb-surface; border-bottom: 1px solid $tb-border; display: flex; flex-shrink: 0; flex-wrap: wrap; gap: 10px; justify-content: space-between; padding: 10px 20px; }
 

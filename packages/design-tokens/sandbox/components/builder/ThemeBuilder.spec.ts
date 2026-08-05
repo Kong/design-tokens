@@ -45,6 +45,7 @@ const LOAD_PAYLOAD = {
 function resetBuilderState() {
   const builder = useThemeBuilder()
   builder.unload()
+  builder.persistError.value = null
   return builder
 }
 
@@ -224,6 +225,70 @@ describe('ThemeBuilder', () => {
       expect(outputPanel.props('aliasFileName')).toBe('my.alias.color.json')
     })
 
+    it('marks the Tokens sub-tab modified once a token is overridden, and the Aliases sub-tab modified once an alias is overridden', async () => {
+      /** Finds a tab by id in the currently-rendered SandboxTabs props, throwing if absent. */
+      function tabModified(id: string): boolean | undefined {
+        const found = (wrapper!.findComponent(SandboxTabs).props('tabs') as Array<{ id: string, modified?: boolean }>)
+          .find((t) => t.id === id)
+        if (!found) throw new Error(`Expected to find tab with id "${id}"`)
+        return found.modified
+      }
+
+      expect(tabModified('tokens')).toBe(false)
+      expect(tabModified('aliases')).toBe(false)
+
+      await wrapper!.findComponent(TokenList).vm.$emit('set', 'kui-space-40', '24px')
+      await wrapper!.vm.$nextTick()
+      expect(tabModified('tokens')).toBe(true)
+      expect(tabModified('aliases')).toBe(false)
+
+      await wrapper!.findComponent(PalettePanel).vm.$emit('change', 'blue.30', '#00FF00')
+      await wrapper!.vm.$nextTick()
+      expect(tabModified('aliases')).toBe(true)
+    })
+
+    it('passes hasOverrides through to OutputPanel for the export note\'s wording', async () => {
+      expect(wrapper!.findComponent(OutputPanel).props('hasOverrides')).toBe(false)
+      await wrapper!.findComponent(TokenList).vm.$emit('set', 'kui-space-40', '24px')
+      await wrapper!.vm.$nextTick()
+      expect(wrapper!.findComponent(OutputPanel).props('hasOverrides')).toBe(true)
+    })
+
+    it('wires TokenList\'s resetAll end-to-end: clears only token overrides, leaves alias overrides intact', async () => {
+      await wrapper!.findComponent(TokenList).vm.$emit('set', 'kui-space-40', '24px')
+      await wrapper!.findComponent(PalettePanel).vm.$emit('change', 'blue.30', '#00FF00')
+      await wrapper!.vm.$nextTick()
+      const colorToken = () => wrapper!.findComponent(TokenList).props('tokens')
+        .find((t: { key: string }) => t.key === 'kui-color-background-primary')!
+      const spaceToken = () => wrapper!.findComponent(TokenList).props('tokens')
+        .find((t: { key: string }) => t.key === 'kui-space-40')!
+      expect(spaceToken().source).toBe('overridden')
+      expect(colorToken().derivedValue).toBe('#00FF00')
+
+      await wrapper!.findComponent(TokenList).vm.$emit('resetAll')
+      await wrapper!.vm.$nextTick()
+
+      expect(spaceToken().source).toBe('inherited')
+      // The alias override survives — resetAll on the Tokens tab must not touch aliases.
+      expect(colorToken().derivedValue).toBe('#00FF00')
+    })
+
+    it('wires PalettePanel\'s resetAll end-to-end: clears only alias overrides, leaves token overrides intact', async () => {
+      await wrapper!.findComponent(TokenList).vm.$emit('set', 'kui-space-40', '24px')
+      await wrapper!.findComponent(PalettePanel).vm.$emit('change', 'blue.30', '#00FF00')
+      await wrapper!.vm.$nextTick()
+
+      await wrapper!.findComponent(PalettePanel).vm.$emit('resetAll')
+      await wrapper!.vm.$nextTick()
+
+      const colorToken = wrapper!.findComponent(TokenList).props('tokens')
+        .find((t: { key: string }) => t.key === 'kui-color-background-primary')!
+      expect(colorToken.derivedValue).toBe('#3B82F6') // back to the alias's own base value
+      const spaceToken = wrapper!.findComponent(TokenList).props('tokens')
+        .find((t: { key: string }) => t.key === 'kui-space-40')!
+      expect(spaceToken.source).toBe('overridden') // the token override survives
+    })
+
     it('keeps PalettePanel, TokenList, and OutputPanel all mounted regardless of active tab (visibility is v-show)', async () => {
       // The default active tab after load is whatever it was before loading ('tokens' here),
       // but all three editing panels should already be in the DOM tree (toggled via v-show),
@@ -332,6 +397,66 @@ describe('ThemeBuilder', () => {
       await toggle.trigger('click')
       await flushPromises()
       expect(lastPostedCss(postMessageSpy)).toContain(':root:root {')
+    })
+  })
+
+  describe('hosted prop (mounted inside SandboxUnifiedEmbed)', () => {
+    beforeEach(() => {
+      window.location.hash = '#/theme-builder?embedded=1'
+    })
+
+    it('does not run its own postMessage bridge when hosted, even in embedded mode', async () => {
+      const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
+      wrapper = mount(ThemeBuilder, { props: { hosted: true } })
+      await switchTab(wrapper, 'tokens')
+      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
+      await flushPromises()
+
+      expect(postMessageSpy).not.toHaveBeenCalled()
+    })
+
+    it('exposes a reactive injectedCss and a buildSrc function for the parent shell to read', async () => {
+      wrapper = mount(ThemeBuilder, { props: { hosted: true } })
+      await switchTab(wrapper, 'tokens')
+      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
+      await flushPromises()
+
+      const exposed = wrapper.vm as unknown as { injectedCss: string, buildSrc: () => string }
+      expect(typeof exposed.buildSrc).toBe('function')
+      expect(exposed.injectedCss).toContain('--kui-space-40: 16px !important;')
+    })
+
+    it('suppresses its own SandboxShell header/close chrome when hosted', () => {
+      wrapper = mount(ThemeBuilder, { props: { hosted: true } })
+      expect(wrapper.find('.ss-header').exists()).toBe(false)
+      expect(wrapper.find('.ss-close').exists()).toBe(false)
+    })
+
+    it('renders its own header/close chrome as before when not hosted', () => {
+      wrapper = mount(ThemeBuilder)
+      expect(wrapper.find('.ss-header').exists()).toBe(true)
+      expect(wrapper.find('.ss-close').exists()).toBe(true)
+    })
+  })
+
+  describe('persistence-failure warning', () => {
+    it('shows no warning by default', () => {
+      wrapper = mount(ThemeBuilder)
+      expect(wrapper.find('.tb-persist-warning').exists()).toBe(false)
+    })
+
+    it('shows a warning banner when persistError is set, and hides it again once cleared', async () => {
+      wrapper = mount(ThemeBuilder)
+      const builder = useThemeBuilder()
+
+      builder.persistError.value = 'Changes aren\'t being saved for next time — your browser\'s storage is full or unavailable.'
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.tb-persist-warning').exists()).toBe(true)
+      expect(wrapper.find('.tb-persist-warning').text()).toContain('storage is full or unavailable')
+
+      builder.persistError.value = null
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('.tb-persist-warning').exists()).toBe(false)
     })
   })
 })

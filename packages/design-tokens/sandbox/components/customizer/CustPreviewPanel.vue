@@ -237,23 +237,17 @@
           :href="bookmarkletHref"
           @click.prevent
         >
-          🔖 Token Customizer
-        </a>
-        <a
-          class="bookmarklet-link"
-          :href="themeBuilderBookmarkletHref"
-          @click.prevent
-        >
-          🎨 Theme Builder
+          🔖 Kong Design Tokens
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
           <li>(You no longer need this page open in your browser)</li>
           <li>Navigate to your target page</li>
-          <li>Click the bookmarklet while visiting the target page — a token editor sidebar opens on that page</li>
+          <li>Click the bookmarklet while visiting the target page — a sidebar opens on that page</li>
+          <li>Switch between Customizer and Theme Builder from the tabs inside the sidebar</li>
         </ol>
         <p class="bookmarklet-note">
-          The sidebar injects a customizer directly on the target page.
+          The sidebar injects your chosen tool directly on the target page.
           Token overrides apply live — no app changes needed.
         </p>
       </div>
@@ -265,7 +259,7 @@
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
 import { usePreviewBridge } from '@/composables/usePreviewBridge'
-import { BOOKMARKLET_TEMPLATE } from '@/utils/preview-bookmarklet'
+import { buildBookmarkletHref } from '@/utils/buildBookmarkletHref'
 import { getHashParam, setHashParams } from '@/utils/hashRouteQuery'
 import { applySelector, hardenCssPrecedence } from '@/utils/cssUtils'
 
@@ -304,20 +298,8 @@ const allTokensCount = computed(() => {
 const effectiveCss = computed(() => hardenCssPrecedence(applySelector(props.allTokensCss, customSelector.value)))
 
 const bridge = usePreviewBridge(effectiveCss)
-/**
- * Bookmarklet href computed at runtime so `__CUSTOMIZER_URL__` resolves to the actual
- * deployment origin (works for both localhost dev and GitHub Pages).
- */
-const bookmarkletHref = (() => {
-  const customizerUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/customize?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, customizerUrl).replace(/__STORAGE_NS__/g, 'customizer'))}`
-})()
-
-/** Theme Builder bookmarklet href — same template, embedded theme-builder route. */
-const themeBuilderBookmarkletHref = (() => {
-  const themeBuilderUrl = `${window.location.origin}${import.meta.env.BASE_URL}#/theme-builder?embedded=1`
-  return `javascript:${encodeURIComponent(BOOKMARKLET_TEMPLATE.replace(/__CUSTOMIZER_URL__/g, themeBuilderUrl).replace(/__STORAGE_NS__/g, 'theme-builder'))}`
-})()
+/** Bookmarklet href, computed at runtime so it resolves to the actual deployment origin. */
+const bookmarkletHref = buildBookmarkletHref()
 
 /** True when serving from localhost — bookmarklet baked with a local URL won't work on external sites. */
 const isLocalhost = ['localhost', '127.0.0.1', '::1'].includes(window.location.hostname)

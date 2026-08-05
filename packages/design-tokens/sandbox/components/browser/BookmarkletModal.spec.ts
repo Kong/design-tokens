@@ -3,15 +3,13 @@ import { mount, RouterLinkStub } from '@vue/test-utils'
 import { afterEach, describe, expect, it } from 'vitest'
 import BookmarkletModal from './BookmarkletModal.vue'
 
-const BOOKMARKLET_HREF = 'javascript:(function(){/* customizer */})()'
-const THEME_BUILDER_HREF = 'javascript:(function(){/* theme-builder */})()'
+const BOOKMARKLET_HREF = 'javascript:(function(){/* unified sandbox */})()'
 
 function mountModal(props: Partial<InstanceType<typeof BookmarkletModal>['$props']> = {}) {
   return mount(BookmarkletModal, {
     props: {
       modelValue: true,
       bookmarkletHref: BOOKMARKLET_HREF,
-      themeBuilderHref: THEME_BUILDER_HREF,
       ...props,
     },
   })
@@ -35,12 +33,11 @@ describe('BookmarkletModal', () => {
     expect(document.querySelector('#bm-title')?.textContent?.trim()).toBe('Use tokens on any page')
   })
 
-  it('sets the drag-link hrefs from props', () => {
+  it('sets the single drag-link href from props', () => {
     mountModal()
     const links = document.querySelectorAll('.bm-drag-link')
-    expect(links).toHaveLength(2)
+    expect(links).toHaveLength(1)
     expect(links[0].getAttribute('href')).toBe(BOOKMARKLET_HREF)
-    expect(links[1].getAttribute('href')).toBe(THEME_BUILDER_HREF)
   })
 
   it('emits update:modelValue false when the close button is clicked', async () => {
@@ -65,6 +62,13 @@ describe('BookmarkletModal', () => {
     modal.dispatchEvent(new MouseEvent('click', { bubbles: true }))
     await wrapper.vm.$nextTick()
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+  })
+
+  it('does not mention the removed share-link feature in the standalone-use copy', () => {
+    mountModal()
+    const label = document.querySelector('.bm-standalone-label')?.textContent ?? ''
+    expect(label).not.toContain('share link')
+    expect(label).toContain('CSS export')
   })
 
   it('emits update:modelValue false when the standalone "Open Token Customizer" link is clicked', async () => {

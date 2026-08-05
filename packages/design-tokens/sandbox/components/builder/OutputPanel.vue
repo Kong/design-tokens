@@ -10,20 +10,29 @@
       Export theme files
     </button>
     <p class="op-note">
-      Downloads both {{ themeFileName }} and {{ aliasFileName }}.
+      Downloads the {{ hasOverrides ? 'modified' : 'unmodified' }}
+      <code>*.theme.json</code> and <code>*.alias.color.json</code> files.
     </p>
 
     <h3 class="op-heading op-heading--css">
       Computed CSS
+    </h3>
+    <div class="op-btn-row">
       <button
-        v-if="css"
-        class="op-copy-btn"
+        class="op-btn op-btn--secondary"
+        :disabled="!css"
+        @click="downloadCss"
+      >
+        Export computed CSS
+      </button>
+      <button
+        class="op-btn op-btn--secondary"
+        :disabled="!css"
         @click="copyCss"
       >
         {{ copied ? '✓ Copied' : 'Copy' }}
       </button>
-    </h3>
-    <pre class="op-code"><code>{{ css || placeholder }}</code></pre>
+    </div>
   </div>
 </template>
 
@@ -40,19 +49,19 @@ const props = defineProps<{
   themeFileName: string
   /** Filename used for the downloaded alias color JSON file. */
   aliasFileName: string
-  /** Computed CSS output to preview and copy to the clipboard. */
+  /** Computed CSS output to export/copy. */
   css: string
+  /** Whether any token or alias override is currently set — used only to word the export note. */
+  hasOverrides: boolean
 }>()
-
-const placeholder = '/* Load a theme and edit tokens to see the computed CSS. */'
 
 const { copyText } = useClipboard()
 const copied = ref(false)
 let resetCopiedTimer: ReturnType<typeof setTimeout>
 
-/** Triggers a browser download of the given JSON text under the given filename. */
-function download(name: string, text: string) {
-  const blob = new Blob([text], { type: 'application/json' })
+/** Triggers a browser download of the given text under the given filename and MIME type. */
+function download(name: string, text: string, mimeType: string) {
+  const blob = new Blob([text], { type: mimeType })
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
@@ -63,8 +72,14 @@ function download(name: string, text: string) {
 
 /** Downloads both the theme and alias JSON files sequentially. */
 function exportBoth() {
-  download(props.themeFileName, props.themeJsonOut)
-  download(props.aliasFileName, props.aliasJsonOut)
+  download(props.themeFileName, props.themeJsonOut, 'application/json')
+  download(props.aliasFileName, props.aliasJsonOut, 'application/json')
+}
+
+/** Downloads the computed CSS as a standalone .css file. */
+function downloadCss() {
+  if (!props.css) return
+  download('kong-theme-computed.css', props.css, 'text/css')
 }
 
 /** Copies the computed CSS to the clipboard and shows a 1.5s confirmation state. */
@@ -90,27 +105,30 @@ async function copyCss() {
 
 .op-btn { background: $tb-accent; border: none; border-radius: 6px; color: #fff; cursor: pointer; display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; padding: 9px; width: 100%;
 
-  &:hover { opacity: 0.9; } }
+  &:hover:not(:disabled) { opacity: 0.9; }
 
-.op-note { color: $tb-text-muted; font-size: 12px; margin: 0 0 12px; }
+  &:disabled { cursor: default; opacity: 0.4; }
 
-.op-copy-btn { background: $tb-surface-2; border: 1px solid $tb-border; border-radius: 4px; color: $tb-text-dim; cursor: pointer; font-size: 11px; font-weight: 600; letter-spacing: normal; padding: 3px 8px; text-transform: none;
+  &--secondary {
+    background: $tb-surface-2;
+    border: 1px solid $tb-border;
+    color: $tb-text-dim;
+    margin-bottom: 0;
 
-  &:hover { opacity: 0.85; } }
+    &:hover:not(:disabled) { border-color: $tb-border-active; color: $tb-text; opacity: 1; }
+  }
+}
 
-.op-code {
-  background: #1e1e2e;
-  border-radius: 6px;
-  color: #cdd6f4;
-  flex: 1;
-  font-family: $tb-mono;
+.op-btn-row { display: flex; gap: 8px;
+
+  .op-btn--secondary { flex: 1; }
+}
+
+.op-note {
+  color: $tb-text-muted;
   font-size: 12px;
-  line-height: 1.5;
-  margin: 0;
-  min-height: 0;
-  overflow: auto;
-  padding: 10px;
-  white-space: pre-wrap;
-  word-break: break-all;
+  margin: 0 0 12px;
+
+  code { background: $tb-surface-2; border-radius: 3px; font-family: $tb-mono; font-size: 11px; padding: 1px 4px; }
 }
 </style>

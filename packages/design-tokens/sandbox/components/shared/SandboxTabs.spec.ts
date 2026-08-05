@@ -37,4 +37,34 @@ describe('SandboxTabs', () => {
     await wrapper.setProps({ modelValue: 'export' })
     expect(wrapper.findAll('.st-tab')[2].classes()).toContain('st-tab--active')
   })
+
+  describe('modified dot', () => {
+    it('does not render a dot for a tab with modified unset or false', () => {
+      const wrapper = mount(SandboxTabs, { props: { tabs: TABS, modelValue: 'aliases' } })
+      expect(wrapper.find('.st-tab-dot-wrap').exists()).toBe(false)
+    })
+
+    it('renders a dot with a tooltip for a tab flagged as modified', () => {
+      const tabs = [
+        { id: 'aliases', label: 'Color aliases', modified: true, modifiedTooltip: 'Custom tooltip text.' },
+        { id: 'tokens', label: 'Tokens' },
+      ]
+      const wrapper = mount(SandboxTabs, { props: { tabs, modelValue: 'aliases' } })
+      const buttons = wrapper.findAll('.st-tab')
+      expect(buttons[0].find('.st-tab-dot').exists()).toBe(true)
+      expect(buttons[0].find('.st-tab-dot-tooltip').text()).toBe('Custom tooltip text.')
+      // The dot itself is decorative/non-focusable; the accessible name lives on the tab
+      // button, so keyboard/screen-reader users get the "modified" status without an extra
+      // focus stop per tab.
+      expect(buttons[0].attributes('aria-label')).toBe('Color aliases — Custom tooltip text.')
+      expect(buttons[1].find('.st-tab-dot').exists()).toBe(false)
+      expect(buttons[1].attributes('aria-label')).toBeUndefined()
+    })
+
+    it('falls back to a generic "Modified" tooltip when modifiedTooltip is omitted', () => {
+      const tabs = [{ id: 'aliases', label: 'Color aliases', modified: true }]
+      const wrapper = mount(SandboxTabs, { props: { tabs, modelValue: 'aliases' } })
+      expect(wrapper.find('.st-tab-dot-tooltip').text()).toBe('Modified')
+    })
+  })
 })

@@ -4,13 +4,34 @@
       Color Palette
     </h3>
     <div class="pp-toolbar">
-      <input
-        v-model="filter"
-        aria-label="Filter palette"
-        class="pp-search"
-        placeholder="Filter palette…"
-        type="search"
-      >
+      <div class="pp-search-wrap">
+        <input
+          v-model="filter"
+          aria-label="Filter palette"
+          class="pp-search"
+          placeholder="Filter palette…"
+          type="search"
+        >
+        <button
+          v-if="filter"
+          aria-label="Clear filter"
+          class="pp-search-clear"
+          type="button"
+          @click="filter = ''"
+        >
+          <svg
+            fill="none"
+            height="12"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2.5"
+            viewBox="0 0 24 24"
+            width="12"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
       <button
         :aria-pressed="showOnlyModified"
         :class="['pp-modified-btn', { 'pp-modified-btn--active': showOnlyModified }]"
@@ -20,6 +41,15 @@
         @click="showOnlyModified = !showOnlyModified"
       >
         {{ showOnlyModified ? `✕ Modified only (${overrideCount})` : `Show modified (${overrideCount})` }}
+      </button>
+      <button
+        v-if="overrideCount > 0"
+        class="pp-reset-all-btn"
+        title="Clear all color alias overrides"
+        type="button"
+        @click="handleResetAll"
+      >
+        Reset all
       </button>
     </div>
     <div
@@ -83,7 +113,7 @@ const props = defineProps<{
   /** Map of alias key to overridden hex value, keyed for quick lookup. */
   aliasOverrides: Record<string, string>
 }>()
-const emit = defineEmits<{ change: [key: string, hex: string] }>()
+const emit = defineEmits<{ change: [key: string, hex: string], resetAll: [] }>()
 
 /** Current search filter text, matched against family/step/key (separator-agnostic, multi-term). */
 const filter = ref('')
@@ -128,6 +158,12 @@ const families = computed(() => {
 function onReset(key: string) {
   emit('change', key, '')
 }
+
+/** Confirms with the user before clearing all color alias overrides to prevent accidental resets. */
+function handleResetAll() {
+  if (!window.confirm('Reset all color alias overrides? This will restore every alias to its loaded palette value.')) return
+  emit('resetAll')
+}
 </script>
 
 <style lang="scss" scoped>
@@ -139,18 +175,42 @@ function onReset(key: string) {
 
 .pp-toolbar { align-items: center; display: flex; gap: 8px; margin-bottom: 12px; }
 
+.pp-search-wrap { flex: 1; min-width: 0; position: relative; }
+
 .pp-search {
   background: none;
   border: 1px solid $tb-border;
   border-radius: 6px;
+  box-sizing: border-box;
   color: $tb-text-dim;
-  flex: 1;
   font-family: inherit;
   font-size: 12px;
-  min-width: 0;
-  padding: 4px 8px;
+  padding: 4px 26px 4px 8px;
+  width: 100%;
 
   &::placeholder { color: $tb-text-muted; }
+
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
+  // Hide the browser-native clear button — we use our own
+  &::-webkit-search-cancel-button { display: none; }
+}
+
+.pp-search-clear {
+  align-items: center;
+  background: $tb-surface-2;
+  border: 1px solid $tb-border;
+  border-radius: 3px;
+  color: $tb-text-muted;
+  cursor: pointer;
+  display: flex;
+  line-height: 1;
+  padding: 2px 3px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  &:hover { background: $tb-border; color: $tb-text; }
 
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
 }
@@ -179,6 +239,24 @@ function onReset(key: string) {
     border-color: rgba(0, 68, 244, 0.25);
     color: $tb-accent;
   }
+}
+
+.pp-reset-all-btn {
+  background: none;
+  border: 1px solid $tb-border;
+  border-radius: 10px;
+  color: #ef4444;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  transition: background 0.12s, border-color 0.12s;
+  white-space: nowrap;
+
+  &:hover { background: rgba(239, 68, 68, 0.07); border-color: rgba(239, 68, 68, 0.35); }
+
+  &:focus-visible { outline: 2px solid #ef4444; outline-offset: 2px; }
 }
 
 .pp-family { margin-bottom: 14px; }

@@ -1,5 +1,6 @@
 <template>
   <SandboxShell
+    :chromeless="hosted"
     :embedded="isEmbedded"
     title="Design Token Customizer"
     @close="handleClose"
@@ -61,7 +62,7 @@
       </a>
     </template>
 
-    <!-- Embedded mode: tabbed Tokens / Export view -->
+    <!-- Embedded mode: tabbed Instructions / Tokens / Export view -->
     <template
       v-if="isEmbedded"
       #tabs
@@ -74,8 +75,16 @@
 
     <template v-if="isEmbedded">
       <div class="cust-embedded-body">
-        <!-- Top-level switch: apply/unapply the injected stylesheet on the target page -->
-        <SandboxPreviewToggle v-model="previewEnabled" />
+        <!-- Top-level switch: apply/unapply the injected stylesheet on the target page. When
+             hosted inside SandboxUnifiedEmbed, that shell owns a single global switch instead. -->
+        <SandboxPreviewToggle
+          v-if="!hosted"
+          v-model="previewEnabled"
+        />
+
+        <!-- Instructions tab: short, self-contained explanation of how to use this tool —
+             especially useful in the tight, context-free space of the bookmarklet sidebar. -->
+        <CustInstructionsPanel v-show="embeddedTab === 'instructions'" />
 
         <!-- Tokens tab: embed toolbar + token editor -->
         <div
@@ -288,20 +297,12 @@
           </div>
         </div>
 
-        <!-- Export tab: share + import + output -->
+        <!-- Export tab: import + output -->
         <aside
           v-show="embeddedTab === 'export'"
           class="cust-aside"
         >
           <CustImportPanel />
-          <CustSharePanel
-            :copied="copiedShareLink"
-            :copied-code="copiedStateCode"
-            :override-count="overrideCount"
-            :state-code="stateCode"
-            @copy="copyShareLink"
-            @copy-code="copyStateCode"
-          />
           <CustOutputPanel
             :copied="copiedOverrides"
             :css="displayCss"
@@ -541,16 +542,8 @@
         />
       </div>
 
-      <!-- Right: share link + override CSS output -->
+      <!-- Right: import + override CSS output -->
       <aside class="cust-aside">
-        <CustSharePanel
-          :copied="copiedShareLink"
-          :copied-code="copiedStateCode"
-          :override-count="overrideCount"
-          :state-code="stateCode"
-          @copy="copyShareLink"
-          @copy-code="copyStateCode"
-        />
         <CustImportPanel />
         <CustOutputPanel
           :copied="copiedOverrides"
@@ -580,9 +573,25 @@ import SandboxPreviewToggle from '@/components/shared/SandboxPreviewToggle.vue'
 import CustTokenGroup from './CustTokenGroup.vue'
 import CustCustomPropsGroup from './CustCustomPropsGroup.vue'
 import CustPreviewPanel from './CustPreviewPanel.vue'
-import CustSharePanel from './CustSharePanel.vue'
 import CustOutputPanel from './CustOutputPanel.vue'
 import CustImportPanel from './CustImportPanel.vue'
+import CustInstructionsPanel from './CustInstructionsPanel.vue'
+
+const props = defineProps<{
+  /**
+   * True when mounted inside `SandboxUnifiedEmbed.vue`'s mode switcher rather than standalone.
+   * Suppresses this tool's own `SandboxShell` header/close chrome and its own postMessage
+   * bridge (the unified shell owns one bridge for the whole sidebar and reads `injectedCss`/
+   * `buildSrc` via `defineExpose` instead). Default false = today's standalone behavior.
+   */
+  hosted?: boolean
+  /**
+   * True when this tool is the one currently visible in the sidebar. Irrelevant unless
+   * `hosted`, since a non-hosted instance is always the only one. Gates things that must go
+   * quiet while mounted-but-hidden, e.g. the Cmd/Ctrl+F search shortcut. Default true.
+   */
+  active?: boolean
+}>()
 
 /** True when the customizer is loaded as an embedded sidebar by the bookmarklet. */
 const isEmbedded = getHashParam('embedded') === '1'
@@ -639,26 +648,48 @@ const {
   setOverride,
   resetAll,
   fullExportCss,
-  shareUrl,
 } = useTokenCustomizer()
 
-// Encode overrides and write all URL params atomically so `src` in the postMessage
-// always reflects the current state (avoids the race where the overrides watcher's
-// async `encodeOverrides` hasn't settled before we read `window.location.href`).
+/**
+ * Encodes overrides and writes all URL params atomically so `src` always reflects the
+ * current state (avoids the race where the overrides watcher's async `encodeOverrides`
+ * hasn't settled before we read `window.location.href`). Shared between this component's own
+ * bridge (standalone `?embedded=1` route) and `defineExpose` (hosted inside
+ * `SandboxUnifiedEmbed.vue`, which reads it to build the single shell-owned bridge's `src`).
+ */
+async function buildSrc() {
+  await nextTick()
+  const encoded = await encodeOverrides({ ...overrides, ...customProps })
+  const sel = customSelector.value.trim()
+  return setHashParams({
+    o: encoded || null,
+    selector: (sel && sel !== ':root') ? sel : null,
+    startTheme: startingThemeId.value !== DEFAULT_THEME_ID ? startingThemeId.value : null,
+    // Explicitly clear the legacy `theme=` key too — see useTokenCustomizer.ts's matching
+    // watcher for why leaving it untouched can resurrect a stale value after a reset.
+    theme: null,
+  })
+}
+
+/**
+ * Only run this component's own postMessage bridge when it's the sole embedded instance
+ * (standalone `?embedded=1` route). When `hosted`, `SandboxUnifiedEmbed.vue` owns the single
+ * bridge for the whole sidebar and reads `injectedCss`/`buildSrc` via `defineExpose` below —
+ * running a second bridge here would race it (two independent `generation` counters).
+ *
+ * A plain boolean, not a computed ref: `useEmbeddedBridge` checks this option's truthiness
+ * directly (`if (opts.isEmbedded)`), so passing a ref object here would always be truthy
+ * regardless of its `.value`. `hosted` is a prop set once at mount and never toggles for the
+ * lifetime of an instance, so no reactivity is needed.
+ */
+const bridgeEnabled = isEmbedded && !props.hosted
 const { post: postEmbedded, close: closeEmbedded } = useEmbeddedBridge({
-  isEmbedded,
+  isEmbedded: bridgeEnabled,
   css: injectedCss,
-  buildSrc: async () => {
-    await nextTick()
-    const encoded = await encodeOverrides({ ...overrides, ...customProps })
-    const sel = customSelector.value.trim()
-    return setHashParams({
-      o: encoded || null,
-      selector: (sel && sel !== ':root') ? sel : null,
-      theme: startingThemeId.value !== DEFAULT_THEME_ID ? startingThemeId.value : null,
-    })
-  },
+  buildSrc,
 })
+
+defineExpose({ injectedCss, buildSrc })
 
 /** Flushes latest state to the parent, then asks the bookmarklet to close. */
 async function handleClose() {
@@ -666,16 +697,19 @@ async function handleClose() {
   closeEmbedded()
 }
 
-/** Which embedded tab (Tokens / Export) is active — only relevant when `isEmbedded`. */
-type EmbeddedTab = 'tokens' | 'export'
+/** Which embedded tab (Instructions / Tokens / Export) is active — only relevant when `isEmbedded`. */
+type EmbeddedTab = 'instructions' | 'tokens' | 'export'
 const embeddedTabs: Array<{ id: EmbeddedTab, label: string }> = [
+  { id: 'instructions', label: 'Instructions' },
   { id: 'tokens', label: 'Tokens' },
   { id: 'export', label: 'Export' },
 ]
+// Defaults straight to editing, unlike Theme Builder's instructions-first default — there's no
+// mandatory setup step (no file to load) gating the Tokens tab here.
 const embeddedTab = ref<EmbeddedTab>('tokens')
 
 const filterInputEl = ref<HTMLInputElement | null>(null)
-useSearchShortcut(filterInputEl)
+useSearchShortcut(filterInputEl, () => props.active ?? true)
 
 const { copyText } = useClipboard()
 
@@ -689,23 +723,8 @@ watch(localFilter, (val) => {
   }, 300)
 })
 
-/** The bare encoded state code — the `o=` value from the current share URL. */
-const stateCode = computed(() => {
-  const url = shareUrl.value
-  const hashIdx = url.indexOf('#')
-  if (hashIdx < 0) return ''
-  const hash = url.slice(hashIdx)
-  const qi = hash.indexOf('?')
-  if (qi < 0) return ''
-  return new URLSearchParams(hash.slice(qi + 1)).get('o') ?? ''
-})
-
 const copiedOverrides = ref(false)
-const copiedShareLink = ref(false)
-const copiedStateCode = ref(false)
 let resetOverridesTimer: ReturnType<typeof setTimeout>
-let resetShareTimer: ReturnType<typeof setTimeout>
-let resetStateCodeTimer: ReturnType<typeof setTimeout>
 
 /** Copies the displayed CSS to the clipboard and shows a 1.5s confirmation state. */
 async function copyOverrides() {
@@ -715,41 +734,6 @@ async function copyOverrides() {
   clearTimeout(resetOverridesTimer)
   resetOverridesTimer = setTimeout(() => {
     copiedOverrides.value = false
-  }, 1500)
-}
-
-/** Copies the share URL to the clipboard, always as a non-embedded standalone link. */
-async function copyShareLink() {
-  let url = shareUrl.value
-  if (isEmbedded) {
-    // Build a clean standalone URL: preserve o/selector/theme, drop embedded=1
-    const params = new URLSearchParams()
-    const encoded = getHashParam('o')
-    const selector = getHashParam('selector')
-    const theme = getHashParam('theme')
-    if (encoded) params.set('o', encoded)
-    if (selector) params.set('selector', selector)
-    if (theme) params.set('theme', theme)
-    const qs = params.toString()
-    url = window.location.origin + window.location.pathname + '#/customize' + (qs ? '?' + qs : '')
-  }
-  await copyText(url, 'share-link')
-  copiedShareLink.value = true
-  clearTimeout(resetShareTimer)
-  resetShareTimer = setTimeout(() => {
-    copiedShareLink.value = false
-  }, 1500)
-}
-
-/** Copies just the encoded state code for cross-hostname import via the Import panel. */
-async function copyStateCode() {
-  const code = stateCode.value
-  if (!code) return
-  await copyText(code, 'state-code')
-  copiedStateCode.value = true
-  clearTimeout(resetStateCodeTimer)
-  resetStateCodeTimer = setTimeout(() => {
-    copiedStateCode.value = false
   }, 1500)
 }
 
@@ -1021,7 +1005,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   text-align: center;
 }
 
-// Embedded toolbar (share + inject settings)────
+// Embedded toolbar (inject settings)────
 .embed-toolbar {
   background: $tb-surface;
   border-bottom: 2px solid $tb-border;
@@ -1124,7 +1108,7 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
 .embed-tip-wrap:hover .embed-tip-body,
 .embed-tip-icon:focus-visible + .embed-tip-body { display: block; }
 
-// Aside: share + output
+// Aside: import + output
 .cust-aside {
   border-top: 1px solid $tb-border;
   display: flex;

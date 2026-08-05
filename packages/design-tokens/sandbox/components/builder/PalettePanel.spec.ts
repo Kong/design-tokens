@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { mount } from '@vue/test-utils'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import PalettePanel from './PalettePanel.vue'
 import ColorEditor from './ColorEditor.vue'
 
@@ -168,5 +168,52 @@ describe('PalettePanel', () => {
     await wrapper.find('.pp-search').setValue('gray')
     const labels = wrapper.findAll('.pp-step').map((s) => s.text())
     expect(labels).toEqual(['10'])
+  })
+
+  describe('clear-filter button', () => {
+    it('is hidden when the filter is empty, and clears the filter when clicked', async () => {
+      const wrapper = mount(PalettePanel, { props: makeProps() })
+      expect(wrapper.find('.pp-search-clear').exists()).toBe(false)
+
+      const input = wrapper.find<HTMLInputElement>('.pp-search')
+      await input.setValue('blue')
+      expect(wrapper.find('.pp-search-clear').exists()).toBe(true)
+
+      await wrapper.find('.pp-search-clear').trigger('click')
+      expect(input.element.value).toBe('')
+      expect(wrapper.find('.pp-search-clear').exists()).toBe(false)
+    })
+  })
+
+  describe('reset-all button', () => {
+    let confirmSpy: ReturnType<typeof vi.spyOn>
+
+    afterEach(() => {
+      confirmSpy?.mockRestore()
+    })
+
+    it('is not shown when there are no overrides', () => {
+      const wrapper = mount(PalettePanel, { props: makeProps() })
+      expect(wrapper.find('.pp-reset-all-btn').exists()).toBe(false)
+    })
+
+    it('asks for confirmation and emits resetAll when confirmed', async () => {
+      confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true)
+      const wrapper = mount(PalettePanel, { props: makeProps({ aliasOverrides: { 'blue.30': '#FF0000' } }) })
+
+      await wrapper.find('.pp-reset-all-btn').trigger('click')
+
+      expect(confirmSpy).toHaveBeenCalledTimes(1)
+      expect(wrapper.emitted('resetAll')).toEqual([[]])
+    })
+
+    it('does not emit resetAll when the confirmation is declined', async () => {
+      confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false)
+      const wrapper = mount(PalettePanel, { props: makeProps({ aliasOverrides: { 'blue.30': '#FF0000' } }) })
+
+      await wrapper.find('.pp-reset-all-btn').trigger('click')
+
+      expect(wrapper.emitted('resetAll')).toBeUndefined()
+    })
   })
 })

@@ -112,10 +112,18 @@ export interface CustomPropsGroup {
 /** Sentinel key used in the `collapsed` map for the custom properties group. */
 export const CUSTOM_GROUP_KEY = '__custom'
 
-/** Known CSS variable names in the current token set, for filtering stale share-link overrides. */
+/** Known CSS variable names in the current token set, for filtering out stale/renamed overrides. */
 const KNOWN_CSS_VARS = new Set(ALL_ENTRIES.map((e) => e.cssVar))
 
-// Share-link encoding/decoding
+// State encoding/decoding. There is no "share link" UI anymore (removed — Export's CSS
+// download/copy plus Import's CSS paste/upload cover that need), but this encoding is still
+// load-bearing for three other things: (1) `persistedUrl` below keeps the standalone `/customize`
+// page's own URL hash in sync as you edit, which is what makes overrides survive a page reload
+// there — without it there would be nothing to restore `?o=`/`?theme=` from; (2)
+// `TokenCustomizer.vue`'s `buildSrc()` reuses `encodeOverrides` to build the `src` the
+// bookmarklet persists per-hostname, so re-opening the sidebar restores where you left off; (3)
+// `importFromCode` lets `CustImportPanel.vue`'s paste box still accept an old share link or bare
+// state code someone already has, alongside its primary CSS paste/upload path.
 
 /**
  * Compresses a byte array using the browser-native DeflateRaw algorithm.
@@ -266,11 +274,16 @@ async function decodeOverrides(encoded: string): Promise<DecodedOverrides> {
 }
 
 /**
- * Applies overrides and/or a starting theme from a share URL or bare state code, replacing
- * the current session. Accepts a full share URL (extracts `?o=` and `?theme=`), a hash
- * fragment, or a bare encoded string (treated as the `o=` value; no theme).
+ * Applies overrides and/or a starting theme from a pasted URL or bare state code, replacing
+ * the current session. Accepts a full URL (extracts `?o=` and `?startTheme=`), a hash fragment,
+ * or a bare encoded string (treated as the `o=` value; no theme). Secondary to `importFromCss`
+ * in `CustImportPanel.vue`'s paste box — kept so an old share link or state code someone already
+ * has still works, not as a promoted way to move overrides around. Also accepts the legacy
+ * `theme=` key (renamed to `startTheme=` to stop reading as if it referred to the *Theme
+ * Builder* tool/its `*.theme.json` files, which it never did — it's always been the
+ * Customizer's own starting-theme baseline) so links shared before that rename still work.
  * Returns `true` when at least one valid override was decoded or a valid theme was recognized.
- * @param raw - Share URL, hash fragment, or bare encoded `o=` value.
+ * @param raw - A URL, hash fragment, or bare encoded `o=` value.
  */
 export async function importFromCode(raw: string): Promise<boolean> {
   const trimmed = raw.trim()
@@ -278,7 +291,7 @@ export async function importFromCode(raw: string): Promise<boolean> {
 
   let encoded = trimmed
   let themeParam: string | null = null
-  // Try extracting `o=` and `theme=` from a URL or query string
+  // Try extracting `o=` and `startTheme=`/legacy `theme=` from a URL or query string
   const params = (() => {
     try {
       const url = new URL(trimmed)
@@ -292,7 +305,7 @@ export async function importFromCode(raw: string): Promise<boolean> {
 
   if (params) {
     encoded = params.get('o') ?? ''
-    themeParam = params.get('theme')
+    themeParam = params.get('startTheme') ?? params.get('theme')
   }
 
   const applied = themeParam ? setStartingTheme(themeParam) : false
@@ -460,40 +473,52 @@ export function useTokenCustomizer() {
   })
 
   /**
-   * Reactive share URL — updates asynchronously as overrides change.
-   * Uses deflate-raw compression so the URL stays short even with many overrides.
+   * The standalone page's own URL, kept in sync with `?o=`/`?theme=` as overrides change so a
+   * reload restores them (there is no dedicated "share link" UI — this is what makes the address
+   * bar itself double as that, and as the source `onMounted` below restores from). Uses
+   * deflate-raw compression so the hash stays short even with many overrides.
    */
-  const shareUrl = ref(typeof window !== 'undefined' ? window.location.href : '/#/customize')
+  const persistedUrl = ref(typeof window !== 'undefined' ? window.location.href : '/#/customize')
 
   // `encodeOverrides` awaits variable-latency compression, so overlapping runs (rapid edits)
-  // could otherwise resolve out of order and clobber shareUrl with stale data. A generation
+  // could otherwise resolve out of order and clobber persistedUrl with stale data. A generation
   // counter lets a run detect it's been superseded and drop its own stale write.
-  let shareUrlGeneration = 0
+  let persistedUrlGeneration = 0
 
   // deep: true required — reactive plain objects don't trigger on property add/delete otherwise.
   watch(
     [overrides, customProps, startingThemeId],
     async () => {
-      const thisGeneration = ++shareUrlGeneration
+      const thisGeneration = ++persistedUrlGeneration
       const encoded = await encodeOverrides({ ...overrides, ...customProps })
-      if (thisGeneration !== shareUrlGeneration) return
+      if (thisGeneration !== persistedUrlGeneration) return
       // setHashParams preserves other hash query params (e.g. ?url=, ?selector=) managed by CustPreviewPanel.
-      shareUrl.value = setHashParams({
+      persistedUrl.value = setHashParams({
         o: encoded || null,
-        theme: startingThemeId.value !== DEFAULT_THEME_ID ? startingThemeId.value : null,
+        // Named `startTheme`, not `theme` — this is the Customizer's own starting-theme
+        // baseline, unrelated to the Theme Builder tool or its `*.theme.json` files. The old
+        // `theme=` name read as if it might mean either, especially once both tools share one
+        // hash query string inside the unified bookmarklet sidebar (`?tool=...&startTheme=...`).
+        startTheme: startingThemeId.value !== DEFAULT_THEME_ID ? startingThemeId.value : null,
+        // Explicitly clear the legacy key too: setHashParams only touches keys it's given, so a
+        // hash restored from an old ?theme=<id> link would otherwise keep that stale value
+        // sitting in the URL forever — and the read side's `startTheme ?? theme` fallback would
+        // then silently resurrect it the next time startTheme is reset back to null (e.g. the
+        // user explicitly picks the default theme), reverting their choice on the next reload.
+        theme: null,
       })
     },
     { deep: true },
   )
 
   /**
-   * Reads the `?theme=` and `?o=` query params on mount and applies any valid
-   * theme/overrides found there.
+   * Reads the `?startTheme=` (or legacy `?theme=`) and `?o=` query params on mount and applies
+   * any valid theme/overrides found there.
    * Stale/renamed token vars are silently ignored so share links survive token changes.
    */
   onMounted(() => {
     initialLoadPromise = (async () => {
-      const themeParam = getHashParam('theme')
+      const themeParam = getHashParam('startTheme') ?? getHashParam('theme')
       if (themeParam) setStartingTheme(themeParam)
 
       const encoded = getHashParam('o')
@@ -549,7 +574,7 @@ export function useTokenCustomizer() {
     setOverride,
     resetAll,
     fullExportCss,
-    shareUrl,
+    persistedUrl,
     getInitialLoadPromise: () => initialLoadPromise,
   }
 }

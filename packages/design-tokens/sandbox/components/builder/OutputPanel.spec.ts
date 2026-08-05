@@ -10,6 +10,7 @@ function makeProps(overrides = {}) {
     themeFileName: 'my-theme.theme.json',
     aliasFileName: 'my-theme.alias.color.json',
     css: ':root {\n  --kui-space-40: 16px;\n}',
+    hasOverrides: false,
     ...overrides,
   }
 }
@@ -41,33 +42,41 @@ describe('OutputPanel', () => {
     vi.restoreAllMocks()
   })
 
-  it('shows the export note naming both target filenames', () => {
-    const wrapper = mount(OutputPanel, { props: makeProps() })
-    expect(wrapper.find('.op-note').text()).toBe('Downloads both my-theme.theme.json and my-theme.alias.color.json.')
+  it('names the file syntax (not specific filenames) and says "unmodified" when there are no overrides', () => {
+    const wrapper = mount(OutputPanel, { props: makeProps({ hasOverrides: false }) })
+    const note = wrapper.find('.op-note')
+    expect(note.text()).toBe('Downloads the unmodified *.theme.json and *.alias.color.json files.')
+    expect(note.text()).not.toContain('my-theme')
   })
 
-  it('shows the placeholder comment in the code block when css is empty', () => {
+  it('says "modified" when there are overrides', () => {
+    const wrapper = mount(OutputPanel, { props: makeProps({ hasOverrides: true }) })
+    expect(wrapper.find('.op-note').text()).toBe('Downloads the modified *.theme.json and *.alias.color.json files.')
+  })
+
+  it('does not render a large inline computed-CSS code block', () => {
+    const wrapper = mount(OutputPanel, { props: makeProps() })
+    expect(wrapper.find('.op-code').exists()).toBe(false)
+    expect(wrapper.find('pre').exists()).toBe(false)
+  })
+
+  it('disables the export/copy CSS buttons when css is empty', () => {
     const wrapper = mount(OutputPanel, { props: makeProps({ css: '' }) })
-    expect(wrapper.find('.op-code').text()).toBe('/* Load a theme and edit tokens to see the computed CSS. */')
+    const buttons = wrapper.findAll('.op-btn--secondary')
+    expect(buttons).toHaveLength(2)
+    expect(buttons[0].attributes('disabled')).toBeDefined()
+    expect(buttons[1].attributes('disabled')).toBeDefined()
   })
 
-  it('shows the computed css in the code block when present', () => {
+  it('enables the export/copy CSS buttons when css is present', () => {
     const wrapper = mount(OutputPanel, { props: makeProps() })
-    expect(wrapper.find('.op-code').text()).toBe(':root {\n  --kui-space-40: 16px;\n}')
+    const buttons = wrapper.findAll('.op-btn--secondary')
+    expect(buttons[0].attributes('disabled')).toBeUndefined()
+    expect(buttons[1].attributes('disabled')).toBeUndefined()
+    expect(buttons[1].text()).toBe('Copy')
   })
 
-  it('does not render the copy button when css is empty', () => {
-    const wrapper = mount(OutputPanel, { props: makeProps({ css: '' }) })
-    expect(wrapper.find('.op-copy-btn').exists()).toBe(false)
-  })
-
-  it('renders the copy button when css is present', () => {
-    const wrapper = mount(OutputPanel, { props: makeProps() })
-    expect(wrapper.find('.op-copy-btn').exists()).toBe(true)
-    expect(wrapper.find('.op-copy-btn').text()).toBe('Copy')
-  })
-
-  it('downloads both files with their given names and payloads when exporting', async () => {
+  it('downloads both theme files with their given names and payloads when exporting', async () => {
     const wrapper = mount(OutputPanel, { props: makeProps() })
     await wrapper.find('.op-btn').trigger('click')
 
@@ -79,28 +88,47 @@ describe('OutputPanel', () => {
     expect(blobArgs[0].type).toBe('application/json')
   })
 
+  it('downloads the computed CSS as a standalone .css file when "Export computed CSS" is clicked', async () => {
+    const wrapper = mount(OutputPanel, { props: makeProps() })
+    createObjectURLSpy.mockClear()
+    clickSpy.mockClear()
+
+    await wrapper.find('.op-btn--secondary').trigger('click')
+
+    expect(createObjectURLSpy).toHaveBeenCalledTimes(1)
+    expect(clickSpy).toHaveBeenCalledTimes(1)
+    const blob = createObjectURLSpy.mock.calls[0][0] as Blob
+    expect(blob.type).toBe('text/css')
+  })
+
   it('copies the computed css to the clipboard and shows a confirmation for 1.5s', async () => {
     const wrapper = mount(OutputPanel, { props: makeProps() })
-    await wrapper.find('.op-copy-btn').trigger('click')
+    const copyBtn = wrapper.findAll('.op-btn--secondary')[1]
+    await copyBtn.trigger('click')
     await flushPromises()
 
     expect(clipboardWriteText).toHaveBeenCalledWith(':root {\n  --kui-space-40: 16px;\n}')
-    expect(wrapper.find('.op-copy-btn').text()).toBe('✓ Copied')
+    expect(wrapper.findAll('.op-btn--secondary')[1].text()).toBe('✓ Copied')
 
     vi.advanceTimersByTime(1499)
     await wrapper.vm.$nextTick()
-    expect(wrapper.find('.op-copy-btn').text()).toBe('✓ Copied')
+    expect(wrapper.findAll('.op-btn--secondary')[1].text()).toBe('✓ Copied')
 
     vi.advanceTimersByTime(1)
     await wrapper.vm.$nextTick()
-    expect(wrapper.find('.op-copy-btn').text()).toBe('Copy')
+    expect(wrapper.findAll('.op-btn--secondary')[1].text()).toBe('Copy')
   })
 
-  it('does nothing when copy is invoked with empty css (no button rendered, guarded no-op)', async () => {
+  it('does nothing when export/copy CSS is invoked with empty css (disabled, guarded no-op)', async () => {
     const wrapper = mount(OutputPanel, { props: makeProps({ css: '' }) })
-    // No copy button exists to click; verify the guard directly via exposed behavior:
-    // clicking export still works independent of clipboard state.
-    expect(wrapper.find('.op-copy-btn').exists()).toBe(false)
+    const buttons = wrapper.findAll('.op-btn--secondary')
+    // jsdom still fires click handlers on a `disabled` button via .trigger(); the component's
+    // own `if (!props.css) return` guard is what actually prevents the download/copy.
+    await buttons[0].trigger('click')
+    await buttons[1].trigger('click')
+    await flushPromises()
+
+    expect(createObjectURLSpy).not.toHaveBeenCalled()
     expect(clipboardWriteText).not.toHaveBeenCalled()
   })
 })

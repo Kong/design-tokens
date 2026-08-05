@@ -27,7 +27,7 @@
       <input
         v-model="inputValue"
         class="cust-import-input"
-        placeholder="Paste share URL, state code, or CSS…"
+        placeholder="Paste CSS (or a legacy share URL/state code)…"
         spellcheck="false"
         type="text"
         @keydown.enter="applyFromInput"

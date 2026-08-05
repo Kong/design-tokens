@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 import HomeView from './pages/HomeView.vue'
 import CustomizerView from './pages/CustomizerView.vue'
 import ThemeBuilderView from './pages/ThemeBuilderView.vue'
+import EmbeddedView from './pages/EmbeddedView.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -22,6 +23,12 @@ const routes: RouteRecordRaw[] = [
     name: 'theme-builder',
     component: ThemeBuilderView,
     meta: { title: 'Theme Builder' },
+  },
+  {
+    path: '/embedded',
+    name: 'embedded',
+    component: EmbeddedView,
+    meta: { title: 'Sandbox' },
   },
 ]
 

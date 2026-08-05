@@ -14,6 +14,7 @@ import {
   useTokenCustomizer,
 } from '@/composables/useTokenCustomizer'
 import { ALL_ENTRIES, DEFAULT_THEME_ID, resolveThemedEntries } from '@/composables/useTokens'
+import { getHashParam } from '@/utils/hashRouteQuery'
 
 // jsdom has no ResizeObserver; SandboxShell's useHeaderHeight observes the header element on
 // mount, so every mount would otherwise throw "ResizeObserver is not defined".
@@ -72,8 +73,9 @@ function resetHash() {
 let liveWrappers: VueWrapper[] = []
 
 /** Mounts TokenCustomizer, stubbing the network/ResizeObserver-heavy preview panel (covered by its own spec) and RouterLink (no router installed in this test). */
-function mountCustomizer() {
+function mountCustomizer(props: Partial<InstanceType<typeof TokenCustomizer>['$props']> = {}) {
   const wrapper = mount(TokenCustomizer, {
+    props,
     global: {
       stubs: {
         CustPreviewPanel: true,
@@ -202,6 +204,7 @@ describe('TokenCustomizer', () => {
       const tabs = wrapper.findComponent(SandboxTabs)
       expect(tabs.exists()).toBe(true)
       expect(tabs.props('tabs')).toEqual([
+        { id: 'instructions', label: 'Instructions' },
         { id: 'tokens', label: 'Tokens' },
         { id: 'export', label: 'Export' },
       ])
@@ -227,6 +230,31 @@ describe('TokenCustomizer', () => {
 
       expect((wrapper.find('.cust-editor-content--embedded').element as HTMLElement).style.display).toBe('none')
       expect((exportPane as HTMLElement).style.display).not.toBe('none')
+    })
+
+    it('embedded mode\'s Instructions tab explains the tool and is independent of the Tokens/Export panes', async () => {
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      const wrapper = mountCustomizer()
+
+      // Defaults to Tokens, not Instructions — there's no mandatory setup step here.
+      expect((wrapper.find('.cust-editor-content--embedded').element as HTMLElement).style.display).not.toBe('none')
+
+      await wrapper.findComponent(SandboxTabs).vm.$emit('update:modelValue', 'instructions')
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.text()).toContain('Token Customizer overrides')
+      expect((wrapper.find('.cust-editor-content--embedded').element as HTMLElement).style.display).toBe('none')
+    })
+
+    it('does not render the removed share-link UI, in either standalone or embedded mode', () => {
+      const standalone = mountCustomizer()
+      expect(standalone.text()).not.toContain('Copy share link')
+      expect(standalone.text()).not.toContain('Copy state code')
+
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      const embedded = mountCustomizer()
+      expect(embedded.text()).not.toContain('Copy share link')
+      expect(embedded.text()).not.toContain('Copy state code')
     })
   })
 
@@ -280,8 +308,8 @@ describe('TokenCustomizer', () => {
   })
 
   describe('hash-param integration on mount', () => {
-    it('applies a ?theme=<id> hash param on load, reflected in the select and the composable', async () => {
-      history.replaceState(null, '', window.location.pathname + '#/customize?theme=electric-lime-day')
+    it('applies a ?startTheme=<id> hash param on load, reflected in the select and the composable', async () => {
+      history.replaceState(null, '', window.location.pathname + '#/customize?startTheme=electric-lime-day')
       const wrapper = mountCustomizer()
 
       // The composable's onMounted hook applies the theme synchronously, but the <select>'s
@@ -291,6 +319,19 @@ describe('TokenCustomizer', () => {
       const composable = useTokenCustomizer()
       expect(composable.startingThemeId.value).toBe('electric-lime-day')
       expect(wrapper.find<HTMLSelectElement>('.cust-theme-select').element.value).toBe('electric-lime-day')
+    })
+
+    it('buildSrc() clears a leftover legacy ?theme= param instead of leaving it alongside the new startTheme=', async () => {
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1&theme=electric-lime-day')
+      const wrapper = mountCustomizer()
+      await flushPromises()
+
+      // The on-mount restore honors the legacy key and the embedded bridge's on-mount post
+      // (which calls buildSrc()) should have already rewritten the hash with startTheme= —
+      // and the fix means the stale theme= key must be gone, not left sitting alongside it.
+      await wrapper.vm.$nextTick()
+      expect(getHashParam('startTheme')).toBe('electric-lime-day')
+      expect(getHashParam('theme')).toBeNull()
     })
 
     it('applies a ?o=<code> hash param on load, reflected in a row value and the output panel', async () => {
@@ -310,13 +351,13 @@ describe('TokenCustomizer', () => {
       expect(outputText(wrapper)).toContain(`${target.cssVar}: #654321;`)
     })
 
-    it('applies both ?theme= and ?o= together via a full share link on load', async () => {
+    it('applies both ?startTheme= and ?o= together via a full share link on load', async () => {
       const target = ALL_ENTRIES[0]
       const encoded = await encodeOverrides({ [target.cssVar]: '#111111' })
       history.replaceState(
         null,
         '',
-        window.location.pathname + `#/customize?theme=electric-lime-night&o=${encoded}`,
+        window.location.pathname + `#/customize?startTheme=electric-lime-night&o=${encoded}`,
       )
 
       const wrapper = mountCustomizer()
@@ -330,12 +371,75 @@ describe('TokenCustomizer', () => {
     })
   })
 
+  describe('hosted prop (mounted inside SandboxUnifiedEmbed)', () => {
+    it('does not run its own postMessage bridge when hosted, even in embedded mode', async () => {
+      const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      const wrapper = mountCustomizer({ hosted: true })
+      await flushPromises()
+
+      expect(postMessageSpy).not.toHaveBeenCalled()
+
+      useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
+      await wrapper.vm.$nextTick()
+      await flushPromises()
+      expect(postMessageSpy).not.toHaveBeenCalled()
+    })
+
+    it('exposes a reactive injectedCss and a buildSrc function for the parent shell to read', async () => {
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      const wrapper = mountCustomizer({ hosted: true })
+      await flushPromises()
+
+      const exposed = wrapper.vm as unknown as { injectedCss: string, buildSrc: () => Promise<string> }
+      expect(typeof exposed.buildSrc).toBe('function')
+
+      useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
+      await wrapper.vm.$nextTick()
+      expect(exposed.injectedCss).toContain('--kui-space-10: 99px !important;')
+    })
+
+    it('suppresses its own SandboxShell header/close chrome when hosted', () => {
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      const wrapper = mountCustomizer({ hosted: true })
+      expect(wrapper.find('.ss-header').exists()).toBe(false)
+      expect(wrapper.find('.ss-close').exists()).toBe(false)
+    })
+
+    it('renders its own header/close chrome as before when not hosted', () => {
+      history.replaceState(null, '', window.location.pathname + '#/customize?embedded=1')
+      const wrapper = mountCustomizer()
+      expect(wrapper.find('.ss-header').exists()).toBe(true)
+      expect(wrapper.find('.ss-close').exists()).toBe(true)
+    })
+  })
+
+  describe('active prop gates the Cmd/Ctrl+F search shortcut', () => {
+    function dispatchCtrlF() {
+      const event = new KeyboardEvent('keydown', { key: 'f', ctrlKey: true, cancelable: true })
+      window.dispatchEvent(event)
+      return event
+    }
+
+    it('does not intercept Ctrl+F when active is false', () => {
+      mountCustomizer({ hosted: true, active: false })
+      const event = dispatchCtrlF()
+      expect(event.defaultPrevented).toBe(false)
+    })
+
+    it('still intercepts Ctrl+F when active is true (or omitted)', () => {
+      mountCustomizer({ hosted: true, active: true })
+      const event = dispatchCtrlF()
+      expect(event.defaultPrevented).toBe(true)
+    })
+  })
+
   describe('importFromCode via the Import panel, wired end to end', () => {
     it('applying a share link through importFromCode updates the rendered UI', async () => {
       const wrapper = mountCustomizer()
       const target = ALL_ENTRIES.find((e) => /^#[0-9a-f]{3,8}$/i.test(e.value)) ?? ALL_ENTRIES[0]
       const encoded = await encodeOverrides({ [target.cssVar]: '#0F0F0F' })
-      const link = `http://localhost/#/customize?o=${encoded}&theme=electric-lime-day`
+      const link = `http://localhost/#/customize?o=${encoded}&startTheme=electric-lime-day`
 
       const applied = await importFromCode(link)
       expect(applied).toBe(true)

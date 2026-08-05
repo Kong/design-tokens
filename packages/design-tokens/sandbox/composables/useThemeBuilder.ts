@@ -28,6 +28,14 @@ const aliasFileName = ref('alias.color.json')
 const STORAGE_PREFIX = 'kui-theme-builder-state:'
 /** Active storage key; set by initPersistence(). Distinct from the customizer's keys. */
 let storageKey = STORAGE_PREFIX + 'standalone'
+/**
+ * Set when the most recent write to localStorage failed (quota exceeded, private-browsing
+ * storage disabled, etc.) — surfaced in `ThemeBuilder.vue` as a small warning, since silently
+ * losing reload-persistence is the kind of failure a user only discovers after it's too late to
+ * do anything about. Cleared on the next successful write. Module-scoped like the rest of this
+ * composable's state, so it survives route re-mounts.
+ */
+const persistError = ref<string | null>(null)
 /** Guard so the persistence watcher is only wired once per session. */
 let persistWatchStarted = false
 /** Debounce handle for persistence writes. */
@@ -172,17 +180,24 @@ export function useThemeBuilder() {
     try {
       if (!themeJson.value || !aliasJson.value) {
         localStorage.removeItem(storageKey)
-        return
+      } else {
+        localStorage.setItem(storageKey, JSON.stringify({
+          themeJson: themeJson.value,
+          aliasJson: aliasJson.value,
+          aliasOverrides: { ...aliasOverrides },
+          tokenOverrides: { ...tokenOverrides },
+          themeFileName: themeFileName.value,
+          aliasFileName: aliasFileName.value,
+        }))
       }
-      localStorage.setItem(storageKey, JSON.stringify({
-        themeJson: themeJson.value,
-        aliasJson: aliasJson.value,
-        aliasOverrides: { ...aliasOverrides },
-        tokenOverrides: { ...tokenOverrides },
-        themeFileName: themeFileName.value,
-        aliasFileName: aliasFileName.value,
-      }))
-    } catch { /* quota exceeded or storage unavailable — ignore */ }
+      persistError.value = null
+    } catch (err) {
+      // Quota exceeded, private-browsing storage disabled, or similar — the app must keep
+      // working from in-memory state; only reload-persistence is lost. Surfaced via
+      // `persistError` so the UI can tell the user rather than silently dropping their work.
+      console.warn('[useThemeBuilder] Failed to persist to localStorage — your changes will not survive a reload.', err)
+      persistError.value = 'Changes aren\'t being saved for next time — your browser\'s storage is full or unavailable.'
+    }
   }
 
   /**
@@ -212,7 +227,12 @@ export function useThemeBuilder() {
           if (typeof d.aliasFileName === 'string') aliasFileName.value = d.aliasFileName
         }
       }
-    } catch { /* corrupt entry — ignore and start fresh */ }
+    } catch (err) {
+      // Corrupt entry, or getItem itself throwing (storage disabled entirely) — either way,
+      // start fresh rather than crash. A genuinely unavailable store will also surface via
+      // `persistError` the next time `persist()` runs.
+      console.warn('[useThemeBuilder] Failed to restore persisted state from localStorage — starting fresh.', err)
+    }
 
     if (!persistWatchStarted) {
       persistWatchStarted = true
@@ -248,5 +268,6 @@ export function useThemeBuilder() {
     themeFileName,
     aliasFileName,
     initPersistence,
+    persistError,
   }
 }

@@ -21,7 +21,7 @@ function makeRouter() {
   })
 }
 
-async function mountShell(props: { title: string, embedded: boolean }, slots: Record<string, string> = {}) {
+async function mountShell(props: { title: string, embedded: boolean, chromeless?: boolean }, slots: Record<string, string> = {}) {
   const router = makeRouter()
   router.push('/customize')
   await router.isReady()
@@ -82,6 +82,29 @@ describe('SandboxShell', () => {
 
       await closeBtn.trigger('click')
       expect(wrapper.emitted('close')).toEqual([[]])
+    })
+  })
+
+  describe('chromeless = true', () => {
+    it('renders no header (title or close button), even when embedded', async () => {
+      const wrapper = await mountShell({ title: 'Token Customizer', embedded: true, chromeless: true })
+      expect(wrapper.find('.ss-header').exists()).toBe(false)
+      expect(wrapper.find('.ss-title').exists()).toBe(false)
+      expect(wrapper.find('.ss-close').exists()).toBe(false)
+    })
+
+    it('still renders the tabs slot and the default slot content', async () => {
+      const wrapper = await mountShell(
+        { title: 'Token Customizer', embedded: true, chromeless: true },
+        { tabs: '<nav class="probe-tabs">tabs</nav>', default: '<p class="probe-default">body</p>' },
+      )
+      expect(wrapper.find('.probe-tabs').exists()).toBe(true)
+      expect(wrapper.find('.probe-default').exists()).toBe(true)
+    })
+
+    it('applies the chromeless root class (fills its container instead of the full viewport)', async () => {
+      const wrapper = await mountShell({ title: 'Token Customizer', embedded: true, chromeless: true })
+      expect(wrapper.find('.sandbox-shell').classes()).toContain('sandbox-shell--chromeless')
     })
   })
 
