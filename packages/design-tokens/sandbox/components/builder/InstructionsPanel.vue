@@ -13,6 +13,16 @@
       token that references it; overriding an individual <strong>token</strong> (Tokens tab) wins over
       that cascade for just that token.
     </p>
+    <p class="ip-text">
+      Upload your theme's two files on the
+      <a
+        class="ip-link"
+        href="#"
+        @click.prevent="emit('go-to-theme')"
+      >Theme tab</a>
+      to get started. Once loaded, that same tab shows which files are active and lets you load a
+      different theme at any time.
+    </p>
 
     <h3 class="ip-heading">
       Starting a new theme
@@ -26,7 +36,7 @@
       </li>
       <li>
         Load the two generated files — <code>themes/&lt;name&gt;/&lt;name&gt;.theme.json</code> and
-        <code>&lt;name&gt;.alias.color.json</code> — with the file picker.
+        <code>&lt;name&gt;.alias.color.json</code> — on the Theme tab.
       </li>
     </ol>
 
@@ -35,13 +45,18 @@
     </h3>
     <p class="ip-text">
       Load its two files straight from <code>themes/&lt;name&gt;/</code> in the repo — the same
-      <code>*.theme.json</code> and <code>*.alias.color.json</code> pair described above.
+      <code>*.theme.json</code> and <code>*.alias.color.json</code> pair described above — on the
+      Theme tab.
     </p>
 
     <h3 class="ip-heading">
       While editing
     </h3>
     <ul class="ip-list">
+      <li>
+        <strong>Theme</strong> — shows the two loaded file names and a "Load different theme"
+        button to swap themes (clearing any unsaved edits after confirming).
+      </li>
       <li>
         <strong>Color aliases</strong> — the palette this theme's color tokens draw from. Edited
         here, a step's new color applies everywhere it's referenced.
@@ -63,6 +78,13 @@
     <pre class="ip-code">pnpm build:tokens &amp;&amp; pnpm test</pre>
   </div>
 </template>
+
+<script setup lang="ts">
+const emit = defineEmits<{
+  /** Requests that the parent switch the active tab to "Theme" (the upload/reset tab). */
+  'go-to-theme': []
+}>()
+</script>
 
 <style lang="scss" scoped>
 @use '@/assets/tb-vars' as *;
@@ -88,6 +110,10 @@
 
   code { background: $tb-surface-2; border-radius: 3px; font-family: $tb-mono; font-size: 12px; padding: 1px 5px; }
 }
+
+.ip-link { color: $tb-accent; text-decoration: none;
+
+  &:hover { text-decoration: underline; } }
 
 .ip-steps, .ip-list {
   color: $tb-text;

@@ -63,6 +63,19 @@ async function switchTab(wrapper: ReturnType<typeof mount>, tabId: string) {
   await wrapper.findComponent(SandboxTabs).vm.$emit('update:modelValue', tabId)
 }
 
+/**
+ * Loads a theme through the Theme tab's FileLoader. FileLoader is mounted (via `v-if="!isLoaded"`)
+ * independent of which tab is active — only its visibility is tab-gated — so no tab switch is
+ * required beforehand; this just emits its `load` event directly, as a real drop/pick would.
+ */
+async function loadTheme(
+  wrapper: ReturnType<typeof mount>,
+  payload: { themeText: string, aliasText: string, themeName?: string, aliasName?: string } = LOAD_PAYLOAD,
+) {
+  await wrapper.findComponent(FileLoader).vm.$emit('load', payload)
+  await wrapper.vm.$nextTick()
+}
+
 describe('ThemeBuilder', () => {
   let wrapper: ReturnType<typeof mount> | undefined
 
@@ -79,18 +92,27 @@ describe('ThemeBuilder', () => {
   })
 
   describe('initial (unloaded) state', () => {
-    it('shows the Instructions panel by default and hides the file loader', () => {
+    it('shows the Instructions panel by default and keeps the file loader hidden', () => {
       wrapper = mount(ThemeBuilder)
-      expect(wrapper.findComponent(InstructionsPanel).exists()).toBe(true)
-      // FileLoader only mounts once the user navigates off the Instructions tab.
-      expect(wrapper.findComponent(FileLoader).exists()).toBe(false)
+      expect(wrapper.findComponent(InstructionsPanel).isVisible()).toBe(true)
+      expect(wrapper.findComponent(FileLoader).isVisible()).toBe(false)
     })
 
-    it('shows the file loader once the active tab moves off Instructions, before any file is loaded', async () => {
+    it('shows the file loader once the Theme tab becomes active', async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      expect(wrapper.findComponent(FileLoader).exists()).toBe(true)
+      await switchTab(wrapper, 'theme')
+      expect(wrapper.findComponent(FileLoader).isVisible()).toBe(true)
       expect(wrapper.findComponent(TokenList).exists()).toBe(false)
+    })
+
+    it('disables the Aliases, Tokens, and Export tabs until a theme is loaded', () => {
+      wrapper = mount(ThemeBuilder)
+      const tabs = wrapper.findComponent(SandboxTabs).props('tabs') as Array<{ id: string, disabled?: boolean }>
+      expect(tabs.find((t) => t.id === 'aliases')?.disabled).toBe(true)
+      expect(tabs.find((t) => t.id === 'tokens')?.disabled).toBe(true)
+      expect(tabs.find((t) => t.id === 'export')?.disabled).toBe(true)
+      expect(tabs.find((t) => t.id === 'instructions')?.disabled).toBeFalsy()
+      expect(tabs.find((t) => t.id === 'theme')?.disabled).toBeFalsy()
     })
 
     it('does not show the "Load different theme" button before a file is loaded', () => {
@@ -98,37 +120,54 @@ describe('ThemeBuilder', () => {
       expect(wrapper.find('.tb-load-different').exists()).toBe(false)
     })
 
-    it('passes no error to FileLoader until a load attempt has failed', async () => {
+    it('passes no error to FileLoader until a load attempt has failed', () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
       expect(wrapper.findComponent(FileLoader).props('error')).toBe('')
+    })
+
+    it('switches to the Theme tab when InstructionsPanel emits "go-to-theme"', async () => {
+      wrapper = mount(ThemeBuilder)
+      await wrapper.findComponent(InstructionsPanel).vm.$emit('go-to-theme')
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.findComponent(FileLoader).isVisible()).toBe(true)
+      expect(wrapper.findComponent(InstructionsPanel).isVisible()).toBe(false)
     })
   })
 
   describe('loading a theme', () => {
     it('rejects an invalid file pair and surfaces the composable error on FileLoader instead of switching views', async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', {
+      await loadTheme(wrapper, {
         themeText: 'not json',
         aliasText: VALID_ALIAS,
         themeName: 'bad.theme.json',
         aliasName: 'my.alias.color.json',
       })
-      await wrapper.vm.$nextTick()
 
       expect(wrapper.findComponent(FileLoader).exists()).toBe(true)
       expect(wrapper.findComponent(FileLoader).props('error')).toBe('Theme file is not valid JSON.')
       expect(wrapper.findComponent(TokenList).exists()).toBe(false)
     })
 
-    it('transitions to the editing UI and populates the token list on a valid load', async () => {
+    it('transitions to the editing UI, auto-advancing to Color aliases, and enables the other editing tabs', async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
-      await wrapper.vm.$nextTick()
+      await loadTheme(wrapper)
 
       expect(wrapper.findComponent(FileLoader).exists()).toBe(false)
+      expect(wrapper.findComponent(PalettePanel).isVisible()).toBe(true)
+
+      const tabs = wrapper.findComponent(SandboxTabs).props('tabs') as Array<{ id: string, disabled?: boolean }>
+      expect(tabs.find((t) => t.id === 'aliases')?.disabled).toBeFalsy()
+      expect(tabs.find((t) => t.id === 'tokens')?.disabled).toBeFalsy()
+      expect(tabs.find((t) => t.id === 'export')?.disabled).toBeFalsy()
+    })
+
+    it('populates the token list once the Tokens tab is selected after loading', async () => {
+      wrapper = mount(ThemeBuilder)
+      await loadTheme(wrapper)
+      await switchTab(wrapper, 'tokens')
+
       const tokenList = wrapper.findComponent(TokenList)
       expect(tokenList.exists()).toBe(true)
       expect(tokenList.props('tokens')).toHaveLength(2)
@@ -140,35 +179,30 @@ describe('ThemeBuilder', () => {
 
     it('clears a prior load error once a subsequent load succeeds', async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', {
-        themeText: 'not json',
-        aliasText: VALID_ALIAS,
-      })
-      await wrapper.vm.$nextTick()
+      await loadTheme(wrapper, { themeText: 'not json', aliasText: VALID_ALIAS })
       expect(wrapper.findComponent(FileLoader).props('error')).not.toBe('')
 
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
-      await wrapper.vm.$nextTick()
+      await loadTheme(wrapper)
       // FileLoader itself is gone now (isLoaded), but no stale error should linger in state.
       expect(wrapper.findComponent(FileLoader).exists()).toBe(false)
     })
 
-    it('shows the "Load different theme" button once loaded', async () => {
+    it('shows the "Load different theme" button and the loaded file names on the Theme tab once loaded', async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
-      await wrapper.vm.$nextTick()
+      await loadTheme(wrapper)
+      await switchTab(wrapper, 'theme')
+
       expect(wrapper.find('.tb-load-different').exists()).toBe(true)
+      const loadedText = wrapper.find('.tb-theme-loaded').text()
+      expect(loadedText).toContain('my.theme.json')
+      expect(loadedText).toContain('my.alias.color.json')
     })
   })
 
   describe('editing wiring after a theme is loaded', () => {
     beforeEach(async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
-      await wrapper.vm.$nextTick()
+      await loadTheme(wrapper)
     })
 
     it('reflects a token override (emitted from TokenList) in the OutputPanel export text', async () => {
@@ -290,9 +324,8 @@ describe('ThemeBuilder', () => {
     })
 
     it('keeps PalettePanel, TokenList, and OutputPanel all mounted regardless of active tab (visibility is v-show)', async () => {
-      // The default active tab after load is whatever it was before loading ('tokens' here),
-      // but all three editing panels should already be in the DOM tree (toggled via v-show),
-      // not conditionally mounted per tab.
+      // The default active tab right after loading is 'aliases', but all three editing panels
+      // should already be in the DOM tree (toggled via v-show), not conditionally mounted per tab.
       expect(wrapper!.findComponent(PalettePanel).exists()).toBe(true)
       expect(wrapper!.findComponent(TokenList).exists()).toBe(true)
       expect(wrapper!.findComponent(OutputPanel).exists()).toBe(true)
@@ -302,19 +335,26 @@ describe('ThemeBuilder', () => {
   describe('loading a different theme', () => {
     beforeEach(async () => {
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
-      await wrapper.vm.$nextTick()
+      await loadTheme(wrapper)
     })
 
-    it('unloads immediately, without confirmation, when there are no unsaved overrides', async () => {
-      const confirmSpy = vi.spyOn(window, 'confirm')
+    it('still asks for confirmation when there are no unsaved overrides, and unloads once confirmed', async () => {
+      const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(true)
       await wrapper!.find('.tb-load-different').trigger('click')
       await wrapper!.vm.$nextTick()
 
-      expect(confirmSpy).not.toHaveBeenCalled()
+      expect(confirmSpy).toHaveBeenCalledTimes(1)
       expect(wrapper!.findComponent(TokenList).exists()).toBe(false)
       expect(wrapper!.findComponent(FileLoader).exists()).toBe(true)
+    })
+
+    it('keeps the theme loaded when the user declines confirmation, even with no unsaved overrides', async () => {
+      const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValue(false)
+      await wrapper!.find('.tb-load-different').trigger('click')
+      await wrapper!.vm.$nextTick()
+
+      expect(confirmSpy).toHaveBeenCalledTimes(1)
+      expect(wrapper!.findComponent(TokenList).exists()).toBe(true)
     })
 
     it('asks for confirmation when there are unsaved overrides, and keeps the theme loaded if declined', async () => {
@@ -329,7 +369,7 @@ describe('ThemeBuilder', () => {
       expect(wrapper!.findComponent(TokenList).exists()).toBe(true)
     })
 
-    it('unloads and clears overrides when the user confirms discarding unsaved changes', async () => {
+    it('unloads, returns to the Theme tab, and clears overrides when the user confirms discarding unsaved changes', async () => {
       await wrapper!.findComponent(TokenList).vm.$emit('set', 'kui-space-40', '24px')
       await wrapper!.vm.$nextTick()
 
@@ -338,13 +378,24 @@ describe('ThemeBuilder', () => {
       await wrapper!.vm.$nextTick()
 
       expect(wrapper!.findComponent(TokenList).exists()).toBe(false)
-      expect(wrapper!.findComponent(FileLoader).exists()).toBe(true)
+      expect(wrapper!.findComponent(FileLoader).isVisible()).toBe(true)
       // A fresh load afterward must not see the discarded override.
-      await wrapper!.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
-      await wrapper!.vm.$nextTick()
+      await loadTheme(wrapper!)
+      await switchTab(wrapper!, 'tokens')
       const token = wrapper!.findComponent(TokenList).props('tokens')
         .find((t: { key: string }) => t.key === 'kui-space-40')!
       expect(token.source).toBe('inherited')
+    })
+
+    it('re-disables the Aliases, Tokens, and Export tabs after unloading', async () => {
+      vi.spyOn(window, 'confirm').mockReturnValue(true)
+      await wrapper!.find('.tb-load-different').trigger('click')
+      await wrapper!.vm.$nextTick()
+
+      const tabs = wrapper!.findComponent(SandboxTabs).props('tabs') as Array<{ id: string, disabled?: boolean }>
+      expect(tabs.find((t) => t.id === 'aliases')?.disabled).toBe(true)
+      expect(tabs.find((t) => t.id === 'tokens')?.disabled).toBe(true)
+      expect(tabs.find((t) => t.id === 'export')?.disabled).toBe(true)
     })
   })
 
@@ -380,8 +431,7 @@ describe('ThemeBuilder', () => {
 
       const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
       wrapper = mount(ThemeBuilder)
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
+      await loadTheme(wrapper)
       await flushPromises()
 
       const toggle = wrapper.find('.preview-toggle-switch')
@@ -408,8 +458,7 @@ describe('ThemeBuilder', () => {
     it('does not run its own postMessage bridge when hosted, even in embedded mode', async () => {
       const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
       wrapper = mount(ThemeBuilder, { props: { hosted: true } })
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
+      await loadTheme(wrapper)
       await flushPromises()
 
       expect(postMessageSpy).not.toHaveBeenCalled()
@@ -417,8 +466,7 @@ describe('ThemeBuilder', () => {
 
     it('exposes a reactive injectedCss and a buildSrc function for the parent shell to read', async () => {
       wrapper = mount(ThemeBuilder, { props: { hosted: true } })
-      await switchTab(wrapper, 'tokens')
-      await wrapper.findComponent(FileLoader).vm.$emit('load', LOAD_PAYLOAD)
+      await loadTheme(wrapper)
       await flushPromises()
 
       const exposed = wrapper.vm as unknown as { injectedCss: string, buildSrc: () => string }
@@ -436,6 +484,14 @@ describe('ThemeBuilder', () => {
       wrapper = mount(ThemeBuilder)
       expect(wrapper.find('.ss-header').exists()).toBe(true)
       expect(wrapper.find('.ss-close').exists()).toBe(true)
+    })
+
+    it('still shows "Load different theme" once loaded even though its header chrome is suppressed', async () => {
+      wrapper = mount(ThemeBuilder, { props: { hosted: true } })
+      await loadTheme(wrapper)
+      await flushPromises()
+
+      expect(wrapper.find('.tb-load-different').exists()).toBe(true)
     })
   })
 

@@ -8,7 +8,8 @@
       :key="t.id"
       :aria-label="t.modified ? `${t.label} — ${t.modifiedTooltip || 'Modified'}` : undefined"
       :aria-selected="modelValue === t.id"
-      :class="['st-tab', { 'st-tab--active': modelValue === t.id }]"
+      :class="['st-tab', { 'st-tab--active': modelValue === t.id, 'st-tab--disabled': t.disabled }]"
+      :disabled="t.disabled"
       role="tab"
       type="button"
       @click="emit('update:modelValue', t.id)"
@@ -47,6 +48,8 @@ interface TabDef {
   modified?: boolean
   /** Tooltip text for the dot. Defaults to "Modified" when `modified` is set but this is omitted. */
   modifiedTooltip?: string
+  /** Disables the tab (native `disabled` on its button) — e.g. an editing tab before a theme is loaded. */
+  disabled?: boolean
 }
 defineProps<{
   /** Tabs to render, in order. */
@@ -73,6 +76,10 @@ const emit = defineEmits<{ 'update:modelValue': [id: string] }>()
   &:focus-visible { outline: 2px solid $tb-accent; outline-offset: -2px; }
 
   &--active { border-bottom-color: $tb-accent; color: $tb-accent; }
+
+  &--disabled { cursor: not-allowed; opacity: 0.4;
+
+    &:hover { color: $tb-text-muted; } }
 }
 
 // Modified-tab dot + tooltip — same interaction pattern as `.embed-tip-*`/`.preview-toggle-info-*`.
