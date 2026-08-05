@@ -1365,7 +1365,7 @@
   },
   "kui-dropdown-item-color-text-danger": {
     "$description": "Danger dropdown item text color.",
-    "$value": "{color.alias.red.20}"
+    "$value": "{color.alias.red.40}"
   },
   "kui-dropdown-item-color-text-disabled": {
     "$description": "Disabled dropdown item text color.",
