@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.8](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.7...@kong/design-tokens@3.2.8) (2026-08-06)
+
+### Bug Fixes
+
+* **themes:** tweak disabled primary button background [KHCP-21429] ([#713](https://github.com/Kong/design-tokens/issues/713)) ([d1cf3ac](https://github.com/Kong/design-tokens/commit/d1cf3ac06f038e444771b406a1b137aba8cb91b1))
+
 ## [3.2.7](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.6...@kong/design-tokens@3.2.7) (2026-08-05)
 
 **Note:** Version bump only for package @kong/design-tokens
