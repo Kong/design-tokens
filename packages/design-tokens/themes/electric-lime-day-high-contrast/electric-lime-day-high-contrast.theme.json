@@ -327,7 +327,7 @@
   },
   "kui-button-color-background-primary-disabled": {
     "$description": "Primary button background color when disabled.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-button-color-background-primary-hover": {
     "$description": "Primary button background color on hover.",
