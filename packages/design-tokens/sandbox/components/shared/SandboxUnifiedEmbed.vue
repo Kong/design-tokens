@@ -77,20 +77,21 @@ interface HostedToolExpose {
 const { hasOverrides: themeBuilderHasOverrides } = useThemeBuilder()
 
 const toolOptions = computed<Array<{ id: SandboxTool, label: string, modified?: boolean, modifiedTooltip?: string }>>(() => [
-  { id: 'customizer', label: 'Customizer' },
   {
     id: 'theme-builder',
     label: 'Theme Builder',
     modified: themeBuilderHasOverrides.value,
-    modifiedTooltip: 'Theme Builder has unsaved modifications from the uploaded files.',
+    modifiedTooltip: 'Theme Builder has unsaved modifications from the loaded theme.',
   },
+  { id: 'customizer', label: 'Customizer' },
 ])
 
 // Only relevant on a domain's very first-ever bookmarklet click — after that, the bookmarklet's
 // own restore mechanism persists the full `src` (tool included) per hostname, so re-clicking
 // naturally reopens whichever tool was last selected there (see utils/preview-bookmarklet.ts).
+// Theme Builder is the default when no `?tool=` is present.
 const initialTool = getHashParam('tool')
-const selectedTool = ref<SandboxTool>(isSandboxTool(initialTool) ? initialTool : 'customizer')
+const selectedTool = ref<SandboxTool>(isSandboxTool(initialTool) ? initialTool : 'theme-builder')
 
 /**
  * The one global "is anything live on the target page" switch, replacing each tool's own
@@ -127,11 +128,19 @@ async function activeBuildSrc() {
 const { post, close } = useEmbeddedBridge({ isEmbedded: true, css: activeCss, buildSrc: activeBuildSrc })
 
 watch(selectedTool, (t) => {
-  // Write `tool=` into the hash *before* posting, so `activeBuildSrc`'s delegation into a
-  // child's own hash-writing `buildSrc` (which preserves unrelated params) always sees it.
-  setHashParams({ tool: t === 'customizer' ? null : t })
+  // `tool=` is always written explicitly (unlike the Customizer's own `startTheme=`, which
+  // still omits its default) — write it *before* posting, so `activeBuildSrc`'s delegation
+  // into a child's own hash-writing `buildSrc` (which preserves unrelated params) always sees it.
+  //
+  // `{ immediate: true }` is required to guarantee the hash is written on mount. If a component
+  // mounts already at the default ('theme-builder'), a same-value re-selection ('theme-builder')
+  // never triggers the watch (Vue watchers only fire on actual value changes, not on same-value
+  // assignments). Without `immediate: true`, the hash param would never be set on mount.
+  // The `useEmbeddedBridge` generation counter is monotonic (not resolution order), so the early
+  // hash write doesn't cause a duplicate real postMessage — only the harmless setHashParams lands.
+  setHashParams({ tool: t })
   post()
-})
+}, { immediate: true })
 
 watch(previewEnabled, () => post())
 

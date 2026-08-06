@@ -63,28 +63,28 @@ describe('SandboxUnifiedEmbed', () => {
     wrapper = mount(SandboxUnifiedEmbed)
     const options = wrapper.findComponent(SandboxModeSwitch).props('options')
     expect(options.map((o: { id: string, label: string }) => ({ id: o.id, label: o.label }))).toEqual([
-      { id: 'customizer', label: 'Customizer' },
       { id: 'theme-builder', label: 'Theme Builder' },
+      { id: 'customizer', label: 'Customizer' },
     ])
   })
 
   it('marks the Theme Builder option as modified once it has unsaved overrides, even while inactive', async () => {
     wrapper = mount(SandboxUnifiedEmbed)
-    expect(wrapper.findComponent(SandboxModeSwitch).props('options')[1].modified).toBe(false)
+    expect(wrapper.findComponent(SandboxModeSwitch).props('options')[0].modified).toBe(false)
 
     useThemeBuilder().setTokenOverride('kui-space-40', '24px')
     await wrapper.vm.$nextTick()
 
-    // Still on Customizer — the dot must be visible without switching.
-    expect(wrapper.findComponent(SandboxModeSwitch).props('modelValue')).toBe('customizer')
-    expect(wrapper.findComponent(SandboxModeSwitch).props('options')[1].modified).toBe(true)
+    // Still on Theme Builder — the new default — the dot must be visible without switching.
+    expect(wrapper.findComponent(SandboxModeSwitch).props('modelValue')).toBe('theme-builder')
+    expect(wrapper.findComponent(SandboxModeSwitch).props('options')[0].modified).toBe(true)
     expect(wrapper.find('.sms-dot-wrap').exists()).toBe(true)
   })
 
-  it('defaults to customizer when ?tool= is absent from the hash', () => {
+  it('defaults to theme-builder when ?tool= is absent from the hash', () => {
     wrapper = mount(SandboxUnifiedEmbed)
-    expect(wrapper.findComponent(SandboxModeSwitch).props('modelValue')).toBe('customizer')
-    expect(wrapper.findComponent(TokenCustomizer).isVisible()).toBe(true)
+    expect(wrapper.findComponent(SandboxModeSwitch).props('modelValue')).toBe('theme-builder')
+    expect(wrapper.findComponent(ThemeBuilder).isVisible()).toBe(true)
   })
 
   it('restores the selected tool from ?tool=theme-builder in the hash on mount', () => {
@@ -93,7 +93,13 @@ describe('SandboxUnifiedEmbed', () => {
     expect(wrapper.findComponent(SandboxModeSwitch).props('modelValue')).toBe('theme-builder')
   })
 
-  it('switching options updates ?tool= in the hash', async () => {
+  it('restores the selected tool from ?tool=customizer in the hash on mount', () => {
+    setHash('#/embedded?embedded=1&tool=customizer')
+    wrapper = mount(SandboxUnifiedEmbed)
+    expect(wrapper.findComponent(SandboxModeSwitch).props('modelValue')).toBe('customizer')
+  })
+
+  it('switching options updates ?tool= in the hash, writing both values explicitly', async () => {
     wrapper = mount(SandboxUnifiedEmbed)
     await wrapper.findComponent(SandboxModeSwitch).vm.$emit('update:modelValue', 'theme-builder')
     await wrapper.vm.$nextTick()
@@ -101,9 +107,9 @@ describe('SandboxUnifiedEmbed', () => {
 
     await wrapper.findComponent(SandboxModeSwitch).vm.$emit('update:modelValue', 'customizer')
     await wrapper.vm.$nextTick()
-    // customizer is the implicit default — omitted from the hash, matching the existing
-    // convention of not writing default values (e.g. `theme=`) into the URL.
-    expect(getHashParam('tool')).toBeNull()
+    // Both values are written explicitly now — there is no implicit "default omitted from
+    // the hash" convention for this param (unlike the Customizer's own `startTheme=`).
+    expect(getHashParam('tool')).toBe('customizer')
   })
 
   it('switching away from customizer does not unmount TokenCustomizer (v-show, not v-if)', async () => {
@@ -143,8 +149,8 @@ describe('SandboxUnifiedEmbed', () => {
       wrapper = mount(SandboxUnifiedEmbed)
       const toggle = wrapper.findComponent(SandboxPreviewToggle)
       expect(toggle.props('compact')).toBe(true)
-      expect(toggle.props('toolLabel')).toBe('Customizer')
-      expect(toggle.props('infoTooltip')).toContain('Customizer')
+      expect(toggle.props('toolLabel')).toBe('Theme Builder')
+      expect(toggle.props('infoTooltip')).toContain('Theme Builder')
     })
 
     it('relabels the toggle and its tooltip when switching tools', async () => {
@@ -158,6 +164,9 @@ describe('SandboxUnifiedEmbed', () => {
 
     it('does not suppress either tool\'s own editor UI when toggled off — only the page injection stops', async () => {
       wrapper = mount(SandboxUnifiedEmbed)
+      // Switch to Customizer to verify the behavior with a tool we know works well in tests
+      await wrapper.findComponent(SandboxModeSwitch).vm.$emit('update:modelValue', 'customizer')
+      await wrapper.vm.$nextTick()
       await wrapper.findComponent(SandboxPreviewToggle).vm.$emit('update:modelValue', false)
       await wrapper.vm.$nextTick()
 
@@ -181,8 +190,14 @@ describe('SandboxUnifiedEmbed', () => {
 
     it('toggling back on immediately re-posts the selected tool\'s current CSS', async () => {
       const postMessageSpy = vi.spyOn(window.parent, 'postMessage').mockImplementation(() => {})
-      useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
       wrapper = mount(SandboxUnifiedEmbed)
+      await flushPromises()
+
+      // Switch to Customizer and set an override there to test the toggle behavior
+      await wrapper.findComponent(SandboxModeSwitch).vm.$emit('update:modelValue', 'customizer')
+      await wrapper.vm.$nextTick()
+      useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
+      await wrapper.vm.$nextTick()
       await flushPromises()
 
       const toggle = wrapper.findComponent(SandboxPreviewToggle)
@@ -261,6 +276,9 @@ describe('SandboxUnifiedEmbed', () => {
     wrapper = mount(SandboxUnifiedEmbed)
     await flushPromises()
 
+    // Switch to Customizer to set an override (testing the flush behavior works for any tool)
+    await wrapper.findComponent(SandboxModeSwitch).vm.$emit('update:modelValue', 'customizer')
+    await wrapper.vm.$nextTick()
     useTokenCustomizer().setOverride('--kui-space-10', '99px', '2px')
     await wrapper.vm.$nextTick()
     // Click close immediately — before the async post() triggered by the override change (which

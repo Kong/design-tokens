@@ -112,21 +112,6 @@
           <router-link
             v-if="isDevMode"
             class="nav-link"
-            to="/customize"
-          >
-            Customize →
-          </router-link>
-          <button
-            v-else
-            class="nav-link nav-link--btn"
-            type="button"
-            @click="showBookmarkletModal = true"
-          >
-            Customize →
-          </button>
-          <router-link
-            v-if="isDevMode"
-            class="nav-link"
             to="/theme-builder"
           >
             Theme Builder →
@@ -138,6 +123,21 @@
             @click="showBookmarkletModal = true"
           >
             Theme Builder →
+          </button>
+          <router-link
+            v-if="isDevMode"
+            class="nav-link"
+            to="/customize"
+          >
+            Customize →
+          </router-link>
+          <button
+            v-else
+            class="nav-link nav-link--btn"
+            type="button"
+            @click="showBookmarkletModal = true"
+          >
+            Customize →
           </button>
         </div>
       </div>

@@ -175,7 +175,12 @@ export function flattenAliases(aliasJson: AliasJson): AliasFlatEntry[] {
     if (typeof (entry as AliasLeaf).$value === 'string') {
       out.push({ family, step: null, key: family, baseHex: (entry as AliasLeaf).$value })
     } else {
-      for (const [step, leaf] of Object.entries(entry as Record<string, AliasLeaf>)) {
+      // Sort numerically, not by plain object-key enumeration order: JS enumerates canonical
+      // integer-index keys ('10'..'120') ascending ahead of any leading-zero key ('05'), which
+      // would otherwise land at the end of the family regardless of insertion order.
+      const steps = Object.entries(entry as Record<string, AliasLeaf>)
+        .sort(([a], [b]) => Number(a) - Number(b))
+      for (const [step, leaf] of steps) {
         out.push({ family, step, key: `${family}.${step}`, baseHex: leaf.$value })
       }
     }

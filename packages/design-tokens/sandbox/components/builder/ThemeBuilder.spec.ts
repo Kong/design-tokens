@@ -133,6 +133,16 @@ describe('ThemeBuilder', () => {
       expect(wrapper.findComponent(FileLoader).isVisible()).toBe(true)
       expect(wrapper.findComponent(InstructionsPanel).isVisible()).toBe(false)
     })
+
+    it('switches to the Instructions tab when FileLoader emits "go-to-instructions"', async () => {
+      wrapper = mount(ThemeBuilder)
+      await switchTab(wrapper, 'theme')
+      await wrapper.findComponent(FileLoader).vm.$emit('go-to-instructions')
+      await wrapper.vm.$nextTick()
+
+      expect(wrapper.findComponent(InstructionsPanel).isVisible()).toBe(true)
+      expect(wrapper.findComponent(FileLoader).isVisible()).toBe(false)
+    })
   })
 
   describe('loading a theme', () => {

@@ -62,6 +62,7 @@
         <FileLoader
           v-if="!isLoaded"
           :error="loadError"
+          @go-to-instructions="activeTab = 'instructions'"
           @load="onLoad"
         />
         <div
@@ -173,9 +174,9 @@ const {
   themeFileName, aliasFileName, initPersistence, persistError,
 } = useThemeBuilder()
 
-/** True once at least one color alias has been overridden from the uploaded file's value. */
+/** True once at least one color alias has been overridden from the loaded theme's value. */
 const hasAliasOverrides = computed(() => Object.keys(aliasOverrides).length > 0)
-/** True once at least one token has been overridden from the uploaded file's value. */
+/** True once at least one token has been overridden from the loaded theme's value. */
 const hasTokenOverrides = computed(() => Object.keys(tokenOverrides).length > 0)
 
 const tabs = computed<Array<{ id: TabId, label: string, modified?: boolean, modifiedTooltip?: string, disabled?: boolean }>>(() => [
@@ -186,14 +187,14 @@ const tabs = computed<Array<{ id: TabId, label: string, modified?: boolean, modi
     label: 'Color aliases',
     disabled: !isLoaded.value,
     modified: hasAliasOverrides.value,
-    modifiedTooltip: 'One or more color aliases have been modified from the uploaded file.',
+    modifiedTooltip: 'One or more color aliases have been modified from the loaded theme.',
   },
   {
     id: 'tokens',
     label: 'Tokens',
     disabled: !isLoaded.value,
     modified: hasTokenOverrides.value,
-    modifiedTooltip: 'One or more tokens have been modified from the uploaded file.',
+    modifiedTooltip: 'One or more tokens have been modified from the loaded theme.',
   },
   { id: 'export', label: 'Export', disabled: !isLoaded.value },
 ])
@@ -249,7 +250,7 @@ const { close } = useEmbeddedBridge({ isEmbedded: bridgeEnabled, css: injectedCs
 defineExpose({ injectedCss, buildSrc: () => window.location.href })
 
 /**
- * Parses the uploaded files and surfaces any validation error. On success, advances off the
+ * Parses the loaded theme's files and surfaces any validation error. On success, advances off the
  * Theme tab straight to Color aliases — staying on Theme would just show the loaded-file
  * summary, which isn't where editing happens.
  */

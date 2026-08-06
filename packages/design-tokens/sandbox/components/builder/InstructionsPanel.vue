@@ -14,14 +14,15 @@
       that cascade for just that token.
     </p>
     <p class="ip-text">
-      Upload your theme's two files on the
+      On the
       <a
         class="ip-link"
         href="#"
         @click.prevent="emit('go-to-theme')"
-      >Theme tab</a>
-      to get started. Once loaded, that same tab shows which files are active and lets you load a
-      different theme at any time.
+      >Theme tab</a>,
+      pick one of the bundled built-in themes from the dropdown, or upload your own theme's two
+      files, to get started. Once loaded, that same tab shows which files are active and lets you
+      load a different theme at any time.
     </p>
 
     <h3 class="ip-heading">
@@ -44,9 +45,10 @@
       Editing an existing theme
     </h3>
     <p class="ip-text">
-      Load its two files straight from <code>themes/&lt;name&gt;/</code> in the repo — the same
-      <code>*.theme.json</code> and <code>*.alias.color.json</code> pair described above — on the
-      Theme tab.
+      If it's one of the bundled built-in themes, pick it from the "Load an existing theme"
+      dropdown on the Theme tab — its two files load in one click. Otherwise, upload its
+      <code>*.theme.json</code> and <code>*.alias.color.json</code> pair straight from
+      <code>themes/&lt;name&gt;/</code> in the repo on that same tab.
     </p>
 
     <h3 class="ip-heading">

@@ -47,7 +47,7 @@
             <li>Drag the link above to your browser's bookmarks bar</li>
             <li>Navigate to the page you want to customize</li>
             <li>Click the bookmarklet — a panel opens on the page</li>
-            <li>Switch between Customizer and Theme Builder from the tabs inside the panel; edit tokens and changes apply live</li>
+            <li>Switch between Theme Builder and Customizer from the tabs inside the panel; edit tokens and changes apply live</li>
           </ol>
           <hr class="bm-divider">
           <div class="bm-standalone-row">

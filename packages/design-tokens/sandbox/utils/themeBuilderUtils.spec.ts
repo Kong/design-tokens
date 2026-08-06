@@ -157,6 +157,25 @@ describe('flattenAliases', () => {
     expect(flat).toContainEqual({ family: 'blue', step: '50', key: 'blue.50', baseHex: '#3094FF' })
     expect(flat).toContainEqual({ family: 'black', step: null, key: 'black', baseHex: '#000000' })
   })
+
+  it('orders stepped families numerically, not by plain object-key enumeration', () => {
+    // Plain `Object.entries` would enumerate '10'..'120' ascending (canonical integer keys)
+    // ahead of the leading-zero '05' (a non-canonical key, enumerated in insertion order) —
+    // this asserts the fix sorts by numeric value instead, regardless of source key order.
+    const stepped = {
+      color: { alias: {
+        gray: {
+          '100': { $value: '#100' },
+          '05': { $value: '#05' },
+          '20': { $value: '#20' },
+          '120': { $value: '#120' },
+          '10': { $value: '#10' },
+        },
+      } },
+    }
+    const flat = flattenAliases(stepped)
+    expect(flat.map((e) => e.step)).toEqual(['05', '10', '20', '100', '120'])
+  })
 })
 
 describe('isColorToken', () => {
