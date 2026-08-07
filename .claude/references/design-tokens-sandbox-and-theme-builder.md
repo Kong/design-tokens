@@ -163,15 +163,43 @@ stale and silently keep showing the old theme's values. The fix is to watch both
 change without going through `overriddenValue` needs to be in that watch source** — this is the
 general lesson, not just a one-off fix.
 
-## Surface 3 — Theme Builder (`components/builder/`, `composables/useThemeBuilder.ts`, `lib/themeBuilderUtils.ts`)
+## Surface 3 — Theme Builder (`components/builder/`, `composables/useThemeBuilder.ts`, `composables/useBuiltInThemes.ts`, `lib/themeBuilderUtils.ts`)
 
 Designer-oriented editor for a theme's **actual source files** (`*.theme.json` +
-`*.alias.color.json`), loaded via file picker/drag-drop, one theme at a time. This is a
-different tool from the Customizer — don't conflate them. Two-layer reactive state: alias
-palette overrides (cascade) beat theme-file values; explicit token overrides beat the alias
-cascade. Color tokens are alias-only (no freeform hex — picked via `AliasPicker.vue`);
-non-color tokens are freeform text.
+`*.alias.color.json`), loaded one theme at a time — either by picking one of the 6 repo themes
+from a dropdown, or by file picker/drag-drop for any other theme. This is a different tool from
+the Customizer — don't conflate them. Two-layer reactive state: alias palette overrides (cascade)
+beat theme-file values; explicit token overrides beat the alias cascade. Color tokens are
+alias-only (no freeform hex — picked via `AliasPicker.vue`); non-color tokens are freeform text.
 
+- **`FileLoader.vue`'s two loading methods are mutually exclusive and commit-on-click, not
+  commit-on-select.** Picking a theme from the "Load an existing theme" `<select>` only records
+  `selectedBuiltInId` — it does **not** emit `load` immediately; the two upload drop-zones (now
+  disabled + dimmed via `:disabled`/`.fl-drop--disabled`) stay inert until the user explicitly
+  clicks **Load Theme**. Symmetrically, starting an upload (either file) disables the dropdown.
+  A "Clear selection" control appears once either method has started (`hasSelection`) and resets
+  both (`selectedBuiltInId` back to `''`, both file refs back to `''`) so the user can back out or
+  switch methods without reloading the component. `emitLoad()` picks whichever method is ready —
+  built-in wins if selected, since mutual exclusion means both can never be ready at once.
+- **`composables/useBuiltInThemes.ts`** bundles the 6 repo themes' raw `*.theme.json` +
+  `*.alias.color.json` source text at **build time** via Vite's `import.meta.glob('../../themes/
+  */*.theme.json', { eager: true, query: '?raw', import: 'default' })` (and the alias-file
+  equivalent) — resolved relative to the composable's own file location, so it works identically
+  in dev and the static `BUILD_SANDBOX=true` GitHub Pages build with no runtime fetch, no copy
+  step, no base-path/CORS concern. **The glob pattern argument must stay a static string literal
+  at its own call site** — Vite resolves `import.meta.glob` via static analysis at build time, so
+  wrapping the pattern in a parameterized helper makes it silently return `{}` at runtime. Only
+  the *already-resolved* glob record (a plain `Record<string, string>`) is safe to hand to a
+  shared helper (see `buildIdMap`). `BUILT_IN_THEMES` derives its id/label from `useTokens.ts`'s
+  `THEMES` rather than duplicating theme metadata, and throws at module-evaluation time if any
+  theme in `THEMES` is missing a bundled file pair — acceptable today (all 6 themes have both
+  files) but means a half-scaffolded theme would white-screen the *whole app* (this composable is
+  reached from the router via `FileLoader.vue` → `ThemeBuilder.vue` → `SandboxUnifiedEmbed.vue`),
+  not just the Theme Builder tab.
+- Raw-importing all 6 themes' source JSON adds real weight to the bundle (~700KB text,
+  contributing to a >500KB main-chunk warning from Vite) — accepted for a design-tooling sandbox,
+  but be aware it's paid by every route, not just `/theme-builder`, since the import chain is
+  static all the way up to `router.ts`.
 - **`hosted` / `active` props** — same contract as the Customizer's (above): `hosted` suppresses
   `SandboxShell`'s header/close chrome and this component's own bridge, exposing
   `injectedCss`/`buildSrc` via `defineExpose` instead; `active` is accepted for contract symmetry
@@ -211,6 +239,14 @@ non-color tokens are freeform text.
   lookup), `deriveEffectiveCss`, `flattenAliases`, `isColorToken`, `exportThemeJson`/
   `exportAliasJson`, plus the `BuilderToken` type (single source of truth). Keep new pure logic
   here, not inline in components, so it stays testable without mounting Vue.
+  **`flattenAliases` sorts each family's steps numerically** (`Number(a) - Number(b)`), not via
+  plain `Object.entries` enumeration order — JS enumerates canonical integer-index keys
+  (`'10'`..`'120'`) ascending *ahead of* a leading-zero key (`'05'`, not a canonical integer index
+  per spec), which would otherwise land `05` at the end of a family's chip row in
+  `PalettePanel.vue` regardless of source insertion order. Same underlying JS quirk `stringifyOrdered`
+  /`sortedStepFamily` below work around for the export path — three independent call sites hit
+  this, so if you touch step ordering again, check both the render path (`flattenAliases`) and the
+  export path (`sortedStepFamily`).
 - `useThemeBuilder.ts` — module-scoped two-layer state (same module-scope-persists-across-nav
   pattern as the Customizer); `effectiveCss`; `initPersistence(host)` restores + debounced-
   persists the full state (theme+alias+overrides+filenames) to
@@ -268,12 +304,19 @@ self-update) could still collide with each other or a new one.
     the Customizer/Theme Builder `SandboxModeSwitch` (a segmented control, see below); its
     `#header-actions` slot holds the single global `SandboxPreviewToggle` (`compact`, see below).
   - `selectedTool` (`'customizer' | 'theme-builder'`, `composables/useSandboxMode.ts`'s
-    `SandboxTool`/`isSandboxTool`), persisted into the hash as `?tool=` (customizer omitted as
-    the implicit default, matching the existing convention of omitting default values like
-    `startTheme=`). This is what "per-domain last-used-mode" restore actually rides on — the
+    `SandboxTool`/`isSandboxTool`), persisted into the hash as `?tool=`. **Theme Builder is the
+    default** (`selectedTool` falls back to `'theme-builder'`, not `'customizer'`, when `?tool=`
+    is absent) — and unlike the Customizer's own `startTheme=` (which still omits its default from
+    the hash), `?tool=` is now **always written explicitly** for both values, via `watch(selectedTool,
+    ..., { immediate: true })`. The `immediate: true` is required, not decorative: mounting already
+    at the default and then re-selecting that same value is a same-value assignment, which a
+    non-immediate Vue watch never fires for — without it, the hash would never get `tool=` written
+    on a fresh mount. This is what "per-domain last-used-mode" restore actually rides on — the
     bookmarklet's own `kong-sidebar-url:<hostname>` restore key stores the full posted `src`,
     `tool=` included, so re-opening the sidebar on a site naturally reopens whichever tool was
-    last selected there. No separate "last mode" storage key exists or is needed.
+    last selected there. No separate "last mode" storage key exists or is needed. `SandboxModeSwitch`'s
+    `options` array also lists Theme Builder first, matching the default; `TokenBrowser.vue`'s two
+    "try it" links do the same.
   - `previewEnabled` (default `true`, **not persisted** — matches the original per-tool toggle's
     behavior). A single global on/off switch, decoupled from `selectedTool`: switching tools never
     implies enabling/disabling, and toggling preview off never hides either tool's editor (you can

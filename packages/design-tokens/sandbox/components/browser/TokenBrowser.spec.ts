@@ -228,7 +228,7 @@ describe('TokenBrowser', () => {
   it('renders "Customize" and "Theme Builder" as router-links in dev mode (default test env)', async () => {
     const { wrapper } = await mountBrowser()
     const links = wrapper.findAll('a.nav-link')
-    expect(links.map((l) => l.text())).toEqual(['Customize →', 'Theme Builder →'])
+    expect(links.map((l) => l.text())).toEqual(['Theme Builder →', 'Customize →'])
     expect(wrapper.find('button.nav-link--btn').exists()).toBe(false)
   })
 
@@ -248,7 +248,7 @@ describe('TokenBrowser', () => {
       const wrapper = mount(TokenBrowserProd, { global: { plugins: [router] } })
 
       const navButtons = wrapper.findAll('button.nav-link--btn')
-      expect(navButtons.map((b) => b.text())).toEqual(['Customize →', 'Theme Builder →'])
+      expect(navButtons.map((b) => b.text())).toEqual(['Theme Builder →', 'Customize →'])
       expect(wrapper.find('a.nav-link').exists()).toBe(false)
 
       // BookmarkletModal teleports to <body>; because this module graph was
