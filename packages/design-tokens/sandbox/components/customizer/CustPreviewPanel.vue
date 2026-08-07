@@ -237,7 +237,7 @@
           :href="bookmarkletHref"
           @click.prevent
         >
-          🔖 Kong Design Tokens
+          🎨 Kong Design Tokens
         </a>
         <ol class="bookmarklet-steps">
           <li>Drag the link above to your browser's bookmarks bar</li>
