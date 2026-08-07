@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.9](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.8...@kong/design-tokens@3.2.9) (2026-08-07)
+
+**Note:** Version bump only for package @kong/design-tokens
+
 ## [3.2.8](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.7...@kong/design-tokens@3.2.8) (2026-08-06)
 
 ### Bug Fixes
