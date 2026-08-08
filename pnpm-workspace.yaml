@@ -11,7 +11,7 @@ minimumReleaseAgeExclude:
 # When set to no-downgrade, pnpm will fail if a package's trust level has decreased compared to previous releases
 trustPolicy: no-downgrade
 overrides:
-  semver: ^7.6.3
+  semver: ^7.8.5
 shamefullyHoist: true
 strictPeerDependencies: false
 autoInstallPeers: true
