@@ -188,6 +188,26 @@
                   {{ theme.label }}
                 </option>
               </select>
+              <button
+                v-if="startingThemeId !== DEFAULT_THEME_ID"
+                aria-label="Reset starting theme to Classic Day"
+                class="cust-theme-clear"
+                title="Reset to Classic Day"
+                type="button"
+                @click="setStartingTheme(DEFAULT_THEME_ID)"
+              >
+                <svg
+                  fill="none"
+                  height="12"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  width="12"
+                >
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
             </label>
             <button
               v-if="visibleGroups.length > 1 || allCollapsed"
@@ -422,6 +442,26 @@
                   {{ theme.label }}
                 </option>
               </select>
+              <button
+                v-if="startingThemeId !== DEFAULT_THEME_ID"
+                aria-label="Reset starting theme to Classic Day"
+                class="cust-theme-clear"
+                title="Reset to Classic Day"
+                type="button"
+                @click="setStartingTheme(DEFAULT_THEME_ID)"
+              >
+                <svg
+                  fill="none"
+                  height="12"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2.5"
+                  viewBox="0 0 24 24"
+                  width="12"
+                >
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
             </label>
             <button
               v-if="visibleGroups.length > 1 || allCollapsed"
@@ -1123,10 +1163,13 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   background: $tb-surface;
   border-bottom: 1px solid $tb-border;
   display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
   gap: 8px;
   justify-content: space-between;
   min-height: 32px;
   padding: 5px 16px;
+  row-gap: 6px;
 }
 
 .cust-theme-picker {
@@ -1162,8 +1205,29 @@ const placeholderCss = ':root {\n  /* \n   * Edit tokens on the left\n   * to se
   font-family: inherit;
   font-size: 12px;
   font-weight: 500;
+  max-width: 130px;
   outline: none;
+  overflow: hidden;
   padding: 6px 20px 6px 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cust-theme-clear {
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 3px;
+  color: $tb-text-muted;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  line-height: 1;
+  padding: 3px;
+
+  &:hover { background: $tb-border; color: $tb-text; }
+
+  &:focus-visible { outline: 2px solid $tb-accent; outline-offset: 1px; }
 }
 
 .cust-collapse-btn {
