@@ -59,8 +59,8 @@ $kui-color-background-info-weak: #5f9aff;
 $kui-color-background-info-weaker: #bee2ff;
 /* Weakest background color for info elements (blue.10). */
 $kui-color-background-info-weakest: #eefaff;
-/* Inverse background color for containers (blue.100) */
-$kui-color-background-inverse: #000933;
+/* Inverse background color for containers (gray.100) */
+$kui-color-background-inverse: #0d0e14;
 /* Background color for neutral elements (gray.60). */
 $kui-color-background-neutral: #6c7489;
 /* Strong background color for neutral elements (gray.70). */
@@ -75,8 +75,8 @@ $kui-color-background-neutral-weak: #afb7c5;
 $kui-color-background-neutral-weaker: #e0e4ea;
 /* Weakest background color for neutral elements (gray.10). */
 $kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(0, 9, 51, 0.6)) */
-$kui-color-background-overlay: rgba(0, 9, 51, 0.6);
+/* Overlay background color (rgba(13, 14, 20, 0.6)) */
+$kui-color-background-overlay: rgba(13, 14, 20, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 $kui-color-background-primary: #0044f4;
 /* Strong background color for primary actions or messages (blue.70). */
@@ -177,8 +177,8 @@ $kui-color-border-primary-weakest: #eefaff;
 $kui-color-border-transparent: rgba(0, 0, 0, 0);
 /* Default brand color for the theme. */
 $kui-color-brand: #0044f4;
-/* Default text color (blue.100). */
-$kui-color-text: #000933;
+/* Default text color (gray.100). */
+$kui-color-text: #0d0e14;
 /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
 $kui-color-text-accent: #0044f4;
 /* Text color for danger actions or messages (red.60). */
@@ -743,8 +743,8 @@ $tokens-map: (
   'kui-color-background-info-weaker': #bee2ff,
   /* Weakest background color for info elements (blue.10). */
   'kui-color-background-info-weakest': #eefaff,
-  /* Inverse background color for containers (blue.100) */
-  'kui-color-background-inverse': #000933,
+  /* Inverse background color for containers (gray.100) */
+  'kui-color-background-inverse': #0d0e14,
   /* Background color for neutral elements (gray.60). */
   'kui-color-background-neutral': #6c7489,
   /* Strong background color for neutral elements (gray.70). */
@@ -759,8 +759,8 @@ $tokens-map: (
   'kui-color-background-neutral-weaker': #e0e4ea,
   /* Weakest background color for neutral elements (gray.10). */
   'kui-color-background-neutral-weakest': #f9fafb,
-  /* Overlay background color (rgba(0, 9, 51, 0.6)) */
-  'kui-color-background-overlay': rgba(0, 9, 51, 0.6),
+  /* Overlay background color (rgba(13, 14, 20, 0.6)) */
+  'kui-color-background-overlay': rgba(13, 14, 20, 0.6),
   /* Background color for primary actions or messages (blue.60). */
   'kui-color-background-primary': #0044f4,
   /* Strong background color for primary actions or messages (blue.70). */
@@ -861,8 +861,8 @@ $tokens-map: (
   'kui-color-border-transparent': rgba(0, 0, 0, 0),
   /* Default brand color for the theme. */
   'kui-color-brand': #0044f4,
-  /* Default text color (blue.100). */
-  'kui-color-text': #000933,
+  /* Default text color (gray.100). */
+  'kui-color-text': #0d0e14,
   /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
   'kui-color-text-accent': #0044f4,
   /* Text color for danger actions or messages (red.60). */
@@ -1431,8 +1431,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-info-weaker: #bee2ff;
 /* Weakest background color for info elements (blue.10). */
 --kui-color-background-info-weakest: #eefaff;
-/* Inverse background color for containers (blue.100) */
---kui-color-background-inverse: #000933;
+/* Inverse background color for containers (gray.100) */
+--kui-color-background-inverse: #0d0e14;
 /* Background color for neutral elements (gray.60). */
 --kui-color-background-neutral: #6c7489;
 /* Strong background color for neutral elements (gray.70). */
@@ -1447,8 +1447,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-background-neutral-weaker: #e0e4ea;
 /* Weakest background color for neutral elements (gray.10). */
 --kui-color-background-neutral-weakest: #f9fafb;
-/* Overlay background color (rgba(0, 9, 51, 0.6)) */
---kui-color-background-overlay: rgba(0, 9, 51, 0.6);
+/* Overlay background color (rgba(13, 14, 20, 0.6)) */
+--kui-color-background-overlay: rgba(13, 14, 20, 0.6);
 /* Background color for primary actions or messages (blue.60). */
 --kui-color-background-primary: #0044f4;
 /* Strong background color for primary actions or messages (blue.70). */
@@ -1549,8 +1549,8 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-color-border-transparent: rgba(0, 0, 0, 0);
 /* Default brand color for the theme. */
 --kui-color-brand: #0044f4;
-/* Default text color (blue.100). */
---kui-color-text: #000933;
+/* Default text color (gray.100). */
+--kui-color-text: #0d0e14;
 /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
 --kui-color-text-accent: #0044f4;
 /* Text color for danger actions or messages (red.60). */
@@ -3285,8 +3285,8 @@ export const KUI_COLOR_BACKGROUND_INFO_WEAK = "#5f9aff";
 export const KUI_COLOR_BACKGROUND_INFO_WEAKER = "#bee2ff";
 /* Weakest background color for info elements (blue.10). */
 export const KUI_COLOR_BACKGROUND_INFO_WEAKEST = "#eefaff";
-/* Inverse background color for containers (blue.100) */
-export const KUI_COLOR_BACKGROUND_INVERSE = "#000933";
+/* Inverse background color for containers (gray.100) */
+export const KUI_COLOR_BACKGROUND_INVERSE = "#0d0e14";
 /* Background color for neutral elements (gray.60). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL = "#6c7489";
 /* Strong background color for neutral elements (gray.70). */
@@ -3301,8 +3301,8 @@ export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAK = "#afb7c5";
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKER = "#e0e4ea";
 /* Weakest background color for neutral elements (gray.10). */
 export const KUI_COLOR_BACKGROUND_NEUTRAL_WEAKEST = "#f9fafb";
-/* Overlay background color (rgba(0, 9, 51, 0.6)) */
-export const KUI_COLOR_BACKGROUND_OVERLAY = "rgba(0, 9, 51, 0.6)";
+/* Overlay background color (rgba(13, 14, 20, 0.6)) */
+export const KUI_COLOR_BACKGROUND_OVERLAY = "rgba(13, 14, 20, 0.6)";
 /* Background color for primary actions or messages (blue.60). */
 export const KUI_COLOR_BACKGROUND_PRIMARY = "#0044f4";
 /* Strong background color for primary actions or messages (blue.70). */
@@ -3403,8 +3403,8 @@ export const KUI_COLOR_BORDER_PRIMARY_WEAKEST = "#eefaff";
 export const KUI_COLOR_BORDER_TRANSPARENT = "rgba(0, 0, 0, 0)";
 /* Default brand color for the theme. */
 export const KUI_COLOR_BRAND = "#0044f4";
-/* Default text color (blue.100). */
-export const KUI_COLOR_TEXT = "#000933";
+/* Default text color (gray.100). */
+export const KUI_COLOR_TEXT = "#0d0e14";
 /* Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
 export const KUI_COLOR_TEXT_ACCENT = "#0044f4";
 /* Text color for danger actions or messages (red.60). */
@@ -5217,9 +5217,9 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-background-inverse",
-    description: "Inverse background color for containers (blue.100)",
+    description: "Inverse background color for containers (gray.100)",
     category: "color",
-    value: "#000933",
+    value: "#0d0e14",
   },
   {
     name: "--kui-color-background-neutral",
@@ -5265,9 +5265,9 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-background-overlay",
-    description: "Overlay background color (rgba(0, 9, 51, 0.6))",
+    description: "Overlay background color (rgba(13, 14, 20, 0.6))",
     category: "color",
-    value: "rgba(0, 9, 51, 0.6)",
+    value: "rgba(13, 14, 20, 0.6)",
   },
   {
     name: "--kui-color-background-primary",
@@ -5571,9 +5571,9 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-text",
-    description: "Default text color (blue.100).",
+    description: "Default text color (gray.100).",
     category: "color",
-    value: "#000933",
+    value: "#0d0e14",
   },
   {
     name: "--kui-color-text-accent",
@@ -9478,7 +9478,7 @@ export const KUI_THEMEABLE_TOKENS = [
   "kui_color_background_info_weak": "#5f9aff",
   "kui_color_background_info_weaker": "#bee2ff",
   "kui_color_background_info_weakest": "#eefaff",
-  "kui_color_background_inverse": "#000933",
+  "kui_color_background_inverse": "#0d0e14",
   "kui_color_background_neutral": "#6c7489",
   "kui_color_background_neutral_strong": "#52596e",
   "kui_color_background_neutral_stronger": "#3a3f51",
@@ -9486,7 +9486,7 @@ export const KUI_THEMEABLE_TOKENS = [
   "kui_color_background_neutral_weak": "#afb7c5",
   "kui_color_background_neutral_weaker": "#e0e4ea",
   "kui_color_background_neutral_weakest": "#f9fafb",
-  "kui_color_background_overlay": "rgba(0, 9, 51, 0.6)",
+  "kui_color_background_overlay": "rgba(13, 14, 20, 0.6)",
   "kui_color_background_primary": "#0044f4",
   "kui_color_background_primary_strong": "#0030cc",
   "kui_color_background_primary_stronger": "#002099",
@@ -9537,7 +9537,7 @@ export const KUI_THEMEABLE_TOKENS = [
   "kui_color_border_primary_weakest": "#eefaff",
   "kui_color_border_transparent": "rgba(0, 0, 0, 0)",
   "kui_color_brand": "#0044f4",
-  "kui_color_text": "#000933",
+  "kui_color_text": "#0d0e14",
   "kui_color_text_accent": "#0044f4",
   "kui_color_text_danger": "#d60027",
   "kui_color_text_danger_strong": "#ad000e",
