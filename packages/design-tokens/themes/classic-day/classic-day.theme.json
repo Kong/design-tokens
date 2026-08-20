@@ -123,7 +123,7 @@
   },
   "kui-color-background-inverse": {
     "$description": "Inverse background color for containers.",
-    "$value": "{color.alias.blue.100}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-color-background-neutral": {
     "$description": "Background color for neutral elements.",
@@ -155,7 +155,7 @@
   },
   "kui-color-background-overlay": {
     "$description": "Overlay background color.",
-    "$value": "rgba(0, 9, 51, 0.6)"
+    "$value": "rgba(13, 14, 20, 0.6)"
   },
   "kui-color-background-primary": {
     "$description": "Background color for primary actions or messages.",
@@ -359,7 +359,7 @@
   },
   "kui-color-text": {
     "$description": "Default text color.",
-    "$value": "{color.alias.blue.100}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-color-text-accent": {
     "$description": "Accent text color for emphasis on non-primary UI, such as active navigation. Distinct from the primary action color; verify contrast, as accent is not guaranteed legible on light or dark surfaces in every theme.",

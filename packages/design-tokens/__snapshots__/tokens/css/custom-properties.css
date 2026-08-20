@@ -28,7 +28,7 @@
   --kui-color-background-info-weak: #5f9aff; /** Weak background color for info elements (blue.40). */
   --kui-color-background-info-weaker: #bee2ff; /** Weaker background color for info elements (blue.20). */
   --kui-color-background-info-weakest: #eefaff; /** Weakest background color for info elements (blue.10). */
-  --kui-color-background-inverse: #000933; /** Inverse background color for containers (blue.100) */
+  --kui-color-background-inverse: #0d0e14; /** Inverse background color for containers (gray.100) */
   --kui-color-background-neutral: #6c7489; /** Background color for neutral elements (gray.60). */
   --kui-color-background-neutral-strong: #52596e; /** Strong background color for neutral elements (gray.70). */
   --kui-color-background-neutral-stronger: #3a3f51; /** Stronger background color for neutral elements (gray.80). */
@@ -36,7 +36,7 @@
   --kui-color-background-neutral-weak: #afb7c5; /** Weak background color for neutral elements (gray.40). */
   --kui-color-background-neutral-weaker: #e0e4ea; /** Weaker background color for neutral elements (gray.20). */
   --kui-color-background-neutral-weakest: #f9fafb; /** Weakest background color for neutral elements (gray.10). */
-  --kui-color-background-overlay: rgba(0, 9, 51, 0.6); /** Overlay background color (rgba(0, 9, 51, 0.6)) */
+  --kui-color-background-overlay: rgba(13, 14, 20, 0.6); /** Overlay background color (rgba(13, 14, 20, 0.6)) */
   --kui-color-background-primary: #0044f4; /** Background color for primary actions or messages (blue.60). */
   --kui-color-background-primary-strong: #0030cc; /** Strong background color for primary actions or messages (blue.70). */
   --kui-color-background-primary-stronger: #002099; /** Stronger background color for primary actions or messages (blue.80). */
@@ -87,7 +87,7 @@
   --kui-color-border-primary-weakest: #eefaff; /** Weakest border color for primary actions or messages (blue.10). */
   --kui-color-border-transparent: rgba(0, 0, 0, 0); /** Transparent border color (transparent). */
   --kui-color-brand: #0044f4; /** Default brand color for the theme. */
-  --kui-color-text: #000933; /** Default text color (blue.100). */
+  --kui-color-text: #0d0e14; /** Default text color (gray.100). */
   --kui-color-text-accent: #0044f4; /** Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes. */
   --kui-color-text-danger: #d60027; /** Text color for danger actions or messages (red.60). */
   --kui-color-text-danger-strong: #ad000e; /** Strong text color for danger actions or messages (red.70). */
