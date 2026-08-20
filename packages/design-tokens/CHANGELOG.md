@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.10...@kong/design-tokens@3.3.0) (2026-08-20)
+
+### Features
+
+* **design-tokens:** update classic themes color tokens from blue.100 to gray.100 ([#717](https://github.com/Kong/design-tokens/issues/717)) ([f85771c](https://github.com/Kong/design-tokens/commit/f85771cbc869e9b06ee408cfa4e7f8f1c895b560))
+
 ## [3.2.10](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.9...@kong/design-tokens@3.2.10) (2026-08-11)
 
 **Note:** Version bump only for package @kong/design-tokens
