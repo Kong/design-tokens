@@ -1293,9 +1293,9 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-background-inverse",
-    description: "Inverse background color for containers (blue.100)",
+    description: "Inverse background color for containers (gray.100)",
     category: "color",
-    value: "#000933",
+    value: "#0d0e14",
   },
   {
     name: "--kui-color-background-neutral",
@@ -1341,9 +1341,9 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-background-overlay",
-    description: "Overlay background color (rgba(0, 9, 51, 0.6))",
+    description: "Overlay background color (rgba(13, 14, 20, 0.6))",
     category: "color",
-    value: "rgba(0, 9, 51, 0.6)",
+    value: "rgba(13, 14, 20, 0.6)",
   },
   {
     name: "--kui-color-background-primary",
@@ -1647,9 +1647,9 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-text",
-    description: "Default text color (blue.100).",
+    description: "Default text color (gray.100).",
     category: "color",
-    value: "#000933",
+    value: "#0d0e14",
   },
   {
     name: "--kui-color-text-accent",

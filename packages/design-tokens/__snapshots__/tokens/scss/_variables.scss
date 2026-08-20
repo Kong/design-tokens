@@ -26,7 +26,7 @@ $kui-color-background-info-strongest: #001466 !default; // Strongest background 
 $kui-color-background-info-weak: #5f9aff !default; // Weak background color for info elements (blue.40).
 $kui-color-background-info-weaker: #bee2ff !default; // Weaker background color for info elements (blue.20).
 $kui-color-background-info-weakest: #eefaff !default; // Weakest background color for info elements (blue.10).
-$kui-color-background-inverse: #000933 !default; // Inverse background color for containers (blue.100)
+$kui-color-background-inverse: #0d0e14 !default; // Inverse background color for containers (gray.100)
 $kui-color-background-neutral: #6c7489 !default; // Background color for neutral elements (gray.60).
 $kui-color-background-neutral-strong: #52596e !default; // Strong background color for neutral elements (gray.70).
 $kui-color-background-neutral-stronger: #3a3f51 !default; // Stronger background color for neutral elements (gray.80).
@@ -34,7 +34,7 @@ $kui-color-background-neutral-strongest: #232633 !default; // Strongest backgrou
 $kui-color-background-neutral-weak: #afb7c5 !default; // Weak background color for neutral elements (gray.40).
 $kui-color-background-neutral-weaker: #e0e4ea !default; // Weaker background color for neutral elements (gray.20).
 $kui-color-background-neutral-weakest: #f9fafb !default; // Weakest background color for neutral elements (gray.10).
-$kui-color-background-overlay: rgba(0, 9, 51, 0.6) !default; // Overlay background color (rgba(0, 9, 51, 0.6))
+$kui-color-background-overlay: rgba(13, 14, 20, 0.6) !default; // Overlay background color (rgba(13, 14, 20, 0.6))
 $kui-color-background-primary: #0044f4 !default; // Background color for primary actions or messages (blue.60).
 $kui-color-background-primary-strong: #0030cc !default; // Strong background color for primary actions or messages (blue.70).
 $kui-color-background-primary-stronger: #002099 !default; // Stronger background color for primary actions or messages (blue.80).
@@ -85,7 +85,7 @@ $kui-color-border-primary-weaker: #bee2ff !default; // Weaker border color for p
 $kui-color-border-primary-weakest: #eefaff !default; // Weakest border color for primary actions or messages (blue.10).
 $kui-color-border-transparent: rgba(0, 0, 0, 0) !default; // Transparent border color (transparent).
 $kui-color-brand: #0044f4 !default; // Default brand color for the theme.
-$kui-color-text: #000933 !default; // Default text color (blue.100).
+$kui-color-text: #0d0e14 !default; // Default text color (gray.100).
 $kui-color-text-accent: #0044f4 !default; // Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.
 $kui-color-text-danger: #d60027 !default; // Text color for danger actions or messages (red.60).
 $kui-color-text-danger-strong: #ad000e !default; // Strong text color for danger actions or messages (red.70).

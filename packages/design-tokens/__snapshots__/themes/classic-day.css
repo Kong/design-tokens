@@ -37,7 +37,7 @@
     --kui-color-background-info-weak: #5F9AFF;
     --kui-color-background-info-weaker: #BEE2FF;
     --kui-color-background-info-weakest: #EEFAFF;
-    --kui-color-background-inverse: #000933;
+    --kui-color-background-inverse: #0D0E14;
     --kui-color-background-neutral: #6C7489;
     --kui-color-background-neutral-strong: #52596E;
     --kui-color-background-neutral-stronger: #3A3F51;
@@ -45,7 +45,7 @@
     --kui-color-background-neutral-weak: #AFB7C5;
     --kui-color-background-neutral-weaker: #E0E4EA;
     --kui-color-background-neutral-weakest: #F9FAFB;
-    --kui-color-background-overlay: rgba(0, 9, 51, 0.6);
+    --kui-color-background-overlay: rgba(13, 14, 20, 0.6);
     --kui-color-background-primary: #0044F4;
     --kui-color-background-primary-strong: #0030CC;
     --kui-color-background-primary-stronger: #002099;
@@ -96,7 +96,7 @@
     --kui-color-border-primary-weakest: #EEFAFF;
     --kui-color-border-transparent: transparent;
     --kui-color-brand: #0044F4;
-    --kui-color-text: #000933;
+    --kui-color-text: #0D0E14;
     --kui-color-text-accent: #0044F4;
     --kui-color-text-danger: #D60027;
     --kui-color-text-danger-strong: #AD000E;
