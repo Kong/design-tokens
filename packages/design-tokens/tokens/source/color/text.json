@@ -3,8 +3,8 @@
     "$type": "color",
     "text": {
       "_": {
-        "$description": "Default text color (blue.100).",
-        "$value": "{color.alias.blue.100}"
+        "$description": "Default text color (gray.100).",
+        "$value": "{color.alias.gray.100}"
       },
       "accent": {
         "$description": "Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.",
