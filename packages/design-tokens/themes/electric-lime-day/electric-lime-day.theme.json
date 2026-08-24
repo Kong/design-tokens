@@ -2439,11 +2439,11 @@
   },
   "kui-segmented-control-color-background-disabled-selected": {
     "$description": "Segmented control button background color when selected and disabled.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-segmented-control-color-background-selected": {
     "$description": "Segmented control button background color when selected.",
-    "$value": "{color.alias.gray.05}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-segmented-control-color-border": {
     "$description": "Segmented control button border color.",
@@ -2483,7 +2483,7 @@
   },
   "kui-segmented-control-color-text-selected": {
     "$description": "Segmented control button text color when selected.",
-    "$value": "{color.alias.gray.80}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-segmented-control-font-family": {
     "$description": "Segmented control font family.",
