@@ -625,8 +625,8 @@
     --kui-segmented-control-border-radius: 6px;
     --kui-segmented-control-border-width: 1px;
     --kui-segmented-control-color-background: #0D0F0D;
-    --kui-segmented-control-color-background-disabled-selected: #242824;
-    --kui-segmented-control-color-background-selected: #070807;
+    --kui-segmented-control-color-background-disabled-selected: #3D443D;
+    --kui-segmented-control-color-background-selected: #242824;
     --kui-segmented-control-color-border: #697769;
     --kui-segmented-control-color-border-active: #F1F3F1;
     --kui-segmented-control-color-border-disabled: #3D443D;
@@ -636,7 +636,7 @@
     --kui-segmented-control-color-text-active: #F1F3F1;
     --kui-segmented-control-color-text-disabled: #9DA99D;
     --kui-segmented-control-color-text-hover: #D2D7D2;
-    --kui-segmented-control-color-text-selected: #E3E8E3;
+    --kui-segmented-control-color-text-selected: #F9FBF9;
     --kui-segmented-control-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-segmented-control-font-size: 12px;
     --kui-segmented-control-font-weight: 600;
