@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.3.0...@kong/design-tokens@3.3.1) (2026-08-24)
+
+### Bug Fixes
+
+* **segmented-control:** improve active item visibility [KHCP-21506] ([#720](https://github.com/Kong/design-tokens/issues/720)) ([690d9d0](https://github.com/Kong/design-tokens/commit/690d9d05d5112702afcad96300bbb487b2b2dc36))
+
 # [3.3.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.2.10...@kong/design-tokens@3.3.0) (2026-08-20)
 
 ### Features
