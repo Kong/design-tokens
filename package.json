@@ -34,7 +34,7 @@
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.2",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9.39.4",
+    "eslint": "^10.9.0",
     "eslint-plugin-vue": "^10.9.2",
     "jsdom": "^29.1.1",
     "npm-run-all2": "^9.0.3",
