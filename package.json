@@ -67,10 +67,10 @@
       "jiraAppend": "]"
     }
   },
-  "packageManager": "pnpm@11.9.0",
+  "packageManager": "pnpm@11.11.0",
   "engines": {
     "node": ">=20.19.5",
-    "pnpm": ">=10.28.2 || >=11.9.0"
+    "pnpm": ">=10.34.5 >=10.34.5"
   },
   "volta": {
     "node": "24.13.1"
