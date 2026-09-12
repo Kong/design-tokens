@@ -9,6 +9,8 @@ minimumReleaseAgeExclude:
   - '@kong-ui-public/*'
   # Renovate security update: vitest@4.1.11
   - vitest@4.1.11
+  # Renovate security update: pnpm@11.11.0 || 10.34.5
+  - pnpm@11.11.0 || 10.34.5
 
 # When set to no-downgrade, pnpm will fail if a package's trust level has decreased compared to previous releases
 trustPolicy: no-downgrade
