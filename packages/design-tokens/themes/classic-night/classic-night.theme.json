@@ -151,7 +151,7 @@
   },
   "kui-color-background-neutral-weakest": {
     "$description": "Weakest background color for neutral elements.",
-    "$value": "{color.alias.gray.100}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-color-background-overlay": {
     "$description": "Overlay background color.",

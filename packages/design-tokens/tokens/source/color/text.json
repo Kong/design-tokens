@@ -120,12 +120,12 @@
           "$value": "{color.alias.gray.40}"
         },
         "weaker": {
-          "$description": "Weaker text color for neutral elements (gray.20).",
-          "$value": "{color.alias.gray.20}"
+          "$description": "Weaker text color for neutral elements (gray.30).",
+          "$value": "{color.alias.gray.30}"
         },
         "weakest": {
-          "$description": "Weakest text color for neutral elements (gray.10).",
-          "$value": "{color.alias.gray.10}"
+          "$description": "Weakest text color for neutral elements (gray.20).",
+          "$value": "{color.alias.gray.20}"
         }
       },
       "primary": {

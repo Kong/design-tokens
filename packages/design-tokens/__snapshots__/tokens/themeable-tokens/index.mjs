@@ -1329,15 +1329,15 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-background-neutral-weaker",
-    description: "Weaker background color for neutral elements (gray.20).",
+    description: "Weaker background color for neutral elements (gray.30).",
     category: "color",
-    value: "#e0e4ea",
+    value: "#c7ced8",
   },
   {
     name: "--kui-color-background-neutral-weakest",
-    description: "Weakest background color for neutral elements (gray.10).",
+    description: "Weakest background color for neutral elements (gray.20).",
     category: "color",
-    value: "#f9fafb",
+    value: "#e0e4ea",
   },
   {
     name: "--kui-color-background-overlay",
@@ -1581,15 +1581,15 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-border-neutral-weaker",
-    description: "Weaker border color for neutral elements (gray.20)",
+    description: "Weaker border color for neutral elements (gray.30)",
     category: "color",
-    value: "#e0e4ea",
+    value: "#c7ced8",
   },
   {
     name: "--kui-color-border-neutral-weakest",
-    description: "Weakest border color for neutral elements (gray.10)",
+    description: "Weakest border color for neutral elements (gray.20)",
     category: "color",
-    value: "#f9fafb",
+    value: "#e0e4ea",
   },
   {
     name: "--kui-color-border-primary",
@@ -1809,15 +1809,15 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-color-text-neutral-weaker",
-    description: "Weaker text color for neutral elements (gray.20).",
+    description: "Weaker text color for neutral elements (gray.30).",
     category: "color",
-    value: "#e0e4ea",
+    value: "#c7ced8",
   },
   {
     name: "--kui-color-text-neutral-weakest",
-    description: "Weakest text color for neutral elements (gray.10).",
+    description: "Weakest text color for neutral elements (gray.20).",
     category: "color",
-    value: "#f9fafb",
+    value: "#e0e4ea",
   },
   {
     name: "--kui-color-text-primary",
