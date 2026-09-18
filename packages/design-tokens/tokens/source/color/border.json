@@ -76,12 +76,12 @@
           "$value": "{color.alias.gray.40}"
         },
         "weaker": {
-          "$description": "Weaker border color for neutral elements (gray.30)",
-          "$value": "{color.alias.gray.30}"
+          "$description": "Weaker border color for neutral elements (gray.20)",
+          "$value": "{color.alias.gray.20}"
         },
         "weakest": {
-          "$description": "Weakest border color for neutral elements (gray.20)",
-          "$value": "{color.alias.gray.20}"
+          "$description": "Weakest border color for neutral elements (gray.10)",
+          "$value": "{color.alias.gray.10}"
         }
       },
       "primary": {

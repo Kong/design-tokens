@@ -41,7 +41,7 @@
     --kui-color-background-neutral: #828A9E;
     --kui-color-background-neutral-strong: #AFB7C5;
     --kui-color-background-neutral-stronger: #E0E4EA;
-    --kui-color-background-neutral-strongest: #F9FAFB;
+    --kui-color-background-neutral-strongest: #ECEFF3;
     --kui-color-background-neutral-weak: #52596E;
     --kui-color-background-neutral-weaker: #3A3F51;
     --kui-color-background-neutral-weakest: #232633;
@@ -86,7 +86,7 @@
     --kui-color-border-neutral-strongest: #232633;
     --kui-color-border-neutral-weak: #AFB7C5;
     --kui-color-border-neutral-weaker: #E0E4EA;
-    --kui-color-border-neutral-weakest: #F9FAFB;
+    --kui-color-border-neutral-weakest: #ECEFF3;
     --kui-color-border-primary: #0044F4;
     --kui-color-border-primary-strong: #0030CC;
     --kui-color-border-primary-stronger: #002099;
@@ -124,7 +124,7 @@
     --kui-color-text-neutral-strongest: #E0E4EA;
     --kui-color-text-neutral-weak: #232633;
     --kui-color-text-neutral-weaker: #E0E4EA;
-    --kui-color-text-neutral-weakest: #F9FAFB;
+    --kui-color-text-neutral-weakest: #ECEFF3;
     --kui-color-text-primary: #0044F4;
     --kui-color-text-primary-strong: #0030CC;
     --kui-color-text-primary-stronger: #002099;

@@ -150,8 +150,8 @@
           "$value": "#F9FBF9"
         },
         "10": {
-          "$description": "Alias for #F9FAFB.",
-          "$value": "#F9FAFB"
+          "$description": "Alias for #ECEFF3.",
+          "$value": "#ECEFF3"
         },
         "20": {
           "$description": "Alias for #E0E4EA.",

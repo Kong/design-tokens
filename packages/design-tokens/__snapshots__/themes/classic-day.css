@@ -43,8 +43,8 @@
     --kui-color-background-neutral-stronger: #3A3F51;
     --kui-color-background-neutral-strongest: #232633;
     --kui-color-background-neutral-weak: #AFB7C5;
-    --kui-color-background-neutral-weaker: #C7CED8;
-    --kui-color-background-neutral-weakest: #E0E4EA;
+    --kui-color-background-neutral-weaker: #E0E4EA;
+    --kui-color-background-neutral-weakest: #ECEFF3;
     --kui-color-background-overlay: rgba(13, 14, 20, 0.6);
     --kui-color-background-primary: #0044F4;
     --kui-color-background-primary-strong: #0030CC;
@@ -85,8 +85,8 @@
     --kui-color-border-neutral-stronger: #3A3F51;
     --kui-color-border-neutral-strongest: #232633;
     --kui-color-border-neutral-weak: #AFB7C5;
-    --kui-color-border-neutral-weaker: #C7CED8;
-    --kui-color-border-neutral-weakest: #E0E4EA;
+    --kui-color-border-neutral-weaker: #E0E4EA;
+    --kui-color-border-neutral-weakest: #ECEFF3;
     --kui-color-border-primary: #0044F4;
     --kui-color-border-primary-strong: #0030CC;
     --kui-color-border-primary-stronger: #002099;
@@ -123,8 +123,8 @@
     --kui-color-text-neutral-stronger: #3A3F51;
     --kui-color-text-neutral-strongest: #232633;
     --kui-color-text-neutral-weak: #AFB7C5;
-    --kui-color-text-neutral-weaker: #C7CED8;
-    --kui-color-text-neutral-weakest: #E0E4EA;
+    --kui-color-text-neutral-weaker: #E0E4EA;
+    --kui-color-text-neutral-weakest: #ECEFF3;
     --kui-color-text-primary: #0044F4;
     --kui-color-text-primary-strong: #0030CC;
     --kui-color-text-primary-stronger: #002099;
