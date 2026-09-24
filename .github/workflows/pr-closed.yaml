@@ -15,21 +15,21 @@ jobs:
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
 
       - name: Remove preview comment — @kong/design-tokens
-        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           header: pr_preview_@kong/design-tokens
           delete: true
           GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
 
       - name: Remove preview comment — @kong/stylelint-plugin-design-tokens
-        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           header: pr_preview_@kong/stylelint-plugin-design-tokens
           delete: true
           GITHUB_TOKEN: ${{ secrets.KONGPONENTS_BOT_PAT }}
 
       - name: Remove preview comment — @kong/eslint-plugin-design-tokens
-        uses: marocchino/sticky-pull-request-comment@0ea0beb66eb9baf113663a64ec522f60e49231c0 # v3.0.4
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           header: pr_preview_@kong/eslint-plugin-design-tokens
           delete: true
