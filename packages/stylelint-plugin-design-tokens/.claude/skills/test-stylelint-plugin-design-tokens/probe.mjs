@@ -11,8 +11,6 @@
  *
  * It deliberately reuses `test-utils.mjs` rather than calling `stylelint.lint` itself, so the
  * two-pass report/fix split and the CssSyntaxError guard behave exactly as they do in a spec.
- *
- * Runs under the repo's default Node 20 — unlike `pnpm`. See SKILL.md.
  */
 
 import { readFileSync } from 'node:fs'

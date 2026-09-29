@@ -7,8 +7,8 @@ description: Write, extend, or fix tests for @kong/stylelint-plugin-design-token
 
 All paths are relative to `packages/stylelint-plugin-design-tokens/`.
 
-A suite already exists: **152 tests across 4 spec files** (commit `ef5d5a9`). Your job is to make
-new tests match it, not to invent a second style. Read these before writing anything:
+A suite already exists (added in commit `ef5d5a9`). Your job is to make new tests match it, not to
+invent a second style. Read these before writing anything:
 
 | File | What it establishes |
 |---|---|
@@ -22,47 +22,6 @@ new tests match it, not to invent a second style. Read these before writing anyt
 Stack: Vitest 4, plain `.mjs`, ESM, no TypeScript, no build step. There is **deliberately no
 rule-tester package** — `stylelint-vitest-rule-tester` and `jest-preset-stylelint` were both
 evaluated and rejected. Do not add either.
-
-## Commands
-
-Call the binaries directly. This is the primary path — it needs no version juggling and works on
-any Node satisfying the package's `engines` (`>=20.19.5`):
-
-```bash
-../../node_modules/.bin/vitest run --config vitest.config.mjs
-```
-
-```bash
-../../node_modules/.bin/eslint .
-```
-
-### If you want to use `pnpm` instead
-
-`pnpm` in this repo is `pnpm@11.9.0`, which **requires Node 22+**. On an older Node it dies with:
-
-```
-ERR_UNKNOWN_BUILTIN_MODULE: node:sqlite
-```
-
-The repo pins Node **24.13.1** in `.nvmrc` and in the root `package.json`'s `volta.node`. The catch
-is that this package's own `package.json` has **no `volta` pin**, so inside
-`packages/stylelint-plugin-design-tokens/` a Volta user gets their *default* toolchain, not the
-repo's. Check before blaming pnpm:
-
-```bash
-node -v
-```
-
-If that is below v22, activate the pinned version with whatever version manager you use — `nvm use`
-and `fnm use` both read the repo's `.nvmrc`. Volta has no shell-activation command, so prefix the
-call instead:
-
-```bash
-volta run --node 24.13.1 pnpm test
-```
-
-That form works for root-level fan-out too (`pnpm test`, `pnpm lint`, `pnpm install` from the repo
-root), not just single-package scripts.
 
 ## Hard rule: one home for every snippet
 
@@ -169,7 +128,7 @@ node .claude/skills/test-stylelint-plugin-design-tokens/probe.mjs help
 | `record --rule R` | prints paste-ready `{ code, output }` for every invalid fixture, with the messages as comments. Write `{ code, output: null }` first, run this, paste what it prints. |
 | `verify` | cross-checks recorded fixtures against live behavior — output drift, a `valid` fixture that reports, and both autofix invariants. Exit 1 on drift. Faster than vitest while iterating. |
 | `tokens '<value>'` | `extractTokensFromValue()` on one CSS value |
-| `map [property]` | query `PROPERTY_TOKEN_MAP`; no arg lists all 63 enforced properties |
+| `map [property]` | query `PROPERTY_TOKEN_MAP`; no arg lists every enforced property |
 
 `--rule use-proper-token|token-var-usage|all` (default `all`) on the first three. Snippets come from
 argv or stdin, so a heredoc works for multi-line SCSS.
@@ -220,16 +179,16 @@ Recognise these instead of re-discovering them. Each one is annotated at its own
 
 ## Definition of done
 
-1. **Suite green:** `../../node_modules/.bin/vitest run --config vitest.config.mjs`
-2. **Lint clean:** `../../node_modules/.bin/eslint .` — root flat config: **no semicolons**, single
-   quotes, 2-space indent, trailing commas on multiline, `object-curly-spacing: always`.
+1. **Suite green** — this package's `test` script.
+2. **Lint clean** — its `lint` script. Style comes from the root flat config: **no semicolons**,
+   single quotes, 2-space indent, trailing commas on multiline, `object-curly-spacing: always`.
 3. **Mutation check.** A first-time suite that passes vacuously is worse than none. Temporarily
    break the rule under test, confirm the suite goes red, then restore. Verified examples:
 
-   | Mutation | Result |
+   | Rule | Mutation that must turn the suite red |
    |---|---|
-   | `use-proper-token`: `const inappropriateTokens = valueTokens.filter(() => false)` | 16 tests fail |
-   | `token-var-usage`: `return true` as the first line of `isTokenProperlyWrapped` | 34 tests fail |
+   | `use-proper-token` | `const inappropriateTokens = valueTokens.filter(() => false)` |
+   | `token-var-usage` | `return true` as the first line of `isTokenProperlyWrapped` |
 
 4. **No raw CSS literal left in any spec** — this must come back empty:
 
@@ -237,9 +196,9 @@ Recognise these instead of re-discovering them. Each one is annotated at its own
    grep -rn "'\.[a-z] {" --include='*.spec.mjs' .
    ```
 
-5. **Nothing test-related is published.** `npm pack --dry-run` must show 9 files and no
-   `*.spec.mjs`, `test-utils.mjs` or `test-fixtures.mjs`. The `test-*.mjs` helpers sit at the
-   package root (outside the `files` whitelist) for exactly this reason, and `files` carries
+5. **Nothing test-related is published.** `npm pack --dry-run` must list no `*.spec.mjs`,
+   `test-utils.mjs` or `test-fixtures.mjs`. The `test-*.mjs` helpers sit at the package root
+   (outside the `files` whitelist) for exactly this reason, and `files` carries
    `"!**/*.spec.mjs"`. **Do not co-locate helpers under `rules/`** — that directory is whitelisted.
 6. **`node .claude/skills/test-stylelint-plugin-design-tokens/probe.mjs verify`** reports
    `all fixtures match live behavior`.
