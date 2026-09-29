@@ -42,7 +42,7 @@
         <input
           ref="fileInputEl"
           accept=".css,text/css"
-          style="display: none"
+          class="cust-import-file-input"
           type="file"
           @change="applyFromFile"
         >
@@ -192,6 +192,10 @@ function applyFromFile(event: Event) {
   white-space: nowrap;
 
   &:hover { background: $tb-border; color: $tb-text; }
+}
+
+.cust-import-file-input {
+  display: none;
 }
 
 .cust-import-apply-btn {

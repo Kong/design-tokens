@@ -158,6 +158,13 @@ importers:
       stylelint:
         specifier: '>=14.0.0'
         version: 17.14.0(typescript@6.0.3)
+    devDependencies:
+      postcss-scss:
+        specifier: ^4.0.9
+        version: 4.0.9(postcss@8.5.26)
+      vitest:
+        specifier: ^4.1.9
+        version: 4.1.11(@types/node@22.1.0)(jsdom@29.1.1)(vite@8.2.2(@types/node@22.1.0)(esbuild@0.27.2)(jiti@2.4.2)(sass@1.97.3)(yaml@2.9.0))
 
 packages:
 
@@ -8834,16 +8841,16 @@ snapshots:
     dependencies:
       htmlparser2: 8.0.2
       js-tokens: 9.0.1
-      postcss: 8.5.15
-      postcss-safe-parser: 6.0.0(postcss@8.5.15)
+      postcss: 8.5.26
+      postcss-safe-parser: 6.0.0(postcss@8.5.26)
 
   postcss-media-query-parser@0.2.3: {}
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.5.15):
+  postcss-safe-parser@6.0.0(postcss@8.5.26):
     dependencies:
-      postcss: 8.5.15
+      postcss: 8.5.26
 
   postcss-safe-parser@7.0.1(postcss@8.5.15):
     dependencies:
@@ -8852,6 +8859,10 @@ snapshots:
   postcss-scss@4.0.9(postcss@8.5.15):
     dependencies:
       postcss: 8.5.15
+
+  postcss-scss@4.0.9(postcss@8.5.26):
+    dependencies:
+      postcss: 8.5.26
 
   postcss-selector-parser@7.1.4:
     dependencies:
