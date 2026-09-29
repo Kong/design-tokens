@@ -11,13 +11,19 @@
     "index.mjs",
     "rules",
     "utilities",
-    "README.md"
+    "README.md",
+    "!**/*.spec.mjs"
   ],
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run --config vitest.config.mjs"
   },
   "peerDependencies": {
     "stylelint": ">=14.0.0"
+  },
+  "devDependencies": {
+    "postcss-scss": "^4.0.9",
+    "vitest": "^4.1.9"
   },
   "publishConfig": {
     "access": "public"
