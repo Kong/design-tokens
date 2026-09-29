@@ -40,8 +40,7 @@
       </div>
       <div
         v-else
-        class="preview-bar-wrap"
-        style="padding: 16px;"
+        class="preview-bar-wrap preview-bar-wrap--even"
       >
         <div
           class="border-width-demo"
@@ -90,8 +89,7 @@
     <!-- Breakpoint: proportional ruler relative to 1920px as max reference -->
     <template v-else-if="token.category === 'breakpoint'">
       <div
-        class="preview-bar-wrap"
-        style="padding: 16px;"
+        class="preview-bar-wrap preview-bar-wrap--even"
       >
         <div
           class="space-bar breakpoint-bar"
@@ -105,8 +103,7 @@
     <template v-else-if="token.category === 'components'">
       <div
         v-if="componentValueType === 'border-width'"
-        class="preview-bar-wrap"
-        style="padding: 16px;"
+        class="preview-bar-wrap preview-bar-wrap--even"
       >
         <div
           class="border-width-demo"
@@ -236,6 +233,11 @@ const breakpointBarWidth = computed(() => {
   gap: 8px;
   padding: 12px 16px;
   width: 100%;
+
+  // Stroke and ruler demos read better with symmetric breathing room
+  &--even {
+    padding: 16px;
+  }
 }
 
 .space-bar {
