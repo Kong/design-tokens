@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/Kong/design-tokens/compare/@kong/stylelint-plugin-design-tokens@2.0.0...@kong/stylelint-plugin-design-tokens@2.0.1) (2026-09-29)
+
+**Note:** Version bump only for package @kong/stylelint-plugin-design-tokens
+
 # [2.0.0](https://github.com/Kong/design-tokens/compare/@kong/stylelint-plugin-design-tokens@1.0.1...@kong/stylelint-plugin-design-tokens@2.0.0) (2026-07-13)
 
 ### Features
