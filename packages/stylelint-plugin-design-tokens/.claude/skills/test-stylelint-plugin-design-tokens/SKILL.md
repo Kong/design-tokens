@@ -12,8 +12,8 @@ invent a second style. Read these before writing anything:
 
 | File | What it establishes |
 |---|---|
-| `test-utils.mjs` | the lint helper — the only way a rule spec touches stylelint |
-| `test-fixtures.mjs` | the single home for every CSS/SCSS snippet |
+| `test/test-utils.mjs` | the lint helper — the only way a rule spec touches stylelint |
+| `test/test-fixtures.mjs` | the single home for every CSS/SCSS snippet |
 | `rules/use-proper-token/index.spec.mjs` | template for a **non-fixable** rule |
 | `rules/token-var-usage/index.spec.mjs` | template for a **fixable** rule (autofix + stability) |
 | `index.spec.mjs` | entry exports, helper guard, fixture duplicate-detection |
@@ -26,7 +26,7 @@ evaluated and rejected. Do not add either.
 ## Hard rule: one home for every snippet
 
 **No spec file may contain a CSS or SCSS string literal.** Every snippet lives in
-`test-fixtures.mjs`, grouped by rule and outcome; specs reference it by name.
+`test/test-fixtures.mjs`, grouped by rule and outcome; specs reference it by name.
 
 ```js
 export const USE_PROPER_TOKEN = { valid: { ... }, invalid: { ... } }
@@ -75,7 +75,7 @@ spec — see mechanic 2.
    "no fix ran").
 2. **A fixture syntax error is NOT in `parseErrors`.** Stylelint reports `CssSyntaxError` as an
    ordinary `warnings[]` entry, so a typo'd fixture yields exactly one warning and silently
-   satisfies a count assertion. `test-utils.mjs` filters warnings whose `rule !== ruleName` and
+   satisfies a count assertion. `test/test-utils.mjs` filters warnings whose `rule !== ruleName` and
    throws. This is what `index.spec.mjs`'s "test helper" describe block guards.
 3. **`customSyntax: 'postcss-scss'` is mandatory**, and is defaulted inside `lintCss` so no spec can
    forget it. Stylelint does not infer syntax from a filename (`getPostcssResult.mjs` is
@@ -115,7 +115,7 @@ Also assert `valid` fixtures survive a fix pass byte-identical.
 ## Probe: produce expected values, never predict them
 
 Every expected value must be one the rule **produced**. `probe.mjs` is that tool. It imports
-`test-utils.mjs` and `test-fixtures.mjs`, so its two-pass split and `CssSyntaxError` guard behave
+`test/test-utils.mjs` and `test/test-fixtures.mjs`, so its two-pass split and `CssSyntaxError` guard behave
 exactly as a spec's do.
 
 ```bash
@@ -154,7 +154,7 @@ Never land a red suite. Fixing a pinned bug later is then a one-string edit to t
 ### Current inventory of pinned issues
 
 Recognise these instead of re-discovering them. Each one is annotated at its own fixture in
-`test-fixtures.mjs` — grep `KNOWN BUG` / `KNOWN LIMITATION` there for the per-case reasoning.
+`test/test-fixtures.mjs` — grep `KNOWN BUG` / `KNOWN LIMITATION` there for the per-case reasoning.
 
 | | Issue |
 |---|---|
@@ -197,7 +197,7 @@ Recognise these instead of re-discovering them. Each one is annotated at its own
    ```
 
 5. **Nothing test-related is published.** `npm pack --dry-run` must list no `*.spec.mjs`,
-   `test-utils.mjs` or `test-fixtures.mjs`. The `test-*.mjs` helpers sit at the package root
+   `test/test-utils.mjs` or `test/test-fixtures.mjs`. The `test-*.mjs` helpers sit at the package root
    (outside the `files` whitelist) for exactly this reason, and `files` carries
    `"!**/*.spec.mjs"`. **Do not co-locate helpers under `rules/`** — that directory is whitelisted.
 6. **`node .claude/skills/test-stylelint-plugin-design-tokens/probe.mjs verify`** reports
@@ -211,7 +211,7 @@ It must ship with tests. Order of work:
    namespaced with `/`, `meta.fixable` matching reality (mechanic 5).
 2. Add it to the `index.mjs` default-export array, and update `index.spec.mjs`'s ruleName-order and
    `meta.fixable` assertions — both pin the exact array.
-3. Add a `<NAME>` fixture group to `test-fixtures.mjs`, and register it in `index.spec.mjs`'s
+3. Add a `<NAME>` fixture group to `test/test-fixtures.mjs`, and register it in `index.spec.mjs`'s
    `fixtures` duplicate-detection `groups` map.
 4. Add a row to `RULES` in `probe.mjs`.
 5. Explore with `probe.mjs snippet`, record with `probe.mjs record`, then write

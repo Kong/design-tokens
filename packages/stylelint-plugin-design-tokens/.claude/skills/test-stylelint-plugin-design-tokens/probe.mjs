@@ -2,14 +2,14 @@
 /**
  * Fixture probe for @kong/stylelint-plugin-design-tokens' test suite.
  *
- * Every expected value in `test-fixtures.mjs` must be a value the rule *produced*, never one a
+ * Every expected value in `test/test-fixtures.mjs` must be a value the rule *produced*, never one a
  * human predicted. This script is how you produce them:
  *
  *   probe.mjs snippet '<scss>'   ad-hoc: messages + autofix for one snippet
  *   probe.mjs record --rule R    paste-ready `{ code, output }` for every invalid fixture
  *   probe.mjs verify             recorded fixtures vs. actual behavior; exit 1 on drift
  *
- * It deliberately reuses `test-utils.mjs` rather than calling `stylelint.lint` itself, so the
+ * It deliberately reuses `test/test-utils.mjs` rather than calling `stylelint.lint` itself, so the
  * two-pass report/fix split and the CssSyntaxError guard behave exactly as they do in a spec.
  */
 
@@ -21,8 +21,8 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 // .claude/skills/test-stylelint-plugin-design-tokens/ -> package root
 const PKG = resolve(HERE, '../../..')
 
-const { createRuleLinter } = await import(join(PKG, 'test-utils.mjs'))
-const FIXTURES = await import(join(PKG, 'test-fixtures.mjs'))
+const { createRuleLinter } = await import(join(PKG, 'test/test-utils.mjs'))
+const FIXTURES = await import(join(PKG, 'test/test-fixtures.mjs'))
 
 /** Short rule key -> { plugin module, fixture group }. Add a row when a rule is added. */
 const RULES = {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import extractTokensFromValue from './extract-tokens-from-value.mjs'
-import { TOKEN_VALUES } from '../test-fixtures.mjs'
+import { TOKEN_VALUES } from '../test/test-fixtures.mjs'
 
 describe('extractTokensFromValue', () => {
   it('returns the bare token name, without the -- or $ sigil', () => {

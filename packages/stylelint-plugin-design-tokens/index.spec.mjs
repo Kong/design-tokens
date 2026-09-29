@@ -4,8 +4,8 @@ import scssSyntax from 'postcss-scss'
 import plugins from './index.mjs'
 import useProperToken from './rules/use-proper-token/index.mjs'
 import tokenVarUsage from './rules/token-var-usage/index.mjs'
-import { lintCss } from './test-utils.mjs'
-import { MALFORMED, TOKEN_VAR_USAGE, USE_PROPER_TOKEN } from './test-fixtures.mjs'
+import { lintCss } from './test/test-utils.mjs'
+import { MALFORMED, TOKEN_VAR_USAGE, USE_PROPER_TOKEN } from './test/test-fixtures.mjs'
 
 describe('package entry', () => {
   it('default-exports both plugins in a stable order', () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import plugin from './index.mjs'
-import { createRuleLinter } from '../../test-utils.mjs'
-import { USE_PROPER_TOKEN } from '../../test-fixtures.mjs'
+import { createRuleLinter } from '../../test/test-utils.mjs'
+import { USE_PROPER_TOKEN } from '../../test/test-fixtures.mjs'
 
 const linter = createRuleLinter(plugin)
 const { valid, invalid } = USE_PROPER_TOKEN
