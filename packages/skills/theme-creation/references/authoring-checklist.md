@@ -71,11 +71,11 @@ as exhaustive by default). Never edit an existing theme or palette, or any other
       just eyeball — and likewise secondary/danger/card/input; AND the **propagated** components
       (checkbox/radio/switch checked, input focus, selected tabs/rows) carry the brand, not
       Kong-gray. A visible mismatch on the most prominent component, or whole families left
-      un-branded, is NOT done. Note: published `latest` consumes NO `--kui-button-*` component
-      tokens (geometry or per-appearance color), so button appearance/geometry can only be verified
-      against a **consuming build** — ruled out version skew (`--kongponents <consuming build>`)
-      before treating a miss as a bug, but didn't hide behind it if that build does consume the
-      tokens.
+      un-branded, is NOT done. Note: published `latest` consumes the component tokens (e.g.
+      `KButton` reads `--kui-button-*` colors and geometry), so on `latest` a miss is a theme bug.
+      On an older target build, confirmed it consumes the tokens in question (grep its
+      `dist/kongponents.css` for `var(--kui-<component>-`) — ruled out version skew before treating a
+      miss as a bug, but didn't hide behind it if that build does consume the tokens.
 - [ ] Got the user's sign-off on the rendered result, not just the planned spec.
 
 ## Finish
