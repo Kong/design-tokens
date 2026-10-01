@@ -265,12 +265,13 @@ Structural pass (guards green) ≠ *looks right*. Close the gap with two checks:
    **Preview against the Kongponents version the user actually runs.** A version only consumes the
    tokens *it* was built to read — a published version may read only the semantic fallback, so
    component tokens (button radius/padding, per-appearance colors, etc.) won't show and a correct
-   theme looks under-changed. Observed concretely: the published `latest` consumes **none** of the
-   `--kui-button-*` component tokens — not geometry (`-padding-*`/`-border-radius-*`/`-font-*`) and
-   not per-appearance colors (`-secondary`/`-tertiary`) — it hardcodes button geometry and derives
-   secondary/tertiary from the primary semantic tier. So a two-tone brand or a distinct button
-   density **cannot be verified on `latest`**; you must preview against the build that consumes the
-   component tokens. Set both tiers (Step 3.5) so it renders on either, and pass
+   theme looks under-changed. Current published Kongponents (`latest`) **does** consume the
+   component tokens — e.g. `KButton` reads `--kui-button-*` for per-appearance colors and geometry
+   (`var(--kui-button-color-background-primary, var(--kui-color-background-primary, …))`) — so
+   on `latest` component-token treatments render as authored. Older builds may not. Don't assume
+   either way for the build the user runs: check it, by grepping that version's stylesheet for the
+   component's tokens (e.g. `curl -sL https://unpkg.com/@kong/kongponents@<ver>/dist/kongponents.css |
+   grep -o 'var(--kui-button-[a-z-]*' | sort -u`). Set both tiers (Step 3.5) so it renders on either, and pass
    `--kongponents <version|tag>` (or `--kongponents-css`/`--kongponents-esm` for a PR/canary build)
    to match the target — ask the user which build they run if you don't know. If the source's
    component character isn't showing, first rule out version skew — don't "fix" a theme that's
