@@ -8,7 +8,7 @@
 
 # Kong Design Tokens
 
-This document outlines the majority of the available tokens.
+This document outlines the majority of the available tokens and explains how to use them — see [Usage](#usage) at the end.
 
 ## SCSS
 
@@ -9803,3 +9803,119 @@ export const KUI_THEMEABLE_TOKENS = [
 ```
 
 </details>
+
+## Usage
+
+### Choosing a format
+
+Themes and host-application overrides work by setting `--kui-*` custom properties at runtime. SCSS variables and JavaScript constants are replaced with static values at compile time, so a value used on its own **ignores every theme**. Whenever a token styles the DOM, reference the CSS custom property and pass the static token as its fallback:
+
+| Context | Pattern |
+|---|---|
+| SCSS declaration | `color: var(--kui-color-text-primary, $kui-color-text-primary);` |
+| Vue template binding | `` :style="{ color: `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_PRIMARY})` }" `` |
+| `@media` query | `@media (min-width: $kui-breakpoint-phablet)` — custom properties are not valid in media queries |
+| Non-DOM consumers (canvas charts, JS math, `matchMedia`) | `KUI_BREAKPOINT_PHABLET` — the constant on its own; `var()` only resolves in CSS, so these values do not follow themes |
+
+The custom property name always matches the token it falls back to:
+
+```
+--kui-color-text-primary  ↔  $kui-color-text-primary  ↔  KUI_COLOR_TEXT_PRIMARY
+```
+
+Always include the fallback. A bare `var(--kui-color-text-primary)` falls back to the inherited or initial value when nothing defines the property, and neither linter flags it.
+
+### Component tokens
+
+Component tokens (`--kui-button-*`, `--kui-input-*`, …) have **no value, no SCSS variable, and no JavaScript constant**. They are override slots that only take effect when a theme sets them. Use one as the outermost `var()` and fall through to the semantic token:
+
+```scss
+border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30, $kui-border-radius-30));
+//                 ↑ component token (unset by default)  ↑ semantic token          ↑ static fallback
+```
+
+Never reference a component token without that semantic fallback — on its own it is unset unless a theme writes it.
+
+### Linting
+
+Two plugins enforce the patterns above. Install them as `devDependencies` alongside `@kong/design-tokens`:
+
+```sh
+pnpm add -D @kong/stylelint-plugin-design-tokens stylelint
+pnpm add -D @kong/eslint-plugin-design-tokens eslint eslint-plugin-vue vue-eslint-parser
+```
+
+Stylelint (your project must already parse SCSS and Vue `<style>` blocks, e.g. via `postcss-scss` / `postcss-html`):
+
+```js
+export default {
+  plugins: ['@kong/stylelint-plugin-design-tokens'],
+  rules: {
+    '@kong/stylelint-plugin-design-tokens/token-var-usage': true,
+    '@kong/stylelint-plugin-design-tokens/use-proper-token': true,
+  },
+}
+```
+
+ESLint (flat config, Vue SFCs):
+
+```js
+import vue from 'eslint-plugin-vue'
+import designTokens from '@kong/eslint-plugin-design-tokens'
+
+export default [
+  ...vue.configs['flat/recommended'],
+  { files: ['**/*.vue'], ...designTokens.configs.recommended },
+]
+```
+
+Run `stylelint --fix` and `eslint --fix` to apply the autofixes described below. Full rule documentation: [stylelint plugin](https://github.com/Kong/design-tokens/tree/main/packages/stylelint-plugin-design-tokens#readme), [ESLint plugin](https://github.com/Kong/design-tokens/tree/main/packages/eslint-plugin-design-tokens#readme).
+
+#### `token-var-usage` (stylelint)
+
+Every `$kui-*` SCSS variable in a declaration must sit inside `var(--kui-<same-name>, $kui-<same-name>)` or `var(--kui-<same-name>, #{$kui-<same-name>})` — exactly one space after the comma, no other spaces. Bare tokens and misformatted `var()` calls are autofixed.
+
+Watch out for:
+
+- **SCSS variable assignments are checked too.** `$gap: $kui-space-40;` is rewritten to `$gap: var(--kui-space-40, $kui-space-40);`, which breaks any Sass math done with `$gap` afterwards. Do the math in CSS instead: `calc(var(--kui-space-40, $kui-space-40) * 2)`.
+- **Sass functions can't take a runtime value.** `darken()`, `math.div()`, etc. fail on a `var()` argument. Prefer CSS-native equivalents (`calc()`, `color-mix()`) or a token that already expresses the value you need.
+- **Keep each `var()` on one line.** Multi-line `var()` calls are not parsed correctly.
+- **Standalone interpolation is reported but not fixed.** For `#{$kui-color-text-primary}` you choose between the plain and the interpolated `var()` form yourself.
+- **`@media` parameters are not checked**, so `$kui-breakpoint-*` can be used there directly.
+
+#### `use-proper-token` (stylelint)
+
+Reports a token used on a property it was not designed for, e.g. `background-color: var(--kui-color-text-primary, $kui-color-text-primary)`. It checks both `--kui-*` and `$kui-*` references and has **no autofix**. Component-prefixed tokens are matched by family, so `--kui-button-color-background-primary` is valid wherever `color-background` is. Properties not listed below are not checked.
+
+| Property | Allowed token families |
+|---|---|
+| `background`, `background-color` | `color-background`, `color-brand`, `status-color` |
+| `color` | `color-text`, `icon-color`, `status-color`, `color-brand` |
+| `fill`, `stroke` | `color-text`, `color-brand`, `status-color` |
+| `text-decoration-color` | `color-text`, `color-brand` |
+| `border`, `border-{side}` | `border-width`, `border-radius`, `color-border`, `color-brand` |
+| `border-color`, `border-{side}-color`, `outline-color` | `color-border`, `color-brand` |
+| `border-width`, `border-{side}-width`, `outline-width` | `border-width` |
+| `outline` | `border-width`, `color-border`, `color-brand` |
+| `border-radius`, `border-{corner}-radius` | `border-radius` |
+| `box-shadow` | `shadow`, `border-width`, `color-border`, `color-brand` |
+| `margin*`, `gap`, `row-gap`, `column-gap`, `border-spacing` | `space` |
+| `padding*` | `space`, `padding` |
+| `font` | `font-family`, `font-size`, `font-weight` |
+| `font-family`, `font-size`, `font-weight`, `line-height`, `letter-spacing` | the token family of the same name |
+| `width`, `min-width`, `max-width` | `icon-size`, `breakpoint` |
+| `height`, `min-height`, `max-height` | `icon-size` |
+| `top`, `right`, `bottom`, `left`, `inset`, `background-size`, `column-width` | none — no token may be used |
+
+The source of truth is [`token-map.mjs`](https://github.com/Kong/design-tokens/blob/main/packages/stylelint-plugin-design-tokens/rules/use-proper-token/token-map.mjs).
+
+#### `token-constant-requires-css-var` (ESLint)
+
+The template-side counterpart of `token-var-usage`: a `KUI_*` constant imported from `@kong/design-tokens` and used in a Vue `<template>` binding must be wrapped as `` `var(--kui-x, ${KUI_X})` ``. Only template bindings are checked — `<script>` code is not, and `<style>` blocks are covered by stylelint.
+
+- **Autofixed:** direct bindings (`:color="KUI_X"`), ternary branches, and object values in `:style`.
+- **Reported, fix by hand:** template literals, string concatenation, function arguments (`darken(KUI_X)` — the function may not accept a `var()` string), and a `<script setup>` variable holding a token (`const c = KUI_X`). Wrap at the binding site.
+- **Not detected:** tokens placed in a script-level object, `ref()`, or `computed()` before being bound, namespace imports (`import * as tokens`), re-exports through your own barrel files, and render functions / JSX. Wrap the token where the value is created, e.g. `` const styles = { padding: `var(--kui-space-40, ${KUI_SPACE_40})` } ``.
+- **Excluded:** `KUI_BREAKPOINT_*` constants, which feed media-query logic where custom properties don't work.
+
+Tokens from other packages can be tracked with the `importSources` option: `['error', { importSources: ['@kong/design-tokens', 'my-tokens'] }]`.

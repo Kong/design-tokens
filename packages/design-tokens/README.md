@@ -320,21 +320,23 @@ Now that we have set a value for the CSS variable `--kui-color-text-primary` in 
 
 ### Host applications
 
-Typically, a host application should only utilize the SCSS and/or JavaScript variables to define its styles. Host applications typically **do not need to be customized** after compile time, meaning there is no reason to use the CSS variables with SCSS variable fallbacks. Here's an example:
+Host applications should reference tokens the same way components do: the CSS custom property first, with the SCSS variable as the fallback. SCSS variables are replaced with static values during the build, so a bare `$kui-*` reference ignores [themes](#themes) and any `--kui-*` override set at runtime. The [`token-var-usage`](../stylelint-plugin-design-tokens/README.md#token-var-usage) Stylelint rule enforces this format and reports bare SCSS tokens as errors. Here's an example:
 
 ```html
 <style lang="scss">
 // Import SCSS variables
 @import "@kong/design-tokens/tokens/scss/variables";
 
-// We directly reference the SCSS variables here which will be replaced with static values during the build
+// The CSS custom property picks up theme overrides; the SCSS variable is the static fallback
 .my-app-custom-class {
-  color: $kui-color-text-primary;
-  font-weight: $kui-font-weight-semibold;
-  padding: $kui-space-20 $kui-space-40;
+  color: var(--kui-color-text-primary, $kui-color-text-primary);
+  font-weight: var(--kui-font-weight-semibold, $kui-font-weight-semibold);
+  padding: var(--kui-space-20, $kui-space-20) var(--kui-space-40, $kui-space-40);
 }
 </style>
 ```
+
+The same applies to JavaScript constants bound in Vue templates — wrap them as `` `var(--kui-color-text-primary, ${KUI_COLOR_TEXT_PRIMARY})` ``, which the [`token-constant-requires-css-var`](../eslint-plugin-design-tokens/README.md#token-constant-requires-css-var) ESLint rule enforces. See the Usage section of [TOKENS.md](TOKENS.md#usage) for the full set of patterns and linting rules.
 
 #### Kongponents
 
