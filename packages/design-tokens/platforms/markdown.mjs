@@ -17,7 +17,6 @@ Themes and host-application overrides work by setting \`--kui-*\` custom propert
 | Context | Pattern |
 |---|---|
 | SCSS declaration | \`color: var(--kui-color-text-primary, $kui-color-text-primary);\` |
-| Defining a custom property in SCSS | \`--my-gap: var(--kui-space-40, #{$kui-space-40});\` |
 | Vue template binding | \`\` :style="{ color: \`var(--kui-color-text-primary, \${KUI_COLOR_TEXT_PRIMARY})\` }" \`\` |
 | \`@media\` query | \`@media (min-width: $kui-breakpoint-phablet)\` — custom properties are not valid in media queries |
 | Non-DOM consumers (canvas charts, JS math, \`matchMedia\`) | \`KUI_BREAKPOINT_PHABLET\` — the constant on its own; \`var()\` only resolves in CSS, so these values do not follow themes |
