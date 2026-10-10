@@ -182,12 +182,12 @@
           "$value": "#3A3F51"
         },
         "90": {
-          "$description": "Alias for #232633.",
-          "$value": "#232633"
+          "$description": "Alias for #141518.",
+          "$value": "#141518"
         },
         "100": {
-          "$description": "Alias for #0D0E14.",
-          "$value": "#0D0E14"
+          "$description": "Alias for #0D0E10.",
+          "$value": "#0D0E10"
         }
       },
       "green": {
