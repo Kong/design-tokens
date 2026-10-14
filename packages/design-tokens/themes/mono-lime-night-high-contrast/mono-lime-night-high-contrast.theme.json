@@ -201,7 +201,7 @@
   },
   "kui-badge-shadow-focus": {
     "$description": "Badge focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-border-radius-0": {
     "$description": "0px border radius.",
@@ -285,7 +285,7 @@
   },
   "kui-breadcrumbs-shadow-focus": {
     "$description": "Breadcrumbs link focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-button-border-radius-large": {
     "$description": "Large button border radius.",
@@ -569,7 +569,7 @@
   },
   "kui-button-shadow-focus": {
     "$description": "Button focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-card-actions-gap": {
     "$description": "Gap between card action items.",
@@ -653,7 +653,7 @@
   },
   "kui-checkbox-color-background-checked": {
     "$description": "Checkbox background color when checked or indeterminate.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-checkbox-color-icon": {
     "$description": "Checkbox icon color when checked or indeterminate.",
@@ -665,15 +665,15 @@
   },
   "kui-checkbox-shadow-border-checked": {
     "$description": "Checkbox border shadow when checked or indeterminate.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.60} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.70} inset"
   },
   "kui-checkbox-shadow-border-hover": {
     "$description": "Checkbox border shadow on hover.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.50} inset"
   },
   "kui-checkbox-shadow-focus": {
     "$description": "Checkbox focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-code-block-actions-border-width": {
     "$description": "Code block actions toolbar bottom border width.",
@@ -753,7 +753,7 @@
   },
   "kui-collapse-trigger-shadow-focus": {
     "$description": "Collapse trigger button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-color-background": {
     "$description": "Default background color for containers (white).",
@@ -965,7 +965,7 @@
   },
   "kui-color-border-accent": {
     "$description": "Accent border color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-color-border-danger": {
     "$description": "Border color for danger actions or messages (red.60).",
@@ -1069,7 +1069,7 @@
   },
   "kui-color-brand": {
     "$description": "Default brand color for the theme.",
-    "$value": "{color.alias.blue.60}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-color-text": {
     "$description": "Default text color (gray.100).",
@@ -1077,7 +1077,7 @@
   },
   "kui-color-text-accent": {
     "$description": "Accent text color for emphasis on non-primary UI. Distinct from the primary action color, used to add touches of the theme accent color across themes.",
-    "$value": "{color.alias.electric_lime.05}"
+    "$value": "{color.alias.electric_lime.10}"
   },
   "kui-color-text-danger": {
     "$description": "Text color for danger actions or messages (red.60).",
@@ -1289,7 +1289,7 @@
   },
   "kui-copy-icon-color-text-hover": {
     "$description": "Copy-to-clipboard icon text color on hover and focus (non-badge appearance).",
-    "$value": "{color.alias.electric_lime.05}"
+    "$value": "{color.alias.electric_lime.10}"
   },
   "kui-copy-line-height": {
     "$description": "Copy text line height.",
@@ -1305,11 +1305,11 @@
   },
   "kui-date-time-picker-day-color-background-selected": {
     "$description": "Date-time picker calendar day background color when selected.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-date-time-picker-day-color-background-selected-hover": {
     "$description": "Date-time picker calendar day background color when selected, on hover.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-date-time-picker-day-color-background-today": {
     "$description": "Date-time picker calendar day background color for today.",
@@ -1329,7 +1329,7 @@
   },
   "kui-date-time-picker-shadow-focus": {
     "$description": "Date-time picker calendar day focus-visible ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-dropdown-border-radius": {
     "$description": "Dropdown popover border radius.",
@@ -1361,7 +1361,7 @@
   },
   "kui-dropdown-item-color-background-selected": {
     "$description": "Selected dropdown item background color.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-dropdown-item-color-background-selected-disabled": {
     "$description": "Selected and disabled dropdown item background color.",
@@ -1413,7 +1413,7 @@
   },
   "kui-dropdown-item-shadow-focus": {
     "$description": "Dropdown item focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-empty-state-color-background": {
     "$description": "Empty state container background color.",
@@ -1557,7 +1557,7 @@
   },
   "kui-file-upload-dropzone-shadow-focus": {
     "$description": "File upload dropzone outer focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-filter-group-clear-border-radius": {
     "$description": "Border radius of the focus highlight around the pill clear button.",
@@ -1581,11 +1581,11 @@
   },
   "kui-filter-group-pill-color-background-selected": {
     "$description": "Filter pill background color when a selection is applied.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-filter-group-pill-color-background-selected-hover": {
     "$description": "Filter pill background color on hover and focus when a selection is applied.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-filter-group-pill-color-border": {
     "$description": "Filter pill border color (default, no selection).",
@@ -1597,7 +1597,7 @@
   },
   "kui-filter-group-pill-color-border-selected": {
     "$description": "Filter pill border color when a selection is applied.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-filter-group-pill-color-text": {
     "$description": "Filter pill text color (default, no selection).",
@@ -1617,7 +1617,7 @@
   },
   "kui-filter-group-pill-shadow-focus": {
     "$description": "Filter pill focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-filter-group-selector-color-text": {
     "$description": "Filter selector empty (no filters found) message text color.",
@@ -1807,11 +1807,11 @@
   },
   "kui-input-shadow-border-hover": {
     "$description": "Input border shadow on hover.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.50} inset"
   },
   "kui-input-shadow-focus": {
     "$description": "Input outer focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-input-switch-border-radius-large": {
     "$description": "Input switch large size border radius.",
@@ -1835,11 +1835,11 @@
   },
   "kui-input-switch-color-background-selected": {
     "$description": "Input switch track background color when on.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-input-switch-color-background-selected-hover": {
     "$description": "Input switch track background color when on and hovered.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-input-switch-icon-color-background": {
     "$description": "Input switch icon background color.",
@@ -1863,7 +1863,7 @@
   },
   "kui-input-switch-shadow-focus": {
     "$description": "Input switch focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-input-switch-thumb-border-radius": {
     "$description": "Input switch thumb ring border radius.",
@@ -1891,7 +1891,7 @@
   },
   "kui-input-switch-thumb-shadow-border-selected": {
     "$description": "Input switch thumb border shadow when on.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.60} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.70} inset"
   },
   "kui-label-color-text": {
     "$description": "Label text color.",
@@ -1995,7 +1995,7 @@
   },
   "kui-link-color-text-hover": {
     "$description": "Link text color on hover and focus-visible.",
-    "$value": "{color.alias.electric_lime.05}"
+    "$value": "{color.alias.electric_lime.10}"
   },
   "kui-link-font-weight": {
     "$description": "Link font weight.",
@@ -2003,7 +2003,7 @@
   },
   "kui-link-shadow-focus": {
     "$description": "Link focus-visible ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-link-text-decoration": {
     "$description": "Link text decoration (e.g. underline).",
@@ -2139,7 +2139,7 @@
   },
   "kui-modal-close-shadow-focus": {
     "$description": "Modal close button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-modal-color-background": {
     "$description": "Modal dialog background color.",
@@ -2327,7 +2327,7 @@
   },
   "kui-pagination-color-background-selected": {
     "$description": "Pagination current (selected) page button background color.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-pagination-color-border": {
     "$description": "Pagination page button border color.",
@@ -2339,7 +2339,7 @@
   },
   "kui-pagination-color-border-selected": {
     "$description": "Pagination current (selected) page button border color.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-pagination-color-text": {
     "$description": "Pagination page button text color.",
@@ -2359,7 +2359,7 @@
   },
   "kui-pagination-shadow-focus": {
     "$description": "Pagination page button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-pop-border-radius": {
     "$description": "Popover container border radius.",
@@ -2383,7 +2383,7 @@
   },
   "kui-pop-close-shadow-focus": {
     "$description": "Popover close button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-pop-color-background": {
     "$description": "Popover container background color (also used for the caret fill).",
@@ -2443,7 +2443,7 @@
   },
   "kui-radio-color-background-checked": {
     "$description": "Radio background color when checked.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-radio-shadow-border": {
     "$description": "Radio default border shadow.",
@@ -2451,15 +2451,15 @@
   },
   "kui-radio-shadow-border-checked": {
     "$description": "Radio border shadow when checked.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.60} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.70} inset"
   },
   "kui-radio-shadow-border-hover": {
     "$description": "Radio border shadow on hover.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.40} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.50} inset"
   },
   "kui-radio-shadow-focus": {
     "$description": "Radio focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-segmented-control-border-radius": {
     "$description": "Segmented control button border radius (applied to the outer corners of the first and last buttons).",
@@ -2479,7 +2479,7 @@
   },
   "kui-segmented-control-color-background-selected": {
     "$description": "Segmented control button background color when selected.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-segmented-control-color-border": {
     "$description": "Segmented control button border color.",
@@ -2499,7 +2499,7 @@
   },
   "kui-segmented-control-color-border-selected": {
     "$description": "Segmented control button border color when selected.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-segmented-control-color-text": {
     "$description": "Segmented control button text color.",
@@ -2547,7 +2547,7 @@
   },
   "kui-segmented-control-shadow-focus": {
     "$description": "Segmented control button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-select-item-color-background": {
     "$description": "Select item background color.",
@@ -2559,7 +2559,7 @@
   },
   "kui-select-item-color-background-selected": {
     "$description": "Selected select item background color.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-select-item-color-background-selected-disabled": {
     "$description": "Selected and disabled select item background color.",
@@ -2627,7 +2627,7 @@
   },
   "kui-shadow-focus": {
     "$description": "0px 0px 0px 4px rgba(0, 68, 244, 0.2)",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-skeleton-border-radius": {
     "$description": "Skeleton placeholder box border radius.",
@@ -2703,7 +2703,7 @@
   },
   "kui-slideout-close-shadow-focus": {
     "$description": "Slideout close button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-slideout-color-background": {
     "$description": "Slideout panel background color.",
@@ -2759,7 +2759,7 @@
   },
   "kui-slider-fill-color-background": {
     "$description": "Slider filled (progress) track background color.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-slider-fill-color-background-disabled": {
     "$description": "Slider filled (progress) track background color when disabled.",
@@ -2799,7 +2799,7 @@
   },
   "kui-slider-thumb-shadow-focus": {
     "$description": "Slider thumb (handle) focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-slider-thumb-size": {
     "$description": "Slider thumb (handle) height and width.",
@@ -3231,7 +3231,7 @@
   },
   "kui-stepper-color-background-selected": {
     "$description": "Stepper step indicator (circle) background color for the current/active step.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-stepper-color-border": {
     "$description": "Stepper step indicator (circle) border color for incomplete (default) steps.",
@@ -3259,7 +3259,7 @@
   },
   "kui-stepper-connector-color-background-completed": {
     "$description": "Stepper connector line color following a completed step.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-stepper-font-family": {
     "$description": "Stepper step label font family.",
@@ -3287,7 +3287,7 @@
   },
   "kui-table-cell-shadow-resize-hover": {
     "$description": "Table body cell resize-handle hover indicator shadow.",
-    "$value": "1px 0px 0px 0px {color.alias.electric_lime.50}"
+    "$value": "1px 0px 0px 0px {color.alias.electric_lime.60}"
   },
   "kui-table-color-background": {
     "$description": "Table background color.",
@@ -3327,7 +3327,7 @@
   },
   "kui-table-header-shadow-resize-hover": {
     "$description": "Table header resize-handle hover indicator shadow.",
-    "$value": "1px 0px 0px 0px {color.alias.electric_lime.50}"
+    "$value": "1px 0px 0px 0px {color.alias.electric_lime.60}"
   },
   "kui-table-header-shadow-scrolled": {
     "$description": "Table header shadow when the table body is scrolled.",
@@ -3379,7 +3379,7 @@
   },
   "kui-tabs-color-border-selected": {
     "$description": "Tabs current (selected) tab bottom border color — the active-tab underline (default appearance).",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-tabs-color-text": {
     "$description": "Tabs tab link text color.",
@@ -3435,7 +3435,7 @@
   },
   "kui-tabs-shadow-focus": {
     "$description": "Tabs tab link focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-toaster-border-radius": {
     "$description": "Toaster border radius.",
@@ -3451,7 +3451,7 @@
   },
   "kui-toaster-close-shadow-focus": {
     "$description": "Toaster close button focus-visible shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-toaster-color-background": {
     "$description": "Toaster background color.",
@@ -3579,7 +3579,7 @@
   },
   "kui-tree-list-color-background-selected": {
     "$description": "Tree list item background color when selected.",
-    "$value": "{color.alias.electric_lime.50}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-tree-list-color-border": {
     "$description": "Tree list item border color.",
@@ -3591,7 +3591,7 @@
   },
   "kui-tree-list-color-border-selected": {
     "$description": "Tree list item border color when selected.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.70}"
   },
   "kui-tree-list-color-text": {
     "$description": "Tree list item text color.",
@@ -3619,7 +3619,7 @@
   },
   "kui-tree-list-shadow-focus": {
     "$description": "Tree list item focus-visible shadow (focus ring).",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   },
   "kui-truncate-collapse-trigger-color-background": {
     "$description": "Truncate collapse trigger button background color.",
@@ -3639,10 +3639,10 @@
   },
   "kui-truncate-expand-trigger-color-text-hover": {
     "$description": "Truncate expand trigger button text color on hover and focus.",
-    "$value": "{color.alias.electric_lime.05}"
+    "$value": "{color.alias.electric_lime.10}"
   },
   "kui-truncate-shadow-focus": {
     "$description": "Truncate expand and collapse trigger button focus-visible ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.32)"
+    "$value": "0px 0px 0px 3px rgba(163, 204, 0, 0.32)"
   }
 }

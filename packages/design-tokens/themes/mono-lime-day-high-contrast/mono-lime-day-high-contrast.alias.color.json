@@ -100,48 +100,48 @@
       },
       "electric_lime": {
         "05": {
-          "$description": "Alias for #F8FFE6.",
-          "$value": "#F8FFE6"
+          "$description": "Alias for #FEFFF8.",
+          "$value": "#FEFFF8"
         },
         "10": {
-          "$description": "Alias for #EEFFB3.",
-          "$value": "#EEFFB3"
+          "$description": "Alias for #FCFFEE.",
+          "$value": "#FCFFEE"
         },
         "20": {
-          "$description": "Alias for #E0FF70.",
-          "$value": "#E0FF70"
+          "$description": "Alias for #F2FFBE.",
+          "$value": "#F2FFBE"
         },
         "30": {
-          "$description": "Alias for #D6FF3D.",
-          "$value": "#D6FF3D"
+          "$description": "Alias for #E9FF8F.",
+          "$value": "#E9FF8F"
         },
         "40": {
-          "$description": "Alias for #D0FF1A.",
-          "$value": "#D0FF1A"
+          "$description": "Alias for #DFFF5F.",
+          "$value": "#DFFF5F"
         },
         "50": {
+          "$description": "Alias for #D6FF30.",
+          "$value": "#D6FF30"
+        },
+        "60": {
           "$description": "Alias for #CCFF00.",
           "$value": "#CCFF00"
         },
-        "60": {
-          "$description": "Alias for #B3E000.",
-          "$value": "#B3E000"
-        },
         "70": {
-          "$description": "Alias for #8AAD00.",
-          "$value": "#8AAD00"
+          "$description": "Alias for #A3CC00.",
+          "$value": "#A3CC00"
         },
         "80": {
-          "$description": "Alias for #5C7300.",
-          "$value": "#5C7300"
+          "$description": "Alias for #7A9900.",
+          "$value": "#7A9900"
         },
         "90": {
-          "$description": "Alias for #3D4D00.",
-          "$value": "#3D4D00"
+          "$description": "Alias for #526600.",
+          "$value": "#526600"
         },
         "100": {
-          "$description": "Alias for #1F2700.",
-          "$value": "#1F2700"
+          "$description": "Alias for #293300.",
+          "$value": "#293300"
         }
       },
       "gray": {
