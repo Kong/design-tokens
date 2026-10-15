@@ -479,7 +479,7 @@
     --kui-input-switch-thumb-color-background-disabled: #FFFFFF;
     --kui-input-switch-thumb-shadow-border: 0px 0px 0px 1px #E5E5E5 inset;
     --kui-input-switch-thumb-shadow-border-disabled: 0px 0px 0px 1px #E5E5E5 inset;
-    --kui-input-switch-thumb-shadow-border-selected: 0px 0px 0px 1px #262626 inset;
+    --kui-input-switch-thumb-shadow-border-selected: 0px 0px 0px 1px #B3E000 inset;
     --kui-label-color-text: #404040;
     --kui-label-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-label-font-size: 14px;

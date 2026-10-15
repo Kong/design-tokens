@@ -1891,7 +1891,7 @@
   },
   "kui-input-switch-thumb-shadow-border-selected": {
     "$description": "Input switch thumb border shadow when on.",
-    "$value": "0px 0px 0px 1px {color.alias.gray.80} inset"
+    "$value": "0px 0px 0px 1px {color.alias.electric_lime.70} inset"
   },
   "kui-label-color-text": {
     "$description": "Label text color.",
