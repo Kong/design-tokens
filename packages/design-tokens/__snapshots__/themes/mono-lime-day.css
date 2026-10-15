@@ -476,7 +476,7 @@
     --kui-input-switch-thumb-border-radius: 100px;
     --kui-input-switch-thumb-border-width: 1px;
     --kui-input-switch-thumb-color-background: #FFFFFF;
-    --kui-input-switch-thumb-color-background-disabled: #E5E5E5;
+    --kui-input-switch-thumb-color-background-disabled: #FFFFFF;
     --kui-input-switch-thumb-shadow-border: 0px 0px 0px 1px #E5E5E5 inset;
     --kui-input-switch-thumb-shadow-border-disabled: 0px 0px 0px 1px #E5E5E5 inset;
     --kui-input-switch-thumb-shadow-border-selected: 0px 0px 0px 1px #A3CC00 inset;
@@ -670,7 +670,7 @@
     --kui-skeleton-card-color-border: #E5E5E5;
     --kui-skeleton-color-background: #F5F5F5;
     --kui-skeleton-color-background-shimmer: #FFFFFF;
-    --kui-skeleton-fullscreen-color-background: #F5F5F5;
+    --kui-skeleton-fullscreen-color-background: #FFFFFF;
     --kui-skeleton-progress-border-radius: 100px;
     --kui-skeleton-progress-color-background: #F5F5F5;
     --kui-skeleton-progress-color-background-active: #F5F5F5;

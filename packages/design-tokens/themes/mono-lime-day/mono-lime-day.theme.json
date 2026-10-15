@@ -1879,7 +1879,7 @@
   },
   "kui-input-switch-thumb-color-background-disabled": {
     "$description": "Input switch thumb background color when disabled.",
-    "$value": "{color.alias.gray.20}"
+    "$value": "{color.alias.white}"
   },
   "kui-input-switch-thumb-shadow-border": {
     "$description": "Input switch thumb border shadow.",
@@ -2655,7 +2655,7 @@
   },
   "kui-skeleton-fullscreen-color-background": {
     "$description": "Fullscreen skeleton loader backdrop/overlay background color.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.white}"
   },
   "kui-skeleton-progress-border-radius": {
     "$description": "Fullscreen skeleton progress bar (track and fill) border radius.",

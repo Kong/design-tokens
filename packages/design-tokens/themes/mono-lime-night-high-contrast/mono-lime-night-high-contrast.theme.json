@@ -605,7 +605,7 @@
   },
   "kui-card-color-background": {
     "$description": "Card background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
@@ -649,7 +649,7 @@
   },
   "kui-checkbox-color-background": {
     "$description": "Checkbox background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-checkbox-color-background-checked": {
     "$description": "Checkbox background color when checked or indeterminate.",
@@ -1341,7 +1341,7 @@
   },
   "kui-dropdown-item-color-background": {
     "$description": "Dropdown item background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-dropdown-item-color-background-active": {
     "$description": "Dropdown item background color when active.",
@@ -1417,7 +1417,7 @@
   },
   "kui-empty-state-color-background": {
     "$description": "Empty state container background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-empty-state-font-family": {
     "$description": "Empty state font family.",
@@ -1739,7 +1739,7 @@
   },
   "kui-input-color-background": {
     "$description": "Input background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-input-color-background-disabled": {
     "$description": "Input background color when disabled.",
@@ -1875,11 +1875,11 @@
   },
   "kui-input-switch-thumb-color-background": {
     "$description": "Input switch thumb background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-input-switch-thumb-color-background-disabled": {
     "$description": "Input switch thumb background color when disabled.",
-    "$value": "{color.alias.gray.80}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-input-switch-thumb-shadow-border": {
     "$description": "Input switch thumb border shadow.",
@@ -2143,7 +2143,7 @@
   },
   "kui-modal-color-background": {
     "$description": "Modal dialog background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-modal-color-border": {
     "$description": "Modal dialog border color.",
@@ -2231,7 +2231,7 @@
   },
   "kui-multiselect-footer-color-background": {
     "$description": "Multiselect dropdown footer background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-multiselect-footer-color-border": {
     "$description": "Multiselect dropdown footer top border color.",
@@ -2259,7 +2259,7 @@
   },
   "kui-multiselect-search-color-background": {
     "$description": "Multiselect dropdown search input wrapper background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-multiselect-search-color-border": {
     "$description": "Multiselect dropdown search input wrapper bottom border color.",
@@ -2387,7 +2387,7 @@
   },
   "kui-pop-color-background": {
     "$description": "Popover container background color (also used for the caret fill).",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-pop-color-border": {
     "$description": "Popover container border color (also used for the caret border).",
@@ -2439,7 +2439,7 @@
   },
   "kui-radio-color-background": {
     "$description": "Radio background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-radio-color-background-checked": {
     "$description": "Radio background color when checked.",
@@ -2551,7 +2551,7 @@
   },
   "kui-select-item-color-background": {
     "$description": "Select item background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-select-item-color-background-hover": {
     "$description": "Select item background color on hover.",
@@ -2655,7 +2655,7 @@
   },
   "kui-skeleton-fullscreen-color-background": {
     "$description": "Fullscreen skeleton loader backdrop/overlay background color.",
-    "$value": "{color.alias.gray.80}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-skeleton-progress-border-radius": {
     "$description": "Fullscreen skeleton progress bar (track and fill) border radius.",
@@ -2707,7 +2707,7 @@
   },
   "kui-slideout-color-background": {
     "$description": "Slideout panel background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-slideout-color-border": {
     "$description": "Slideout panel left border color.",
@@ -3219,7 +3219,7 @@
   },
   "kui-stepper-color-background": {
     "$description": "Stepper step indicator (circle) background color for incomplete (default) and pending steps.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-stepper-color-background-completed": {
     "$description": "Stepper step indicator (circle) background color for completed steps.",
@@ -3291,7 +3291,7 @@
   },
   "kui-table-color-background": {
     "$description": "Table background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-table-font-family": {
     "$description": "Table font family.",
@@ -3351,7 +3351,7 @@
   },
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-tabs-border-radius": {
     "$description": "Tabs tab link border radius (default appearance).",
@@ -3567,7 +3567,7 @@
   },
   "kui-tree-list-color-background": {
     "$description": "Tree list item background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-tree-list-color-background-drag-indicator": {
     "$description": "Tree list drag indicator bar background color, shown when dragging an item to a drop location.",
