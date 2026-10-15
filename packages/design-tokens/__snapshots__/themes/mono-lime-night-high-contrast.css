@@ -144,7 +144,7 @@
     --kui-button-padding-x-medium: 12px;
     --kui-button-padding-x-small: 12px;
     --kui-button-padding-y-large: 6px;
-    --kui-button-padding-y-medium: 4px;
+    --kui-button-padding-y-medium: 3px;
     --kui-button-padding-y-small: 2px;
     --kui-button-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.6);
     --kui-card-actions-gap: 6px;
@@ -158,9 +158,9 @@
     --kui-card-color-background: #121212;
     --kui-card-color-border: #525252;
     --kui-card-footer-gap: 6px;
-    --kui-card-gap: 20px;
+    --kui-card-gap: 16px;
     --kui-card-header-gap: 12px;
-    --kui-card-padding: 20px;
+    --kui-card-padding: 16px;
     --kui-card-title-color-text: #D4D4D4;
     --kui-card-title-font-size: 16px;
     --kui-card-title-font-weight: 600;
@@ -837,10 +837,10 @@
     --kui-table-header-font-size: 14px;
     --kui-table-header-font-weight: 600;
     --kui-table-header-line-height: 20px;
-    --kui-table-header-padding: 12px 16px;
+    --kui-table-header-padding: 10px;
     --kui-table-header-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #C08FF1 inset;
     --kui-table-header-shadow-scrolled: 0px 8px 24px 0px rgba(0, 0, 0, 0.5);
-    --kui-table-padding: 12px 16px;
+    --kui-table-padding: 8px 10px;
     --kui-table-row-color-background-expanded: #262626;
     --kui-table-row-color-background-hover: #262626;
     --kui-table-row-color-border: #525252;

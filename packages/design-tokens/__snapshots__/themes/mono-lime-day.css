@@ -91,9 +91,9 @@
     --kui-button-color-background-primary-disabled: #F5F5F5;
     --kui-button-color-background-primary-hover: #404040;
     --kui-button-color-background-secondary: transparent;
-    --kui-button-color-background-secondary-active: #F8FFE6;
+    --kui-button-color-background-secondary-active: #EEFFB3;
     --kui-button-color-background-secondary-disabled: transparent;
-    --kui-button-color-background-secondary-hover: #FCFFF2;
+    --kui-button-color-background-secondary-hover: #F8FFE6;
     --kui-button-color-background-tertiary: transparent;
     --kui-button-color-background-tertiary-active: #F8FFE6;
     --kui-button-color-background-tertiary-disabled: transparent;
@@ -144,7 +144,7 @@
     --kui-button-padding-x-medium: 12px;
     --kui-button-padding-x-small: 12px;
     --kui-button-padding-y-large: 6px;
-    --kui-button-padding-y-medium: 4px;
+    --kui-button-padding-y-medium: 3px;
     --kui-button-padding-y-small: 2px;
     --kui-button-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.4);
     --kui-card-actions-gap: 6px;
@@ -158,9 +158,9 @@
     --kui-card-color-background: #FFFFFF;
     --kui-card-color-border: #E5E5E5;
     --kui-card-footer-gap: 6px;
-    --kui-card-gap: 20px;
+    --kui-card-gap: 16px;
     --kui-card-header-gap: 12px;
-    --kui-card-padding: 20px;
+    --kui-card-padding: 16px;
     --kui-card-title-color-text: #404040;
     --kui-card-title-font-size: 16px;
     --kui-card-title-font-weight: 600;
@@ -837,10 +837,10 @@
     --kui-table-header-font-size: 14px;
     --kui-table-header-font-weight: 600;
     --kui-table-header-line-height: 20px;
-    --kui-table-header-padding: 12px 16px;
+    --kui-table-header-padding: 10px;
     --kui-table-header-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #9333EA inset;
     --kui-table-header-shadow-scrolled: 0px 8px 24px 0px rgba(0, 0, 0, 0.08);
-    --kui-table-padding: 12px 16px;
+    --kui-table-padding: 8px 10px;
     --kui-table-row-color-background-expanded: #FCFCFC;
     --kui-table-row-color-background-hover: #F5F5F5;
     --kui-table-row-color-border: #E5E5E5;
