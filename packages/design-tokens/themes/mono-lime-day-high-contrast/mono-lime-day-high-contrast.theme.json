@@ -197,7 +197,7 @@
   },
   "kui-badge-padding-y": {
     "$description": "Badge vertical padding.",
-    "$value": "2px"
+    "$value": "4px"
   },
   "kui-badge-shadow-focus": {
     "$description": "Badge focus ring shadow.",
@@ -349,7 +349,7 @@
   },
   "kui-button-color-background-secondary-active": {
     "$description": "Secondary button background color when active.",
-    "$value": "{color.alias.gray.20}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-button-color-background-secondary-disabled": {
     "$description": "Secondary button background color when disabled.",
@@ -357,7 +357,7 @@
   },
   "kui-button-color-background-secondary-hover": {
     "$description": "Secondary button background color on hover.",
-    "$value": "{color.alias.gray.20}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-button-color-background-tertiary": {
     "$description": "Tertiary button background color.",
@@ -365,7 +365,7 @@
   },
   "kui-button-color-background-tertiary-active": {
     "$description": "Tertiary button background color when active.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-button-color-background-tertiary-disabled": {
     "$description": "Tertiary button background color when disabled.",
@@ -373,7 +373,7 @@
   },
   "kui-button-color-background-tertiary-hover": {
     "$description": "Tertiary button background color on hover.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-button-color-border-danger": {
     "$description": "Danger button border color.",
@@ -413,7 +413,7 @@
   },
   "kui-button-color-border-secondary-active": {
     "$description": "Secondary button border color when active.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.electric_lime.50}"
   },
   "kui-button-color-border-secondary-disabled": {
     "$description": "Secondary button border color when disabled.",
@@ -421,7 +421,7 @@
   },
   "kui-button-color-border-secondary-hover": {
     "$description": "Secondary button border color on hover.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.electric_lime.50}"
   },
   "kui-button-color-border-tertiary": {
     "$description": "Tertiary button border color.",
@@ -429,7 +429,7 @@
   },
   "kui-button-color-border-tertiary-active": {
     "$description": "Tertiary button border color when active.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.electric_lime.50}"
   },
   "kui-button-color-border-tertiary-disabled": {
     "$description": "Tertiary button border color when disabled.",
@@ -437,7 +437,7 @@
   },
   "kui-button-color-border-tertiary-hover": {
     "$description": "Tertiary button border color on hover.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.electric_lime.50}"
   },
   "kui-button-color-text-danger": {
     "$description": "Danger button text color.",
@@ -1345,7 +1345,7 @@
   },
   "kui-dropdown-item-color-background-active": {
     "$description": "Dropdown item background color when active.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-dropdown-item-color-background-danger-active": {
     "$description": "Danger dropdown item background color when active.",
@@ -1357,7 +1357,7 @@
   },
   "kui-dropdown-item-color-background-hover": {
     "$description": "Dropdown item background color on hover.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-dropdown-item-color-background-selected": {
     "$description": "Selected dropdown item background color.",
@@ -2463,7 +2463,7 @@
   },
   "kui-segmented-control-border-radius": {
     "$description": "Segmented control button border radius (applied to the outer corners of the first and last buttons).",
-    "$value": "6px"
+    "$value": "8px"
   },
   "kui-segmented-control-border-width": {
     "$description": "Segmented control button border width.",
@@ -2471,39 +2471,39 @@
   },
   "kui-segmented-control-color-background": {
     "$description": "Segmented control button background color.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-segmented-control-color-background-disabled-selected": {
     "$description": "Segmented control button background color when selected and disabled.",
-    "$value": "{color.alias.white}"
+    "$value": "{color.alias.gray.20}"
   },
   "kui-segmented-control-color-background-selected": {
     "$description": "Segmented control button background color when selected.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.electric_lime.40}"
   },
   "kui-segmented-control-color-border": {
     "$description": "Segmented control button border color.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-segmented-control-color-border-active": {
     "$description": "Segmented control button border color when active (pressed).",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-segmented-control-color-border-disabled": {
     "$description": "Segmented control button border color when disabled.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-segmented-control-color-border-hover": {
     "$description": "Segmented control button border color on hover.",
-    "$value": "{color.alias.gray.50}"
+    "$value": "{color.alias.gray.10}"
   },
   "kui-segmented-control-color-border-selected": {
     "$description": "Segmented control button border color when selected.",
-    "$value": "{color.alias.electric_lime.70}"
+    "$value": "{color.alias.electric_lime.40}"
   },
   "kui-segmented-control-color-text": {
     "$description": "Segmented control button text color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.70}"
   },
   "kui-segmented-control-color-text-active": {
     "$description": "Segmented control button text color when active (pressed).",
@@ -2519,7 +2519,7 @@
   },
   "kui-segmented-control-color-text-selected": {
     "$description": "Segmented control button text color when selected.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-segmented-control-font-family": {
     "$description": "Segmented control font family.",
@@ -2539,7 +2539,7 @@
   },
   "kui-segmented-control-padding-x": {
     "$description": "Segmented control button horizontal padding (small size).",
-    "$value": "9px"
+    "$value": "7px"
   },
   "kui-segmented-control-padding-x-large": {
     "$description": "Segmented control button horizontal padding (large size).",
@@ -2555,7 +2555,7 @@
   },
   "kui-select-item-color-background-hover": {
     "$description": "Select item background color on hover.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.electric_lime.20}"
   },
   "kui-select-item-color-background-selected": {
     "$description": "Selected select item background color.",
@@ -3335,7 +3335,7 @@
   },
   "kui-table-padding": {
     "$description": "Table cell inner padding.",
-    "$value": "0px"
+    "$value": "10px"
   },
   "kui-table-row-color-background-expanded": {
     "$description": "Table expanded (expandable content) row background color.",
@@ -3383,7 +3383,7 @@
   },
   "kui-tabs-color-text": {
     "$description": "Tabs tab link text color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.70}"
   },
   "kui-tabs-color-text-disabled": {
     "$description": "Tabs tab link text color when disabled.",
@@ -3399,7 +3399,7 @@
   },
   "kui-tabs-color-text-selected": {
     "$description": "Tabs current (selected) tab link text color.",
-    "$value": "{color.alias.electric_lime.100}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-tabs-font-family": {
     "$description": "Tabs font family.",
