@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.3.4...@kong/design-tokens@3.3.5) (2026-10-15)
+
+### Bug Fixes
+
+* **design-tokens:** update classic-night color-background-disabled ([#733](https://github.com/Kong/design-tokens/issues/733)) ([f735662](https://github.com/Kong/design-tokens/commit/f7356628647f5817de2b8fcc72621501b9ff6138))
+
 ## [3.3.4](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.3.3...@kong/design-tokens@3.3.4) (2026-10-14)
 
 ### Bug Fixes
