@@ -41,6 +41,10 @@
         "$value": ""
       }
     },
+    "gap": {
+      "$description": "Table view gap between the toolbar and the table content.",
+      "$value": ""
+    },
     "header": {
       "color": {
         "border": {

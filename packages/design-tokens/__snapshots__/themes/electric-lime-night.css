@@ -451,6 +451,7 @@
     --kui-input-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-input-font-size: 14px;
     --kui-input-font-weight: 400;
+    --kui-input-icon-size: 20px;
     --kui-input-line-height: 24px;
     --kui-input-padding-x: 12px;
     --kui-input-padding-y: 8px;
@@ -573,6 +574,8 @@
     --kui-multiselect-search-border-width: 1px;
     --kui-multiselect-search-color-background: #0D0F0D;
     --kui-multiselect-search-color-border: #3D443D;
+    --kui-multiselect-selections-min-height: 24px;
+    --kui-multiselect-trigger-padding-y: 8px;
     --kui-navigation-color-background: #001933;
     --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
     --kui-navigation-color-border: rgba(255, 255, 255, 0.12);
@@ -831,6 +834,7 @@
     --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #242824 inset;
     --kui-table-color-background: #0D0F0D;
     --kui-table-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
+    --kui-table-gap: 20px;
     --kui-table-header-color-border: #242824;
     --kui-table-header-color-text: #9DA99D;
     --kui-table-header-color-text-active-sort: #D2D7D2;
