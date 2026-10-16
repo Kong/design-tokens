@@ -305,6 +305,20 @@ describe('THEMES', () => {
     ])
   })
 
+  // The root cause of the mono-lime bug: the theme family was added to themes/ and built into
+  // dist/, but THEMES stayed at 6 entries, so it was missing from every sandbox picker at once.
+  // Nothing tied this hand-maintained list to the directory it mirrors. This does.
+  it('covers every theme directory in themes/, with no stale entries', () => {
+    const themeDirs = new Set(
+      Object.keys(
+        import.meta.glob('../../themes/*/*.theme.json', { eager: true, query: '?raw', import: 'default' }),
+      ).map((path) => path.match(/\/themes\/([^/]+)\//)![1]),
+    )
+    // Precondition: the glob resolved at all. An empty record would make both directions vacuous.
+    expect(themeDirs.size).toBeGreaterThan(0)
+    expect([...themeDirs].sort()).toEqual([...THEMES.map((t) => t.id)].sort())
+  })
+
   it('gives every theme a non-empty label and a non-empty token map', () => {
     for (const theme of THEMES) {
       expect(theme.label.length).toBeGreaterThan(0)

@@ -13,7 +13,7 @@ import {
   setStartingTheme,
   useTokenCustomizer,
 } from '@/composables/useTokenCustomizer'
-import { ALL_ENTRIES, DEFAULT_THEME_ID, resolveThemedEntries } from '@/composables/useTokens'
+import { ALL_ENTRIES, DEFAULT_THEME_ID, THEMES, resolveThemedEntries } from '@/composables/useTokens'
 import { getHashParam } from '@/utils/hashRouteQuery'
 
 // jsdom has no ResizeObserver; SandboxShell's useHeaderHeight observes the header element on
@@ -110,6 +110,18 @@ describe('TokenCustomizer', () => {
   })
 
   describe('starting theme picker', () => {
+    // Guards that this picker stays wired to `THEMES` in full — i.e. nobody hard-codes a subset
+    // or re-sorts it in the template. It deliberately does NOT pin literal ids: that job belongs
+    // to `useTokens.spec.ts`, which pins the id list and cross-checks it against the themes/
+    // directory, so a theme missing from `THEMES` entirely fails there rather than silently
+    // passing here (both sides of this assertion would move together).
+    it('offers every repo theme as an option, in THEMES order', () => {
+      const wrapper = mountCustomizer()
+      const options = wrapper.find('.cust-theme-select').findAll('option')
+      expect(options.map((o) => o.attributes('value'))).toEqual(THEMES.map((t) => t.id))
+      expect(options.map((o) => o.text())).toEqual(THEMES.map((t) => t.label))
+    })
+
     it('changing the select updates the composable state and the rendered row default value', async () => {
       const wrapper = mountCustomizer()
 
