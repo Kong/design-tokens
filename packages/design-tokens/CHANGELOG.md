@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.3.5...@kong/design-tokens@3.4.0) (2026-10-16)
+
+### Features
+
+* **themes:** add mono-lime theme [KHCP-22095] ([#732](https://github.com/Kong/design-tokens/issues/732)) ([fdb7a7b](https://github.com/Kong/design-tokens/commit/fdb7a7b84074f3fdd124b19bbdf9b68bd4c9f996))
+
 ## [3.3.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.3.4...@kong/design-tokens@3.3.5) (2026-10-15)
 
 ### Bug Fixes
