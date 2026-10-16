@@ -41,7 +41,12 @@
         color: var(--kui-color-text, #1a1a1a);
       }
 
-      .label {
+      /* Prefixed on purpose: Kongponents uses a bare `.label` internally (KFilterGroup's
+         interactive pill, the filter-group label). An unprefixed `.label` here leaked into those
+         components — the margin inflated the filter pill to 56px and text-transform uppercased
+         its content — which reads as a theme bug in every column, themed and unthemed alike.
+         Keep gallery-only utility classes under the `gx-` prefix. */
+      .gx-label {
         font-size: 12px;
         text-transform: uppercase;
         letter-spacing: .06em;
@@ -84,7 +89,7 @@
       const K = await import('__KONGPONENTS_ESM__')
       const app = createApp({
         setup() {
-          const label = (t) => h('div', {class: 'label'}, t)
+          const label = (t) => h('div', {class: 'gx-label'}, t)
           // Render each group in isolation so one component's prop mismatch can't blank the whole page.
           const group = (title, fn) => {
             let body
