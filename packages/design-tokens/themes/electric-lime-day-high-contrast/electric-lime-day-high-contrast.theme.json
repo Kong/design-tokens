@@ -1757,6 +1757,10 @@
     "$description": "Input font weight.",
     "$value": "400"
   },
+  "kui-input-icon-size": {
+    "$description": "Input before/after slot icon size.",
+    "$value": "20px"
+  },
   "kui-input-line-height": {
     "$description": "Input line height.",
     "$value": "24px"
@@ -2229,6 +2233,14 @@
   "kui-multiselect-search-color-border": {
     "$description": "Multiselect dropdown search input wrapper bottom border color.",
     "$value": "{color.alias.gray.30}"
+  },
+  "kui-multiselect-selections-min-height": {
+    "$description": "Multiselect trigger selection badges row minimum height.",
+    "$value": "24px"
+  },
+  "kui-multiselect-trigger-padding-y": {
+    "$description": "Multiselect trigger vertical padding.",
+    "$value": "8px"
   },
   "kui-navigation-color-background": {
     "$description": "blue.100.",
@@ -3243,6 +3255,10 @@
   "kui-table-font-family": {
     "$description": "Table font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
+  },
+  "kui-table-gap": {
+    "$description": "Table view gap between the toolbar and the table content.",
+    "$value": "20px"
   },
   "kui-table-header-color-border": {
     "$description": "Table header bottom border color.",

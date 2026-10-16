@@ -55,6 +55,12 @@
         "$value": ""
       }
     },
+    "icon": {
+      "size": {
+        "$description": "Input before/after slot icon size.",
+        "$value": ""
+      }
+    },
     "line_height": {
       "$description": "Input line height.",
       "$value": ""
