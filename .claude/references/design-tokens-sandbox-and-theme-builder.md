@@ -33,9 +33,14 @@ Read-only exploration tool. `composables/useTokens.ts` is the source of truth:
 - `ALL_ENTRIES` — every customizable token (semantic/scale from `@tokens/js` + component from
   `KUI_THEMEABLE_TOKENS`), sorted with natural numeric ordering. **This is the canonical list**
   other composables (Customizer) iterate — never re-derive it.
-- `THEMES` / `DEFAULT_THEME_ID` / `isThemeId` — the 4 repo themes (`classic-day`, `classic-night`,
-  `electric-lime-day`, `electric-lime-night`) available for live preview, `classic-day` first
-  and default (its values equal `ALL_ENTRIES`'s base values exactly).
+- `THEMES` / `DEFAULT_THEME_ID` / `isThemeId` — **the single source of truth for which themes the
+  whole sandbox offers.** All 10 repo themes (`classic-day`/`-night`, the four `electric-lime-*`,
+  the four `mono-lime-*`), `classic-day` first and default (its values equal `ALL_ENTRIES`'s base
+  values exactly). The Browser's theme picker, the Customizer's starting-theme picker, and the
+  Theme Builder's built-in loader (via `useBuiltInThemes.ts`) all derive from this one array —
+  **adding a repo theme to the sandbox is a one-line edit here** (plus its `@themes` import). Do
+  not hard-code a theme list anywhere else; two specs assert the full id list
+  (`useTokens.spec.ts`, `TokenBrowser.spec.ts`) and need updating alongside it.
 - `resolveThemedEntries(entries, themeId)` — **pure function**, the single place that overlays a
   theme's declared token values onto a base entry list. A theme only declares what it actually
   overrides (`classic-day`/`classic-night` are semantic-only — zero component tokens; the
@@ -166,7 +171,7 @@ general lesson, not just a one-off fix.
 ## Surface 3 — Theme Builder (`components/builder/`, `composables/useThemeBuilder.ts`, `composables/useBuiltInThemes.ts`, `lib/themeBuilderUtils.ts`)
 
 Designer-oriented editor for a theme's **actual source files** (`*.theme.json` +
-`*.alias.color.json`), loaded one theme at a time — either by picking one of the 6 repo themes
+`*.alias.color.json`), loaded one theme at a time — either by picking one of the 10 repo themes
 from a dropdown, or by file picker/drag-drop for any other theme. This is a different tool from
 the Customizer — don't conflate them. Two-layer reactive state: alias palette overrides (cascade)
 beat theme-file values; explicit token overrides beat the alias cascade. Color tokens are
@@ -181,7 +186,7 @@ alias-only (no freeform hex — picked via `AliasPicker.vue`); non-color tokens 
   both (`selectedBuiltInId` back to `''`, both file refs back to `''`) so the user can back out or
   switch methods without reloading the component. `emitLoad()` picks whichever method is ready —
   built-in wins if selected, since mutual exclusion means both can never be ready at once.
-- **`composables/useBuiltInThemes.ts`** bundles the 6 repo themes' raw `*.theme.json` +
+- **`composables/useBuiltInThemes.ts`** bundles the 10 repo themes' raw `*.theme.json` +
   `*.alias.color.json` source text at **build time** via Vite's `import.meta.glob('../../themes/
   */*.theme.json', { eager: true, query: '?raw', import: 'default' })` (and the alias-file
   equivalent) — resolved relative to the composable's own file location, so it works identically
@@ -192,14 +197,16 @@ alias-only (no freeform hex — picked via `AliasPicker.vue`); non-color tokens 
   the *already-resolved* glob record (a plain `Record<string, string>`) is safe to hand to a
   shared helper (see `buildIdMap`). `BUILT_IN_THEMES` derives its id/label from `useTokens.ts`'s
   `THEMES` rather than duplicating theme metadata, and throws at module-evaluation time if any
-  theme in `THEMES` is missing a bundled file pair — acceptable today (all 6 themes have both
+  theme in `THEMES` is missing a bundled file pair — acceptable today (all 10 themes have both
   files) but means a half-scaffolded theme would white-screen the *whole app* (this composable is
   reached from the router via `FileLoader.vue` → `ThemeBuilder.vue` → `SandboxUnifiedEmbed.vue`),
   not just the Theme Builder tab.
-- Raw-importing all 6 themes' source JSON adds real weight to the bundle (~700KB text,
-  contributing to a >500KB main-chunk warning from Vite) — accepted for a design-tooling sandbox,
-  but be aware it's paid by every route, not just `/theme-builder`, since the import chain is
-  static all the way up to `router.ts`.
+- Raw-importing all 10 themes' source JSON adds real weight to the bundle (main chunk is now
+  ~1.9MB raw / ~240KB gzipped, well past Vite's 500KB warning) — accepted for a design-tooling
+  sandbox, but be aware it's paid by every route, not just `/theme-builder`, since the import
+  chain is static all the way up to `router.ts`, and that **it grows linearly with every theme
+  family added**. If a sixth family lands, revisit this (dynamic `import.meta.glob` without
+  `eager` would code-split it behind the Theme Builder route).
 - **`hosted` / `active` props** — same contract as the Customizer's (above): `hosted` suppresses
   `SandboxShell`'s header/close chrome and this component's own bridge, exposing
   `injectedCss`/`buildSrc` via `defineExpose` instead; `active` is accepted for contract symmetry

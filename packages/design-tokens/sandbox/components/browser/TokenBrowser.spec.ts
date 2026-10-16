@@ -63,6 +63,10 @@ describe('TokenBrowser', () => {
       'electric-lime-day-high-contrast',
       'electric-lime-night',
       'electric-lime-night-high-contrast',
+      'mono-lime-day',
+      'mono-lime-day-high-contrast',
+      'mono-lime-night',
+      'mono-lime-night-high-contrast',
     ])
   })
 
