@@ -2720,6 +2720,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-input-icon-size",
+    description: "Input before/after slot icon size.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-input-line-height",
     description: "Input line height.",
     category: "component",
@@ -3448,6 +3454,18 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-multiselect-search-color-border",
     description: "Multiselect dropdown search input wrapper bottom border color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-multiselect-selections-min-height",
+    description: "Multiselect trigger selection badges row minimum height.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-multiselect-trigger-padding-y",
+    description: "Multiselect trigger vertical padding.",
     category: "component",
     value: null,
   },
@@ -4996,6 +5014,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-font-family",
     description: "Table font family.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-gap",
+    description: "Table view gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },

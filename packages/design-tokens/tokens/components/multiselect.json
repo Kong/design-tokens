@@ -58,6 +58,20 @@
           "$value": ""
         }
       }
+    },
+    "selections": {
+      "min_height": {
+        "$description": "Multiselect trigger selection badges row minimum height.",
+        "$value": ""
+      }
+    },
+    "trigger": {
+      "padding": {
+        "y": {
+          "$description": "Multiselect trigger vertical padding.",
+          "$value": ""
+        }
+      }
     }
   }
 }
