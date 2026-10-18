@@ -29,6 +29,15 @@ export const USE_PROPER_TOKEN = {
     backgroundShorthand: '.a { background: $kui-color-background-danger; }',
     // Property with two allowed categories — this hits the second one
     breakpointOnWidth: '.a { width: $kui-breakpoint-tablet; }',
+    // Component tokens named after the property itself, like the long-standing `padding`
+    // entry. The leading component group absorbs `table-` / `multiselect-selections-`.
+    gapTokenOnGap: '.a { gap: var(--kui-table-gap, $kui-space-70); }',
+    gapTokenOnRowGap: '.a { row-gap: $kui-table-gap; }',
+    gapTokenOnColumnGap: '.a { column-gap: $kui-table-gap; }',
+    minHeightTokenOnMinHeight: '.a { min-height: $kui-multiselect-selections-min-height; }',
+    // The other two tokens added alongside them already matched an existing category
+    iconSizeComponentTokenOnHeight: '.a { height: $kui-input-icon-size; }',
+    paddingComponentTokenOnPaddingTop: '.a { padding-top: $kui-multiselect-trigger-padding-y; }',
     shadowOnBoxShadow: '.a { box-shadow: $kui-shadow-md; }',
     // PROPERTY_TOKEN_MAP is an allow-list of *enforced* properties; anything absent is skipped
     unmappedProperty: '.a { transition: $kui-animation-duration-20; }',
@@ -61,6 +70,11 @@ export const USE_PROPER_TOKEN = {
     mixedGoodAndBadOnPadding: '.a { padding: $kui-space-40 $kui-color-text-primary; }',
     // `height: ['icon-size']` only — spacing tokens are rejected there. Intentional, if surprising.
     spaceTokenOnHeight: '.a { height: $kui-space-40; }',
+    // Widening `min-height` to accept `*-min-height` component tokens did not make it
+    // permissive: a spacing token is still rejected, exactly as on `height`.
+    spaceTokenOnMinHeight: '.a { min-height: $kui-space-40; }',
+    // ...and `gap` still rejects everything outside `space` / `*-gap`
+    colorTokenOnGap: '.a { gap: $kui-color-text-primary; }',
     // The `font-*` categories are not interchangeable
     fontSizeTokenOnFontFamily: '.a { font-family: $kui-font-size-30; }',
     // KNOWN BUG (S3): a false positive. `extractTokensFromValue` matches case-insensitively

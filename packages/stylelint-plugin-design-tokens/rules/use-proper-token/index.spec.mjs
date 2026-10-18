@@ -24,6 +24,8 @@ const EXPECTED = {
   sameBadTokenTwice: [['kui-space-40', 'color']],
   mixedGoodAndBadOnPadding: [['kui-color-text-primary', 'padding']],
   spaceTokenOnHeight: [['kui-space-40', 'height']],
+  spaceTokenOnMinHeight: [['kui-space-40', 'min-height']],
+  colorTokenOnGap: [['kui-color-text-primary', 'gap']],
   fontSizeTokenOnFontFamily: [['kui-font-size-30', 'font-family']],
   uppercaseToken: [['kui-COLOR-TEXT-PRIMARY', 'color']],
 }
