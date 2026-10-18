@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "postcss-scss": "^4.0.9",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.11"
   },
   "publishConfig": {
     "access": "public"
