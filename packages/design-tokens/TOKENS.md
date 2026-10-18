@@ -2666,6 +2666,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-input-font-size: initial;
 /* Input font weight. */
 --kui-input-font-weight: initial;
+/* Input before/after slot icon size. */
+--kui-input-icon-size: initial;
 /* Input line height. */
 --kui-input-line-height: initial;
 /* Input horizontal padding. */
@@ -2782,6 +2784,10 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-multiselect-search-color-background: initial;
 /* Multiselect dropdown search input wrapper bottom border color. */
 --kui-multiselect-search-color-border: initial;
+/* Multiselect trigger selection badges row minimum height. */
+--kui-multiselect-selections-min-height: initial;
+/* Multiselect trigger vertical padding. */
+--kui-multiselect-trigger-padding-y: initial;
 /* Pagination page button border radius. */
 --kui-pagination-border-radius: initial;
 /* Pagination page button border width. */
@@ -3058,6 +3064,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-table-color-background: initial;
 /* Table font family. */
 --kui-table-font-family: initial;
+/* Table view gap between the toolbar and the table content. */
+--kui-table-gap: initial;
 /* Table header bottom border color. */
 --kui-table-header-color-border: initial;
 /* Table header text color. */
@@ -6644,6 +6652,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-input-icon-size",
+    description: "Input before/after slot icon size.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-input-line-height",
     description: "Input line height.",
     category: "component",
@@ -7372,6 +7386,18 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-multiselect-search-color-border",
     description: "Multiselect dropdown search input wrapper bottom border color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-multiselect-selections-min-height",
+    description: "Multiselect trigger selection badges row minimum height.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-multiselect-trigger-padding-y",
+    description: "Multiselect trigger vertical padding.",
     category: "component",
     value: null,
   },
@@ -8920,6 +8946,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-font-family",
     description: "Table font family.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-gap",
+    description: "Table view gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },
