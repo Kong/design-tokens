@@ -2721,7 +2721,7 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-input-icon-size",
-    description: "Input before/after slot icon size.",
+    description: "Input before/after slotted icon size.",
     category: "component",
     value: null,
   },
@@ -5091,7 +5091,7 @@ export const KUI_THEMEABLE_TOKENS = [
   },
   {
     name: "--kui-table-toolbar-gap",
-    description: "Table view gap between the toolbar and the table content.",
+    description: "The gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },
