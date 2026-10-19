@@ -116,6 +116,12 @@
           "$value": ""
         }
       }
+    },
+    "toolbar": {
+      "gap": {
+        "$description": "The gap between the toolbar and the table content.",
+        "$value": ""
+      }
     }
   }
 }

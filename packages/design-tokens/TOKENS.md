@@ -2666,6 +2666,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-input-font-size: initial;
 /* Input font weight. */
 --kui-input-font-weight: initial;
+/* Input before/after slotted icon size. */
+--kui-input-icon-size: initial;
 /* Input line height. */
 --kui-input-line-height: initial;
 /* Input horizontal padding. */
@@ -3086,6 +3088,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-table-row-color-border: initial;
 /* Table sticky column (and actions column) cell background color. */
 --kui-table-sticky-color-background: initial;
+/* The gap between the toolbar and the table content. */
+--kui-table-toolbar-gap: initial;
 /* Tabs tab link border radius (default appearance). */
 --kui-tabs-border-radius: initial;
 /* Tabs tab link border radius (minimal appearance). */
@@ -6644,6 +6648,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-input-icon-size",
+    description: "Input before/after slotted icon size.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-input-line-height",
     description: "Input line height.",
     category: "component",
@@ -9004,6 +9014,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-sticky-color-background",
     description: "Table sticky column (and actions column) cell background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-toolbar-gap",
+    description: "The gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },

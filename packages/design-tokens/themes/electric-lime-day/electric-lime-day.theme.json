@@ -1757,6 +1757,10 @@
     "$description": "Input font weight.",
     "$value": "400"
   },
+  "kui-input-icon-size": {
+    "$description": "Input before/after slot icon size.",
+    "$value": "20px"
+  },
   "kui-input-line-height": {
     "$description": "Input line height.",
     "$value": "24px"
@@ -3299,6 +3303,10 @@
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
     "$value": "{color.alias.white}"
+  },
+  "kui-table-toolbar-gap": {
+    "$description": "Table view gap between the toolbar and the table content.",
+    "$value": "20px"
   },
   "kui-tabs-border-radius": {
     "$description": "Tabs tab link border radius (default appearance).",

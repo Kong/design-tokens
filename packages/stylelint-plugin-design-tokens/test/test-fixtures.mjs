@@ -29,6 +29,14 @@ export const USE_PROPER_TOKEN = {
     backgroundShorthand: '.a { background: $kui-color-background-danger; }',
     // Property with two allowed categories — this hits the second one
     breakpointOnWidth: '.a { width: $kui-breakpoint-tablet; }',
+    // Component tokens named after the property itself, like the long-standing `padding`
+    // entry. The leading component group absorbs `table-` / `multiselect-selections-`.
+    gapTokenOnGap: '.a { gap: var(--kui-table-gap, $kui-space-70); }',
+    gapTokenOnRowGap: '.a { row-gap: $kui-table-gap; }',
+    gapTokenOnColumnGap: '.a { column-gap: $kui-table-gap; }',
+    // The other two tokens added alongside them already matched an existing category
+    iconSizeComponentTokenOnHeight: '.a { height: $kui-input-icon-size; }',
+    paddingComponentTokenOnPaddingTop: '.a { padding-top: $kui-multiselect-trigger-padding-y; }',
     shadowOnBoxShadow: '.a { box-shadow: $kui-shadow-md; }',
     // PROPERTY_TOKEN_MAP is an allow-list of *enforced* properties; anything absent is skipped
     unmappedProperty: '.a { transition: $kui-animation-duration-20; }',
@@ -61,6 +69,15 @@ export const USE_PROPER_TOKEN = {
     mixedGoodAndBadOnPadding: '.a { padding: $kui-space-40 $kui-color-text-primary; }',
     // `height: ['icon-size']` only — spacing tokens are rejected there. Intentional, if surprising.
     spaceTokenOnHeight: '.a { height: $kui-space-40; }',
+    spaceTokenOnMinHeight: '.a { min-height: $kui-space-40; }',
+    // DELIBERATE: `min-height` is NOT widened to accept `line-height` tokens. KMultiselect's
+    // badges row legitimately floors its height at one line of input text
+    // (`min-height: var(--kui-input-line-height, …)`), but allowing the whole `line-height`
+    // family on every `min-height` is too broad a loosening for one call site — that one rule
+    // carries a `stylelint-disable-next-line` instead. Pinned so re-widening is a deliberate act.
+    lineHeightTokenOnMinHeight: '.a { min-height: var(--kui-input-line-height, $kui-line-height-40); }',
+    // ...and `gap` still rejects everything outside `space` / `*-gap`
+    colorTokenOnGap: '.a { gap: $kui-color-text-primary; }',
     // The `font-*` categories are not interchangeable
     fontSizeTokenOnFontFamily: '.a { font-family: $kui-font-size-30; }',
     // KNOWN BUG (S3): a false positive. `extractTokensFromValue` matches case-insensitively

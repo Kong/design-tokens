@@ -451,6 +451,7 @@
     --kui-input-font-family: 'Funnel Sans', Roboto, Helvetica, sans-serif;
     --kui-input-font-size: 14px;
     --kui-input-font-weight: 400;
+    --kui-input-icon-size: 20px;
     --kui-input-line-height: 24px;
     --kui-input-padding-x: 12px;
     --kui-input-padding-y: 8px;
@@ -845,6 +846,7 @@
     --kui-table-row-color-background-hover: #242824;
     --kui-table-row-color-border: #4E594E;
     --kui-table-sticky-color-background: #0D0F0D;
+    --kui-table-toolbar-gap: 20px;
     --kui-tabs-border-radius: 6px;
     --kui-tabs-border-radius-minimal: 4px;
     --kui-tabs-border-width: 1px;

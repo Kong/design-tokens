@@ -2720,6 +2720,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-input-icon-size",
+    description: "Input before/after slotted icon size.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-input-line-height",
     description: "Input line height.",
     category: "component",
@@ -5080,6 +5086,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-sticky-color-background",
     description: "Table sticky column (and actions column) cell background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-toolbar-gap",
+    description: "The gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },
