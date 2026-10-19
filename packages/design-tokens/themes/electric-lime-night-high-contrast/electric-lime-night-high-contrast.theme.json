@@ -2234,14 +2234,6 @@
     "$description": "Multiselect dropdown search input wrapper bottom border color.",
     "$value": "{color.alias.gray.60}"
   },
-  "kui-multiselect-trigger-padding-x": {
-    "$description": "Multiselect trigger horizontal padding.",
-    "$value": "12px"
-  },
-  "kui-multiselect-trigger-padding-y": {
-    "$description": "Multiselect trigger vertical padding.",
-    "$value": "8px"
-  },
   "kui-navigation-color-background": {
     "$description": "blue.100.",
     "$value": "{color.alias.blue.100}"

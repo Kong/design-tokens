@@ -3458,18 +3458,6 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-multiselect-trigger-padding-x",
-    description: "Multiselect trigger horizontal padding.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-multiselect-trigger-padding-y",
-    description: "Multiselect trigger vertical padding.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-navigation-color-background",
     description: "blue.100",
     category: "navigation",

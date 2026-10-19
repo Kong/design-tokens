@@ -2784,10 +2784,6 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-multiselect-search-color-background: initial;
 /* Multiselect dropdown search input wrapper bottom border color. */
 --kui-multiselect-search-color-border: initial;
-/* Multiselect trigger horizontal padding. */
---kui-multiselect-trigger-padding-x: initial;
-/* Multiselect trigger vertical padding. */
---kui-multiselect-trigger-padding-y: initial;
 /* Pagination page button border radius. */
 --kui-pagination-border-radius: initial;
 /* Pagination page button border width. */
@@ -7386,18 +7382,6 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-multiselect-search-color-border",
     description: "Multiselect dropdown search input wrapper bottom border color.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-multiselect-trigger-padding-x",
-    description: "Multiselect trigger horizontal padding.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-multiselect-trigger-padding-y",
-    description: "Multiselect trigger vertical padding.",
     category: "component",
     value: null,
   },

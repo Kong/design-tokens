@@ -574,8 +574,6 @@
     --kui-multiselect-search-border-width: 1px;
     --kui-multiselect-search-color-background: #FFFFFF;
     --kui-multiselect-search-color-border: #D4D4D4;
-    --kui-multiselect-trigger-padding-x: 12px;
-    --kui-multiselect-trigger-padding-y: 6px;
     --kui-navigation-color-background: #0A0A0A;
     --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
     --kui-navigation-color-border: rgba(255, 255, 255, 0.12);

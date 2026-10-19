@@ -58,18 +58,6 @@
           "$value": ""
         }
       }
-    },
-    "trigger": {
-      "padding": {
-        "x": {
-          "$description": "Multiselect trigger horizontal padding.",
-          "$value": ""
-        },
-        "y": {
-          "$description": "Multiselect trigger vertical padding.",
-          "$value": ""
-        }
-      }
     }
   }
 }
