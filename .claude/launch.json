@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "theme-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "packages/skills/theme-creation/scripts/preview.mjs",
+        "mono-lime-day",
+        "electric-lime-day",
+        "--port",
+        "8757"
+      ],
+      "port": 8757
+    }
+  ]
+}

@@ -62,7 +62,7 @@ export const PROPERTY_TOKEN_MAP = {
   'margin-top': ['space'],
   'max-height': ['icon-size'],
   'max-width': ['icon-size', 'breakpoint'],
-  'min-height': ['icon-size', 'line-height'],
+  'min-height': ['icon-size'],
   'min-width': ['icon-size', 'breakpoint'],
   outline: ['border-width', 'color-border', 'color-brand'],
   'outline-color': ['color-border', 'color-brand'],

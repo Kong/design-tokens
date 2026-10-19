@@ -34,9 +34,6 @@ export const USE_PROPER_TOKEN = {
     gapTokenOnGap: '.a { gap: var(--kui-table-gap, $kui-space-70); }',
     gapTokenOnRowGap: '.a { row-gap: $kui-table-gap; }',
     gapTokenOnColumnGap: '.a { column-gap: $kui-table-gap; }',
-    // A one-text-line floor: KMultiselect's badges row uses the input's line height so the
-    // trigger does not change height between its empty and filled states.
-    lineHeightTokenOnMinHeight: '.a { min-height: var(--kui-input-line-height, $kui-line-height-40); }',
     // The other two tokens added alongside them already matched an existing category
     iconSizeComponentTokenOnHeight: '.a { height: $kui-input-icon-size; }',
     paddingComponentTokenOnPaddingTop: '.a { padding-top: $kui-multiselect-trigger-padding-y; }',
@@ -72,9 +69,13 @@ export const USE_PROPER_TOKEN = {
     mixedGoodAndBadOnPadding: '.a { padding: $kui-space-40 $kui-color-text-primary; }',
     // `height: ['icon-size']` only — spacing tokens are rejected there. Intentional, if surprising.
     spaceTokenOnHeight: '.a { height: $kui-space-40; }',
-    // Widening `min-height` to accept `*-min-height` component tokens did not make it
-    // permissive: a spacing token is still rejected, exactly as on `height`.
     spaceTokenOnMinHeight: '.a { min-height: $kui-space-40; }',
+    // DELIBERATE: `min-height` is NOT widened to accept `line-height` tokens. KMultiselect's
+    // badges row legitimately floors its height at one line of input text
+    // (`min-height: var(--kui-input-line-height, …)`), but allowing the whole `line-height`
+    // family on every `min-height` is too broad a loosening for one call site — that one rule
+    // carries a `stylelint-disable-next-line` instead. Pinned so re-widening is a deliberate act.
+    lineHeightTokenOnMinHeight: '.a { min-height: var(--kui-input-line-height, $kui-line-height-40); }',
     // ...and `gap` still rejects everything outside `space` / `*-gap`
     colorTokenOnGap: '.a { gap: $kui-color-text-primary; }',
     // The `font-*` categories are not interchangeable
