@@ -2784,8 +2784,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-multiselect-search-color-background: initial;
 /* Multiselect dropdown search input wrapper bottom border color. */
 --kui-multiselect-search-color-border: initial;
-/* Multiselect trigger selection badges row minimum height. */
---kui-multiselect-selections-min-height: initial;
+/* Multiselect trigger horizontal padding. */
+--kui-multiselect-trigger-padding-x: initial;
 /* Multiselect trigger vertical padding. */
 --kui-multiselect-trigger-padding-y: initial;
 /* Pagination page button border radius. */
@@ -3064,8 +3064,6 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-table-color-background: initial;
 /* Table font family. */
 --kui-table-font-family: initial;
-/* Table view gap between the toolbar and the table content. */
---kui-table-gap: initial;
 /* Table header bottom border color. */
 --kui-table-header-color-border: initial;
 /* Table header text color. */
@@ -3094,6 +3092,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-table-row-color-border: initial;
 /* Table sticky column (and actions column) cell background color. */
 --kui-table-sticky-color-background: initial;
+/* Table view gap between the toolbar and the table content. */
+--kui-table-toolbar-gap: initial;
 /* Tabs tab link border radius (default appearance). */
 --kui-tabs-border-radius: initial;
 /* Tabs tab link border radius (minimal appearance). */
@@ -7390,8 +7390,8 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-multiselect-selections-min-height",
-    description: "Multiselect trigger selection badges row minimum height.",
+    name: "--kui-multiselect-trigger-padding-x",
+    description: "Multiselect trigger horizontal padding.",
     category: "component",
     value: null,
   },
@@ -8950,12 +8950,6 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-table-gap",
-    description: "Table view gap between the toolbar and the table content.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-table-header-color-border",
     description: "Table header bottom border color.",
     category: "component",
@@ -9036,6 +9030,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-sticky-color-background",
     description: "Table sticky column (and actions column) cell background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-toolbar-gap",
+    description: "Table view gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },

@@ -574,7 +574,7 @@
     --kui-multiselect-search-border-width: 1px;
     --kui-multiselect-search-color-background: #FFFFFF;
     --kui-multiselect-search-color-border: #D4D4D4;
-    --kui-multiselect-selections-min-height: 20px;
+    --kui-multiselect-trigger-padding-x: 12px;
     --kui-multiselect-trigger-padding-y: 6px;
     --kui-navigation-color-background: #0A0A0A;
     --kui-navigation-color-background-selected: rgba(255, 255, 255, 0.12);
@@ -834,7 +834,6 @@
     --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #EBEBEB inset;
     --kui-table-color-background: #FFFFFF;
     --kui-table-font-family: 'Inter', Roboto, Helvetica, sans-serif;
-    --kui-table-gap: 8px;
     --kui-table-header-color-border: #A3A3A3;
     --kui-table-header-color-text: #525252;
     --kui-table-header-color-text-active-sort: #404040;
@@ -849,6 +848,7 @@
     --kui-table-row-color-background-hover: #F8F8F8;
     --kui-table-row-color-border: #D4D4D4;
     --kui-table-sticky-color-background: #FFFFFF;
+    --kui-table-toolbar-gap: 8px;
     --kui-tabs-border-radius: 6px;
     --kui-tabs-border-radius-minimal: 4px;
     --kui-tabs-border-width: 1px;

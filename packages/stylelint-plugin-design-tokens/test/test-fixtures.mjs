@@ -34,7 +34,9 @@ export const USE_PROPER_TOKEN = {
     gapTokenOnGap: '.a { gap: var(--kui-table-gap, $kui-space-70); }',
     gapTokenOnRowGap: '.a { row-gap: $kui-table-gap; }',
     gapTokenOnColumnGap: '.a { column-gap: $kui-table-gap; }',
-    minHeightTokenOnMinHeight: '.a { min-height: $kui-multiselect-selections-min-height; }',
+    // A one-text-line floor: KMultiselect's badges row uses the input's line height so the
+    // trigger does not change height between its empty and filled states.
+    lineHeightTokenOnMinHeight: '.a { min-height: var(--kui-input-line-height, $kui-line-height-40); }',
     // The other two tokens added alongside them already matched an existing category
     iconSizeComponentTokenOnHeight: '.a { height: $kui-input-icon-size; }',
     paddingComponentTokenOnPaddingTop: '.a { padding-top: $kui-multiselect-trigger-padding-y; }',

@@ -2234,9 +2234,9 @@
     "$description": "Multiselect dropdown search input wrapper bottom border color.",
     "$value": "{color.alias.gray.30}"
   },
-  "kui-multiselect-selections-min-height": {
-    "$description": "Multiselect trigger selection badges row minimum height.",
-    "$value": "24px"
+  "kui-multiselect-trigger-padding-x": {
+    "$description": "Multiselect trigger horizontal padding.",
+    "$value": "12px"
   },
   "kui-multiselect-trigger-padding-y": {
     "$description": "Multiselect trigger vertical padding.",
@@ -3256,10 +3256,6 @@
     "$description": "Table font family.",
     "$value": "'Funnel Sans', Roboto, Helvetica, sans-serif"
   },
-  "kui-table-gap": {
-    "$description": "Table view gap between the toolbar and the table content.",
-    "$value": "20px"
-  },
   "kui-table-header-color-border": {
     "$description": "Table header bottom border color.",
     "$value": "{color.alias.gray.40}"
@@ -3315,6 +3311,10 @@
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
     "$value": "{color.alias.white}"
+  },
+  "kui-table-toolbar-gap": {
+    "$description": "Table view gap between the toolbar and the table content.",
+    "$value": "20px"
   },
   "kui-tabs-border-radius": {
     "$description": "Tabs tab link border radius (default appearance).",

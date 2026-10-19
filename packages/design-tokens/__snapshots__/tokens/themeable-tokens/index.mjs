@@ -3458,8 +3458,8 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-multiselect-selections-min-height",
-    description: "Multiselect trigger selection badges row minimum height.",
+    name: "--kui-multiselect-trigger-padding-x",
+    description: "Multiselect trigger horizontal padding.",
     category: "component",
     value: null,
   },
@@ -5018,12 +5018,6 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
-    name: "--kui-table-gap",
-    description: "Table view gap between the toolbar and the table content.",
-    category: "component",
-    value: null,
-  },
-  {
     name: "--kui-table-header-color-border",
     description: "Table header bottom border color.",
     category: "component",
@@ -5104,6 +5098,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-sticky-color-background",
     description: "Table sticky column (and actions column) cell background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-toolbar-gap",
+    description: "Table view gap between the toolbar and the table content.",
     category: "component",
     value: null,
   },
