@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/Kong/design-tokens/compare/@kong/stylelint-plugin-design-tokens@2.0.2...@kong/stylelint-plugin-design-tokens@2.0.3) (2026-10-19)
+
+### Bug Fixes
+
+* **tokens:** misc fixes in mono-lime, new component tokens [KHCP-22095] ([#735](https://github.com/Kong/design-tokens/issues/735)) ([33512b8](https://github.com/Kong/design-tokens/commit/33512b84737823320daa2ef9fd2dd627a1af69ad))
+
 ## [2.0.2](https://github.com/Kong/design-tokens/compare/@kong/stylelint-plugin-design-tokens@2.0.1...@kong/stylelint-plugin-design-tokens@2.0.2) (2026-10-18)
 
 **Note:** Version bump only for package @kong/stylelint-plugin-design-tokens
