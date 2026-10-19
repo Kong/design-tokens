@@ -57,7 +57,7 @@
     },
     "icon": {
       "size": {
-        "$description": "Input before/after slot icon size.",
+        "$description": "Input before/after slotted icon size.",
         "$value": ""
       }
     },
