@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.2...@kong/design-tokens@3.4.3) (2026-10-19)
+
+### Bug Fixes
+
+* **design-tokens:** tweak color-border for classic-night theme ([#739](https://github.com/Kong/design-tokens/issues/739)) ([20c117e](https://github.com/Kong/design-tokens/commit/20c117e1cf644e124a59d1e516f2d4e6ec8bc77e))
+
 ## [3.4.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.1...@kong/design-tokens@3.4.2) (2026-10-19)
 
 ### Bug Fixes
