@@ -163,12 +163,12 @@
     --kui-card-gap: 10px;
     --kui-card-header-color-background: #D4D4D4;
     --kui-card-header-gap: 12px;
+    --kui-card-header-padding: 8px;
     --kui-card-padding: 0px;
     --kui-card-title-color-text: #D4D4D4;
     --kui-card-title-font-size: 14px;
     --kui-card-title-font-weight: 600;
     --kui-card-title-line-height: 20px;
-    --kui-card-title-padding: 8px;
     --kui-checkbox-border-radius: 4px;
     --kui-checkbox-color-background: #121212;
     --kui-checkbox-color-background-checked: #CCFF00;

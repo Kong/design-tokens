@@ -2368,6 +2368,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-card-header-color-background: initial;
 /* Gap between card header items. */
 --kui-card-header-gap: initial;
+/* Card header padding. */
+--kui-card-header-padding: initial;
 /* Card inner padding. */
 --kui-card-padding: initial;
 /* Card title text color. */
@@ -2378,8 +2380,6 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-card-title-font-weight: initial;
 /* Card title line height. */
 --kui-card-title-line-height: initial;
-/* Card title padding. */
---kui-card-title-padding: initial;
 /* Checkbox border radius. */
 --kui-checkbox-border-radius: initial;
 /* Checkbox background color. */
@@ -4928,6 +4928,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-header-padding",
+    description: "Card header padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-padding",
     description: "Card inner padding.",
     category: "component",
@@ -4954,12 +4960,6 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-card-title-line-height",
     description: "Card title line height.",
-    category: "component",
-    value: null,
-  },
-  {
-    name: "--kui-card-title-padding",
-    description: "Card title padding.",
     category: "component",
     value: null,
   },

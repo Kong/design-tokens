@@ -625,6 +625,10 @@
     "$description": "Gap between card header items.",
     "$value": "12px"
   },
+  "kui-card-header-padding": {
+    "$description": "Card header padding.",
+    "$value": "0px"
+  },
   "kui-card-padding": {
     "$description": "Card inner padding.",
     "$value": "20px"
@@ -644,10 +648,6 @@
   "kui-card-title-line-height": {
     "$description": "Card title line height.",
     "$value": "20px"
-  },
-  "kui-card-title-padding": {
-    "$description": "Card title padding.",
-    "$value": "0px"
   },
   "kui-checkbox-border-radius": {
     "$description": "Checkbox border radius.",

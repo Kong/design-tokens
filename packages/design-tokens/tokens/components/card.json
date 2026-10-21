@@ -81,6 +81,10 @@
       "gap": {
         "$description": "Gap between card header items.",
         "$value": ""
+      },
+      "padding": {
+        "$description": "Card header padding.",
+        "$value": ""
       }
     },
     "padding": {
@@ -106,10 +110,6 @@
       },
       "line_height": {
         "$description": "Card title line height.",
-        "$value": ""
-      },
-      "padding": {
-        "$description": "Card title padding.",
         "$value": ""
       }
     }
