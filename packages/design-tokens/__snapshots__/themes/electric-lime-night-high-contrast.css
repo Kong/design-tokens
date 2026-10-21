@@ -159,6 +159,7 @@
     --kui-card-color-border: #4E594E;
     --kui-card-footer-gap: 6px;
     --kui-card-gap: 20px;
+    --kui-card-header-color-background: transparent;
     --kui-card-header-gap: 12px;
     --kui-card-padding: 20px;
     --kui-card-title-color-text: #D2D7D2;
@@ -674,7 +675,7 @@
     --kui-skeleton-fullscreen-color-background: #0D0F0D;
     --kui-skeleton-progress-border-radius: 8px;
     --kui-skeleton-progress-color-background: #070807;
-    --kui-skeleton-progress-color-background-active: #9DA99D;
+    --kui-skeleton-progress-color-background-active: #CCFF00;
     --kui-skeleton-spinner-border-radius: 50%;
     --kui-skeleton-spinner-color-border: #F1F3F1;
     --kui-skeleton-spinner-color-border-active: #F1F3F1;

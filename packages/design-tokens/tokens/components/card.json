@@ -64,6 +64,12 @@
       "$value": ""
     },
     "header": {
+      "color": {
+        "background": {
+          "$description": "Card header background color.",
+          "$value": ""
+        }
+      },
       "gap": {
         "$description": "Gap between card header items.",
         "$value": ""

@@ -273,7 +273,7 @@
   },
   "kui-breadcrumbs-font-size": {
     "$description": "Breadcrumbs item font size.",
-    "$value": "14px"
+    "$value": "12px"
   },
   "kui-breadcrumbs-font-weight": {
     "$description": "Breadcrumbs item text font weight.",
@@ -617,7 +617,11 @@
   },
   "kui-card-gap": {
     "$description": "Gap between card sections.",
-    "$value": "16px"
+    "$value": "10px"
+  },
+  "kui-card-header-color-background": {
+    "$description": "Card header background color.",
+    "$value": "{color.alias.gray.30}"
   },
   "kui-card-header-gap": {
     "$description": "Gap between card header items.",
@@ -633,7 +637,7 @@
   },
   "kui-card-title-font-size": {
     "$description": "Card title font size.",
-    "$value": "16px"
+    "$value": "14px"
   },
   "kui-card-title-font-weight": {
     "$description": "Card title font weight.",
@@ -713,7 +717,7 @@
   },
   "kui-collapse-title-font-size": {
     "$description": "Collapse title font size.",
-    "$value": "16px"
+    "$value": "14px"
   },
   "kui-collapse-title-font-weight": {
     "$description": "Collapse title font weight.",
@@ -1501,7 +1505,7 @@
   },
   "kui-empty-state-title-font-size": {
     "$description": "Empty state title font size.",
-    "$value": "18px"
+    "$value": "14px"
   },
   "kui-empty-state-title-font-weight": {
     "$description": "Empty state title font weight.",
@@ -2219,7 +2223,7 @@
   },
   "kui-modal-title-font-size": {
     "$description": "Modal title font size.",
-    "$value": "20px"
+    "$value": "14px"
   },
   "kui-modal-title-font-weight": {
     "$description": "Modal title font weight.",
@@ -2431,7 +2435,7 @@
   },
   "kui-pop-title-font-size": {
     "$description": "Popover title font size.",
-    "$value": "16px"
+    "$value": "14px"
   },
   "kui-pop-title-font-weight": {
     "$description": "Popover title font weight.",
@@ -2671,7 +2675,7 @@
   },
   "kui-skeleton-progress-color-background-active": {
     "$description": "Fullscreen skeleton progress bar fill (completed progress) background color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-skeleton-spinner-border-radius": {
     "$description": "Fullscreen generic spinner border radius.",
@@ -2751,7 +2755,7 @@
   },
   "kui-slideout-title-font-size": {
     "$description": "Slideout title font size.",
-    "$value": "20px"
+    "$value": "14px"
   },
   "kui-slideout-title-font-weight": {
     "$description": "Slideout title font weight.",
@@ -3523,7 +3527,7 @@
   },
   "kui-toaster-title-font-size": {
     "$description": "Toaster title font size.",
-    "$value": "18px"
+    "$value": "14px"
   },
   "kui-toaster-title-font-weight": {
     "$description": "Toaster title font weight.",

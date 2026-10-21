@@ -968,6 +968,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-header-color-background",
+    description: "Card header background color.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-header-gap",
     description: "Gap between card header items.",
     category: "component",

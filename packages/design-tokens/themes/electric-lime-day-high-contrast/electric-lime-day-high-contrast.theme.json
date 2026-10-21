@@ -609,6 +609,10 @@
     "$description": "Gap between card sections.",
     "$value": "20px"
   },
+  "kui-card-header-color-background": {
+    "$description": "Card header background color.",
+    "$value": "{color.alias.transparent}"
+  },
   "kui-card-header-gap": {
     "$description": "Gap between card header items.",
     "$value": "12px"
@@ -2635,7 +2639,7 @@
   },
   "kui-skeleton-progress-color-background-active": {
     "$description": "Fullscreen skeleton progress bar fill (completed progress) background color.",
-    "$value": "{color.alias.gray.70}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-skeleton-spinner-border-radius": {
     "$description": "Fullscreen generic spinner border radius.",
