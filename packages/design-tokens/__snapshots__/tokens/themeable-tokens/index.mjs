@@ -968,6 +968,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-footer-padding",
+    description: "Card footer padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-gap",
     description: "Gap between card sections.",
     category: "component",

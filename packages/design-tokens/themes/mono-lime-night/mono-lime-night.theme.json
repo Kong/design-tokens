@@ -619,6 +619,10 @@
     "$description": "Gap between card footer items.",
     "$value": "6px"
   },
+  "kui-card-footer-padding": {
+    "$description": "Card footer padding.",
+    "$value": "0px 8px 8px 8px"
+  },
   "kui-card-gap": {
     "$description": "Gap between card sections.",
     "$value": "10px"

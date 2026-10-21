@@ -2360,6 +2360,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-card-color-border: initial;
 /* Gap between card footer items. */
 --kui-card-footer-gap: initial;
+/* Card footer padding. */
+--kui-card-footer-padding: initial;
 /* Gap between card sections. */
 --kui-card-gap: initial;
 /* Card header background color. */
@@ -4898,6 +4900,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-card-footer-gap",
     description: "Gap between card footer items.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-card-footer-padding",
+    description: "Card footer padding.",
     category: "component",
     value: null,
   },

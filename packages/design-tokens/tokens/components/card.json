@@ -61,6 +61,10 @@
       "gap": {
         "$description": "Gap between card footer items.",
         "$value": ""
+      },
+      "padding": {
+        "$description": "Card footer padding.",
+        "$value": ""
       }
     },
     "gap": {

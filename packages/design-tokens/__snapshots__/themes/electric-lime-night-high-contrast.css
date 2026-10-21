@@ -159,6 +159,7 @@
     --kui-card-color-background: #0D0F0D;
     --kui-card-color-border: #4E594E;
     --kui-card-footer-gap: 6px;
+    --kui-card-footer-padding: 0px;
     --kui-card-gap: 20px;
     --kui-card-header-color-background: transparent;
     --kui-card-header-gap: 12px;
