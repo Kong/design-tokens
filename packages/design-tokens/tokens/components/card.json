@@ -31,6 +31,10 @@
       "line_height": {
         "$description": "Card body line height.",
         "$value": ""
+      },
+      "padding": {
+        "$description": "Card body padding.",
+        "$value": ""
       }
     },
     "border": {
@@ -98,6 +102,10 @@
       },
       "line_height": {
         "$description": "Card title line height.",
+        "$value": ""
+      },
+      "padding": {
+        "$description": "Card title padding.",
         "$value": ""
       }
     }

@@ -585,6 +585,10 @@
     "$description": "Card body line height.",
     "$value": "20px"
   },
+  "kui-card-body-padding": {
+    "$description": "Card body padding.",
+    "$value": "0px"
+  },
   "kui-card-border-radius": {
     "$description": "Card border radius.",
     "$value": "6px"
@@ -636,6 +640,10 @@
   "kui-card-title-line-height": {
     "$description": "Card title line height.",
     "$value": "20px"
+  },
+  "kui-card-title-padding": {
+    "$description": "Card title padding.",
+    "$value": "0px"
   },
   "kui-checkbox-border-radius": {
     "$description": "Checkbox border radius.",

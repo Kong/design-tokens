@@ -153,6 +153,7 @@
     --kui-card-body-font-size: 14px;
     --kui-card-body-font-weight: 400;
     --kui-card-body-line-height: 20px;
+    --kui-card-body-padding: 0px 8px 8px 8px;
     --kui-card-border-radius: 8px;
     --kui-card-border-width: 1px;
     --kui-card-color-background: #FFFFFF;
@@ -161,11 +162,12 @@
     --kui-card-gap: 10px;
     --kui-card-header-color-background: #D4D4D4;
     --kui-card-header-gap: 12px;
-    --kui-card-padding: 16px;
+    --kui-card-padding: 0px;
     --kui-card-title-color-text: #404040;
     --kui-card-title-font-size: 14px;
     --kui-card-title-font-weight: 600;
     --kui-card-title-line-height: 20px;
+    --kui-card-title-padding: 8px;
     --kui-checkbox-border-radius: 4px;
     --kui-checkbox-color-background: #FFFFFF;
     --kui-checkbox-color-background-checked: #CCFF00;

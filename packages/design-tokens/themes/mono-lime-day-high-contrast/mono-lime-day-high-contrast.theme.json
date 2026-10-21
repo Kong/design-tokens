@@ -595,6 +595,10 @@
     "$description": "Card body line height.",
     "$value": "20px"
   },
+  "kui-card-body-padding": {
+    "$description": "Card body padding.",
+    "$value": "0px 8px 8px 8px"
+  },
   "kui-card-border-radius": {
     "$description": "Card border radius.",
     "$value": "8px"
@@ -629,7 +633,7 @@
   },
   "kui-card-padding": {
     "$description": "Card inner padding.",
-    "$value": "16px"
+    "$value": "0px"
   },
   "kui-card-title-color-text": {
     "$description": "Card title text color.",
@@ -646,6 +650,10 @@
   "kui-card-title-line-height": {
     "$description": "Card title line height.",
     "$value": "20px"
+  },
+  "kui-card-title-padding": {
+    "$description": "Card title padding.",
+    "$value": "8px"
   },
   "kui-checkbox-border-radius": {
     "$description": "Checkbox border radius.",

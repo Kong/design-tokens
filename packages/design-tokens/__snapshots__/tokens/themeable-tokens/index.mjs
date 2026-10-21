@@ -932,6 +932,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-body-padding",
+    description: "Card body padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-border-radius",
     description: "Card border radius.",
     category: "component",
@@ -1006,6 +1012,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-card-title-line-height",
     description: "Card title line height.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-card-title-padding",
+    description: "Card title padding.",
     category: "component",
     value: null,
   },
