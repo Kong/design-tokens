@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.4](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.3...@kong/design-tokens@3.4.4) (2026-10-21)
+
+### Bug Fixes
+
+* **mono-lime:** misc updates and fixes ([#742](https://github.com/Kong/design-tokens/issues/742)) ([df08ac1](https://github.com/Kong/design-tokens/commit/df08ac14f945fcbcfcc82aec6282dcd9d0647cf8))
+
 ## [3.4.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.2...@kong/design-tokens@3.4.3) (2026-10-19)
 
 ### Bug Fixes
