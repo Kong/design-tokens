@@ -153,13 +153,13 @@
     --kui-card-body-font-size: 14px;
     --kui-card-body-font-weight: 400;
     --kui-card-body-line-height: 20px;
-    --kui-card-body-padding: 0px 8px 8px 8px;
+    --kui-card-body-padding: 8px;
     --kui-card-border-radius: 8px;
     --kui-card-border-width: 1px;
     --kui-card-color-background: #121212;
     --kui-card-color-border: #262626;
     --kui-card-footer-gap: 6px;
-    --kui-card-footer-padding: 0px 8px 8px 8px;
+    --kui-card-footer-padding: 8px;
     --kui-card-gap: 10px;
     --kui-card-header-color-background: #262626;
     --kui-card-header-gap: 12px;

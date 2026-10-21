@@ -597,7 +597,7 @@
   },
   "kui-card-body-padding": {
     "$description": "Card body padding.",
-    "$value": "0px 8px 8px 8px"
+    "$value": "8px"
   },
   "kui-card-border-radius": {
     "$description": "Card border radius.",
@@ -621,7 +621,7 @@
   },
   "kui-card-footer-padding": {
     "$description": "Card footer padding.",
-    "$value": "0px 8px 8px 8px"
+    "$value": "8px"
   },
   "kui-card-gap": {
     "$description": "Gap between card sections.",
