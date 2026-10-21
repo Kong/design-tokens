@@ -184,7 +184,7 @@
     --kui-collapse-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-collapse-title-color-text: #404040;
     --kui-collapse-title-font-size: 14px;
-    --kui-collapse-title-font-weight: 700;
+    --kui-collapse-title-font-weight: 600;
     --kui-collapse-title-line-height: 20px;
     --kui-collapse-trigger-border-radius: 4px;
     --kui-collapse-trigger-color-text: #525252;
@@ -381,8 +381,8 @@
     --kui-empty-state-message-line-height: 20px;
     --kui-empty-state-title-color-text: #404040;
     --kui-empty-state-title-font-size: 14px;
-    --kui-empty-state-title-font-weight: 700;
-    --kui-empty-state-title-line-height: 24px;
+    --kui-empty-state-title-font-weight: 600;
+    --kui-empty-state-title-line-height: 20px;
     --kui-file-upload-color-text-disabled: #525252;
     --kui-file-upload-color-text-placeholder: #525252;
     --kui-file-upload-dropzone-border-radius: 6px;
@@ -564,7 +564,7 @@
     --kui-modal-title-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-modal-title-font-size: 14px;
     --kui-modal-title-font-weight: 600;
-    --kui-modal-title-line-height: 28px;
+    --kui-modal-title-line-height: 20px;
     --kui-multiselect-footer-border-width: 1px;
     --kui-multiselect-footer-color-background: #FFFFFF;
     --kui-multiselect-footer-color-border: #D4D4D4;
@@ -616,7 +616,7 @@
     --kui-pop-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.12);
     --kui-pop-title-color-text: #404040;
     --kui-pop-title-font-size: 14px;
-    --kui-pop-title-font-weight: 700;
+    --kui-pop-title-font-weight: 600;
     --kui-pop-title-line-height: 20px;
     --kui-radio-color-background: #FFFFFF;
     --kui-radio-color-background-checked: #262626;
@@ -697,7 +697,7 @@
     --kui-slideout-title-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-slideout-title-font-size: 14px;
     --kui-slideout-title-font-weight: 600;
-    --kui-slideout-title-line-height: 28px;
+    --kui-slideout-title-line-height: 20px;
     --kui-slider-fill-color-background: #EBEBEB;
     --kui-slider-fill-color-background-disabled: #EBEBEB;
     --kui-slider-mark-color-text: #525252;
@@ -890,7 +890,7 @@
     --kui-toaster-shadow: 0px 12px 32px 0px rgba(0, 0, 0, 0.12);
     --kui-toaster-title-font-size: 14px;
     --kui-toaster-title-font-weight: 600;
-    --kui-toaster-title-line-height: 24px;
+    --kui-toaster-title-line-height: 20px;
     --kui-tooltip-border-radius: 4px;
     --kui-tooltip-color-background: #0A0A0A;
     --kui-tooltip-color-text: #FFFFFF;

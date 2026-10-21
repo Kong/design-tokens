@@ -721,7 +721,7 @@
   },
   "kui-collapse-title-font-weight": {
     "$description": "Collapse title font weight.",
-    "$value": "700"
+    "$value": "600"
   },
   "kui-collapse-title-line-height": {
     "$description": "Collapse title line height.",
@@ -1509,11 +1509,11 @@
   },
   "kui-empty-state-title-font-weight": {
     "$description": "Empty state title font weight.",
-    "$value": "700"
+    "$value": "600"
   },
   "kui-empty-state-title-line-height": {
     "$description": "Empty state title line height.",
-    "$value": "24px"
+    "$value": "20px"
   },
   "kui-file-upload-color-text-disabled": {
     "$description": "File upload selected-file text color when disabled (input appearance).",
@@ -2231,7 +2231,7 @@
   },
   "kui-modal-title-line-height": {
     "$description": "Modal title line height.",
-    "$value": "28px"
+    "$value": "20px"
   },
   "kui-multiselect-footer-border-width": {
     "$description": "Multiselect dropdown footer top border width.",
@@ -2439,7 +2439,7 @@
   },
   "kui-pop-title-font-weight": {
     "$description": "Popover title font weight.",
-    "$value": "700"
+    "$value": "600"
   },
   "kui-pop-title-line-height": {
     "$description": "Popover title line height.",
@@ -2763,7 +2763,7 @@
   },
   "kui-slideout-title-line-height": {
     "$description": "Slideout title line height.",
-    "$value": "28px"
+    "$value": "20px"
   },
   "kui-slider-fill-color-background": {
     "$description": "Slider filled (progress) track background color.",
@@ -3535,7 +3535,7 @@
   },
   "kui-toaster-title-line-height": {
     "$description": "Toaster title line height.",
-    "$value": "24px"
+    "$value": "20px"
   },
   "kui-tooltip-border-radius": {
     "$description": "Tooltip border radius.",
