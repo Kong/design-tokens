@@ -31,6 +31,10 @@
       "line_height": {
         "$description": "Card body line height.",
         "$value": ""
+      },
+      "padding": {
+        "$description": "Card body padding.",
+        "$value": ""
       }
     },
     "border": {
@@ -57,6 +61,10 @@
       "gap": {
         "$description": "Gap between card footer items.",
         "$value": ""
+      },
+      "padding": {
+        "$description": "Card footer padding.",
+        "$value": ""
       }
     },
     "gap": {
@@ -64,8 +72,18 @@
       "$value": ""
     },
     "header": {
+      "color": {
+        "background": {
+          "$description": "Card header background color.",
+          "$value": ""
+        }
+      },
       "gap": {
         "$description": "Gap between card header items.",
+        "$value": ""
+      },
+      "padding": {
+        "$description": "Card header padding.",
         "$value": ""
       }
     },

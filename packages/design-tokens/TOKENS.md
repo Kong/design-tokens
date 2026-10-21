@@ -2348,6 +2348,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-card-body-font-weight: initial;
 /* Card body line height. */
 --kui-card-body-line-height: initial;
+/* Card body padding. */
+--kui-card-body-padding: initial;
 /* Card border radius. */
 --kui-card-border-radius: initial;
 /* Card border width. */
@@ -2358,10 +2360,16 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-card-color-border: initial;
 /* Gap between card footer items. */
 --kui-card-footer-gap: initial;
+/* Card footer padding. */
+--kui-card-footer-padding: initial;
 /* Gap between card sections. */
 --kui-card-gap: initial;
+/* Card header background color. */
+--kui-card-header-color-background: initial;
 /* Gap between card header items. */
 --kui-card-header-gap: initial;
+/* Card header padding. */
+--kui-card-header-padding: initial;
 /* Card inner padding. */
 --kui-card-padding: initial;
 /* Card title text color. */
@@ -4860,6 +4868,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-body-padding",
+    description: "Card body padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-border-radius",
     description: "Card border radius.",
     category: "component",
@@ -4890,14 +4904,32 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-footer-padding",
+    description: "Card footer padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-gap",
     description: "Gap between card sections.",
     category: "component",
     value: null,
   },
   {
+    name: "--kui-card-header-color-background",
+    description: "Card header background color.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-header-gap",
     description: "Gap between card header items.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-card-header-padding",
+    description: "Card header padding.",
     category: "component",
     value: null,
   },

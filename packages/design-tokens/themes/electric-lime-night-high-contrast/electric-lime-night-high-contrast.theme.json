@@ -585,6 +585,10 @@
     "$description": "Card body line height.",
     "$value": "20px"
   },
+  "kui-card-body-padding": {
+    "$description": "Card body padding.",
+    "$value": "0px"
+  },
   "kui-card-border-radius": {
     "$description": "Card border radius.",
     "$value": "6px"
@@ -605,13 +609,25 @@
     "$description": "Gap between card footer items.",
     "$value": "6px"
   },
+  "kui-card-footer-padding": {
+    "$description": "Card footer padding.",
+    "$value": "0px"
+  },
   "kui-card-gap": {
     "$description": "Gap between card sections.",
     "$value": "20px"
   },
+  "kui-card-header-color-background": {
+    "$description": "Card header background color.",
+    "$value": "{color.alias.transparent}"
+  },
   "kui-card-header-gap": {
     "$description": "Gap between card header items.",
     "$value": "12px"
+  },
+  "kui-card-header-padding": {
+    "$description": "Card header padding.",
+    "$value": "0px"
   },
   "kui-card-padding": {
     "$description": "Card inner padding.",
@@ -2635,7 +2651,7 @@
   },
   "kui-skeleton-progress-color-background-active": {
     "$description": "Fullscreen skeleton progress bar fill (completed progress) background color.",
-    "$value": "{color.alias.gray.40}"
+    "$value": "{color.alias.electric_lime.60}"
   },
   "kui-skeleton-spinner-border-radius": {
     "$description": "Fullscreen generic spinner border radius.",

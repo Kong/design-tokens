@@ -153,13 +153,17 @@
     --kui-card-body-font-size: 14px;
     --kui-card-body-font-weight: 400;
     --kui-card-body-line-height: 20px;
+    --kui-card-body-padding: 0px;
     --kui-card-border-radius: 6px;
     --kui-card-border-width: 1px;
     --kui-card-color-background: #FFFFFF;
     --kui-card-color-border: #E3E8E3;
     --kui-card-footer-gap: 6px;
+    --kui-card-footer-padding: 0px;
     --kui-card-gap: 20px;
+    --kui-card-header-color-background: transparent;
     --kui-card-header-gap: 12px;
+    --kui-card-header-padding: 0px;
     --kui-card-padding: 20px;
     --kui-card-title-color-text: #3D443D;
     --kui-card-title-font-size: 16px;
@@ -674,7 +678,7 @@
     --kui-skeleton-fullscreen-color-background: #FFFFFF;
     --kui-skeleton-progress-border-radius: 8px;
     --kui-skeleton-progress-color-background: #F9FBF9;
-    --kui-skeleton-progress-color-background-active: #3D443D;
+    --kui-skeleton-progress-color-background-active: #CCFF00;
     --kui-skeleton-spinner-border-radius: 50%;
     --kui-skeleton-spinner-color-border: #E3E8E3;
     --kui-skeleton-spinner-color-border-active: #9DA99D;

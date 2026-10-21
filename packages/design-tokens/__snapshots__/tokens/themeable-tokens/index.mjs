@@ -932,6 +932,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-body-padding",
+    description: "Card body padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-border-radius",
     description: "Card border radius.",
     category: "component",
@@ -962,14 +968,32 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-card-footer-padding",
+    description: "Card footer padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-gap",
     description: "Gap between card sections.",
     category: "component",
     value: null,
   },
   {
+    name: "--kui-card-header-color-background",
+    description: "Card header background color.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-card-header-gap",
     description: "Gap between card header items.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-card-header-padding",
+    description: "Card header padding.",
     category: "component",
     value: null,
   },
