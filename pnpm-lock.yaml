@@ -24,8 +24,8 @@ importers:
         specifier: ^2.1.17
         version: 2.1.17
       '@kong/eslint-config-kong-ui':
-        specifier: ^1.7.1
-        version: 1.7.1(@typescript-eslint/parser@8.61.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3))(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3)
+        specifier: ^1.8.1
+        version: 1.8.1(@typescript-eslint/parser@8.61.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3))(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3)
       '@lerna-lite/changed':
         specifier: ^5.2.2
         version: 5.2.2(@lerna-lite/publish@5.2.2)(@lerna-lite/version@5.2.2)(@types/node@22.1.0)
@@ -1021,8 +1021,8 @@ packages:
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
 
-  '@kong/eslint-config-kong-ui@1.7.1':
-    resolution: {integrity: sha512-LAvIZJtTpf7yWRdqlrYeI7nUWmG9x5QMy4m2OGBpDwt+MCxveH6xPRMMgQZwGjupl4odR5Kg4KN1AVMCFdlk6g==}
+  '@kong/eslint-config-kong-ui@1.8.1':
+    resolution: {integrity: sha512-fNdG2PHYhA3J8qfvzNdatDvOI3Dapq4SiFeu98ukhk9vf9Qctu98gHD60iNThlqmkGozXgLjC/J4pEILNO7BAw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       eslint: '>= 9.37.0'
@@ -2520,6 +2520,12 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
+  eslint-plugin-playwright@2.12.1:
+    resolution: {integrity: sha512-JhavNuYBIq7SE/Zg9Esf9RGHkXoDbzrEKS383cowzMyvZ4JMbmdNCN6CoW+RU1Cjzwcoea1tou0je58uXmT/9A==}
+    engines: {node: '>=16.9.0'}
+    peerDependencies:
+      eslint: '>=8.40.0'
+
   eslint-plugin-promise@7.3.0:
     resolution: {integrity: sha512-6uGiOR0INuujr6PEQmeSSP7GbIMJ/ebEXXiEzb/nOj68LknH5Pxzb/AbZivmr6VE6TkTE8rTjRK9zhKpK6HsRA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2872,6 +2878,10 @@ packages:
 
   globals@16.5.0:
     resolution: {integrity: sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==}
+    engines: {node: '>=18'}
+
+  globals@17.13.0:
+    resolution: {integrity: sha512-RwMTC61u7hrG3ZJMkZQOK4JLJrKS8QtoTii63EmWvFXHqycY9FObBJQCbsLxSO8kjKhWE5kV1GC+Vb1g3RI0Zg==}
     engines: {node: '>=18'}
 
   globby@16.2.0:
@@ -5934,15 +5944,16 @@ snapshots:
 
   '@keyv/serialize@1.1.1': {}
 
-  '@kong/eslint-config-kong-ui@1.7.1(@typescript-eslint/parser@8.61.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3))(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3)':
+  '@kong/eslint-config-kong-ui@1.8.1(@typescript-eslint/parser@8.61.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3))(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3)':
     dependencies:
-      '@eslint/js': 9.39.4
+      '@eslint/js': 9.39.5
       '@kong/eslint-plugin-design-tokens': 1.0.2(eslint@9.39.5(jiti@2.4.2))(vue-eslint-parser@10.4.1(eslint@9.39.5(jiti@2.4.2)))
       '@stylistic/eslint-plugin': 5.10.0(eslint@9.39.5(jiti@2.4.2))
       eslint: 9.39.5(jiti@2.4.2)
       eslint-plugin-cypress: 5.3.0(eslint@9.39.5(jiti@2.4.2))
       eslint-plugin-jsonc: 2.21.1(eslint@9.39.5(jiti@2.4.2))
       eslint-plugin-n: 17.24.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3)
+      eslint-plugin-playwright: 2.12.1(eslint@9.39.5(jiti@2.4.2))
       eslint-plugin-promise: 7.3.0(eslint@9.39.5(jiti@2.4.2))
       eslint-plugin-vue: 10.9.2(@stylistic/eslint-plugin@5.10.0(eslint@9.39.5(jiti@2.4.2)))(@typescript-eslint/parser@8.61.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3))(eslint@9.39.5(jiti@2.4.2))(vue-eslint-parser@10.4.1(eslint@9.39.5(jiti@2.4.2)))
       globals: 15.15.0
@@ -6600,7 +6611,7 @@ snapshots:
       '@typescript-eslint/utils': 8.61.0(eslint@9.39.5(jiti@2.4.2))(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.61.0
       eslint: 9.39.5(jiti@2.4.2)
-      ignore: 7.0.5
+      ignore: 7.0.12
       natural-compare: 1.4.0
       ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
@@ -6816,7 +6827,7 @@ snapshots:
       '@vue/shared': 3.5.43
       entities: 7.0.1
       estree-walker: 2.0.2
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
 
   '@vue/compiler-dom@3.5.39':
     dependencies:
@@ -6850,7 +6861,7 @@ snapshots:
       estree-walker: 2.0.2
       magic-string: 0.30.21
       postcss: 8.5.29
-      source-map-js: 1.2.1
+      source-map-js: 1.2.2
 
   '@vue/compiler-ssr@3.5.39':
     dependencies:
@@ -7658,6 +7669,11 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
+  eslint-plugin-playwright@2.12.1(eslint@9.39.5(jiti@2.4.2)):
+    dependencies:
+      eslint: 9.39.5(jiti@2.4.2)
+      globals: 17.13.0
+
   eslint-plugin-promise@7.3.0(eslint@9.39.5(jiti@2.4.2)):
     dependencies:
       '@eslint-community/eslint-utils': 4.10.1(eslint@9.39.5(jiti@2.4.2))
@@ -7791,8 +7807,8 @@ snapshots:
 
   espree@9.6.1:
     dependencies:
-      acorn: 8.16.0
-      acorn-jsx: 5.3.2(acorn@8.16.0)
+      acorn: 8.18.0
+      acorn-jsx: 5.3.2(acorn@8.18.0)
       eslint-visitor-keys: 3.4.3
 
   esquery@1.7.0:
@@ -8095,6 +8111,8 @@ snapshots:
   globals@15.15.0: {}
 
   globals@16.5.0: {}
+
+  globals@17.13.0: {}
 
   globby@16.2.0:
     dependencies:
@@ -8455,7 +8473,7 @@ snapshots:
 
   jsonc-eslint-parser@2.4.2:
     dependencies:
-      acorn: 8.16.0
+      acorn: 8.18.0
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
       semver: 7.8.4
@@ -9122,16 +9140,16 @@ snapshots:
     dependencies:
       htmlparser2: 8.0.2
       js-tokens: 9.0.1
-      postcss: 8.5.26
-      postcss-safe-parser: 6.0.0(postcss@8.5.26)
+      postcss: 8.5.29
+      postcss-safe-parser: 6.0.0(postcss@8.5.29)
 
   postcss-media-query-parser@0.2.3: {}
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.5.26):
+  postcss-safe-parser@6.0.0(postcss@8.5.29):
     dependencies:
-      postcss: 8.5.26
+      postcss: 8.5.29
 
   postcss-safe-parser@7.0.1(postcss@8.5.15):
     dependencies:
@@ -10004,7 +10022,7 @@ snapshots:
     dependencies:
       lightningcss: 1.33.0
       picomatch: 4.0.7
-      postcss: 8.5.26
+      postcss: 8.5.29
       rolldown: 1.2.6
       tinyglobby: 0.2.17
     optionalDependencies:
