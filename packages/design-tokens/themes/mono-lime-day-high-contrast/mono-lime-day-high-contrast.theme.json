@@ -1847,7 +1847,7 @@
   },
   "kui-input-switch-color-background-disabled": {
     "$description": "Input switch track background color when disabled.",
-    "$value": "{color.alias.gray.10}"
+    "$value": "{color.alias.gray.70}"
   },
   "kui-input-switch-color-background-hover": {
     "$description": "Input switch track background color on hover.",
@@ -1855,11 +1855,11 @@
   },
   "kui-input-switch-color-background-selected": {
     "$description": "Input switch track background color when on.",
-    "$value": "{color.alias.electric_lime.60}"
+    "$value": "{color.alias.gray.90}"
   },
   "kui-input-switch-color-background-selected-hover": {
     "$description": "Input switch track background color when on and hovered.",
-    "$value": "{color.alias.electric_lime.70}"
+    "$value": "{color.alias.gray.70}"
   },
   "kui-input-switch-icon-color-background": {
     "$description": "Input switch icon background color.",
@@ -1883,7 +1883,7 @@
   },
   "kui-input-switch-shadow-focus": {
     "$description": "Input switch focus ring shadow.",
-    "$value": "0px 0px 0px 3px rgba(179, 224, 0, 0.6)"
+    "$value": "0px 0px 0px 4px rgba(23, 23, 23, 0.15)"
   },
   "kui-input-switch-thumb-border-radius": {
     "$description": "Input switch thumb ring border radius.",
@@ -1911,7 +1911,7 @@
   },
   "kui-input-switch-thumb-shadow-border-selected": {
     "$description": "Input switch thumb border shadow when on.",
-    "$value": "0px 0px 0px 1px {color.alias.electric_lime.100} inset"
+    "$value": "0px 0px 0px 1px {color.alias.gray.70} inset"
   },
   "kui-label-color-text": {
     "$description": "Label text color.",
