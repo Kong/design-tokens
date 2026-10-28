@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.4...@kong/design-tokens@3.4.5) (2026-10-28)
+
+### Bug Fixes
+
+* **mono-lime:** input switch colors ([#743](https://github.com/Kong/design-tokens/issues/743)) ([12864b8](https://github.com/Kong/design-tokens/commit/12864b8c9624375fbe13b5cea89aa08f12ca45a1))
+
 ## [3.4.4](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.3...@kong/design-tokens@3.4.4) (2026-10-21)
 
 ### Bug Fixes
