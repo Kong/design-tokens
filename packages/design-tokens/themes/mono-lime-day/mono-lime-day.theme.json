@@ -1847,7 +1847,7 @@
   },
   "kui-input-switch-color-background-disabled": {
     "$description": "Input switch track background color when disabled.",
-    "$value": "{color.alias.gray.30}"
+    "$value": "{color.alias.gray.60}"
   },
   "kui-input-switch-color-background-hover": {
     "$description": "Input switch track background color on hover.",
