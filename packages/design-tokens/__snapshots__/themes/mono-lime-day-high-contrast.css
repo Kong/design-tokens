@@ -84,7 +84,7 @@
     --kui-button-border-width-small: 1px;
     --kui-button-color-background-danger: #EF4444;
     --kui-button-color-background-danger-active: #A51919;
-    --kui-button-color-background-danger-disabled: #F8F8F8;
+    --kui-button-color-background-danger-disabled: #F2F2F2;
     --kui-button-color-background-danger-hover: #CA2121;
     --kui-button-color-background-primary: #262626;
     --kui-button-color-background-primary-active: #525252;
@@ -108,7 +108,7 @@
     --kui-button-color-border-primary-hover: transparent;
     --kui-button-color-border-secondary: #A3A3A3;
     --kui-button-color-border-secondary-active: #B3E000;
-    --kui-button-color-border-secondary-disabled: #F8F8F8;
+    --kui-button-color-border-secondary-disabled: #F2F2F2;
     --kui-button-color-border-secondary-hover: #CCFF00;
     --kui-button-color-border-tertiary: transparent;
     --kui-button-color-border-tertiary-active: transparent;
@@ -209,7 +209,7 @@
     --kui-color-background-decorative-aqua-weakest: #DDF4F6;
     --kui-color-background-decorative-purple: #881EE8;
     --kui-color-background-decorative-purple-weakest: #F6F1FC;
-    --kui-color-background-disabled: #F8F8F8;
+    --kui-color-background-disabled: #F2F2F2;
     --kui-color-background-info: #3B82F6;
     --kui-color-background-info-strong: #1A47C4;
     --kui-color-background-info-stronger: #1B399B;
@@ -224,7 +224,7 @@
     --kui-color-background-neutral-strongest: #171717;
     --kui-color-background-neutral-weak: #A3A3A3;
     --kui-color-background-neutral-weaker: #EBEBEB;
-    --kui-color-background-neutral-weakest: #F8F8F8;
+    --kui-color-background-neutral-weakest: #F2F2F2;
     --kui-color-background-overlay: rgba(0, 0, 0, 0.32);
     --kui-color-background-primary: #262626;
     --kui-color-background-primary-strong: #262626;
@@ -232,7 +232,7 @@
     --kui-color-background-primary-strongest: #0A0A0A;
     --kui-color-background-primary-weak: #A3A3A3;
     --kui-color-background-primary-weaker: #EBEBEB;
-    --kui-color-background-primary-weakest: #F8F8F8;
+    --kui-color-background-primary-weakest: #F2F2F2;
     --kui-color-background-success: #1490A0;
     --kui-color-background-success-strong: #0B424C;
     --kui-color-background-success-stronger: #073239;
@@ -258,7 +258,7 @@
     --kui-color-border-danger-weaker: #CA2121;
     --kui-color-border-danger-weakest: #CA2121;
     --kui-color-border-decorative-purple: #881EE8;
-    --kui-color-border-disabled: #F8F8F8;
+    --kui-color-border-disabled: #F2F2F2;
     --kui-color-border-inverse: rgba(255, 255, 255, 0.4);
     --kui-color-border-neutral: #A3A3A3;
     --kui-color-border-neutral-strong: #A3A3A3;
@@ -333,10 +333,10 @@
     --kui-copy-icon-color-text-hover: #404040;
     --kui-copy-line-height: 16px;
     --kui-date-time-picker-day-color-background-hover: #FCFCFC;
-    --kui-date-time-picker-day-color-background-in-range: #F8F8F8;
+    --kui-date-time-picker-day-color-background-in-range: #F2F2F2;
     --kui-date-time-picker-day-color-background-selected: #525252;
     --kui-date-time-picker-day-color-background-selected-hover: #404040;
-    --kui-date-time-picker-day-color-background-today: #F8F8F8;
+    --kui-date-time-picker-day-color-background-today: #F2F2F2;
     --kui-date-time-picker-day-color-text: #404040;
     --kui-date-time-picker-day-color-text-disabled: #A3A3A3;
     --kui-date-time-picker-day-color-text-selected: #FFFFFF;
@@ -349,7 +349,7 @@
     --kui-dropdown-item-color-background-danger-hover: #FAECEC;
     --kui-dropdown-item-color-background-hover: #F8FFE6;
     --kui-dropdown-item-color-background-selected: #EEFFB3;
-    --kui-dropdown-item-color-background-selected-disabled: #F8F8F8;
+    --kui-dropdown-item-color-background-selected-disabled: #F2F2F2;
     --kui-dropdown-item-color-border-divider: #D4D4D4;
     --kui-dropdown-item-color-text: #404040;
     --kui-dropdown-item-color-text-danger: #CA2121;
@@ -391,9 +391,9 @@
     --kui-file-upload-dropzone-border-radius: 6px;
     --kui-file-upload-dropzone-border-width: 1px;
     --kui-file-upload-dropzone-color-background: #FCFCFC;
-    --kui-file-upload-dropzone-color-background-disabled: #F8F8F8;
+    --kui-file-upload-dropzone-color-background-disabled: #F2F2F2;
     --kui-file-upload-dropzone-color-border: #525252;
-    --kui-file-upload-dropzone-color-border-disabled: #F8F8F8;
+    --kui-file-upload-dropzone-color-border-disabled: #F2F2F2;
     --kui-file-upload-dropzone-color-border-error: #CA2121;
     --kui-file-upload-dropzone-color-border-hover: #525252;
     --kui-file-upload-dropzone-color-text: #525252;
@@ -404,7 +404,7 @@
     --kui-filter-group-pill-color-background: #FCFCFC;
     --kui-filter-group-pill-color-background-hover: #FCFCFC;
     --kui-filter-group-pill-color-background-selected: #FCFCFC;
-    --kui-filter-group-pill-color-background-selected-hover: #F8F8F8;
+    --kui-filter-group-pill-color-background-selected-hover: #F2F2F2;
     --kui-filter-group-pill-color-border: #525252;
     --kui-filter-group-pill-color-border-hover: #525252;
     --kui-filter-group-pill-color-border-selected: #525252;
@@ -446,7 +446,7 @@
     --kui-icon-size-80: 48px;
     --kui-input-border-radius: 6px;
     --kui-input-color-background: #FFFFFF;
-    --kui-input-color-background-disabled: #F8F8F8;
+    --kui-input-color-background-disabled: #F2F2F2;
     --kui-input-color-background-readonly: #FCFCFC;
     --kui-input-color-text: #404040;
     --kui-input-color-text-disabled: #525252;
@@ -472,11 +472,11 @@
     --kui-input-switch-color-background-hover: #A3A3A3;
     --kui-input-switch-color-background-selected: #171717;
     --kui-input-switch-color-background-selected-hover: #404040;
-    --kui-input-switch-icon-color-background: #F8F8F8;
+    --kui-input-switch-icon-color-background: #F2F2F2;
     --kui-input-switch-icon-color-background-disabled: #A3A3A3;
-    --kui-input-switch-icon-color-border: #F8F8F8;
+    --kui-input-switch-icon-color-border: #F2F2F2;
     --kui-input-switch-icon-color-border-disabled: #A3A3A3;
-    --kui-input-switch-icon-color-border-hover: #F8F8F8;
+    --kui-input-switch-icon-color-border-hover: #F2F2F2;
     --kui-input-switch-shadow-focus: 0px 0px 0px 4px rgba(23, 23, 23, 0.15);
     --kui-input-switch-thumb-border-radius: 100px;
     --kui-input-switch-thumb-border-width: 2px;
@@ -634,7 +634,7 @@
     --kui-segmented-control-color-background-selected: #EBEBEB;
     --kui-segmented-control-color-border: #525252;
     --kui-segmented-control-color-border-active: #525252;
-    --kui-segmented-control-color-border-disabled: #F8F8F8;
+    --kui-segmented-control-color-border-disabled: #F2F2F2;
     --kui-segmented-control-color-border-hover: #525252;
     --kui-segmented-control-color-border-selected: #0A0A0A;
     --kui-segmented-control-color-text: #525252;
@@ -652,7 +652,7 @@
     --kui-select-item-color-background: #FFFFFF;
     --kui-select-item-color-background-hover: #F8FFE6;
     --kui-select-item-color-background-selected: #EEFFB3;
-    --kui-select-item-color-background-selected-disabled: #F8F8F8;
+    --kui-select-item-color-background-selected-disabled: #F2F2F2;
     --kui-select-item-color-text: #404040;
     --kui-select-item-color-text-disabled: #737373;
     --kui-select-item-color-text-selected: #171717;
@@ -673,7 +673,7 @@
     --kui-skeleton-card-border-radius: 6px;
     --kui-skeleton-card-border-width: 1px;
     --kui-skeleton-card-color-border: #525252;
-    --kui-skeleton-color-background: #F8F8F8;
+    --kui-skeleton-color-background: #F2F2F2;
     --kui-skeleton-color-background-shimmer: #FCFCFC;
     --kui-skeleton-fullscreen-color-background: #FFFFFF;
     --kui-skeleton-progress-border-radius: 8px;
@@ -714,7 +714,7 @@
     --kui-slider-thumb-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.6);
     --kui-slider-thumb-size: 16px;
     --kui-slider-track-border-radius: 4px;
-    --kui-slider-track-color-background: #F8F8F8;
+    --kui-slider-track-color-background: #F2F2F2;
     --kui-space-0: 0px;
     --kui-space-10: 2px;
     --kui-space-20: 4px;
@@ -825,7 +825,7 @@
     --kui-stepper-color-text-label: #525252;
     --kui-stepper-color-text-label-selected: #262626;
     --kui-stepper-color-text-selected: #FFFFFF;
-    --kui-stepper-connector-color-background: #F8F8F8;
+    --kui-stepper-connector-color-background: #F2F2F2;
     --kui-stepper-connector-color-background-completed: #525252;
     --kui-stepper-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-stepper-font-weight: 600;
@@ -847,7 +847,7 @@
     --kui-table-header-shadow-scrolled: 0px 8px 24px 0px rgba(0, 0, 0, 0.08);
     --kui-table-padding: 8px 8px;
     --kui-table-row-color-background-expanded: #FCFCFC;
-    --kui-table-row-color-background-hover: #F8F8F8;
+    --kui-table-row-color-background-hover: #F2F2F2;
     --kui-table-row-color-border: #D4D4D4;
     --kui-table-sticky-color-background: #FFFFFF;
     --kui-table-toolbar-gap: 8px;
@@ -906,8 +906,8 @@
     --kui-tree-list-border-width: 1px;
     --kui-tree-list-color-background: #FFFFFF;
     --kui-tree-list-color-background-drag-indicator: #EBEBEB;
-    --kui-tree-list-color-background-hover: #F8F8F8;
-    --kui-tree-list-color-background-selected: #F8F8F8;
+    --kui-tree-list-color-background-hover: #F2F2F2;
+    --kui-tree-list-color-background-selected: #F2F2F2;
     --kui-tree-list-color-border: #D4D4D4;
     --kui-tree-list-color-border-connector: #D4D4D4;
     --kui-tree-list-color-border-selected: #404040;
@@ -919,7 +919,7 @@
     --kui-tree-list-padding: 6px;
     --kui-tree-list-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.6);
     --kui-truncate-collapse-trigger-color-background: #FCFCFC;
-    --kui-truncate-collapse-trigger-color-background-hover: #F8F8F8;
+    --kui-truncate-collapse-trigger-color-background-hover: #F2F2F2;
     --kui-truncate-collapse-trigger-color-text: #525252;
     --kui-truncate-expand-trigger-color-text: #525252;
     --kui-truncate-expand-trigger-color-text-hover: #404040;
