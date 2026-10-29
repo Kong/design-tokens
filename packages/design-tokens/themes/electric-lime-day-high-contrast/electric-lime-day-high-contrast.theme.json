@@ -3316,6 +3316,10 @@
     "$description": "Table row divider (bottom border) color.",
     "$value": "{color.alias.gray.30}"
   },
+  "kui-table-row-height": {
+    "$description": "Table body row height.",
+    "$value": "48px"
+  },
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
     "$value": "{color.alias.white}"

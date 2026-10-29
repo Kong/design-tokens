@@ -3295,7 +3295,7 @@
   },
   "kui-table-cell-font-size": {
     "$description": "Table body cell font size.",
-    "$value": "14px"
+    "$value": "12px"
   },
   "kui-table-cell-font-weight": {
     "$description": "Table body cell font weight.",
@@ -3331,7 +3331,7 @@
   },
   "kui-table-header-font-size": {
     "$description": "Table header font size.",
-    "$value": "14px"
+    "$value": "12px"
   },
   "kui-table-header-font-weight": {
     "$description": "Table header font weight.",
@@ -3368,6 +3368,10 @@
   "kui-table-row-color-border": {
     "$description": "Table row divider (bottom border) color.",
     "$value": "{color.alias.gray.80}"
+  },
+  "kui-table-row-height": {
+    "$description": "Table body row height.",
+    "$value": "auto"
   },
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",

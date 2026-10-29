@@ -145,8 +145,8 @@
       },
       "gray": {
         "05": {
-          "$description": "Alias for #FCFCFC.",
-          "$value": "#FCFCFC"
+          "$description": "Alias for #F9F9F9.",
+          "$value": "#F9F9F9"
         },
         "10": {
           "$description": "Alias for #F5F5F5.",

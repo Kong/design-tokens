@@ -37,6 +37,10 @@ export const USE_PROPER_TOKEN = {
     // The other two tokens added alongside them already matched an existing category
     iconSizeComponentTokenOnHeight: '.a { height: $kui-input-icon-size; }',
     paddingComponentTokenOnPaddingTop: '.a { padding-top: $kui-multiselect-trigger-padding-y; }',
+    // `row-height`, not bare `height`: the component group would let a bare entry absorb
+    // `kui-line-height-*` too (see `lineHeightTokenOnHeight`)
+    rowHeightTokenOnHeight: '.a { height: var(--kui-table-row-height, 48px); }',
+    rowHeightTokenOnMinHeight: '.a { min-height: var(--kui-table-row-height, 48px); }',
     shadowOnBoxShadow: '.a { box-shadow: $kui-shadow-md; }',
     // PROPERTY_TOKEN_MAP is an allow-list of *enforced* properties; anything absent is skipped
     unmappedProperty: '.a { transition: $kui-animation-duration-20; }',
@@ -67,8 +71,14 @@ export const USE_PROPER_TOKEN = {
     sameBadTokenTwice: '.a { color: $kui-space-40 $kui-space-40; }',
     // The appropriate token is filtered out; only the inappropriate one reports
     mixedGoodAndBadOnPadding: '.a { padding: $kui-space-40 $kui-color-text-primary; }',
-    // `height: ['icon-size']` only — spacing tokens are rejected there. Intentional, if surprising.
+    // `height` takes only `icon-size` / `*-row-height` — spacing tokens are rejected there.
+    // Intentional, if surprising.
     spaceTokenOnHeight: '.a { height: $kui-space-40; }',
+    // Guards the narrow `row-height` entry: a bare `height` entry would accept this
+    lineHeightTokenOnHeight: '.a { height: $kui-line-height-30; }',
+    // DELIBERATE: `max-height` does not accept `row-height`. Themes can set it to `auto`,
+    // which is not a valid `max-height` value.
+    rowHeightTokenOnMaxHeight: '.a { max-height: var(--kui-table-row-height, 48px); }',
     spaceTokenOnMinHeight: '.a { min-height: $kui-space-40; }',
     // DELIBERATE: `min-height` is NOT widened to accept `line-height` tokens. KMultiselect's
     // badges row legitimately floors its height at one line of input text

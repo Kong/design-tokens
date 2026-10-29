@@ -107,6 +107,10 @@
           "$description": "Table row divider (bottom border) color.",
           "$value": ""
         }
+      },
+      "height": {
+        "$description": "Table body row height.",
+        "$value": ""
       }
     },
     "sticky": {
