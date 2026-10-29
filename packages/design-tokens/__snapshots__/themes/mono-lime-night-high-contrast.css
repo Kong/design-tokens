@@ -830,7 +830,7 @@
     --kui-stepper-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-stepper-font-weight: 600;
     --kui-table-cell-color-text: #D4D4D4;
-    --kui-table-cell-font-size: 14px;
+    --kui-table-cell-font-size: 12px;
     --kui-table-cell-font-weight: 400;
     --kui-table-cell-line-height: 20px;
     --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #262626 inset;
@@ -839,7 +839,7 @@
     --kui-table-header-color-border: #525252;
     --kui-table-header-color-text: #A3A3A3;
     --kui-table-header-color-text-active-sort: #D4D4D4;
-    --kui-table-header-font-size: 14px;
+    --kui-table-header-font-size: 12px;
     --kui-table-header-font-weight: 500;
     --kui-table-header-line-height: 20px;
     --kui-table-header-padding: 10px 6px;

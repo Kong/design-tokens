@@ -3295,7 +3295,7 @@
   },
   "kui-table-cell-font-size": {
     "$description": "Table body cell font size.",
-    "$value": "14px"
+    "$value": "12px"
   },
   "kui-table-cell-font-weight": {
     "$description": "Table body cell font weight.",
@@ -3331,7 +3331,7 @@
   },
   "kui-table-header-font-size": {
     "$description": "Table header font size.",
-    "$value": "14px"
+    "$value": "12px"
   },
   "kui-table-header-font-weight": {
     "$description": "Table header font weight.",
