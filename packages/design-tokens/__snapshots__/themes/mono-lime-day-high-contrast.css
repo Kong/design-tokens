@@ -849,6 +849,7 @@
     --kui-table-row-color-background-expanded: #FCFCFC;
     --kui-table-row-color-background-hover: #F2F2F2;
     --kui-table-row-color-border: #D4D4D4;
+    --kui-table-row-height: auto;
     --kui-table-sticky-color-background: #FFFFFF;
     --kui-table-toolbar-gap: 8px;
     --kui-tabs-border-radius: 6px;

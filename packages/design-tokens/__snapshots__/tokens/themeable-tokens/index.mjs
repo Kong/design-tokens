@@ -5108,6 +5108,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: null,
   },
   {
+    name: "--kui-table-row-height",
+    description: "Table body row height.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-table-sticky-color-background",
     description: "Table sticky column (and actions column) cell background color.",
     category: "component",

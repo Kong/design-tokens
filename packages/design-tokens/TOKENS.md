@@ -3094,6 +3094,8 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-table-row-color-background-hover: initial;
 /* Table row divider (bottom border) color. */
 --kui-table-row-color-border: initial;
+/* Table body row height. */
+--kui-table-row-height: initial;
 /* Table sticky column (and actions column) cell background color. */
 --kui-table-sticky-color-background: initial;
 /* The gap between the toolbar and the table content. */
@@ -9040,6 +9042,12 @@ export const KUI_THEMEABLE_TOKENS = [
   {
     name: "--kui-table-row-color-border",
     description: "Table row divider (bottom border) color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-table-row-height",
+    description: "Table body row height.",
     category: "component",
     value: null,
   },
