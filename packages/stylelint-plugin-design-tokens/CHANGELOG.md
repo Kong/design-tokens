@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/Kong/design-tokens/compare/@kong/stylelint-plugin-design-tokens@2.0.3...@kong/stylelint-plugin-design-tokens@2.0.4) (2026-10-29)
+
+### Bug Fixes
+
+* **mono-lime:** tweak color-background-neutral-weakest alias ([#744](https://github.com/Kong/design-tokens/issues/744)) ([8b98b27](https://github.com/Kong/design-tokens/commit/8b98b2735a0e282213106c6d977a92883797c48c))
+
 ## [2.0.3](https://github.com/Kong/design-tokens/compare/@kong/stylelint-plugin-design-tokens@2.0.2...@kong/stylelint-plugin-design-tokens@2.0.3) (2026-10-19)
 
 ### Bug Fixes

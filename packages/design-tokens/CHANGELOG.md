@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.5...@kong/design-tokens@3.4.6) (2026-10-29)
+
+### Bug Fixes
+
+* **mono-lime:** tweak color-background-neutral-weakest alias ([#744](https://github.com/Kong/design-tokens/issues/744)) ([8b98b27](https://github.com/Kong/design-tokens/commit/8b98b2735a0e282213106c6d977a92883797c48c))
+
 ## [3.4.5](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.4...@kong/design-tokens@3.4.5) (2026-10-28)
 
 ### Bug Fixes
