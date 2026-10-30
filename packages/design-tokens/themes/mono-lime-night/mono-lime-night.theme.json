@@ -227,6 +227,26 @@
     "$description": "10px border radius.",
     "$value": "10px"
   },
+  "kui-border-radius-60": {
+    "$description": "12px border radius.",
+    "$value": "12px"
+  },
+  "kui-border-radius-70": {
+    "$description": "16px border radius.",
+    "$value": "16px"
+  },
+  "kui-border-radius-80": {
+    "$description": "20px border radius.",
+    "$value": "20px"
+  },
+  "kui-border-radius-90": {
+    "$description": "24px border radius.",
+    "$value": "24px"
+  },
+  "kui-border-radius-100": {
+    "$description": "32px border radius.",
+    "$value": "32px"
+  },
   "kui-border-radius-circle": {
     "$description": "50% border radius used to create circles.",
     "$value": "50%"
