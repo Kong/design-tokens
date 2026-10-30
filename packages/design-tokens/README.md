@@ -1,6 +1,6 @@
 # @kong/design-tokens
 
-Kong Design Tokens for Konnect, via [Style Dictionary](https://github.com/amzn/style-dictionary).
+Kong Design Tokens via [Style Dictionary](https://github.com/amzn/style-dictionary).
 
 - [Token Tiers](#token-tiers)
   - [Semantic tokens](#semantic-tokens)
