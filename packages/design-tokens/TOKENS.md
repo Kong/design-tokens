@@ -291,6 +291,16 @@ $kui-border-radius-30: 6px;
 $kui-border-radius-40: 8px;
 /* 10px border radius. */
 $kui-border-radius-50: 10px;
+/* 12px border radius. */
+$kui-border-radius-60: 12px;
+/* 16px border radius. */
+$kui-border-radius-70: 16px;
+/* 20px border radius. */
+$kui-border-radius-80: 20px;
+/* 24px border radius. */
+$kui-border-radius-90: 24px;
+/* 32px border radius. */
+$kui-border-radius-100: 32px;
 /* 50% border radius used to create circles. */
 $kui-border-radius-circle: 50%;
 /* 100px border radius used to create pill shapes. */
@@ -975,6 +985,16 @@ $tokens-map: (
   'kui-border-radius-40': 8px,
   /* 10px border radius. */
   'kui-border-radius-50': 10px,
+  /* 12px border radius. */
+  'kui-border-radius-60': 12px,
+  /* 16px border radius. */
+  'kui-border-radius-70': 16px,
+  /* 20px border radius. */
+  'kui-border-radius-80': 20px,
+  /* 24px border radius. */
+  'kui-border-radius-90': 24px,
+  /* 32px border radius. */
+  'kui-border-radius-100': 32px,
   /* 50% border radius used to create circles. */
   'kui-border-radius-circle': 50%,
   /* 100px border radius used to create pill shapes. */
@@ -1663,6 +1683,16 @@ You may scope your CSS custom property overrides inside the `:root` selector as 
 --kui-border-radius-40: 8px;
 /* 10px border radius. */
 --kui-border-radius-50: 10px;
+/* 12px border radius. */
+--kui-border-radius-60: 12px;
+/* 16px border radius. */
+--kui-border-radius-70: 16px;
+/* 20px border radius. */
+--kui-border-radius-80: 20px;
+/* 24px border radius. */
+--kui-border-radius-90: 24px;
+/* 32px border radius. */
+--kui-border-radius-100: 32px;
 /* 50% border radius used to create circles. */
 --kui-border-radius-circle: 50%;
 /* 100px border radius used to create pill shapes. */
@@ -3531,6 +3561,16 @@ export const KUI_BORDER_RADIUS_30 = "6px";
 export const KUI_BORDER_RADIUS_40 = "8px";
 /* 10px border radius. */
 export const KUI_BORDER_RADIUS_50 = "10px";
+/* 12px border radius. */
+export const KUI_BORDER_RADIUS_60 = "12px";
+/* 16px border radius. */
+export const KUI_BORDER_RADIUS_70 = "16px";
+/* 20px border radius. */
+export const KUI_BORDER_RADIUS_80 = "20px";
+/* 24px border radius. */
+export const KUI_BORDER_RADIUS_90 = "24px";
+/* 32px border radius. */
+export const KUI_BORDER_RADIUS_100 = "32px";
 /* 50% border radius used to create circles. */
 export const KUI_BORDER_RADIUS_CIRCLE = "50%";
 /* 100px border radius used to create pill shapes. */
@@ -4264,6 +4304,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: "2px",
   },
   {
+    name: "--kui-border-radius-100",
+    description: "32px border radius.",
+    category: "border",
+    value: "32px",
+  },
+  {
     name: "--kui-border-radius-20",
     description: "4px border radius.",
     category: "border",
@@ -4286,6 +4332,30 @@ export const KUI_THEMEABLE_TOKENS = [
     description: "10px border radius.",
     category: "border",
     value: "10px",
+  },
+  {
+    name: "--kui-border-radius-60",
+    description: "12px border radius.",
+    category: "border",
+    value: "12px",
+  },
+  {
+    name: "--kui-border-radius-70",
+    description: "16px border radius.",
+    category: "border",
+    value: "16px",
+  },
+  {
+    name: "--kui-border-radius-80",
+    description: "20px border radius.",
+    category: "border",
+    value: "20px",
+  },
+  {
+    name: "--kui-border-radius-90",
+    description: "24px border radius.",
+    category: "border",
+    value: "24px",
   },
   {
     name: "--kui-border-radius-circle",
@@ -9650,6 +9720,11 @@ export const KUI_THEMEABLE_TOKENS = [
   "kui_border_radius_30": "6px",
   "kui_border_radius_40": "8px",
   "kui_border_radius_50": "10px",
+  "kui_border_radius_60": "12px",
+  "kui_border_radius_70": "16px",
+  "kui_border_radius_80": "20px",
+  "kui_border_radius_90": "24px",
+  "kui_border_radius_100": "32px",
   "kui_border_radius_circle": "50%",
   "kui_border_radius_round": "100px",
   "kui_border_width_0": "0px",
