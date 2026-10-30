@@ -55,6 +55,14 @@ jobs:
       - name: Build
         run: pnpm --filter "${{ matrix.package }}" --if-present build
 
+      - name: Check generated docs are up to date
+        if: matrix.package == '@kong/design-tokens'
+        run: |
+          if ! git diff --exit-code -- packages/design-tokens/TOKENS.md; then
+            echo "::error::TOKENS.md is out of date with the token sources. Run 'pnpm --filter @kong/design-tokens build' and commit the regenerated TOKENS.md."
+            exit 1
+          fi
+
       - name: Typecheck
         run: pnpm --filter "${{ matrix.package }}" --if-present typecheck
 
