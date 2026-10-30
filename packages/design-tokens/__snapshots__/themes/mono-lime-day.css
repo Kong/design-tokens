@@ -61,6 +61,11 @@
     --kui-border-radius-30: 6px;
     --kui-border-radius-40: 8px;
     --kui-border-radius-50: 10px;
+    --kui-border-radius-60: 12px;
+    --kui-border-radius-70: 16px;
+    --kui-border-radius-80: 20px;
+    --kui-border-radius-90: 24px;
+    --kui-border-radius-100: 32px;
     --kui-border-radius-circle: 50%;
     --kui-border-radius-round: 100px;
     --kui-border-width-0: 0px;
@@ -925,11 +930,6 @@
     --kui-truncate-expand-trigger-color-text: #525252;
     --kui-truncate-expand-trigger-color-text-hover: #404040;
     --kui-truncate-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.4);
-    --kui-border-radius-60: 12px;
-    --kui-border-radius-70: 16px;
-    --kui-border-radius-80: 20px;
-    --kui-border-radius-90: 24px;
-    --kui-border-radius-100: 32px;
     --kui-breakpoint-mobile: 640px;
     --kui-breakpoint-phablet: 768px;
     --kui-breakpoint-tablet: 1024px;

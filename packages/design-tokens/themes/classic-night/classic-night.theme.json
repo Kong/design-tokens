@@ -21,6 +21,26 @@
   "kui-border-radius-50": {
     "$value": "10px"
   },
+  "kui-border-radius-60": {
+    "$value": "12px",
+    "$description": "12px border radius."
+  },
+  "kui-border-radius-70": {
+    "$value": "16px",
+    "$description": "16px border radius."
+  },
+  "kui-border-radius-80": {
+    "$value": "20px",
+    "$description": "20px border radius."
+  },
+  "kui-border-radius-90": {
+    "$value": "24px",
+    "$description": "24px border radius."
+  },
+  "kui-border-radius-100": {
+    "$value": "32px",
+    "$description": "32px border radius."
+  },
   "kui-border-radius-circle": {
     "$description": "Circle border radius.",
     "$value": "50%"
@@ -1281,25 +1301,5 @@
   "kui-status-color-text-500": {
     "$description": "Text color for http status 500 elements.",
     "$value": "{color.alias.red.60}"
-  },
-  "kui-border-radius-60": {
-    "$value": "12px",
-    "$description": "12px border radius."
-  },
-  "kui-border-radius-70": {
-    "$value": "16px",
-    "$description": "16px border radius."
-  },
-  "kui-border-radius-80": {
-    "$value": "20px",
-    "$description": "20px border radius."
-  },
-  "kui-border-radius-90": {
-    "$value": "24px",
-    "$description": "24px border radius."
-  },
-  "kui-border-radius-100": {
-    "$value": "32px",
-    "$description": "32px border radius."
   }
 }
