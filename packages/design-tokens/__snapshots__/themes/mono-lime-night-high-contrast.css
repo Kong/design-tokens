@@ -925,6 +925,11 @@
     --kui-truncate-expand-trigger-color-text: #A3A3A3;
     --kui-truncate-expand-trigger-color-text-hover: #D4D4D4;
     --kui-truncate-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.6);
+    --kui-border-radius-60: 12px;
+    --kui-border-radius-70: 16px;
+    --kui-border-radius-80: 20px;
+    --kui-border-radius-90: 24px;
+    --kui-border-radius-100: 32px;
     --kui-breakpoint-mobile: 640px;
     --kui-breakpoint-phablet: 768px;
     --kui-breakpoint-tablet: 1024px;

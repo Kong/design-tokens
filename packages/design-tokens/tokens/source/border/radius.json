@@ -25,6 +25,26 @@
         "$description": "10px border radius.",
         "$value": "10px"
       },
+      "60": {
+        "$description": "12px border radius.",
+        "$value": "12px"
+      },
+      "70": {
+        "$description": "16px border radius.",
+        "$value": "16px"
+      },
+      "80": {
+        "$description": "20px border radius.",
+        "$value": "20px"
+      },
+      "90": {
+        "$description": "24px border radius.",
+        "$value": "24px"
+      },
+      "100": {
+        "$description": "32px border radius.",
+        "$value": "32px"
+      },
       "circle": {
         "$description": "50% border radius used to create circles.",
         "$value": "50%"

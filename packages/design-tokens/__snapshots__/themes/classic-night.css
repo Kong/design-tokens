@@ -340,6 +340,11 @@
     --kui-status-color-text-300: #995C00;
     --kui-status-color-text-400: #D13500;
     --kui-status-color-text-500: #D60027;
+    --kui-border-radius-60: 12px;
+    --kui-border-radius-70: 16px;
+    --kui-border-radius-80: 20px;
+    --kui-border-radius-90: 24px;
+    --kui-border-radius-100: 32px;
     --kui-breakpoint-mobile: 640px;
     --kui-breakpoint-phablet: 768px;
     --kui-breakpoint-tablet: 1024px;

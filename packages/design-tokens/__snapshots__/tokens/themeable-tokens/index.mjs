@@ -326,6 +326,12 @@ export const KUI_THEMEABLE_TOKENS = [
     value: "2px",
   },
   {
+    name: "--kui-border-radius-100",
+    description: "32px border radius.",
+    category: "border",
+    value: "32px",
+  },
+  {
     name: "--kui-border-radius-20",
     description: "4px border radius.",
     category: "border",
@@ -348,6 +354,30 @@ export const KUI_THEMEABLE_TOKENS = [
     description: "10px border radius.",
     category: "border",
     value: "10px",
+  },
+  {
+    name: "--kui-border-radius-60",
+    description: "12px border radius.",
+    category: "border",
+    value: "12px",
+  },
+  {
+    name: "--kui-border-radius-70",
+    description: "16px border radius.",
+    category: "border",
+    value: "16px",
+  },
+  {
+    name: "--kui-border-radius-80",
+    description: "20px border radius.",
+    category: "border",
+    value: "20px",
+  },
+  {
+    name: "--kui-border-radius-90",
+    description: "24px border radius.",
+    category: "border",
+    value: "24px",
   },
   {
     name: "--kui-border-radius-circle",
