@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.5.0...@kong/design-tokens@3.5.1) (2026-10-30)
+
+### Bug Fixes
+
+* trigger release ([e6c157c](https://github.com/Kong/design-tokens/commit/e6c157cc6b08dbcf4dadda30899c3be23ea3083c))
+
 # [3.5.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.6...@kong/design-tokens@3.5.0) (2026-10-30)
 
 ### Bug Fixes
