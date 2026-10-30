@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.6...@kong/design-tokens@3.5.0) (2026-10-30)
+
+### Bug Fixes
+
+* build tokens.md and release ([#746](https://github.com/Kong/design-tokens/issues/746)) ([bf226c2](https://github.com/Kong/design-tokens/commit/bf226c20d91b3fc9b739fe0e46a11eb73970b217))
+
+### Features
+
+* **design-tokens:** add new border-radius steps ([#745](https://github.com/Kong/design-tokens/issues/745)) ([da3fc49](https://github.com/Kong/design-tokens/commit/da3fc493812f8c8506985a2883f01800f61399c8))
+
 ## [3.4.6](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.4.5...@kong/design-tokens@3.4.6) (2026-10-29)
 
 ### Bug Fixes
