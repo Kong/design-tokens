@@ -669,7 +669,7 @@
   },
   "kui-card-title-font-size": {
     "$description": "Card title font size.",
-    "$value": "14px"
+    "$value": "12px"
   },
   "kui-card-title-font-weight": {
     "$description": "Card title font weight.",
@@ -677,7 +677,7 @@
   },
   "kui-card-title-line-height": {
     "$description": "Card title line height.",
-    "$value": "20px"
+    "$value": "16px"
   },
   "kui-checkbox-border-radius": {
     "$description": "Checkbox border radius.",
