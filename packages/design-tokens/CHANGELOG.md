@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.5.1...@kong/design-tokens@3.5.2) (2026-11-03)
+
+### Bug Fixes
+
+* **mono-lime:** set card titles to 12px in Mono themes ([#747](https://github.com/Kong/design-tokens/issues/747)) ([ce2fc7b](https://github.com/Kong/design-tokens/commit/ce2fc7bf79ad43d4150696728e34b3a37a2cdefc))
+
 ## [3.5.1](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.5.0...@kong/design-tokens@3.5.1) (2026-10-30)
 
 ### Bug Fixes
