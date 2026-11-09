@@ -161,7 +161,7 @@
     --kui-card-body-padding: 8px;
     --kui-card-border-radius: 8px;
     --kui-card-border-width: 1px;
-    --kui-card-color-background: #1C1C1C;
+    --kui-card-color-background: #050505;
     --kui-card-color-border: #525252;
     --kui-card-footer-gap: 6px;
     --kui-card-footer-padding: 8px;
@@ -367,7 +367,7 @@
     --kui-dropdown-item-padding-x: 12px;
     --kui-dropdown-item-padding-y: 6px;
     --kui-dropdown-item-shadow-focus: 0px 0px 0px 3px rgba(179, 224, 0, 0.6);
-    --kui-empty-state-color-background: #1C1C1C;
+    --kui-empty-state-color-background: #050505;
     --kui-empty-state-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-empty-state-footer-border-width: 1px;
     --kui-empty-state-footer-color-border: #525252;
@@ -821,7 +821,7 @@
     --kui-status-color-text-500: #FCE6E6;
     --kui-stepper-border-radius: 50%;
     --kui-stepper-border-width: 1px;
-    --kui-stepper-color-background: #1C1C1C;
+    --kui-stepper-color-background: #050505;
     --kui-stepper-color-background-completed: #525252;
     --kui-stepper-color-background-error: #2D0B0B;
     --kui-stepper-color-background-selected: #A3A3A3;
@@ -839,7 +839,7 @@
     --kui-table-cell-font-weight: 400;
     --kui-table-cell-line-height: 20px;
     --kui-table-cell-shadow-resize-hover: calc(-1 * 2px) 0 0 0 #262626 inset;
-    --kui-table-color-background: #1C1C1C;
+    --kui-table-color-background: #050505;
     --kui-table-font-family: 'Inter', Roboto, Helvetica, sans-serif;
     --kui-table-header-color-border: #525252;
     --kui-table-header-color-text: #A3A3A3;
@@ -855,7 +855,7 @@
     --kui-table-row-color-background-hover: #262626;
     --kui-table-row-color-border: #525252;
     --kui-table-row-height: auto;
-    --kui-table-sticky-color-background: #1C1C1C;
+    --kui-table-sticky-color-background: #050505;
     --kui-table-toolbar-gap: 8px;
     --kui-tabs-border-radius: 6px;
     --kui-tabs-border-radius-minimal: 4px;
@@ -910,7 +910,7 @@
     --kui-tooltip-padding: 6px;
     --kui-tree-list-border-radius: 4px;
     --kui-tree-list-border-width: 1px;
-    --kui-tree-list-color-background: #1C1C1C;
+    --kui-tree-list-color-background: #050505;
     --kui-tree-list-color-background-drag-indicator: #404040;
     --kui-tree-list-color-background-hover: #262626;
     --kui-tree-list-color-background-selected: #262626;

@@ -629,7 +629,7 @@
   },
   "kui-card-color-background": {
     "$description": "Card background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-card-color-border": {
     "$description": "Card border color.",
@@ -1453,7 +1453,7 @@
   },
   "kui-empty-state-color-background": {
     "$description": "Empty state container background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-empty-state-font-family": {
     "$description": "Empty state font family.",
@@ -3259,7 +3259,7 @@
   },
   "kui-stepper-color-background": {
     "$description": "Stepper step indicator (circle) background color for incomplete (default) and pending steps.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-stepper-color-background-completed": {
     "$description": "Stepper step indicator (circle) background color for completed steps.",
@@ -3331,7 +3331,7 @@
   },
   "kui-table-color-background": {
     "$description": "Table background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-table-font-family": {
     "$description": "Table font family.",
@@ -3395,7 +3395,7 @@
   },
   "kui-table-sticky-color-background": {
     "$description": "Table sticky column (and actions column) cell background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-table-toolbar-gap": {
     "$description": "Table view gap between the toolbar and the table content.",
@@ -3615,7 +3615,7 @@
   },
   "kui-tree-list-color-background": {
     "$description": "Tree list item background color.",
-    "$value": "{color.alias.gray.90}"
+    "$value": "{color.alias.gray.100}"
   },
   "kui-tree-list-color-background-drag-indicator": {
     "$description": "Tree list drag indicator bar background color, shown when dragging an item to a drop location.",
