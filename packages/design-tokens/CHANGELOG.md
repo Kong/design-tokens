@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.3](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.5.2...@kong/design-tokens@3.5.3) (2026-11-09)
+
+### Bug Fixes
+
+* **mono-lime-night:** update color tokens for diverging backgrounds ([#748](https://github.com/Kong/design-tokens/issues/748)) ([b49f29d](https://github.com/Kong/design-tokens/commit/b49f29de7ee47b664a4d60995f6d4424710ab268))
+
 ## [3.5.2](https://github.com/Kong/design-tokens/compare/@kong/design-tokens@3.5.1...@kong/design-tokens@3.5.2) (2026-11-03)
 
 ### Bug Fixes
