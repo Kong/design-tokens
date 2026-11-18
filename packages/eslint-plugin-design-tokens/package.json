@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^8.59.4",
-    "vitest": "^4.1.11"
+    "vitest": "^4.1.12"
   },
   "scripts": {
     "lint": "eslint .",
