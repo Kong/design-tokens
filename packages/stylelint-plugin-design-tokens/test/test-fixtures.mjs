@@ -21,7 +21,7 @@ export const USE_PROPER_TOKEN = {
     variantSuffix: '.a { color: $kui-color-text-primary-strong; }',
     // Leading `(?:[a-z0-9-]+-)?` component group AND the variant suffix in one token
     componentPrefixAndVariant: '.a { background-color: var(--kui-button-color-background-hover, $kui-button-color-background-hover); }',
-    // Real shipped component tokens, not synthetic ones. All 342 shipped tokens were checked
+    // Real shipped component tokens, not synthetic ones. All 1012 shipped tokens were checked
     // against every mapped property: the greedy component-prefix group produces zero spurious
     // matches, so it does not need "hardening".
     methodComponentToken: '.a { background-color: $kui-method-color-background-get; }',
@@ -34,6 +34,9 @@ export const USE_PROPER_TOKEN = {
     gapTokenOnGap: '.a { gap: var(--kui-table-gap, $kui-space-70); }',
     gapTokenOnRowGap: '.a { row-gap: $kui-table-gap; }',
     gapTokenOnColumnGap: '.a { column-gap: $kui-table-gap; }',
+    // Component `-gap` tokens are allowed on `margin*` too — sections nest at different depths,
+    // so spec-renderer's section spacing lands on `margin-bottom` instead of a flex `gap`.
+    gapTokenOnMarginBottom: '.a { margin-bottom: $kui-spec-renderer-section-gap; }',
     // The other two tokens added alongside them already matched an existing category
     iconSizeComponentTokenOnHeight: '.a { height: $kui-input-icon-size; }',
     paddingComponentTokenOnPaddingTop: '.a { padding-top: $kui-multiselect-trigger-padding-y; }',

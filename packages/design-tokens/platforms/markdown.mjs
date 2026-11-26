@@ -40,6 +40,21 @@ border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30
 
 Never reference a component token without that semantic fallback — on its own it is unset unless a theme writes it.
 
+Component token sets are not limited to Kongponents. \`--kui-spec-renderer-*\` styles [\`@kong/spec-renderer\`](https://github.com/Kong/spec-renderer), Kong's OpenAPI/AsyncAPI documentation renderer — a product-level component with its own [theming guide](https://github.com/Kong/spec-renderer/blob/main/docs/theming.md) describing what each token styles.
+
+Some component sets define a shared **base layer** of renderer-wide roles, so a dedicated token may fall back to **another component token** before the semantic token. The spec-renderer table of contents item text color is the canonical example:
+
+\`\`\`scss
+color: var(--kui-spec-renderer-toc-item-color-text, var(--kui-spec-renderer-color-text-neutral, var(--kui-color-text-neutral-strong, $kui-color-text-neutral-strong)));
+//                 ↑ most specific token (the part)            ↑ base component token (renderer-wide role)       ↑ semantic token                  ↑ static fallback
+\`\`\`
+
+The rules for such a chain:
+
+- The **outermost** \`var()\` argument is the **most specific** token — one dedicated to the part being styled (\`toc-item-*\`), not the shared base (\`color-text-neutral\`).
+- The **semantic token and its SCSS literal always come last** — every component token in between is an unset override slot, and the chain must still bottom out at the same default the un-themed render uses.
+- Keep the whole \`var()\` on **one line** — the \`token-var-usage\` rule (below) cannot parse a multi-line \`var()\`.
+
 ### Linting
 
 Two plugins enforce the patterns above. Install them as \`devDependencies\` alongside \`@kong/design-tokens\`:

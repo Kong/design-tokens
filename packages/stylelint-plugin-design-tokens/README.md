@@ -55,6 +55,8 @@ For example, the `kui-color-text-primary` token **should** be used as a value fo
 }
 ```
 
+The property → token-family allow-list lives in [`token-map.mjs`](./rules/use-proper-token/token-map.mjs). Component tokens are matched by family suffix, so `--kui-button-color-background-primary` is valid wherever `color-background` is. Component tokens ending in `-gap` are also accepted on `margin*` (alongside `space`) — e.g. `--kui-spec-renderer-section-gap` on `margin-bottom`, where the styled sections nest at different depths and a flex/grid `gap` isn't possible.
+
 ### `token-var-usage`
 
 Rule that ensures SCSS design tokens are properly used as fallback values in CSS custom properties.
