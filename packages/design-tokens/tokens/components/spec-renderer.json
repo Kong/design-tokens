@@ -1,0 +1,487 @@
+{
+  "spec_renderer": {
+    "$type": "component",
+    "border": {
+      "radius": {
+        "_": {
+          "$description": "Spec renderer border radius for containers: panels, boxed sections, endpoint bar, previous/next links and select menus.",
+          "$value": ""
+        },
+        "small": {
+          "$description": "Spec renderer border radius for controls: navigation items, pickers, value chips, method and label badges.",
+          "$value": ""
+        }
+      }
+    },
+    "color": {
+      "background": {
+        "_": {
+          "$description": "Spec renderer background color for surfaces: panel bodies, previous/next links, select menus.",
+          "$value": ""
+        },
+        "neutral": {
+          "$description": "Spec renderer background color for tinted areas: navigation, panel headers, insets, endpoint bar, code blocks.",
+          "$value": ""
+        },
+        "primary": {
+          "$description": "Spec renderer accent tint background color for selected and hovered items.",
+          "$value": ""
+        }
+      },
+      "border": {
+        "$description": "Spec renderer border and divider color.",
+        "$value": ""
+      },
+      "text": {
+        "_": {
+          "$description": "Spec renderer default text color.",
+          "$value": ""
+        },
+        "neutral": {
+          "$description": "Spec renderer secondary text and icon color.",
+          "$value": ""
+        },
+        "primary": {
+          "$description": "Spec renderer accent text color: selected items, property names, links.",
+          "$value": ""
+        }
+      }
+    },
+    "document_navigation": {
+      "border": {
+        "radius": {
+          "$description": "Spec renderer previous/next link border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Spec renderer previous/next link background color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Spec renderer previous/next link background color on hover.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "$description": "Spec renderer previous/next link border color.",
+          "$value": ""
+        },
+        "text": {
+          "_": {
+            "$description": "Spec renderer previous/next link text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Spec renderer previous/next link text color on hover.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "endpoint": {
+      "color": {
+        "background": {
+          "$description": "Spec renderer endpoint bar background color.",
+          "$value": ""
+        },
+        "text": {
+          "$description": "Spec renderer endpoint bar server URL text color.",
+          "$value": ""
+        }
+      },
+      "path": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer endpoint bar path text color.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "font": {
+      "family": {
+        "code": {
+          "$description": "Spec renderer monospace font family.",
+          "$value": ""
+        },
+        "heading": {
+          "$description": "Spec renderer page and section title font family.",
+          "$value": ""
+        }
+      }
+    },
+    "markdown_code": {
+      "color": {
+        "background": {
+          "$description": "Spec renderer inline code background color in markdown content.",
+          "$value": ""
+        },
+        "text": {
+          "$description": "Spec renderer inline code text color in markdown content.",
+          "$value": ""
+        }
+      }
+    },
+    "method_badge": {
+      "border": {
+        "radius": {
+          "$description": "Spec renderer HTTP method badge border radius.",
+          "$value": ""
+        }
+      },
+      "font": {
+        "weight": {
+          "$description": "Spec renderer HTTP method badge font weight.",
+          "$value": ""
+        }
+      }
+    },
+    "page_header": {
+      "title": {
+        "font": {
+          "size": {
+            "$description": "Spec renderer page title font size.",
+            "$value": ""
+          },
+          "weight": {
+            "$description": "Spec renderer page title font weight.",
+            "$value": ""
+          }
+        },
+        "line_height": {
+          "$description": "Spec renderer page title line height.",
+          "$value": ""
+        }
+      }
+    },
+    "panel": {
+      "border": {
+        "radius": {
+          "$description": "Spec renderer panel border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "_": {
+            "$description": "Spec renderer panel content background color.",
+            "$value": ""
+          },
+          "inset": {
+            "$description": "Spec renderer recessed panel area background color.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "$description": "Spec renderer panel border color.",
+          "$value": ""
+        }
+      },
+      "header": {
+        "color": {
+          "background": {
+            "$description": "Spec renderer panel header background color.",
+            "$value": ""
+          },
+          "text": {
+            "$description": "Spec renderer panel header text color.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "schema_property": {
+      "color": {
+        "border": {
+          "$description": "Spec renderer schema property divider and tree line color.",
+          "$value": ""
+        }
+      },
+      "description": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer schema property description text color.",
+            "$value": ""
+          }
+        }
+      },
+      "name": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer schema property name text color.",
+            "$value": ""
+          }
+        }
+      },
+      "readonly": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer schema property read-only label text color.",
+            "$value": ""
+          }
+        }
+      },
+      "required": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer schema property required label text color.",
+            "$value": ""
+          }
+        }
+      },
+      "type": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer schema property type and format text color.",
+            "$value": ""
+          }
+        }
+      },
+      "value": {
+        "border": {
+          "radius": {
+            "$description": "Spec renderer schema property value chip border radius.",
+            "$value": ""
+          }
+        },
+        "color": {
+          "background": {
+            "$description": "Spec renderer schema property value chip background color.",
+            "$value": ""
+          },
+          "text": {
+            "$description": "Spec renderer schema property value chip text color.",
+            "$value": ""
+          }
+        },
+        "shadow": {
+          "border": {
+            "$description": "Spec renderer schema property value chip inset border shadow.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "section": {
+      "border": {
+        "radius": {
+          "$description": "Spec renderer operation section border radius.",
+          "$value": ""
+        },
+        "width": {
+          "$description": "Spec renderer operation section border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "$description": "Spec renderer operation section background color.",
+          "$value": ""
+        },
+        "border": {
+          "$description": "Spec renderer operation section border and title divider color.",
+          "$value": ""
+        }
+      },
+      "gap": {
+        "$description": "Spec renderer space between operation sections.",
+        "$value": ""
+      },
+      "header": {
+        "color": {
+          "background": {
+            "$description": "Spec renderer operation section header background color.",
+            "$value": ""
+          }
+        }
+      },
+      "padding": {
+        "x": {
+          "$description": "Spec renderer operation section horizontal padding.",
+          "$value": ""
+        }
+      },
+      "title": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer operation section title text color.",
+            "$value": ""
+          }
+        },
+        "font": {
+          "size": {
+            "$description": "Spec renderer operation section title font size.",
+            "$value": ""
+          },
+          "weight": {
+            "$description": "Spec renderer operation section title font weight.",
+            "$value": ""
+          }
+        },
+        "line_height": {
+          "$description": "Spec renderer operation section title line height.",
+          "$value": ""
+        }
+      }
+    },
+    "select": {
+      "border": {
+        "radius": {
+          "$description": "Spec renderer select trigger border radius.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "active": {
+            "$description": "Spec renderer select trigger background color while its menu is open.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Spec renderer select trigger background color on hover.",
+            "$value": ""
+          }
+        },
+        "border": {
+          "$description": "Spec renderer select trigger border color.",
+          "$value": ""
+        },
+        "text": {
+          "_": {
+            "$description": "Spec renderer select trigger text color.",
+            "$value": ""
+          },
+          "hover": {
+            "$description": "Spec renderer select trigger text color on hover and while its menu is open.",
+            "$value": ""
+          }
+        }
+      }
+    },
+    "subsection": {
+      "border": {
+        "radius": {
+          "$description": "Spec renderer nested section border radius.",
+          "$value": ""
+        },
+        "width": {
+          "$description": "Spec renderer nested section border width.",
+          "$value": ""
+        }
+      },
+      "color": {
+        "background": {
+          "$description": "Spec renderer nested section background color.",
+          "$value": ""
+        }
+      },
+      "header": {
+        "color": {
+          "background": {
+            "$description": "Spec renderer nested section header background color.",
+            "$value": ""
+          }
+        }
+      },
+      "padding": {
+        "x": {
+          "$description": "Spec renderer nested section horizontal padding.",
+          "$value": ""
+        },
+        "y": {
+          "$description": "Spec renderer nested section header vertical padding.",
+          "$value": ""
+        }
+      }
+    },
+    "toc": {
+      "color": {
+        "background": {
+          "$description": "Spec renderer table of contents background color.",
+          "$value": ""
+        },
+        "border": {
+          "divider": {
+            "$description": "Spec renderer table of contents divider color.",
+            "$value": ""
+          }
+        }
+      },
+      "group_title": {
+        "color": {
+          "text": {
+            "$description": "Spec renderer table of contents group title text color.",
+            "$value": ""
+          }
+        },
+        "font": {
+          "size": {
+            "$description": "Spec renderer table of contents group title font size.",
+            "$value": ""
+          },
+          "weight": {
+            "$description": "Spec renderer table of contents group title font weight.",
+            "$value": ""
+          }
+        }
+      },
+      "item": {
+        "border": {
+          "radius": {
+            "$description": "Spec renderer table of contents item border radius.",
+            "$value": ""
+          }
+        },
+        "color": {
+          "background": {
+            "hover": {
+              "$description": "Spec renderer table of contents item background color on hover.",
+              "$value": ""
+            },
+            "selected": {
+              "$description": "Spec renderer table of contents item background color when selected.",
+              "$value": ""
+            }
+          },
+          "text": {
+            "_": {
+              "$description": "Spec renderer table of contents item text color.",
+              "$value": ""
+            },
+            "hover": {
+              "$description": "Spec renderer table of contents item text color on hover.",
+              "$value": ""
+            },
+            "selected": {
+              "$description": "Spec renderer table of contents item text color when selected.",
+              "$value": ""
+            }
+          }
+        },
+        "font": {
+          "size": {
+            "$description": "Spec renderer table of contents item font size.",
+            "$value": ""
+          },
+          "weight": {
+            "_": {
+              "$description": "Spec renderer table of contents item font weight.",
+              "$value": ""
+            },
+            "selected": {
+              "$description": "Spec renderer table of contents item font weight when selected.",
+              "$value": ""
+            }
+          }
+        },
+        "padding": {
+          "$description": "Spec renderer table of contents item padding.",
+          "$value": ""
+        }
+      }
+    }
+  }
+}

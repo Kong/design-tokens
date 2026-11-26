@@ -40,6 +40,8 @@ border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30
 
 Never reference a component token without that semantic fallback — on its own it is unset unless a theme writes it.
 
+Component token sets are not limited to Kongponents. \`--kui-spec-renderer-*\` styles [\`@kong/spec-renderer\`](https://github.com/Kong/spec-renderer), Kong's OpenAPI/AsyncAPI documentation renderer — a product-level component with its own [theming guide](https://github.com/Kong/spec-renderer/blob/main/docs/theming.md) describing what each token styles.
+
 ### Linting
 
 Two plugins enforce the patterns above. Install them as \`devDependencies\` alongside \`@kong/design-tokens\`:

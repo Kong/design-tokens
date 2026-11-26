@@ -67,6 +67,8 @@ border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30
 //                 ↑ component token (empty by default)   ↑ semantic fallback        ↑ SCSS literal
 ```
 
+Component token sets are not limited to Kongponents: `--kui-spec-renderer-*` styles `@kong/spec-renderer`, a product-level component outside the component library. Its [theming guide](https://github.com/Kong/spec-renderer/blob/main/docs/theming.md) documents what each `--kui-spec-renderer-*` token styles.
+
 When a theme writes `--kui-button-border-radius-medium: 999px`, only buttons go pill-shaped. Inputs and other components keep their semantic default. When no theme writes the token, `var()` falls through to the semantic default — **byte-identical to the un-themed render**.
 
 ### Themeable token list

@@ -55,11 +55,14 @@ export const PROPERTY_TOKEN_MAP = {
   left: [],
   'letter-spacing': ['letter-spacing'],
   'line-height': ['line-height'],
-  margin: ['space'],
-  'margin-bottom': ['space'],
-  'margin-left': ['space'],
-  'margin-right': ['space'],
-  'margin-top': ['space'],
+  // `gap` is allowed alongside `space` on `margin*` for component tokens like
+  // `kui-spec-renderer-section-gap` — sections nest at different depths, so a flex/grid `gap`
+  // isn't always possible and the spacing lands on a margin instead.
+  margin: ['space', 'gap'],
+  'margin-bottom': ['space', 'gap'],
+  'margin-left': ['space', 'gap'],
+  'margin-right': ['space', 'gap'],
+  'margin-top': ['space', 'gap'],
   'max-height': ['icon-size'],
   'max-width': ['icon-size', 'breakpoint'],
   'min-height': ['icon-size', 'row-height'],

@@ -3054,6 +3054,168 @@ Component tokens are documented here for reference. They ship **with no default 
 --kui-slider-track-border-radius: initial;
 /* Slider track (unfilled) background color. */
 --kui-slider-track-color-background: initial;
+/* Spec renderer border radius for containers: panels, boxed sections, endpoint bar, previous/next links and select menus. */
+--kui-spec-renderer-border-radius: initial;
+/* Spec renderer border radius for controls: navigation items, pickers, value chips, method and label badges. */
+--kui-spec-renderer-border-radius-small: initial;
+/* Spec renderer background color for surfaces: panel bodies, previous/next links, select menus. */
+--kui-spec-renderer-color-background: initial;
+/* Spec renderer background color for tinted areas: navigation, panel headers, insets, endpoint bar, code blocks. */
+--kui-spec-renderer-color-background-neutral: initial;
+/* Spec renderer accent tint background color for selected and hovered items. */
+--kui-spec-renderer-color-background-primary: initial;
+/* Spec renderer border and divider color. */
+--kui-spec-renderer-color-border: initial;
+/* Spec renderer default text color. */
+--kui-spec-renderer-color-text: initial;
+/* Spec renderer secondary text and icon color. */
+--kui-spec-renderer-color-text-neutral: initial;
+/* Spec renderer accent text color: selected items, property names, links. */
+--kui-spec-renderer-color-text-primary: initial;
+/* Spec renderer previous/next link border radius. */
+--kui-spec-renderer-document-navigation-border-radius: initial;
+/* Spec renderer previous/next link background color. */
+--kui-spec-renderer-document-navigation-color-background: initial;
+/* Spec renderer previous/next link background color on hover. */
+--kui-spec-renderer-document-navigation-color-background-hover: initial;
+/* Spec renderer previous/next link border color. */
+--kui-spec-renderer-document-navigation-color-border: initial;
+/* Spec renderer previous/next link text color. */
+--kui-spec-renderer-document-navigation-color-text: initial;
+/* Spec renderer previous/next link text color on hover. */
+--kui-spec-renderer-document-navigation-color-text-hover: initial;
+/* Spec renderer endpoint bar background color. */
+--kui-spec-renderer-endpoint-color-background: initial;
+/* Spec renderer endpoint bar server URL text color. */
+--kui-spec-renderer-endpoint-color-text: initial;
+/* Spec renderer endpoint bar path text color. */
+--kui-spec-renderer-endpoint-path-color-text: initial;
+/* Spec renderer monospace font family. */
+--kui-spec-renderer-font-family-code: initial;
+/* Spec renderer page and section title font family. */
+--kui-spec-renderer-font-family-heading: initial;
+/* Spec renderer inline code background color in markdown content. */
+--kui-spec-renderer-markdown-code-color-background: initial;
+/* Spec renderer inline code text color in markdown content. */
+--kui-spec-renderer-markdown-code-color-text: initial;
+/* Spec renderer HTTP method badge border radius. */
+--kui-spec-renderer-method-badge-border-radius: initial;
+/* Spec renderer HTTP method badge font weight. */
+--kui-spec-renderer-method-badge-font-weight: initial;
+/* Spec renderer page title font size. */
+--kui-spec-renderer-page-header-title-font-size: initial;
+/* Spec renderer page title font weight. */
+--kui-spec-renderer-page-header-title-font-weight: initial;
+/* Spec renderer page title line height. */
+--kui-spec-renderer-page-header-title-line-height: initial;
+/* Spec renderer panel border radius. */
+--kui-spec-renderer-panel-border-radius: initial;
+/* Spec renderer panel content background color. */
+--kui-spec-renderer-panel-color-background: initial;
+/* Spec renderer recessed panel area background color. */
+--kui-spec-renderer-panel-color-background-inset: initial;
+/* Spec renderer panel border color. */
+--kui-spec-renderer-panel-color-border: initial;
+/* Spec renderer panel header background color. */
+--kui-spec-renderer-panel-header-color-background: initial;
+/* Spec renderer panel header text color. */
+--kui-spec-renderer-panel-header-color-text: initial;
+/* Spec renderer schema property divider and tree line color. */
+--kui-spec-renderer-schema-property-color-border: initial;
+/* Spec renderer schema property description text color. */
+--kui-spec-renderer-schema-property-description-color-text: initial;
+/* Spec renderer schema property name text color. */
+--kui-spec-renderer-schema-property-name-color-text: initial;
+/* Spec renderer schema property read-only label text color. */
+--kui-spec-renderer-schema-property-readonly-color-text: initial;
+/* Spec renderer schema property required label text color. */
+--kui-spec-renderer-schema-property-required-color-text: initial;
+/* Spec renderer schema property type and format text color. */
+--kui-spec-renderer-schema-property-type-color-text: initial;
+/* Spec renderer schema property value chip border radius. */
+--kui-spec-renderer-schema-property-value-border-radius: initial;
+/* Spec renderer schema property value chip background color. */
+--kui-spec-renderer-schema-property-value-color-background: initial;
+/* Spec renderer schema property value chip text color. */
+--kui-spec-renderer-schema-property-value-color-text: initial;
+/* Spec renderer schema property value chip inset border shadow. */
+--kui-spec-renderer-schema-property-value-shadow-border: initial;
+/* Spec renderer operation section border radius. */
+--kui-spec-renderer-section-border-radius: initial;
+/* Spec renderer operation section border width. */
+--kui-spec-renderer-section-border-width: initial;
+/* Spec renderer operation section background color. */
+--kui-spec-renderer-section-color-background: initial;
+/* Spec renderer operation section border and title divider color. */
+--kui-spec-renderer-section-color-border: initial;
+/* Spec renderer space between operation sections. */
+--kui-spec-renderer-section-gap: initial;
+/* Spec renderer operation section header background color. */
+--kui-spec-renderer-section-header-color-background: initial;
+/* Spec renderer operation section horizontal padding. */
+--kui-spec-renderer-section-padding-x: initial;
+/* Spec renderer operation section title text color. */
+--kui-spec-renderer-section-title-color-text: initial;
+/* Spec renderer operation section title font size. */
+--kui-spec-renderer-section-title-font-size: initial;
+/* Spec renderer operation section title font weight. */
+--kui-spec-renderer-section-title-font-weight: initial;
+/* Spec renderer operation section title line height. */
+--kui-spec-renderer-section-title-line-height: initial;
+/* Spec renderer select trigger border radius. */
+--kui-spec-renderer-select-border-radius: initial;
+/* Spec renderer select trigger background color while its menu is open. */
+--kui-spec-renderer-select-color-background-active: initial;
+/* Spec renderer select trigger background color on hover. */
+--kui-spec-renderer-select-color-background-hover: initial;
+/* Spec renderer select trigger border color. */
+--kui-spec-renderer-select-color-border: initial;
+/* Spec renderer select trigger text color. */
+--kui-spec-renderer-select-color-text: initial;
+/* Spec renderer select trigger text color on hover and while its menu is open. */
+--kui-spec-renderer-select-color-text-hover: initial;
+/* Spec renderer nested section border radius. */
+--kui-spec-renderer-subsection-border-radius: initial;
+/* Spec renderer nested section border width. */
+--kui-spec-renderer-subsection-border-width: initial;
+/* Spec renderer nested section background color. */
+--kui-spec-renderer-subsection-color-background: initial;
+/* Spec renderer nested section header background color. */
+--kui-spec-renderer-subsection-header-color-background: initial;
+/* Spec renderer nested section horizontal padding. */
+--kui-spec-renderer-subsection-padding-x: initial;
+/* Spec renderer nested section header vertical padding. */
+--kui-spec-renderer-subsection-padding-y: initial;
+/* Spec renderer table of contents background color. */
+--kui-spec-renderer-toc-color-background: initial;
+/* Spec renderer table of contents divider color. */
+--kui-spec-renderer-toc-color-border-divider: initial;
+/* Spec renderer table of contents group title text color. */
+--kui-spec-renderer-toc-group-title-color-text: initial;
+/* Spec renderer table of contents group title font size. */
+--kui-spec-renderer-toc-group-title-font-size: initial;
+/* Spec renderer table of contents group title font weight. */
+--kui-spec-renderer-toc-group-title-font-weight: initial;
+/* Spec renderer table of contents item border radius. */
+--kui-spec-renderer-toc-item-border-radius: initial;
+/* Spec renderer table of contents item background color on hover. */
+--kui-spec-renderer-toc-item-color-background-hover: initial;
+/* Spec renderer table of contents item background color when selected. */
+--kui-spec-renderer-toc-item-color-background-selected: initial;
+/* Spec renderer table of contents item text color. */
+--kui-spec-renderer-toc-item-color-text: initial;
+/* Spec renderer table of contents item text color on hover. */
+--kui-spec-renderer-toc-item-color-text-hover: initial;
+/* Spec renderer table of contents item text color when selected. */
+--kui-spec-renderer-toc-item-color-text-selected: initial;
+/* Spec renderer table of contents item font size. */
+--kui-spec-renderer-toc-item-font-size: initial;
+/* Spec renderer table of contents item font weight. */
+--kui-spec-renderer-toc-item-font-weight: initial;
+/* Spec renderer table of contents item font weight when selected. */
+--kui-spec-renderer-toc-item-font-weight-selected: initial;
+/* Spec renderer table of contents item padding. */
+--kui-spec-renderer-toc-item-padding: initial;
 /* Stepper step indicator (circle) border radius. */
 --kui-stepper-border-radius: initial;
 /* Stepper step indicator (circle) border width, applied to incomplete (default) steps. */
@@ -8414,6 +8576,492 @@ export const KUI_THEMEABLE_TOKENS = [
     value: "auto",
   },
   {
+    name: "--kui-spec-renderer-border-radius",
+    description: "Spec renderer border radius for containers: panels, boxed sections, endpoint bar, previous/next links and select menus.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-border-radius-small",
+    description: "Spec renderer border radius for controls: navigation items, pickers, value chips, method and label badges.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-background",
+    description: "Spec renderer background color for surfaces: panel bodies, previous/next links, select menus.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-background-neutral",
+    description: "Spec renderer background color for tinted areas: navigation, panel headers, insets, endpoint bar, code blocks.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-background-primary",
+    description: "Spec renderer accent tint background color for selected and hovered items.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-border",
+    description: "Spec renderer border and divider color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-text",
+    description: "Spec renderer default text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-text-neutral",
+    description: "Spec renderer secondary text and icon color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-color-text-primary",
+    description: "Spec renderer accent text color: selected items, property names, links.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-document-navigation-border-radius",
+    description: "Spec renderer previous/next link border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-document-navigation-color-background",
+    description: "Spec renderer previous/next link background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-document-navigation-color-background-hover",
+    description: "Spec renderer previous/next link background color on hover.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-document-navigation-color-border",
+    description: "Spec renderer previous/next link border color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-document-navigation-color-text",
+    description: "Spec renderer previous/next link text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-document-navigation-color-text-hover",
+    description: "Spec renderer previous/next link text color on hover.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-endpoint-color-background",
+    description: "Spec renderer endpoint bar background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-endpoint-color-text",
+    description: "Spec renderer endpoint bar server URL text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-endpoint-path-color-text",
+    description: "Spec renderer endpoint bar path text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-font-family-code",
+    description: "Spec renderer monospace font family.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-font-family-heading",
+    description: "Spec renderer page and section title font family.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-markdown-code-color-background",
+    description: "Spec renderer inline code background color in markdown content.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-markdown-code-color-text",
+    description: "Spec renderer inline code text color in markdown content.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-method-badge-border-radius",
+    description: "Spec renderer HTTP method badge border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-method-badge-font-weight",
+    description: "Spec renderer HTTP method badge font weight.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-page-header-title-font-size",
+    description: "Spec renderer page title font size.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-page-header-title-font-weight",
+    description: "Spec renderer page title font weight.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-page-header-title-line-height",
+    description: "Spec renderer page title line height.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-panel-border-radius",
+    description: "Spec renderer panel border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-panel-color-background",
+    description: "Spec renderer panel content background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-panel-color-background-inset",
+    description: "Spec renderer recessed panel area background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-panel-color-border",
+    description: "Spec renderer panel border color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-panel-header-color-background",
+    description: "Spec renderer panel header background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-panel-header-color-text",
+    description: "Spec renderer panel header text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-color-border",
+    description: "Spec renderer schema property divider and tree line color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-description-color-text",
+    description: "Spec renderer schema property description text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-name-color-text",
+    description: "Spec renderer schema property name text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-readonly-color-text",
+    description: "Spec renderer schema property read-only label text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-required-color-text",
+    description: "Spec renderer schema property required label text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-type-color-text",
+    description: "Spec renderer schema property type and format text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-value-border-radius",
+    description: "Spec renderer schema property value chip border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-value-color-background",
+    description: "Spec renderer schema property value chip background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-value-color-text",
+    description: "Spec renderer schema property value chip text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-schema-property-value-shadow-border",
+    description: "Spec renderer schema property value chip inset border shadow.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-border-radius",
+    description: "Spec renderer operation section border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-border-width",
+    description: "Spec renderer operation section border width.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-color-background",
+    description: "Spec renderer operation section background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-color-border",
+    description: "Spec renderer operation section border and title divider color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-gap",
+    description: "Spec renderer space between operation sections.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-header-color-background",
+    description: "Spec renderer operation section header background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-padding-x",
+    description: "Spec renderer operation section horizontal padding.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-title-color-text",
+    description: "Spec renderer operation section title text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-title-font-size",
+    description: "Spec renderer operation section title font size.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-title-font-weight",
+    description: "Spec renderer operation section title font weight.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-section-title-line-height",
+    description: "Spec renderer operation section title line height.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-select-border-radius",
+    description: "Spec renderer select trigger border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-select-color-background-active",
+    description: "Spec renderer select trigger background color while its menu is open.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-select-color-background-hover",
+    description: "Spec renderer select trigger background color on hover.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-select-color-border",
+    description: "Spec renderer select trigger border color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-select-color-text",
+    description: "Spec renderer select trigger text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-select-color-text-hover",
+    description: "Spec renderer select trigger text color on hover and while its menu is open.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-subsection-border-radius",
+    description: "Spec renderer nested section border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-subsection-border-width",
+    description: "Spec renderer nested section border width.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-subsection-color-background",
+    description: "Spec renderer nested section background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-subsection-header-color-background",
+    description: "Spec renderer nested section header background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-subsection-padding-x",
+    description: "Spec renderer nested section horizontal padding.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-subsection-padding-y",
+    description: "Spec renderer nested section header vertical padding.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-color-background",
+    description: "Spec renderer table of contents background color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-color-border-divider",
+    description: "Spec renderer table of contents divider color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-group-title-color-text",
+    description: "Spec renderer table of contents group title text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-group-title-font-size",
+    description: "Spec renderer table of contents group title font size.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-group-title-font-weight",
+    description: "Spec renderer table of contents group title font weight.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-border-radius",
+    description: "Spec renderer table of contents item border radius.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-color-background-hover",
+    description: "Spec renderer table of contents item background color on hover.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-color-background-selected",
+    description: "Spec renderer table of contents item background color when selected.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-color-text",
+    description: "Spec renderer table of contents item text color.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-color-text-hover",
+    description: "Spec renderer table of contents item text color on hover.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-color-text-selected",
+    description: "Spec renderer table of contents item text color when selected.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-font-size",
+    description: "Spec renderer table of contents item font size.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-font-weight",
+    description: "Spec renderer table of contents item font weight.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-font-weight-selected",
+    description: "Spec renderer table of contents item font weight when selected.",
+    category: "component",
+    value: null,
+  },
+  {
+    name: "--kui-spec-renderer-toc-item-padding",
+    description: "Spec renderer table of contents item padding.",
+    category: "component",
+    value: null,
+  },
+  {
     name: "--kui-status-color-100",
     description: "Color representing response status code 100 (blue.20).",
     category: "status",
@@ -9966,6 +10614,8 @@ border-radius: var(--kui-button-border-radius-medium, var(--kui-border-radius-30
 ```
 
 Never reference a component token without that semantic fallback — on its own it is unset unless a theme writes it.
+
+Component token sets are not limited to Kongponents. `--kui-spec-renderer-*` styles [`@kong/spec-renderer`](https://github.com/Kong/spec-renderer), Kong's OpenAPI/AsyncAPI documentation renderer — a product-level component with its own [theming guide](https://github.com/Kong/spec-renderer/blob/main/docs/theming.md) describing what each token styles.
 
 ### Linting
 
