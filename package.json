@@ -29,7 +29,7 @@
     "@lerna-lite/version": "^5.2.2",
     "@stylistic/stylelint-plugin": "^5.2.1",
     "@typescript-eslint/parser": "^8.59.4",
-    "@vitejs/plugin-vue": "^6.0.9",
+    "@vitejs/plugin-vue": "^6.0.11",
     "@vue/test-utils": "^2.4.11",
     "chokidar-cli": "^3.0.0",
     "commitizen": "^4.3.2",
@@ -37,8 +37,8 @@
     "eslint": "^9.39.5",
     "eslint-plugin-vue": "^10.9.2",
     "jsdom": "^29.1.1",
-    "npm-run-all2": "^9.0.3",
-    "rimraf": "^6.1.3",
+    "npm-run-all2": "^9.0.4",
+    "rimraf": "^6.1.4",
     "sass": "^1.97.3",
     "shx": "^0.4.0",
     "style-dictionary": "^5.4.4",
@@ -51,11 +51,11 @@
     "vite": "^8.0.16",
     "vite-plugin-restart": "^2.0.0",
     "vite-plugin-vue-devtools": "^8.0.7",
-    "vitest": "^4.1.11",
-    "vue": "^3.5.43",
-    "vue-eslint-parser": "^10.4.1",
+    "vitest": "^4.1.12",
+    "vue": "^3.5.45",
+    "vue-eslint-parser": "^10.4.2",
     "vue-router": "^5.1.0",
-    "vue-tsc": "^3.3.12"
+    "vue-tsc": "^3.3.14"
   },
   "config": {
     "commitizen": {
